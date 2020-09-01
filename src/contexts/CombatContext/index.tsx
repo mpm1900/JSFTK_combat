@@ -139,7 +139,9 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
 
   const onSkillSelect = (skill: SkillT) => {
     setSelectedSkill(skill)
-    setSelectedTarget(undefined)
+    if (skill.targetType !== selectedSkill?.targetType) {
+      setSelectedTarget(undefined)
+    }
   }
 
   const onTargetsSelect = (target: ProcessedCharacterT | ProcessedPartyT) => {
