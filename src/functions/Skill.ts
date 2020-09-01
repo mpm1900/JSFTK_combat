@@ -12,7 +12,7 @@ import {
   TargetTypeT,
 } from '../types'
 import { resolveCheck, getPassedCount, didAllPass } from './Roll'
-import { getDamageResistance, isCharacter } from './Character'
+import { getDamageResistance, isCharacter, processCharacter } from './Character'
 import { updateCharacter, isParty } from './Party'
 
 export const getSkillsFromObjects = (parents: HasSkillsT[]) => {
@@ -197,13 +197,21 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
       targetParty.characters
         .filter((c) => c.id !== result.target.id)
         .forEach((character) => {
-          targetParty = localUpdate(targetParty, character.id, (c) => ({
-            ...c,
-            stats: {
-              ...c.stats,
-              healthOffset: c.stats.healthOffset + result.splashDamage.damage,
-            },
-          }))
+          targetParty = localUpdate(targetParty, character.id, (c) => {
+            const splashDamageResistance = getDamageResistance(
+              processCharacter(character),
+              result.splashDamage.type,
+            )
+            return {
+              ...c,
+              stats: {
+                ...c.stats,
+                healthOffset:
+                  c.stats.healthOffset +
+                  (result.splashDamage.damage - splashDamageResistance),
+              },
+            }
+          })
         })
     }
     if (sourceParty.id === party.id) {

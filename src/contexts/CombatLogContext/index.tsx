@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import { useCombatContext } from '../CombatContext'
 import { Monospace } from '../../elements/monospace'
 import { NameSpanBuilder, SkillSpan, Span } from './util'
+import { getDamageResistance } from '../../functions'
 
 export interface CombatLogContextT {
   combatLog: JSX.Element[]
@@ -46,13 +47,23 @@ export const CombatLogContextProvider = (
   useEffect(() => {
     if (roundResults.length === 0) return
     const latestRounds = roundResults[roundResults.length - 1]
+    const baseRound = latestRounds[0]
+    if (!baseRound) return
+    log(
+      <span>
+        {NameSpan(baseRound.source)} uses {SkillSpan(baseRound.skill)}.
+      </span>,
+    )
+    if (!baseRound.accuracySuccess) {
+      {
+        log(<span>{baseRound.source.name}'s attack missed.</span>)
+      }
+    }
+    if (baseRound.perfect) {
+      log(<span>{Span('gold', 'Perfect!')}</span>)
+    }
     latestRounds.forEach((round) => {
       const targetParty = party.id === round.source.partyId ? enemyParty : party
-      log(
-        <span>
-          {NameSpan(round.source)} uses {SkillSpan(round.skill)}.
-        </span>,
-      )
       if (round.accuracySuccess) {
         if (round.dodgeSuccess) {
           log(<span>{NameSpan(round.target)} dodged the attack.</span>)
@@ -64,25 +75,29 @@ export const CombatLogContextProvider = (
               {NameSpan(round.target)}.
             </span>,
           )
-          if (round.perfect) {
-            log(<span>{Span('gold', 'Perfect!')}</span>)
-          }
         }
         if (round.splashDamage.damage > 0) {
           targetParty.characters
             .filter((c) => c.id !== round.target.id)
             .forEach((subTarget) => {
+              const splashDamageResistance = getDamageResistance(
+                subTarget,
+                round.splashDamage.type,
+              )
               log(
                 <span>
                   {round.skill.name} deals{' '}
-                  {Span('white', `${round.splashDamage.damage} damage`)} to{' '}
-                  {NameSpan(subTarget)}.
+                  {Span(
+                    'white',
+                    `${
+                      round.splashDamage.damage - splashDamageResistance
+                    } damage`,
+                  )}{' '}
+                  to {NameSpan(subTarget)}.
                 </span>,
               )
             })
         }
-      } else {
-        log(<span>{round.source.name}'s attack missed.</span>)
       }
     })
   }, [roundResults.length])
