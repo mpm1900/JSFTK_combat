@@ -59,6 +59,9 @@ export const CombatLogContextProvider = (
         log(<span>{baseRound.source.name}'s attack missed.</span>)
       }
     }
+    if (baseRound.criticalSuccess) {
+      log(<span>{Span('gold', 'Critical Hit!')}</span>)
+    }
     if (baseRound.perfect) {
       log(<span>{Span('gold', 'Perfect!')}</span>)
     }

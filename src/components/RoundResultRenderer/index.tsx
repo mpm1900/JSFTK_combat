@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { useModalContext } from '../../contexts/ModalContext'
 import { TargetSkillResultT } from '../../types'
-import { Span } from '../../contexts/CombatLogContext/util'
+import { Span, NameSpanBuilder } from '../../contexts/CombatLogContext/util'
 import { FlexContainer } from '../../elements/flex'
 
 export const RoundResultRenderer = () => {
@@ -11,14 +11,9 @@ export const RoundResultRenderer = () => {
 
   useEffect(() => {
     if (activeRound) {
-      open(
-        <RoundResult rounds={activeRound} close={() => close(true)} />,
-        {},
-        true,
-        () => {
-          commit()
-        },
-      )
+      open(<RoundResult close={() => close(true)} />, {}, true, () => {
+        commit()
+      })
     }
   }, [activeRound, open, close, commit])
 
@@ -26,7 +21,6 @@ export const RoundResultRenderer = () => {
 }
 
 export interface RoundResultPropsT {
-  rounds: TargetSkillResultT[]
   close: () => void
 }
 export interface CheckKVT {
@@ -34,18 +28,25 @@ export interface CheckKVT {
   result: boolean | undefined
 }
 export const RoundResult = (props: RoundResultPropsT) => {
-  const { rounds, close } = props
+  const { close } = props
+  const { activeRound, party, enemyParty } = useCombatContext()
+  const NameSpan = NameSpanBuilder(party, enemyParty)
+  const rounds = activeRound || []
   const round = rounds[0]
-  const [roundResults, setRoundResults] = useState<CheckKVT[]>([
-    ...round.rollResults.map((result, i) => ({
-      label: round.skill.rolls[i].key || '<NULL>',
-      result: undefined,
-    })),
-    {
-      label: 'accuracy',
-      result: undefined,
-    },
-  ])
+  const [roundResults, setRoundResults] = useState<CheckKVT[]>(
+    !round
+      ? []
+      : [
+          ...round.rollResults.map((result, i) => ({
+            label: round.skill.rolls[i].key || '<NULL>',
+            result: undefined,
+          })),
+          {
+            label: 'accuracy',
+            result: undefined,
+          },
+        ],
+  )
 
   const [currentIndex, setCurrentIndex] = useState<number>(0)
   const updateRoundResult = (value: CheckKVT, index: number) =>
@@ -79,17 +80,22 @@ export const RoundResult = (props: RoundResultPropsT) => {
             currentIndex,
           )
         }, 200)
+        setCurrentIndex((i) => i + 1)
       }
     }
-  }, [roundResults])
+  }, [currentIndex])
 
-  const targetName =
-    rounds.length > 1 ? `${rounds.length} characters` : round.target.name
+  if (!round) return null
+
+  const target = {
+    ...round.target,
+    name: rounds.length > 1 ? `${rounds.length} characters` : round.target.name,
+  }
 
   return (
     <FlexContainer $direction='column' style={{ textAlign: 'center' }}>
       <h4 style={{ margin: '0 0 20px 0' }}>
-        {round.source.name} uses {round.skill.name} on {targetName}
+        {NameSpan(round.source)} uses {round.skill.name} on {NameSpan(target)}
       </h4>
       <FlexContainer style={{ justifyContent: 'center' }}>
         {roundResults.map((result) => (

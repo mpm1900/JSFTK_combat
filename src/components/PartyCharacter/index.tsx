@@ -56,13 +56,16 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
   const health = character.health - character.stats.healthOffset
   return (
     <Wrapper
-      $hoverable={hoverable}
+      $hoverable={hoverable && !character.dead}
       $active={character.id === activeCharacter.id}
       $selected={selected}
       $isHovering={isHovering}
+      style={{
+        opacity: character.dead ? 0.5 : 1,
+      }}
     >
       <BoxContainer
-        onClick={() => (onClick ? onClick() : null)}
+        onClick={() => (onClick && !character.dead ? onClick() : null)}
         style={{
           borderWidth: 2,
           cursor: onClick ? 'pointer' : 'default',
@@ -73,7 +76,9 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           <FlexContainer style={{ borderRight: '2px solid black' }}>
             <img
               alt='profile'
-              src={`https://picsum.photos/seed/${character.name}/60/60`}
+              height='115'
+              width='115'
+              src={`https://picsum.photos/seed/${character.name}/115/115`}
               style={{
                 height: 115,
                 width: 115,

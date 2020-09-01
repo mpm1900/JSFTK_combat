@@ -13,6 +13,6 @@ export const AREA_BLAST: SkillT = {
   ],
   accuracy: makeCheck('intelligence', -5),
   perfectSplash: false,
-  perfectPierce: true,
+  perfectPierce: false,
   perfectStatus: [],
 }

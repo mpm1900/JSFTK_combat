@@ -132,7 +132,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     const results = getSkillResults(
       selectedSkill,
       source,
-      resolveSkillTarget(roundTarget),
+      resolveSkillTarget(roundTarget).filter((c) => !c.dead),
     )
     setActiveRound(results)
   }
