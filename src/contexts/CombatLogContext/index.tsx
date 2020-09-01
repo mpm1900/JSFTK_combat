@@ -12,6 +12,8 @@ const defualtValue: CombatLogContextT = {
 export const CombatLogContext = createContext<CombatLogContextT>(defualtValue)
 export const useCombatLogContext = () => useContext(CombatLogContext)
 
+type DeadLogT = Record<string, boolean | undefined>
+
 export interface CombatLogContextProviderPropsT {
   children: JSX.Element
 }
@@ -21,6 +23,7 @@ export const CombatLogContextProvider = (
   const { children } = props
   const { roundResults, enemyParty, party } = useCombatContext()
   const [combatLog, setCombatLog] = useState<JSX.Element[]>([])
+  const [deadLog, setDeadLog] = useState<DeadLogT>({})
   const NameSpan = NameSpanBuilder(party, enemyParty)
   const log = (line: JSX.Element) =>
     setCombatLog((log) => [
@@ -33,7 +36,8 @@ export const CombatLogContextProvider = (
   useEffect(() => {
     const characters = [...enemyParty.characters, ...party.characters]
     characters.forEach((character) => {
-      if (character.dead) {
+      if (character.dead && !deadLog[character.id]) {
+        setDeadLog((dLog) => ({ ...dLog, [character.id]: true }))
         log(<span>{Span('lightcoral', `${character.name} died.`)}</span>)
       }
     })

@@ -33,6 +33,7 @@ export interface CombatContextT {
   selectedTarget: ProcessedCharacterT | undefined
   roundResults: TargetSkillResultT[][]
   activeRound: TargetSkillResultT[] | undefined
+  isDone: boolean
   onSkillSelect: (skill: SkillT) => void
   onTargetsSelect: (target: ProcessedCharacterT) => void
   next: () => void
@@ -48,6 +49,7 @@ const defaultValue: CombatContextT = {
   selectedTarget: undefined,
   roundResults: [],
   activeRound: undefined,
+  isDone: false,
   onSkillSelect: (skill: SkillT) => {},
   onTargetsSelect: (target: ProcessedCharacterT) => {},
   next: () => {},
@@ -69,6 +71,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     () => commitSkillResults(rawParty, rawEnemyParty),
     [rawParty, rawEnemyParty],
   )
+  const [isDone, setIsDone] = useState<boolean>(false)
   const characters = useMemo(
     () =>
       [...party.characters, ...enemyParty.characters].filter((c) => !c.dead),
@@ -120,7 +123,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     if (!selectedSkill || !roundTarget) return
     const source = activeCharacter
     const results = getSkillResults(selectedSkill, source, [roundTarget])
-    console.log('RESULTS', results)
     setActiveRound(results)
   }
 
@@ -136,7 +138,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   }
 
   const commit = () => {
-    console.log('commit', activeRound)
     if (!activeRound) return
     const parties = resultCommitter(activeRound)
     setEnemyParty(parties.enemyParty)
@@ -155,7 +156,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   }
 
   const execEnemyTurn = (skill: SkillT, targets: ProcessedCharacterT[]) => {
-    console.log('exec enemy turn', activeCharacter.name, skill.name)
     const source = activeCharacter
     const results = getSkillResults(skill, source, targets)
     setActiveRound(results)
@@ -171,22 +171,26 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
           )
         })
       }
-    }
-    if (activeCharacter.partyId === enemyParty.id) {
-      const skill = getRandom(activeCharacter.skills)
-      const targets = [
-        getRandom(getTargetsOptions(activeCharacter.partyId, skill)),
-      ]
-      execEnemyTurn(skill, targets)
+    } else {
+      if (activeCharacter.partyId === enemyParty.id) {
+        const skill = getRandom(activeCharacter.skills)
+        const targets = [
+          getRandom(getTargetsOptions(activeCharacter.partyId, skill)),
+        ]
+        execEnemyTurn(skill, targets)
+      }
     }
   }, [(activeCharacter || {}).id])
 
   useEffect(() => {
+    if (isDone) return
     if (enemyParty.characters.every((c) => c.dead)) {
       alert('you win')
+      setIsDone(true)
       return
     }
     if (party.characters.every((c) => c.dead)) {
+      setIsDone(true)
       alert('you lose')
       return
     }
@@ -208,6 +212,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
         targets,
         selectedTarget,
         roundResults,
+        isDone,
         onSkillSelect,
         onTargetsSelect,
         next,

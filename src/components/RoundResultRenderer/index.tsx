@@ -50,19 +50,19 @@ export const RoundResult = (props: RoundResultPropsT) => {
             result: round.rollResults[roundResults.length].result,
           },
         ])
-      }, 500)
+      }, 200)
     } else {
       if (accuracyReuslt) {
         setTimeout(() => {
           close()
-        }, 1000)
+        }, 600)
       } else {
         setTimeout(() => {
           setAccuracyResult({
             label: 'accuracy',
             result: round.accuracySuccess,
           })
-        }, 500)
+        }, 200)
       }
     }
   }, [roundResults.length, accuracyReuslt])
