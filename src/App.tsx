@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useMemo } from 'react'
+import { CombatContextProvider } from './contexts/CombatContext'
+import { PartyT } from './types'
+import { makeParty, processParty } from './functions'
+import { Combat } from './domain/Combat'
+import { CombatLogContextProvider } from './contexts/CombatLogContext'
+import { ModalContextProvider } from './contexts/ModalContext'
 
-function App() {
+export const App = () => {
+  const [rawEnemyParty, setRawEnemyParty] = useState<PartyT>(makeParty(3))
+  const enemyParty = useMemo(() => processParty(rawEnemyParty), [rawEnemyParty])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <CombatContextProvider
+      enemyParty={enemyParty}
+      rawEnemyParty={rawEnemyParty}
+      setEnemyParty={setRawEnemyParty}
+    >
+      <CombatLogContextProvider>
+        <ModalContextProvider>
+          <Combat />
+        </ModalContextProvider>
+      </CombatLogContextProvider>
+    </CombatContextProvider>
+  )
 }
-
-export default App;
