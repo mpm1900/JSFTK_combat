@@ -4,7 +4,7 @@ import { FlexContainer } from '../../elements/flex'
 import { PartyCharacter } from '../PartyCharacter'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { BoxButton } from '../../elements/box'
-import { Button } from '../../elements/button'
+import { Button, ConfirmButton } from '../../elements/button'
 
 export interface CombatPartyPropsT {
   party: ProcessedPartyT
@@ -57,16 +57,9 @@ export const CombatParty = (props: CombatPartyPropsT) => {
               selectedTargets[0].id === c.id && (
                 <FlexContainer style={{ justifyContent: 'center' }}>
                   <div style={{ boxShadow: '0px 2px 5px black' }}>
-                    <Button
-                      onClick={() => next()}
-                      style={{
-                        borderTop: 'none',
-                        padding: '10px 30px',
-                        boxShadow: 'inset 0px 2px 8px black',
-                      }}
-                    >
-                      Confirm
-                    </Button>
+                    <ConfirmButton onClick={() => next()}>
+                      Confirm Target
+                    </ConfirmButton>
                   </div>
                 </FlexContainer>
               )}
@@ -78,16 +71,13 @@ export const CombatParty = (props: CombatPartyPropsT) => {
         selectedTargets.length > 0 && (
           <FlexContainer style={{ justifyContent: 'center' }}>
             <div style={{ boxShadow: '0px 2px 5px black' }}>
-              <Button
+              <ConfirmButton
                 onClick={() => next()}
-                style={{
-                  borderTop: 'none',
-                  padding: '10px 30px',
-                  boxShadow: 'inset 0px 2px 8px black',
-                }}
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
               >
-                Confirm
-              </Button>
+                Confirm Group Target
+              </ConfirmButton>
             </div>
           </FlexContainer>
         )}

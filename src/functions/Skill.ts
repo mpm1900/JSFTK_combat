@@ -138,11 +138,26 @@ export const getSkillDamage = (
       (1 + skill.damageModifier + source.stats.damageModifier),
   }
   const damageResistances = getDamageResistance(target, rawDamage.type)
-  console.log(rawDamage, damageResistances)
   return {
     type: rawDamage.type,
     damage: Math.round(rawDamage.damage - damageResistances),
   }
+}
+export const getSkillDamageRange = (
+  skill: SkillT,
+  source: ProcessedCharacterT,
+  targets: ProcessedCharacterT[],
+) => {
+  let min: number | undefined = undefined
+  let max: number | undefined = undefined
+  targets.forEach((target) => {
+    const damage = getSkillDamage(skill, source, target).damage
+    if (max === undefined || damage > max) max = damage
+    if (min === undefined || damage < min) min = damage
+  })
+  console.log(min, max)
+  if (min === max) return `${max || 0}`
+  return `${min}-${max}`
 }
 
 export const getSkillResults = (

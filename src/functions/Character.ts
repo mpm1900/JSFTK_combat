@@ -158,7 +158,6 @@ export const getDamageResistance = (
   character: ProcessedCharacterT,
   damageType: DamageTypeT,
 ) => {
-  console.log(damageType, character.stats)
   if (damageType === 'physical') return character.stats.armor
   if (damageType === 'magic') return character.stats.resistance
   return 0

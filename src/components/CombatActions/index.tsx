@@ -2,7 +2,11 @@ import React from 'react'
 import { BoxContainer, BoxButton } from '../../elements/box'
 import { FlexContainer } from '../../elements/flex'
 import { useCombatContext } from '../../contexts/CombatContext'
-import { getChecksProbability, getSkillDamage } from '../../functions'
+import {
+  getChecksProbability,
+  getSkillDamage,
+  getSkillDamageRange,
+} from '../../functions'
 import { Button } from '../../elements/button'
 
 export const CombatActions = () => {
@@ -22,11 +26,9 @@ export const CombatActions = () => {
     ? getChecksProbability(activeCharacter, [selectedSkill.accuracy])
     : 0
   const accuracyChance = 1 - (1 - perfectChance) * (1 - rawAccuracyChance)
-  const damage =
-    selectedTargets.length > 0 && selectedSkill
-      ? getSkillDamage(selectedSkill, activeCharacter, selectedTargets[0])
-          .damage
-      : 0
+  const damage = selectedSkill
+    ? getSkillDamageRange(selectedSkill, activeCharacter, selectedTargets)
+    : '0'
   return (
     <BoxContainer substyle={{ color: 'rgba(255,255,255,0.8)', minWidth: 300 }}>
       <h2 style={{ marginTop: 0, textAlign: 'center' }}>
@@ -61,7 +63,7 @@ export const CombatActions = () => {
             <span>Target: {selectedSkill.targetType}</span>
             <span>Perect: ({Math.floor(perfectChance * 100)}%)</span>
             <span>Accuracy: ({Math.floor(accuracyChance * 100)}%)</span>
-            {damage > 0 && <span>Base Damage: {damage}</span>}
+            {damage !== '0' && <span>Base Damage: ({damage})</span>}
           </FlexContainer>
         </BoxContainer>
       )}
