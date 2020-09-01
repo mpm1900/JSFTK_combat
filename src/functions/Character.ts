@@ -7,6 +7,7 @@ import {
   StatusTypeT,
   CheckT,
   CharacterClassT,
+  EntityT,
 } from '../types'
 import { STATUS_EFFECTS, CLASS_STARTING_STATS } from '../objects'
 import {
@@ -25,6 +26,8 @@ export const checkForProcessedCharacter = (character: CharacterT) => {
     throw new Error('No Processed Characters Allowed')
   }
 }
+
+export const isCharacter = (e: EntityT) => (e as CharacterT).isCharacter
 
 export const getStatusEffects = (character: CharacterT) => {
   return character.status.map((status) => STATUS_EFFECTS[status.type])
@@ -78,6 +81,7 @@ export const makeCharacter = (
 ): CharacterT => {
   return {
     ...makeEntity(),
+    isCharacter: true,
     partyId,
     level: 1,
     class: characterClass,
@@ -154,6 +158,7 @@ export const getDamageResistance = (
   character: ProcessedCharacterT,
   damageType: DamageTypeT,
 ) => {
+  console.log(damageType, character.stats)
   if (damageType === 'physical') return character.stats.armor
   if (damageType === 'magic') return character.stats.resistance
   return 0

@@ -16,6 +16,7 @@ export interface CharacterT extends EntityT {
   weapon: WeaponT
   armor: ArmorT[]
   status: CharacterStatusT[]
+  isCharacter: true
 }
 
 export interface ProcessedCharacterT extends CharacterT {

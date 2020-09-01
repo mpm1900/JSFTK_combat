@@ -7,15 +7,50 @@ import {
   TargetSkillResultT,
   CharacterT,
   PartyT,
+  SkillTargetT,
+  ProcessedPartyT,
+  TargetTypeT,
 } from '../types'
 import { resolveCheck, getPassedCount, didAllPass } from './Roll'
-import { getDamageResistance, addMultipleStatus } from './Character'
-import { updateCharacter } from './Party'
+import { getDamageResistance, isCharacter } from './Character'
+import { updateCharacter, isParty } from './Party'
 
 export const getSkillsFromObjects = (parents: HasSkillsT[]) => {
   return parents.reduce((p, c) => {
     return [...p, ...c.skills]
   }, [] as SkillT[])
+}
+
+export const resolveSkillTarget = (
+  target: SkillTargetT,
+): ProcessedCharacterT[] => {
+  switch (target.type) {
+    case 'single':
+      return target.character ? [target.character] : []
+    case 'ally':
+      return target.character ? [target.character] : []
+    case 'self':
+      return target.character ? [target.character] : []
+    case 'party':
+      return target.party?.characters || []
+    case 'group':
+      return target.party?.characters || []
+    default:
+      return []
+  }
+}
+
+export const makeSkillTarget = (
+  type: TargetTypeT,
+  target: ProcessedCharacterT | ProcessedPartyT,
+): SkillTargetT => {
+  return {
+    type,
+    character: isCharacter(target)
+      ? (target as ProcessedCharacterT)
+      : undefined,
+    party: isParty(target) ? (target as ProcessedPartyT) : undefined,
+  }
 }
 
 export const getSourceSkillResult = (
@@ -49,6 +84,7 @@ export const getSourceSkillResult = (
     passedCount,
     perfect,
     rawDamage,
+    pierce: (perfect && skill.perfectPierce) || criticalHitResult.result,
     splashDamage:
       skill.perfectSplash && perfect
         ? { type: rawDamage.type, damage: Math.floor(rawDamage.damage / 2) }
@@ -63,7 +99,7 @@ export const getTargetSkillResult = (
 ): TargetSkillResultT => {
   if (sourceResult.accuracySuccess) {
     const dodgeResult = resolveCheck(target, { key: 'evasion' })
-    const damageResistances = sourceResult.criticalSuccess
+    const damageResistances = sourceResult.pierce
       ? 0
       : getDamageResistance(target, sourceResult.rawDamage.type)
     return {
@@ -72,11 +108,11 @@ export const getTargetSkillResult = (
       dodgeSuccess: sourceResult.criticalSuccess ? false : dodgeResult.result,
       blockedDamage: {
         type: sourceResult.rawDamage.type,
-        damage: damageResistances,
+        damage: sourceResult.pierce ? 0 : damageResistances,
       },
       totalDamage: {
         type: sourceResult.rawDamage.type,
-        damage: sourceResult.rawDamage.damage - damageResistances,
+        damage: Math.round(sourceResult.rawDamage.damage - damageResistances),
       },
     }
   } else {
@@ -102,9 +138,10 @@ export const getSkillDamage = (
       (1 + skill.damageModifier + source.stats.damageModifier),
   }
   const damageResistances = getDamageResistance(target, rawDamage.type)
+  console.log(rawDamage, damageResistances)
   return {
     type: rawDamage.type,
-    damage: rawDamage.damage - damageResistances,
+    damage: Math.round(rawDamage.damage - damageResistances),
   }
 }
 

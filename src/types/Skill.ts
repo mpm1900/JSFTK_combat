@@ -3,6 +3,7 @@ import { StatusTypeT } from './Status'
 import { CheckT, CheckResultT } from './Roll'
 import { DamageT } from './Damage'
 import { ProcessedCharacterT } from './Character'
+import { ProcessedPartyT } from './Party'
 
 export interface HasSkillsT {
   skills: SkillT[]
@@ -10,11 +11,17 @@ export interface HasSkillsT {
 
 export interface SkillT extends EntityT {
   damageModifier: number
-  target: TargetTypeT
+  targetType: TargetTypeT
   rolls: CheckT[]
   accuracy: CheckT
   perfectStatus: StatusTypeT[]
   perfectSplash: boolean
+  perfectPierce: boolean
+}
+export interface SkillTargetT {
+  type: TargetTypeT
+  party?: ProcessedPartyT
+  character?: ProcessedCharacterT
 }
 
 export interface SourceSkillResultT {
@@ -28,6 +35,7 @@ export interface SourceSkillResultT {
   rawDamage: DamageT
   addedStatus: StatusTypeT[]
   splashDamage: DamageT
+  pierce: boolean
 }
 
 export interface TargetSkillResultT extends SourceSkillResultT {

@@ -2,19 +2,13 @@ import React from 'react'
 import { BoxContainer, BoxButton } from '../../elements/box'
 import { FlexContainer } from '../../elements/flex'
 import { useCombatContext } from '../../contexts/CombatContext'
-import {
-  getChecksProbability,
-  getSkillResults,
-  getSkillDamage,
-} from '../../functions'
+import { getChecksProbability, getSkillDamage } from '../../functions'
 
 export const CombatActions = () => {
   const {
     activeCharacter,
-    targets,
     selectedSkill,
-    selectedTarget,
-    onTargetsSelect,
+    selectedTargets,
     onSkillSelect,
     next,
   } = useCombatContext()
@@ -28,8 +22,9 @@ export const CombatActions = () => {
     : 0
   const accuracyChance = 1 - (1 - perfectChance) * (1 - rawAccuracyChance)
   const damage =
-    selectedTarget && selectedSkill
-      ? getSkillDamage(selectedSkill, activeCharacter, selectedTarget).damage
+    selectedTargets.length > 0 && selectedSkill
+      ? getSkillDamage(selectedSkill, activeCharacter, selectedTargets[0])
+          .damage
       : 0
   return (
     <BoxContainer substyle={{ color: 'rgba(255,255,255,0.8)' }}>
@@ -61,7 +56,7 @@ export const CombatActions = () => {
           </FlexContainer>
         </BoxContainer>
       )}
-      {selectedSkill && selectedTarget && (
+      {selectedSkill && selectedTargets.length > 0 && (
         <BoxButton onClick={() => next()}>Confirm</BoxButton>
       )}
     </BoxContainer>

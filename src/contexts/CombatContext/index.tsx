@@ -11,6 +11,8 @@ import {
   SkillT,
   ProcessedCharacterT,
   TargetSkillResultT,
+  SkillTargetT,
+  CharacterT,
 } from '../../types'
 import {
   makeParty,
@@ -19,6 +21,10 @@ import {
   commitSkillResults,
   processCharacter,
   makeCharacter,
+  resolveSkillTarget,
+  isCharacter,
+  isParty,
+  makeSkillTarget,
 } from '../../functions'
 import { usePartyContext } from '../PartyContext'
 import { getRandom } from '../../util'
@@ -29,13 +35,13 @@ export interface CombatContextT {
   activeCharacter: ProcessedCharacterT
   queue: ProcessedCharacterT[]
   selectedSkill: SkillT | undefined
-  targets: ProcessedCharacterT[]
-  selectedTarget: ProcessedCharacterT | undefined
+  targets: ProcessedCharacterT[] | ProcessedPartyT[]
+  selectedTargets: ProcessedCharacterT[]
   roundResults: TargetSkillResultT[][]
   activeRound: TargetSkillResultT[] | undefined
   isDone: boolean
   onSkillSelect: (skill: SkillT) => void
-  onTargetsSelect: (target: ProcessedCharacterT) => void
+  onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => void
   next: () => void
   commit: () => void
 }
@@ -46,12 +52,12 @@ const defaultValue: CombatContextT = {
   queue: [],
   selectedSkill: undefined,
   targets: [],
-  selectedTarget: undefined,
+  selectedTargets: [],
   roundResults: [],
   activeRound: undefined,
   isDone: false,
   onSkillSelect: (skill: SkillT) => {},
-  onTargetsSelect: (target: ProcessedCharacterT) => {},
+  onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => {},
   next: () => {},
   commit: () => {},
 }
@@ -79,16 +85,18 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   )
   const [queue, setQueue] = useState<string[]>(
     characters
-      .sort((a, b) => a.stats.agility - b.stats.agility)
+      .sort((a, b) => b.stats.agility - a.stats.agility)
       .map((c) => c.id),
   )
   const [roundResults, setRoundResults] = useState<TargetSkillResultT[][]>([])
   const [activeRound, setActiveRound] = useState<
     TargetSkillResultT[] | undefined
   >()
-  const [targets, setTargets] = useState<ProcessedCharacterT[]>([])
+  const [targets, setTargets] = useState<
+    ProcessedCharacterT[] | ProcessedPartyT[]
+  >([])
   const [selectedTarget, setSelectedTarget] = useState<
-    ProcessedCharacterT | undefined
+    SkillTargetT | undefined
   >()
   const [selectedSkill, setSelectedSkill] = useState<SkillT | undefined>()
   const activeCharacter = useMemo(
@@ -99,42 +107,46 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const getTargetsOptions = (
     partyId: string,
     skill: SkillT,
-  ): ProcessedCharacterT[] => {
+  ): ProcessedCharacterT[] | ProcessedPartyT[] => {
     const sourceParty = party.id === partyId ? party : enemyParty
     const targetParty = party.id === partyId ? enemyParty : party
-    switch (skill.target) {
+    switch (skill.targetType) {
       case 'single':
         return targetParty.characters.filter((c) => !c.dead)
       case 'ally':
         return sourceParty.characters.filter((c) => !c.dead)
       case 'group':
-        return []
+        return [targetParty]
       case 'party':
-        return []
+        return [sourceParty]
       case 'self':
-        return []
+        return [activeCharacter]
       default:
         return []
     }
   }
 
-  const next = (target?: ProcessedCharacterT) => {
-    const roundTarget = target || selectedTarget
+  const next = () => {
+    const roundTarget = selectedTarget
     if (!selectedSkill || !roundTarget) return
     const source = activeCharacter
-    const results = getSkillResults(selectedSkill, source, [roundTarget])
+    const results = getSkillResults(
+      selectedSkill,
+      source,
+      resolveSkillTarget(roundTarget),
+    )
     setActiveRound(results)
   }
 
   const onSkillSelect = (skill: SkillT) => {
     setSelectedSkill(skill)
+    setSelectedTarget(undefined)
     setTargets(getTargetsOptions(party.id, skill))
   }
 
-  const onTargetsSelect = (target: ProcessedCharacterT, push?: boolean) => {
-    if (!selectedSkill) return null
-    setSelectedTarget(target)
-    if (push) next(target)
+  const onTargetsSelect = (target: ProcessedCharacterT | ProcessedPartyT) => {
+    if (!selectedSkill) return
+    setSelectedTarget(makeSkillTarget(selectedSkill.targetType, target))
   }
 
   const commit = () => {
@@ -155,9 +167,9 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     })
   }
 
-  const execEnemyTurn = (skill: SkillT, targets: ProcessedCharacterT[]) => {
+  const execEnemyTurn = (skill: SkillT, target: SkillTargetT) => {
     const source = activeCharacter
-    const results = getSkillResults(skill, source, targets)
+    const results = getSkillResults(skill, source, resolveSkillTarget(target))
     setActiveRound(results)
   }
 
@@ -174,10 +186,11 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     } else {
       if (activeCharacter.partyId === enemyParty.id) {
         const skill = getRandom(activeCharacter.skills)
-        const targets = [
-          getRandom(getTargetsOptions(activeCharacter.partyId, skill)),
-        ]
-        execEnemyTurn(skill, targets)
+        const target = getRandom<ProcessedPartyT | ProcessedCharacterT>(
+          getTargetsOptions(activeCharacter.partyId, skill),
+        )
+
+        execEnemyTurn(skill, makeSkillTarget(skill.targetType, target))
       }
     }
   }, [(activeCharacter || {}).id])
@@ -210,7 +223,9 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
         activeRound,
         selectedSkill,
         targets,
-        selectedTarget,
+        selectedTargets: selectedTarget
+          ? resolveSkillTarget(selectedTarget)
+          : [],
         roundResults,
         isDone,
         onSkillSelect,

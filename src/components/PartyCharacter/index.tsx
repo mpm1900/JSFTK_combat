@@ -23,17 +23,20 @@ export interface PartyCharacterProps {
   activeCharacter: ProcessedCharacterT
   hoverable?: boolean
   selected?: boolean
+  isHovering?: boolean
   onClick?: () => void
 }
 const Wrapper = styled('div', (props: any) => {
-  const { $selected, $active, $hoverable } = props
+  const { $selected, $active, $hoverable, $isHovering } = props
   const hoverable = $hoverable && !$selected
   return {
     ':hover': {
       boxShadow: hoverable ? '0px 0px 10px yellow' : undefined,
     },
     margin: 10,
-    boxShadow: $selected
+    boxShadow: $isHovering
+      ? '0px 0px 10px yellow'
+      : $selected
       ? '0px 0px 20px yellow'
       : $active
       ? '0px 0px 20px white'
@@ -41,13 +44,21 @@ const Wrapper = styled('div', (props: any) => {
   }
 })
 export const PartyCharacter = (props: PartyCharacterProps) => {
-  const { character, activeCharacter, hoverable, selected, onClick } = props
+  const {
+    character,
+    activeCharacter,
+    hoverable,
+    selected,
+    isHovering,
+    onClick,
+  } = props
   const health = character.health - character.stats.healthOffset
   return (
     <Wrapper
       $hoverable={hoverable}
       $active={character.id === activeCharacter.id}
       $selected={selected}
+      $isHovering={isHovering}
     >
       <BoxContainer
         onClick={() => (onClick ? onClick() : null)}
@@ -55,7 +66,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           borderWidth: 2,
           cursor: onClick ? 'pointer' : 'default',
         }}
-        substyle={{ padding: 0, width: 420 }}
+        substyle={{ padding: 0, width: 380 }}
       >
         <FlexContainer style={{ border: '2px solid black' }}>
           <FlexContainer style={{ borderRight: '2px solid black' }}>

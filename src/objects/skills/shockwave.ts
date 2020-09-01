@@ -5,7 +5,7 @@ import { makeCheck } from '../../functions/Roll'
 export const SHOCKWAVE: SkillT = {
   ...makeEntity('Shockwave'),
   damageModifier: 0,
-  target: 'single',
+  targetType: 'single',
   rolls: [
     makeCheck('strength'),
     makeCheck('strength'),
@@ -14,5 +14,6 @@ export const SHOCKWAVE: SkillT = {
   ],
   accuracy: makeCheck('strength', -10),
   perfectSplash: true,
+  perfectPierce: false,
   perfectStatus: [],
 }

@@ -2,12 +2,17 @@ import { SkillT } from '../../types'
 import { makeEntity } from '../../functions/Entity'
 import { makeCheck } from '../../functions/Roll'
 
-export const SMASH: SkillT = {
-  ...makeEntity('Smash'),
+export const SHOT: SkillT = {
+  ...makeEntity('Shot'),
+  // TODO Damage Modifier for flying, etc...
   damageModifier: 0,
   targetType: 'single',
-  rolls: [makeCheck('strength'), makeCheck('strength'), makeCheck('strength')],
-  accuracy: makeCheck('strength'),
+  rolls: [
+    makeCheck('perception'),
+    makeCheck('perception'),
+    makeCheck('perception'),
+  ],
+  accuracy: makeCheck('perception'),
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],

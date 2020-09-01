@@ -1,10 +1,19 @@
-import { CharacterT, PartyT, ProcessedPartyT } from '../types'
+import {
+  CharacterT,
+  PartyT,
+  ProcessedPartyT,
+  EntityT,
+  CharacterClassT,
+} from '../types'
 import {
   checkForProcessedCharacter,
   processCharacter,
   makeCharacter,
 } from './Character'
 import { makeEntity } from './Entity'
+import { getRandom } from '../util'
+
+export const isParty = (e: EntityT) => (e as PartyT).isParty
 
 export const checkForProcessedParty = (party: PartyT) => {
   if ((party as ProcessedPartyT).processed) {
@@ -18,12 +27,20 @@ export const checkForProcessedParty = (party: PartyT) => {
 export const makeParty = (characterCount: number = 0): PartyT => {
   return {
     ...makeEntity(),
+    isParty: true,
     characters: Array(characterCount)
       .fill(null)
-      .map((_, i) => ({
-        ...makeCharacter('blacksmith'),
-        name: `Character ${i}`,
-      })),
+      .map((_, i) => {
+        const cClass = getRandom<CharacterClassT>([
+          'blacksmith',
+          'hunter',
+          'scholar',
+        ])
+        return {
+          ...makeCharacter(cClass),
+          name: `${cClass} ${i + 1}`,
+        }
+      }),
   }
 }
 
