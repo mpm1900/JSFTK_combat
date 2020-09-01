@@ -20,6 +20,7 @@ export const Combat = () => {
     onSkillSelect,
   } = useCombatContext()
   const { combatLog } = useCombatLogContext()
+  if (!activeCharacter) return <span>refresh to do combat again</span>
   return (
     <FlexContainer style={{ height: '100vh' }}>
       <FlexContainer $full $direction='column' style={{ padding: 10 }}>

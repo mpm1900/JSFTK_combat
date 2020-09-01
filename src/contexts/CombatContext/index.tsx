@@ -162,8 +162,16 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   }
 
   useEffect(() => {
-    console.log(activeCharacter.name + "'s turn")
-    if (!activeCharacter) return
+    if (!activeCharacter) {
+      if (queue.length > 0) {
+        setQueue((q) => {
+          const [active, ...rest] = q
+          return [...rest, active].filter(
+            (id) => characters.find((c) => c.id === id) !== undefined,
+          )
+        })
+      }
+    }
     if (activeCharacter.partyId === enemyParty.id) {
       const skill = getRandom(activeCharacter.skills)
       const targets = [
