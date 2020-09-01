@@ -12,7 +12,6 @@ import {
   ProcessedCharacterT,
   TargetSkillResultT,
   SkillTargetT,
-  CharacterT,
 } from '../../types'
 import {
   makeParty,
@@ -22,8 +21,6 @@ import {
   processCharacter,
   makeCharacter,
   resolveSkillTarget,
-  isCharacter,
-  isParty,
   makeSkillTarget,
 } from '../../functions'
 import { usePartyContext } from '../PartyContext'
@@ -35,13 +32,14 @@ export interface CombatContextT {
   activeCharacter: ProcessedCharacterT
   queue: ProcessedCharacterT[]
   selectedSkill: SkillT | undefined
-  targets: ProcessedCharacterT[] | ProcessedPartyT[]
   selectedTargets: ProcessedCharacterT[]
   roundResults: TargetSkillResultT[][]
   activeRound: TargetSkillResultT[] | undefined
+  isRunning: boolean
   isDone: boolean
   onSkillSelect: (skill: SkillT) => void
   onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => void
+  start: () => void
   next: () => void
   commit: () => void
 }
@@ -51,13 +49,14 @@ const defaultValue: CombatContextT = {
   activeCharacter: processCharacter(makeCharacter('blacksmith')),
   queue: [],
   selectedSkill: undefined,
-  targets: [],
   selectedTargets: [],
   roundResults: [],
   activeRound: undefined,
+  isRunning: false,
   isDone: false,
   onSkillSelect: (skill: SkillT) => {},
   onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => {},
+  start: () => {},
   next: () => {},
   commit: () => {},
 }
@@ -77,6 +76,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     () => commitSkillResults(rawParty, rawEnemyParty),
     [rawParty, rawEnemyParty],
   )
+  const [isRunning, setIsRunning] = useState<boolean>(false)
   const [isDone, setIsDone] = useState<boolean>(false)
   const characters = useMemo(
     () =>
@@ -92,9 +92,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const [activeRound, setActiveRound] = useState<
     TargetSkillResultT[] | undefined
   >()
-  const [targets, setTargets] = useState<
-    ProcessedCharacterT[] | ProcessedPartyT[]
-  >([])
   const [selectedTarget, setSelectedTarget] = useState<
     SkillTargetT | undefined
   >()
@@ -105,11 +102,11 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   )
 
   const getTargetsOptions = (
-    partyId: string,
+    sourcePartyId: string,
     skill: SkillT,
   ): ProcessedCharacterT[] | ProcessedPartyT[] => {
-    const sourceParty = party.id === partyId ? party : enemyParty
-    const targetParty = party.id === partyId ? enemyParty : party
+    const sourceParty = party.id === sourcePartyId ? party : enemyParty
+    const targetParty = party.id === sourcePartyId ? enemyParty : party
     switch (skill.targetType) {
       case 'single':
         return targetParty.characters.filter((c) => !c.dead)
@@ -126,6 +123,8 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     }
   }
 
+  const start = () => setIsRunning(true)
+
   const next = () => {
     const roundTarget = selectedTarget
     if (!selectedSkill || !roundTarget) return
@@ -141,7 +140,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const onSkillSelect = (skill: SkillT) => {
     setSelectedSkill(skill)
     setSelectedTarget(undefined)
-    setTargets(getTargetsOptions(party.id, skill))
   }
 
   const onTargetsSelect = (target: ProcessedCharacterT | ProcessedPartyT) => {
@@ -156,7 +154,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     updateParty(parties.party)
     setSelectedSkill(undefined)
     setSelectedTarget(undefined)
-    setTargets([])
     setRoundResults((r) => [...r, activeRound])
     setActiveRound(undefined)
     setQueue((q) => {
@@ -222,14 +219,15 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
         activeCharacter,
         activeRound,
         selectedSkill,
-        targets,
         selectedTargets: selectedTarget
           ? resolveSkillTarget(selectedTarget)
           : [],
         roundResults,
         isDone,
+        isRunning,
         onSkillSelect,
         onTargetsSelect,
+        start,
         next,
         commit,
       }}
