@@ -27,7 +27,7 @@ export const checkForProcessedCharacter = (character: CharacterT) => {
   }
 }
 
-export const isCharacter = (e: EntityT) => (e as CharacterT).isCharacter
+export const isCharacter = (e: EntityT) => e && (e as CharacterT).isCharacter
 
 export const getStatusEffects = (character: CharacterT) => {
   return character.status.map((status) => STATUS_EFFECTS[status.type])

@@ -13,7 +13,7 @@ import {
 import { makeEntity } from './Entity'
 import { getRandom } from '../util'
 
-export const isParty = (e: EntityT) => (e as PartyT).isParty
+export const isParty = (e: EntityT) => e && (e as PartyT).isParty
 
 export const checkForProcessedParty = (party: PartyT) => {
   if ((party as ProcessedPartyT).processed) {
