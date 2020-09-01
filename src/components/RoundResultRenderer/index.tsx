@@ -31,59 +31,75 @@ export interface RoundResultPropsT {
 }
 export interface CheckKVT {
   label: string
-  result: boolean
+  result: boolean | undefined
 }
 export const RoundResult = (props: RoundResultPropsT) => {
   const { rounds, close } = props
-  const [roundResults, setRoundResults] = useState<CheckKVT[]>([])
-  const [accuracyReuslt, setAccuracyResult] = useState<CheckKVT | undefined>()
   const round = rounds[0]
+  const [roundResults, setRoundResults] = useState<CheckKVT[]>([
+    ...round.rollResults.map((result, i) => ({
+      label: round.skill.rolls[i].key || '<NULL>',
+      result: undefined,
+    })),
+    {
+      label: 'accuracy',
+      result: undefined,
+    },
+  ])
+
+  const [currentIndex, setCurrentIndex] = useState<number>(0)
+  const updateRoundResult = (value: CheckKVT, index: number) =>
+    setRoundResults((r) => r.map((r, i) => (i === index ? value : r)))
 
   useEffect(() => {
     if (!round) return
-    if (!(round.rollResults.length === roundResults.length)) {
+    if (currentIndex < roundResults.length - 1) {
       setTimeout(() => {
-        setRoundResults((r) => [
-          ...r,
+        updateRoundResult(
           {
-            label: round.skill.rolls[roundResults.length].key || '<null>',
-            result: round.rollResults[roundResults.length].result,
+            label: round.skill.rolls[currentIndex].key || '<NULL>',
+            result: round.rollResults[currentIndex].result,
           },
-        ])
+          currentIndex,
+        )
+        setCurrentIndex((i) => i + 1)
       }, 200)
     } else {
-      if (accuracyReuslt) {
+      if (currentIndex === roundResults.length) {
         setTimeout(() => {
           close()
         }, 600)
       } else {
         setTimeout(() => {
-          setAccuracyResult({
-            label: 'accuracy',
-            result: round.accuracySuccess,
-          })
+          updateRoundResult(
+            {
+              label: 'accuracy',
+              result: round.accuracySuccess,
+            },
+            currentIndex,
+          )
         }, 200)
       }
     }
-  }, [roundResults.length, accuracyReuslt])
+  }, [roundResults])
 
-  if (!round) return null
-  const results = accuracyReuslt
-    ? [...roundResults, accuracyReuslt]
-    : roundResults
+  const targetName =
+    rounds.length > 1 ? `${rounds.length} characters` : round.target.name
+
   return (
-    <FlexContainer $direction='column'>
-      <h4>
-        {round.source.name} uses {round.skill.name} on {round.target.name}
+    <FlexContainer $direction='column' style={{ textAlign: 'center' }}>
+      <h4 style={{ margin: '0 0 20px 0' }}>
+        {round.source.name} uses {round.skill.name} on {targetName}
       </h4>
-      <FlexContainer>
-        {results.map((result) => (
+      <FlexContainer style={{ justifyContent: 'center' }}>
+        {roundResults.map((result) => (
           <FlexContainer $direction='column' style={{ marginRight: 10 }}>
-            <span>{result.label}</span>
             <span>
-              {result.result
-                ? Span('lightgreen', 'PASSED')
-                : Span('lightcoral', 'FALLED')}
+              {result.result === undefined
+                ? Span('rgba(255,255,255,0.4)', result.label)
+                : result.result === true
+                ? Span('lightgreen', result.label)
+                : Span('lightcoral', result.label)}
             </span>
           </FlexContainer>
         ))}

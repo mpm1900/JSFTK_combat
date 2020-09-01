@@ -31,16 +31,17 @@ const Wrapper = styled('div', (props: any) => {
   const hoverable = $hoverable && !$selected
   return {
     ':hover': {
-      boxShadow: hoverable ? '0px 0px 10px yellow' : undefined,
+      boxShadow: hoverable ? '0px 0px 20px black' : undefined,
     },
     margin: 10,
     boxShadow: $isHovering
-      ? '0px 0px 10px yellow'
+      ? '0px 0px 20px black'
       : $selected
-      ? '0px 0px 20px yellow'
+      ? '0px 0px 10px black'
       : $active
       ? '0px 0px 20px white'
       : 'none',
+    transition: 'all 0.1s',
   }
 })
 export const PartyCharacter = (props: PartyCharacterProps) => {
