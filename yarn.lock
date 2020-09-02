@@ -1603,6 +1603,13 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.5.tgz#dcce4430e64b443ba8945f0290fb564ad5bac6dd"
   integrity sha512-7+2BITlgjgDhH0vvwZU/HZJVyk+2XUlvxXe8dFMedNX/aMkaOq++rMAFXc0tM7ij15QaWlbdQASBR9dihi+bDQ==
 
+"@types/kefir@^3.8.5":
+  version "3.8.5"
+  resolved "https://registry.yarnpkg.com/@types/kefir/-/kefir-3.8.5.tgz#dea5421b93f1c7b0547605c753fc24441a38362b"
+  integrity sha512-sNWBzOdQGYhxKaTPcMRcnTR4CCJzhKfKVabbTju/mqKc5acFihqk0liEfV6w7o6AFcJx91rDbwSSJjuBy3Sa4Q==
+  dependencies:
+    "@types/node" "*"
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -6527,6 +6534,11 @@ jsx-ast-utils@^2.2.1, jsx-ast-utils@^2.2.3:
   dependencies:
     array-includes "^3.0.3"
     object.assign "^4.1.0"
+
+kefir@^3.8.7:
+  version "3.8.7"
+  resolved "https://registry.yarnpkg.com/kefir/-/kefir-3.8.7.tgz#8fa8ffa3620c6c3713838c33d92af4d976ccfce8"
+  integrity sha512-F1uMGxGi4x88AuPbu0FBJnOMbYgL4op1pzpD3z4RtjUA6A17oQwum23GiEmNkwTLg8Upm+BODV+FJVaSVqBRIw==
 
 killable@^1.0.1:
   version "1.0.1"

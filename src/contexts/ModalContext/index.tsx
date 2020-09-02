@@ -16,7 +16,7 @@ const contentStyles = (styles: CSSProperties): CSSProperties => ({
 export interface ModalContextT {
   open: (
     contents?: JSX.Element,
-    style?: CSSProperties,
+    styles?: ModalStylesT,
     blocking?: boolean,
     callback?: (payload?: any) => void,
   ) => void
@@ -25,7 +25,7 @@ export interface ModalContextT {
   setBlocking: (blocking: boolean) => void
   setContents: (contents: JSX.Element) => void
   setCallback: (callback: (payload?: any) => void) => void
-  setStyle: (style: CSSProperties) => void
+  setStyles: (styles: ModalStylesT) => void
 }
 const defaultContext: ModalContextT = {
   open: () => null,
@@ -34,10 +34,15 @@ const defaultContext: ModalContextT = {
   setPayload: () => null,
   setContents: () => null,
   setCallback: () => null,
-  setStyle: () => null,
+  setStyles: () => null,
 }
 export const ModalContext = React.createContext<ModalContextT>(defaultContext)
 export const useModalContext = () => useContext(ModalContext)
+
+export interface ModalStylesT {
+  modal?: CSSProperties
+  overlay?: CSSProperties
+}
 
 const getContextValue = (
   state: ModalContextStateT,
@@ -46,11 +51,11 @@ const getContextValue = (
   isOpen: state.isOpen,
   open: (
     contents?: JSX.Element,
-    style?: CSSProperties,
+    styles?: ModalStylesT,
     blocking?: boolean,
     callback?: (payload?: any) => void,
   ) => {
-    dispatch(actions.open(contents, style, blocking, callback))
+    dispatch(actions.open(contents, styles, blocking, callback))
   },
   close: (payload?: any) => {
     if (state.callback) state.callback(payload || state.payload)
@@ -62,7 +67,7 @@ const getContextValue = (
   setCallback: (callback: (payload?: any) => void) =>
     dispatch(actions.setCallback(callback)),
   setBlocking: (blocking: boolean) => dispatch(actions.setBlocking(blocking)),
-  setStyle: (style: CSSProperties) => dispatch(actions.setStyle(style)),
+  setStyles: (styles: ModalStylesT) => dispatch(actions.setStyles(styles)),
 })
 
 export interface ModalContextProviderPropsT {
@@ -92,9 +97,11 @@ export const ModalContextProvider = (props: ModalContextProviderPropsT) => {
             margin: '0 auto',
             bottom: 'unset',
             borderColor: '#555',
+            ...state.styles.modal,
           },
           overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            ...state.styles.overlay,
           },
         }}
       >

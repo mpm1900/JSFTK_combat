@@ -212,7 +212,6 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
       ;[sourceParty, targetParty] = [targetParty, sourceParty]
     }
     targetParty = localUpdate(targetParty, result.target.id, (c) => {
-      console.log(result.addedTags)
       return addMultipleStatus(
         {
           ...c,

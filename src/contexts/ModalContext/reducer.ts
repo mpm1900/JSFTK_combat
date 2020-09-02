@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react'
+import { ModalStylesT } from '.'
 
 export interface ModalContextStateT {
   isOpen: boolean
@@ -6,7 +7,7 @@ export interface ModalContextStateT {
   callback: ((payload?: any) => void) | null
   payload: any | null
   blocking: boolean
-  style: CSSProperties
+  styles: ModalStylesT
 }
 export const initialState: ModalContextStateT = {
   isOpen: false,
@@ -14,7 +15,7 @@ export const initialState: ModalContextStateT = {
   callback: null,
   payload: null,
   blocking: false,
-  style: {},
+  styles: {},
 }
 
 export const OPEN = 'modalContext/OPEN'
@@ -28,13 +29,13 @@ export const SET_STYLE = 'modalContext/SET_STYLE'
 export const actions = {
   open: (
     contents?: JSX.Element,
-    style?: CSSProperties,
+    styles?: ModalStylesT,
     blocking?: boolean,
     callback?: (payload?: any) => void,
   ) => ({
     type: OPEN,
     contents,
-    style,
+    styles,
     blocking,
     callback,
   }),
@@ -49,7 +50,7 @@ export const actions = {
     callback,
   }),
   setBlocking: (blocking: boolean) => ({ type: SET_BLOCKING, blocking }),
-  setStyle: (style: CSSProperties) => ({ type: SET_STYLE, style }),
+  setStyles: (styles: ModalStylesT) => ({ type: SET_STYLE, styles }),
 }
 
 const core: Record<
@@ -60,7 +61,7 @@ const core: Record<
     ...state,
     isOpen: true,
     contents: action.contents ? action.contents : state.contents,
-    style: action.style ? action.style : state.style || {},
+    styles: action.styles ? action.styles : state.styles || {},
     blocking: action.blocking || false,
     callback: action.callback ? action.callback : state.callback,
   }),
@@ -90,7 +91,7 @@ const core: Record<
   }),
   [SET_STYLE]: (state: ModalContextStateT, action: any) => ({
     ...state,
-    style: action.style,
+    styles: action.styles,
   }),
 }
 

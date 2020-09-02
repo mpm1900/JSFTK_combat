@@ -8,6 +8,7 @@ import {
   getSkillDamageRange,
 } from '../../functions'
 import { Button } from '../../elements/button'
+import { PLAYER_PARTY_ID } from '../../state/party'
 
 export const CombatActions = () => {
   const {
@@ -18,7 +19,8 @@ export const CombatActions = () => {
     next,
   } = useCombatContext()
 
-  if (!activeCharacter) return null
+  if (!activeCharacter || activeCharacter.partyId !== PLAYER_PARTY_ID)
+    return null
   const perfectChance = selectedSkill
     ? getChecksProbability(activeCharacter, selectedSkill.rolls)
     : 0

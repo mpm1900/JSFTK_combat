@@ -3,19 +3,34 @@ import { useCombatContext } from '../../contexts/CombatContext'
 import { useModalContext } from '../../contexts/ModalContext'
 import { Span, NameSpanBuilder } from '../../contexts/CombatLogContext/util'
 import { FlexContainer } from '../../elements/flex'
+import Kefir from 'kefir'
+import { Stream } from 'stream'
 
 export const RoundResultRenderer = () => {
   const { activeRound, commit } = useCombatContext()
-  const { open, close, setCallback } = useModalContext()
+  const { open, close } = useModalContext()
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    if (activeRound) {
-      console.log(activeRound[0].skill)
-      open(<RoundResult close={() => close(true)} />, {}, true, () => {
-        commit()
-      })
+    if (activeRound && !isOpen) {
+      setIsOpen(true)
+      open(
+        <RoundResult
+          close={() => {
+            close(true)
+            setIsOpen(false)
+            commit()
+          }}
+        />,
+        {
+          overlay: {
+            background: 'transparent',
+          },
+        },
+        true,
+      )
     }
-  }, [activeRound, open, close, commit])
+  }, [isOpen, activeRound, open, close, commit])
 
   return null
 }
@@ -30,6 +45,7 @@ export interface CheckKVT {
 export const RoundResult = (props: RoundResultPropsT) => {
   const { close } = props
   const { activeRound, party, enemyParty } = useCombatContext()
+  const [isDone, setIsDone] = useState(false)
   const NameSpan = NameSpanBuilder(party, enemyParty)
   const rounds = activeRound || []
   const round = rounds[0]
@@ -52,42 +68,38 @@ export const RoundResult = (props: RoundResultPropsT) => {
         ],
   )
 
-  const [currentIndex, setCurrentIndex] = useState<number>(0)
   const updateRoundResult = (value: CheckKVT, index: number) =>
     setRoundResults((r) => r.map((r, i) => (i === index ? value : r)))
 
   useEffect(() => {
-    if (!round) return
-    if (currentIndex < roundResults.length - (round.skill.accuracy ? 1 : 0)) {
-      setTimeout(() => {
-        updateRoundResult(
-          {
-            label: round.skill.rolls[currentIndex].key || '<NULL>',
-            result: round.rollResults[currentIndex].result,
-          },
-          currentIndex,
-        )
-        setCurrentIndex((i) => i + 1)
-      }, 200)
-    } else {
-      if (currentIndex === roundResults.length) {
-        setTimeout(() => {
-          close()
-        }, 600)
-      } else {
-        setTimeout(() => {
-          updateRoundResult(
-            {
-              label: 'accuracy',
-              result: round.accuracySuccess,
-            },
-            currentIndex,
-          )
-        }, 200)
-        setCurrentIndex((i) => i + 1)
-      }
+    const stream = Kefir.sequentially(
+      200,
+      roundResults.map((r, i) => ({ ...r, index: i })),
+    )
+    stream.onValue((result) => {
+      updateRoundResult(
+        {
+          label: result.label,
+          result:
+            result.label === 'accuracy'
+              ? round.accuracySuccess
+              : round.rollResults[result.index].result,
+        },
+        result.index,
+      )
+    })
+    stream.onEnd(() => {
+      Kefir.later(500, undefined).onValue(() => {
+        setIsDone(true)
+      })
+    })
+  }, [])
+
+  useEffect(() => {
+    if (isDone) {
+      close()
     }
-  }, [currentIndex])
+  }, [isDone, close])
 
   if (!round) return null
 

@@ -118,7 +118,19 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     [queue, characters],
   )
 
-  const start = useCallback(() => setIsRunning(true), [])
+  const start = useCallback(() => {
+    setIsDone(false)
+    setIsRunning(true)
+  }, [])
+
+  // temp code
+  useEffect(() => {
+    if (!isRunning) {
+      start()
+    } else {
+      setQueue(makeCombatQueue([...party.characters, ...enemyParty.characters]))
+    }
+  }, [isRunning])
 
   const next = () => {
     if (!selectedSkill || !selectedTarget) return
@@ -193,7 +205,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       alert('you win')
       onRequestNewParty()
       setRoundResults([])
-      setIsDone(true)
+      setIsRunning(false)
       return
     }
     if (party.characters.every((c) => c.dead)) {

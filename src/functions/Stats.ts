@@ -2,7 +2,6 @@ import { StatsT } from '../types'
 import { ZERO_STATS } from '../objects'
 
 export const combineStats = (...stats: StatsT[]): StatsT => {
-  console.log(...stats)
   return stats.reduce(
     (p, c) => ({
       vigor: p.vigor + c.vigor,
