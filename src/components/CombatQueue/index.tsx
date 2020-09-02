@@ -14,7 +14,14 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
     (c) => c.id === getFirst(queue),
   ) as ProcessedCharacterT
   const sortedIds = getSortedIds(queue)
-  const bigList = [...sortedIds, ...sortedIds, ...sortedIds, ...sortedIds]
+  const bigList = [
+    ...sortedIds,
+    ...sortedIds,
+    ...sortedIds,
+    ...sortedIds,
+    ...sortedIds,
+    ...sortedIds,
+  ]
   const count = Math.floor((800 - 52) / size)
   const [f, ...list] = Array(count)
     .fill(null)
@@ -57,7 +64,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                 src={`https://picsum.photos/seed/${c?.name}/115/115`}
                 style={{
                   height: size - 10,
-                  width: size - 1,
+                  width: size - 7,
                   border: '1px solid rgba(255,255,255,0.5)',
                   borderBottom: 'none',
                   margin: '0 4px',
