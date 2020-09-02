@@ -89,8 +89,8 @@ export const INITIAL_STATE: PartyT = {
   name: 'PlayerParty',
   characters: [
     { ...makeCharacter('blacksmith'), name: 'max m' },
-    { ...makeCharacter('blacksmith'), name: 'katie c' },
-    { ...makeCharacter('blacksmith'), name: 'milo w' },
+    { ...makeCharacter('hunter'), name: 'katie c' },
+    { ...makeCharacter('scholar'), name: 'milo w' },
   ],
 }
 export default makeReducer(core, INITIAL_STATE)

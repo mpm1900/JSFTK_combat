@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import Color from 'color'
 import { BoxContainer } from '../../elements/box'
 import { FlexContainer, FullContainer } from '../../elements/flex'
@@ -11,6 +11,7 @@ export interface GaugePropsT {
   height?: number
   max: number
   value: number
+  style?: CSSProperties
   children?: React.ReactNode | React.ReactNode[]
 }
 export const Gauge = (props: GaugePropsT) => {
@@ -23,11 +24,13 @@ export const Gauge = (props: GaugePropsT) => {
       content={<BoxContainer>{`${name} (${value} / ${max})`}</BoxContainer>}
     >
       <BoxContainer
+        style={{ borderLeft: 'none' }}
         substyle={{
           padding: 0,
           background: '#555',
           height: height - 2,
           position: 'relative',
+          borderColor: '1px rgba(255,255,255,0.3)',
         }}
       >
         <FlexContainer

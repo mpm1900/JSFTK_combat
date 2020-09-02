@@ -111,6 +111,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                   fontSize: 42,
                   height: 42,
                   lineHeight: '42px',
+                  color: '#b55553',
                 }}
               >
                 {health > 0 ? health : 'Dead'}

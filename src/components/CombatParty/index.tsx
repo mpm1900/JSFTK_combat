@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { ProcessedPartyT } from '../../types'
 import { FlexContainer } from '../../elements/flex'
-import { PartyCharacter } from '../PartyCharacter'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { ConfirmButton } from '../../elements/button'
+import { EnemyCharacter } from '../EnemyCharacter'
 
 export interface CombatPartyPropsT {
   party: ProcessedPartyT
@@ -36,7 +36,7 @@ export const CombatParty = (props: CombatPartyPropsT) => {
       >
         {party.characters.map((c) => (
           <div>
-            <PartyCharacter
+            <EnemyCharacter
               hoverable={
                 selectedSkill !== undefined &&
                 selectedSkill.targetType === 'single'
