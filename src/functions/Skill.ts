@@ -155,7 +155,6 @@ export const getSkillDamageRange = (
     if (max === undefined || damage > max) max = damage
     if (min === undefined || damage < min) min = damage
   })
-  console.log(min, max)
   if (min === max) return `${max || 0}`
   return `${min}-${max}`
 }

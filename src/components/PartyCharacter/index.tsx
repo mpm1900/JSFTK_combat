@@ -30,9 +30,6 @@ const Wrapper = styled('div', (props: any) => {
   const { $selected, $active, $hoverable, $isHovering } = props
   const hoverable = $hoverable && !$selected
   return {
-    ':hover': {
-      boxShadow: hoverable ? '0px 0px 20px black' : undefined,
-    },
     margin: 10,
     boxShadow: $isHovering
       ? '0px 0px 20px black'
@@ -41,6 +38,9 @@ const Wrapper = styled('div', (props: any) => {
       : $active
       ? '0px 0px 20px white'
       : 'none',
+    ':hover': {
+      boxShadow: hoverable ? '0px 0px 20px black' : undefined,
+    },
     transition: 'all 0.1s',
   }
 })

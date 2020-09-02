@@ -51,9 +51,9 @@ export const Combat = () => {
     <FlexContainer style={{ height: '100vh' }}>
       <FlexContainer $full $direction='column'>
         <BoxContainer>
-          {queue.map((c) => (
-            <span>
-              {c.name} {`>`}
+          {queue.map((c, i) => (
+            <span style={{ marginRight: 10 }}>
+              {i === 0 ? '' : `>`} {c.name}
             </span>
           ))}
         </BoxContainer>

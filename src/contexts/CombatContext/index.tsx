@@ -25,6 +25,14 @@ import {
 } from '../../functions'
 import { usePartyContext } from '../PartyContext'
 import { getRandom } from '../../util'
+import {
+  CombatQueueT,
+  makeCombatQueue,
+  getFirst,
+  shiftQueue,
+  removeFromQueue,
+  getSortedIds,
+} from '../../types/CombatQueue'
 
 export interface CombatContextT {
   party: ProcessedPartyT
@@ -79,15 +87,10 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const [isRunning, setIsRunning] = useState<boolean>(false)
   const [isDone, setIsDone] = useState<boolean>(false)
   const characters = useMemo(
-    () =>
-      [...party.characters, ...enemyParty.characters].filter((c) => !c.dead),
+    () => [...party.characters, ...enemyParty.characters],
     [party, enemyParty],
   )
-  const [queue, setQueue] = useState<string[]>(
-    characters
-      .sort((a, b) => b.stats.agility - a.stats.agility)
-      .map((c) => c.id),
-  )
+  const [queue, setQueue] = useState<CombatQueueT>(makeCombatQueue(characters))
   const [roundResults, setRoundResults] = useState<TargetSkillResultT[][]>([])
   const [activeRound, setActiveRound] = useState<
     TargetSkillResultT[] | undefined
@@ -97,7 +100,10 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   >()
   const [selectedSkill, setSelectedSkill] = useState<SkillT | undefined>()
   const activeCharacter = useMemo(
-    () => characters.find((c) => c.id === queue[0]) as ProcessedCharacterT,
+    () =>
+      characters.find(
+        (c) => !c.dead && c.id === getFirst(queue),
+      ) as ProcessedCharacterT,
     [queue, characters],
   )
 
@@ -158,12 +164,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     setSelectedTarget(undefined)
     setRoundResults((r) => [...r, activeRound])
     setActiveRound(undefined)
-    setQueue((q) => {
-      const [active, ...rest] = q
-      return [...rest, active].filter(
-        (id) => characters.find((c) => c.id === id) !== undefined,
-      )
-    })
+    setQueue(shiftQueue(queue, activeRound[0].source))
   }
 
   const execEnemyTurn = (skill: SkillT, target: SkillTargetT) => {
@@ -174,14 +175,12 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
 
   useEffect(() => {
     if (!activeCharacter) {
-      if (queue.length > 0) {
-        setQueue((q) => {
-          const [active, ...rest] = q
-          return [...rest, active].filter(
-            (id) => characters.find((c) => c.id === id) !== undefined,
-          )
-        })
-      }
+      let q = { ...queue }
+      characters.forEach((c) => {
+        if (c.dead) {
+          q = removeFromQueue(q, c.id)
+        }
+      })
     } else {
       if (activeCharacter.partyId === enemyParty.id) {
         const skill = getRandom(activeCharacter.skills)
@@ -213,11 +212,15 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       value={{
         party,
         enemyParty,
-        queue: queue
+        queue: getSortedIds(queue)
           .map(
             (id) => characters.find((c) => c.id === id) as ProcessedCharacterT,
           )
-          .filter((c) => c !== undefined),
+          .filter((c) => c !== undefined)
+          .map((c) => ({
+            ...c,
+            name: `${c.name} (${queue[c.id]})`,
+          })),
         activeCharacter,
         activeRound,
         selectedSkill,
