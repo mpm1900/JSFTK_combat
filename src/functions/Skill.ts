@@ -112,17 +112,22 @@ export const getTargetSkillResult = (
     const damageResistances = sourceResult.pierce
       ? 0
       : getDamageResistance(target, sourceResult.rawDamage.type)
+    const dodgeSuccess = sourceResult.criticalSuccess
+      ? false
+      : dodgeResult.result
     return {
       ...sourceResult,
       target,
-      dodgeSuccess: sourceResult.criticalSuccess ? false : dodgeResult.result,
+      dodgeSuccess,
       blockedDamage: {
         type: sourceResult.rawDamage.type,
         damage: sourceResult.pierce ? 0 : damageResistances,
       },
       totalDamage: {
         type: sourceResult.rawDamage.type,
-        damage: Math.round(sourceResult.rawDamage.damage - damageResistances),
+        damage: dodgeSuccess
+          ? 0
+          : Math.round(sourceResult.rawDamage.damage - damageResistances),
       },
     }
   } else {
