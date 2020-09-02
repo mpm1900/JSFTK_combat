@@ -7,6 +7,7 @@ export const SHOT: SkillT = {
   // TODO Damage Modifier for flying, etc...
   damageModifier: 0,
   targetType: 'single',
+  damage: true,
   rolls: [
     makeCheck('perception'),
     makeCheck('perception'),
@@ -16,4 +17,5 @@ export const SHOT: SkillT = {
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],
+  perfectTags: [],
 }

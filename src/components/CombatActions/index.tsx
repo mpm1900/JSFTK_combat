@@ -23,7 +23,9 @@ export const CombatActions = () => {
     ? getChecksProbability(activeCharacter, selectedSkill.rolls)
     : 0
   const rawAccuracyChance = selectedSkill
-    ? getChecksProbability(activeCharacter, [selectedSkill.accuracy])
+    ? selectedSkill.accuracy
+      ? getChecksProbability(activeCharacter, [selectedSkill.accuracy])
+      : 1
     : 0
   const accuracyChance = 1 - (1 - perfectChance) * (1 - rawAccuracyChance)
   const damage = selectedSkill

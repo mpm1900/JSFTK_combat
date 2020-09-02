@@ -14,3 +14,9 @@ export interface StatusT extends EntityT {
   canStack: boolean
   duration: number
 }
+
+export type CharacterTagTypeT = 'targeted'
+export interface CharacterTagT {
+  type: CharacterTagTypeT
+  duration: number
+}

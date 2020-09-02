@@ -115,6 +115,18 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               >
                 {health > 0 ? health : 'Dead'}
               </span>
+              <FlexContainer $direction='column' $full>
+                <span>Armor {character.stats.armor}</span>
+                <span>Resist {character.stats.resistance}</span>
+              </FlexContainer>
+              <FlexContainer $direction='column' $full>
+                <span>
+                  {character.status.map((s) => `${s.type} (${s.duration})`)}
+                </span>
+                <span>
+                  {character.tags.map((s) => `${s.type} (${s.duration})`)}
+                </span>
+              </FlexContainer>
             </FlexContainer>
             <FullContainer />
             <Gauge

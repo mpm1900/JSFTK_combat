@@ -6,6 +6,7 @@ export const AREA_BLAST: SkillT = {
   ...makeEntity('Area Blast'),
   damageModifier: -0.5,
   targetType: 'group',
+  damage: true,
   rolls: [
     makeCheck('intelligence'),
     makeCheck('intelligence'),
@@ -15,4 +16,5 @@ export const AREA_BLAST: SkillT = {
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],
+  perfectTags: [],
 }

@@ -20,6 +20,7 @@ import { getSkillsFromObjects } from './Skill'
 import { makeEntity } from './Entity'
 import { combineStats } from './Stats'
 import { CLASS_STARTING_WEAPONS } from '../objects/Weapon'
+import { CLASS_STARTING_ARMOR } from '../objects/Armor'
 
 export const checkForProcessedCharacter = (character: CharacterT) => {
   if ((character as ProcessedCharacterT).processed) {
@@ -35,12 +36,13 @@ export const getStatusEffects = (character: CharacterT) => {
 
 export const getTraits = (character: CharacterT): TraitT[] => {
   checkForProcessedCharacter(character)
-  return [
+  const ret = [
     ...character.traits,
     ...character.weapon.traits,
     ...getTraitsFromObjects(character.armor),
     ...getTraitsFromObjects(getStatusEffects(character)),
   ]
+  return ret
 }
 
 export const getSkills = (character: CharacterT) => {
@@ -87,8 +89,9 @@ export const makeCharacter = (
     class: characterClass,
     stats: CLASS_STARTING_STATS[characterClass],
     traits: [],
+    tags: [],
     weapon: CLASS_STARTING_WEAPONS[characterClass],
-    armor: [],
+    armor: CLASS_STARTING_ARMOR[characterClass],
     status: [],
   }
 }
@@ -118,6 +121,9 @@ export const decrementStatusDurations = (character: CharacterT): CharacterT => {
   checkForProcessedCharacter(character)
   return {
     ...character,
+    tags: character.tags
+      .map((tag) => ({ ...tag, duration: tag.duration - 1 }))
+      .filter((tag) => tag.duration !== 0),
     status: character.status
       .map((status) => ({ ...status, duration: status.duration - 1 }))
       .filter((status) => status.duration !== 0),

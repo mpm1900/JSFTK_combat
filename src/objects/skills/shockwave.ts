@@ -6,6 +6,7 @@ export const SHOCKWAVE: SkillT = {
   ...makeEntity('Shockwave'),
   damageModifier: 0,
   targetType: 'single',
+  damage: true,
   rolls: [
     makeCheck('strength'),
     makeCheck('strength'),
@@ -16,4 +17,5 @@ export const SHOCKWAVE: SkillT = {
   perfectSplash: true,
   perfectPierce: false,
   perfectStatus: [],
+  perfectTags: [],
 }

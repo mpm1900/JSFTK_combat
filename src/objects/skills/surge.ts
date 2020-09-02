@@ -6,6 +6,7 @@ export const SURGE: SkillT = {
   ...makeEntity('Surge'),
   damageModifier: -0.2,
   targetType: 'single',
+  damage: true,
   rolls: [
     makeCheck('intelligence'),
     makeCheck('intelligence'),
@@ -15,4 +16,5 @@ export const SURGE: SkillT = {
   perfectSplash: false,
   perfectPierce: true,
   perfectStatus: [],
+  perfectTags: [],
 }

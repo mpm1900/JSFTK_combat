@@ -3,7 +3,7 @@ import { useCombatContext } from '../contexts/CombatContext'
 import { BoxContainer, BoxButton } from '../elements/box'
 import { FlexContainer, FullContainer } from '../elements/flex'
 import { useCombatLogContext } from '../contexts/CombatLogContext'
-import { PartyCharacter } from '../components/PartyCharacter'
+import { CombatPlayerParty } from '../components/CombatPlayerParty'
 import { RoundResultRenderer } from '../components/RoundResultRenderer'
 import { CombatActions } from '../components/CombatActions'
 import { CombatParty } from '../components/CombatParty'
@@ -73,16 +73,7 @@ export const Combat = () => {
             </FlexContainer>
             <FullContainer />
           </FlexContainer>
-          <FlexContainer style={{ justifyContent: 'space-around' }}>
-            {party.characters.map((c) => (
-              <div>
-                <PartyCharacter
-                  activeCharacter={activeCharacter}
-                  character={c}
-                />
-              </div>
-            ))}
-          </FlexContainer>
+          <CombatPlayerParty party={party} />
         </FlexContainer>
       </FlexContainer>
 

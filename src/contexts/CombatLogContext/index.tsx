@@ -70,7 +70,7 @@ export const CombatLogContextProvider = (
       if (round.accuracySuccess) {
         if (round.dodgeSuccess) {
           log(<span>{NameSpan(round.target)} dodged the attack.</span>)
-        } else {
+        } else if (round.totalDamage.damage > 0) {
           log(
             <span>
               {SkillSpan(round.skill)} deals{' '}

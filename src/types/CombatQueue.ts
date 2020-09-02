@@ -41,7 +41,6 @@ export const shiftQueue = (
     ...queue,
     [character.id]: 100 - character.stats.agility,
   })
-  console.log(ret)
   return ret
 }
 
@@ -71,6 +70,17 @@ export const removeFromQueue = (
         }),
         {},
       ),
+  )
+}
+
+export const validateQueue = (
+  queue: CombatQueueT,
+  characters: ProcessedCharacterT[],
+): CombatQueueT => {
+  return consolidateQueue(
+    characters.reduce((r, c) => {
+      return c.dead ? r : { ...r, [c.id]: queue[c.id] }
+    }, {}),
   )
 }
 

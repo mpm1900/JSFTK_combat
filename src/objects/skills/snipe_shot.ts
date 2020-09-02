@@ -6,6 +6,7 @@ export const SNIPE_SHOT: SkillT = {
   ...makeEntity('Snipe Shot'),
   damageModifier: 0,
   targetType: 'single',
+  damage: true,
   rolls: [
     makeCheck('perception'),
     makeCheck('perception'),
@@ -15,4 +16,5 @@ export const SNIPE_SHOT: SkillT = {
   perfectSplash: false,
   perfectPierce: true,
   perfectStatus: [],
+  perfectTags: [],
 }

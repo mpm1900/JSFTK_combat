@@ -12,7 +12,13 @@ import {
   TargetTypeT,
 } from '../types'
 import { resolveCheck, getPassedCount, didAllPass } from './Roll'
-import { getDamageResistance, isCharacter, processCharacter } from './Character'
+import {
+  getDamageResistance,
+  isCharacter,
+  processCharacter,
+  addMultipleStatus,
+  decrementStatusDurations,
+} from './Character'
 import { updateCharacter, isParty } from './Party'
 
 export const getSkillsFromObjects = (parents: HasSkillsT[]) => {
@@ -60,19 +66,22 @@ export const getSourceSkillResult = (
   const criticalHitResult = resolveCheck(source, {
     offset: source.stats.criticalChance,
   })
-  const accuracyResult = resolveCheck(source, skill.accuracy)
   const rollResults = skill.rolls.map((check) => resolveCheck(source, check))
   const passedCount = criticalHitResult.result
     ? skill.rolls.length
     : getPassedCount(rollResults)
   const perfect = criticalHitResult.result ? true : didAllPass(rollResults)
   const accuracySuccess =
-    criticalHitResult.result || perfect || accuracyResult.result
+    criticalHitResult.result ||
+    perfect ||
+    (skill.accuracy !== undefined &&
+      resolveCheck(source, skill.accuracy).result)
   const rawDamage: DamageT = {
-    damage: accuracySuccess
-      ? source.weapon.damage.damage *
-        (1 + skill.damageModifier + source.stats.damageModifier)
-      : 0,
+    damage:
+      accuracySuccess && skill.damage
+        ? source.weapon.damage.damage *
+          (1 + skill.damageModifier + source.stats.damageModifier)
+        : 0,
     type: source.weapon.damage.type,
   }
   return {
@@ -90,6 +99,7 @@ export const getSourceSkillResult = (
         ? { type: rawDamage.type, damage: Math.floor(rawDamage.damage / 2) }
         : { type: rawDamage.type, damage: 0 },
     addedStatus: perfect ? skill.perfectStatus : [],
+    addedTags: perfect ? skill.perfectTags : [],
   }
 }
 
@@ -168,9 +178,13 @@ export const getSkillResults = (
   return targets.map((target) => getTargetSkillResult(target, sourceResult))
 }
 
+interface CommitSkillResultsT {
+  party: PartyT
+  enemyParty: PartyT
+}
 export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
   results: TargetSkillResultT[],
-) => {
+): CommitSkillResultsT => {
   const localUpdate = (
     p: PartyT,
     id: string,
@@ -182,14 +196,26 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
     const { source, target } = result
     let sourceParty = party.id === source.partyId ? party : enemyParty
     let targetParty = party.id === source.partyId ? enemyParty : party
+    if (
+      result.skill.targetType === 'self' ||
+      result.skill.targetType === 'ally' ||
+      result.skill.targetType === 'party'
+    ) {
+      ;[sourceParty, targetParty] = [targetParty, sourceParty]
+    }
     targetParty = localUpdate(targetParty, result.target.id, (c) => {
-      return {
-        ...c,
-        stats: {
-          ...c.stats,
-          healthOffset: c.stats.healthOffset + result.totalDamage.damage,
+      console.log(result.addedTags)
+      return addMultipleStatus(
+        {
+          ...c,
+          stats: {
+            ...c.stats,
+            healthOffset: c.stats.healthOffset + result.totalDamage.damage,
+          },
+          tags: [...c.tags, ...result.addedTags],
         },
-      }
+        result.addedStatus,
+      )
     })
 
     if (result.splashDamage.damage > 0) {
@@ -221,5 +247,36 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
       enemyParty = sourceParty
     }
   })
-  return { party, enemyParty }
+  return {
+    party: {
+      ...party,
+      characters: party.characters.map((c) => decrementStatusDurations(c)),
+    },
+    enemyParty: {
+      ...enemyParty,
+      characters: enemyParty.characters.map((c) => decrementStatusDurations(c)),
+    },
+  }
+}
+
+export const getSkillTargetOptions = (
+  source: ProcessedCharacterT,
+  sourceParty: ProcessedPartyT,
+  targetParty: ProcessedPartyT,
+  skill: SkillT,
+): ProcessedCharacterT[] | ProcessedPartyT[] => {
+  switch (skill.targetType) {
+    case 'single':
+      return targetParty.characters.filter((c) => !c.dead)
+    case 'ally':
+      return sourceParty.characters.filter((c) => !c.dead)
+    case 'group':
+      return [targetParty]
+    case 'party':
+      return [sourceParty]
+    case 'self':
+      return [source]
+    default:
+      return []
+  }
 }

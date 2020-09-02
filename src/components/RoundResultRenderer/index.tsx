@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { useModalContext } from '../../contexts/ModalContext'
-import { TargetSkillResultT } from '../../types'
 import { Span, NameSpanBuilder } from '../../contexts/CombatLogContext/util'
 import { FlexContainer } from '../../elements/flex'
 
@@ -11,6 +10,7 @@ export const RoundResultRenderer = () => {
 
   useEffect(() => {
     if (activeRound) {
+      console.log(activeRound[0].skill)
       open(<RoundResult close={() => close(true)} />, {}, true, () => {
         commit()
       })
@@ -41,10 +41,14 @@ export const RoundResult = (props: RoundResultPropsT) => {
             label: round.skill.rolls[i].key || '<NULL>',
             result: undefined,
           })),
-          {
-            label: 'accuracy',
-            result: undefined,
-          },
+          ...(round.skill.accuracy
+            ? [
+                {
+                  label: 'accuracy',
+                  result: undefined,
+                },
+              ]
+            : []),
         ],
   )
 
@@ -54,7 +58,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
 
   useEffect(() => {
     if (!round) return
-    if (currentIndex < roundResults.length - 1) {
+    if (currentIndex < roundResults.length - (round.skill.accuracy ? 1 : 0)) {
       setTimeout(() => {
         updateRoundResult(
           {

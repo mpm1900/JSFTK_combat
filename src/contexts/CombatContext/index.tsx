@@ -4,6 +4,7 @@ import React, {
   useMemo,
   useState,
   useEffect,
+  useCallback,
 } from 'react'
 import {
   ProcessedPartyT,
@@ -30,9 +31,11 @@ import {
   makeCombatQueue,
   getFirst,
   shiftQueue,
-  removeFromQueue,
   getSortedIds,
+  validateQueue,
 } from '../../types/CombatQueue'
+import { getAIAction } from '../../functions/AI'
+import { v4 } from 'uuid'
 
 export interface CombatContextT {
   party: ProcessedPartyT
@@ -73,24 +76,29 @@ export const useCombatContext = () => useContext(CombatContext)
 
 export interface CombatContextProviderPropsT {
   children: JSX.Element
-  rawEnemyParty: PartyT
-  enemyParty: ProcessedPartyT
+  enemyParty: PartyT
   setEnemyParty: (party: PartyT) => void
 }
 export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
-  const { children, enemyParty, rawEnemyParty, setEnemyParty } = props
+  const { children, setEnemyParty } = props
   const { party, rawParty, updateParty } = usePartyContext()
   const resultCommitter = useMemo(
-    () => commitSkillResults(rawParty, rawEnemyParty),
-    [rawParty, rawEnemyParty],
+    () => commitSkillResults(rawParty, props.enemyParty),
+    [rawParty, props.enemyParty],
   )
+  const enemyParty = useMemo(() => processParty(props.enemyParty), [
+    props.enemyParty,
+  ])
   const [isRunning, setIsRunning] = useState<boolean>(false)
   const [isDone, setIsDone] = useState<boolean>(false)
   const characters = useMemo(
     () => [...party.characters, ...enemyParty.characters],
     [party, enemyParty],
   )
-  const [queue, setQueue] = useState<CombatQueueT>(makeCombatQueue(characters))
+  const [queue, setQueue] = useState<CombatQueueT>(
+    makeCombatQueue([...party.characters, ...enemyParty.characters]),
+  )
+  const [roundId, setRoundId] = useState<string>(v4())
   const [roundResults, setRoundResults] = useState<TargetSkillResultT[][]>([])
   const [activeRound, setActiveRound] = useState<
     TargetSkillResultT[] | undefined
@@ -107,40 +115,18 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     [queue, characters],
   )
 
-  const getTargetsOptions = (
-    sourcePartyId: string,
-    skill: SkillT,
-  ): ProcessedCharacterT[] | ProcessedPartyT[] => {
-    const sourceParty = party.id === sourcePartyId ? party : enemyParty
-    const targetParty = party.id === sourcePartyId ? enemyParty : party
-    switch (skill.targetType) {
-      case 'single':
-        return targetParty.characters.filter((c) => !c.dead)
-      case 'ally':
-        return sourceParty.characters.filter((c) => !c.dead)
-      case 'group':
-        return [targetParty]
-      case 'party':
-        return [sourceParty]
-      case 'self':
-        return [activeCharacter]
-      default:
-        return []
-    }
-  }
-
-  const start = () => setIsRunning(true)
+  const start = useCallback(() => setIsRunning(true), [])
 
   const next = () => {
-    const roundTarget = selectedTarget
-    if (!selectedSkill || !roundTarget) return
-    const source = activeCharacter
+    if (!selectedSkill || !selectedTarget) return
     const results = getSkillResults(
       selectedSkill,
-      source,
-      resolveSkillTarget(roundTarget).filter((c) => !c.dead),
+      activeCharacter,
+      resolveSkillTarget(selectedTarget).filter((c) => !c.dead),
     )
     setActiveRound(results)
+    setSelectedSkill(undefined)
+    setSelectedTarget(undefined)
   }
 
   const onSkillSelect = (skill: SkillT) => {
@@ -155,43 +141,48 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     setSelectedTarget(makeSkillTarget(selectedSkill.targetType, target))
   }
 
-  const commit = () => {
+  const commit = useCallback(() => {
     if (!activeRound) return
     const parties = resultCommitter(activeRound)
     setEnemyParty(parties.enemyParty)
     updateParty(parties.party)
-    setSelectedSkill(undefined)
-    setSelectedTarget(undefined)
     setRoundResults((r) => [...r, activeRound])
     setActiveRound(undefined)
-    setQueue(shiftQueue(queue, activeRound[0].source))
-  }
+    const updatedCharacters = [
+      ...parties.party.characters,
+      ...parties.enemyParty.characters,
+    ].map((c) => processCharacter(c))
+    setQueue(
+      validateQueue(
+        shiftQueue(queue, activeRound[0].source),
+        updatedCharacters,
+      ),
+    )
+    setRoundId(v4())
+  }, [activeRound, queue])
 
   const execEnemyTurn = (skill: SkillT, target: SkillTargetT) => {
-    const source = activeCharacter
-    const results = getSkillResults(skill, source, resolveSkillTarget(target))
+    const results = getSkillResults(
+      skill,
+      activeCharacter,
+      resolveSkillTarget(target),
+    )
     setActiveRound(results)
   }
 
   useEffect(() => {
-    if (!activeCharacter) {
-      let q = { ...queue }
-      characters.forEach((c) => {
-        if (c.dead) {
-          q = removeFromQueue(q, c.id)
-        }
-      })
-    } else {
+    if (activeCharacter) {
       if (activeCharacter.partyId === enemyParty.id) {
-        const skill = getRandom(activeCharacter.skills)
-        const target = getRandom<ProcessedPartyT | ProcessedCharacterT>(
-          getTargetsOptions(activeCharacter.partyId, skill),
+        const { skill, target } = getAIAction(
+          activeCharacter,
+          party,
+          enemyParty,
         )
 
         execEnemyTurn(skill, makeSkillTarget(skill.targetType, target))
       }
     }
-  }, [(activeCharacter || {}).id])
+  }, [roundId])
 
   useEffect(() => {
     if (isDone) return
