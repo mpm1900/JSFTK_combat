@@ -57,7 +57,9 @@ export const CombatParty = (props: CombatPartyPropsT) => {
               selectedSkill.targetType === 'single' &&
               selectedTargets.length > 0 &&
               selectedTargets[0].id === c.id && (
-                <FlexContainer style={{ justifyContent: 'center' }}>
+                <FlexContainer
+                  style={{ justifyContent: 'center', marginTop: -13 }}
+                >
                   <div style={{ boxShadow: '0px 2px 5px black' }}>
                     <ConfirmButton onClick={() => next()} $direction='down'>
                       Confirm Target

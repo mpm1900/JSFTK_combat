@@ -6,6 +6,7 @@ import { noneg } from '../../util'
 import { BoxContainer } from '../../elements/box'
 import { Monodiv } from '../../elements/monospace'
 import { styled } from 'styletron-react'
+import { Badge } from '../../elements/badge'
 
 const ResourceE = styled(Monodiv, () => ({
   height: 15,
@@ -31,6 +32,7 @@ const Wrapper = styled('div', (props: any) => {
   const hoverable = $hoverable && !$selected
   return {
     margin: 10,
+    position: 'relative',
     boxShadow: $isHovering
       ? '0px 0px 20px black'
       : $selected
@@ -44,6 +46,7 @@ const Wrapper = styled('div', (props: any) => {
     transition: 'all 0.1s',
   }
 })
+
 export const PartyCharacter = (props: PartyCharacterProps) => {
   const {
     character,
@@ -88,10 +91,13 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           <FlexContainer $full $direction='column'>
             <FlexContainer
               style={{
+                marginTop: -3,
+                marginRight: -3,
                 padding: '2px 4px',
                 paddingLeft: 8,
-                background: 'rgba(255,255,255,0.2)',
-                borderBottom: '1px solid rgba(255,255,255,0.4)',
+                background: '#555',
+                borderBottom: '1px solid rgba(255,255,255,0.2)',
+                boxShadow: '0px 4px 5px black',
               }}
             >
               <span
@@ -107,19 +113,15 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               <span
                 style={{
                   fontWeight: 'bolder',
-                  padding: '2px 8px',
+                  padding: 4,
                   fontSize: 42,
                   height: 42,
                   lineHeight: '42px',
                   color: '#b55553',
                 }}
               >
-                {health > 0 ? health : 'Dead'}
+                {health > 0 ? health : 0}
               </span>
-              <FlexContainer $direction='column' $full>
-                <span>Armor {character.stats.armor}</span>
-                <span>Resist {character.stats.resistance}</span>
-              </FlexContainer>
               <FlexContainer $direction='column' $full>
                 <span>
                   {character.status.map((s) => `${s.type} (${s.duration})`)}
@@ -148,6 +150,9 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             >
               1256/3300
             </Gauge>
+            <Badge $bottom='18px' $left='105px'>
+              {character.level}
+            </Badge>
             <FlexContainer>
               <ResourceE>S-{character.stats.strength}</ResourceE>
               <ResourceE>V-{character.stats.vigor}</ResourceE>
@@ -160,6 +165,28 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           </FlexContainer>
         </FlexContainer>
       </BoxContainer>
+      <Badge $bottom='64px' $left='-12px' $color='lightblue'>
+        {character.stats.armor}
+      </Badge>
+      <Badge $bottom='26px' $left='-12px' $color='plum'>
+        {character.stats.resistance}
+      </Badge>
+      <Badge $bottom='-10px' $left='-12px' $color='lightgreen'>
+        {character.stats.evasion}
+      </Badge>
+      <Badge
+        $bottom='-12px'
+        $left='40px'
+        $size='35px'
+        $color={
+          character.weapon.damage.type === 'physical'
+            ? 'rgba(255,255,255,0.8)'
+            : 'plum'
+        }
+        style={{ fontSize: 24, borderRadius: 0 }}
+      >
+        {character.weapon.damage.damage}
+      </Badge>
     </Wrapper>
   )
 }

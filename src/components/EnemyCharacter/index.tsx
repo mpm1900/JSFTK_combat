@@ -6,6 +6,7 @@ import { noneg } from '../../util'
 import { BoxContainer } from '../../elements/box'
 import { Monodiv } from '../../elements/monospace'
 import { styled } from 'styletron-react'
+import { Badge } from '../../elements/badge'
 
 const ResourceE = styled(Monodiv, () => ({
   height: 15,
@@ -60,6 +61,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
       style={{
         borderWidth: 2,
         width: 380,
+        position: 'relative',
         cursor: onClick ? 'pointer' : 'default',
         color: 'rgba(255,255,255,0.8)',
         opacity: character.dead ? 0.5 : 1,
@@ -75,12 +77,12 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           >
             <img
               alt='profile'
-              height='94'
-              width='94'
+              height='64'
+              width='64'
               src={`https://picsum.photos/seed/${character.name}/94/94`}
               style={{
-                height: 94,
-                width: 94,
+                height: 64,
+                width: 64,
               }}
             />
           </Wrapper>
@@ -94,8 +96,8 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             <span
               style={{
                 textAlign: 'right',
-                fontWeight: 'bold',
-                lineHeight: '12px',
+                fontSize: 18,
+                lineHeight: '18px',
                 textShadow: '1px 1px 10px black',
                 width: '100%',
               }}
@@ -103,16 +105,23 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
               {character.name}
             </span>
           </FlexContainer>
-
-          <Gauge
-            name='Health'
-            color='#8f4e4d'
-            max={character.health}
-            value={noneg(health)}
-            height={20}
-          >
-            {noneg(health)}/{character.health}
-          </Gauge>
+          <div style={{ boxShadow: '0px 5px 15px rgba(0,0,0,0.4)' }}>
+            <Gauge
+              name='Health'
+              color='#8f4e4d'
+              max={character.health}
+              value={noneg(health)}
+              height={20}
+            >
+              {noneg(health)}/{character.health}
+            </Gauge>
+          </div>
+          <Badge $left='60px' $bottom='-6px' $color='lightblue'>
+            {character.stats.armor}
+          </Badge>
+          <Badge $left='95px' $bottom='-6px' $color='plum'>
+            {character.stats.resistance}
+          </Badge>
         </FlexContainer>
         <span
           style={{
