@@ -29,6 +29,10 @@ object-assign
  * @license  MIT
  */
 
+/*! Kefir.js v3.8.7
+ *  https://github.com/kefirjs/kefir
+ */
+
 /**
  * rpg-dice-roller - An advanced JS based dice roller that can roll various types of dice and modifiers, along with mathematical equations.
  * 
