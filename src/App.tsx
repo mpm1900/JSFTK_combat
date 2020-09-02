@@ -12,6 +12,7 @@ export const App = () => {
     <CombatContextProvider
       enemyParty={rawEnemyParty}
       setEnemyParty={setRawEnemyParty}
+      onRequestNewParty={() => setRawEnemyParty(makeParty(3))}
     >
       <CombatLogContextProvider>
         <ModalContextProvider>

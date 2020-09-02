@@ -80,9 +80,10 @@ export interface CombatContextProviderPropsT {
   children: JSX.Element
   enemyParty: PartyT
   setEnemyParty: (party: PartyT) => void
+  onRequestNewParty: () => void
 }
 export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
-  const { children, setEnemyParty } = props
+  const { children, setEnemyParty, onRequestNewParty } = props
   const { party, rawParty, updateParty } = usePartyContext()
   const resultCommitter = useMemo(
     () => commitSkillResults(rawParty, props.enemyParty),
@@ -190,12 +191,14 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     if (isDone) return
     if (enemyParty.characters.every((c) => c.dead)) {
       alert('you win')
+      onRequestNewParty()
+      setRoundResults([])
       setIsDone(true)
       return
     }
     if (party.characters.every((c) => c.dead)) {
-      setIsDone(true)
       alert('you lose')
+      setIsDone(true)
       return
     }
   }, [party, enemyParty])
