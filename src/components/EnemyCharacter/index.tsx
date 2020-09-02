@@ -116,12 +116,36 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
               {noneg(health)}/{character.health}
             </Gauge>
           </div>
-          <Badge $left='60px' $bottom='-6px' $color='lightblue'>
-            {character.stats.armor}
+          <Badge $left='-6px' $bottom='-6px' $size='20px' $color='lightcoral'>
+            {character.level}
           </Badge>
-          <Badge $left='95px' $bottom='-6px' $color='plum'>
-            {character.stats.resistance}
-          </Badge>
+          <FlexContainer
+            style={{
+              position: 'absolute',
+              bottom: '-6px',
+              right: '3px',
+              width: 52,
+              alignItems: 'center',
+            }}
+          >
+            <FullContainer />
+            {character.stats.armor > 0 && (
+              <Badge
+                $absolute={false}
+                $right='4px'
+                $size='12px'
+                $color='lightblue'
+              >
+                {character.stats.armor}
+              </Badge>
+            )}
+            {character.stats.resistance > 0 && (
+              <Badge $absolute={false} $size='12px' $color='plum'>
+                {character.stats.resistance}
+              </Badge>
+            )}
+            <FullContainer />
+          </FlexContainer>
         </FlexContainer>
         <span
           style={{

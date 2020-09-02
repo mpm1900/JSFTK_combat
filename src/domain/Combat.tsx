@@ -9,12 +9,14 @@ import { CombatActions } from '../components/CombatActions'
 import { CombatParty } from '../components/CombatParty'
 import { useModalContext } from '../contexts/ModalContext'
 import { start } from 'repl'
+import { CombatQueue } from '../components/CombatQueue'
 
 export const Combat = () => {
   const {
     party,
     enemyParty,
     activeCharacter,
+    characters,
     queue,
     isDone,
     isRunning,
@@ -50,13 +52,7 @@ export const Combat = () => {
   return (
     <FlexContainer style={{ height: '100vh' }}>
       <FlexContainer $full $direction='column'>
-        <BoxContainer>
-          {queue.map((c, i) => (
-            <span style={{ marginRight: 10 }}>
-              {i === 0 ? '' : `>`} {c.name}
-            </span>
-          ))}
-        </BoxContainer>
+        <CombatQueue queue={queue} characters={characters} />
         <FlexContainer
           $direction='column'
           $full

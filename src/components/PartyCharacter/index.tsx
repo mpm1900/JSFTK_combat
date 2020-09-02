@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ProcessedCharacterT } from '../../types'
+import { ProcessedCharacterT, StatsT } from '../../types'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { Gauge } from '../Gauge'
 import { noneg } from '../../util'
@@ -7,9 +7,12 @@ import { BoxContainer } from '../../elements/box'
 import { Monodiv } from '../../elements/monospace'
 import { styled } from 'styletron-react'
 import { Badge } from '../../elements/badge'
+import { Icon } from '../Icon'
+import { STATI_ICONS } from '../../icons/maps'
 
-const ResourceE = styled(Monodiv, () => ({
+const ResourceE = styled(Monodiv, (props: any) => ({
   height: 15,
+  color: props.$color,
   fontSize: '12px',
   fontWeight: 'bolder',
   padding: '0px 4px',
@@ -17,6 +20,7 @@ const ResourceE = styled(Monodiv, () => ({
   flex: 1,
   textAlign: 'center',
   background: '#111',
+  display: 'flex',
 }))
 
 export interface PartyCharacterProps {
@@ -47,6 +51,36 @@ const Wrapper = styled('div', (props: any) => {
   }
 })
 
+interface CharacterStatPropsT {
+  statKey: keyof StatsT
+  character: ProcessedCharacterT
+}
+const CharacterStat = (props: CharacterStatPropsT) => {
+  const { statKey, character } = props
+  return (
+    <ResourceE $color={getStatColor(character, statKey)}>
+      <Icon
+        src={STATI_ICONS[statKey] || ''}
+        fill={getStatColor(character, statKey)}
+        size={14}
+        style={{ marginRight: 4 }}
+      />
+      {character.stats[statKey]}
+    </ResourceE>
+  )
+}
+
+const getStatColor = (
+  character: ProcessedCharacterT,
+  key: keyof StatsT,
+): string => {
+  const a = character.stats[key]
+  const b = character.rawStats[key]
+  if (a > b) return 'lightgreen'
+  if (b < a) return 'lightcoral'
+  return 'white'
+}
+
 export const PartyCharacter = (props: PartyCharacterProps) => {
   const {
     character,
@@ -73,7 +107,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           borderWidth: 2,
           cursor: onClick ? 'pointer' : 'default',
         }}
-        substyle={{ padding: 0, width: 380 }}
+        substyle={{ padding: 0, minWidth: 380 }}
       >
         <FlexContainer style={{ border: '2px solid black' }}>
           <FlexContainer style={{ borderRight: '2px solid black' }}>
@@ -154,13 +188,13 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               {character.level}
             </Badge>
             <FlexContainer>
-              <ResourceE>S-{character.stats.strength}</ResourceE>
-              <ResourceE>V-{character.stats.vigor}</ResourceE>
-              <ResourceE>I-{character.stats.intelligence}</ResourceE>
-              <ResourceE>P-{character.stats.perception}</ResourceE>
-              <ResourceE>T-{character.stats.talent}</ResourceE>
-              <ResourceE>A-{character.stats.agility}</ResourceE>
-              <ResourceE>L-{character.stats.luck}</ResourceE>
+              <CharacterStat statKey='strength' character={character} />
+              <CharacterStat statKey='vigor' character={character} />
+              <CharacterStat statKey='intelligence' character={character} />
+              <CharacterStat statKey='perception' character={character} />
+              <CharacterStat statKey='talent' character={character} />
+              <CharacterStat statKey='agility' character={character} />
+              <CharacterStat statKey='luck' character={character} />
             </FlexContainer>
           </FlexContainer>
         </FlexContainer>
@@ -183,7 +217,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             ? 'rgba(255,255,255,0.8)'
             : 'plum'
         }
-        style={{ fontSize: 24, borderRadius: 0 }}
+        style={{ fontSize: 24 }}
       >
         {character.weapon.damage.damage}
       </Badge>

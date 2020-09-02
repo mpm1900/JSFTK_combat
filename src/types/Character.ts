@@ -5,7 +5,12 @@ import { StatusT, CharacterStatusT, CharacterTagT } from './Status'
 import { SkillT } from './Skill'
 import { StatsT } from './Stats'
 
-export type CharacterClassT = 'blacksmith' | 'hunter' | 'scholar' | 'bard'
+export type CharacterClassT =
+  | 'blacksmith'
+  | 'hunter'
+  | 'scholar'
+  | 'bard'
+  | 'enemy'
 
 export interface CharacterT extends EntityT {
   partyId: string
@@ -26,5 +31,6 @@ export interface ProcessedCharacterT extends CharacterT {
   weapon: ProcessedWeaponT
   statusEffects: StatusT[]
   skills: SkillT[]
+  rawStats: StatsT
   dead: boolean
 }

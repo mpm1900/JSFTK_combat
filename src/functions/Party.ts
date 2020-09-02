@@ -9,6 +9,7 @@ import {
   checkForProcessedCharacter,
   processCharacter,
   makeCharacter,
+  makeEnemy,
 } from './Character'
 import { makeEntity } from './Entity'
 import { getRandom } from '../util'
@@ -31,15 +32,7 @@ export const makeParty = (characterCount: number = 0): PartyT => {
     characters: Array(characterCount)
       .fill(null)
       .map((_, i) => {
-        const cClass = getRandom<CharacterClassT>([
-          'blacksmith',
-          'hunter',
-          'scholar',
-        ])
-        return {
-          ...makeCharacter(cClass),
-          name: `${cClass} ${i + 1}`,
-        }
+        return makeEnemy()
       }),
   }
 }

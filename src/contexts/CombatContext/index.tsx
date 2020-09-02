@@ -41,7 +41,8 @@ export interface CombatContextT {
   party: ProcessedPartyT
   enemyParty: ProcessedPartyT
   activeCharacter: ProcessedCharacterT
-  queue: ProcessedCharacterT[]
+  characters: ProcessedCharacterT[]
+  queue: CombatQueueT
   selectedSkill: SkillT | undefined
   selectedTargets: ProcessedCharacterT[]
   roundResults: TargetSkillResultT[][]
@@ -58,7 +59,8 @@ const defaultValue: CombatContextT = {
   party: processParty(makeParty()),
   enemyParty: processParty(makeParty()),
   activeCharacter: processCharacter(makeCharacter('blacksmith')),
-  queue: [],
+  characters: [],
+  queue: {},
   selectedSkill: undefined,
   selectedTargets: [],
   roundResults: [],
@@ -203,15 +205,8 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       value={{
         party,
         enemyParty,
-        queue: getSortedIds(queue)
-          .map(
-            (id) => characters.find((c) => c.id === id) as ProcessedCharacterT,
-          )
-          .filter((c) => c !== undefined)
-          .map((c) => ({
-            ...c,
-            name: `${c.name} (${queue[c.id]})`,
-          })),
+        characters,
+        queue,
         activeCharacter,
         activeRound,
         selectedSkill,

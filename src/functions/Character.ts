@@ -8,6 +8,7 @@ import {
   CheckT,
   CharacterClassT,
   EntityT,
+  WeaponT,
 } from '../types'
 import { STATUS_EFFECTS, CLASS_STARTING_STATS } from '../objects'
 import {
@@ -21,6 +22,8 @@ import { makeEntity } from './Entity'
 import { combineStats } from './Stats'
 import { CLASS_STARTING_WEAPONS } from '../objects/Weapon'
 import { CLASS_STARTING_ARMOR } from '../objects/Armor'
+import { ALL_ENEMIES } from '../objects/enemies'
+import { getRandom } from '../util'
 
 export const checkForProcessedCharacter = (character: CharacterT) => {
   if ((character as ProcessedCharacterT).processed) {
@@ -60,15 +63,18 @@ export const processCharacter = (
   const weapon = processWeapon(character.weapon)
   const statusEffects = getStatusEffects(character)
   const skills = getSkills(character)
-  const startingHealth =
-    25 + Math.floor(0.1 * CLASS_STARTING_STATS[character.class].vigor)
+  const hVigor =
+    CLASS_STARTING_STATS[character.class].vigor || character.stats.vigor
+  const startingHealth = 25 + Math.floor(0.1 * hVigor)
   const health = Math.floor(
     startingHealth + character.level + 0.1 * character.level * stats.vigor,
   )
+
   return {
     ...character,
     health,
     stats,
+    rawStats: character.stats,
     weapon,
     statusEffects,
     skills,
@@ -90,10 +96,16 @@ export const makeCharacter = (
     stats: CLASS_STARTING_STATS[characterClass],
     traits: [],
     tags: [],
-    weapon: CLASS_STARTING_WEAPONS[characterClass],
+    weapon: CLASS_STARTING_WEAPONS[characterClass] as WeaponT,
     armor: CLASS_STARTING_ARMOR[characterClass],
     status: [],
   }
+}
+
+export const makeEnemy = () => {
+  const staicEnemy = getRandom(ALL_ENEMIES)
+  if (staicEnemy) return staicEnemy()
+  return makeCharacter(getRandom(['blacksmith', 'hunter', 'scholar']))
 }
 
 export const commitTrait = (

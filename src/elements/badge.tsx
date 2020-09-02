@@ -2,7 +2,7 @@ import { styled, withStyle } from 'styletron-react'
 
 export const Badge = styled('div', (props: any) => {
   return {
-    position: 'absolute',
+    position: props.$absolute === false ? 'relative' : 'absolute',
     background: '#111',
     padding: '4px',
     border: '1px solid rgba(255,255,255,0.5)',
@@ -14,7 +14,7 @@ export const Badge = styled('div', (props: any) => {
     justifyContent: 'center',
     lineHeight: '20px',
     fontWeight: 'bolder',
-    borderRadius: '50%',
+    borderRadius: '30%',
     color: props.$color || 'white',
     top: props.$top,
     bottom: props.$bottom,

@@ -6,4 +6,5 @@ export const CLASS_STARTING_ARMOR: Record<CharacterClassT, ArmorT[]> = {
   hunter: [],
   scholar: [],
   bard: [],
+  enemy: [],
 }

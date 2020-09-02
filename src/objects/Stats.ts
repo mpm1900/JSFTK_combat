@@ -79,4 +79,5 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     criticalChance: 5,
     damageModifier: 0,
   },
+  enemy: ZERO_STATS,
 }

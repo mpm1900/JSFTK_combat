@@ -2,9 +2,10 @@ import { StatsT } from '../types'
 import { ZERO_STATS } from '../objects'
 
 export const combineStats = (...stats: StatsT[]): StatsT => {
+  console.log(...stats)
   return stats.reduce(
     (p, c) => ({
-      vigor: p.strength + c.strength,
+      vigor: p.vigor + c.vigor,
       strength: p.strength + c.strength,
       intelligence: p.intelligence + c.intelligence,
       perception: p.perception + c.perception,
