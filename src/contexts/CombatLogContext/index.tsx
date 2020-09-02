@@ -81,7 +81,7 @@ export const CombatLogContextProvider = (
         }
         if (round.splashDamage.damage > 0) {
           targetParty.characters
-            .filter((c) => c.id !== round.target.id)
+            .filter((c) => c.id !== round.target.id && !c.dead)
             .forEach((subTarget) => {
               const splashDamageResistance = getDamageResistance(
                 subTarget,

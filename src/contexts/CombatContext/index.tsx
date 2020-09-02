@@ -146,9 +146,9 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const commit = useCallback(() => {
     if (!activeRound) return
     const parties = resultCommitter(activeRound)
+    setRoundResults((r) => [...r, activeRound])
     setEnemyParty(parties.enemyParty)
     updateParty(parties.party)
-    setRoundResults((r) => [...r, activeRound])
     setActiveRound(undefined)
     const updatedCharacters = [
       ...parties.party.characters,
