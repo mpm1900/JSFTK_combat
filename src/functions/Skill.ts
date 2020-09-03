@@ -19,6 +19,8 @@ import {
   addMultipleStatus,
   decrementStatusDurations,
   hasTag,
+  addStatusAndTags,
+  findTag,
 } from './Character'
 import { updateCharacter, isParty } from './Party'
 import { noneg } from '../util'
@@ -66,18 +68,17 @@ export const getSourceSkillResult = (
   source: ProcessedCharacterT,
   skill: SkillT,
 ): SourceSkillResultT => {
+  const rollResults = (source.weapon.rolls
+    ? source.weapon.rolls
+    : skill.rolls
+  ).map((check) => resolveCheck(source, check))
+  const passedCount = getPassedCount(rollResults)
+  const perfect = didAllPass(rollResults)
   const criticalHitResult = resolveCheck(source, {
     offset: source.stats.criticalChance,
   })
-  const rollResults = (source.weapon.rolls ? source.weapon.rolls : skill.rolls)
-    .map((check) => resolveCheck(source, check))
-    .map((result) =>
-      criticalHitResult.result ? { ...result, result: true } : result,
-    )
-  const passedCount = criticalHitResult.result
-    ? skill.rolls.length
-    : getPassedCount(rollResults)
-  const perfect = didAllPass(rollResults)
+  const criticalSuccess = perfect ? criticalHitResult.result : false
+
   const accuracySuccess = passedCount > 0
   const rawDamage: DamageT = {
     damage: Math.round(
@@ -90,7 +91,7 @@ export const getSourceSkillResult = (
     skill,
     source,
     accuracySuccess,
-    criticalSuccess: criticalHitResult.result,
+    criticalSuccess,
     passedCount,
     perfect,
     rawDamage,
@@ -117,6 +118,11 @@ export const getTargetSkillResult = (
     const dodgeSuccess = sourceResult.criticalSuccess
       ? false
       : dodgeResult.result || (isEvasive && !sourceResult.perfect)
+    const reflectedDamage = getReflectedDamage(
+      sourceResult.rawDamage,
+      sourceResult.source,
+      target,
+    )
     return {
       ...sourceResult,
       target,
@@ -125,6 +131,7 @@ export const getTargetSkillResult = (
         type: sourceResult.rawDamage.type,
         damage: sourceResult.pierce ? 0 : damageResistances,
       },
+      reflectedDamage,
       totalDamage: {
         type: sourceResult.rawDamage.type,
         damage: dodgeSuccess
@@ -139,6 +146,7 @@ export const getTargetSkillResult = (
       ...sourceResult,
       target,
       dodgeSuccess: false,
+      reflectedDamage: sourceResult.rawDamage,
       blockedDamage: sourceResult.rawDamage,
       totalDamage: sourceResult.rawDamage,
     }
@@ -171,7 +179,29 @@ export const getSkillDamage = (
     : 0
   return {
     type: rawDamage.type,
-    damage: Math.round(rawDamage.damage - damageResistances),
+    damage: noneg(Math.round(rawDamage.damage - damageResistances)),
+  }
+}
+
+export const getReflectedDamage = (
+  rawDamage: DamageT,
+  source: ProcessedCharacterT,
+  target: ProcessedCharacterT,
+): DamageT => {
+  const damageReflectTag = findTag(target, 'damage-reflection')
+  if (damageReflectTag && source.weapon.attackType === 'melee') {
+    console.log('WE HAVE REFLECT!!!!!!!!!!!')
+    return {
+      ...rawDamage,
+      damage: damageReflectTag.payload
+        ? Math.round(rawDamage.damage * damageReflectTag.payload)
+        : Math.round(rawDamage.damage * 0.1),
+    }
+  } else {
+    return {
+      ...rawDamage,
+      damage: 0,
+    }
   }
 }
 
@@ -239,18 +269,30 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
       }
     }
     localUpdate(targetParty, target.id, (c) => {
-      return addMultipleStatus(
+      return addStatusAndTags(
         {
           ...c,
           stats: {
             ...c.stats,
             healthOffset: c.stats.healthOffset + result.totalDamage.damage,
           },
-          tags: [...c.tags, ...result.addedTags],
         },
         result.addedStatus,
+        result.addedTags,
       )
     })
+
+    if (result.reflectedDamage.damage > 0) {
+      localUpdate(sourceParty, source.id, (c) => {
+        return {
+          ...c,
+          stats: {
+            ...c.stats,
+            healthOffset: c.stats.healthOffset + result.reflectedDamage.damage,
+          },
+        }
+      })
+    }
 
     if (result.splashDamage.damage > 0) {
       targetParty.characters

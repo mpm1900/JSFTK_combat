@@ -45,4 +45,5 @@ export interface TargetSkillResultT extends SourceSkillResultT {
   dodgeSuccess: boolean
   blockedDamage: DamageT
   totalDamage: DamageT
+  reflectedDamage: DamageT
 }

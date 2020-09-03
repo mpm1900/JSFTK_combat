@@ -10,6 +10,7 @@ import {
   EntityT,
   WeaponT,
   CharacterTagTypeT,
+  CharacterTagT,
 } from '../types'
 import { STATUS_EFFECTS, CLASS_STARTING_STATS } from '../objects'
 import {
@@ -143,11 +144,23 @@ export const decrementStatusDurations = (character: CharacterT): CharacterT => {
       .filter((status) => status.duration !== 0),
   }
 }
+export const hasStatus = (character: CharacterT, statusType: StatusTypeT) => {
+  return character.status.map((s) => s.type).includes(statusType)
+}
+export const findStatus = (character: CharacterT, statusType: StatusTypeT) => {
+  return character.status.find((s) => s.type === statusType)
+}
 export const addStatus = (character: CharacterT, statusType: StatusTypeT) => {
   const statusEffect = STATUS_EFFECTS[statusType]
-  const existingStatus = character.status.find((s) => s.type === statusType)
+  const existingStatus = findStatus(character, statusType)
   if (existingStatus && !statusEffect.canStack) {
-    return character
+    return {
+      ...character,
+      status: [
+        ...character.status.filter((t) => t.type !== statusType),
+        { type: statusType, duration: statusEffect.duration },
+      ],
+    }
   }
   return {
     ...character,
@@ -183,5 +196,45 @@ export const getDamageResistance = (
   return 0
 }
 
+export const findTag = (character: CharacterT, tagType: CharacterTagTypeT) =>
+  character.tags.find((t) => t.type === tagType)
+
 export const hasTag = (character: CharacterT, tagType: CharacterTagTypeT) =>
   character.tags.map((t) => t.type).includes(tagType)
+
+export const addTag = (
+  character: CharacterT,
+  tag: CharacterTagT,
+): CharacterT => {
+  const existingTag = findTag(character, tag.type)
+  // tags cannot stack right now
+  if (existingTag) {
+    return {
+      ...character,
+      tags: [...character.tags.filter((t) => t.type !== tag.type), tag],
+    }
+  }
+  return {
+    ...character,
+    tags: [...character.tags, tag],
+  }
+}
+export const addMultipleTags = (
+  character: CharacterT,
+  tags: CharacterTagT[],
+) => {
+  return tags.reduce(
+    (char: any, tag) => {
+      return addTag(char, tag)
+    },
+    { ...character },
+  )
+}
+
+export const addStatusAndTags = (
+  character: CharacterT,
+  status: StatusTypeT[],
+  tags: CharacterTagT[],
+) => {
+  return addMultipleTags(addMultipleStatus(character, status), tags)
+}

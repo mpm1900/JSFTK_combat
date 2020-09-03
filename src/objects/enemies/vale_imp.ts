@@ -39,7 +39,8 @@ export const VALE_IMP = (): CharacterT => {
       ...makeEntity('Imp Fists'),
       rarity: 'common',
       type: 'imp-fists',
-      hands: 2,
+      twoHand: true,
+      attackType: 'melee',
       damage: {
         damage: 6,
         type: 'physical',

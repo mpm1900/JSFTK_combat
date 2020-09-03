@@ -62,9 +62,8 @@ export interface CheckKVT {
 }
 export const RoundResult = (props: RoundResultPropsT) => {
   const { close } = props
-  const { activeRound, party, enemyParty } = useCombatContext()
+  const { activeRound } = useCombatContext()
   const [isDone, setIsDone] = useState(false)
-  const NameSpan = NameSpanBuilder(party, enemyParty)
   const rounds = activeRound || []
   const round = rounds[0]
   const [roundResults, setRoundResults] = useState<CheckKVT[]>(
@@ -80,7 +79,6 @@ export const RoundResult = (props: RoundResultPropsT) => {
     setRoundResults((r) => r.map((r, i) => (i === index ? value : r)))
 
   useEffect(() => {
-    console.log(roundResults)
     const stream = Kefir.sequentially(
       200,
       roundResults.map((r, i) => ({ ...r, index: i })),

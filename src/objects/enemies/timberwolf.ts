@@ -34,7 +34,8 @@ export const TIMBERWOLF = (): CharacterT => {
       ...makeEntity('Wolf Fangs'),
       rarity: 'common',
       type: 'wolf-fangs',
-      hands: 2,
+      twoHand: true,
+      attackType: 'melee',
       damage: {
         damage: 6,
         type: 'physical',

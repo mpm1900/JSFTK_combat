@@ -5,9 +5,11 @@ import { ItemT } from './Item'
 import { CheckT } from './Roll'
 
 export type WeaponTypeT = string
+export type WeaponAttackType = 'melee' | 'ranged'
 export interface WeaponT extends ItemT {
   type: WeaponTypeT
-  hands: number
+  attackType: WeaponAttackType
+  twoHand: boolean
   damage: DamageT
   rolls?: CheckT[]
   traits: TraitT[]

@@ -8,7 +8,8 @@ export const HUNTING_BOW: WeaponT = {
   ...makeEntity(`Blacksmith's Hammer`),
   type: 'bow',
   rarity: 'common',
-  hands: 2,
+  twoHand: true,
+  attackType: 'ranged',
   damage: { type: 'physical', damage: 6 },
   traits: [
     {

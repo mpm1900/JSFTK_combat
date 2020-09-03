@@ -12,6 +12,7 @@ import Accuracy from './svg/delapouite/convergence-target.svg'
 import Dazed from './svg/lorc/star-swirl.svg'
 import Targeted from './svg/sbed/targeted.svg'
 import Evasive from './svg/lorc/dodging.svg'
+import DamageReflection from './svg/lorc/shield-reflect.svg'
 
 import Shot from './svg/lorc/high-shot.svg'
 import SnipeShot from './svg/delapouite/shield-impact.svg'
@@ -45,6 +46,7 @@ export const TAG_ICONS: Record<CharacterTagTypeT, string> = {
   dazed: Dazed,
   targeted: Targeted,
   evasive: Evasive,
+  ['damage-reflection']: DamageReflection,
 }
 
 export const SKILL_ICONS: Record<string, string> = {
