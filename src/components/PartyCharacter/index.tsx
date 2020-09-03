@@ -42,6 +42,7 @@ const Wrapper = styled('div', (props: any) => {
     position: 'relative',
     boxShadow: $active ? '0px 0px 20px white' : 'none',
     transition: 'all 0.1s',
+    userSelect: 'none',
   }
 })
 

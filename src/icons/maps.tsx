@@ -22,6 +22,7 @@ import Dazzle from './svg/lorc/ubisoft-sun.svg'
 import Smash from './svg/lorc/flat-hammer.svg'
 import Shockwave from './svg/lorc/hammer-drop.svg'
 import Taunt from './svg/lorc/bordered-shield.svg'
+import Alto from './svg/delapouite/g-clef.svg'
 import { SHOT } from '../objects/skills/shot'
 import { SNIPE_SHOT } from '../objects/skills/snipe_shot'
 import { SURGE } from '../objects/skills/surge'
@@ -30,6 +31,7 @@ import { DAZZLE } from '../objects/skills/Dazzle'
 import { SMASH } from '../objects/skills/smash'
 import { SHOCKWAVE } from '../objects/skills/shockwave'
 import { TAUNT } from '../objects/skills/taunt'
+import { ALTO } from '../objects/skills/alto'
 
 export const STATI_ICONS: Partial<Record<keyof StatsT | 'accuracy', string>> = {
   vigor: Vigor,
@@ -58,4 +60,5 @@ export const SKILL_ICONS: Record<string, string> = {
   [SMASH.id]: Smash,
   [SHOCKWAVE.id]: Shockwave,
   [TAUNT.id]: Taunt,
+  [ALTO.id]: Alto,
 }

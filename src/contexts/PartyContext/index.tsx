@@ -48,10 +48,16 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
   const actions = usePartyActions()
   const rawParty = useParty()
   const party = useMemo(() => processParty(rawParty), [rawParty])
-  const [activeCharacter, setActiveCharacter] = useState<ProcessedCharacterT>(
-    party.characters[0],
+  const [activeCharacterId, setActiveCharacterId] = useState<string>(
+    party.characters[0].id,
   )
-
+  const activeCharacter = useMemo(() => {
+    return party.characters.find(
+      (c) => c.id === activeCharacterId,
+    ) as ProcessedCharacterT
+  }, [activeCharacterId, party.characters])
+  const setActiveCharacter = (character: ProcessedCharacterT) =>
+    setActiveCharacterId(character.id)
   const updateParty = (party: PartyT) => {
     actions.updateParty(party)
   }

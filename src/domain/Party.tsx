@@ -5,6 +5,7 @@ import { PartyCharacters } from '../components/PartyCharacters'
 import { BoxContainer } from '../elements/box'
 import { RedButton } from '../elements/button'
 import { useHistory } from 'react-router'
+import { PartyActiveCharacter } from '../components/PartyActiveCharacter'
 
 export const Party = () => {
   const { party, activeCharacter, setActiveCharacter } = usePartyContext()
@@ -24,9 +25,13 @@ export const Party = () => {
           <RedButton onClick={enterCombat}>Enter Combat</RedButton>
         </BoxContainer>
       </FlexContainer>
-      <FullContainer />
+      <PartyActiveCharacter character={activeCharacter} />
       <div style={{ marginBottom: 30 }}>
-        <PartyCharacters party={party} activeCharacter={activeCharacter} />
+        <PartyCharacters
+          party={party}
+          activeCharacter={activeCharacter}
+          onCharacterClick={(c) => setActiveCharacter(c)}
+        />
       </div>
     </FlexContainer>
   )

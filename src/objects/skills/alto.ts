@@ -2,17 +2,13 @@ import { SkillT } from '../../types'
 import { makeEntity } from '../../functions/Entity'
 import { makeCheck } from '../../functions/makeCheck'
 
-export const SURGE: SkillT = {
-  ...makeEntity('Surge'),
-  damageModifier: -0.2,
+export const ALTO: SkillT = {
+  ...makeEntity('Alto'),
+  damageModifier: 0,
   targetType: 'single',
   damage: true,
   isBasicAttack: true,
-  rolls: [
-    makeCheck('intelligence'),
-    makeCheck('intelligence'),
-    makeCheck('intelligence'),
-  ],
+  rolls: [makeCheck('talent'), makeCheck('talent'), makeCheck('talent')],
   perfectSplash: false,
   perfectPierce: true,
   perfectStatus: [],

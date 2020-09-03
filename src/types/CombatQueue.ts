@@ -27,9 +27,21 @@ export const getMax = (queue: CombatQueueT): number => {
   }, Number.NEGATIVE_INFINITY)
 }
 
-export const getMin = (queue: CombatQueueT): number => {
+export const getMin = (
+  queue: CombatQueueT,
+  characters?: ProcessedCharacterT[],
+): number => {
   return Object.keys(queue).reduce((r: number, id: string) => {
-    if (queue[id] < r) return queue[id]
+    if (queue[id] < r) {
+      if (characters) {
+        const c = characters.find((c) => c.id === id)
+        if (c && hasTag(c, 'dazed')) {
+          return r
+        } else {
+          return queue[id]
+        }
+      } else return queue[id]
+    }
     return r
   }, Number.POSITIVE_INFINITY)
 }
@@ -38,7 +50,7 @@ export const consolidateQueue = (
   queue: CombatQueueT,
   characters: ProcessedCharacterT[] = [],
 ): CombatQueueT => {
-  let min = getMin(queue)
+  let min = getMin(queue, characters)
   return Object.keys(queue).reduce((r, id) => {
     const character = characters.find((c) => c.id === id)
     const offset = character && hasTag(character, 'dazed') ? 0 : min

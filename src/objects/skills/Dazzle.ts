@@ -4,15 +4,11 @@ import { makeCheck } from '../../functions/makeCheck'
 
 export const DAZZLE: SkillT = {
   ...makeEntity('Dazzle'),
-  damageModifier: 0,
+  damageModifier: -0.5,
   targetType: 'single',
   damage: false,
   isBasicAttack: false,
-  rolls: [
-    makeCheck('intelligence'),
-    makeCheck('intelligence'),
-    makeCheck('intelligence'),
-  ],
+  rolls: [makeCheck('talent', -6), makeCheck('talent', -5)],
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],

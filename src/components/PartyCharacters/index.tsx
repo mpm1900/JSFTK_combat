@@ -6,9 +6,10 @@ import { PartyCharacter } from '../PartyCharacter'
 export interface PartyCharactersProps {
   party: ProcessedPartyT
   activeCharacter: ProcessedCharacterT
+  onCharacterClick: (character: ProcessedCharacterT) => void
 }
 export const PartyCharacters = (props: PartyCharactersProps) => {
-  const { party, activeCharacter } = props
+  const { party, activeCharacter, onCharacterClick } = props
 
   return (
     <FlexContainer $direction='column'>
@@ -20,7 +21,12 @@ export const PartyCharacters = (props: PartyCharactersProps) => {
       >
         {party.characters.map((c) => (
           <div key={c.id}>
-            <PartyCharacter activeCharacter={activeCharacter} character={c} />
+            <PartyCharacter
+              hoverable={true}
+              activeCharacter={activeCharacter}
+              character={c}
+              onClick={() => onCharacterClick(c)}
+            />
           </div>
         ))}
       </FlexContainer>
