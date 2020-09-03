@@ -1,18 +1,10 @@
-import {
-  CharacterT,
-  PartyT,
-  ProcessedPartyT,
-  EntityT,
-  CharacterClassT,
-} from '../types'
+import { CharacterT, PartyT, ProcessedPartyT, EntityT } from '../types'
 import {
   checkForProcessedCharacter,
   processCharacter,
-  makeCharacter,
   makeEnemy,
 } from './Character'
 import { makeEntity } from './Entity'
-import { getRandom } from '../util'
 
 export const isParty = (e: EntityT) => e && (e as PartyT).isParty
 

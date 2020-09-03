@@ -57,18 +57,26 @@ export const Combat = () => {
           $full
           style={{ padding: '30px 10px' }}
         >
-          <CombatParty party={enemyParty} />
+          <FlexContainer $direction='column' $full>
+            <CombatParty party={enemyParty} />
+          </FlexContainer>
           <FlexContainer $full>
             <FullContainer />
             <FlexContainer $direction='column'>
               <FullContainer />
               <CombatActions />
-              <RoundResultRenderer />
+              <RoundResultRenderer isModal={false} />
               <FullContainer />
             </FlexContainer>
             <FullContainer />
           </FlexContainer>
-          <CombatPlayerParty party={party} />
+          <FlexContainer
+            $direction='column'
+            $full
+            style={{ justifyContent: 'flex-end' }}
+          >
+            <CombatPlayerParty party={party} />
+          </FlexContainer>
         </FlexContainer>
       </FlexContainer>
 
@@ -81,7 +89,9 @@ export const Combat = () => {
           flexDirection: 'column',
         }}
       >
-        {combatLog.map((line) => line)}
+        {combatLog.map((line, i) => (
+          <span key={i}>{line}</span>
+        ))}
       </BoxContainer>
     </FlexContainer>
   )

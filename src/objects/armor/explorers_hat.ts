@@ -1,7 +1,6 @@
 import { ArmorT } from '../../types'
 import { makeEntity } from '../../functions/Entity'
 import { ZERO_STATS } from '../Stats'
-import { TAUNT } from '../skills/taunt'
 
 export const EXPLORERS_HAT: ArmorT = {
   ...makeEntity(`Explorer's Hat`),

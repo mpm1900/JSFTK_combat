@@ -1,9 +1,4 @@
-import {
-  ProcessedCharacterT,
-  ProcessedPartyT,
-  SkillT,
-  SkillTargetT,
-} from '../types'
+import { ProcessedCharacterT, ProcessedPartyT, SkillT } from '../types'
 import { getRandom } from '../util'
 import { getSkillTargetOptions } from './Skill'
 

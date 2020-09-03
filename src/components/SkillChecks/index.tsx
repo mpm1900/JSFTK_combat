@@ -13,7 +13,7 @@ export const SkillChecks = (props: SkillChecksPropsT) => {
   const { skill } = props
   return (
     <FlexContainer
-      style={{ justifyContent: 'space-evenly', padding: '12px 0 24px 0' }}
+      style={{ justifyContent: 'center', padding: '12px 0 24px 0' }}
     >
       {skill.rolls.map((roll, i) => (
         <SkillCheck
@@ -31,13 +31,15 @@ export interface SkillCheckT {
 export const SkillCheck = (props: SkillCheckT) => {
   const { check } = props
   return (
-    <Badge $absolute={false} $size={36}>
-      <Icon
-        src={STATI_ICONS[(check.label as keyof StatsT) || 'strength'] || ''}
-        fill={getColor(check.result)}
-        size={32}
-      />
-    </Badge>
+    <div style={{ padding: '0px 12px' }}>
+      <Badge $absolute={false} $size={36}>
+        <Icon
+          src={STATI_ICONS[(check.label as keyof StatsT) || 'strength'] || ''}
+          fill={getColor(check.result)}
+          size={32}
+        />
+      </Badge>
+    </div>
   )
 }
 

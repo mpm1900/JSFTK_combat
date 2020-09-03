@@ -10,7 +10,7 @@ export const TAUNT: SkillT = {
   rolls: [makeCheck('vigor'), makeCheck('vigor')],
   accuracy: undefined,
   perfectSplash: false,
-  perfectPierce: true,
+  perfectPierce: false,
   perfectStatus: [],
   perfectTags: [
     {

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { useModalContext } from '../../contexts/ModalContext'
-import { Span, NameSpanBuilder } from '../../contexts/CombatLogContext/util'
+import { NameSpanBuilder } from '../../contexts/CombatLogContext/util'
 import { FlexContainer } from '../../elements/flex'
 import Kefir from 'kefir'
-import { Stream } from 'stream'
 import { SkillCheck } from '../SkillChecks'
 
-export const RoundResultRenderer = () => {
+export interface RoundResultRendererPropsT {
+  isModal?: boolean
+}
+export const RoundResultRenderer = (props: RoundResultRendererPropsT) => {
+  const { isModal = true } = props
   const { activeRound, commit } = useCombatContext()
   const { open, close } = useModalContext()
   const [isOpen, setIsOpen] = useState(false)
@@ -15,24 +18,38 @@ export const RoundResultRenderer = () => {
   useEffect(() => {
     if (activeRound && !isOpen) {
       setIsOpen(true)
-      open(
+      if (isModal) {
+        open(
+          <RoundResult
+            close={() => {
+              close(true)
+              setIsOpen(false)
+              commit()
+            }}
+          />,
+          {
+            overlay: {
+              background: 'transparent',
+            },
+          },
+          true,
+        )
+      }
+    }
+  }, [isModal, isOpen, activeRound, open, close, commit])
+
+  if (!isModal && activeRound && activeRound[0]) {
+    return (
+      <FlexContainer style={{ height: 315 }}>
         <RoundResult
           close={() => {
-            close(true)
             setIsOpen(false)
             commit()
           }}
-        />,
-        {
-          overlay: {
-            background: 'transparent',
-          },
-        },
-        true,
-      )
-    }
-  }, [isOpen, activeRound, open, close, commit])
-
+        />
+      </FlexContainer>
+    )
+  }
   return null
 }
 
@@ -73,6 +90,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
     setRoundResults((r) => r.map((r, i) => (i === index ? value : r)))
 
   useEffect(() => {
+    console.log(roundResults)
     const stream = Kefir.sequentially(
       200,
       roundResults.map((r, i) => ({ ...r, index: i })),
@@ -111,12 +129,9 @@ export const RoundResult = (props: RoundResultPropsT) => {
 
   return (
     <FlexContainer $direction='column' style={{ textAlign: 'center' }}>
-      <h4 style={{ margin: '0 0 20px 0' }}>
-        {NameSpan(round.source)} uses {round.skill.name} on {NameSpan(target)}
-      </h4>
       <FlexContainer style={{ justifyContent: 'space-evenly' }}>
-        {roundResults.map((result) => (
-          <SkillCheck check={result} />
+        {roundResults.map((result, i) => (
+          <SkillCheck key={i} check={result} />
         ))}
       </FlexContainer>
     </FlexContainer>
