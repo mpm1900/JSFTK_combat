@@ -61,7 +61,7 @@ export const CombatParty = (props: CombatPartyPropsT) => {
                 >
                   <div style={{ boxShadow: '0px 2px 5px black' }}>
                     <ConfirmButton onClick={() => next(c)} $direction='down'>
-                      Confirm Target
+                      Attack
                     </ConfirmButton>
                   </div>
                 </FlexContainer>
@@ -77,7 +77,7 @@ export const CombatParty = (props: CombatPartyPropsT) => {
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              Confirm Group Target
+              Attack Group
             </ConfirmButton>
           </div>
         </FlexContainer>

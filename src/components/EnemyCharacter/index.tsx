@@ -101,7 +101,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             style={{
               position: 'absolute',
               bottom: '-6px',
-              right: '3px',
+              right: '16px',
               width: 52,
               alignItems: 'center',
             }}
@@ -130,6 +130,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             fontWeight: 'bolder',
             fontSize: 52,
             height: 52,
+            width: 60,
             textShadow: '1px 1px 10px black',
             color: '#b55553',
           }}

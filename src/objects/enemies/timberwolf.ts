@@ -15,7 +15,7 @@ export const TIMBERWOLF = (): CharacterT => {
       intelligence: 40,
       perception: 52,
       talent: 30,
-      agility: 60,
+      agility: 65,
       luck: 50,
       armor: 0,
       resistance: 0,

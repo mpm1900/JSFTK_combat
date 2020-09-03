@@ -5,6 +5,9 @@ import {
   makeEnemy,
 } from './Character'
 import { makeEntity } from './Entity'
+import { TIMBERWOLF } from '../objects/enemies/timberwolf'
+import { VALE_IMP } from '../objects/enemies/vale_imp'
+import { BEASTMAN } from '../objects/enemies/beastman'
 
 export const isParty = (e: EntityT) => e && (e as PartyT).isParty
 
@@ -21,11 +24,7 @@ export const makeParty = (characterCount: number = 0): PartyT => {
   return {
     ...makeEntity(),
     isParty: true,
-    characters: Array(characterCount)
-      .fill(null)
-      .map((_, i) => {
-        return makeEnemy()
-      }),
+    characters: [TIMBERWOLF(), VALE_IMP(), BEASTMAN()],
   }
 }
 
