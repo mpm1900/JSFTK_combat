@@ -8,7 +8,7 @@ import { Monodiv } from '../../elements/monospace'
 import { styled, withStyle } from 'styletron-react'
 import { Badge } from '../../elements/badge'
 import { Icon } from '../Icon'
-import { STATI_ICONS } from '../../icons/maps'
+import { STATI_ICONS, TAG_ICONS } from '../../icons/maps'
 import Details from '../../icons/svg/delapouite/skills.svg'
 import Inventory from '../../icons/svg/lorc/knapsack.svg'
 
@@ -220,6 +220,19 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           </FlexContainer>
         </FlexContainer>
       </BoxContainer>
+      <FlexContainer
+        style={{
+          position: 'absolute',
+          top: '-24px',
+          right: '4px',
+        }}
+      >
+        {character.tags.map((tag) => (
+          <div>
+            <Icon shadow src={TAG_ICONS[tag.type]} size={20} />
+          </div>
+        ))}
+      </FlexContainer>
       <Badge $bottom='64px' $left='-12px' $color='lightblue'>
         {character.stats.armor}
       </Badge>

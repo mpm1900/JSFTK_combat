@@ -18,6 +18,7 @@ import {
   processCharacter,
   addMultipleStatus,
   decrementStatusDurations,
+  hasTag,
 } from './Character'
 import { updateCharacter, isParty } from './Party'
 import { noneg } from '../util'
@@ -112,9 +113,10 @@ export const getTargetSkillResult = (
     const damageResistances = sourceResult.pierce
       ? 0
       : getDamageResistance(target, sourceResult.rawDamage.type)
+    const isEvasive = hasTag(target, 'evasive')
     const dodgeSuccess = sourceResult.criticalSuccess
       ? false
-      : dodgeResult.result
+      : dodgeResult.result || (isEvasive && !sourceResult.perfect)
     return {
       ...sourceResult,
       target,

@@ -11,6 +11,7 @@ import Accuracy from './svg/delapouite/convergence-target.svg'
 
 import Dazed from './svg/lorc/star-swirl.svg'
 import Targeted from './svg/sbed/targeted.svg'
+import Evasive from './svg/lorc/dodging.svg'
 
 import Shot from './svg/lorc/high-shot.svg'
 import SnipeShot from './svg/delapouite/shield-impact.svg'
@@ -43,6 +44,7 @@ export const STATI_ICONS: Partial<Record<keyof StatsT | 'accuracy', string>> = {
 export const TAG_ICONS: Record<CharacterTagTypeT, string> = {
   dazed: Dazed,
   targeted: Targeted,
+  evasive: Evasive,
 }
 
 export const SKILL_ICONS: Record<string, string> = {

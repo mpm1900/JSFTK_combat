@@ -122,7 +122,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           >
             {character.tags.map((tag) => (
               <div>
-                <Icon src={TAG_ICONS[tag.type]} size={20} />
+                <Icon shadow src={TAG_ICONS[tag.type]} size={20} />
               </div>
             ))}
           </FlexContainer>
