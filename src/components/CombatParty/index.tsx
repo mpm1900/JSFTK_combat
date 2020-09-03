@@ -37,10 +37,8 @@ export const CombatParty = (props: CombatPartyPropsT) => {
         {party.characters.map((c) => (
           <div key={c.id}>
             <EnemyCharacter
-              hoverable={
-                selectedSkill !== undefined &&
-                selectedSkill.targetType === 'single'
-              }
+              /*
+              hoverable={false}
               isHovering={isHovering && selectedSkill?.targetType === 'group'}
               selected={
                 selectedTargets.find((t) => t.id === c.id) !== undefined
@@ -49,42 +47,37 @@ export const CombatParty = (props: CombatPartyPropsT) => {
                 if (selectedSkill && selectedSkill.targetType === 'single') {
                   onTargetsSelect(c)
                 }
-              }}
+              }} */
               activeCharacter={activeCharacter}
               character={c}
             />
-            {selectedSkill &&
-              selectedSkill.targetType === 'single' &&
-              selectedTargets.length > 0 &&
-              selectedTargets[0].id === c.id && (
-                <FlexContainer
-                  style={{ justifyContent: 'center', marginTop: -13 }}
-                >
-                  <div style={{ boxShadow: '0px 2px 5px black' }}>
-                    <ConfirmButton onClick={() => next()} $direction='down'>
-                      Confirm Target
-                    </ConfirmButton>
-                  </div>
-                </FlexContainer>
-              )}
+            {selectedSkill && selectedSkill.targetType === 'single' && (
+              <FlexContainer
+                style={{ justifyContent: 'center', marginTop: -13 }}
+              >
+                <div style={{ boxShadow: '0px 2px 5px black' }}>
+                  <ConfirmButton onClick={() => next(c)} $direction='down'>
+                    Confirm Target
+                  </ConfirmButton>
+                </div>
+              </FlexContainer>
+            )}
           </div>
         ))}
       </FlexContainer>
-      {selectedSkill &&
-        selectedSkill.targetType === 'group' &&
-        selectedTargets.length > 0 && (
-          <FlexContainer style={{ justifyContent: 'center' }}>
-            <div style={{ boxShadow: '0px 2px 5px black' }}>
-              <ConfirmButton
-                onClick={() => next()}
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
-              >
-                Confirm Group Target
-              </ConfirmButton>
-            </div>
-          </FlexContainer>
-        )}
+      {selectedSkill && selectedSkill.targetType === 'group' && (
+        <FlexContainer style={{ justifyContent: 'center' }}>
+          <div style={{ boxShadow: '0px 2px 5px black' }}>
+            <ConfirmButton
+              onClick={() => next(party)}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+            >
+              Confirm Group Target
+            </ConfirmButton>
+          </div>
+        </FlexContainer>
+      )}
     </FlexContainer>
   )
 }

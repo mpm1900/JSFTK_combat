@@ -50,7 +50,7 @@ export interface CombatContextT {
   onSkillSelect: (skill: SkillT) => void
   onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => void
   start: () => void
-  next: () => void
+  next: (nextTarget?: ProcessedCharacterT | ProcessedPartyT) => void
   commit: () => void
 }
 const defaultValue: CombatContextT = {
@@ -130,12 +130,16 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     }
   }, [isRunning])
 
-  const next = () => {
-    if (!selectedSkill || !selectedTarget) return
+  const next = (nextTarget?: ProcessedCharacterT | ProcessedPartyT) => {
+    if (!selectedSkill) return
+    const roundTarget = nextTarget
+      ? makeSkillTarget(selectedSkill.targetType, nextTarget)
+      : selectedTarget
+    if (!selectedSkill || !roundTarget) return
     const results = getSkillResults(
       selectedSkill,
       activeCharacter,
-      resolveSkillTarget(selectedTarget).filter((c) => !c.dead),
+      resolveSkillTarget(roundTarget).filter((c) => !c.dead),
     )
     setActiveRound(results)
     setSelectedSkill(undefined)
