@@ -1,25 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { ProcessedCharacterT } from '../../types'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { Gauge } from '../Gauge'
 import { noneg } from '../../util'
-import { BoxContainer } from '../../elements/box'
-import { Monodiv } from '../../elements/monospace'
 import { styled } from 'styletron-react'
 import { Badge } from '../../elements/badge'
 import { Icon } from '../Icon'
 import { TAG_ICONS } from '../../icons/maps'
-
-const ResourceE = styled(Monodiv, () => ({
-  height: 15,
-  fontSize: '12px',
-  fontWeight: 'bolder',
-  padding: '0px 4px',
-  lineHeight: '15px',
-  flex: 1,
-  textAlign: 'center',
-  background: '#111',
-}))
 
 export interface EnemyCharacterPropsT {
   character: ProcessedCharacterT

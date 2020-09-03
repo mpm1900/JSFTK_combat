@@ -1,5 +1,5 @@
 import React from 'react'
-import { styled, withStyle, withWrapper } from 'styletron-react'
+import { styled, withWrapper } from 'styletron-react'
 
 const Div = styled('div', {
   transform: 'rotateY(0deg) rotate(-45deg)',

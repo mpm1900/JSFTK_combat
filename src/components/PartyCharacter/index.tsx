@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { ProcessedCharacterT, StatsT } from '../../types'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { Gauge } from '../Gauge'
 import { noneg } from '../../util'
 import { BoxContainer } from '../../elements/box'
 import { Monodiv } from '../../elements/monospace'
-import { styled } from 'styletron-react'
+import { styled, withStyle } from 'styletron-react'
 import { Badge } from '../../elements/badge'
 import { Icon } from '../Icon'
 import { STATI_ICONS } from '../../icons/maps'
 
-const ResourceE = styled(Monodiv, (props: any) => ({
+const ResourceE = withStyle(Monodiv, (props: any) => ({
   height: 15,
   color: props.$color,
   fontSize: '12px',

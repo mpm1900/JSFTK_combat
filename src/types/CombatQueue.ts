@@ -1,4 +1,4 @@
-import { ProcessedCharacterT, CharacterT } from './Character'
+import { ProcessedCharacterT } from './Character'
 import { hasTag } from '../functions'
 
 export interface CombatQueueT {

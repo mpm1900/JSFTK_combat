@@ -1,5 +1,4 @@
 import React, { CSSProperties } from 'react'
-import Color from 'color'
 import { BoxContainer } from '../../elements/box'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { HoverToolTip } from '../Tooltip'

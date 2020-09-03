@@ -1,4 +1,3 @@
-import React from 'react'
 import { styled, withStyle } from 'styletron-react'
 
 export interface ButtonPropsT {

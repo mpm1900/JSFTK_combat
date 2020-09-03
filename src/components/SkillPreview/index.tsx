@@ -55,7 +55,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
           Hit Accuracy ({Math.floor(accuracyChance * 100)}%)
         </span>
         <FlexContainer $full style={{ width: '100%', marginBottom: 8 }}>
-          {damageString !== '0' && (
+          {damage.damage > 0 && (
             <FlexContainer
               $full
               $direction='column'

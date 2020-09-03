@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useCombatContext } from '../contexts/CombatContext'
-import { BoxContainer, BoxButton } from '../elements/box'
+import { BoxContainer } from '../elements/box'
 import { FlexContainer, FullContainer } from '../elements/flex'
 import { useCombatLogContext } from '../contexts/CombatLogContext'
 import { CombatPlayerParty } from '../components/CombatPlayerParty'
@@ -8,7 +8,6 @@ import { RoundResultRenderer } from '../components/RoundResultRenderer'
 import { CombatActions } from '../components/CombatActions'
 import { CombatParty } from '../components/CombatParty'
 import { useModalContext } from '../contexts/ModalContext'
-import { start } from 'repl'
 import { CombatQueue } from '../components/CombatQueue'
 
 export const Combat = () => {

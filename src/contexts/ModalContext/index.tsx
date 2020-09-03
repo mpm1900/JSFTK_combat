@@ -2,17 +2,6 @@ import React, { useContext, useReducer, useMemo, CSSProperties } from 'react'
 import Modal from 'react-modal'
 import { actions, reducer, initialState, ModalContextStateT } from './reducer'
 
-const overlayStyles = () => ({
-  zIndex: 700,
-})
-const contentStyles = (styles: CSSProperties): CSSProperties => ({
-  width: '50vw',
-  maxHeight: 'calc(100vh - 128px)',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  ...styles,
-})
-
 export interface ModalContextT {
   open: (
     contents?: JSX.Element,
@@ -69,7 +58,7 @@ const getContextValue = (
   setBlocking: (blocking: boolean) => dispatch(actions.setBlocking(blocking)),
   setStyles: (styles: ModalStylesT) => dispatch(actions.setStyles(styles)),
 })
-
+Modal.setAppElement('#root')
 export interface ModalContextProviderPropsT {
   children: JSX.Element
 }

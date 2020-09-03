@@ -36,7 +36,7 @@ export const CombatPlayerParty = (props: CombatPartyPlayerPropsT) => {
         }}
       >
         {party.characters.map((c) => (
-          <div>
+          <div key={c.id}>
             {selectedSkill &&
               ((selectedSkill.targetType === 'self' &&
                 c.id === activeCharacter.id) ||

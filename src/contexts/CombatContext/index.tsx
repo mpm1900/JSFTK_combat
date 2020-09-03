@@ -25,13 +25,11 @@ import {
   makeSkillTarget,
 } from '../../functions'
 import { usePartyContext } from '../PartyContext'
-import { getRandom } from '../../util'
 import {
   CombatQueueT,
   makeCombatQueue,
   getFirst,
   shiftQueue,
-  getSortedIds,
   validateQueue,
 } from '../../types/CombatQueue'
 import { getAIAction } from '../../functions/AI'
@@ -195,6 +193,8 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
         )
 
         execEnemyTurn(skill, makeSkillTarget(skill.targetType, target))
+      } else {
+        setSelectedSkill(activeCharacter.skills[0])
       }
     }
   }, [roundId])

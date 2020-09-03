@@ -219,7 +219,7 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
     return updateCharacter(p, id, updater)
   }
   results.forEach((result, index) => {
-    const { source, target } = result
+    const { source } = result
     let sourceParty = party.id === source.partyId ? party : enemyParty
     let targetParty = party.id === source.partyId ? enemyParty : party
     if (

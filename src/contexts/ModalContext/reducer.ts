@@ -1,4 +1,3 @@
-import { CSSProperties } from 'react'
 import { ModalStylesT } from '.'
 
 export interface ModalContextStateT {

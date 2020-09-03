@@ -15,8 +15,9 @@ export const SkillChecks = (props: SkillChecksPropsT) => {
     <FlexContainer
       style={{ justifyContent: 'space-evenly', padding: '12px 0 24px 0' }}
     >
-      {skill.rolls.map((roll) => (
+      {skill.rolls.map((roll, i) => (
         <SkillCheck
+          key={i}
           check={{ label: roll.key || 'strength', result: undefined }}
         />
       ))}

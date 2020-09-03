@@ -35,7 +35,7 @@ export const CombatParty = (props: CombatPartyPropsT) => {
         }}
       >
         {party.characters.map((c) => (
-          <div>
+          <div key={c.id}>
             <EnemyCharacter
               hoverable={
                 selectedSkill !== undefined &&

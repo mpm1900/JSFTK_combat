@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Hover } from '../components/Hover'
 
 export interface BoxContainerPropsT extends React.HTMLProps<HTMLDivElement> {
