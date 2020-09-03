@@ -10,6 +10,7 @@ import { CombatParty } from '../components/CombatParty'
 import { useModalContext } from '../contexts/ModalContext'
 import { CombatQueue } from '../components/CombatQueue'
 import ForestBg from '../assets/img/flat-forestred.jpg'
+import { CombatLog } from '../components/CombatLog'
 
 export const Combat = () => {
   const {
@@ -70,12 +71,12 @@ export const Combat = () => {
           <FlexContainer $full>
             <FullContainer />
             <FlexContainer $direction='column'>
-              <FullContainer />
               <CombatActions />
               <RoundResultRenderer isModal={false} />
-              <FullContainer />
             </FlexContainer>
-            <FullContainer />
+            <FlexContainer $full style={{ justifyContent: 'flex-end' }}>
+              <CombatLog />
+            </FlexContainer>
           </FlexContainer>
           <FlexContainer
             $direction='column'
@@ -86,20 +87,6 @@ export const Combat = () => {
           </FlexContainer>
         </FlexContainer>
       </FlexContainer>
-
-      <BoxContainer
-        substyle={{
-          minWidth: 300,
-          fontSize: 12,
-          overflowY: 'auto',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        {combatLog.map((line, i) => (
-          <span key={i}>{line}</span>
-        ))}
-      </BoxContainer>
     </FlexContainer>
   )
 }

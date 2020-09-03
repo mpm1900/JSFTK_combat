@@ -51,7 +51,7 @@ export const CombatParty = (props: CombatPartyPropsT) => {
               activeCharacter={activeCharacter}
               character={c}
             />
-            {selectedSkill && selectedSkill.targetType === 'single' && (
+            {selectedSkill && selectedSkill.targetType === 'single' && !c.dead && (
               <FlexContainer
                 style={{ justifyContent: 'center', marginTop: -13 }}
               >
