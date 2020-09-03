@@ -14,7 +14,6 @@ export type CharacterClassT =
 
 export interface CharacterT extends EntityT {
   partyId: string
-  color: string
   level: number
   class: CharacterClassT
   stats: StatsT
