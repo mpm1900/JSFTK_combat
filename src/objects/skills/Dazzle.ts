@@ -12,7 +12,6 @@ export const DAZZLE: SkillT = {
     makeCheck('intelligence'),
     makeCheck('intelligence'),
   ],
-  accuracy: makeCheck('intelligence'),
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],

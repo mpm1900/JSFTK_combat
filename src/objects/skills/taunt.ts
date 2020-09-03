@@ -8,7 +8,6 @@ export const TAUNT: SkillT = {
   targetType: 'self',
   damage: false,
   rolls: [makeCheck('vigor'), makeCheck('vigor')],
-  accuracy: undefined,
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],

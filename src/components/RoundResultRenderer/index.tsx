@@ -70,20 +70,10 @@ export const RoundResult = (props: RoundResultPropsT) => {
   const [roundResults, setRoundResults] = useState<CheckKVT[]>(
     !round
       ? []
-      : [
-          ...round.rollResults.map((result, i) => ({
-            label: round.skill.rolls[i].key || '<NULL>',
-            result: undefined,
-          })),
-          ...(round.skill.accuracy
-            ? [
-                {
-                  label: 'accuracy',
-                  result: undefined,
-                },
-              ]
-            : []),
-        ],
+      : round.rollResults.map((result, i) => ({
+          label: round.skill.rolls[i].key || '<NULL>',
+          result: undefined,
+        })),
   )
 
   const updateRoundResult = (value: CheckKVT, index: number) =>

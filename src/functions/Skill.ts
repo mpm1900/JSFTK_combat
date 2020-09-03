@@ -77,12 +77,7 @@ export const getSourceSkillResult = (
     ? skill.rolls.length
     : getPassedCount(rollResults)
   const perfect = didAllPass(rollResults)
-  const accuracySuccess =
-    criticalHitResult.result ||
-    perfect ||
-    skill.accuracy === undefined ||
-    (skill.accuracy !== undefined &&
-      resolveCheck(source, skill.accuracy).result)
+  const accuracySuccess = true
   const rawDamage: DamageT = {
     damage:
       accuracySuccess && skill.damage

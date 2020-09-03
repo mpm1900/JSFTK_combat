@@ -13,7 +13,6 @@ export const SHOT: SkillT = {
     makeCheck('perception'),
     makeCheck('perception'),
   ],
-  accuracy: makeCheck('perception'),
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],

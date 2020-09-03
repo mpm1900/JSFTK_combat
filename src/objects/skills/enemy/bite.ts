@@ -12,7 +12,6 @@ export const BITE: SkillT = {
     makeCheck('perception'),
     makeCheck('perception'),
   ],
-  accuracy: makeCheck('perception'),
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],

@@ -17,10 +17,6 @@ export interface SkillPreviewPropsT {
 export const SkillPreview = (props: SkillPreviewPropsT) => {
   const { skill, source, targets } = props
   const perfectChance = getChecksProbability(source, skill.rolls)
-  const rawAccuracyChance = skill.accuracy
-    ? getChecksProbability(source, [skill.accuracy])
-    : 1
-  const accuracyChance = 1 - (1 - perfectChance) * (1 - rawAccuracyChance)
   const damage = getSkillDamage(skill, source)
   const damageString = getSkillDamageRange(
     skill,
@@ -50,9 +46,6 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
         <span style={{ color: 'rgba(255,255,255,0.4)' }}>
           Perect ({Math.floor(perfectChance * 100)}%){' '}
           {perfectKeys.length > 0 && '='} {perfectKeys}
-        </span>
-        <span style={{ color: 'rgba(255,255,255,0.4)' }}>
-          Hit Accuracy ({Math.floor(accuracyChance * 100)}%)
         </span>
         <FlexContainer $full style={{ width: '100%', marginBottom: 8 }}>
           {damage.damage > 0 && (
@@ -86,7 +79,9 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
                 fontSize: 32,
               }}
             >
-              {source.stats[skill.rolls[0].key || 'strength']}%
+              {source.stats[skill.rolls[0].key || 'strength'] +
+                (skill.rolls[0].offset || 0)}
+              %
             </span>
             <span style={{ color: 'rgba(255,255,255,0.2)' }}>
               Per Check ACC

@@ -13,7 +13,6 @@ export interface SkillT extends EntityT {
   damageModifier: number
   targetType: TargetTypeT
   rolls: CheckT[]
-  accuracy: CheckT | undefined
   damage: boolean
   perfectStatus: StatusTypeT[]
   perfectTags: CharacterTagT[]

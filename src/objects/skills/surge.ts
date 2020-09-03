@@ -12,7 +12,6 @@ export const SURGE: SkillT = {
     makeCheck('intelligence'),
     makeCheck('intelligence'),
   ],
-  accuracy: makeCheck('intelligence'),
   perfectSplash: false,
   perfectPierce: true,
   perfectStatus: [],
