@@ -1,0 +1,9 @@
+import { ArmorT } from './Armor'
+import { WeaponT } from './Weapon'
+
+export interface CombatRewardT {
+  gold: number
+  xp: number
+  items: (ArmorT | WeaponT)[]
+  consumables: []
+}

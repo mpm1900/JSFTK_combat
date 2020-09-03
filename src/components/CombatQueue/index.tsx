@@ -7,6 +7,8 @@ import {
 } from '../../types/CombatQueue'
 import { ProcessedCharacterT } from '../../types'
 import { FlexContainer, FullContainer } from '../../elements/flex'
+import { Button } from '../../elements/button'
+import { useHistory } from 'react-router'
 
 const size = 40
 export interface CombatQueuePropsT {
@@ -15,6 +17,7 @@ export interface CombatQueuePropsT {
 }
 export const CombatQueue = (props: CombatQueuePropsT) => {
   const { queue, characters } = props
+  const history = useHistory()
   const first = characters.find(
     (c) => c.id === getFirst(queue),
   ) as ProcessedCharacterT
@@ -47,7 +50,23 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
           boxShadow: '1px 1px 1px black',
         }}
       >
-        <FlexContainer style={{ width: 800 }}>
+        <FlexContainer $full>
+          <Button
+            style={{ margin: 10 }}
+            onClick={() => history.push('/JSFTK_combat/party')}
+          >
+            Edit Party
+          </Button>
+        </FlexContainer>
+        <FlexContainer
+          style={{
+            width: 800,
+            flexDirection: 'row-reverse',
+            boxShadow: '0px 0px 3px black',
+            borderLeft: '1px solid rgba(255,255,255,0.3)',
+            background: '#222',
+          }}
+        >
           <FlexContainer>
             <img
               alt='profile'
@@ -57,8 +76,10 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
               style={{
                 height: 64,
                 width: 64,
-                border: '1px solid rgba(255,255,255,0.5)',
+                border: '2px solid rgba(255,255,255,0.8)',
+                borderTop: 'none',
                 boxShadow: '1px 1px 1px black',
+                zIndex: 2,
               }}
             />
           </FlexContainer>
@@ -75,7 +96,9 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                       width: size - 7,
                       position: 'absolute',
                       bottom: '0px',
-                      left: `${queue[c.id] * widthCoef}%`,
+                      right: `calc(${queue[c.id] * widthCoef}% - ${
+                        size - 4
+                      }px)`,
                       transition: 'all 0.3s',
                     }}
                   >
@@ -96,6 +119,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
             </FlexContainer>
           </FlexContainer>
         </FlexContainer>
+        <FullContainer />
       </FlexContainer>
     </FlexContainer>
   )
