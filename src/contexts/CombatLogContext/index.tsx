@@ -3,6 +3,7 @@ import { useCombatContext } from '../CombatContext'
 import { Monospace } from '../../elements/monospace'
 import { NameSpanBuilder, SkillSpan, Span } from './util'
 import { getDamageResistance } from '../../functions'
+import { noneg } from '../../util'
 
 export interface CombatLogContextT {
   combatLog: JSX.Element[]
@@ -122,6 +123,15 @@ export const CombatLogContextProvider = (
             })
         }
 
+        if (round.reflectedDamage.damage > 0) {
+          log(
+            <span>
+              {NameSpan(round.target)} reflected{' '}
+              {Span('white', `${round.reflectedDamage.damage} damage`)}
+            </span>,
+          )
+        }
+
         round.addedTags.forEach((tag) => {
           log(
             <span>
@@ -131,6 +141,14 @@ export const CombatLogContextProvider = (
         })
       }
     })
+    if (baseRound.regeneratedHealth > 0) {
+      log(
+        <span>
+          {NameSpan(baseRound.source)} gained {baseRound.regeneratedHealth}{' '}
+          health from HP regen.
+        </span>,
+      )
+    }
   }, [roundResults.length])
 
   return (

@@ -7,6 +7,9 @@ import { styled } from 'styletron-react'
 import { Badge } from '../../elements/badge'
 import { Icon } from '../Icon'
 import { TAG_ICONS } from '../../icons/maps'
+import { Tooltip } from '../Tooltip'
+import { BoxContainer } from '../../elements/box'
+import { TagPreview } from '../TagPreview'
 
 export interface EnemyCharacterPropsT {
   character: ProcessedCharacterT
@@ -121,9 +124,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             }}
           >
             {character.tags.map((tag) => (
-              <div>
-                <Icon shadow src={TAG_ICONS[tag.type]} size={20} />
-              </div>
+              <TagPreview tag={tag} />
             ))}
           </FlexContainer>
           <FlexContainer

@@ -14,6 +14,7 @@ export interface SkillT extends EntityT {
   targetType: TargetTypeT
   rolls: CheckT[]
   damage: boolean
+  isBasicAttack: boolean
   perfectStatus: StatusTypeT[]
   perfectTags: CharacterTagT[]
   perfectSplash: boolean
@@ -46,4 +47,6 @@ export interface TargetSkillResultT extends SourceSkillResultT {
   blockedDamage: DamageT
   totalDamage: DamageT
   reflectedDamage: DamageT
+  regeneratedHealth: number
+  willDie: boolean
 }

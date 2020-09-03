@@ -11,6 +11,7 @@ import { Icon } from '../Icon'
 import { STATI_ICONS, TAG_ICONS } from '../../icons/maps'
 import Details from '../../icons/svg/delapouite/skills.svg'
 import Inventory from '../../icons/svg/lorc/knapsack.svg'
+import { TagPreview } from '../TagPreview'
 
 const ResourceE = withStyle(Monodiv, (props: any) => ({
   height: 15,
@@ -129,9 +130,11 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               style={{
                 marginTop: -3,
                 marginRight: -3,
-                padding: '2px 4px',
+                padding: '0 4px',
                 paddingLeft: 8,
                 background: '#555',
+                height: 24,
+                lineHeight: '28px',
                 borderBottom: '1px solid rgba(255,255,255,0.2)',
                 boxShadow: '0px 4px 5px black',
               }}
@@ -228,9 +231,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         }}
       >
         {character.tags.map((tag) => (
-          <div>
-            <Icon shadow src={TAG_ICONS[tag.type]} size={20} />
-          </div>
+          <TagPreview direction='up' tag={tag} />
         ))}
       </FlexContainer>
       <Badge $bottom='64px' $left='-12px' $color='lightblue'>

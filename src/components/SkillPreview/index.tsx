@@ -7,6 +7,7 @@ import {
   getSkillDamageRange,
   getSkillDamage,
   getPerfectKeys,
+  getPerfectText,
 } from '../../functions'
 
 export interface SkillPreviewPropsT {
@@ -23,7 +24,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
     source,
     targets.length === 0 ? undefined : targets,
   )
-  const perfectKeys = getPerfectKeys(skill)
+  const perfectKeys = getPerfectText(skill, source)
   return (
     <BoxContainer
       style={{ marginTop: 30, position: 'relative' }}
@@ -43,7 +44,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
           </BoxContainer>
           <FullContainer />
         </FlexContainer>
-        <span style={{ color: 'rgba(255,255,255,0.4)' }}>
+        <span style={{ color: 'rgba(255,255,255,0.4)', marginTop: 8 }}>
           Perect ({Math.floor(perfectChance * 100)}%){' '}
           {perfectKeys.length > 0 && '='} {perfectKeys}
         </span>
@@ -63,9 +64,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
               >
                 {damageString}
               </span>
-              <span style={{ color: 'rgba(255,255,255,0.2)' }}>
-                {damage.type} DMG
-              </span>
+              <span style={{ color: 'rgba(255,255,255,0.2)' }}>MAX DMG</span>
             </FlexContainer>
           )}
           <FlexContainer

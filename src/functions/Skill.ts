@@ -5,26 +5,17 @@ import {
   SkillT,
   DamageT,
   TargetSkillResultT,
-  CharacterT,
-  PartyT,
   SkillTargetT,
   ProcessedPartyT,
   TargetTypeT,
+  TagT,
 } from '../types'
 import { resolveCheck, getPassedCount, didAllPass } from './Roll'
-import {
-  getDamageResistance,
-  isCharacter,
-  processCharacter,
-  addMultipleStatus,
-  decrementStatusDurations,
-  hasTag,
-  addStatusAndTags,
-  findTag,
-} from './Character'
-import { updateCharacter, isParty } from './Party'
+import { getDamageResistance, isCharacter, hasTag, findTag } from './Character'
+import { isParty } from './Party'
 import { noneg } from '../util'
-import { PLAYER_PARTY_ID } from '../objects/Party'
+import { PerfectKeyT, PERFECT_DISPLAY_INFO } from '../objects/Skills'
+import { getSplashDamage } from './Damage'
 
 export const getSkillsFromObjects = (parents: HasSkillsT[]) => {
   return parents.reduce((p, c) => {
@@ -68,24 +59,25 @@ export const getSourceSkillResult = (
   source: ProcessedCharacterT,
   skill: SkillT,
 ): SourceSkillResultT => {
-  const rollResults = (source.weapon.rolls
-    ? source.weapon.rolls
-    : skill.rolls
-  ).map((check) => resolveCheck(source, check))
+  const rollResults = skill.rolls.map((check) => resolveCheck(source, check))
   const passedCount = getPassedCount(rollResults)
   const perfect = didAllPass(rollResults)
   const criticalHitResult = resolveCheck(source, {
     offset: source.stats.criticalChance,
   })
   const criticalSuccess = perfect ? criticalHitResult.result : false
+  const accuracySuccess = passedCount >= 1
 
-  const accuracySuccess = passedCount > 0
   const rawDamage: DamageT = {
     damage: Math.round(
       (passedCount * getSkillDamage(skill, source).damage) / rollResults.length,
     ),
     type: source.weapon.damage.type,
   }
+  const splashDamage: DamageT =
+    skill.perfectSplash && perfect
+      ? getSplashDamage(rawDamage)
+      : { type: rawDamage.type, damage: 0 }
   return {
     rollResults,
     skill,
@@ -96,10 +88,7 @@ export const getSourceSkillResult = (
     perfect,
     rawDamage,
     pierce: (perfect && skill.perfectPierce) || criticalHitResult.result,
-    splashDamage:
-      skill.perfectSplash && perfect
-        ? { type: rawDamage.type, damage: Math.floor(rawDamage.damage / 2) }
-        : { type: rawDamage.type, damage: 0 },
+    splashDamage,
     addedStatus: perfect ? skill.perfectStatus : [],
     addedTags: perfect ? skill.perfectTags : [],
   }
@@ -118,11 +107,24 @@ export const getTargetSkillResult = (
     const dodgeSuccess = sourceResult.criticalSuccess
       ? false
       : dodgeResult.result || (isEvasive && !sourceResult.perfect)
+    const totalDamage = {
+      type: sourceResult.rawDamage.type,
+      damage: dodgeSuccess
+        ? 0
+        : noneg(Math.round(sourceResult.rawDamage.damage - damageResistances)),
+    }
     const reflectedDamage = getReflectedDamage(
-      sourceResult.rawDamage,
+      totalDamage,
       sourceResult.source,
       target,
     )
+    const healthRegenMaximum =
+      sourceResult.source.stats.healthOffset + reflectedDamage.damage
+    const regeneratedHealth =
+      healthRegenMaximum > sourceResult.source.stats.healthRegen
+        ? sourceResult.source.stats.healthRegen
+        : healthRegenMaximum
+
     return {
       ...sourceResult,
       target,
@@ -132,14 +134,9 @@ export const getTargetSkillResult = (
         damage: sourceResult.pierce ? 0 : damageResistances,
       },
       reflectedDamage,
-      totalDamage: {
-        type: sourceResult.rawDamage.type,
-        damage: dodgeSuccess
-          ? 0
-          : noneg(
-              Math.round(sourceResult.rawDamage.damage - damageResistances),
-            ),
-      },
+      totalDamage,
+      regeneratedHealth,
+      willDie: target.health <= target.stats.healthOffset + totalDamage.damage,
     }
   } else {
     return {
@@ -149,18 +146,46 @@ export const getTargetSkillResult = (
       reflectedDamage: sourceResult.rawDamage,
       blockedDamage: sourceResult.rawDamage,
       totalDamage: sourceResult.rawDamage,
+      regeneratedHealth: noneg(
+        sourceResult.source.stats.healthOffset -
+          (sourceResult.source.stats.healthOffset +
+            sourceResult.source.stats.healthRegen),
+      ),
+      willDie: false,
     }
   }
 }
 
-export const getPerfectKeys = (skill: SkillT): string[] => {
-  let base: string[] = [
+export const getPerfectKeys = (skill: SkillT): PerfectKeyT[] => {
+  let base: PerfectKeyT[] = [
     ...skill.perfectStatus,
     ...skill.perfectTags.map((t) => t.type),
   ]
-  if (skill.perfectSplash) base = [...base, 'splash damage']
-  if (skill.perfectPierce) base = [...base, 'ignore resistance']
+  if (skill.perfectSplash) base = [...base, 'splash']
+  if (skill.perfectPierce) base = [...base, 'pierce']
   return base
+}
+
+export const getPerfectText = (
+  skill: SkillT,
+  character: ProcessedCharacterT,
+): string => {
+  const perfectKeys = getPerfectKeys(skill)
+  const rawDamage = getSkillDamage(skill, character)
+  const splashDamage = getSplashDamage(rawDamage)
+
+  return perfectKeys.reduce((res, key, i) => {
+    let pre = `${res}${i > 0 ? ',' : ''}`
+    const text = PERFECT_DISPLAY_INFO[key]
+    switch (key) {
+      case 'splash':
+        return `${pre} ${Math.floor(
+          (splashDamage.damage / rawDamage.damage) * 100,
+        )}% ${text}`
+      default:
+        return `${pre} ${text}`
+    }
+  }, '')
 }
 
 export const getSkillDamage = (
@@ -188,13 +213,12 @@ export const getReflectedDamage = (
   source: ProcessedCharacterT,
   target: ProcessedCharacterT,
 ): DamageT => {
-  const damageReflectTag = findTag(target, 'damage-reflection')
+  const damageReflectTag = findTag(target, 'damage-reflection') as TagT
   if (damageReflectTag && source.weapon.attackType === 'melee') {
-    console.log('WE HAVE REFLECT!!!!!!!!!!!')
     return {
       ...rawDamage,
-      damage: damageReflectTag.payload
-        ? Math.round(rawDamage.damage * damageReflectTag.payload)
+      damage: damageReflectTag.damageModifier
+        ? Math.round(rawDamage.damage * damageReflectTag.damageModifier)
         : Math.round(rawDamage.damage * 0.1),
     }
   } else {
@@ -229,131 +253,6 @@ export const getSkillResults = (
 ): TargetSkillResultT[] => {
   const sourceResult = getSourceSkillResult(source, skill)
   return targets.map((target) => getTargetSkillResult(target, sourceResult))
-}
-
-const localUpdater = (
-  p: PartyT,
-  id: string,
-  updater: (c: CharacterT) => CharacterT,
-) => {
-  return updateCharacter(p, id, updater)
-}
-
-interface CommitSkillResultsT {
-  party: PartyT
-  enemyParty: PartyT
-}
-export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
-  results: TargetSkillResultT[],
-): CommitSkillResultsT => {
-  results.forEach((result, index) => {
-    const { source, target } = result
-    let sourceParty = [party, enemyParty].find(
-      (p) => p.id === source.partyId,
-    ) as PartyT
-    let targetParty = [party, enemyParty].find(
-      (p) => p.id === target.partyId,
-    ) as PartyT
-    const localUpdate = (
-      p: PartyT,
-      id: string,
-      updater: (c: CharacterT) => CharacterT,
-    ) => {
-      if (p.id === sourceParty.id) {
-        sourceParty = localUpdater(p, id, updater)
-        return
-      }
-      if (p.id === targetParty.id) {
-        targetParty = localUpdater(p, id, updater)
-        return
-      }
-    }
-    localUpdate(targetParty, target.id, (c) => {
-      return addStatusAndTags(
-        {
-          ...c,
-          stats: {
-            ...c.stats,
-            healthOffset: c.stats.healthOffset + result.totalDamage.damage,
-          },
-        },
-        result.addedStatus,
-        result.addedTags,
-      )
-    })
-
-    if (result.reflectedDamage.damage > 0) {
-      localUpdate(sourceParty, source.id, (c) => {
-        return {
-          ...c,
-          stats: {
-            ...c.stats,
-            healthOffset: c.stats.healthOffset + result.reflectedDamage.damage,
-          },
-        }
-      })
-    }
-
-    if (result.splashDamage.damage > 0) {
-      targetParty.characters
-        .filter((c) => c.id !== result.target.id)
-        .forEach((character) => {
-          localUpdate(targetParty, character.id, (c) => {
-            const splashDamageResistance = getDamageResistance(
-              processCharacter(character),
-              result.splashDamage.type,
-            )
-            return {
-              ...c,
-              stats: {
-                ...c.stats,
-                healthOffset:
-                  c.stats.healthOffset +
-                  (result.splashDamage.damage - splashDamageResistance),
-              },
-            }
-          })
-        })
-    }
-    if (index === results.length - 1) {
-      if (source.stats.healthRegen > 0) {
-        localUpdate(sourceParty, source.id, (c) => {
-          return {
-            ...c,
-            stats: {
-              ...c.stats,
-              healthOffset: noneg(
-                c.stats.healthOffset - source.stats.healthRegen,
-              ),
-            },
-          }
-        })
-      }
-    }
-
-    if (sourceParty.id === PLAYER_PARTY_ID) {
-      party = sourceParty
-    } else {
-      enemyParty = sourceParty
-    }
-    if (targetParty.id === PLAYER_PARTY_ID) {
-      if (sourceParty.id !== PLAYER_PARTY_ID) {
-        party = targetParty
-      }
-    } else {
-      enemyParty = targetParty
-    }
-  })
-  return {
-    party: {
-      ...party,
-      characters: party.characters.map((c) => decrementStatusDurations(c)),
-    },
-    enemyParty: {
-      ...enemyParty,
-      characters: enemyParty.characters.map((c) => decrementStatusDurations(c)),
-    },
-  }
 }
 
 export const getSkillTargetOptions = (

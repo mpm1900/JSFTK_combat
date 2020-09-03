@@ -1,4 +1,4 @@
-import { StatusTypeT, StatusT } from '../types'
+import { StatusTypeT, StatusT, TagTypeT, TagT } from '../types'
 import { makeEntity } from '../functions/Entity'
 import { ZERO_STATS } from './Stats'
 
@@ -87,5 +87,32 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
         },
       },
     ],
+  },
+}
+
+export const TAG_EFFECTS: Record<TagTypeT, TagT> = {
+  targeted: {
+    type: 'targeted',
+    duration: 5,
+    damageModifier: 0,
+    description: 'All enemies will attack this character, if able.',
+  },
+  dazed: {
+    type: 'dazed',
+    duration: 5,
+    damageModifier: 0,
+    description: 'Character is temporarily halted on the combat queue.',
+  },
+  evasive: {
+    type: 'evasive',
+    duration: 5,
+    damageModifier: 0,
+    description: 'Non-perfect attacks will miss when targeting this character.',
+  },
+  'damage-reflection': {
+    type: 'damage-reflection',
+    duration: 5,
+    damageModifier: 0.1,
+    description: 'Some damage will be reflected back on melee attacks.',
   },
 }

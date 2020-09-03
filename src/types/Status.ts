@@ -13,15 +13,17 @@ export interface StatusT extends EntityT {
   commitChance: number
   canStack: boolean
   duration: number
+  description?: string
 }
 
-export type CharacterTagTypeT =
-  | 'targeted'
-  | 'dazed'
-  | 'evasive'
-  | 'damage-reflection'
-export interface CharacterTagT<T = number> {
-  type: CharacterTagTypeT
+export type TagTypeT = 'targeted' | 'dazed' | 'evasive' | 'damage-reflection'
+export interface CharacterTagT {
+  type: TagTypeT
   duration: number
-  payload?: T
+}
+export interface TagT {
+  type: TagTypeT
+  duration: number
+  damageModifier: number
+  description?: string
 }

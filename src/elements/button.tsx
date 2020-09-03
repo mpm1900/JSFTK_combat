@@ -28,8 +28,8 @@ export const Button = styled('button', (props: ButtonPropsT) => {
 export const ConfirmButton = withStyle(Button, (props: ButtonPropsT) => {
   const { $direction } = props
   return {
-    //background: 'linear-gradient(0deg, rgba(157,0,0,1) 0%, rgba(110,0,0,1) 100%)',
-    fontWeight: 'bold',
+    // background: 'linear-gradient(0deg, rgba(157,0,0,1) 0%, rgba(110,0,0,1) 100%)',
+    // fontWeight: 'bold',
     borderTop: $direction === 'down' ? 'none' : undefined,
     borderBottom: $direction === 'up' ? 'none' : undefined,
     padding: '10px 30px',

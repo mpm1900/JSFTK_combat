@@ -1,9 +1,9 @@
-import { SkillT } from '../../types'
-import { makeEntity } from '../../functions/Entity'
-import { makeCheck } from '../../functions/makeCheck'
+import { SkillT } from '../../../types'
+import { makeEntity } from '../../../functions/Entity'
+import { makeCheck } from '../../../functions/makeCheck'
 
-export const SMASH: SkillT = {
-  ...makeEntity('Smash'),
+export const IMPALE: SkillT = {
+  ...makeEntity('Impale'),
   damageModifier: 0,
   targetType: 'single',
   damage: true,

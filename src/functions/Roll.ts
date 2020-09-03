@@ -2,11 +2,6 @@ import { DiceRoll } from 'rpg-dice-roller'
 import { ProcessedCharacterT, CheckResultT, CheckT, StatsT } from '../types'
 import { getCharacterStat } from './Character'
 
-export const makeCheck = (key: keyof StatsT, offset?: number): CheckT => ({
-  key,
-  offset,
-})
-
 export const resolveCheck = (
   character: ProcessedCharacterT,
   check: CheckT,
