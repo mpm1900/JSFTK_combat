@@ -2,9 +2,9 @@ import React from 'react'
 import { FlexContainer } from '../../elements/flex'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { Button } from '../../elements/button'
-import { PLAYER_PARTY_ID } from '../../state/party'
 import { SkillPreview } from '../SkillPreview'
 import { SkillChecks } from '../SkillChecks'
+import { PLAYER_PARTY_ID } from '../../objects/Party'
 
 export const CombatActions = () => {
   const {

@@ -10,6 +10,7 @@ import {
   makeCharacter,
   checkForProcessedParty,
 } from '../../functions'
+import { PLAYER_PARTY_ID } from '../../objects/Party'
 
 export const UPDATE_PARTY = '@actions/parties/set-party'
 export const UPSERT_CHARACTER = '@actions/parties/upsert-character'
@@ -81,18 +82,13 @@ export const core: StateCoreT<PartyT> = {
     }
   },
 }
-
-export const PLAYER_PARTY_ID = v4()
+const jack = { ...makeCharacter('blacksmith'), name: 'Jack' }
 export const INITIAL_STATE: PartyT = {
   isParty: true,
   id: PLAYER_PARTY_ID,
   name: 'PlayerParty',
   characters: [
-    {
-      ...makeCharacter('blacksmith'),
-      name: 'Jack',
-      tags: [],
-    },
+    { ...jack },
     { ...makeCharacter('hunter'), name: 'Jim' },
     { ...makeCharacter('scholar'), name: 'Johnny' },
   ],

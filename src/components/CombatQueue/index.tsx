@@ -36,7 +36,6 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
   const max = getMax(queue)
   const min = 50
   const widthCoef = max > min ? 100 / max : 100 / min
-  console.log(max, widthCoef)
   return (
     <FlexContainer $direction='column'>
       <FlexContainer
@@ -70,6 +69,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                 .filter((c) => c.id !== first.id && !c.dead)
                 .map((c, i) => (
                   <div
+                    key={`${c?.id}-${i}`}
                     style={{
                       height: size - 10,
                       width: size - 7,
@@ -81,7 +81,6 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                     }}
                   >
                     <img
-                      key={`${c?.id}-${i}`}
                       alt={`${queue[c?.id || '']}`}
                       height={size}
                       width={size}

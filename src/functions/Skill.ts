@@ -21,6 +21,7 @@ import {
 } from './Character'
 import { updateCharacter, isParty } from './Party'
 import { noneg } from '../util'
+import { PLAYER_PARTY_ID } from '../objects/Party'
 
 export const getSkillsFromObjects = (parents: HasSkillsT[]) => {
   return parents.reduce((p, c) => {
@@ -204,6 +205,14 @@ export const getSkillResults = (
   return targets.map((target) => getTargetSkillResult(target, sourceResult))
 }
 
+const localUpdater = (
+  p: PartyT,
+  id: string,
+  updater: (c: CharacterT) => CharacterT,
+) => {
+  return updateCharacter(p, id, updater)
+}
+
 interface CommitSkillResultsT {
   party: PartyT
   enemyParty: PartyT
@@ -211,25 +220,29 @@ interface CommitSkillResultsT {
 export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
   results: TargetSkillResultT[],
 ): CommitSkillResultsT => {
-  const localUpdate = (
-    p: PartyT,
-    id: string,
-    updater: (c: CharacterT) => CharacterT,
-  ) => {
-    return updateCharacter(p, id, updater)
-  }
   results.forEach((result, index) => {
-    const { source } = result
-    let sourceParty = party.id === source.partyId ? party : enemyParty
-    let targetParty = party.id === source.partyId ? enemyParty : party
-    if (
-      result.skill.targetType === 'self' ||
-      result.skill.targetType === 'ally' ||
-      result.skill.targetType === 'party'
-    ) {
-      ;[sourceParty, targetParty] = [targetParty, sourceParty]
+    const { source, target } = result
+    let sourceParty = [party, enemyParty].find(
+      (p) => p.id === source.partyId,
+    ) as PartyT
+    let targetParty = [party, enemyParty].find(
+      (p) => p.id === target.partyId,
+    ) as PartyT
+    const localUpdate = (
+      p: PartyT,
+      id: string,
+      updater: (c: CharacterT) => CharacterT,
+    ) => {
+      if (p.id === sourceParty.id) {
+        sourceParty = localUpdater(p, id, updater)
+        return
+      }
+      if (p.id === targetParty.id) {
+        targetParty = localUpdater(p, id, updater)
+        return
+      }
     }
-    targetParty = localUpdate(targetParty, result.target.id, (c) => {
+    localUpdate(targetParty, target.id, (c) => {
       return addMultipleStatus(
         {
           ...c,
@@ -247,7 +260,7 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
       targetParty.characters
         .filter((c) => c.id !== result.target.id)
         .forEach((character) => {
-          targetParty = localUpdate(targetParty, character.id, (c) => {
+          localUpdate(targetParty, character.id, (c) => {
             const splashDamageResistance = getDamageResistance(
               processCharacter(character),
               result.splashDamage.type,
@@ -266,21 +279,31 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
     }
     if (index === results.length - 1) {
       if (source.stats.healthRegen > 0) {
-        localUpdate(sourceParty, source.id, (c) => ({
-          ...c,
-          stats: {
-            ...c.stats,
-            healthOffset: noneg(c.stats.healthOffset - c.stats.healthRegen),
-          },
-        }))
+        localUpdate(sourceParty, source.id, (c) => {
+          return {
+            ...c,
+            stats: {
+              ...c.stats,
+              healthOffset: noneg(
+                c.stats.healthOffset - source.stats.healthRegen,
+              ),
+            },
+          }
+        })
       }
     }
-    if (sourceParty.id === party.id) {
+
+    if (sourceParty.id === PLAYER_PARTY_ID) {
       party = sourceParty
-      enemyParty = targetParty
     } else {
-      party = targetParty
       enemyParty = sourceParty
+    }
+    if (targetParty.id === PLAYER_PARTY_ID) {
+      if (sourceParty.id !== PLAYER_PARTY_ID) {
+        party = targetParty
+      }
+    } else {
+      enemyParty = targetParty
     }
   })
   return {
