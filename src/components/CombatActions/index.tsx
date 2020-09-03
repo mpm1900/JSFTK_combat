@@ -21,7 +21,7 @@ export const CombatActions = () => {
   )
     return null
   return (
-    <FlexContainer $direction='column' style={{ minWidth: 300 }}>
+    <FlexContainer $direction='column' style={{ minWidth: 340 }}>
       {selectedSkill && <SkillChecks skill={selectedSkill} />}
       <FlexContainer style={{ justifyContent: 'space-around' }}>
         {activeCharacter.skills.map((skill) => (

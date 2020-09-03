@@ -14,20 +14,31 @@ export const makeCombatQueue = (
   return sortedCharacters.reduce(
     (r, c, i) => ({
       ...r,
-      [c.id]: i,
+      [c.id]: 100 - c.stats.agility,
     }),
     {},
   )
+}
+
+export const getMax = (queue: CombatQueueT): number => {
+  return Object.keys(queue).reduce((r: number, id: string) => {
+    if (r < queue[id]) return queue[id]
+    return r
+  }, Number.NEGATIVE_INFINITY)
+}
+
+export const getMin = (queue: CombatQueueT): number => {
+  return Object.keys(queue).reduce((r: number, id: string) => {
+    if (queue[id] < r) return queue[id]
+    return r
+  }, Number.POSITIVE_INFINITY)
 }
 
 export const consolidateQueue = (
   queue: CombatQueueT,
   characters: ProcessedCharacterT[] = [],
 ): CombatQueueT => {
-  let min = Number.POSITIVE_INFINITY
-  Object.keys(queue).forEach((id) => {
-    if (min > queue[id]) min = queue[id]
-  })
+  let min = getMin(queue)
   return Object.keys(queue).reduce((r, id) => {
     const character = characters.find((c) => c.id === id)
     const offset = character && hasTag(character, 'dazed') ? 0 : min
@@ -46,8 +57,7 @@ export const shiftQueue = (
   const ret = consolidateQueue(
     {
       ...queue,
-      [character.id]: characters.filter((c) => !c.dead && !hasTag(c, 'dazed'))
-        .length,
+      [character.id]: 200 - character.stats.agility,
     },
     characters,
   )

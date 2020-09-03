@@ -31,7 +31,12 @@ export interface SkillCheckT {
 export const SkillCheck = (props: SkillCheckT) => {
   const { check } = props
   return (
-    <div style={{ padding: '0px 12px' }}>
+    <div
+      style={{
+        padding: '0px 12px',
+        opacity: check.result === undefined ? 0.5 : 1,
+      }}
+    >
       <Badge $absolute={false} $size={36}>
         <Icon
           src={STATI_ICONS[(check.label as keyof StatsT) || 'strength'] || ''}
