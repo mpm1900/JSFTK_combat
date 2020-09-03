@@ -77,13 +77,11 @@ export const getSourceSkillResult = (
     ? skill.rolls.length
     : getPassedCount(rollResults)
   const perfect = didAllPass(rollResults)
-  const accuracySuccess = true
+  const accuracySuccess = passedCount > 1
   const rawDamage: DamageT = {
-    damage:
-      accuracySuccess && skill.damage
-        ? source.weapon.damage.damage *
-          (1 + skill.damageModifier + source.stats.damageModifier)
-        : 0,
+    damage: Math.round(
+      (passedCount * getSkillDamage(skill, source).damage) / rollResults.length,
+    ),
     type: source.weapon.damage.type,
   }
   return {
@@ -174,6 +172,7 @@ export const getSkillDamage = (
     damage: Math.round(rawDamage.damage - damageResistances),
   }
 }
+
 export const getSkillDamageRange = (
   skill: SkillT,
   source: ProcessedCharacterT,
