@@ -23,6 +23,7 @@ export const CombatActions = () => {
     !selectedSkill
   )
     return null
+
   return (
     <FlexContainer $direction='column' style={{ minWidth: 340 }}>
       {selectedSkill && <SkillChecks skill={selectedSkill} />}
