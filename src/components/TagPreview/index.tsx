@@ -18,7 +18,7 @@ export const TagPreview = (props: TagPreviewPropsT) => {
       content={
         <BoxContainer style={{ maxWidth: 200 }}>
           <FlexContainer $direction='column'>
-            <strong>
+            <strong style={{ marginBottom: 8 }}>
               {tag.type} {tag.duration > 0 ? `(${tag.duration})` : ''}
             </strong>
             {tag.description && <span>{tag.description}</span>}

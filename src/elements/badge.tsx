@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled, withWrapper } from 'styletron-react'
+import { HoverToolTip } from '../components/Tooltip'
 
 const Div = styled('div', {
   transform: 'rotateY(0deg) rotate(-45deg)',
@@ -33,3 +34,35 @@ export const Badge = withWrapper(Div, (Element) => (props: any) => {
     </div>
   )
 })
+
+export interface HoverBadgePropsT {
+  children: JSX.Element
+  content: JSX.Element
+  badgeProps: any
+  direction?: 'up' | 'down' | 'left' | 'right'
+}
+export const HoverBadge = (props: HoverBadgePropsT) => {
+  const { children, content, badgeProps, direction } = props
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        top: badgeProps.$top,
+        bottom: badgeProps.$bottom,
+        left: badgeProps.$left,
+        right: badgeProps.$right,
+      }}
+    >
+      <HoverToolTip
+        distance={2}
+        direction={direction || 'right'}
+        // styles={{ position: 'absolute' }}
+        content={content || <div />}
+      >
+        <Badge $absolute={false} $color={badgeProps.$color}>
+          {children}
+        </Badge>
+      </HoverToolTip>
+    </div>
+  )
+}

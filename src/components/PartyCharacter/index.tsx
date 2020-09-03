@@ -6,7 +6,7 @@ import { noneg } from '../../util'
 import { BoxContainer } from '../../elements/box'
 import { Monodiv } from '../../elements/monospace'
 import { styled, withStyle } from 'styletron-react'
-import { Badge } from '../../elements/badge'
+import { Badge, HoverBadge } from '../../elements/badge'
 import { Icon } from '../Icon'
 import { STATI_ICONS, TAG_ICONS } from '../../icons/maps'
 import Details from '../../icons/svg/delapouite/skills.svg'
@@ -163,14 +163,6 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               </span>
               <FullContainer />
               <FlexContainer $direction='column'>
-                <FlexContainer $direction='column' $full>
-                  <span>
-                    {character.status.map((s) => `${s.type} (${s.duration})`)}
-                  </span>
-                  <span>
-                    {character.tags.map((s) => `${s.type} (${s.duration})`)}
-                  </span>
-                </FlexContainer>
                 <FlexContainer>
                   <Icon
                     src={Inventory}
@@ -208,9 +200,12 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             >
               1256/3300
             </Gauge>
-            <Badge $bottom='18px' $left='105px'>
-              {character.level}
-            </Badge>
+            <HoverBadge
+              badgeProps={{ $bottom: '18px', $left: '105px' }}
+              content={<BoxContainer>Character Level</BoxContainer>}
+            >
+              <span>{character.level}</span>
+            </HoverBadge>
             <FlexContainer>
               <CharacterStat statKey='strength' character={character} />
               <CharacterStat statKey='vigor' character={character} />
@@ -234,15 +229,24 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           <TagPreview direction='up' tag={tag} />
         ))}
       </FlexContainer>
-      <Badge $bottom='64px' $left='-12px' $color='lightblue'>
-        {character.stats.armor}
-      </Badge>
-      <Badge $bottom='26px' $left='-12px' $color='plum'>
-        {character.stats.resistance}
-      </Badge>
-      <Badge $bottom='-10px' $left='-12px' $color='lightgreen'>
-        {character.stats.evasion}
-      </Badge>
+      <HoverBadge
+        badgeProps={{ $bottom: '64px', $left: '-12px', $color: 'lightblue' }}
+        content={<BoxContainer>Armor</BoxContainer>}
+      >
+        <span>{character.stats.armor}</span>
+      </HoverBadge>
+      <HoverBadge
+        badgeProps={{ $bottom: '26px', $left: '-12px', $color: 'plum' }}
+        content={<BoxContainer>Magic Resistance</BoxContainer>}
+      >
+        <span>{character.stats.resistance}</span>
+      </HoverBadge>
+      <HoverBadge
+        badgeProps={{ $bottom: '-10px', $left: '-12px', $color: 'lightgreen' }}
+        content={<BoxContainer>Evasion</BoxContainer>}
+      >
+        <span>{character.stats.evasion}</span>
+      </HoverBadge>
       <Badge
         $bottom='-12px'
         $left='40px'
