@@ -77,8 +77,8 @@ const getStatColor = (
   const a = character.stats[key]
   const b = character.rawStats[key]
   if (a > b) return 'lightgreen'
-  if (b < a) return 'lightcoral'
-  return 'white'
+  if (b > a) return 'lightcoral'
+  return 'rgba(255,255,255,0.6)'
 }
 
 export const PartyCharacter = (props: PartyCharacterProps) => {

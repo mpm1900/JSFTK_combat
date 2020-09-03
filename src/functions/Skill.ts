@@ -20,6 +20,7 @@ import {
   decrementStatusDurations,
 } from './Character'
 import { updateCharacter, isParty } from './Party'
+import { noneg } from '../util'
 
 export const getSkillsFromObjects = (parents: HasSkillsT[]) => {
   return parents.reduce((p, c) => {
@@ -66,14 +67,19 @@ export const getSourceSkillResult = (
   const criticalHitResult = resolveCheck(source, {
     offset: source.stats.criticalChance,
   })
-  const rollResults = skill.rolls.map((check) => resolveCheck(source, check))
+  const rollResults = skill.rolls
+    .map((check) => resolveCheck(source, check))
+    .map((result) =>
+      criticalHitResult.result ? { ...result, result: true } : result,
+    )
   const passedCount = criticalHitResult.result
     ? skill.rolls.length
     : getPassedCount(rollResults)
-  const perfect = criticalHitResult.result ? true : didAllPass(rollResults)
+  const perfect = didAllPass(rollResults)
   const accuracySuccess =
     criticalHitResult.result ||
     perfect ||
+    skill.accuracy === undefined ||
     (skill.accuracy !== undefined &&
       resolveCheck(source, skill.accuracy).result)
   const rawDamage: DamageT = {
@@ -127,7 +133,9 @@ export const getTargetSkillResult = (
         type: sourceResult.rawDamage.type,
         damage: dodgeSuccess
           ? 0
-          : Math.round(sourceResult.rawDamage.damage - damageResistances),
+          : noneg(
+              Math.round(sourceResult.rawDamage.damage - damageResistances),
+            ),
       },
     }
   } else {
@@ -139,6 +147,16 @@ export const getTargetSkillResult = (
       totalDamage: sourceResult.rawDamage,
     }
   }
+}
+
+export const getPerfectKeys = (skill: SkillT): string[] => {
+  let base: string[] = [
+    ...skill.perfectStatus,
+    ...skill.perfectTags.map((t) => t.type),
+  ]
+  if (skill.perfectSplash) base = [...base, 'splash damage']
+  if (skill.perfectPierce) base = [...base, 'ignore resistance']
+  return base
 }
 
 export const getSkillDamage = (
@@ -200,7 +218,7 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
   ) => {
     return updateCharacter(p, id, updater)
   }
-  results.forEach((result) => {
+  results.forEach((result, index) => {
     const { source, target } = result
     let sourceParty = party.id === source.partyId ? party : enemyParty
     let targetParty = party.id === source.partyId ? enemyParty : party
@@ -245,6 +263,17 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
             }
           })
         })
+    }
+    if (index === results.length - 1) {
+      if (source.stats.healthRegen > 0) {
+        localUpdate(sourceParty, source.id, (c) => ({
+          ...c,
+          stats: {
+            ...c.stats,
+            healthOffset: noneg(c.stats.healthOffset - c.stats.healthRegen),
+          },
+        }))
+      }
     }
     if (sourceParty.id === party.id) {
       party = sourceParty

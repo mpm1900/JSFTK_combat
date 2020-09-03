@@ -9,6 +9,7 @@ import {
   CharacterClassT,
   EntityT,
   WeaponT,
+  CharacterTagTypeT,
 } from '../types'
 import { STATUS_EFFECTS, CLASS_STARTING_STATS } from '../objects'
 import {
@@ -66,9 +67,10 @@ export const processCharacter = (
   const hVigor =
     CLASS_STARTING_STATS[character.class].vigor || character.stats.vigor
   const startingHealth = 25 + Math.floor(0.1 * hVigor)
-  const health = Math.floor(
-    startingHealth + character.level + 0.1 * character.level * stats.vigor,
-  )
+  const health =
+    Math.floor(
+      startingHealth + character.level + 0.1 * character.level * stats.vigor,
+    ) + stats.health
 
   return {
     ...character,
@@ -180,3 +182,6 @@ export const getDamageResistance = (
   if (damageType === 'magic') return character.stats.resistance
   return 0
 }
+
+export const hasTag = (character: CharacterT, tagType: CharacterTagTypeT) =>
+  character.tags.map((t) => t.type).includes(tagType)

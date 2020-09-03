@@ -7,6 +7,8 @@ import { BoxContainer } from '../../elements/box'
 import { Monodiv } from '../../elements/monospace'
 import { styled } from 'styletron-react'
 import { Badge } from '../../elements/badge'
+import { Icon } from '../Icon'
+import { TAG_ICONS } from '../../icons/maps'
 
 const ResourceE = styled(Monodiv, () => ({
   height: 15,
@@ -119,6 +121,19 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           <Badge $left='-6px' $bottom='-6px' $size='20px' $color='lightcoral'>
             {character.level}
           </Badge>
+          <FlexContainer
+            style={{
+              position: 'absolute',
+              bottom: '-10px',
+              left: '70px',
+            }}
+          >
+            {character.tags.map((tag) => (
+              <div>
+                <Icon src={TAG_ICONS[tag.type]} size={20} />
+              </div>
+            ))}
+          </FlexContainer>
           <FlexContainer
             style={{
               position: 'absolute',

@@ -169,7 +169,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     ].map((c) => processCharacter(c))
     setQueue(
       validateQueue(
-        shiftQueue(queue, activeRound[0].source),
+        shiftQueue(queue, activeRound[0].source, updatedCharacters),
         updatedCharacters,
       ),
     )

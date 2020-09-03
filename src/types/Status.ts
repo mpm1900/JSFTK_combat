@@ -15,7 +15,7 @@ export interface StatusT extends EntityT {
   duration: number
 }
 
-export type CharacterTagTypeT = 'targeted'
+export type CharacterTagTypeT = 'targeted' | 'dazed'
 export interface CharacterTagT {
   type: CharacterTagTypeT
   duration: number

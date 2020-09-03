@@ -56,9 +56,10 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
         <FlexContainer $direction='column'>
           <FullContainer />
           <FlexContainer $full>
-            {list.map((c) => (
+            {list.map((
+              c /*
               <img
-                alt='profile'
+                alt={`${queue[c?.id || '']}`}
                 height={size}
                 width={size}
                 src={`https://picsum.photos/seed/${c?.name}/115/115`}
@@ -69,7 +70,24 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                   borderBottom: 'none',
                   margin: '0 4px',
                 }}
-              />
+              />*/,
+            ) => (
+              <div
+                style={{
+                  color: 'turquoise',
+                  textShadow: '2px 2px 2px black',
+                  fontWeight: 'bolder',
+                  height: size - 10,
+                  width: size - 7,
+                  background: `url(https://picsum.photos/seed/${c?.name}/115/115)`,
+                  backgroundSize: 'cover',
+                  border: '1px solid rgba(255,255,255,0.5)',
+                  borderBottom: 'none',
+                  margin: '0 4px',
+                }}
+              >
+                {/*queue[c?.id || ''] */}
+              </div>
             ))}
           </FlexContainer>
         </FlexContainer>

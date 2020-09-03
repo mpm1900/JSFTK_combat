@@ -5,6 +5,7 @@ import { Span, NameSpanBuilder } from '../../contexts/CombatLogContext/util'
 import { FlexContainer } from '../../elements/flex'
 import Kefir from 'kefir'
 import { Stream } from 'stream'
+import { SkillCheck } from '../SkillChecks'
 
 export const RoundResultRenderer = () => {
   const { activeRound, commit } = useCombatContext()
@@ -113,17 +114,9 @@ export const RoundResult = (props: RoundResultPropsT) => {
       <h4 style={{ margin: '0 0 20px 0' }}>
         {NameSpan(round.source)} uses {round.skill.name} on {NameSpan(target)}
       </h4>
-      <FlexContainer style={{ justifyContent: 'center' }}>
+      <FlexContainer style={{ justifyContent: 'space-evenly' }}>
         {roundResults.map((result) => (
-          <FlexContainer $direction='column' style={{ marginRight: 10 }}>
-            <span>
-              {result.result === undefined
-                ? Span('rgba(255,255,255,0.4)', result.label)
-                : result.result === true
-                ? Span('lightgreen', result.label)
-                : Span('lightcoral', result.label)}
-            </span>
-          </FlexContainer>
+          <SkillCheck check={result} />
         ))}
       </FlexContainer>
     </FlexContainer>

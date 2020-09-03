@@ -11,6 +11,8 @@ export interface StatsT {
   resistance: number
   evasion: number
   healthOffset: number
+  health: number
+  healthRegen: number
   criticalChance: number
   damageModifier: number
 }

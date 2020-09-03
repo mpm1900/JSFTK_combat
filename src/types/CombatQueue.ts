@@ -1,4 +1,5 @@
-import { ProcessedCharacterT } from './Character'
+import { ProcessedCharacterT, CharacterT } from './Character'
+import { hasTag } from '../functions'
 
 export interface CombatQueueT {
   [characterId: string]: number
@@ -19,28 +20,37 @@ export const makeCombatQueue = (
   )
 }
 
-export const consolidateQueue = (queue: CombatQueueT): CombatQueueT => {
+export const consolidateQueue = (
+  queue: CombatQueueT,
+  characters: ProcessedCharacterT[] = [],
+): CombatQueueT => {
   let min = Number.POSITIVE_INFINITY
   Object.keys(queue).forEach((id) => {
     if (min > queue[id]) min = queue[id]
   })
-  return Object.keys(queue).reduce(
-    (r, id) => ({
+  return Object.keys(queue).reduce((r, id) => {
+    const character = characters.find((c) => c.id === id)
+    const offset = character && hasTag(character, 'dazed') ? 0 : min
+    return {
       ...r,
-      [id]: queue[id] - min,
-    }),
-    {},
-  )
+      [id]: queue[id] - offset,
+    }
+  }, {})
 }
 
 export const shiftQueue = (
   queue: CombatQueueT,
   character: ProcessedCharacterT,
+  characters: ProcessedCharacterT[],
 ): CombatQueueT => {
-  const ret = consolidateQueue({
-    ...queue,
-    [character.id]: 100 - character.stats.agility,
-  })
+  const ret = consolidateQueue(
+    {
+      ...queue,
+      [character.id]: characters.filter((c) => !c.dead && !hasTag(c, 'dazed'))
+        .length,
+    },
+    characters,
+  )
   return ret
 }
 

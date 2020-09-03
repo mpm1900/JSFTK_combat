@@ -17,6 +17,8 @@ export const combineStats = (...stats: StatsT[]): StatsT => {
       criticalChance: p.criticalChance + c.criticalChance,
       damageModifier: p.damageModifier + c.damageModifier,
       healthOffset: p.healthOffset + c.healthOffset,
+      health: p.health + c.health,
+      healthRegen: p.healthRegen + c.healthRegen,
     }),
     ZERO_STATS,
   )

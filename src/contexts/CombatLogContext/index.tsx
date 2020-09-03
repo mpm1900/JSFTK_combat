@@ -22,7 +22,7 @@ export const CombatLogContextProvider = (
   props: CombatLogContextProviderPropsT,
 ) => {
   const { children } = props
-  const { roundResults, enemyParty, party } = useCombatContext()
+  const { activeRound, roundResults, enemyParty, party } = useCombatContext()
   const [combatLog, setCombatLog] = useState<JSX.Element[]>([])
   const [deadLog, setDeadLog] = useState<DeadLogT>({})
   const NameSpan = NameSpanBuilder(party, enemyParty)
@@ -36,27 +36,40 @@ export const CombatLogContextProvider = (
 
   useEffect(() => {
     const characters = [...enemyParty.characters, ...party.characters]
-    characters.forEach((character) => {
-      if (character.dead && !deadLog[character.id]) {
-        setDeadLog((dLog) => ({ ...dLog, [character.id]: true }))
-        log(<span>{Span('lightcoral', `${character.name} died.`)}</span>)
-      }
-    })
+    setTimeout(() => {
+      characters.forEach((character) => {
+        if (character.dead && !deadLog[character.id]) {
+          setDeadLog((dLog) => ({ ...dLog, [character.id]: true }))
+          log(<span>{Span('lightcoral', `${character.name} died.`)}</span>)
+        }
+      })
+    }, 5)
   }, [enemyParty, party])
+
+  useEffect(() => {
+    if (activeRound && activeRound[0]) {
+      log(
+        <span>
+          {NameSpan(activeRound[0].source)} uses{' '}
+          {SkillSpan(activeRound[0].skill)}.
+        </span>,
+      )
+    }
+  }, [activeRound])
 
   useEffect(() => {
     if (roundResults.length === 0) return
     const latestRounds = roundResults[roundResults.length - 1]
     const baseRound = latestRounds[0]
     if (!baseRound) return
-    log(
-      <span>
-        {NameSpan(baseRound.source)} uses {SkillSpan(baseRound.skill)}.
-      </span>,
-    )
+
     if (!baseRound.accuracySuccess) {
-      {
-        log(<span>{baseRound.source.name}'s attack missed.</span>)
+      if (baseRound.skill.damage) {
+        {
+          log(<span>{baseRound.source.name}'s attack missed.</span>)
+        }
+      } else {
+        log(<span>{SkillSpan(baseRound.skill)} failed.</span>)
       }
     }
     if (baseRound.criticalSuccess) {
@@ -76,6 +89,13 @@ export const CombatLogContextProvider = (
               {SkillSpan(round.skill)} deals{' '}
               {Span('white', `${round.totalDamage.damage} damage`)} to{' '}
               {NameSpan(round.target)}.
+            </span>,
+          )
+        } else if (round.skill.damage) {
+          log(
+            <span>
+              {SkillSpan(round.skill)} did no damage to {NameSpan(round.target)}
+              .
             </span>,
           )
         }
@@ -101,6 +121,14 @@ export const CombatLogContextProvider = (
               )
             })
         }
+
+        round.addedTags.forEach((tag) => {
+          log(
+            <span>
+              {NameSpan(round.target)} became {tag.type} ({tag.duration} turns).
+            </span>,
+          )
+        })
       }
     })
   }, [roundResults.length])
