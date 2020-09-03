@@ -97,7 +97,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                       position: 'absolute',
                       bottom: '0px',
                       right: `calc(${queue[c.id] * widthCoef}% - ${
-                        size - 4
+                        size - 6
                       }px)`,
                       transition: 'all 0.3s',
                     }}
