@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/JSFTK_combat/static/css/main.92c5dcd9.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.aac9f27f.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.aac9f27f.chunk.js.map",
+    "main.css": "/JSFTK_combat/static/css/main.d263fe18.chunk.css",
+    "main.js": "/JSFTK_combat/static/js/main.78fba1a7.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.78fba1a7.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
-    "static/js/2.ddca8fce.chunk.js": "/JSFTK_combat/static/js/2.ddca8fce.chunk.js",
-    "static/js/2.ddca8fce.chunk.js.map": "/JSFTK_combat/static/js/2.ddca8fce.chunk.js.map",
+    "static/js/2.8998373c.chunk.js": "/JSFTK_combat/static/js/2.8998373c.chunk.js",
+    "static/js/2.8998373c.chunk.js.map": "/JSFTK_combat/static/js/2.8998373c.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.35617d81cacc1d2c109962c40039fee6.js": "/JSFTK_combat/precache-manifest.35617d81cacc1d2c109962c40039fee6.js",
+    "precache-manifest.4b72c7ae5de0ffc39728fd6bfd9e51e7.js": "/JSFTK_combat/precache-manifest.4b72c7ae5de0ffc39728fd6bfd9e51e7.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
-    "static/css/main.92c5dcd9.chunk.css.map": "/JSFTK_combat/static/css/main.92c5dcd9.chunk.css.map",
-    "static/js/2.ddca8fce.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.ddca8fce.chunk.js.LICENSE.txt",
+    "static/css/main.d263fe18.chunk.css.map": "/JSFTK_combat/static/css/main.d263fe18.chunk.css.map",
+    "static/js/2.8998373c.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.8998373c.chunk.js.LICENSE.txt",
     "static/media/biceps.svg": "/JSFTK_combat/static/media/biceps.e62c221f.svg",
     "static/media/bordered-shield.svg": "/JSFTK_combat/static/media/bordered-shield.56c12b47.svg",
     "static/media/brain.svg": "/JSFTK_combat/static/media/brain.ce65603a.svg",
     "static/media/clover.svg": "/JSFTK_combat/static/media/clover.df6a0d57.svg",
     "static/media/convergence-target.svg": "/JSFTK_combat/static/media/convergence-target.0d2998bc.svg",
+    "static/media/dodging.svg": "/JSFTK_combat/static/media/dodging.3c689d6d.svg",
     "static/media/eye-target.svg": "/JSFTK_combat/static/media/eye-target.4c5ae680.svg",
     "static/media/fire-zone.svg": "/JSFTK_combat/static/media/fire-zone.42e13657.svg",
     "static/media/flat-forestred.jpg": "/JSFTK_combat/static/media/flat-forestred.951e7322.jpg",
@@ -28,6 +29,7 @@
     "static/media/juggler.svg": "/JSFTK_combat/static/media/juggler.1188c0be.svg",
     "static/media/knapsack.svg": "/JSFTK_combat/static/media/knapsack.62049a62.svg",
     "static/media/shield-impact.svg": "/JSFTK_combat/static/media/shield-impact.54fdc5c4.svg",
+    "static/media/shield-reflect.svg": "/JSFTK_combat/static/media/shield-reflect.1228e298.svg",
     "static/media/skills.svg": "/JSFTK_combat/static/media/skills.60519e24.svg",
     "static/media/split-cross.svg": "/JSFTK_combat/static/media/split-cross.fa0be1a3.svg",
     "static/media/sprint.svg": "/JSFTK_combat/static/media/sprint.968b443a.svg",
@@ -37,8 +39,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
-    "static/js/2.ddca8fce.chunk.js",
-    "static/css/main.92c5dcd9.chunk.css",
-    "static/js/main.aac9f27f.chunk.js"
+    "static/js/2.8998373c.chunk.js",
+    "static/css/main.d263fe18.chunk.css",
+    "static/js/main.78fba1a7.chunk.js"
   ]
 }
