@@ -4,6 +4,7 @@ export interface IconPropsT {
   size: number
   fill?: string
   style?: React.CSSProperties
+  shadow?: boolean
   onClick?: () => void
 }
 export const Icon = ({
@@ -11,6 +12,7 @@ export const Icon = ({
   size,
   style = {},
   fill = 'white',
+  shadow,
   onClick,
 }: IconPropsT) => {
   const [loading, setLoading] = useState(true)
@@ -27,6 +29,7 @@ export const Icon = ({
 
   return !loading ? (
     <div
+      className={`icon ${shadow ? 'shadow' : ''}`}
       onClick={() => {
         if (onClick) onClick()
       }}
