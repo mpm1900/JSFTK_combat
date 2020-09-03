@@ -25,12 +25,12 @@ export const CombatPlayerParty = (props: CombatPartyPlayerPropsT) => {
         style={{
           justifyContent: 'space-around',
           alignItems: 'flex-end',
-          cursor: selectedSkill?.targetType === 'group' ? 'pointer' : 'default',
+          cursor: selectedSkill?.targetType === 'party' ? 'pointer' : 'default',
         }}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
         onClick={() => {
-          if (selectedSkill && selectedSkill.targetType === 'group') {
+          if (selectedSkill && selectedSkill.targetType === 'party') {
             onTargetsSelect(party)
           }
         }}

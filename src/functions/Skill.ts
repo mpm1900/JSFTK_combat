@@ -68,7 +68,7 @@ export const getSourceSkillResult = (
   const criticalHitResult = resolveCheck(source, {
     offset: source.stats.criticalChance,
   })
-  const rollResults = skill.rolls
+  const rollResults = (source.weapon.rolls ? source.weapon.rolls : skill.rolls)
     .map((check) => resolveCheck(source, check))
     .map((result) =>
       criticalHitResult.result ? { ...result, result: true } : result,

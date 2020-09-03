@@ -5,6 +5,7 @@ import { STATI_ICONS } from '../../icons/maps'
 import { Icon } from '../Icon'
 import { Badge } from '../../elements/badge'
 import { CheckKVT } from '../RoundResultRenderer'
+import X from '../../icons/svg/lorc/split-cross.svg'
 
 export interface SkillChecksPropsT {
   skill: SkillT
@@ -13,7 +14,7 @@ export const SkillChecks = (props: SkillChecksPropsT) => {
   const { skill } = props
   return (
     <FlexContainer
-      style={{ justifyContent: 'center', padding: '12px 0 24px 0' }}
+      style={{ justifyContent: 'center', padding: '0px 0 24px 0' }}
     >
       {skill.rolls.map((roll, i) => (
         <SkillCheck
@@ -43,13 +44,21 @@ export const SkillCheck = (props: SkillCheckT) => {
           fill={getColor(check.result)}
           size={32}
         />
+        {check.result === false && (
+          <Icon
+            src={X}
+            fill={'lightcoral'}
+            size={32}
+            style={{ position: 'absolute', top: 0 }}
+          />
+        )}
       </Badge>
     </div>
   )
 }
 
 const getColor = (result: boolean | undefined) => {
-  if (result === true) return 'lightgreen'
-  if (result === false) return 'lightcoral'
+  if (result === true) return 'white'
+  if (result === false) return 'rgba(255,255,255,0.6)'
   return 'rgba(255,255,255,0.6)'
 }

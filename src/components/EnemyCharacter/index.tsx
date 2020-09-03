@@ -63,6 +63,10 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             $active={character.id === activeCharacter.id}
             $selected={selected}
             $isHovering={isHovering}
+            style={{
+              height: 64,
+              width: 64,
+            }}
           >
             <img
               alt='profile'
@@ -79,16 +83,17 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
         <FlexContainer $full $direction='column'>
           <FlexContainer
             style={{
-              padding: '2px 4px',
+              justifyContent: 'flex-end',
             }}
           >
             <span
               style={{
+                padding: '2px 4px',
                 textAlign: 'right',
                 fontSize: 18,
                 lineHeight: '18px',
-                textShadow: '1px 1px 10px black',
-                width: '100%',
+                background: 'rgba(0,0,0,0.4)',
+                textShadow: '1px 1px 2px black',
               }}
             >
               {character.name}
@@ -154,7 +159,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             fontWeight: 'bolder',
             fontSize: 52,
             height: 52,
-            lineHeight: '52px',
+            lineHeight: '45px',
             textShadow: '1px 1px 10px black',
             color: '#b55553',
           }}

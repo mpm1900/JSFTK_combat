@@ -9,6 +9,7 @@ import { CombatActions } from '../components/CombatActions'
 import { CombatParty } from '../components/CombatParty'
 import { useModalContext } from '../contexts/ModalContext'
 import { CombatQueue } from '../components/CombatQueue'
+import ForestBg from '../assets/img/flat-forestred.jpg'
 
 export const Combat = () => {
   const {
@@ -49,7 +50,13 @@ export const Combat = () => {
   if (!activeCharacter) return <span>refresh to do combat again</span>
 
   return (
-    <FlexContainer style={{ height: '100vh' }}>
+    <FlexContainer
+      style={{
+        height: '100vh',
+        background: `url(${ForestBg}) center center fixed no-repeat`,
+        backgroundSize: 'cover',
+      }}
+    >
       <FlexContainer $full $direction='column'>
         <CombatQueue queue={queue} characters={characters} />
         <FlexContainer

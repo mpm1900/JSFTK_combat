@@ -2,8 +2,8 @@ import { SkillT } from '../../types'
 import { makeEntity } from '../../functions/Entity'
 import { makeCheck } from '../../functions/Roll'
 
-export const DAZE: SkillT = {
-  ...makeEntity('Daze'),
+export const DAZZLE: SkillT = {
+  ...makeEntity('Dazzle'),
   damageModifier: 0,
   targetType: 'single',
   damage: false,

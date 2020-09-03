@@ -14,8 +14,20 @@ import Targeted from './svg/sbed/targeted.svg'
 
 import Shot from './svg/lorc/high-shot.svg'
 import SnipeShot from './svg/delapouite/shield-impact.svg'
+import Surge from './svg/lorc/fire-zone.svg'
+import AreaBast from './svg/lorc/heavy-timer.svg'
+import Dazzle from './svg/lorc/ubisoft-sun.svg'
+import Smash from './svg/lorc/flat-hammer.svg'
+import Shockwave from './svg/lorc/hammer-drop.svg'
+import Taunt from './svg/lorc/bordered-shield.svg'
 import { SHOT } from '../objects/skills/shot'
 import { SNIPE_SHOT } from '../objects/skills/snipe_shot'
+import { SURGE } from '../objects/skills/surge'
+import { AREA_BLAST } from '../objects/skills/area_blast'
+import { DAZZLE } from '../objects/skills/Dazzle'
+import { SMASH } from '../objects/skills/smash'
+import { SHOCKWAVE } from '../objects/skills/shockwave'
+import { TAUNT } from '../objects/skills/taunt'
 
 export const STATI_ICONS: Partial<Record<keyof StatsT | 'accuracy', string>> = {
   vigor: Vigor,
@@ -36,4 +48,10 @@ export const TAG_ICONS: Record<CharacterTagTypeT, string> = {
 export const SKILL_ICONS: Record<string, string> = {
   [SHOT.id]: Shot,
   [SNIPE_SHOT.id]: SnipeShot,
+  [SURGE.id]: Surge,
+  [AREA_BLAST.id]: AreaBast,
+  [DAZZLE.id]: Dazzle,
+  [SMASH.id]: Smash,
+  [SHOCKWAVE.id]: Shockwave,
+  [TAUNT.id]: Taunt,
 }
