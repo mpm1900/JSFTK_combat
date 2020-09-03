@@ -1,17 +1,17 @@
 import React from 'react'
 import { ProcessedCharacterT, StatsT } from '../../types'
 import { FlexContainer, FullContainer } from '../../elements/flex'
-import { Gauge } from '../Gauge'
-import { noneg } from '../../util'
+import { XPGauge, HealthGauge } from '../Gauge'
 import { BoxContainer } from '../../elements/box'
 import { Monodiv } from '../../elements/monospace'
 import { styled, withStyle } from 'styletron-react'
-import { Badge, HoverBadge } from '../../elements/badge'
+import { HoverBadge } from '../../elements/badge'
 import { Icon } from '../Icon'
-import { STATI_ICONS, TAG_ICONS } from '../../icons/maps'
+import { STATI_ICONS } from '../../icons/maps'
 import Details from '../../icons/svg/delapouite/skills.svg'
 import Inventory from '../../icons/svg/lorc/knapsack.svg'
 import { TagPreview } from '../TagPreview'
+import { CharacterImage } from '../CharacterImage'
 
 const ResourceE = withStyle(Monodiv, (props: any) => ({
   height: 15,
@@ -40,16 +40,7 @@ const Wrapper = styled('div', (props: any) => {
   return {
     margin: 10,
     position: 'relative',
-    boxShadow: $isHovering
-      ? '0px 0px 20px black'
-      : $selected
-      ? '0px 0px 10px black'
-      : $active
-      ? '0px 0px 20px white'
-      : 'none',
-    ':hover': {
-      boxShadow: hoverable ? '0px 0px 20px black' : undefined,
-    },
+    boxShadow: $active ? '0px 0px 20px white' : 'none',
     transition: 'all 0.1s',
   }
 })
@@ -114,16 +105,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       >
         <FlexContainer style={{ border: '2px solid black' }}>
           <FlexContainer style={{ borderRight: '2px solid black' }}>
-            <img
-              alt='profile'
-              height='115'
-              width='115'
-              src={`https://picsum.photos/seed/${character.name}/115/115`}
-              style={{
-                height: 115,
-                width: 115,
-              }}
-            />
+            <CharacterImage character={character} size={115} />
           </FlexContainer>
           <FlexContainer $full $direction='column'>
             <FlexContainer
@@ -155,7 +137,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                   padding: 4,
                   fontSize: 42,
                   height: 42,
-                  lineHeight: '42px',
+                  lineHeight: '48px',
                   color: '#b55553',
                 }}
               >
@@ -163,6 +145,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               </span>
               <FullContainer />
               <FlexContainer $direction='column'>
+                <FullContainer />
                 <FlexContainer>
                   <Icon
                     src={Inventory}
@@ -182,24 +165,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               </FlexContainer>
             </FlexContainer>
             <FullContainer />
-            <Gauge
-              name='Health'
-              color='#8f4e4d'
-              max={character.health}
-              value={noneg(health)}
-              height={12}
-            >
-              {noneg(health)}/{character.health}
-            </Gauge>
-            <Gauge
-              name='XP'
-              color='#5e8575'
-              max={3300}
-              value={1256}
-              height={12}
-            >
-              1256/3300
-            </Gauge>
+            <HealthGauge character={character} />
+            <XPGauge character={character} />
             <HoverBadge
               badgeProps={{ $bottom: '18px', $left: '105px' }}
               content={<BoxContainer>Character Level</BoxContainer>}
@@ -247,19 +214,22 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       >
         <span>{character.stats.evasion}</span>
       </HoverBadge>
-      <Badge
-        $bottom='-12px'
-        $left='40px'
-        $size='35px'
-        $color={
-          character.weapon.damage.type === 'physical'
-            ? 'rgba(255,255,255,0.8)'
-            : 'plum'
-        }
-        style={{ fontSize: 24 }}
+      <HoverBadge
+        direction='up'
+        content={<BoxContainer>Weapon Damage</BoxContainer>}
+        badgeProps={{
+          $bottom: '-12px',
+          $left: '40px',
+          $size: '35px',
+          $color:
+            character.weapon.damage.type === 'physical'
+              ? 'rgba(255,255,255,0.8)'
+              : 'plum',
+          style: { fontSize: 24 },
+        }}
       >
-        {character.weapon.damage.damage}
-      </Badge>
+        <span>{character.weapon.damage.damage}</span>
+      </HoverBadge>
     </Wrapper>
   )
 }

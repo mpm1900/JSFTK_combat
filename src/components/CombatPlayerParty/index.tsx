@@ -13,7 +13,6 @@ export const CombatPlayerParty = (props: CombatPartyPlayerPropsT) => {
   const {
     activeCharacter,
     selectedSkill,
-    selectedTargets,
     onTargetsSelect,
     next,
   } = useCombatContext()

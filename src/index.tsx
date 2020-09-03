@@ -7,6 +7,7 @@ import './index.css'
 import { Provider as StyletronProvider, DebugEngine } from 'styletron-react'
 import { Client as Styletron } from 'styletron-engine-atomic'
 import { Provider as ReduxProvider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { makeStore } from './state'
 import { PartyContextProvider } from './contexts/PartyContext'
 
@@ -19,7 +20,9 @@ ReactDOM.render(
     <ReduxProvider store={store}>
       <StyletronProvider value={engine} debug={debug} debugAfterHydration>
         <PartyContextProvider>
-          <App />
+          <Router>
+            <App />
+          </Router>
         </PartyContextProvider>
       </StyletronProvider>
     </ReduxProvider>

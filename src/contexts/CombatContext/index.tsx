@@ -34,6 +34,7 @@ import {
 } from '../../types/CombatQueue'
 import { getAIAction } from '../../functions/AI'
 import { v4 } from 'uuid'
+import { useHistory } from 'react-router'
 
 export interface CombatContextT {
   party: ProcessedPartyT
@@ -85,6 +86,7 @@ export interface CombatContextProviderPropsT {
 export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const { children, setEnemyParty, onRequestNewParty } = props
   const { party, rawParty, updateParty } = usePartyContext()
+  const history = useHistory()
   const resultCommitter = useMemo(
     () => commitSkillResults(rawParty, props.enemyParty),
     [rawParty, props.enemyParty],
@@ -212,10 +214,12 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     if (isDone) return
     if (enemyParty.characters.every((c) => c.dead)) {
       alert('you win')
-      onRequestNewParty()
+      /*onRequestNewParty()
       setRoundResults([])
       setSelectedSkill(undefined)
       setIsRunning(false)
+      */
+      history.push('/JSFTK_combat/party')
       return
     }
     if (party.characters.every((c) => c.dead)) {

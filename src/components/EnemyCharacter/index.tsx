@@ -1,15 +1,12 @@
 import React from 'react'
 import { ProcessedCharacterT } from '../../types'
 import { FlexContainer, FullContainer } from '../../elements/flex'
-import { Gauge } from '../Gauge'
-import { noneg } from '../../util'
+import { HealthGauge } from '../Gauge'
 import { styled } from 'styletron-react'
-import { Badge } from '../../elements/badge'
-import { Icon } from '../Icon'
-import { TAG_ICONS } from '../../icons/maps'
-import { Tooltip } from '../Tooltip'
+import { Badge, HoverBadge } from '../../elements/badge'
 import { BoxContainer } from '../../elements/box'
 import { TagPreview } from '../TagPreview'
+import { CharacterImage } from '../CharacterImage'
 
 export interface EnemyCharacterPropsT {
   character: ProcessedCharacterT
@@ -24,28 +21,12 @@ const Wrapper = styled('div', (props: any) => {
   const hoverable = $hoverable && !$selected
   return {
     margin: 10,
-    boxShadow: $isHovering
-      ? '0px 0px 20px black'
-      : $selected
-      ? '0px 0px 10px black'
-      : $active
-      ? '0px 0px 20px white'
-      : 'none',
-    ':hover': {
-      boxShadow: hoverable ? '0px 0px 20px black' : undefined,
-    },
+    boxShadow: $active ? '0px 0px 20px white' : 'none',
     transition: 'all 0.1s',
   }
 })
 export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
-  const {
-    character,
-    activeCharacter,
-    hoverable,
-    selected,
-    isHovering,
-    onClick,
-  } = props
+  const { character, activeCharacter, onClick } = props
   const health = character.health - character.stats.healthOffset
   return (
     <div
@@ -62,25 +43,13 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
       <FlexContainer style={{ alignItems: 'center' }}>
         <FlexContainer style={{ border: '1px solid black' }}>
           <Wrapper
-            $hoverable={hoverable && !character.dead}
             $active={character.id === activeCharacter.id}
-            $selected={selected}
-            $isHovering={isHovering}
             style={{
               height: 64,
               width: 64,
             }}
           >
-            <img
-              alt='profile'
-              height='64'
-              width='64'
-              src={`https://picsum.photos/seed/${character.name}/94/94`}
-              style={{
-                height: 64,
-                width: 64,
-              }}
-            />
+            <CharacterImage character={character} size={64} />
           </Wrapper>
         </FlexContainer>
         <FlexContainer $full $direction='column'>
@@ -103,19 +72,20 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             </span>
           </FlexContainer>
           <div style={{ boxShadow: '0px 5px 15px rgba(0,0,0,0.4)' }}>
-            <Gauge
-              name='Health'
-              color='#8f4e4d'
-              max={character.health}
-              value={noneg(health)}
-              height={20}
-            >
-              {noneg(health)}/{character.health}
-            </Gauge>
+            <HealthGauge character={character} height={20} />
           </div>
-          <Badge $left='-6px' $bottom='-6px' $size='20px' $color='lightcoral'>
-            {character.level}
-          </Badge>
+          <HoverBadge
+            direction='down'
+            content={<BoxContainer>Enemy Level</BoxContainer>}
+            badgeProps={{
+              $left: '-6px',
+              $bottom: '-6px',
+              $size: '20px',
+              $color: 'lightcoral',
+            }}
+          >
+            <span>{character.level}</span>
+          </HoverBadge>
           <FlexContainer
             style={{
               position: 'absolute',
@@ -160,7 +130,6 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             fontWeight: 'bolder',
             fontSize: 52,
             height: 52,
-            lineHeight: '45px',
             textShadow: '1px 1px 10px black',
             color: '#b55553',
           }}

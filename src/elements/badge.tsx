@@ -59,7 +59,12 @@ export const HoverBadge = (props: HoverBadgePropsT) => {
         // styles={{ position: 'absolute' }}
         content={content || <div />}
       >
-        <Badge $absolute={false} $color={badgeProps.$color}>
+        <Badge
+          $absolute={false}
+          $size={badgeProps.$size}
+          $color={badgeProps.$color}
+          style={badgeProps.style}
+        >
           {children}
         </Badge>
       </HoverToolTip>

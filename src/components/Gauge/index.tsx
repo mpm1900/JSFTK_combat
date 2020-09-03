@@ -3,6 +3,8 @@ import { BoxContainer } from '../../elements/box'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { HoverToolTip } from '../Tooltip'
 import { Monodiv } from '../../elements/monospace'
+import { ProcessedCharacterT } from '../../types'
+import { noneg } from '../../util'
 
 export interface GaugePropsT {
   name?: string
@@ -66,5 +68,37 @@ export const Gauge = (props: GaugePropsT) => {
         </FullContainer>
       </BoxContainer>
     </HoverToolTip>
+  )
+}
+
+export interface HealthGaugePropsT {
+  character: ProcessedCharacterT
+  height?: number
+}
+export const HealthGauge = (props: HealthGaugePropsT) => {
+  const { character, height = 12 } = props
+  const health = noneg(character.health - character.stats.healthOffset)
+  return (
+    <Gauge
+      name='Health'
+      color='#8f4e4d'
+      max={character.health}
+      value={health}
+      height={height}
+    >
+      {health}/{character.health}
+    </Gauge>
+  )
+}
+export interface XPGaugePropsT {
+  character: ProcessedCharacterT
+}
+export const XPGauge = (props: HealthGaugePropsT) => {
+  const { character } = props
+  const health = noneg(character.health - character.stats.healthOffset)
+  return (
+    <Gauge name='XP' color='#5e8575' max={3300} value={1256} height={12}>
+      1256/3300
+    </Gauge>
   )
 }

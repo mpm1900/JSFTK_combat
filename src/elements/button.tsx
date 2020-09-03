@@ -25,6 +25,13 @@ export const Button = styled('button', (props: ButtonPropsT) => {
   }
 })
 
+export const RedButton = withStyle(Button, (props: ButtonPropsT) => {
+  return {
+    background:
+      'linear-gradient(0deg, rgba(157,0,0,1) 0%, rgba(110,0,0,1) 100%)',
+  }
+})
+
 export const ConfirmButton = withStyle(Button, (props: ButtonPropsT) => {
   const { $direction } = props
   return {

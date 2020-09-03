@@ -1,4 +1,4 @@
-import React, { useMemo, useContext } from 'react'
+import React, { useMemo, useContext, useState } from 'react'
 import {
   PartyT,
   ProcessedPartyT,
@@ -6,25 +6,35 @@ import {
   ProcessedCharacterT,
 } from '../../types'
 import { usePartyActions, useParty } from '../../state/party'
-import { findCharacterInParty, processParty, makeParty } from '../../functions'
+import {
+  findCharacterInParty,
+  processParty,
+  makeParty,
+  processCharacter,
+  makeCharacter,
+} from '../../functions'
 
 export interface PartyContextT {
   party: ProcessedPartyT
   rawParty: PartyT
+  activeCharacter: ProcessedCharacterT
   updateParty: (party: PartyT) => void
   upsertCharacter: (character: CharacterT) => void
   deleteCharacter: (characterId: string) => void
   findCharacter: (characterId: string) => ProcessedCharacterT | undefined
   findRawCharacter: (characterId: string) => CharacterT | undefined
+  setActiveCharacter: (character: ProcessedCharacterT) => void
 }
 const defaultContextValue: PartyContextT = {
   rawParty: makeParty(),
   party: processParty(makeParty()),
+  activeCharacter: processCharacter(makeCharacter('blacksmith')),
   updateParty: (party) => {},
   upsertCharacter: (character) => {},
   deleteCharacter: (characterId) => {},
   findCharacter: (characterId) => undefined,
   findRawCharacter: (characterId) => undefined,
+  setActiveCharacter: (character) => {},
 }
 export const PartyContext = React.createContext<PartyContextT>(
   defaultContextValue,
@@ -38,6 +48,9 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
   const actions = usePartyActions()
   const rawParty = useParty()
   const party = useMemo(() => processParty(rawParty), [rawParty])
+  const [activeCharacter, setActiveCharacter] = useState<ProcessedCharacterT>(
+    party.characters[0],
+  )
 
   const updateParty = (party: PartyT) => {
     actions.updateParty(party)
@@ -67,11 +80,13 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
       value={{
         party,
         rawParty,
+        activeCharacter,
         updateParty,
         upsertCharacter,
         deleteCharacter,
         findCharacter,
         findRawCharacter,
+        setActiveCharacter,
       }}
     >
       {children}
