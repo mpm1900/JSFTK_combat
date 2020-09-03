@@ -21,6 +21,7 @@ export const Combat = () => {
     queue,
     isDone,
     isRunning,
+    isRenderingResult,
     start,
   } = useCombatContext()
   const { open, close } = useModalContext()
@@ -71,7 +72,7 @@ export const Combat = () => {
           <FlexContainer $full>
             <FullContainer />
             <FlexContainer $direction='column'>
-              <CombatActions />
+              {!isRenderingResult && <CombatActions />}
               <RoundResultRenderer isModal={false} />
             </FlexContainer>
             <FlexContainer $full style={{ justifyContent: 'flex-end' }}>

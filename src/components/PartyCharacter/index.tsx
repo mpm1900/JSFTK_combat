@@ -9,6 +9,8 @@ import { styled, withStyle } from 'styletron-react'
 import { Badge } from '../../elements/badge'
 import { Icon } from '../Icon'
 import { STATI_ICONS } from '../../icons/maps'
+import Details from '../../icons/svg/delapouite/skills.svg'
+import Inventory from '../../icons/svg/lorc/knapsack.svg'
 
 const ResourceE = withStyle(Monodiv, (props: any) => ({
   height: 15,
@@ -156,13 +158,32 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               >
                 {health > 0 ? health : 0}
               </span>
-              <FlexContainer $direction='column' $full>
-                <span>
-                  {character.status.map((s) => `${s.type} (${s.duration})`)}
-                </span>
-                <span>
-                  {character.tags.map((s) => `${s.type} (${s.duration})`)}
-                </span>
+              <FullContainer />
+              <FlexContainer $direction='column'>
+                <FlexContainer $direction='column' $full>
+                  <span>
+                    {character.status.map((s) => `${s.type} (${s.duration})`)}
+                  </span>
+                  <span>
+                    {character.tags.map((s) => `${s.type} (${s.duration})`)}
+                  </span>
+                </FlexContainer>
+                <FlexContainer>
+                  <Icon
+                    src={Inventory}
+                    fill={'rgba(255,255,255,0.7)'}
+                    size={18}
+                    shadow
+                    style={{ padding: 6, cursor: 'pointer' }}
+                  />
+                  <Icon
+                    src={Details}
+                    fill={'rgba(255,255,255,0.7)'}
+                    size={18}
+                    shadow
+                    style={{ padding: 6, cursor: 'pointer' }}
+                  />
+                </FlexContainer>
               </FlexContainer>
             </FlexContainer>
             <FullContainer />

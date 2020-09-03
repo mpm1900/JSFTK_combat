@@ -17,11 +17,7 @@ export const CombatActions = () => {
     onSkillSelect,
   } = useCombatContext()
 
-  if (
-    !activeCharacter ||
-    activeCharacter.partyId !== PLAYER_PARTY_ID ||
-    !selectedSkill
-  )
+  if (!activeCharacter || activeCharacter.partyId !== PLAYER_PARTY_ID)
     return null
 
   return (
@@ -42,7 +38,7 @@ export const CombatActions = () => {
                   }}
                   onClick={() => onSkillSelect(skill)}
                   fill={
-                    skill.id === selectedSkill.id
+                    skill.id === selectedSkill?.id
                       ? 'lightsalmon'
                       : isHovering
                       ? 'white'

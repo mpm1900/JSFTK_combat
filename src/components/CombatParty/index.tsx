@@ -4,6 +4,7 @@ import { FlexContainer } from '../../elements/flex'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { ConfirmButton } from '../../elements/button'
 import { EnemyCharacter } from '../EnemyCharacter'
+import { PLAYER_PARTY_ID } from '../../objects/Party'
 
 export interface CombatPartyPropsT {
   party: ProcessedPartyT
@@ -51,17 +52,20 @@ export const CombatParty = (props: CombatPartyPropsT) => {
               activeCharacter={activeCharacter}
               character={c}
             />
-            {selectedSkill && selectedSkill.targetType === 'single' && !c.dead && (
-              <FlexContainer
-                style={{ justifyContent: 'center', marginTop: -13 }}
-              >
-                <div style={{ boxShadow: '0px 2px 5px black' }}>
-                  <ConfirmButton onClick={() => next(c)} $direction='down'>
-                    Confirm Target
-                  </ConfirmButton>
-                </div>
-              </FlexContainer>
-            )}
+            {selectedSkill &&
+              selectedSkill.targetType === 'single' &&
+              !c.dead &&
+              activeCharacter.partyId === PLAYER_PARTY_ID && (
+                <FlexContainer
+                  style={{ justifyContent: 'center', marginTop: -13 }}
+                >
+                  <div style={{ boxShadow: '0px 2px 5px black' }}>
+                    <ConfirmButton onClick={() => next(c)} $direction='down'>
+                      Confirm Target
+                    </ConfirmButton>
+                  </div>
+                </FlexContainer>
+              )}
           </div>
         ))}
       </FlexContainer>

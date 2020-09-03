@@ -47,6 +47,7 @@ export interface CombatContextT {
   activeRound: TargetSkillResultT[] | undefined
   isRunning: boolean
   isDone: boolean
+  isRenderingResult: boolean
   onSkillSelect: (skill: SkillT) => void
   onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => void
   start: () => void
@@ -65,6 +66,7 @@ const defaultValue: CombatContextT = {
   activeRound: undefined,
   isRunning: false,
   isDone: false,
+  isRenderingResult: false,
   onSkillSelect: (skill: SkillT) => {},
   onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => {},
   start: () => {},
@@ -92,6 +94,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   ])
   const [isRunning, setIsRunning] = useState<boolean>(false)
   const [isDone, setIsDone] = useState<boolean>(false)
+  const [isRenderingResult, setIsRenderingResult] = useState<boolean>(false)
   const characters = useMemo(
     () => [...party.characters, ...enemyParty.characters],
     [party, enemyParty],
@@ -119,7 +122,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const start = useCallback(() => {
     setIsDone(false)
     setIsRunning(true)
-  }, [])
+  }, [activeCharacter])
 
   // temp code
   useEffect(() => {
@@ -144,6 +147,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     setActiveRound(results)
     setSelectedSkill(undefined)
     setSelectedTarget(undefined)
+    setIsRenderingResult(true)
   }
 
   const onSkillSelect = (skill: SkillT) => {
@@ -176,6 +180,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       ),
     )
     setRoundId(v4())
+    setIsRenderingResult(false)
   }, [activeRound, queue])
 
   const execEnemyTurn = (skill: SkillT, target: SkillTargetT) => {
@@ -209,6 +214,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       alert('you win')
       onRequestNewParty()
       setRoundResults([])
+      setSelectedSkill(undefined)
       setIsRunning(false)
       return
     }
@@ -218,6 +224,12 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       return
     }
   }, [party, enemyParty])
+
+  useEffect(() => {
+    if (activeCharacter && activeCharacter.skills[0]) {
+      setSelectedSkill(activeCharacter.skills[0])
+    }
+  }, [activeCharacter])
 
   return (
     <CombatContext.Provider
@@ -235,6 +247,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
         roundResults,
         isDone,
         isRunning,
+        isRenderingResult,
         onSkillSelect,
         onTargetsSelect,
         start,
