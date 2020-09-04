@@ -1,6 +1,6 @@
-import { TagTypeT, StatusTypeT } from '../types'
+import { StatusTypeT } from '../types'
 
-export type PerfectKeyT = TagTypeT | StatusTypeT | 'splash' | 'pierce'
+export type PerfectKeyT = StatusTypeT | 'splash' | 'pierce'
 export const PERFECT_DISPLAY_INFO: Record<PerfectKeyT, string> = {
   splash: 'Splash Damage',
   pierce: 'Ignore Resistances',

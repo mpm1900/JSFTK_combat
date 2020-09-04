@@ -22,6 +22,7 @@ export const ZERO_STATS: StatsT = {
   damageOffset: 0,
   damageReflection: 0,
   weaknessModifier: 0,
+  goldModifier: 0,
 }
 
 export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
@@ -44,6 +45,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageOffset: 0,
     damageReflection: 0,
     weaknessModifier: 0,
+    goldModifier: 0,
   },
   hunter: {
     strength: 52,
@@ -64,6 +66,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageOffset: 0,
     damageReflection: 0,
     weaknessModifier: 0,
+    goldModifier: 0,
   },
   scholar: {
     strength: 42,
@@ -84,6 +87,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageOffset: 0,
     damageReflection: 0,
     weaknessModifier: 0,
+    goldModifier: 0,
   },
   bard: {
     strength: 44,
@@ -104,11 +108,13 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageOffset: 0,
     damageReflection: 0,
     weaknessModifier: 0,
+    goldModifier: 0,
   },
   enemy: ZERO_STATS,
 }
 
 export const DAMAGE_BONUS_KEYS: (keyof StatsT)[] = [
+  'goldModifier',
   'damageOffset',
   'damageModifier',
   'criticalChance',
@@ -150,4 +156,5 @@ export const STAT_KEY_LABELS: Record<keyof StatsT, string> = {
   damageModifier: '% Attack Damage',
   damageReflection: ' Damage Reflection',
   weaknessModifier: '% Recieved Damage',
+  goldModifier: '% Gold Recieved',
 }

@@ -8,10 +8,9 @@ import {
   SkillTargetT,
   ProcessedPartyT,
   TargetTypeT,
-  TagT,
 } from '../types'
 import { resolveCheck, getPassedCount, didAllPass } from './Roll'
-import { getDamageResistance, isCharacter, hasTag, findTag } from './Character'
+import { getDamageResistance, isCharacter, hasStatus } from './Character'
 import { isParty } from './Party'
 import { noneg } from '../util'
 import { PerfectKeyT, PERFECT_DISPLAY_INFO } from '../objects/Skills'
@@ -91,7 +90,6 @@ export const getSourceSkillResult = (
     pierce: (perfect && skill.perfectPierce) || criticalHitResult.result,
     splashDamage,
     addedStatus: perfect ? skill.perfectStatus : [],
-    addedTags: perfect ? skill.perfectTags : [],
   }
 }
 
@@ -104,7 +102,7 @@ export const getTargetSkillResult = (
     const damageResistances = sourceResult.pierce
       ? 0
       : getDamageResistance(target, sourceResult.rawDamage.type)
-    const isEvasive = hasTag(target, 'evasive')
+    const isEvasive = hasStatus(target, 'evasive')
     const dodgeSuccess =
       sourceResult.criticalSuccess ||
       (sourceResult.perfect && sourceResult.source.partyId === PLAYER_PARTY_ID)
@@ -159,10 +157,7 @@ export const getTargetSkillResult = (
 }
 
 export const getPerfectKeys = (skill: SkillT): PerfectKeyT[] => {
-  let base: PerfectKeyT[] = [
-    ...skill.perfectStatus,
-    ...skill.perfectTags.map((t) => t.type),
-  ]
+  let base: PerfectKeyT[] = [...skill.perfectStatus.map((t) => t.type)]
   if (skill.perfectSplash) base = [...base, 'splash']
   if (skill.perfectPierce) base = [...base, 'pierce']
   return base

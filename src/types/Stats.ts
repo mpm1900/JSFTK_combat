@@ -18,4 +18,5 @@ export interface StatsT {
   damageOffset: number
   damageReflection: number
   weaknessModifier: number
+  goldModifier: number
 }

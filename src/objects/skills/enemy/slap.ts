@@ -16,5 +16,4 @@ export const SLAP: SkillT = {
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],
-  perfectTags: [],
 }

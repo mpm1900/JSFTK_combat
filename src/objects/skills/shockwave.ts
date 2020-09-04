@@ -17,5 +17,4 @@ export const SHOCKWAVE: SkillT = {
   perfectSplash: true,
   perfectPierce: false,
   perfectStatus: [],
-  perfectTags: [],
 }

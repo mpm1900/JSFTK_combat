@@ -15,7 +15,7 @@ export const CombatLog = () => {
       $direction='column'
       style={{
         padding: 8,
-        minWidth: 400,
+        minWidth: 300,
         height: 300,
         overflow: 'auto',
         background: 'rgba(0,0,0,0.7)',

@@ -16,5 +16,4 @@ export const SURGE: SkillT = {
   perfectSplash: false,
   perfectPierce: true,
   perfectStatus: [],
-  perfectTags: [],
 }

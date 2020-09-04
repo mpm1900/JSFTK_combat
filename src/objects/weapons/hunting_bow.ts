@@ -6,6 +6,7 @@ import { SNIPE_SHOT } from '../skills/snipe_shot'
 
 export const HUNTING_BOW: WeaponT = {
   ...makeEntity(`Hunting Bow`),
+  itemType: 'weapon',
   type: 'bow',
   rarity: 'common',
   twoHand: true,

@@ -1,4 +1,4 @@
-import { StatsT, TagTypeT, ArmorTypeT } from '../types'
+import { StatsT, ArmorTypeT, StatusTypeT } from '../types'
 
 import Vigor from './svg/delapouite/heart-beats.svg'
 import Strength from './svg/delapouite/biceps.svg'
@@ -53,7 +53,7 @@ export const STATI_ICONS: Partial<Record<keyof StatsT | 'accuracy', string>> = {
   accuracy: Accuracy,
 }
 
-export const TAG_ICONS: Record<TagTypeT, string> = {
+export const STATUS_ICONS: Partial<Record<StatusTypeT, string>> = {
   dazed: Dazed,
   targeted: Targeted,
   evasive: Evasive,

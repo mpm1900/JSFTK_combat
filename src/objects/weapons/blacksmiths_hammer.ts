@@ -6,6 +6,7 @@ import { ZERO_STATS } from '../Stats'
 
 export const BLACKSMITHS_HAMMER: WeaponT = {
   ...makeEntity(`Blacksmith's Hammer`),
+  itemType: 'weapon',
   type: 'hammer',
   rarity: 'common',
   twoHand: false,

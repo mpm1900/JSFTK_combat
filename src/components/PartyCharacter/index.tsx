@@ -41,7 +41,7 @@ const Wrapper = styled('div', (props: any) => {
     margin: 10,
     position: 'relative',
     boxShadow: $active ? '0px 0px 20px white' : 'none',
-    transition: 'all 0.1s',
+    transition: 'all 0.4s',
     userSelect: 'none',
   }
 })
@@ -193,7 +193,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           right: '4px',
         }}
       >
-        {character.tags.map((tag) => (
+        {character.statusEffects.map((tag) => (
           <TagPreview direction='up' tag={tag} />
         ))}
       </FlexContainer>

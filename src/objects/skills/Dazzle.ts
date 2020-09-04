@@ -11,6 +11,5 @@ export const DAZZLE: SkillT = {
   rolls: [makeCheck('talent', -6), makeCheck('talent', -5)],
   perfectSplash: false,
   perfectPierce: false,
-  perfectStatus: [],
-  perfectTags: [{ type: 'dazed', duration: 4 }],
+  perfectStatus: [{ type: 'dazed', duration: 4 }],
 }

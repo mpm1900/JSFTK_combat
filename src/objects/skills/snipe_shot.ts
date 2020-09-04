@@ -16,5 +16,4 @@ export const SNIPE_SHOT: SkillT = {
   perfectSplash: false,
   perfectPierce: true,
   perfectStatus: [],
-  perfectTags: [],
 }

@@ -12,5 +12,4 @@ export const ALTO: SkillT = {
   perfectSplash: false,
   perfectPierce: true,
   perfectStatus: [],
-  perfectTags: [],
 }

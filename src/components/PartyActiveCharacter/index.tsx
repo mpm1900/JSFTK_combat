@@ -23,8 +23,8 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
         <FullContainer />
         <BoxContainer substyle={{ background: '#111' }}>
           <FlexContainer>
-            <FlexContainer $direction='column' style={{ padding: 10 }}>
-              {character.name}
+            <FlexContainer $direction='column' style={{ paddingRight: 10 }}>
+              <h1 style={{ margin: 0 }}>{character.name}</h1>
               <select
                 value={character.class}
                 onChange={(e) => {
@@ -40,6 +40,11 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
                 <option value='scholar'>scholar</option>
                 <option value='bard'>bard</option>
               </select>
+              <span>Level {character.level}</span>
+              <span>
+                Health {character.health - character.stats.healthOffset}/
+                {character.health}
+              </span>
             </FlexContainer>
             <div>
               <WeaponPreview weapon={weapon} />

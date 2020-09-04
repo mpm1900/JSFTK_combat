@@ -1,4 +1,4 @@
-import { StatusTypeT, StatusT, TagTypeT, TagT } from '../types'
+import { StatusTypeT, StatusT } from '../types'
 import { makeEntity } from '../functions/Entity'
 import { ZERO_STATS } from './Stats'
 
@@ -48,8 +48,7 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
         duration: STATUS_DURATION,
         stats: {
           ...ZERO_STATS,
-          // TODO we need a new stat for taking more damage
-          //damageModifier: 0.25,
+          weaknessModifier: 0.25,
         },
       },
     ],
@@ -84,25 +83,34 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
       },
     ],
   },
-}
-
-export const TAG_EFFECTS: Record<TagTypeT, TagT> = {
   targeted: {
+    ...makeEntity('Targeted'),
     type: 'targeted',
     duration: 5,
-    damageModifier: 0,
+    traits: [],
+    committedTraits: [],
+    commitChance: 100,
+    canStack: false,
     description: 'All enemies will attack this character, if able.',
   },
   dazed: {
+    ...makeEntity('Dazed'),
     type: 'dazed',
     duration: 5,
-    damageModifier: 0,
+    traits: [],
+    committedTraits: [],
+    commitChance: 100,
+    canStack: false,
     description: 'Character is temporarily halted on the combat queue.',
   },
   evasive: {
+    ...makeEntity('Evasive'),
     type: 'evasive',
     duration: 5,
-    damageModifier: 0,
+    traits: [],
+    committedTraits: [],
+    commitChance: 100,
+    canStack: false,
     description: 'Non-perfect attacks will miss when targeting this character.',
   },
 }

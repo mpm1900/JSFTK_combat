@@ -11,8 +11,7 @@ export const TAUNT: SkillT = {
   rolls: [makeCheck('vigor'), makeCheck('vigor')],
   perfectSplash: false,
   perfectPierce: false,
-  perfectStatus: [],
-  perfectTags: [
+  perfectStatus: [
     {
       type: 'targeted',
       duration: 5,

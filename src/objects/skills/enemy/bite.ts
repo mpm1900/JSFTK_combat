@@ -16,5 +16,4 @@ export const BITE: SkillT = {
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],
-  perfectTags: [],
 }

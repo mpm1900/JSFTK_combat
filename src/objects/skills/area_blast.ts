@@ -16,5 +16,4 @@ export const AREA_BLAST: SkillT = {
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],
-  perfectTags: [],
 }

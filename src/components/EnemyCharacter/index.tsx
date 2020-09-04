@@ -97,7 +97,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
               left: '70px',
             }}
           >
-            {character.tags.map((tag, i) => (
+            {character.statusEffects.map((tag, i) => (
               <TagPreview key={i} tag={tag} />
             ))}
           </FlexContainer>

@@ -13,7 +13,7 @@ export const getAIAction = (
 ): AIActionT => {
   const skill = getRandom(source.skills)
   const targetedCharacters = playerParty.characters.filter((c) =>
-    c.tags.map((t) => t.type).includes('targeted'),
+    c.status.map((t) => t.type).includes('targeted'),
   )
   const target =
     skill.targetType === 'single'

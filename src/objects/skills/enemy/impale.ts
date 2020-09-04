@@ -12,5 +12,4 @@ export const IMPALE: SkillT = {
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],
-  perfectTags: [],
 }

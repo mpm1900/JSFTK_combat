@@ -1,5 +1,5 @@
 import { TargetTypeT, EntityT } from './core'
-import { StatusTypeT, CharacterTagT } from './Status'
+import { StatusTypeT, CharacterStatusT } from './Status'
 import { CheckT, CheckResultT } from './Roll'
 import { DamageT } from './Damage'
 import { ProcessedCharacterT } from './Character'
@@ -15,8 +15,7 @@ export interface SkillT extends EntityT {
   rolls: CheckT[]
   damage: boolean
   isBasicAttack: boolean
-  perfectStatus: StatusTypeT[]
-  perfectTags: CharacterTagT[]
+  perfectStatus: CharacterStatusT[]
   perfectSplash: boolean
   perfectPierce: boolean
 }
@@ -35,8 +34,7 @@ export interface SourceSkillResultT {
   passedCount: number
   perfect: boolean
   rawDamage: DamageT
-  addedStatus: StatusTypeT[]
-  addedTags: CharacterTagT[]
+  addedStatus: CharacterStatusT[]
   splashDamage: DamageT
   pierce: boolean
 }

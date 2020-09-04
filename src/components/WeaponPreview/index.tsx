@@ -25,6 +25,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
   const from = Color(rarityColor).darken(0.5).rgb().toString()
   const to = Color(rarityColor).darken(0.7).rgb().toString()
   const gradient = `linear-gradient(180deg, ${from} 0%, ${to} 100%)`
+  console.log(combinedTrait.stats)
   return (
     <BoxContainer style={{ width: 240 }} substyle={{ background: gradient }}>
       <FlexContainer $direction='column'>

@@ -20,12 +20,18 @@ export const Party = () => {
       style={{ height: '100%', overflow: 'hidden' }}
     >
       <FlexContainer>
-        <BoxContainer style={{ flex: 1 }} substyle={{ display: 'flex' }}>
-          <FullContainer />
+        <BoxContainer
+          style={{ flex: 1 }}
+          substyle={{ display: 'flex', background: '#111' }}
+        >
           <RedButton onClick={enterCombat}>Enter Combat</RedButton>
+          <FullContainer />
         </BoxContainer>
       </FlexContainer>
-      <PartyActiveCharacter character={activeCharacter} />
+      <FlexContainer $full style={{ padding: 16 }}>
+        <BoxContainer style={{ flex: 1 }}></BoxContainer>
+        <PartyActiveCharacter character={activeCharacter} />
+      </FlexContainer>
       <div style={{ marginBottom: 30 }}>
         <PartyCharacters
           party={party}

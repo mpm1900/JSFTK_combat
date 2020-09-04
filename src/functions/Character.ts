@@ -9,12 +9,9 @@ import {
   CharacterClassT,
   EntityT,
   WeaponT,
-  CharacterTagT,
-  TagT,
   StatusT,
-  TagTypeT,
 } from '../types'
-import { STATUS_EFFECTS, CLASS_STARTING_STATS, TAG_EFFECTS } from '../objects'
+import { STATUS_EFFECTS, CLASS_STARTING_STATS } from '../objects'
 import {
   combineTraits,
   getTraitsFromObjects,
@@ -38,16 +35,10 @@ export const checkForProcessedCharacter = (character: CharacterT) => {
 export const isCharacter = (e: EntityT) => e && (e as CharacterT).isCharacter
 
 export const getStatusEffects = (character: CharacterT): StatusT[] => {
-  return character.status.map((status) => STATUS_EFFECTS[status.type])
-}
-export const getTags = (character: CharacterT): TagT[] => {
-  return character.tags.map((tag) => {
-    const baseTag = TAG_EFFECTS[tag.type]
-    return {
-      ...baseTag,
-      duration: tag.duration,
-    }
-  })
+  return character.status.map((status) => ({
+    ...STATUS_EFFECTS[status.type],
+    duration: status.duration,
+  }))
 }
 
 export const getTraits = (character: CharacterT): TraitT[] => {
@@ -75,7 +66,6 @@ export const processCharacter = (
   const stats: StatsT = combineStats(character.stats, combinedTrait.stats)
   const weapon = processWeapon(character.weapon)
   const statusEffects = getStatusEffects(character)
-  const tags = getTags(character)
   const skills = getSkills(character)
   const hVigor =
     CLASS_STARTING_STATS[character.class].vigor || character.stats.vigor
@@ -92,7 +82,6 @@ export const processCharacter = (
     rawStats: character.stats,
     weapon,
     statusEffects,
-    tags,
     skills,
     dead: stats.healthOffset >= health,
     processed: true,
@@ -111,7 +100,6 @@ export const makeCharacter = (
     class: characterClass,
     stats: CLASS_STARTING_STATS[characterClass],
     traits: [],
-    tags: [],
     weapon: CLASS_STARTING_WEAPONS[characterClass] as WeaponT,
     armor: CLASS_STARTING_ARMOR[characterClass],
     status: [],
@@ -147,11 +135,9 @@ export const commitStatusEffects = (character: CharacterT): CharacterT => {
 }
 export const decrementStatusDurations = (character: CharacterT): CharacterT => {
   checkForProcessedCharacter(character)
+  console.log(character.name, character.status)
   return {
     ...character,
-    tags: character.tags
-      .map((tag) => ({ ...tag, duration: tag.duration - 1 }))
-      .filter((tag) => tag.duration !== 0),
     status: character.status
       .map((status) => ({ ...status, duration: status.duration - 1 }))
       .filter((status) => status.duration !== 0),
@@ -175,11 +161,24 @@ export const addStatus = (character: CharacterT, statusType: StatusTypeT) => {
       ],
     }
   }
+  if (existingStatus && statusEffect.canStack) {
+    return {
+      ...character,
+      status: [
+        ...character.status.filter((t) => t.type !== statusType),
+        {
+          type: statusType,
+          duration: statusEffect.duration,
+          stack: (existingStatus.stack || 0) + 1,
+        },
+      ],
+    }
+  }
   return {
     ...character,
     status: [
       ...character.status,
-      { type: statusType, duration: statusEffect.duration },
+      { type: statusType, duration: statusEffect.duration, stack: 0 },
     ],
   }
 }
@@ -209,45 +208,9 @@ export const getDamageResistance = (
   return 0
 }
 
-export const findTag = (character: CharacterT, tagType: TagTypeT) =>
-  character.tags.find((t) => t.type === tagType)
-
-export const hasTag = (character: CharacterT, tagType: TagTypeT) =>
-  character.tags.map((t) => t.type).includes(tagType)
-
-export const addTag = (
-  character: CharacterT,
-  tag: CharacterTagT,
-): CharacterT => {
-  const existingTag = findTag(character, tag.type)
-  // tags cannot stack right now
-  if (existingTag) {
-    return {
-      ...character,
-      tags: [...character.tags.filter((t) => t.type !== tag.type), tag],
-    }
-  }
-  return {
-    ...character,
-    tags: [...character.tags, tag],
-  }
-}
-export const addMultipleTags = (
-  character: CharacterT,
-  tags: CharacterTagT[],
-) => {
-  return tags.reduce(
-    (char: any, tag) => {
-      return addTag(char, tag)
-    },
-    { ...character },
-  )
-}
-
 export const addStatusAndTags = (
   character: CharacterT,
   status: StatusTypeT[],
-  tags: CharacterTagT[],
 ) => {
-  return addMultipleTags(addMultipleStatus(character, status), tags)
+  return addMultipleStatus(character, status)
 }

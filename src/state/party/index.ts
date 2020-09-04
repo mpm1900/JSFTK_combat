@@ -87,6 +87,7 @@ export const INITIAL_STATE: PartyT = {
   isParty: true,
   id: PLAYER_PARTY_ID,
   name: 'PlayerParty',
+  items: [],
   characters: [
     { ...jack },
     { ...makeCharacter('bard'), name: 'Jim' },

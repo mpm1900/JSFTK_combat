@@ -1,5 +1,5 @@
 import { ProcessedCharacterT } from './Character'
-import { hasTag } from '../functions'
+import { hasStatus } from '../functions'
 
 export interface CombatQueueT {
   [characterId: string]: number
@@ -35,7 +35,7 @@ export const getMin = (
     if (queue[id] < r) {
       if (characters) {
         const c = characters.find((c) => c.id === id)
-        if (c && hasTag(c, 'dazed')) {
+        if (c && hasStatus(c, 'dazed')) {
           return r
         } else {
           return queue[id]
@@ -53,7 +53,7 @@ export const consolidateQueue = (
   let min = getMin(queue, characters)
   return Object.keys(queue).reduce((r, id) => {
     const character = characters.find((c) => c.id === id)
-    const offset = character && hasTag(character, 'dazed') ? 0 : min
+    const offset = character && hasStatus(character, 'dazed') ? 0 : min
     return {
       ...r,
       [id]: queue[id] - offset,

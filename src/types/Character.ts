@@ -1,7 +1,7 @@
 import { WeaponT, ProcessedWeaponT } from './Weapon'
 import { EntityT } from './core'
 import { ArmorT } from './Armor'
-import { StatusT, CharacterStatusT, CharacterTagT, TagT } from './Status'
+import { StatusT, CharacterStatusT } from './Status'
 import { SkillT } from './Skill'
 import { StatsT } from './Stats'
 
@@ -18,7 +18,6 @@ export interface CharacterT extends EntityT {
   class: CharacterClassT
   stats: StatsT
   traits: []
-  tags: CharacterTagT[]
   weapon: WeaponT
   armor: ArmorT[]
   status: CharacterStatusT[]
@@ -30,7 +29,6 @@ export interface ProcessedCharacterT extends CharacterT {
   health: number
   weapon: ProcessedWeaponT
   statusEffects: StatusT[]
-  tags: TagT[]
   skills: SkillT[]
   rawStats: StatsT
   dead: boolean

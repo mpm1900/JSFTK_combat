@@ -56,8 +56,7 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
             healthOffset: c.stats.healthOffset + result.totalDamage.damage,
           },
         },
-        result.addedStatus,
-        result.addedTags,
+        result.addedStatus.map((s) => s.type),
       )
     })
 

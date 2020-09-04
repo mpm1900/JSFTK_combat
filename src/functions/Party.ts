@@ -24,6 +24,7 @@ export const makeParty = (characterCount: number = 0): PartyT => {
   return {
     ...makeEntity(),
     isParty: true,
+    items: [],
     characters: [TIMBERWOLF(), VALE_IMP(), BEASTMAN()],
   }
 }

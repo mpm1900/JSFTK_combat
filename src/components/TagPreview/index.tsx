@@ -2,12 +2,12 @@ import React from 'react'
 import { Tooltip } from '../Tooltip'
 import { BoxContainer } from '../../elements/box'
 import { FlexContainer } from '../../elements/flex'
-import { TAG_ICONS } from '../../icons/maps'
+import { STATUS_ICONS } from '../../icons/maps'
 import { Icon } from '../Icon'
-import { TagT } from '../../types'
+import { StatusT } from '../../types'
 
 export interface TagPreviewPropsT {
-  tag: TagT
+  tag: StatusT
   direction?: 'up' | 'down' | 'left' | 'right'
 }
 export const TagPreview = (props: TagPreviewPropsT) => {
@@ -26,7 +26,7 @@ export const TagPreview = (props: TagPreviewPropsT) => {
         </BoxContainer>
       }
     >
-      <Icon shadow src={TAG_ICONS[tag.type]} size={20} />
+      <Icon shadow src={STATUS_ICONS[tag.type] || ''} size={20} />
     </Tooltip>
   )
 }

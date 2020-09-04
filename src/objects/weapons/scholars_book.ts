@@ -5,6 +5,7 @@ import { AREA_BLAST } from '../skills/area_blast'
 
 export const SCHOLARS_BOOK: WeaponT = {
   ...makeEntity(`Scholar's Book`),
+  itemType: 'weapon',
   type: 'tome',
   rarity: 'common',
   twoHand: true,

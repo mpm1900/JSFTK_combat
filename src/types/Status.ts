@@ -1,10 +1,18 @@
 import { EntityT } from './core'
 import { TraitT } from './Trait'
 
-export type StatusTypeT = 'bleeding' | 'burning' | 'frozen' | 'poisoned'
+export type StatusTypeT =
+  | 'bleeding'
+  | 'burning'
+  | 'frozen'
+  | 'poisoned'
+  | 'targeted'
+  | 'dazed'
+  | 'evasive'
 export interface CharacterStatusT {
   type: StatusTypeT
   duration: number
+  stack?: number
 }
 export interface StatusT extends EntityT {
   type: StatusTypeT
@@ -13,17 +21,5 @@ export interface StatusT extends EntityT {
   commitChance: number
   canStack: boolean
   duration: number
-  description?: string
-}
-
-export type TagTypeT = 'targeted' | 'dazed' | 'evasive'
-export interface CharacterTagT {
-  type: TagTypeT
-  duration: number
-}
-export interface TagT {
-  type: TagTypeT
-  duration: number
-  damageModifier: number
   description?: string
 }
