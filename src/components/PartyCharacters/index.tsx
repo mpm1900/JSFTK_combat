@@ -7,9 +7,13 @@ export interface PartyCharactersProps {
   party: ProcessedPartyT
   activeCharacter: ProcessedCharacterT
   onCharacterClick: (character: ProcessedCharacterT) => void
+  onConsumableClick: (
+    character: ProcessedCharacterT,
+    consumableIndex: number,
+  ) => void
 }
 export const PartyCharacters = (props: PartyCharactersProps) => {
-  const { party, activeCharacter, onCharacterClick } = props
+  const { party, activeCharacter, onCharacterClick, onConsumableClick } = props
 
   return (
     <FlexContainer $direction='column'>
@@ -26,6 +30,9 @@ export const PartyCharacters = (props: PartyCharactersProps) => {
               activeCharacter={activeCharacter}
               character={c}
               onClick={() => onCharacterClick(c)}
+              onConsumableClick={(consumable, index) =>
+                onConsumableClick(c, index)
+              }
             />
           </div>
         ))}

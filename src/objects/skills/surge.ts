@@ -7,6 +7,7 @@ export const SURGE: SkillT = {
   damageModifier: -0.2,
   targetType: 'single',
   damage: true,
+  healing: false,
   isBasicAttack: true,
   rolls: [
     makeCheck('intelligence'),

@@ -25,6 +25,7 @@ import { CLASS_STARTING_WEAPONS } from '../objects/Weapon'
 import { CLASS_STARTING_ARMOR } from '../objects/Armor'
 import { ALL_ENEMIES } from '../objects/enemies'
 import { getRandom } from '../util'
+import { CLASS_STARTING_CONSUMABLES } from '../objects/Item'
 
 export const checkForProcessedCharacter = (character: CharacterT) => {
   if ((character as ProcessedCharacterT).processed) {
@@ -102,6 +103,7 @@ export const makeCharacter = (
     traits: [],
     weapon: CLASS_STARTING_WEAPONS[characterClass] as WeaponT,
     armor: CLASS_STARTING_ARMOR[characterClass],
+    consumables: CLASS_STARTING_CONSUMABLES[characterClass],
     status: [],
   }
 }
@@ -135,7 +137,6 @@ export const commitStatusEffects = (character: CharacterT): CharacterT => {
 }
 export const decrementStatusDurations = (character: CharacterT): CharacterT => {
   checkForProcessedCharacter(character)
-  console.log(character.name, character.status)
   return {
     ...character,
     status: character.status

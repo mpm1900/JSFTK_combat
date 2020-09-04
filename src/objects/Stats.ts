@@ -23,6 +23,7 @@ export const ZERO_STATS: StatsT = {
   damageReflection: 0,
   weaknessModifier: 0,
   goldModifier: 0,
+  consumableHealthGainOffset: 0,
 }
 
 export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
@@ -46,6 +47,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageReflection: 0,
     weaknessModifier: 0,
     goldModifier: 0,
+    consumableHealthGainOffset: 0,
   },
   hunter: {
     strength: 52,
@@ -67,6 +69,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageReflection: 0,
     weaknessModifier: 0,
     goldModifier: 0,
+    consumableHealthGainOffset: 0,
   },
   scholar: {
     strength: 42,
@@ -88,6 +91,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageReflection: 0,
     weaknessModifier: 0,
     goldModifier: 0,
+    consumableHealthGainOffset: 0,
   },
   bard: {
     strength: 44,
@@ -109,6 +113,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageReflection: 0,
     weaknessModifier: 0,
     goldModifier: 0,
+    consumableHealthGainOffset: 0,
   },
   enemy: ZERO_STATS,
 }
@@ -133,8 +138,8 @@ export const STAT_BONUS_KEYS: (keyof StatsT)[] = [
   'intelligence',
   'perception',
   'talent',
-  'luck',
   'agility',
+  'luck',
 ]
 
 export const STAT_KEY_LABELS: Record<keyof StatsT, string> = {
@@ -157,4 +162,5 @@ export const STAT_KEY_LABELS: Record<keyof StatsT, string> = {
   damageReflection: ' Damage Reflection',
   weaknessModifier: '% Recieved Damage',
   goldModifier: '% Gold Recieved',
+  consumableHealthGainOffset: ' HP from Consumables',
 }

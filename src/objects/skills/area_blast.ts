@@ -7,6 +7,7 @@ export const AREA_BLAST: SkillT = {
   damageModifier: -0.5,
   targetType: 'group',
   damage: true,
+  healing: false,
   isBasicAttack: false,
   rolls: [
     makeCheck('intelligence', -5),

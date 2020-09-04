@@ -7,6 +7,7 @@ export const SNIPE_SHOT: SkillT = {
   damageModifier: 0,
   targetType: 'single',
   damage: true,
+  healing: false,
   isBasicAttack: false,
   rolls: [
     makeCheck('perception', -10),

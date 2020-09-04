@@ -5,18 +5,23 @@ export interface StatsT {
   perception: number
   talent: number
   agility: number
-
   luck: number
+
   armor: number
   resistance: number
   evasion: number
+
   healthOffset: number
+
   health: number
   healthRegen: number
+  damageReflection: number
+
   criticalChance: number
   damageModifier: number
   damageOffset: number
-  damageReflection: number
+
   weaknessModifier: number
   goldModifier: number
+  consumableHealthGainOffset: number
 }

@@ -23,6 +23,8 @@ export const combineStats = (...stats: StatsT[]): StatsT => {
       healthRegen: p.healthRegen + c.healthRegen,
       weaknessModifier: p.weaknessModifier + c.weaknessModifier,
       goldModifier: p.goldModifier + c.goldModifier,
+      consumableHealthGainOffset:
+        p.consumableHealthGainOffset + c.consumableHealthGainOffset,
     }),
     ZERO_STATS,
   )

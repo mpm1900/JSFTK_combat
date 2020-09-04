@@ -42,6 +42,9 @@ import Hat from './svg/delapouite/robin-hood-hat.svg'
 import MagicHat from './svg/lorc/pointy-hat.svg'
 import Helmet from './svg/lorc/visored-helm.svg'
 
+import Godsbeard from './svg/delapouite/herbs-bundle.svg'
+import { GODSBEARD } from '../objects/consumables/godsbeard'
+
 export const STATI_ICONS: Partial<Record<keyof StatsT | 'accuracy', string>> = {
   vigor: Vigor,
   strength: Strength,
@@ -83,4 +86,11 @@ export const ARMOR_TYPE_ICONS: Record<ArmorTypeT, string> = {
   helmet: Helmet,
   charm: '',
   ring: '',
+}
+
+export const CONSUMABLE_ITEM_ICONS: Record<string, string> = {
+  [GODSBEARD.id]: Godsbeard,
+}
+export const CONSUMABLE_ITEM_COLORS: Record<string, string> = {
+  [GODSBEARD.id]: '#84a397',
 }

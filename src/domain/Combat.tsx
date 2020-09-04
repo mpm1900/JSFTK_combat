@@ -25,7 +25,6 @@ export const Combat = () => {
     start,
   } = useCombatContext()
   const { open, close } = useModalContext()
-  const { combatLog } = useCombatLogContext()
   useEffect(() => {
     if (!isRunning) {
       open(
@@ -36,7 +35,7 @@ export const Combat = () => {
       setTimeout(() => {
         close()
         start()
-      }, 500)
+      }, 1000)
     }
   }, [])
   useEffect(() => {
@@ -48,7 +47,7 @@ export const Combat = () => {
       )
     }
   }, [isDone])
-  if (!isRunning) return null
+
   if (!activeCharacter) return <span>refresh to do combat again</span>
 
   return (

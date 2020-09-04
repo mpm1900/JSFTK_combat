@@ -14,6 +14,7 @@ export const CombatPlayerParty = (props: CombatPartyPlayerPropsT) => {
     activeCharacter,
     selectedSkill,
     onTargetsSelect,
+    onSkillSelect,
     next,
   } = useCombatContext()
 
@@ -49,7 +50,16 @@ export const CombatPlayerParty = (props: CombatPartyPlayerPropsT) => {
                   </div>
                 </FlexContainer>
               )}
-            <PartyCharacter activeCharacter={activeCharacter} character={c} />
+            <PartyCharacter
+              activeCharacter={activeCharacter}
+              character={c}
+              onConsumableClick={(consumable, index) => {
+                if (c.id === activeCharacter.id) {
+                  console.log(consumable, index)
+                  onSkillSelect(consumable.skill, index)
+                }
+              }}
+            />
           </div>
         ))}
       </FlexContainer>

@@ -12,6 +12,11 @@ import Details from '../../icons/svg/delapouite/skills.svg'
 import Inventory from '../../icons/svg/lorc/knapsack.svg'
 import { TagPreview } from '../TagPreview'
 import { CharacterImage } from '../CharacterImage'
+import { ConsumableT } from '../../types/Consumable'
+import { PartyCharacterConsumables } from '../PartyCharacterConsumables'
+import { Spring } from 'react-spring/renderprops'
+import { noneg } from '../../util'
+import { usePrevious } from '../../hooks/usePrevious'
 
 const ResourceE = withStyle(Monodiv, (props: any) => ({
   height: 15,
@@ -33,6 +38,7 @@ export interface PartyCharacterProps {
   selected?: boolean
   isHovering?: boolean
   onClick?: () => void
+  onConsumableClick?: (consumable: ConsumableT, index: number) => void
 }
 const Wrapper = styled('div', (props: any) => {
   const { $selected, $active, $hoverable, $isHovering } = props
@@ -84,8 +90,10 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
     selected,
     isHovering,
     onClick,
+    onConsumableClick,
   } = props
-  const health = character.health - character.stats.healthOffset
+  const health = noneg(character.health - character.stats.healthOffset)
+  const previousHealth = usePrevious<number>(health)
   return (
     <Wrapper
       $hoverable={hoverable && !character.dead}
@@ -102,7 +110,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           borderWidth: 2,
           cursor: onClick ? 'pointer' : 'default',
         }}
-        substyle={{ padding: 0, minWidth: 380 }}
+        substyle={{ padding: 0, minWidth: 420 }}
       >
         <FlexContainer style={{ border: '2px solid black' }}>
           <FlexContainer style={{ borderRight: '2px solid black' }}>
@@ -116,10 +124,11 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                 padding: '0 4px',
                 paddingLeft: 8,
                 background: '#555',
-                height: 24,
-                lineHeight: '28px',
+                height: 20,
+                lineHeight: '24px',
                 borderBottom: '1px solid rgba(255,255,255,0.2)',
                 boxShadow: '0px 4px 5px black',
+                zIndex: 2,
               }}
             >
               <span
@@ -138,12 +147,22 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                   padding: 4,
                   fontSize: 42,
                   height: 42,
-                  lineHeight: '48px',
+                  lineHeight: '70px',
                   color: '#b55553',
                 }}
               >
-                {health > 0 ? health : 0}
+                <Spring
+                  from={{ hp: previousHealth || health }}
+                  to={{ hp: health }}
+                >
+                  {(hpp) => <span>{Math.floor(hpp.hp)}</span>}
+                </Spring>
               </span>
+              <PartyCharacterConsumables
+                character={character}
+                consumables={character.consumables}
+                onClick={onConsumableClick}
+              />
               <FullContainer />
               <FlexContainer $direction='column'>
                 <FullContainer />

@@ -7,6 +7,7 @@ export const DAZZLE: SkillT = {
   damageModifier: -0.5,
   targetType: 'single',
   damage: false,
+  healing: false,
   isBasicAttack: false,
   rolls: [makeCheck('talent', -6), makeCheck('talent', -5)],
   perfectSplash: false,

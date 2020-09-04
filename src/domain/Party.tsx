@@ -6,9 +6,16 @@ import { BoxContainer } from '../elements/box'
 import { RedButton } from '../elements/button'
 import { useHistory } from 'react-router'
 import { PartyActiveCharacter } from '../components/PartyActiveCharacter'
+import { getSkillResults, commitSkillResults } from '../functions'
 
 export const Party = () => {
-  const { party, activeCharacter, setActiveCharacter } = usePartyContext()
+  const {
+    party,
+    rawParty,
+    activeCharacter,
+    updateParty,
+    setActiveCharacter,
+  } = usePartyContext()
   const history = useHistory()
   const enterCombat = () => {
     history.push('/JSFTK_combat/combat')
@@ -37,6 +44,26 @@ export const Party = () => {
           party={party}
           activeCharacter={activeCharacter}
           onCharacterClick={(c) => setActiveCharacter(c)}
+          onConsumableClick={(character, consumableIndex) => {
+            const consumable = character.consumables[consumableIndex]
+            const targets =
+              consumable.skill.targetType === 'self'
+                ? [character]
+                : consumable.skill.targetType === 'party'
+                ? party.characters
+                : []
+            const result = getSkillResults(
+              consumable.skill,
+              character,
+              targets,
+              consumableIndex,
+            )
+            const parties = commitSkillResults(rawParty, rawParty)(
+              result,
+              false,
+            )
+            updateParty(parties.party)
+          }}
         />
       </div>
     </FlexContainer>

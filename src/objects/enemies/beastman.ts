@@ -29,10 +29,12 @@ export const BEASTMAN = (): CharacterT => {
       damageReflection: 0,
       weaknessModifier: 0,
       goldModifier: 0,
+      consumableHealthGainOffset: 0,
     },
     traits: [],
     armor: [],
     status: [],
+    consumables: [],
     weapon: {
       ...makeEntity('Beastman Spear'),
       itemType: 'weapon',

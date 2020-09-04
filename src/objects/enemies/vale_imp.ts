@@ -29,10 +29,17 @@ export const VALE_IMP = (): CharacterT => {
       damageReflection: 0,
       weaknessModifier: 0,
       goldModifier: 0,
+      consumableHealthGainOffset: 0,
     },
     traits: [],
     armor: [],
-    status: [],
+    consumables: [],
+    status: [
+      {
+        duration: -1,
+        type: 'evasive',
+      },
+    ],
     weapon: {
       ...makeEntity('Imp Fists'),
       itemType: 'weapon',

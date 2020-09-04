@@ -11,12 +11,12 @@ export interface RoundResultRendererPropsT {
 }
 export const RoundResultRenderer = (props: RoundResultRendererPropsT) => {
   const { isModal = true } = props
-  const { activeRound, commit } = useCombatContext()
+  const { activeRound, isRunning, commit } = useCombatContext()
   const { open, close } = useModalContext()
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    if (activeRound && !isOpen) {
+    if (activeRound && !isOpen && isRunning) {
       setIsOpen(true)
       if (isModal) {
         open(
@@ -36,9 +36,9 @@ export const RoundResultRenderer = (props: RoundResultRendererPropsT) => {
         )
       }
     }
-  }, [isModal, isOpen, activeRound, open, close, commit])
+  }, [isRunning, isModal, isOpen, activeRound, open, close, commit])
 
-  if (!isModal && activeRound && activeRound[0]) {
+  if (!isModal && activeRound && activeRound[0] && isRunning) {
     return (
       <FlexContainer style={{ height: 315 }}>
         <RoundResult

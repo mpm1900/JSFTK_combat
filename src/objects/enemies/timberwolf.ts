@@ -29,9 +29,11 @@ export const TIMBERWOLF = (): CharacterT => {
       damageReflection: 0,
       weaknessModifier: 0,
       goldModifier: 0,
+      consumableHealthGainOffset: 0,
     },
     traits: [],
     armor: [],
+    consumables: [],
     status: [],
     weapon: {
       ...makeEntity('Wolf Fangs'),

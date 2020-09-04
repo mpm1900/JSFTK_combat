@@ -26,6 +26,13 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
             <FlexContainer $direction='column' style={{ paddingRight: 10 }}>
               <h1 style={{ margin: 0 }}>{character.name}</h1>
               <select
+                style={{
+                  background: '#333',
+                  border: '1px solid rgba(255,255,255,0.4)',
+                  padding: 8,
+                  color: 'white',
+                  marginBottom: 8,
+                }}
                 value={character.class}
                 onChange={(e) => {
                   upsertCharacter({

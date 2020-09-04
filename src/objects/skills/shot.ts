@@ -8,6 +8,7 @@ export const SHOT: SkillT = {
   damageModifier: 0,
   targetType: 'single',
   damage: true,
+  healing: false,
   isBasicAttack: true,
   rolls: [
     makeCheck('perception'),

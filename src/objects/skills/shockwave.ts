@@ -7,6 +7,7 @@ export const SHOCKWAVE: SkillT = {
   damageModifier: 0,
   targetType: 'single',
   damage: true,
+  healing: false,
   isBasicAttack: false,
   rolls: [
     makeCheck('strength', -10),

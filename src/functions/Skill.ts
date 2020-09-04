@@ -58,6 +58,7 @@ export const makeSkillTarget = (
 export const getSourceSkillResult = (
   source: ProcessedCharacterT,
   skill: SkillT,
+  consumableIndex: number | undefined,
 ): SourceSkillResultT => {
   const rollResults = skill.rolls.map((check) => resolveCheck(source, check))
   const passedCount = getPassedCount(rollResults)
@@ -66,7 +67,7 @@ export const getSourceSkillResult = (
     offset: source.stats.criticalChance,
   })
   const criticalSuccess = perfect ? criticalHitResult.result : false
-  const accuracySuccess = passedCount >= 1
+  const accuracySuccess = skill.healing || passedCount >= 1
 
   const rawDamage: DamageT = {
     damage: Math.round(
@@ -78,6 +79,7 @@ export const getSourceSkillResult = (
     skill.perfectSplash && perfect
       ? getSplashDamage(rawDamage)
       : { type: rawDamage.type, damage: 0 }
+
   return {
     rollResults,
     skill,
@@ -90,6 +92,9 @@ export const getSourceSkillResult = (
     pierce: (perfect && skill.perfectPierce) || criticalHitResult.result,
     splashDamage,
     addedStatus: perfect ? skill.perfectStatus : [],
+    healing:
+      perfect && skill.healing ? source.stats.consumableHealthGainOffset : 0,
+    consumableIndex,
   }
 }
 
@@ -97,6 +102,7 @@ export const getTargetSkillResult = (
   target: ProcessedCharacterT,
   sourceResult: SourceSkillResultT,
 ): TargetSkillResultT => {
+  console.log(sourceResult)
   if (sourceResult.accuracySuccess) {
     const dodgeResult = resolveCheck(target, { key: 'evasion' })
     const damageResistances = sourceResult.pierce
@@ -160,6 +166,7 @@ export const getPerfectKeys = (skill: SkillT): PerfectKeyT[] => {
   let base: PerfectKeyT[] = [...skill.perfectStatus.map((t) => t.type)]
   if (skill.perfectSplash) base = [...base, 'splash']
   if (skill.perfectPierce) base = [...base, 'pierce']
+  if (skill.healing) base = [...base, 'heal']
   return base
 }
 
@@ -179,6 +186,8 @@ export const getPerfectText = (
         return `${pre} ${Math.floor(
           (splashDamage.damage / rawDamage.damage) * 100,
         )}% ${text}`
+      case 'heal':
+        return `${pre} ${text} ${character.stats.consumableHealthGainOffset} HP`
       default:
         return `${pre} ${text}`
     }
@@ -226,8 +235,9 @@ export const getSkillResults = (
   skill: SkillT,
   source: ProcessedCharacterT,
   targets: ProcessedCharacterT[],
+  consumableIndex?: number,
 ): TargetSkillResultT[] => {
-  const sourceResult = getSourceSkillResult(source, skill)
+  const sourceResult = getSourceSkillResult(source, skill, consumableIndex)
   return targets.map((target) => getTargetSkillResult(target, sourceResult))
 }
 

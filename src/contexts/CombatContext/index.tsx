@@ -44,13 +44,15 @@ export interface CombatContextT {
   queue: CombatQueueT
   selectedSkill: SkillT | undefined
   selectedTargets: ProcessedCharacterT[]
+  selectedConsumableIndex: number | undefined
   roundResults: TargetSkillResultT[][]
   activeRound: TargetSkillResultT[] | undefined
   isRunning: boolean
   isDone: boolean
   isRenderingResult: boolean
-  onSkillSelect: (skill: SkillT) => void
+  onSkillSelect: (skill: SkillT, consumableIndex?: number) => void
   onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => void
+  onConsumableSelect: (consumableIndex: number | undefined) => void
   start: () => void
   next: (nextTarget?: ProcessedCharacterT | ProcessedPartyT) => void
   commit: () => void
@@ -63,6 +65,7 @@ const defaultValue: CombatContextT = {
   queue: {},
   selectedSkill: undefined,
   selectedTargets: [],
+  selectedConsumableIndex: undefined,
   roundResults: [],
   activeRound: undefined,
   isRunning: false,
@@ -70,6 +73,7 @@ const defaultValue: CombatContextT = {
   isRenderingResult: false,
   onSkillSelect: (skill: SkillT) => {},
   onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => {},
+  onConsumableSelect: (consumableIndex) => {},
   start: () => {},
   next: () => {},
   commit: () => {},
@@ -113,6 +117,9 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     SkillTargetT | undefined
   >()
   const [selectedSkill, setSelectedSkill] = useState<SkillT | undefined>()
+  const [selectedConsumableIndex, setSelectedConsumableIndex] = useState<
+    number | undefined
+  >()
   const activeCharacter = useMemo(
     () =>
       characters.find(
@@ -128,9 +135,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
 
   // temp code
   useEffect(() => {
-    if (!isRunning) {
-      start()
-    } else {
+    if (isRunning) {
       setQueue(makeCombatQueue([...party.characters, ...enemyParty.characters]))
     }
   }, [isRunning])
@@ -141,19 +146,26 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       ? makeSkillTarget(selectedSkill.targetType, nextTarget)
       : selectedTarget
     if (!selectedSkill || !roundTarget) return
+    console.log('CONSUMABLE INDEX', selectedConsumableIndex)
     const results = getSkillResults(
       selectedSkill,
       activeCharacter,
       resolveSkillTarget(roundTarget).filter((c) => !c.dead),
+      selectedConsumableIndex,
     )
     setActiveRound(results)
     setSelectedSkill(undefined)
     setSelectedTarget(undefined)
+    setSelectedConsumableIndex(undefined)
     setIsRenderingResult(true)
   }
 
-  const onSkillSelect = (skill: SkillT) => {
+  const onSkillSelect = (skill: SkillT, consumableIndex?: number) => {
+    console.log(skill, consumableIndex)
     setSelectedSkill(skill)
+    if (consumableIndex !== undefined) {
+      setSelectedConsumableIndex(consumableIndex)
+    }
     if (skill.targetType !== selectedSkill?.targetType) {
       setSelectedTarget(undefined)
     }
@@ -164,8 +176,22 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     setSelectedTarget(makeSkillTarget(selectedSkill.targetType, target))
   }
 
+  const completeRound = (
+    source: ProcessedCharacterT,
+    updatedCharacters: ProcessedCharacterT[],
+  ) => {
+    setQueue(
+      validateQueue(
+        shiftQueue(queue, source, updatedCharacters),
+        updatedCharacters,
+      ),
+    )
+    setRoundId(v4())
+    setIsRenderingResult(false)
+  }
+
   const commit = useCallback(() => {
-    if (!activeRound) return
+    if (!activeRound || activeRound.length === 0) return
     const parties = resultCommitter(activeRound)
     setRoundResults((r) => [...r, activeRound])
     setEnemyParty(parties.enemyParty)
@@ -175,14 +201,8 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       ...parties.party.characters,
       ...parties.enemyParty.characters,
     ].map((c) => processCharacter(c))
-    setQueue(
-      validateQueue(
-        shiftQueue(queue, activeRound[0].source, updatedCharacters),
-        updatedCharacters,
-      ),
-    )
-    setRoundId(v4())
-    setIsRenderingResult(false)
+
+    completeRound(activeRound[0].source, updatedCharacters)
   }, [activeRound, queue])
 
   const execEnemyTurn = (skill: SkillT, target: SkillTargetT) => {
@@ -214,11 +234,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     if (isDone) return
     if (enemyParty.characters.every((c) => c.dead)) {
       alert('you win')
-      /*onRequestNewParty()
-      setRoundResults([])
-      setSelectedSkill(undefined)
-      setIsRunning(false)
-      */
       history.push('/JSFTK_combat/party')
       return
     }
@@ -248,12 +263,14 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
         selectedTargets: selectedTarget
           ? resolveSkillTarget(selectedTarget)
           : [],
+        selectedConsumableIndex,
         roundResults,
         isDone,
         isRunning,
         isRenderingResult,
         onSkillSelect,
         onTargetsSelect,
+        onConsumableSelect: setSelectedConsumableIndex,
         start,
         next,
         commit,

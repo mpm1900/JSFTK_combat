@@ -23,6 +23,7 @@ interface CommitSkillResultsT {
 }
 export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
   results: TargetSkillResultT[],
+  commitRoundActions: boolean = true,
 ): CommitSkillResultsT => {
   results.forEach((result, index) => {
     const { source, target } = result
@@ -53,7 +54,9 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
           ...c,
           stats: {
             ...c.stats,
-            healthOffset: c.stats.healthOffset + result.totalDamage.damage,
+            healthOffset: noneg(
+              c.stats.healthOffset + result.totalDamage.damage - result.healing,
+            ),
           },
         },
         result.addedStatus.map((s) => s.type),
@@ -82,6 +85,20 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
         })
     }
 
+    if (
+      result.skill.targetType === 'self' &&
+      result.consumableIndex !== undefined
+    ) {
+      localUpdate(sourceParty, source.id, (c) => {
+        return {
+          ...c,
+          consumables: c.consumables.filter(
+            (c, i) => i !== result.consumableIndex,
+          ),
+        }
+      })
+    }
+
     if (result.reflectedDamage.damage > 0 && !result.willDie) {
       localUpdate(sourceParty, source.id, (c) => {
         // TODO: consider adding in reflected resistance here
@@ -95,7 +112,7 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
       })
     }
 
-    if (index === results.length - 1) {
+    if (index === results.length - 1 && commitRoundActions) {
       if (result.regeneratedHealth > 0) {
         localUpdate(sourceParty, source.id, (c) => {
           return {

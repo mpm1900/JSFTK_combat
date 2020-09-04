@@ -8,6 +8,7 @@ import { CombatLogContextProvider } from './contexts/CombatLogContext'
 import { ModalContextProvider } from './contexts/ModalContext'
 import { makeRoute } from './routes'
 import { Party } from './domain/Party'
+import { Start } from './domain/Start'
 
 const CombatDomain = () => {
   const [rawEnemyParty, setRawEnemyParty] = useState<PartyT>(makeParty(3))
@@ -35,7 +36,7 @@ export const App = () => {
     <Switch>
       {makeRoute('/party', PartyDomain)}
       {makeRoute('/combat', CombatDomain)}
-      {makeRoute('/', CombatDomain)}
+      {makeRoute('/', Start)}
     </Switch>
   )
 }

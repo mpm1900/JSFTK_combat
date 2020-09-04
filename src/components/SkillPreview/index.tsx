@@ -6,7 +6,6 @@ import {
   getChecksProbability,
   getSkillDamageRange,
   getSkillDamage,
-  getPerfectKeys,
   getPerfectText,
 } from '../../functions'
 
@@ -49,7 +48,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
           {perfectKeys.length > 0 && '='} {perfectKeys}
         </span>
         <FlexContainer $full style={{ width: '100%', marginBottom: 8 }}>
-          {damage.damage > 0 && (
+          {damage.damage > 0 && skill.damage && (
             <FlexContainer
               $full
               $direction='column'
@@ -67,25 +66,27 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
               <span style={{ color: 'rgba(255,255,255,0.2)' }}>MAX DMG</span>
             </FlexContainer>
           )}
-          <FlexContainer
-            $full
-            $direction='column'
-            style={{ alignItems: 'center' }}
-          >
-            <span
-              style={{
-                fontWeight: 'bolder',
-                fontSize: 32,
-              }}
+          {skill.rolls.length > 0 && (
+            <FlexContainer
+              $full
+              $direction='column'
+              style={{ alignItems: 'center' }}
             >
-              {source.stats[skill.rolls[0].key || 'strength'] +
-                (skill.rolls[0].offset || 0)}
-              %
-            </span>
-            <span style={{ color: 'rgba(255,255,255,0.2)' }}>
-              Per Check ACC
-            </span>
-          </FlexContainer>
+              <span
+                style={{
+                  fontWeight: 'bolder',
+                  fontSize: 32,
+                }}
+              >
+                {source.stats[skill.rolls[0].key || 'strength'] +
+                  (skill.rolls[0].offset || 0)}
+                %
+              </span>
+              <span style={{ color: 'rgba(255,255,255,0.2)' }}>
+                Per Check ACC
+              </span>
+            </FlexContainer>
+          )}
         </FlexContainer>
         <FlexContainer style={{ marginBottom: -18 }}>
           <FullContainer />

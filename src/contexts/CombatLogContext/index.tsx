@@ -132,6 +132,16 @@ export const CombatLogContextProvider = (
           )
         }
 
+        if (round.healing > 0) {
+          log(
+            <span>
+              {NameSpan(round.target)} gained{' '}
+              {Span('white', `${round.healing} HP`)} from{' '}
+              {SkillSpan(round.skill)}
+            </span>,
+          )
+        }
+
         round.addedStatus.forEach((tag) => {
           log(
             <span>
@@ -144,8 +154,8 @@ export const CombatLogContextProvider = (
     if (baseRound.regeneratedHealth > 0) {
       log(
         <span>
-          {NameSpan(baseRound.source)} gained {baseRound.regeneratedHealth}{' '}
-          health from HP regen.
+          {NameSpan(baseRound.source)} gained{' '}
+          {Span('white', `${baseRound.regeneratedHealth} HP`)} from HP regen.
         </span>,
       )
     }

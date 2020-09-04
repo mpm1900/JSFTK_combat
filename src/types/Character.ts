@@ -4,6 +4,7 @@ import { ArmorT } from './Armor'
 import { StatusT, CharacterStatusT } from './Status'
 import { SkillT } from './Skill'
 import { StatsT } from './Stats'
+import { ConsumableT } from './Consumable'
 
 export type CharacterClassT =
   | 'blacksmith'
@@ -20,6 +21,7 @@ export interface CharacterT extends EntityT {
   traits: []
   weapon: WeaponT
   armor: ArmorT[]
+  consumables: ConsumableT[]
   status: CharacterStatusT[]
   isCharacter: true
 }

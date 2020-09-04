@@ -7,6 +7,7 @@ export const ALTO: SkillT = {
   damageModifier: 0,
   targetType: 'single',
   damage: true,
+  healing: false,
   isBasicAttack: true,
   rolls: [makeCheck('talent'), makeCheck('talent'), makeCheck('talent')],
   perfectSplash: false,

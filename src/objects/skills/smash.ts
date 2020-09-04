@@ -7,6 +7,7 @@ export const SMASH: SkillT = {
   damageModifier: 0,
   targetType: 'single',
   damage: true,
+  healing: false,
   isBasicAttack: true,
   rolls: [makeCheck('strength'), makeCheck('strength'), makeCheck('strength')],
   perfectSplash: false,

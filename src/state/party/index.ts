@@ -1,4 +1,3 @@
-import { v4 } from 'uuid'
 import { useSelector } from 'react-redux'
 import { StateCoreT, StateActionT, StateT } from '../types'
 import { PartyT, CharacterT } from '../../types'
@@ -89,7 +88,13 @@ export const INITIAL_STATE: PartyT = {
   name: 'PlayerParty',
   items: [],
   characters: [
-    { ...jack },
+    {
+      ...jack,
+      stats: {
+        ...jack.stats,
+        consumableHealthGainOffset: 15,
+      },
+    },
     { ...makeCharacter('bard'), name: 'Jim' },
     { ...makeCharacter('scholar'), name: 'Johnny' },
   ],
