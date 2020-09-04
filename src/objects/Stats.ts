@@ -47,7 +47,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageReflection: 0,
     weaknessModifier: 0,
     goldModifier: 0,
-    consumableHealthGainOffset: 0,
+    consumableHealthGainOffset: 15,
   },
   hunter: {
     strength: 52,
@@ -69,7 +69,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageReflection: 0,
     weaknessModifier: 0,
     goldModifier: 0,
-    consumableHealthGainOffset: 0,
+    consumableHealthGainOffset: 15,
   },
   scholar: {
     strength: 42,
@@ -91,7 +91,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageReflection: 0,
     weaknessModifier: 0,
     goldModifier: 0,
-    consumableHealthGainOffset: 0,
+    consumableHealthGainOffset: 15,
   },
   bard: {
     strength: 44,
@@ -113,7 +113,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageReflection: 0,
     weaknessModifier: 0,
     goldModifier: 0,
-    consumableHealthGainOffset: 0,
+    consumableHealthGainOffset: 15,
   },
   enemy: ZERO_STATS,
 }
