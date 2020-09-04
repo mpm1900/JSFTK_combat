@@ -1,4 +1,4 @@
-import { StatsT, TagTypeT } from '../types'
+import { StatsT, TagTypeT, ArmorTypeT } from '../types'
 
 import Vigor from './svg/delapouite/heart-beats.svg'
 import Strength from './svg/delapouite/biceps.svg'
@@ -12,7 +12,6 @@ import Accuracy from './svg/delapouite/convergence-target.svg'
 import Dazed from './svg/lorc/star-swirl.svg'
 import Targeted from './svg/sbed/targeted.svg'
 import Evasive from './svg/lorc/dodging.svg'
-import DamageReflection from './svg/lorc/shield-reflect.svg'
 
 import Shot from './svg/lorc/high-shot.svg'
 import SnipeShot from './svg/delapouite/shield-impact.svg'
@@ -32,6 +31,16 @@ import { SMASH } from '../objects/skills/smash'
 import { SHOCKWAVE } from '../objects/skills/shockwave'
 import { TAUNT } from '../objects/skills/taunt'
 import { ALTO } from '../objects/skills/alto'
+
+import MagicArmor from './svg/lorc/robe.svg'
+import ClothArmor from './svg/lorc/scale-mail.svg'
+import Armor from './svg/delapouite/chest-armor.svg'
+import Shield from './svg/delapouite/viking-shield.svg'
+import MagicShield from './svg/lorc/lightning-shield.svg'
+import Footwear from './svg/lorc/leather-boot.svg'
+import Hat from './svg/delapouite/robin-hood-hat.svg'
+import MagicHat from './svg/lorc/pointy-hat.svg'
+import Helmet from './svg/lorc/visored-helm.svg'
 
 export const STATI_ICONS: Partial<Record<keyof StatsT | 'accuracy', string>> = {
   vigor: Vigor,
@@ -60,4 +69,18 @@ export const SKILL_ICONS: Record<string, string> = {
   [SHOCKWAVE.id]: Shockwave,
   [TAUNT.id]: Taunt,
   [ALTO.id]: Alto,
+}
+
+export const ARMOR_TYPE_ICONS: Record<ArmorTypeT, string> = {
+  ['magic-armor']: MagicArmor,
+  ['cloth-armor']: ClothArmor,
+  armor: Armor,
+  shield: Shield,
+  ['magic-shield']: MagicShield,
+  footwear: Footwear,
+  hat: Hat,
+  ['magic-hat']: MagicHat,
+  helmet: Helmet,
+  charm: '',
+  ring: '',
 }

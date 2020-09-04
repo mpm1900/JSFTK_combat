@@ -4,7 +4,7 @@ import { ItemT } from './Item'
 
 export type ArmorTypeT =
   | 'shield'
-  | 'magic-sheild'
+  | 'magic-shield'
   | 'helmet'
   | 'hat'
   | 'magic-hat'

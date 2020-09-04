@@ -23,7 +23,7 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
         <FullContainer />
         <BoxContainer substyle={{ background: '#111' }}>
           <FlexContainer>
-            <FlexContainer $direction='column'>
+            <FlexContainer $direction='column' style={{ padding: 10 }}>
               {character.name}
               <select
                 value={character.class}

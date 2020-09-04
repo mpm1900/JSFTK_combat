@@ -4,12 +4,6 @@ import { BoxContainer } from '../../elements/box'
 import { FlexContainer } from '../../elements/flex'
 import { SkillCheck } from '../SkillChecks'
 import { combineTraits } from '../../functions'
-import {
-  DEFENSE_BONUS_KEYS,
-  STAT_KEY_LABELS,
-  DAMAGE_BONUS_KEYS,
-  STAT_BONUS_KEYS,
-} from '../../objects/Stats'
 import { StatsPreview } from '../StatsPreview'
 
 export const getDamageColor = (weapon: ProcessedWeaponT) => {
@@ -26,7 +20,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
   const basicAttack = weapon.skills.find((s) => s.isBasicAttack)
   const combinedTrait = combineTraits(...weapon.traits)
   return (
-    <BoxContainer>
+    <BoxContainer style={{ width: 200 }}>
       <FlexContainer $direction='column'>
         {basicAttack && (
           <FlexContainer style={{ justifyContent: 'center', marginBottom: 10 }}>
@@ -58,7 +52,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
                 {weapon.damage.type} Damage
               </span>
             </FlexContainer>
-            <span style={{ color: 'rgba(255,255,255,0.4)', marginBottom: 8 }}>
+            <span style={{ color: 'plum', marginBottom: 8 }}>
               {weapon.skills.map(
                 (skill, i) => `${i > 0 ? ', ' : ''}${skill.name}`,
               )}
