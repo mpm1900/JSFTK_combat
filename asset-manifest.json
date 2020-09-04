@@ -1,20 +1,21 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.fae0cb63.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.fae0cb63.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.b5bd210b.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.b5bd210b.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
-    "static/js/2.e4fa79d8.chunk.js": "/JSFTK_combat/static/js/2.e4fa79d8.chunk.js",
-    "static/js/2.e4fa79d8.chunk.js.map": "/JSFTK_combat/static/js/2.e4fa79d8.chunk.js.map",
+    "static/js/2.c01c70f8.chunk.js": "/JSFTK_combat/static/js/2.c01c70f8.chunk.js",
+    "static/js/2.c01c70f8.chunk.js.map": "/JSFTK_combat/static/js/2.c01c70f8.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.7827f05f1fdbcb372603410ab72eef18.js": "/JSFTK_combat/precache-manifest.7827f05f1fdbcb372603410ab72eef18.js",
+    "precache-manifest.17a23e8045b4b4902c6905bba94f20b6.js": "/JSFTK_combat/precache-manifest.17a23e8045b4b4902c6905bba94f20b6.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/main.a8c8ac70.chunk.css.map": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css.map",
-    "static/js/2.e4fa79d8.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.e4fa79d8.chunk.js.LICENSE.txt",
+    "static/js/2.c01c70f8.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.c01c70f8.chunk.js.LICENSE.txt",
     "static/media/biceps.svg": "/JSFTK_combat/static/media/biceps.e62c221f.svg",
     "static/media/bordered-shield.svg": "/JSFTK_combat/static/media/bordered-shield.56c12b47.svg",
     "static/media/brain.svg": "/JSFTK_combat/static/media/brain.ce65603a.svg",
+    "static/media/chest-armor.svg": "/JSFTK_combat/static/media/chest-armor.f1f52a3c.svg",
     "static/media/clover.svg": "/JSFTK_combat/static/media/clover.df6a0d57.svg",
     "static/media/convergence-target.svg": "/JSFTK_combat/static/media/convergence-target.0d2998bc.svg",
     "static/media/dodging.svg": "/JSFTK_combat/static/media/dodging.3c689d6d.svg",
@@ -29,18 +30,26 @@
     "static/media/high-shot.svg": "/JSFTK_combat/static/media/high-shot.eed9def8.svg",
     "static/media/juggler.svg": "/JSFTK_combat/static/media/juggler.1188c0be.svg",
     "static/media/knapsack.svg": "/JSFTK_combat/static/media/knapsack.62049a62.svg",
+    "static/media/leather-boot.svg": "/JSFTK_combat/static/media/leather-boot.89b85474.svg",
+    "static/media/lightning-shield.svg": "/JSFTK_combat/static/media/lightning-shield.85367254.svg",
+    "static/media/pointy-hat.svg": "/JSFTK_combat/static/media/pointy-hat.d042ac98.svg",
+    "static/media/robe.svg": "/JSFTK_combat/static/media/robe.5b61ecba.svg",
+    "static/media/robin-hood-hat.svg": "/JSFTK_combat/static/media/robin-hood-hat.6bab1449.svg",
+    "static/media/scale-mail.svg": "/JSFTK_combat/static/media/scale-mail.cb5ff7d5.svg",
     "static/media/shield-impact.svg": "/JSFTK_combat/static/media/shield-impact.54fdc5c4.svg",
     "static/media/skills.svg": "/JSFTK_combat/static/media/skills.60519e24.svg",
     "static/media/split-cross.svg": "/JSFTK_combat/static/media/split-cross.fa0be1a3.svg",
     "static/media/sprint.svg": "/JSFTK_combat/static/media/sprint.968b443a.svg",
     "static/media/star-swirl.svg": "/JSFTK_combat/static/media/star-swirl.3045bd1f.svg",
     "static/media/targeted.svg": "/JSFTK_combat/static/media/targeted.b4ce8dd7.svg",
-    "static/media/ubisoft-sun.svg": "/JSFTK_combat/static/media/ubisoft-sun.30335592.svg"
+    "static/media/ubisoft-sun.svg": "/JSFTK_combat/static/media/ubisoft-sun.30335592.svg",
+    "static/media/viking-shield.svg": "/JSFTK_combat/static/media/viking-shield.a61f8230.svg",
+    "static/media/visored-helm.svg": "/JSFTK_combat/static/media/visored-helm.1f2ced7f.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
-    "static/js/2.e4fa79d8.chunk.js",
+    "static/js/2.c01c70f8.chunk.js",
     "static/css/main.a8c8ac70.chunk.css",
-    "static/js/main.fae0cb63.chunk.js"
+    "static/js/main.b5bd210b.chunk.js"
   ]
 }

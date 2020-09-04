@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6323700e8d5c423eeae3b4eb483b7841",
+    "revision": "0a9127854233ede96f436dc574f03096",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "a55a3fdd4d547031d3e8",
+    "revision": "0bd4b718e3c50624e514",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
-    "revision": "d9746ddd839d08b2d5ee",
-    "url": "/JSFTK_combat/static/js/2.e4fa79d8.chunk.js"
+    "revision": "0267251451a6e977fa9e",
+    "url": "/JSFTK_combat/static/js/2.c01c70f8.chunk.js"
   },
   {
     "revision": "27ae53ac28c8041a12f7e74077995ac2",
-    "url": "/JSFTK_combat/static/js/2.e4fa79d8.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.c01c70f8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a55a3fdd4d547031d3e8",
-    "url": "/JSFTK_combat/static/js/main.fae0cb63.chunk.js"
+    "revision": "0bd4b718e3c50624e514",
+    "url": "/JSFTK_combat/static/js/main.b5bd210b.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -34,6 +34,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ce65603aad418a38f66ca50c558c6d54",
     "url": "/JSFTK_combat/static/media/brain.ce65603a.svg"
+  },
+  {
+    "revision": "f1f52a3c22bdc7a554ea337d72bc906d",
+    "url": "/JSFTK_combat/static/media/chest-armor.f1f52a3c.svg"
   },
   {
     "revision": "df6a0d57581168c6e8908a2538fdb560",
@@ -92,6 +96,30 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/knapsack.62049a62.svg"
   },
   {
+    "revision": "89b854745fdc6aa5832dc2cd2c439680",
+    "url": "/JSFTK_combat/static/media/leather-boot.89b85474.svg"
+  },
+  {
+    "revision": "853672545c995fa342577d1e493f2958",
+    "url": "/JSFTK_combat/static/media/lightning-shield.85367254.svg"
+  },
+  {
+    "revision": "d042ac9872801c1f6b9c303ae81827d7",
+    "url": "/JSFTK_combat/static/media/pointy-hat.d042ac98.svg"
+  },
+  {
+    "revision": "5b61ecba7d48947b3cea60e131678a07",
+    "url": "/JSFTK_combat/static/media/robe.5b61ecba.svg"
+  },
+  {
+    "revision": "6bab1449e969ee9c372dbf6a80f3b8c7",
+    "url": "/JSFTK_combat/static/media/robin-hood-hat.6bab1449.svg"
+  },
+  {
+    "revision": "cb5ff7d575740b125dbda9f7ea2a52ee",
+    "url": "/JSFTK_combat/static/media/scale-mail.cb5ff7d5.svg"
+  },
+  {
     "revision": "54fdc5c4e47d4b5a71b0a8094937e300",
     "url": "/JSFTK_combat/static/media/shield-impact.54fdc5c4.svg"
   },
@@ -118,5 +146,13 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "30335592156f2f6ee12e1d65a8cd5a82",
     "url": "/JSFTK_combat/static/media/ubisoft-sun.30335592.svg"
+  },
+  {
+    "revision": "a61f823052f5533afe1a07c856728ab0",
+    "url": "/JSFTK_combat/static/media/viking-shield.a61f8230.svg"
+  },
+  {
+    "revision": "1f2ced7f3e4f768c0c73542c5b8a9619",
+    "url": "/JSFTK_combat/static/media/visored-helm.1f2ced7f.svg"
   }
 ]);
