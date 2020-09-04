@@ -44,7 +44,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
           <FullContainer />
         </FlexContainer>
         <span style={{ color: 'rgba(255,255,255,0.4)', marginTop: 8 }}>
-          Perect ({Math.floor(perfectChance * 100)}%){' '}
+          Perfect ({Math.floor(perfectChance * 100)}%){' '}
           {perfectKeys.length > 0 && '='} {perfectKeys}
         </span>
         <FlexContainer $full style={{ width: '100%', marginBottom: 8 }}>

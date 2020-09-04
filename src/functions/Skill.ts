@@ -67,12 +67,16 @@ export const getSourceSkillResult = (
     offset: source.stats.criticalChance,
   })
   const criticalSuccess = perfect ? criticalHitResult.result : false
-  const accuracySuccess = skill.healing || passedCount >= 1
+  const accuracySuccess =
+    skill.healing || skill.damage ? passedCount >= 1 : perfect
 
   const rawDamage: DamageT = {
-    damage: Math.round(
-      (passedCount * getSkillDamage(skill, source).damage) / rollResults.length,
-    ),
+    damage: skill.damage
+      ? Math.round(
+          (passedCount * getSkillDamage(skill, source).damage) /
+            rollResults.length,
+        )
+      : 0,
     type: source.weapon.damage.type,
   }
   const splashDamage: DamageT =
