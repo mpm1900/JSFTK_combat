@@ -6,7 +6,7 @@ export const DAZZLE: SkillT = {
   ...makeEntity('Dazzle'),
   damageModifier: -0.5,
   targetType: 'single',
-  damage: false,
+  damage: true,
   healing: false,
   isBasicAttack: false,
   rolls: [makeCheck('talent', -6), makeCheck('talent', -5)],

@@ -63,7 +63,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
               >
                 {damageString}
               </span>
-              <span style={{ color: 'rgba(255,255,255,0.2)' }}>MAX DMG</span>
+              <span style={{ color: 'rgba(255,255,255,0.2)' }}>Max DMG</span>
             </FlexContainer>
           )}
           {skill.rolls.length > 0 && (

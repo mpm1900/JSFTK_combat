@@ -1,7 +1,7 @@
 import { WeaponT } from '../../types'
 import { makeEntity } from '../../functions/Entity'
 import { ALTO } from '../skills/alto'
-import { DAZZLE } from '../skills/Dazzle'
+import { DAZZLE } from '../skills/dazzle'
 import { ZERO_STATS } from '../Stats'
 
 export const SIMPLE_LUTE: WeaponT = {
