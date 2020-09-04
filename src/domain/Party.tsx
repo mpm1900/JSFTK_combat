@@ -6,7 +6,10 @@ import { BoxContainer } from '../elements/box'
 import { RedButton } from '../elements/button'
 import { useHistory } from 'react-router'
 import { PartyActiveCharacter } from '../components/PartyActiveCharacter'
-import { getSkillResults, commitSkillResults } from '../functions'
+import { getSkillResults, commitSkillResults, equipArmor } from '../functions'
+import { ArmorPreview } from '../components/ArmorPreview'
+import { ArmorT, ProcessedWeaponT } from '../types'
+import { WeaponPreview } from '../components/WeaponPreview'
 
 export const Party = () => {
   const {
@@ -14,6 +17,8 @@ export const Party = () => {
     rawParty,
     activeCharacter,
     updateParty,
+    upsertCharacter,
+    findRawCharacter,
     setActiveCharacter,
   } = usePartyContext()
   const history = useHistory()
@@ -35,8 +40,51 @@ export const Party = () => {
           <FullContainer />
         </BoxContainer>
       </FlexContainer>
-      <FlexContainer $full style={{ padding: 16 }}>
-        <BoxContainer style={{ flex: 1 }}></BoxContainer>
+      <FlexContainer
+        $full
+        style={{ padding: 16, maxHeight: 'calc(100% - 270px)' }}
+      >
+        <BoxContainer
+          style={{ flex: 1 }}
+          substyle={{ overflow: 'auto', maxHeight: '100%', background: '#111' }}
+        >
+          <FlexContainer>
+            <FlexContainer $direction='column'>
+              {party.items
+                .filter((i) => i.itemType === 'armor')
+                .map((item) => (
+                  <ArmorPreview
+                    armor={item as ArmorT}
+                    showEquipButton={true}
+                    onEquipClick={() => {
+                      console.log('equp')
+                      const rc = findRawCharacter(activeCharacter.id)
+                      if (rc) {
+                        const result = equipArmor(rc, item as ArmorT)
+                        updateParty({
+                          ...rawParty,
+                          items: [
+                            ...rawParty.items.filter((i) => i.id !== item.id),
+                            ...(result.armor ? [result.armor] : []),
+                          ],
+                          characters: rawParty.characters.map((c) =>
+                            c.id === result.character.id ? result.character : c,
+                          ),
+                        })
+                      }
+                    }}
+                  />
+                ))}
+            </FlexContainer>
+            <FlexContainer $direction='column'>
+              {party.items
+                .filter((i) => i.itemType === 'weapon')
+                .map((item) => (
+                  <WeaponPreview weapon={item as ProcessedWeaponT} />
+                ))}
+            </FlexContainer>
+          </FlexContainer>
+        </BoxContainer>
         <PartyActiveCharacter character={activeCharacter} />
       </FlexContainer>
       <div style={{ marginBottom: 30 }}>

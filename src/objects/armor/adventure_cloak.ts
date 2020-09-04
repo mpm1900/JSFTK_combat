@@ -5,6 +5,7 @@ import { ZERO_STATS } from '../Stats'
 export const ADVENTURE_CLOAK: ArmorT = {
   ...makeEntity(`Adventure Cloak`),
   itemType: 'armor',
+  resource: 'body',
   rarity: 'uncommon',
   type: 'magic-armor',
   traits: [

@@ -10,6 +10,7 @@ import {
   EntityT,
   WeaponT,
   StatusT,
+  ArmorT,
 } from '../types'
 import { STATUS_EFFECTS, CLASS_STARTING_STATS } from '../objects'
 import {
@@ -214,4 +215,37 @@ export const addStatusAndTags = (
   status: StatusTypeT[],
 ) => {
   return addMultipleStatus(character, status)
+}
+
+export const equipArmor = (
+  character: CharacterT,
+  armor: ArmorT,
+): { character: CharacterT; armor: ArmorT | undefined } => {
+  checkForProcessedCharacter(character)
+  const existingArmor = character.armor.find(
+    (a) => a.resource === armor.resource,
+  )
+  return {
+    character: {
+      ...character,
+      armor: existingArmor
+        ? [...character.armor.filter((a) => a.id !== existingArmor.id), armor]
+        : [...character.armor, armor],
+    },
+    armor: existingArmor,
+  }
+}
+
+export const equipWeapon = (
+  character: CharacterT,
+  weapon: WeaponT,
+): { character: CharacterT; weapon: WeaponT | undefined } => {
+  const existingWeapon = character.weapon
+  return {
+    character: {
+      ...character,
+      weapon,
+    },
+    weapon: existingWeapon,
+  }
 }

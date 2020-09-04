@@ -10,6 +10,8 @@ import {
   checkForProcessedParty,
 } from '../../functions'
 import { PLAYER_PARTY_ID } from '../../objects/Party'
+import { ALL_ARMOR } from '../../objects/armor/index'
+import { ALL_WEAPONS } from '../../objects/weapons/index'
 
 export const UPDATE_PARTY = '@actions/parties/set-party'
 export const UPSERT_CHARACTER = '@actions/parties/upsert-character'
@@ -86,7 +88,7 @@ export const INITIAL_STATE: PartyT = {
   isParty: true,
   id: PLAYER_PARTY_ID,
   name: 'PlayerParty',
-  items: [],
+  items: [...ALL_ARMOR, ...ALL_WEAPONS],
   characters: [
     {
       ...jack,

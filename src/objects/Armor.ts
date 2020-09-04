@@ -11,9 +11,9 @@ import { PERFORMERS_BOOTS } from './armor/performers_boots'
 import { EXPLORERS_BOOTS } from './armor/explorers_boots'
 
 export const CLASS_STARTING_ARMOR: Record<CharacterClassT, ArmorT[]> = {
-  blacksmith: [SIMPLE_IRON_SHIELD, FUR_ARMOR, FUR_BOOTS],
-  hunter: [ADVENTURE_CLOAK, ADVENTURE_BOOTS],
-  scholar: [EXPLORERS_CLOAK, EXPLORERS_HAT, EXPLORERS_BOOTS],
-  bard: [PERFORMERS_VEST, PERFORMERS_BOOTS],
+  blacksmith: [SIMPLE_IRON_SHIELD],
+  hunter: [],
+  scholar: [],
+  bard: [],
   enemy: [],
 }

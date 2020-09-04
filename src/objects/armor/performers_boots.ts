@@ -5,6 +5,7 @@ import { ZERO_STATS } from '../Stats'
 export const PERFORMERS_BOOTS: ArmorT = {
   ...makeEntity(`Performer's Boots`),
   itemType: 'armor',
+  resource: 'feet',
   rarity: 'common',
   type: 'footwear',
   traits: [

@@ -14,8 +14,10 @@ export type ArmorTypeT =
   | 'footwear'
   | 'ring'
   | 'charm'
+export type ArmorResourceType = 'offhand' | 'head' | 'body' | 'feet'
 export interface ArmorT extends ItemT {
   type: ArmorTypeT
+  resource: ArmorResourceType
   traits: TraitT[]
   skills: SkillT[]
 }

@@ -5,6 +5,7 @@ import { ZERO_STATS } from '../Stats'
 export const FUR_ARMOR: ArmorT = {
   ...makeEntity(`Fur Armor`),
   itemType: 'armor',
+  resource: 'body',
   rarity: 'uncommon',
   type: 'cloth-armor',
   traits: [

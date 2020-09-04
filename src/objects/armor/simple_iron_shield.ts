@@ -6,6 +6,7 @@ import { TAUNT } from '../skills/taunt'
 export const SIMPLE_IRON_SHIELD: ArmorT = {
   ...makeEntity('Simple Iron Shield'),
   itemType: 'armor',
+  resource: 'offhand',
   rarity: 'common',
   type: 'shield',
   traits: [
