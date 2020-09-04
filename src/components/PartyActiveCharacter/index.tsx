@@ -15,7 +15,6 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
   const { character } = props
   const { upsertCharacter } = usePartyContext()
   const { weapon } = character
-  console.log(character)
   return (
     <FlexContainer $full>
       <FullContainer />

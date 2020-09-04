@@ -55,7 +55,6 @@ export const CombatPlayerParty = (props: CombatPartyPlayerPropsT) => {
               character={c}
               onConsumableClick={(consumable, index) => {
                 if (c.id === activeCharacter.id) {
-                  console.log(consumable, index)
                   onSkillSelect(consumable.skill, index)
                 }
               }}

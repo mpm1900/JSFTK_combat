@@ -146,7 +146,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       ? makeSkillTarget(selectedSkill.targetType, nextTarget)
       : selectedTarget
     if (!selectedSkill || !roundTarget) return
-    console.log('CONSUMABLE INDEX', selectedConsumableIndex)
     const results = getSkillResults(
       selectedSkill,
       activeCharacter,
@@ -161,7 +160,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   }
 
   const onSkillSelect = (skill: SkillT, consumableIndex?: number) => {
-    console.log(skill, consumableIndex)
     setSelectedSkill(skill)
     if (consumableIndex !== undefined) {
       setSelectedConsumableIndex(consumableIndex)

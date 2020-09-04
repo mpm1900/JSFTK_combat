@@ -76,7 +76,7 @@ export const CombatLogContextProvider = (
     if (baseRound.criticalSuccess) {
       log(<span>{Span('gold', 'Critical Hit!')}</span>)
     }
-    if (baseRound.perfect) {
+    if (baseRound.perfect && baseRound.rollResults.length > 0) {
       log(<span>{Span('gold', 'Perfect!')}</span>)
     }
     latestRounds.forEach((round) => {

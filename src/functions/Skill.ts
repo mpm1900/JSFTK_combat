@@ -66,9 +66,13 @@ export const getSourceSkillResult = (
   const criticalHitResult = resolveCheck(source, {
     offset: source.stats.criticalChance,
   })
-  const criticalSuccess = perfect ? criticalHitResult.result : false
+  const criticalSuccess = skill.damage
+    ? perfect
+      ? criticalHitResult.result
+      : false
+    : false
   const accuracySuccess =
-    skill.healing || skill.damage ? passedCount >= 1 : perfect
+    skill.healing || (skill.damage ? passedCount >= 1 : perfect)
 
   const rawDamage: DamageT = {
     damage: skill.damage
