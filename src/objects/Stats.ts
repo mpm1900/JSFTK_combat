@@ -33,7 +33,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     intelligence: 40,
     perception: 52,
     talent: 72,
-    agility: 560,
+    agility: 56,
     luck: 50,
     armor: 2,
     resistance: 0,
