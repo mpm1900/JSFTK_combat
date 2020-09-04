@@ -14,7 +14,6 @@ export const SIMPLE_IRON_SHIELD: ArmorT = {
         ...ZERO_STATS,
         armor: 1,
       },
-      damage: 0,
     },
   ],
   skills: [TAUNT],

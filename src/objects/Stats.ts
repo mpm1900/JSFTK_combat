@@ -21,6 +21,7 @@ export const ZERO_STATS: StatsT = {
   damageModifier: 0,
   damageOffset: 0,
   damageReflection: 0,
+  weaknessModifier: 0,
 }
 
 export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
@@ -42,6 +43,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageModifier: 0,
     damageOffset: 0,
     damageReflection: 0,
+    weaknessModifier: 0,
   },
   hunter: {
     strength: 52,
@@ -61,6 +63,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageModifier: 0,
     damageOffset: 0,
     damageReflection: 0,
+    weaknessModifier: 0,
   },
   scholar: {
     strength: 42,
@@ -80,6 +83,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageModifier: 0,
     damageOffset: 0,
     damageReflection: 0,
+    weaknessModifier: 0,
   },
   bard: {
     strength: 44,
@@ -99,6 +103,7 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     damageModifier: 0,
     damageOffset: 0,
     damageReflection: 0,
+    weaknessModifier: 0,
   },
   enemy: ZERO_STATS,
 }
@@ -144,4 +149,5 @@ export const STAT_KEY_LABELS: Record<keyof StatsT, string> = {
   damageOffset: ' Raw Damage',
   damageModifier: '% Attack Damage',
   damageReflection: ' Damage Reflection',
+  weaknessModifier: '% Recieved Damage',
 }

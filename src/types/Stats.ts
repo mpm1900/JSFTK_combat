@@ -17,4 +17,5 @@ export interface StatsT {
   damageModifier: number
   damageOffset: number
   damageReflection: number
+  weaknessModifier: number
 }

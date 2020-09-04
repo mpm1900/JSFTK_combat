@@ -18,7 +18,6 @@ export const HUNTING_BOW: WeaponT = {
         ...ZERO_STATS,
         evasion: 3,
       },
-      damage: 0,
     },
   ],
   skills: [SHOT, SNIPE_SHOT],

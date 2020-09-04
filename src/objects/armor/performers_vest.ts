@@ -17,7 +17,6 @@ export const PERFORMERS_VEST: ArmorT = {
         talent: 4,
         luck: 4,
       },
-      damage: 0,
     },
   ],
   skills: [],

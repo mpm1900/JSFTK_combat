@@ -15,7 +15,6 @@ export const EXPLORERS_HAT: ArmorT = {
         evasion: 3,
         perception: 2,
       },
-      damage: 0,
     },
   ],
   skills: [],

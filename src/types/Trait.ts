@@ -9,5 +9,4 @@ export interface HasCommittedTraits {
 export interface TraitT {
   duration: number
   stats: StatsT
-  damage: number
 }

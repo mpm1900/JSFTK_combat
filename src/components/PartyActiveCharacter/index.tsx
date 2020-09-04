@@ -5,6 +5,7 @@ import { BoxContainer } from '../../elements/box'
 import { usePartyContext } from '../../contexts/PartyContext'
 import { makeCharacter } from '../../functions'
 import { WeaponPreview } from '../WeaponPreview'
+import { ArmorPreview } from '../ArmorPreview'
 
 export interface PartyActiveCharacterPropsT {
   character: ProcessedCharacterT
@@ -20,7 +21,7 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
       <FullContainer />
       <FlexContainer $direction='column'>
         <FullContainer />
-        <BoxContainer>
+        <BoxContainer substyle={{ background: '#111' }}>
           <FlexContainer>
             <FlexContainer $direction='column'>
               {character.name}
@@ -40,8 +41,14 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
                 <option value='bard'>bard</option>
               </select>
             </FlexContainer>
-
-            <WeaponPreview weapon={weapon} />
+            <div>
+              <WeaponPreview weapon={weapon} />
+            </div>
+            <FlexContainer $direction='column'>
+              {character.armor.map((armor) => (
+                <ArmorPreview armor={armor} />
+              ))}
+            </FlexContainer>
           </FlexContainer>
         </BoxContainer>
         <FullContainer />

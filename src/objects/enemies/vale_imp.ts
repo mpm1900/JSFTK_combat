@@ -27,6 +27,7 @@ export const VALE_IMP = (): CharacterT => {
       damageModifier: 0,
       damageOffset: 0,
       damageReflection: 0,
+      weaknessModifier: 0,
     },
     traits: [],
     tags: [

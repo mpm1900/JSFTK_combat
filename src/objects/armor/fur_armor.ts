@@ -17,7 +17,6 @@ export const FUR_ARMOR: ArmorT = {
         healthRegen: 2,
         vigor: 4,
       },
-      damage: 0,
     },
   ],
   skills: [],

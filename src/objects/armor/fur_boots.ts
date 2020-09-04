@@ -16,7 +16,6 @@ export const FUR_BOOTS: ArmorT = {
         healthRegen: 1,
         vigor: 4,
       },
-      damage: 0,
     },
   ],
   skills: [],

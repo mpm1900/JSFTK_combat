@@ -14,7 +14,6 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     committedTraits: [
       {
         duration: STATUS_DURATION,
-        damage: 0,
         stats: {
           ...ZERO_STATS,
           healthOffset: -10,
@@ -32,7 +31,6 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     committedTraits: [
       {
         duration: STATUS_DURATION,
-        damage: 0,
         stats: {
           ...ZERO_STATS,
           healthOffset: -10,
@@ -48,10 +46,10 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     traits: [
       {
         duration: STATUS_DURATION,
-        damage: 0,
         stats: {
           ...ZERO_STATS,
-          damageModifier: 0.25,
+          // TODO we need a new stat for taking more damage
+          //damageModifier: 0.25,
         },
       },
     ],
@@ -66,7 +64,6 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     traits: [
       {
         duration: STATUS_DURATION,
-        damage: 0,
         stats: {
           ...ZERO_STATS,
           strength: -5,
@@ -80,7 +77,6 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     committedTraits: [
       {
         duration: STATUS_DURATION,
-        damage: 0,
         stats: {
           ...ZERO_STATS,
           healthOffset: -5,

@@ -17,7 +17,6 @@ export const EXPLORERS_CLOAK: ArmorT = {
         perception: 3,
         talent: -3,
       },
-      damage: 0,
     },
   ],
   skills: [],

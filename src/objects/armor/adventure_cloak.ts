@@ -16,7 +16,6 @@ export const ADVENTURE_CLOAK: ArmorT = {
         perception: 4,
         talent: -3,
       },
-      damage: 0,
     },
   ],
   skills: [],

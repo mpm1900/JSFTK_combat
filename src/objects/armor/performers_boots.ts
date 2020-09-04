@@ -17,7 +17,6 @@ export const PERFORMERS_BOOTS: ArmorT = {
         talent: 3,
         luck: 3,
       },
-      damage: 0,
     },
   ],
   skills: [],

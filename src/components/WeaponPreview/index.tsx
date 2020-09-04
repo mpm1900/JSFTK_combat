@@ -10,6 +10,7 @@ import {
   DAMAGE_BONUS_KEYS,
   STAT_BONUS_KEYS,
 } from '../../objects/Stats'
+import { StatsPreview } from '../StatsPreview'
 
 export const getDamageColor = (weapon: ProcessedWeaponT) => {
   if (weapon.damage.type === 'physical') return 'lightblue'
@@ -42,7 +43,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
         <span style={{ color: 'rgba(255,255,255,0.3)' }}>{weapon.rarity}</span>
         <BoxContainer substyle={{ background: '#111' }}>
           <FlexContainer $direction='column'>
-            <FlexContainer style={{ lineHeight: '24px' }}>
+            <FlexContainer style={{ lineHeight: '24px', marginBottom: 4 }}>
               <span
                 style={{
                   color: getDamageColor(weapon),
@@ -62,54 +63,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
                 (skill, i) => `${i > 0 ? ', ' : ''}${skill.name}`,
               )}
             </span>
-            <FlexContainer $direction='column' style={{ fontSize: 14 }}>
-              {DEFENSE_BONUS_KEYS.map(
-                (key) =>
-                  combinedTrait.stats[key] > 0 && (
-                    <span style={{ textTransform: 'capitalize' }}>
-                      +{combinedTrait.stats[key]}
-                      {STAT_KEY_LABELS[key]}
-                    </span>
-                  ),
-              )}
-              {DAMAGE_BONUS_KEYS.map(
-                (key) =>
-                  combinedTrait.stats[key] > 0 && (
-                    <span style={{ textTransform: 'capitalize' }}>
-                      +{combinedTrait.stats[key]}
-                      {STAT_KEY_LABELS[key]}
-                    </span>
-                  ),
-              )}
-              {STAT_BONUS_KEYS.map(
-                (key) =>
-                  combinedTrait.stats[key] > 0 && (
-                    <span
-                      style={{
-                        textTransform: 'capitalize',
-                        color: 'lightblue',
-                      }}
-                    >
-                      +{combinedTrait.stats[key]}
-                      {STAT_KEY_LABELS[key]}
-                    </span>
-                  ),
-              )}
-              {STAT_BONUS_KEYS.map(
-                (key) =>
-                  combinedTrait.stats[key] < 0 && (
-                    <span
-                      style={{
-                        textTransform: 'capitalize',
-                        color: 'lightcoral',
-                      }}
-                    >
-                      {combinedTrait.stats[key]}
-                      {STAT_KEY_LABELS[key]}
-                    </span>
-                  ),
-              )}
-            </FlexContainer>
+            <StatsPreview stats={combinedTrait.stats} />
           </FlexContainer>
         </BoxContainer>
       </FlexContainer>

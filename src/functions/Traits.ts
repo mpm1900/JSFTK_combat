@@ -5,7 +5,6 @@ import { ZERO_TRAIT } from '../objects'
 export const combineTraits = (...traits: TraitT[]): TraitT => {
   return traits.reduce(
     (p, c) => ({
-      damage: p.damage + c.damage,
       stats: combineStats(p.stats, c.stats),
       duration: -1,
     }),

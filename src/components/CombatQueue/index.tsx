@@ -52,7 +52,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
       >
         <FlexContainer $full>
           <Button
-            style={{ margin: 10 }}
+            style={{ margin: 8 }}
             onClick={() => history.push('/JSFTK_combat/party')}
           >
             Edit Party
