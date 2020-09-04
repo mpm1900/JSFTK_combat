@@ -8,6 +8,8 @@ import { makeEntity } from './Entity'
 import { TIMBERWOLF } from '../objects/enemies/timberwolf'
 import { VALE_IMP } from '../objects/enemies/vale_imp'
 import { BEASTMAN } from '../objects/enemies/beastman'
+import { getRandom } from '../util'
+import { ALL_ENEMY_PARTY_COMBOS } from '../objects/Party'
 
 export const isParty = (e: EntityT) => e && (e as PartyT).isParty
 
@@ -25,7 +27,7 @@ export const makeParty = (characterCount: number = 0): PartyT => {
     ...makeEntity(),
     isParty: true,
     items: [],
-    characters: [TIMBERWOLF(), VALE_IMP(), BEASTMAN()],
+    characters: getRandom(ALL_ENEMY_PARTY_COMBOS),
   }
 }
 
