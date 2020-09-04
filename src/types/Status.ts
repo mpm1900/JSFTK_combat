@@ -16,7 +16,7 @@ export interface StatusT extends EntityT {
   description?: string
 }
 
-export type TagTypeT = 'targeted' | 'dazed' | 'evasive' | 'damage-reflection'
+export type TagTypeT = 'targeted' | 'dazed' | 'evasive'
 export interface CharacterTagT {
   type: TagTypeT
   duration: number

@@ -1,4 +1,6 @@
+import React from 'react'
 import { styled, withStyle } from 'styletron-react'
+import { animated, useSpring } from 'react-spring'
 
 export interface ButtonPropsT {
   $direction?: 'up' | 'down'
@@ -45,5 +47,37 @@ export const ConfirmButton = withStyle(Button, (props: ButtonPropsT) => {
       borderTop: $direction === 'down' ? 'none' : undefined,
       borderBottom: $direction === 'up' ? 'none' : undefined,
     },
+    animationDirection: '1s',
+    animationIterationCount: 'infinite',
+    animationName: `
+      from: {
+        background: 'rgba(255,255,255,0.4)',
+      },
+
+      to: {
+        background: 'rgba(255,255,255,1)',
+      },
+    `,
   }
 })
+
+export const ConfirmButton2 = (props: any) => {
+  const styles = useSpring({
+    from: {
+      border: '1px solid rgba(255,255,255,0)',
+    },
+    to: async (next: any) => {
+      while (1) {
+        await next({
+          border: '1px solid rgba(255,255,255,0)',
+        })
+        await next({ border: '1px solid rgba(255,255,255,1)' })
+      }
+    },
+  })
+  return (
+    <animated.div style={styles}>
+      <ConfirmButton style={{ border: 'none' }}>{props.children}</ConfirmButton>
+    </animated.div>
+  )
+}

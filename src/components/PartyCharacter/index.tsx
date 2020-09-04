@@ -229,7 +229,9 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           style: { fontSize: 24 },
         }}
       >
-        <span>{character.weapon.damage.damage}</span>
+        <span>
+          {character.weapon.damage.damage + character.stats.damageModifier}
+        </span>
       </HoverBadge>
     </Wrapper>
   )

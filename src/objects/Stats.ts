@@ -6,18 +6,21 @@ export const ZERO_STATS: StatsT = {
   intelligence: 0,
   perception: 0,
   talent: 0,
-
   agility: 0,
   luck: 0,
+
   armor: 0,
   resistance: 0,
   evasion: 0,
+  healthRegen: 0,
 
   healthOffset: 0,
   health: 0,
-  healthRegen: 0,
+
   criticalChance: 0,
   damageModifier: 0,
+  damageOffset: 0,
+  damageReflection: 0,
 }
 
 export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
@@ -37,6 +40,8 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     healthRegen: 0,
     criticalChance: 5,
     damageModifier: 0,
+    damageOffset: 0,
+    damageReflection: 0,
   },
   hunter: {
     strength: 52,
@@ -54,6 +59,8 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     healthRegen: 0,
     criticalChance: 5,
     damageModifier: 0,
+    damageOffset: 0,
+    damageReflection: 0,
   },
   scholar: {
     strength: 42,
@@ -71,6 +78,8 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     healthRegen: 0,
     criticalChance: 5,
     damageModifier: 0,
+    damageOffset: 0,
+    damageReflection: 0,
   },
   bard: {
     strength: 44,
@@ -88,6 +97,51 @@ export const CLASS_STARTING_STATS: Record<CharacterClassT, StatsT> = {
     healthRegen: 0,
     criticalChance: 5,
     damageModifier: 0,
+    damageOffset: 0,
+    damageReflection: 0,
   },
   enemy: ZERO_STATS,
+}
+
+export const DAMAGE_BONUS_KEYS: (keyof StatsT)[] = [
+  'damageOffset',
+  'damageModifier',
+  'criticalChance',
+]
+export const DEFENSE_BONUS_KEYS: (keyof StatsT)[] = [
+  'armor',
+  'resistance',
+  'evasion',
+  'healthRegen',
+  'damageReflection',
+]
+export const HEALTH_FOCUS_BONUS_KEYS: (keyof StatsT)[] = ['health']
+export const STAT_BONUS_KEYS: (keyof StatsT)[] = [
+  'vigor',
+  'strength',
+  'intelligence',
+  'perception',
+  'talent',
+  'luck',
+  'agility',
+]
+
+export const STAT_KEY_LABELS: Record<keyof StatsT, string> = {
+  strength: ' Strength',
+  vigor: ' Vigor',
+  intelligence: ' Intelligence',
+  perception: ' Perception',
+  talent: ' Talent',
+  agility: ' Agility',
+  luck: ' Luck',
+  armor: ' Armor',
+  resistance: ' Resistance',
+  evasion: ' Evasion',
+  healthOffset: ' ERROR!',
+  health: ' Health',
+  healthRegen: ' Health Regen',
+  criticalChance: '% Crit Chance',
+  damageOffset: ' Raw Damage',
+  damageModifier: '% Attack Damage',
+  damageReflection: ' Damage Reflection',
 }

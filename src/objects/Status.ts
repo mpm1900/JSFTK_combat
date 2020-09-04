@@ -109,10 +109,4 @@ export const TAG_EFFECTS: Record<TagTypeT, TagT> = {
     damageModifier: 0,
     description: 'Non-perfect attacks will miss when targeting this character.',
   },
-  'damage-reflection': {
-    type: 'damage-reflection',
-    duration: 5,
-    damageModifier: 0.1,
-    description: 'Some damage will be reflected back on melee attacks.',
-  },
 }

@@ -25,6 +25,8 @@ export const TIMBERWOLF = (): CharacterT => {
       healthRegen: 0,
       criticalChance: 5,
       damageModifier: 0,
+      damageOffset: 0,
+      damageReflection: 0,
     },
     traits: [],
     tags: [],

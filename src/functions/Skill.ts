@@ -113,11 +113,10 @@ export const getTargetSkillResult = (
         ? 0
         : noneg(Math.round(sourceResult.rawDamage.damage - damageResistances)),
     }
-    const reflectedDamage = getReflectedDamage(
-      totalDamage,
-      sourceResult.source,
-      target,
-    )
+    const reflectedDamage = {
+      damage: sourceResult.source.stats.damageReflection,
+      type: sourceResult.rawDamage.type,
+    }
     const healthRegenMaximum =
       sourceResult.source.stats.healthOffset + reflectedDamage.damage
     const regeneratedHealth =
@@ -196,8 +195,8 @@ export const getSkillDamage = (
   const rawDamage: DamageT = {
     type: source.weapon.damage.type,
     damage:
-      source.weapon.damage.damage *
-      (1 + skill.damageModifier + source.stats.damageModifier),
+      (source.weapon.damage.damage + source.stats.damageOffset) *
+      (1 + skill.damageModifier + source.stats.damageModifier / 100),
   }
   const damageResistances = target
     ? getDamageResistance(target, rawDamage.type)
@@ -205,27 +204,6 @@ export const getSkillDamage = (
   return {
     type: rawDamage.type,
     damage: noneg(Math.round(rawDamage.damage - damageResistances)),
-  }
-}
-
-export const getReflectedDamage = (
-  rawDamage: DamageT,
-  source: ProcessedCharacterT,
-  target: ProcessedCharacterT,
-): DamageT => {
-  const damageReflectTag = findTag(target, 'damage-reflection') as TagT
-  if (damageReflectTag && source.weapon.attackType === 'melee') {
-    return {
-      ...rawDamage,
-      damage: damageReflectTag.damageModifier
-        ? Math.round(rawDamage.damage * damageReflectTag.damageModifier)
-        : Math.round(rawDamage.damage * 0.1),
-    }
-  } else {
-    return {
-      ...rawDamage,
-      damage: 0,
-    }
   }
 }
 

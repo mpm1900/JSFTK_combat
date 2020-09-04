@@ -48,7 +48,6 @@ export const TAG_ICONS: Record<TagTypeT, string> = {
   dazed: Dazed,
   targeted: Targeted,
   evasive: Evasive,
-  ['damage-reflection']: DamageReflection,
 }
 
 export const SKILL_ICONS: Record<string, string> = {

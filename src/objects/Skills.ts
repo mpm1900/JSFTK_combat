@@ -11,5 +11,4 @@ export const PERFECT_DISPLAY_INFO: Record<PerfectKeyT, string> = {
   targeted: 'Taunt Enemies',
   dazed: 'Daze',
   evasive: 'Become Evasive',
-  'damage-reflection': 'Damage Refelction',
 }

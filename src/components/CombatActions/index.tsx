@@ -24,45 +24,47 @@ export const CombatActions = () => {
     <FlexContainer $direction='column' style={{ minWidth: 340 }}>
       {selectedSkill && <SkillChecks skill={selectedSkill} />}
       <FlexContainer style={{ justifyContent: 'center' }}>
-        {activeCharacter.skills.map((skill) =>
-          SKILL_ICONS[skill.id] ? (
-            <Hover delay={0}>
-              {({ isHovering }) => (
-                <Icon
-                  src={SKILL_ICONS[skill.id]}
-                  size={42}
-                  shadow={true}
-                  style={{
-                    cursor: 'pointer',
-                    padding: '0 12px',
-                  }}
-                  onClick={() => onSkillSelect(skill)}
-                  fill={
-                    skill.id === selectedSkill?.id
-                      ? 'lightsalmon'
-                      : isHovering
+        {activeCharacter.skills.map((skill) => (
+          <React.Fragment key={skill.id}>
+            {SKILL_ICONS[skill.id] ? (
+              <Hover delay={0}>
+                {({ isHovering }) => (
+                  <Icon
+                    src={SKILL_ICONS[skill.id]}
+                    size={42}
+                    shadow={true}
+                    style={{
+                      cursor: 'pointer',
+                      padding: '0 12px',
+                    }}
+                    onClick={() => onSkillSelect(skill)}
+                    fill={
+                      skill.id === selectedSkill?.id
+                        ? 'lightsalmon'
+                        : isHovering
+                        ? 'white'
+                        : 'rgba(255,255,255,0.8)'
+                    }
+                  />
+                )}
+              </Hover>
+            ) : (
+              <Button
+                key={skill.id}
+                onClick={() => onSkillSelect(skill)}
+                style={{
+                  background: '#111',
+                  borderColor:
+                    selectedSkill && skill.id === selectedSkill.id
                       ? 'white'
-                      : 'rgba(255,255,255,0.8)'
-                  }
-                />
-              )}
-            </Hover>
-          ) : (
-            <Button
-              key={skill.id}
-              onClick={() => onSkillSelect(skill)}
-              style={{
-                background: '#111',
-                borderColor:
-                  selectedSkill && skill.id === selectedSkill.id
-                    ? 'white'
-                    : undefined,
-              }}
-            >
-              {skill.name}
-            </Button>
-          ),
-        )}
+                      : undefined,
+                }}
+              >
+                {skill.name}
+              </Button>
+            )}
+          </React.Fragment>
+        ))}
       </FlexContainer>
       {selectedSkill && (
         <SkillPreview

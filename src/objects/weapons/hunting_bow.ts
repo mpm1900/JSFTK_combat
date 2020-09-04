@@ -5,7 +5,7 @@ import { SHOT } from '../skills/shot'
 import { SNIPE_SHOT } from '../skills/snipe_shot'
 
 export const HUNTING_BOW: WeaponT = {
-  ...makeEntity(`Blacksmith's Hammer`),
+  ...makeEntity(`Hunting Bow`),
   type: 'bow',
   rarity: 'common',
   twoHand: true,

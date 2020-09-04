@@ -15,4 +15,6 @@ export interface StatsT {
   healthRegen: number
   criticalChance: number
   damageModifier: number
+  damageOffset: number
+  damageReflection: number
 }

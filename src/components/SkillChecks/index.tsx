@@ -28,27 +28,29 @@ export const SkillChecks = (props: SkillChecksPropsT) => {
 
 export interface SkillCheckT {
   check: CheckKVT
+  size?: number
+  padding?: number
 }
 export const SkillCheck = (props: SkillCheckT) => {
-  const { check } = props
+  const { check, size = 36, padding = 12 } = props
   return (
     <div
       style={{
-        padding: '0px 12px',
+        padding: `0px ${padding}px`,
         opacity: check.result === undefined ? 0.5 : 1,
       }}
     >
-      <Badge $absolute={false} $size={36}>
+      <Badge $absolute={false} $size={size}>
         <Icon
           src={STATI_ICONS[(check.label as keyof StatsT) || 'strength'] || ''}
           fill={getColor(check.result)}
-          size={32}
+          size={size - 4}
         />
         {check.result === false && (
           <Icon
             src={X}
             fill={'lightcoral'}
-            size={32}
+            size={size - 4}
             style={{ position: 'absolute', top: 0 }}
           />
         )}
