@@ -19,7 +19,6 @@ export const ArmorPreview = (props: ArmorPreviewPropsT) => {
   const from = Color(rarityColor).darken(0.5).rgb().toString()
   const to = Color(rarityColor).darken(0.7).rgb().toString()
   const gradient = `linear-gradient(180deg, ${from} 0%, ${to} 100%)`
-  console.log(gradient)
   return (
     <BoxContainer style={{ width: 200 }} substyle={{ background: gradient }}>
       <FlexContainer $direction='column'>
@@ -28,24 +27,27 @@ export const ArmorPreview = (props: ArmorPreviewPropsT) => {
             src={ARMOR_TYPE_ICONS[armor.type]}
             size={32}
             style={{ marginRight: 10 }}
+            shadow
           />
           <FlexContainer
             $direction='column'
-            style={{ textShadow: '2px 2px 2px rgba(0,0,0,0.5)' }}
+            style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}
           >
             <span style={{ fontWeight: 600 }}>{armor.name}</span>
-            <span style={{ color: 'rgba(255,255,255,0.5)' }}>
+            <span style={{ color: 'rgba(255,255,255,0.6)' }}>
               {armor.rarity}
             </span>
           </FlexContainer>
         </FlexContainer>
         <BoxContainer substyle={{ background: 'rgba(0,0,0,0.7)' }}>
           <FlexContainer $direction='column'>
-            <span style={{ color: 'plum', marginBottom: 8 }}>
-              {armor.skills.map(
-                (skill, i) => `${i > 0 ? ', ' : ''}${skill.name}`,
-              )}
-            </span>
+            {armor.skills.length > 0 && (
+              <span style={{ color: 'plum', marginBottom: 8 }}>
+                {armor.skills.map(
+                  (skill, i) => `${i > 0 ? ', ' : ''}${skill.name}`,
+                )}
+              </span>
+            )}
             <StatsPreview stats={combinedTrait.stats} />
           </FlexContainer>
         </BoxContainer>
