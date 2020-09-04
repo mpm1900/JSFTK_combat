@@ -33,8 +33,12 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
             ))}
           </FlexContainer>
         )}
-        <strong>{weapon.name}</strong>
-        <span style={{ color: 'rgba(255,255,255,0.3)' }}>{weapon.rarity}</span>
+        <FlexContainer $direction='column' style={{ margin: '8px 0' }}>
+          <strong>{weapon.name}</strong>
+          <span style={{ color: 'rgba(255,255,255,0.3)' }}>
+            {weapon.rarity}
+          </span>
+        </FlexContainer>
         <BoxContainer substyle={{ background: '#111' }}>
           <FlexContainer $direction='column'>
             <FlexContainer style={{ lineHeight: '24px', marginBottom: 4 }}>

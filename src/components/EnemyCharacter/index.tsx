@@ -7,6 +7,9 @@ import { Badge, HoverBadge } from '../../elements/badge'
 import { BoxContainer } from '../../elements/box'
 import { TagPreview } from '../TagPreview'
 import { CharacterImage } from '../CharacterImage'
+import { usePrevious } from '../../hooks/usePrevious'
+import { Spring } from 'react-spring/renderprops'
+import { noneg } from '../../util'
 
 export interface EnemyCharacterPropsT {
   character: ProcessedCharacterT
@@ -27,7 +30,8 @@ const Wrapper = styled('div', (props: any) => {
 })
 export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
   const { character, activeCharacter, onClick } = props
-  const health = character.health - character.stats.healthOffset
+  const health = noneg(character.health - character.stats.healthOffset)
+  const previousHealth = usePrevious<number>(health)
   return (
     <div
       onClick={() => (onClick && !character.dead ? onClick() : null)}
@@ -135,7 +139,9 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             color: '#b55553',
           }}
         >
-          {health > 0 ? health : 0}
+          <Spring from={{ hp: previousHealth || health }} to={{ hp: health }}>
+            {(hpp) => <span>{Math.floor(hpp.hp)}</span>}
+          </Spring>
         </span>
       </FlexContainer>
     </div>
