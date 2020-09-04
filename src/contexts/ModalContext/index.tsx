@@ -90,6 +90,7 @@ export const ModalContextProvider = (props: ModalContextProviderPropsT) => {
           },
           overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 900,
             ...state.styles.overlay,
           },
         }}
