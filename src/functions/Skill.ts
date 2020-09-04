@@ -16,6 +16,7 @@ import { isParty } from './Party'
 import { noneg } from '../util'
 import { PerfectKeyT, PERFECT_DISPLAY_INFO } from '../objects/Skills'
 import { getSplashDamage } from './Damage'
+import { PLAYER_PARTY_ID } from '../objects/Party'
 
 export const getSkillsFromObjects = (parents: HasSkillsT[]) => {
   return parents.reduce((p, c) => {
@@ -104,9 +105,11 @@ export const getTargetSkillResult = (
       ? 0
       : getDamageResistance(target, sourceResult.rawDamage.type)
     const isEvasive = hasTag(target, 'evasive')
-    const dodgeSuccess = sourceResult.criticalSuccess
-      ? false
-      : dodgeResult.result || (isEvasive && !sourceResult.perfect)
+    const dodgeSuccess =
+      sourceResult.criticalSuccess ||
+      (sourceResult.perfect && sourceResult.source.partyId === PLAYER_PARTY_ID)
+        ? false
+        : dodgeResult.result || (isEvasive && !sourceResult.perfect)
     const totalDamage = {
       type: sourceResult.rawDamage.type,
       damage: dodgeSuccess
