@@ -12,6 +12,11 @@ export interface StatsPreviewPropsT {
   stats: StatsT
 }
 
+const defense_key_colors: any = {
+  armor: 'lightblue',
+  resistance: 'plum',
+}
+
 export const StatsPreview = (props: StatsPreviewPropsT) => {
   const { stats } = props
   return (
@@ -19,7 +24,12 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
       {DEFENSE_BONUS_KEYS.map(
         (key) =>
           stats[key] > 0 && (
-            <span style={{ textTransform: 'capitalize' }}>
+            <span
+              style={{
+                textTransform: 'capitalize',
+                color: defense_key_colors[key],
+              }}
+            >
               +{stats[key]}
               {STAT_KEY_LABELS[key]}
             </span>
@@ -40,7 +50,7 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
             <span
               style={{
                 textTransform: 'capitalize',
-                color: 'lightblue',
+                color: 'lightgreen',
               }}
             >
               +{stats[key]}
