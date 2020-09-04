@@ -52,12 +52,16 @@ export const Party = () => {
             <FlexContainer $direction='column'>
               {party.items
                 .filter((i) => i.itemType === 'armor')
+                .sort((a, b) => a.name.localeCompare(b.name))
                 .map((item) => (
                   <ArmorPreview
                     armor={item as ArmorT}
-                    showEquipButton={true}
+                    showEquipButton={
+                      ((item as ArmorT).resource === 'offhand' &&
+                        !activeCharacter.weapon.twoHand) ||
+                      (item as ArmorT).resource !== 'offhand'
+                    }
                     onEquipClick={() => {
-                      console.log('equp')
                       const rc = findRawCharacter(activeCharacter.id)
                       if (rc) {
                         const result = equipArmor(rc, item as ArmorT)
