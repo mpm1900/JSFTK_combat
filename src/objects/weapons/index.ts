@@ -4,11 +4,6 @@ import { HUNTING_BOW } from './hunting_bow'
 import { SCHOLARS_BOOK } from './scholars_book'
 import { SIMPLE_LUTE } from './simple_lute'
 import { DUSTY_BOOK } from './dusty_book'
+import { BARBAT } from './barbat'
 
-export const ALL_WEAPONS: WeaponT[] = [
-  BLACKSMITHS_HAMMER,
-  HUNTING_BOW,
-  SCHOLARS_BOOK,
-  DUSTY_BOOK,
-  SIMPLE_LUTE,
-]
+export const ALL_WEAPONS: WeaponT[] = [DUSTY_BOOK, BARBAT]

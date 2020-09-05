@@ -13,4 +13,5 @@ export const PERFECT_DISPLAY_INFO: Record<PerfectKeyT, string> = {
   evasive: 'Become Evasive',
   heal: 'Heal',
   protected: 'Protect',
+  ['speed-down']: 'Speed Down',
 }

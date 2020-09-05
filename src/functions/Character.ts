@@ -45,9 +45,11 @@ export const getStatusEffects = (character: CharacterT): StatusT[] => {
 
 export const getTraits = (character: CharacterT): TraitT[] => {
   checkForProcessedCharacter(character)
+  const statusEffects = getStatusEffects(character)
   const ret = [
     ...character.traits,
     ...character.weapon.traits,
+    ...getTraitsFromObjects(statusEffects),
     ...getTraitsFromObjects(character.armor),
     ...getTraitsFromObjects(getStatusEffects(character)),
   ]

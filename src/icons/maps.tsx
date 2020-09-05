@@ -12,6 +12,7 @@ import Accuracy from './svg/delapouite/convergence-target.svg'
 import Dazed from './svg/lorc/star-swirl.svg'
 import Targeted from './svg/sbed/targeted.svg'
 import Evasive from './svg/lorc/dodging.svg'
+import SpeedDown from './svg/delapouite/sticky-boot.svg'
 
 import Shot from './svg/lorc/high-shot.svg'
 import SnipeShot from './svg/delapouite/shield-impact.svg'
@@ -32,6 +33,7 @@ import { SMASH } from '../objects/skills/smash'
 import { SHOCKWAVE } from '../objects/skills/shockwave'
 import { TAUNT } from '../objects/skills/taunt'
 import { ALTO } from '../objects/skills/alto'
+import { SYMPHONY } from '../objects/skills/symphony'
 
 import MagicArmor from './svg/lorc/robe.svg'
 import ClothArmor from './svg/lorc/scale-mail.svg'
@@ -46,6 +48,7 @@ import Helmet from './svg/lorc/visored-helm.svg'
 import Godsbeard from './svg/delapouite/herbs-bundle.svg'
 import { GODSBEARD } from '../objects/consumables/godsbeard'
 import { PROTECT } from '../objects/skills/protect'
+import { RITARDANDO } from '../objects/skills/ritardando'
 
 export const STATI_ICONS: Partial<Record<keyof StatsT | 'accuracy', string>> = {
   vigor: Vigor,
@@ -63,6 +66,7 @@ export const STATUS_ICONS: Partial<Record<StatusTypeT, string>> = {
   targeted: Targeted,
   evasive: Evasive,
   protected: Protect,
+  ['speed-down']: SpeedDown,
 }
 
 export const SKILL_ICONS: Record<string, string> = {
@@ -70,11 +74,13 @@ export const SKILL_ICONS: Record<string, string> = {
   [SNIPE_SHOT.id]: SnipeShot,
   [SURGE.id]: Surge,
   [AREA_BLAST.id]: AreaBast,
+  [SYMPHONY.id]: AreaBast,
   [DAZZLE.id]: Dazzle,
   [SMASH.id]: Smash,
   [SHOCKWAVE.id]: Shockwave,
   [TAUNT.id]: Taunt,
   [ALTO.id]: Alto,
+  [RITARDANDO.id]: Alto,
   [PROTECT.id]: Protect,
 }
 

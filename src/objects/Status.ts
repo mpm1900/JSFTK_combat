@@ -123,4 +123,22 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     canStack: false,
     description: 'Negate the next damage that targets this character.',
   },
+  ['speed-down']: {
+    ...makeEntity('Speed Down'),
+    type: 'speed-down',
+    duration: 5,
+    traits: [
+      {
+        duration: 5,
+        stats: {
+          ...ZERO_STATS,
+          agility: -20,
+        },
+      },
+    ],
+    committedTraits: [],
+    commitChance: 100,
+    canStack: false,
+    description: '-20 to Speed.',
+  },
 }
