@@ -9,6 +9,7 @@ export interface ClickToolTipChildrenT {
 }
 interface PropsT extends TooltipProps {
   children: JSX.Element | ((props: ClickToolTipChildrenT) => JSX.Element)
+  content: JSX.Element | ((props: ClickToolTipChildrenT) => JSX.Element)
 }
 export const Tooltip = (props: PropsT) => {
   const { ...rest } = props
@@ -32,21 +33,23 @@ export const HoverToolTip = (props: PropsT) => {
 }
 
 export const ClickToolTip = (props: PropsT) => {
-  const { children, ...rest } = props
+  const { children, content, ...rest } = props
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const ref = useRef<HTMLElement>()
   useOnClickOutside(ref, () => {
     setIsOpen(false)
   })
   if (typeof children !== 'function') return null
+  if (typeof content !== 'function') return null
+  const p = {
+    onClick: () => {
+      setIsOpen((v) => !v)
+    },
+    ref,
+  }
   return (
-    <Tooltip {...rest} isOpen={isOpen}>
-      {children({
-        onClick: () => {
-          setIsOpen(true)
-        },
-        ref,
-      })}
+    <Tooltip content={content(p)} {...rest} isOpen={isOpen}>
+      {children(p)}
     </Tooltip>
   )
 }

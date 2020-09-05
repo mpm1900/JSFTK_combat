@@ -17,6 +17,10 @@ import { PartyCharacterConsumables } from '../PartyCharacterConsumables'
 import { Spring } from 'react-spring/renderprops'
 import { noneg } from '../../util'
 import { usePrevious } from '../../hooks/usePrevious'
+import { HoverToolTip, ClickToolTip } from '../Tooltip'
+import { PartyActiveCharacter } from '../PartyActiveCharacter'
+import { usePartyContext } from '../../contexts/PartyContext'
+import { Hover } from '../Hover'
 
 const ResourceE = withStyle(Monodiv, (props: any) => ({
   height: 15,
@@ -37,6 +41,7 @@ export interface PartyCharacterProps {
   hoverable?: boolean
   selected?: boolean
   isHovering?: boolean
+  canEquip?: boolean
   onClick?: () => void
   onConsumableClick?: (consumable: ConsumableT, index: number) => void
 }
@@ -89,9 +94,11 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
     hoverable,
     selected,
     isHovering,
+    canEquip = false,
     onClick,
     onConsumableClick,
   } = props
+  const { party, equipItem } = usePartyContext()
   const health = noneg(character.health - character.stats.healthOffset)
   const previousHealth = usePrevious<number>(health)
   return (
@@ -167,13 +174,38 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               <FlexContainer $direction='column'>
                 <FullContainer />
                 <FlexContainer>
-                  <Icon
-                    src={Inventory}
-                    fill={'rgba(255,255,255,0.7)'}
-                    size={18}
-                    shadow
-                    style={{ padding: 6, cursor: 'pointer' }}
-                  />
+                  <ClickToolTip
+                    distance={80}
+                    content={({ onClick }) => (
+                      <PartyActiveCharacter
+                        character={character}
+                        party={party}
+                        equipItem={equipItem}
+                        canEquip={canEquip}
+                        onRequestClose={onClick}
+                      />
+                    )}
+                  >
+                    {({ onClick, ref }) => (
+                      <div onClick={onClick}>
+                        <Hover delay={0}>
+                          {({ isHovering }) => (
+                            <Icon
+                              src={Inventory}
+                              fill={
+                                isHovering
+                                  ? 'rgba(255,255,255,1)'
+                                  : 'rgba(255,255,255,0.7)'
+                              }
+                              size={18}
+                              shadow
+                              style={{ padding: 6, cursor: 'pointer' }}
+                            />
+                          )}
+                        </Hover>
+                      </div>
+                    )}
+                  </ClickToolTip>
                   <Icon
                     src={Details}
                     fill={'rgba(255,255,255,0.7)'}

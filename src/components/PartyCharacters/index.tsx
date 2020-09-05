@@ -6,6 +6,7 @@ import { PartyCharacter } from '../PartyCharacter'
 export interface PartyCharactersProps {
   party: ProcessedPartyT
   activeCharacter: ProcessedCharacterT
+  canEquip: boolean
   onCharacterClick: (character: ProcessedCharacterT) => void
   onConsumableClick: (
     character: ProcessedCharacterT,
@@ -13,7 +14,13 @@ export interface PartyCharactersProps {
   ) => void
 }
 export const PartyCharacters = (props: PartyCharactersProps) => {
-  const { party, activeCharacter, onCharacterClick, onConsumableClick } = props
+  const {
+    party,
+    activeCharacter,
+    canEquip,
+    onCharacterClick,
+    onConsumableClick,
+  } = props
 
   return (
     <FlexContainer $direction='column'>
@@ -26,6 +33,7 @@ export const PartyCharacters = (props: PartyCharactersProps) => {
         {party.characters.map((c) => (
           <div key={c.id}>
             <PartyCharacter
+              canEquip={canEquip}
               hoverable={true}
               activeCharacter={activeCharacter}
               character={c}

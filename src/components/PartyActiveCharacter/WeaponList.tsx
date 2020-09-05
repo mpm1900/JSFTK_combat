@@ -8,8 +8,6 @@ import {
   ProcessedCharacterT,
 } from '../../types'
 import { withStyle } from 'styletron-react'
-import { Icon } from '../Icon'
-import { ARMOR_TYPE_ICONS } from '../../icons/maps'
 import { ITEM_RARITY_COLORS } from '../../objects/Item'
 import { ClickToolTip } from '../Tooltip'
 import { Button } from '../../elements/button'
@@ -17,7 +15,9 @@ import { Button } from '../../elements/button'
 export interface WeaponListPropsT {
   party: ProcessedPartyT
   character: ProcessedCharacterT
+  canEquip: boolean
   equipItem: (characterId: string, item: WeaponT | ArmorT) => void
+  setActiveItem: (item: WeaponT | ArmorT) => void
 }
 
 const WeaponItem = withStyle(FlexContainer, (props: any) => {
@@ -37,7 +37,7 @@ const WeaponItem = withStyle(FlexContainer, (props: any) => {
 })
 
 export const WeaponList = (props: WeaponListPropsT) => {
-  const { party, character, equipItem } = props
+  const { party, character, canEquip, equipItem, setActiveItem } = props
   const [activeItemId, setActiveItemId] = useState<string | undefined>()
 
   return (
@@ -49,22 +49,27 @@ export const WeaponList = (props: WeaponListPropsT) => {
         .map((weapon) => (
           <ClickToolTip
             direction='down'
-            content={
-              <BoxContainer substyle={{ padding: 4 }}>
-                <Button
-                  onClick={() => {
-                    equipItem(character.id, weapon)
-                    setActiveItemId(undefined)
-                  }}
-                >
-                  Equip
-                </Button>
-              </BoxContainer>
-            }
+            content={() => (
+              <>
+                {canEquip && (
+                  <BoxContainer substyle={{ padding: 4 }}>
+                    <Button
+                      onClick={() => {
+                        equipItem(character.id, weapon)
+                        setActiveItemId(undefined)
+                      }}
+                    >
+                      Equip
+                    </Button>
+                  </BoxContainer>
+                )}
+              </>
+            )}
           >
             {({ onClick, ref }) => (
               <WeaponItem
                 $active={weapon.id === activeItemId}
+                onMouseEnter={() => setActiveItem(weapon)}
                 ref={ref}
                 onClick={(e: MouseEvent) => {
                   e.stopPropagation()

@@ -17,7 +17,9 @@ import { Button } from '../../elements/button'
 export interface ArmorListPropsT {
   party: ProcessedPartyT
   character: ProcessedCharacterT
+  canEquip: boolean
   equipItem: (characterId: string, item: WeaponT | ArmorT) => void
+  setActiveItem: (item: WeaponT | ArmorT) => void
 }
 
 const ArmorItem = withStyle(FlexContainer, (props: any) => {
@@ -37,7 +39,7 @@ const ArmorItem = withStyle(FlexContainer, (props: any) => {
 })
 
 export const ArmorList = (props: ArmorListPropsT) => {
-  const { party, character, equipItem } = props
+  const { party, character, canEquip, equipItem, setActiveItem } = props
   const [activeItemId, setActiveItemId] = useState<string | undefined>()
 
   return (
@@ -49,22 +51,27 @@ export const ArmorList = (props: ArmorListPropsT) => {
         .map((armor) => (
           <ClickToolTip
             direction='down'
-            content={
-              <BoxContainer substyle={{ padding: 4 }}>
-                <Button
-                  onClick={() => {
-                    equipItem(character.id, armor)
-                    setActiveItemId(undefined)
-                  }}
-                >
-                  Equip
-                </Button>
-              </BoxContainer>
-            }
+            content={() => (
+              <>
+                {canEquip && (
+                  <BoxContainer substyle={{ padding: 4 }}>
+                    <Button
+                      onClick={() => {
+                        equipItem(character.id, armor)
+                        setActiveItemId(undefined)
+                      }}
+                    >
+                      Equip
+                    </Button>
+                  </BoxContainer>
+                )}
+              </>
+            )}
           >
             {({ onClick, ref }) => (
               <ArmorItem
                 $active={armor.id === activeItemId}
+                onMouseEnter={() => setActiveItem(armor)}
                 ref={ref}
                 onClick={(e: MouseEvent) => {
                   e.stopPropagation()

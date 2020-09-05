@@ -22,7 +22,9 @@ export interface MenuOptionT {
   render: (
     character: ProcessedCharacterT,
     party: ProcessedPartyT,
+    canEquip: boolean,
     equipItem: (characterId: string, item: WeaponT | ArmorT) => void,
+    setActiveItem: (item: WeaponT | ArmorT) => void,
   ) => JSX.Element
 }
 export const ACTIVE_CHARACTER_MENU_KEYS: MenuOptionT[] = [
@@ -36,16 +38,28 @@ export const ACTIVE_CHARACTER_MENU_KEYS: MenuOptionT[] = [
     key: 'weapons',
     icon: Weapons,
     count: (c, p) => p.items.filter((i) => i.itemType === 'weapon').length,
-    render: (character, party, equipItem) => (
-      <WeaponList character={character} party={party} equipItem={equipItem} />
+    render: (character, party, canEquip, equipItem, setActiveItem) => (
+      <WeaponList
+        character={character}
+        party={party}
+        canEquip={canEquip}
+        equipItem={equipItem}
+        setActiveItem={setActiveItem}
+      />
     ),
   },
   {
     key: 'armor',
     icon: Armor,
     count: (c, p) => p.items.filter((i) => i.itemType === 'armor').length,
-    render: (character, party, equipItem) => (
-      <ArmorList character={character} party={party} equipItem={equipItem} />
+    render: (character, party, canEquip, equipItem, setActiveItem) => (
+      <ArmorList
+        character={character}
+        party={party}
+        canEquip={canEquip}
+        equipItem={equipItem}
+        setActiveItem={setActiveItem}
+      />
     ),
   },
   {

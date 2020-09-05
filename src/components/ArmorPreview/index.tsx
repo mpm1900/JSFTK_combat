@@ -52,7 +52,9 @@ export const ArmorPreview = (props: ArmorPreviewPropsT) => {
             </div>
           )}
         </FlexContainer>
-        <BoxContainer substyle={{ background: 'rgba(0,0,0,0.7)' }}>
+        <BoxContainer
+          substyle={{ background: 'rgba(0,0,0,0.7)', minHeight: 120 }}
+        >
           <FlexContainer $direction='column'>
             {armor.skills.length > 0 && (
               <span style={{ color: 'plum', marginBottom: 8 }}>

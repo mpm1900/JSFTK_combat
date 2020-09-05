@@ -40,59 +40,12 @@ export const Party = () => {
           <FullContainer />
         </BoxContainer>
       </FlexContainer>
-      <FlexContainer
-        $full
-        style={{ padding: 16, maxHeight: 'calc(100% - 270px)' }}
-      >
-        {/*
-        <BoxContainer
-          style={{ flex: 1 }}
-          substyle={{ overflow: 'auto', maxHeight: '100%', background: '#111' }}
-        >
-          <FlexContainer>
-            <FlexContainer $direction='column'>
-              {party.items
-                .filter((i) => i.itemType === 'armor')
-                .sort((a, b) => a.name.localeCompare(b.name))
-                .map((item) => (
-                  <ArmorPreview
-                    armor={item as ArmorT}
-                    showEquipButton={
-                      ((item as ArmorT).resource === 'offhand' &&
-                        !activeCharacter.weapon.twoHand) ||
-                      (item as ArmorT).resource !== 'offhand'
-                    }
-                    onEquipClick={() => {
-                      equipItem(activeCharacter.id, item)
-                    }}
-                  />
-                ))}
-            </FlexContainer>
-            <FlexContainer $direction='column'>
-              {party.items
-                .filter((i) => i.itemType === 'weapon')
-                .map((item) => (
-                  <WeaponPreview
-                    weapon={item as ProcessedWeaponT}
-                    showEquipButton={true}
-                    onEquipClick={() => {
-                      equipItem(activeCharacter.id, item)
-                    }}
-                  />
-                ))}
-            </FlexContainer>
-          </FlexContainer>
-                  </BoxContainer>*/}
-        <PartyActiveCharacter
-          party={party}
-          character={activeCharacter}
-          equipItem={equipItem}
-        />
-      </FlexContainer>
+      <FlexContainer $full></FlexContainer>
       <div style={{ marginBottom: 30 }}>
         <PartyCharacters
           party={party}
           activeCharacter={activeCharacter}
+          canEquip={true}
           onCharacterClick={(c) => setActiveCharacter(c)}
           onConsumableClick={(character, consumableIndex) => {
             const consumable = character.consumables[consumableIndex]
