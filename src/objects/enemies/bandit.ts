@@ -4,6 +4,8 @@ import { STAB } from '../skills/enemy/stab'
 import { EXPLORERS_BOOTS } from '../armor/explorers_boots'
 import { EXPLORERS_HAT } from '../armor/explorers_hat'
 import { EXPLORERS_CLOAK } from '../armor/explorers_cloak'
+import { getRandom } from '../../util'
+import { ALL_WEAPONS } from '../weapons'
 
 export const BANDIT = (): CharacterT => {
   return {
@@ -74,9 +76,15 @@ export const BANDIT = (): CharacterT => {
         consumables: [],
       },
       {
-        gold: 20,
+        gold: 80,
         xp: 20,
         items: [EXPLORERS_CLOAK],
+        consumables: [],
+      },
+      {
+        gold: 80,
+        xp: 20,
+        items: [EXPLORERS_CLOAK, getRandom(ALL_WEAPONS)],
         consumables: [],
       },
     ],

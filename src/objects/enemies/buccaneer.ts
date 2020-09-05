@@ -4,6 +4,8 @@ import { STAB } from '../skills/enemy/stab'
 import { ADVENTURE_BOOTS } from '../armor/adventure_boots'
 import { FUR_BOOTS } from '../armor/fur_boots'
 import { FUR_ARMOR } from '../armor/fur_armor'
+import { getRandom } from '../../util'
+import { ALL_WEAPONS } from '../weapons'
 
 export const BUCCANEER = (): CharacterT => {
   return {
@@ -76,7 +78,7 @@ export const BUCCANEER = (): CharacterT => {
       {
         gold: 80,
         xp: 20,
-        items: [FUR_ARMOR],
+        items: [FUR_ARMOR, getRandom(ALL_WEAPONS)],
         consumables: [],
       },
     ],
