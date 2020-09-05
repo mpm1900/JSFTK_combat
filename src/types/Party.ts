@@ -6,6 +6,7 @@ import { WeaponT } from './Weapon'
 export interface PartyT extends EntityT {
   characters: CharacterT[]
   items: (ArmorT | WeaponT)[]
+  gold: number
   isParty: true
 }
 

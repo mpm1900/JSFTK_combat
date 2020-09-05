@@ -8,6 +8,7 @@ export const TIMBERWOLF = (): CharacterT => {
     isCharacter: true,
     partyId: '',
     level: 1,
+    xp: 0,
     class: 'enemy',
     stats: {
       vigor: -80,
@@ -50,5 +51,13 @@ export const TIMBERWOLF = (): CharacterT => {
       traits: [],
       skills: [BITE],
     },
+    possibleRewards: [
+      {
+        gold: 4,
+        xp: 10,
+        items: [],
+        consumables: [],
+      },
+    ],
   }
 }

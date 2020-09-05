@@ -1,8 +1,15 @@
-import { CharacterT, PartyT, ProcessedPartyT, EntityT } from '../types'
+import {
+  CharacterT,
+  PartyT,
+  ProcessedPartyT,
+  EntityT,
+  ProcessedCharacterT,
+} from '../types'
 import {
   checkForProcessedCharacter,
   processCharacter,
   makeEnemy,
+  getRewardsFromCharacter,
 } from './Character'
 import { makeEntity } from './Entity'
 import { TIMBERWOLF } from '../objects/enemies/timberwolf'
@@ -10,6 +17,7 @@ import { VALE_IMP } from '../objects/enemies/vale_imp'
 import { BEASTMAN } from '../objects/enemies/beastman'
 import { getRandom } from '../util'
 import { ALL_ENEMY_PARTY_COMBOS } from '../objects/Party'
+import { CombatRewardT } from '../types/CombatReward'
 
 export const isParty = (e: EntityT) => e && (e as PartyT).isParty
 
@@ -27,6 +35,7 @@ export const makeParty = (characterCount: number = 0): PartyT => {
     ...makeEntity(),
     isParty: true,
     items: [],
+    gold: 0,
     characters: getRandom(ALL_ENEMY_PARTY_COMBOS),
   }
 }
@@ -62,6 +71,30 @@ export const processParty = (party: PartyT): ProcessedPartyT => {
     characters: party.characters.map((c) => ({
       ...processCharacter(c),
       partyId: party.id,
+    })),
+  }
+}
+
+export const getRolledRewards = (
+  party: ProcessedPartyT,
+  checkedCharacter: ProcessedCharacterT,
+): CombatRewardT[] => {
+  return party.characters.reduce((r, character) => {
+    return [...r, ...getRewardsFromCharacter(character, checkedCharacter)]
+  }, [] as CombatRewardT[])
+}
+
+export const commitRewards = (
+  party: PartyT,
+  rewards: CombatRewardT,
+): PartyT => {
+  checkForProcessedParty(party)
+  return {
+    ...party,
+    gold: party.gold + rewards.gold,
+    characters: party.characters.map((c) => ({
+      ...c,
+      xp: c.xp + rewards.xp,
     })),
   }
 }

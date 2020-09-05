@@ -8,6 +8,7 @@ export const BEE = (): CharacterT => {
     isCharacter: true,
     partyId: '',
     level: 1,
+    xp: 0,
     class: 'enemy',
     stats: {
       vigor: -80,
@@ -50,5 +51,13 @@ export const BEE = (): CharacterT => {
       traits: [],
       skills: [STING, INFECTIOUS_STING],
     },
+    possibleRewards: [
+      {
+        gold: 1,
+        xp: 12,
+        items: [],
+        consumables: [],
+      },
+    ],
   }
 }

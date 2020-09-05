@@ -24,6 +24,9 @@ import {
   resolveSkillTarget,
   makeSkillTarget,
   removeTemporaryStatus,
+  getRolledRewards,
+  consolidateRewards,
+  commitRewards,
 } from '../../functions'
 import { usePartyContext } from '../PartyContext'
 import {
@@ -36,6 +39,9 @@ import {
 import { getAIAction } from '../../functions/AI'
 import { v4 } from 'uuid'
 import { useHistory } from 'react-router'
+import { useModalContext } from '../ModalContext'
+import { Button } from '../../elements/button'
+import { FlexContainer } from '../../elements/flex'
 
 export interface CombatContextT {
   party: ProcessedPartyT
@@ -89,8 +95,9 @@ export interface CombatContextProviderPropsT {
   onRequestNewParty: () => void
 }
 export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
-  const { children, setEnemyParty, onRequestNewParty } = props
+  const { children, setEnemyParty } = props
   const { party, rawParty, updateParty } = usePartyContext()
+  const { open, close } = useModalContext()
   const history = useHistory()
   const resultCommitter = useMemo(
     () => commitSkillResults(rawParty, props.enemyParty),
@@ -231,12 +238,47 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   useEffect(() => {
     if (isDone) return
     if (enemyParty.characters.every((c) => c.dead)) {
-      updateParty({
-        ...rawParty,
-        characters: rawParty.characters.map((c) => removeTemporaryStatus(c)),
-      })
-      alert('you win')
-      history.push('/JSFTK_combat/party')
+      console.log('VICTORY')
+      setIsDone(true)
+      const rewards = consolidateRewards(
+        getRolledRewards(
+          enemyParty,
+          party.characters.reduce((p, c) =>
+            p.stats.luck > c.stats.luck ? p : c,
+          ),
+        ),
+      )
+      updateParty(
+        commitRewards(
+          {
+            ...rawParty,
+            characters: rawParty.characters.map((c) =>
+              removeTemporaryStatus(c),
+            ),
+          },
+          rewards,
+        ),
+      )
+      console.log(rewards)
+      open(
+        <div style={{ textAlign: 'center' }}>
+          <h1>You Win!</h1>
+          <FlexContainer $direction='column' style={{ color: 'white' }}>
+            <pre>{JSON.stringify(rewards, null, 2)}</pre>
+          </FlexContainer>
+          <Button
+            onClick={() => {
+              close()
+              history.push('/JSFTK_combat/party')
+            }}
+          >
+            Close
+          </Button>
+        </div>,
+        {},
+        true,
+      )
+      setIsDone(true)
       return
     }
     if (party.characters.every((c) => c.dead)) {

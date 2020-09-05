@@ -89,6 +89,7 @@ export const INITIAL_STATE: PartyT = {
   id: PLAYER_PARTY_ID,
   name: 'PlayerParty',
   items: [...ALL_ARMOR, ...ALL_WEAPONS],
+  gold: 0,
   characters: [
     {
       ...jack,

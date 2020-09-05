@@ -8,6 +8,7 @@ export const BUCCANEER = (): CharacterT => {
     isCharacter: true,
     partyId: '',
     level: 4,
+    xp: 0,
     class: 'enemy',
     stats: {
       strength: 52,
@@ -50,5 +51,13 @@ export const BUCCANEER = (): CharacterT => {
       traits: [],
       skills: [STAB],
     },
+    possibleRewards: [
+      {
+        gold: 12,
+        xp: 35,
+        items: [],
+        consumables: [],
+      },
+    ],
   }
 }

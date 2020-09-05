@@ -8,6 +8,7 @@ export const BANDIT = (): CharacterT => {
     isCharacter: true,
     partyId: '',
     level: 2,
+    xp: 0,
     class: 'enemy',
     stats: {
       strength: 76,
@@ -50,5 +51,13 @@ export const BANDIT = (): CharacterT => {
       traits: [],
       skills: [STAB],
     },
+    possibleRewards: [
+      {
+        gold: 20,
+        xp: 20,
+        items: [],
+        consumables: [],
+      },
+    ],
   }
 }

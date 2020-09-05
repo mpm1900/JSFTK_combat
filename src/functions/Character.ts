@@ -27,6 +27,10 @@ import { CLASS_STARTING_ARMOR } from '../objects/Armor'
 import { ALL_ENEMIES } from '../objects/enemies'
 import { getRandom, noneg } from '../util'
 import { CLASS_STARTING_CONSUMABLES } from '../objects/Item'
+import { makeCheck } from './makeCheck'
+import { resolveCheck } from './Roll'
+import { PROTECT } from '../objects/skills/protect'
+import { CombatRewardT } from '../types/CombatReward'
 
 export const checkForProcessedCharacter = (character: CharacterT) => {
   if ((character as ProcessedCharacterT).processed) {
@@ -101,6 +105,7 @@ export const makeCharacter = (
     isCharacter: true,
     partyId,
     level: 1,
+    xp: 0,
     class: characterClass,
     stats: CLASS_STARTING_STATS[characterClass],
     traits: [],
@@ -109,6 +114,7 @@ export const makeCharacter = (
     consumables: CLASS_STARTING_CONSUMABLES[characterClass],
     status: [],
     immunities: [],
+    possibleRewards: [],
   }
 }
 
@@ -296,4 +302,42 @@ export const commitDamage = (
       },
     }
   }
+}
+
+export const getRewardsFromCharacter = (
+  character: ProcessedCharacterT,
+  checkedCharacter: ProcessedCharacterT,
+): CombatRewardT[] => {
+  let index: number | undefined = undefined
+  character.possibleRewards.forEach((rewards, i) => {
+    const luckReslt = resolveCheck(checkedCharacter, makeCheck('luck'))
+    if (luckReslt.result) {
+      index = i
+    }
+  })
+  if (index !== undefined) {
+    return character.possibleRewards[index]
+      ? [character.possibleRewards[index]]
+      : []
+  }
+  return []
+}
+
+export const consolidateRewards = (rewards: CombatRewardT[]): CombatRewardT => {
+  return rewards.reduce(
+    (res, reward) => {
+      return {
+        gold: res.gold + reward.gold,
+        xp: res.xp + reward.xp,
+        items: [...res.items, ...reward.items],
+        consumables: [...res.consumables, ...reward.consumables],
+      }
+    },
+    {
+      gold: 0,
+      xp: 0,
+      items: [],
+      consumables: [],
+    },
+  )
 }

@@ -5,6 +5,7 @@ import { StatusT, CharacterStatusT } from './Status'
 import { SkillT } from './Skill'
 import { StatsT } from './Stats'
 import { ConsumableT } from './Consumable'
+import { CombatRewardT } from './CombatReward'
 
 export type CharacterClassT =
   | 'blacksmith'
@@ -16,6 +17,7 @@ export type CharacterClassT =
 export interface CharacterT extends EntityT {
   partyId: string
   level: number
+  xp: number
   class: CharacterClassT
   stats: StatsT
   traits: []
@@ -25,6 +27,7 @@ export interface CharacterT extends EntityT {
   status: CharacterStatusT[]
   immunities: CharacterStatusT[]
   isCharacter: true
+  possibleRewards: CombatRewardT[]
 }
 
 export interface ProcessedCharacterT extends CharacterT {

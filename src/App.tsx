@@ -13,17 +13,19 @@ import { Start } from './domain/Start'
 const CombatDomain = () => {
   const [rawEnemyParty, setRawEnemyParty] = useState<PartyT>(makeParty(3))
   return (
-    <CombatContextProvider
-      enemyParty={rawEnemyParty}
-      setEnemyParty={setRawEnemyParty}
-      onRequestNewParty={() => setRawEnemyParty(makeParty(3))}
-    >
-      <CombatLogContextProvider>
-        <ModalContextProvider>
-          <Combat />
-        </ModalContextProvider>
-      </CombatLogContextProvider>
-    </CombatContextProvider>
+    <ModalContextProvider>
+      <CombatContextProvider
+        enemyParty={rawEnemyParty}
+        setEnemyParty={setRawEnemyParty}
+        onRequestNewParty={() => setRawEnemyParty(makeParty(3))}
+      >
+        <CombatLogContextProvider>
+          <ModalContextProvider>
+            <Combat />
+          </ModalContextProvider>
+        </CombatLogContextProvider>
+      </CombatContextProvider>
+    </ModalContextProvider>
   )
 }
 

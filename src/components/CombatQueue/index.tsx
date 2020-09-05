@@ -10,6 +10,7 @@ import { FlexContainer, FullContainer } from '../../elements/flex'
 import { Button, RedButton } from '../../elements/button'
 import { useHistory } from 'react-router'
 import { AppHeader } from '../AppHeader'
+import { PartyResources } from '../PartyResources'
 
 const size = 40
 export interface CombatQueuePropsT {
@@ -49,6 +50,11 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
           </RedButton>
           <Button onClick={() => history.push('/JSFTK_combat')}>Restart</Button>
         </>
+      }
+      right={
+        <FlexContainer $full style={{ justifyContent: 'flex-end' }}>
+          <PartyResources />
+        </FlexContainer>
       }
     >
       <FlexContainer

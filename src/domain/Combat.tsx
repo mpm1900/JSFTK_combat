@@ -38,17 +38,8 @@ export const Combat = () => {
       }, 1000)
     }
   }, [])
-  useEffect(() => {
-    if (isDone) {
-      open(
-        <div style={{ textAlign: 'center' }}>
-          <h4>Refresh to do combat again</h4>
-        </div>,
-      )
-    }
-  }, [isDone])
 
-  if (!activeCharacter) return <span>refresh to do combat again</span>
+  if (!activeCharacter) return <span>Loading...</span>
 
   return (
     <FlexContainer
@@ -69,14 +60,18 @@ export const Combat = () => {
             <CombatParty party={enemyParty} />
           </FlexContainer>
           <FlexContainer $full>
-            <FullContainer />
-            <FlexContainer $direction='column'>
-              {!isRenderingResult && <CombatActions />}
-              <RoundResultRenderer isModal={false} />
-            </FlexContainer>
-            <FlexContainer $full style={{ justifyContent: 'flex-end' }}>
-              <CombatLog />
-            </FlexContainer>
+            {!isDone && (
+              <>
+                <FullContainer />
+                <FlexContainer $direction='column'>
+                  {!isRenderingResult && <CombatActions />}
+                  <RoundResultRenderer isModal={false} />
+                </FlexContainer>
+                <FlexContainer $full style={{ justifyContent: 'flex-end' }}>
+                  <CombatLog />
+                </FlexContainer>
+              </>
+            )}
           </FlexContainer>
           <FlexContainer
             $direction='column'

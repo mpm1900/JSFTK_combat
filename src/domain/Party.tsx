@@ -8,6 +8,7 @@ import { useHistory } from 'react-router'
 import { getSkillResults, commitSkillResults } from '../functions'
 import ForestBg from '../assets/img/flat-forestred.jpg'
 import { AppHeader } from '../components/AppHeader'
+import { PartyResources } from '../components/PartyResources'
 
 export const Party = () => {
   const {
@@ -38,6 +39,11 @@ export const Party = () => {
             <RedButton onClick={enterCombat}>Enter Combat</RedButton>
             <FullContainer />
           </>
+        }
+        right={
+          <FlexContainer $full style={{ justifyContent: 'flex-end' }}>
+            <PartyResources />
+          </FlexContainer>
         }
       >
         <FlexContainer

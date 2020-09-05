@@ -8,6 +8,7 @@ export const VALE_IMP = (): CharacterT => {
     isCharacter: true,
     partyId: '',
     level: 1,
+    xp: 0,
     class: 'enemy',
     stats: {
       vigor: -80,
@@ -55,5 +56,13 @@ export const VALE_IMP = (): CharacterT => {
       traits: [],
       skills: [SLAP],
     },
+    possibleRewards: [
+      {
+        gold: 0,
+        xp: 15,
+        items: [],
+        consumables: [],
+      },
+    ],
   }
 }

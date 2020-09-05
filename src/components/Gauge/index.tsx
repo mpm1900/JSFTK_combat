@@ -5,6 +5,7 @@ import { HoverToolTip } from '../Tooltip'
 import { Monodiv } from '../../elements/monospace'
 import { ProcessedCharacterT } from '../../types'
 import { noneg } from '../../util'
+import { CHARACTER_XP_MAX } from '../../objects/Character'
 
 export interface GaugePropsT {
   name?: string
@@ -95,10 +96,11 @@ export interface XPGaugePropsT {
 }
 export const XPGauge = (props: HealthGaugePropsT) => {
   const { character } = props
-  const health = noneg(character.health - character.stats.healthOffset)
+  const value = character.xp
+  const max = CHARACTER_XP_MAX[character.level]
   return (
-    <Gauge name='XP' color='#5e8575' max={3300} value={1256} height={12}>
-      1256/3300
+    <Gauge name='XP' color='#5e8575' max={max} value={value} height={12}>
+      {value}/{max}
     </Gauge>
   )
 }
