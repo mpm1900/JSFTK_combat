@@ -9,6 +9,7 @@ import { Gauge } from '../components/Gauge'
 import { RedButton } from '../elements/button'
 import { useHistory } from 'react-router'
 import { INITIAL_STATE } from '../state/party'
+import { Monospace } from '../elements/monospace'
 
 export const Start = () => {
   const {
@@ -65,6 +66,15 @@ export const Start = () => {
         <FullContainer />
       </FlexContainer>
       <FullContainer />
+      <Monospace
+        style={{
+          fontWeight: 'normal',
+          color: 'rgba(255,255,255,0.5)',
+          fontSize: 12,
+        }}
+      >
+        pre-pre-pre-pre alpha v0.0.0.1
+      </Monospace>
     </FlexContainer>
   )
 }
