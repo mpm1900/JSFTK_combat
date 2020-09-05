@@ -62,6 +62,7 @@ export const STATUS_ICONS: Partial<Record<StatusTypeT, string>> = {
   dazed: Dazed,
   targeted: Targeted,
   evasive: Evasive,
+  protected: Protect,
 }
 
 export const SKILL_ICONS: Record<string, string> = {
