@@ -88,15 +88,11 @@ export const INITIAL_STATE: PartyT = {
   isParty: true,
   id: PLAYER_PARTY_ID,
   name: 'PlayerParty',
-  items: [...ALL_ARMOR, ...ALL_WEAPONS],
+  items: [],
   gold: 0,
   characters: [
     {
       ...jack,
-      stats: {
-        ...jack.stats,
-        consumableHealthGainOffset: 15,
-      },
     },
     { ...makeCharacter('bard'), name: 'Jim' },
     { ...makeCharacter('scholar'), name: 'Johnny' },

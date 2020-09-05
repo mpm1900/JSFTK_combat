@@ -1,6 +1,9 @@
 import { CharacterT } from '../../types'
 import { makeEntity } from '../../functions/Entity'
 import { STING, INFECTIOUS_STING } from '../skills/enemy/sting'
+import { GODSBEARD } from '../consumables/godsbeard'
+import { getRandom } from '../../util'
+import { ALL_ARMOR } from '../armor/index'
 
 export const BEE = (): CharacterT => {
   return {
@@ -57,6 +60,24 @@ export const BEE = (): CharacterT => {
         xp: 12,
         items: [],
         consumables: [],
+      },
+      {
+        gold: 1,
+        xp: 12,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 1,
+        xp: 12,
+        items: [getRandom(ALL_ARMOR)],
+        consumables: [],
+      },
+      {
+        gold: 1,
+        xp: 12,
+        items: [],
+        consumables: [GODSBEARD],
       },
     ],
   }

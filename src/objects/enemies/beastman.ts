@@ -70,7 +70,7 @@ export const BEASTMAN = (): CharacterT => {
       {
         gold: 6,
         xp: 15,
-        items: [],
+        items: [getRandom(ALL_WEAPONS)],
         consumables: [],
       },
       {

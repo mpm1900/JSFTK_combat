@@ -1,6 +1,9 @@
 import { CharacterT } from '../../types'
 import { makeEntity } from '../../functions/Entity'
 import { SLAP } from '../skills/enemy/slap'
+import { getRandom } from '../../util'
+import { ALL_WEAPONS } from '../weapons'
+import { ALL_ARMOR } from '../armor/index'
 
 export const VALE_IMP = (): CharacterT => {
   return {
@@ -61,6 +64,18 @@ export const VALE_IMP = (): CharacterT => {
         gold: 0,
         xp: 15,
         items: [],
+        consumables: [],
+      },
+      {
+        gold: 0,
+        xp: 15,
+        items: [getRandom(ALL_ARMOR)],
+        consumables: [],
+      },
+      {
+        gold: 0,
+        xp: 15,
+        items: [getRandom(ALL_WEAPONS)],
         consumables: [],
       },
     ],
