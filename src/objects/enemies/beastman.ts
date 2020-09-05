@@ -1,6 +1,9 @@
 import { CharacterT } from '../../types'
 import { makeEntity } from '../../functions/Entity'
 import { IMPALE } from '../skills/enemy/impale'
+import { getRandom } from '../../util'
+import { ALL_WEAPONS } from '../weapons'
+import { ALL_ARMOR } from '../armor/index'
 
 export const BEASTMAN = (): CharacterT => {
   return {
@@ -56,6 +59,24 @@ export const BEASTMAN = (): CharacterT => {
         gold: 6,
         xp: 15,
         items: [],
+        consumables: [],
+      },
+      {
+        gold: 6,
+        xp: 15,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 6,
+        xp: 15,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 19,
+        xp: 20,
+        items: [getRandom([...ALL_WEAPONS, ...ALL_ARMOR])],
         consumables: [],
       },
     ],

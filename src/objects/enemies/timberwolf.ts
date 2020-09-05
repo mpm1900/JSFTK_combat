@@ -1,6 +1,9 @@
 import { CharacterT } from '../../types'
 import { makeEntity } from '../../functions/Entity'
 import { BITE } from '../skills/enemy/bite'
+import { getRandom } from '../../util'
+import { ALL_WEAPONS } from '../weapons'
+import { ALL_ARMOR } from '../armor/index'
 
 export const TIMBERWOLF = (): CharacterT => {
   return {
@@ -56,6 +59,18 @@ export const TIMBERWOLF = (): CharacterT => {
         gold: 4,
         xp: 10,
         items: [],
+        consumables: [],
+      },
+      {
+        gold: 4,
+        xp: 10,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 4,
+        xp: 10,
+        items: [getRandom([...ALL_WEAPONS, ...ALL_ARMOR])],
         consumables: [],
       },
     ],
