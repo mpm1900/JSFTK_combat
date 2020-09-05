@@ -1,4 +1,4 @@
-import { StatsT, ArmorTypeT, StatusTypeT } from '../types'
+import { StatsT, ArmorTypeT, StatusTypeT, ArmorResourceType } from '../types'
 
 import Vigor from './svg/delapouite/heart-beats.svg'
 import Strength from './svg/delapouite/biceps.svg'
@@ -44,6 +44,7 @@ import Footwear from './svg/lorc/leather-boot.svg'
 import Hat from './svg/delapouite/robin-hood-hat.svg'
 import MagicHat from './svg/lorc/pointy-hat.svg'
 import Helmet from './svg/lorc/visored-helm.svg'
+import Weapon from './svg/lorc/broadsword.svg'
 
 import Godsbeard from './svg/delapouite/herbs-bundle.svg'
 import { GODSBEARD } from '../objects/consumables/godsbeard'
@@ -96,6 +97,14 @@ export const ARMOR_TYPE_ICONS: Record<ArmorTypeT, string> = {
   helmet: Helmet,
   charm: '',
   ring: '',
+}
+
+export const RESOURCE_ICONS: Record<ArmorResourceType | 'weapon', string> = {
+  weapon: Weapon,
+  offhand: Shield,
+  body: Armor,
+  head: Helmet,
+  feet: Footwear,
 }
 
 export const CONSUMABLE_ITEM_ICONS: Record<string, string> = {

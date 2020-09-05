@@ -1,4 +1,4 @@
-import { ItemRarityT, CharacterClassT } from '../types'
+import { ItemRarityT, CharacterClassT, ArmorResourceType } from '../types'
 import { ConsumableT } from '../types/Consumable'
 import { GODSBEARD } from './consumables/godsbeard'
 
@@ -19,3 +19,10 @@ export const CLASS_STARTING_CONSUMABLES: Record<
   bard: [GODSBEARD],
   enemy: [],
 }
+
+export const CHARACTER_RESOURCES: ArmorResourceType[] = [
+  'offhand',
+  'body',
+  'head',
+  'feet',
+]

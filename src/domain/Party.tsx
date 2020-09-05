@@ -44,6 +44,7 @@ export const Party = () => {
         $full
         style={{ padding: 16, maxHeight: 'calc(100% - 270px)' }}
       >
+        {/*
         <BoxContainer
           style={{ flex: 1 }}
           substyle={{ overflow: 'auto', maxHeight: '100%', background: '#111' }}
@@ -81,8 +82,12 @@ export const Party = () => {
                 ))}
             </FlexContainer>
           </FlexContainer>
-        </BoxContainer>
-        <PartyActiveCharacter character={activeCharacter} />
+                  </BoxContainer>*/}
+        <PartyActiveCharacter
+          party={party}
+          character={activeCharacter}
+          equipItem={equipItem}
+        />
       </FlexContainer>
       <div style={{ marginBottom: 30 }}>
         <PartyCharacters

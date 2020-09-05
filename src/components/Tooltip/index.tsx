@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import BaseTooltip, { TooltipProps } from 'react-tooltip-lite'
 import { Hover } from '../Hover'
+import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
+export interface ClickToolTipChildrenT {
+  onClick: () => void
+  ref: React.MutableRefObject<HTMLElement | undefined>
+}
 interface PropsT extends TooltipProps {
-  children: JSX.Element
+  children: JSX.Element | ((props: ClickToolTipChildrenT) => JSX.Element)
 }
 export const Tooltip = (props: PropsT) => {
   const { ...rest } = props
@@ -23,5 +28,25 @@ export const HoverToolTip = (props: PropsT) => {
     <Hover>
       {({ isHovering }) => <Tooltip {...props} isOpen={isHovering} />}
     </Hover>
+  )
+}
+
+export const ClickToolTip = (props: PropsT) => {
+  const { children, ...rest } = props
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const ref = useRef<HTMLElement>()
+  useOnClickOutside(ref, () => {
+    setIsOpen(false)
+  })
+  if (typeof children !== 'function') return null
+  return (
+    <Tooltip {...rest} isOpen={isOpen}>
+      {children({
+        onClick: () => {
+          setIsOpen(true)
+        },
+        ref,
+      })}
+    </Tooltip>
   )
 }

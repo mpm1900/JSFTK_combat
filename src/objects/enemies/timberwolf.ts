@@ -44,7 +44,7 @@ export const TIMBERWOLF = (): CharacterT => {
       twoHand: true,
       attackType: 'melee',
       damage: {
-        damage: 6,
+        damage: 7,
         type: 'physical',
       },
       traits: [],
