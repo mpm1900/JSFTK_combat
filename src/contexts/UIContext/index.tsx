@@ -18,14 +18,9 @@ export interface UIContextProviderPropsT {
 }
 export const UIContextProvider = (props: UIContextProviderPropsT) => {
   const { children } = props
-  const [openCharacterInventoryId, _setOpenCharacterInventoryId] = useState<
+  const [openCharacterInventoryId, setOpenCharacterInventoryId] = useState<
     string | undefined
   >()
-
-  const setOpenCharacterInventoryId = (id: string | undefined) => {
-    console.log(id)
-    _setOpenCharacterInventoryId(id)
-  }
   return (
     <UIContext.Provider
       value={{ openCharacterInventoryId, setOpenCharacterInventoryId }}

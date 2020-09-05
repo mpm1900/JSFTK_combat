@@ -38,18 +38,14 @@ const ResourceE = withStyle(Monodiv, (props: any) => ({
 
 export interface PartyCharacterProps {
   character: ProcessedCharacterT
-  activeCharacter: ProcessedCharacterT
-  hoverable?: boolean
   selected?: boolean
-  isHovering?: boolean
   canEquip?: boolean
   showActions?: boolean
   onClick?: () => void
   onConsumableClick?: (consumable: ConsumableT, index: number) => void
 }
 const Wrapper = styled('div', (props: any) => {
-  const { $selected, $active, $hoverable, $isHovering } = props
-  const hoverable = $hoverable && !$selected
+  const { $active } = props
   return {
     margin: 10,
     position: 'relative',
@@ -92,10 +88,7 @@ const getStatColor = (
 export const PartyCharacter = (props: PartyCharacterProps) => {
   const {
     character,
-    activeCharacter,
-    hoverable,
     selected,
-    isHovering,
     canEquip = false,
     showActions = true,
     onConsumableClick,
@@ -109,10 +102,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
   const previousHealth = usePrevious<number>(health)
   return (
     <Wrapper
-      $hoverable={hoverable && !character.dead}
-      $active={character.id === activeCharacter.id}
-      $selected={selected}
-      $isHovering={isHovering}
+      $active={selected}
       style={{
         opacity: character.dead ? 0.5 : 1,
       }}

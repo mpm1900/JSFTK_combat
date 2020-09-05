@@ -43,7 +43,6 @@ export const ClickToolTip = (props: PropsT) => {
   if (typeof content !== 'function') return null
   const p = {
     onClick: (value?: boolean) => {
-      console.log('onClick', value)
       setIsOpen((v) => (value !== undefined ? value : !v))
     },
     ref,

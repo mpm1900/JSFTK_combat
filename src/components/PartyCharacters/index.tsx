@@ -14,13 +14,7 @@ export interface PartyCharactersProps {
   ) => void
 }
 export const PartyCharacters = (props: PartyCharactersProps) => {
-  const {
-    party,
-    activeCharacter,
-    canEquip,
-    onCharacterClick,
-    onConsumableClick,
-  } = props
+  const { party, canEquip, onCharacterClick, onConsumableClick } = props
 
   return (
     <FlexContainer $direction='column'>
@@ -34,8 +28,6 @@ export const PartyCharacters = (props: PartyCharactersProps) => {
           <div key={c.id}>
             <PartyCharacter
               canEquip={canEquip}
-              hoverable={true}
-              activeCharacter={activeCharacter}
               character={c}
               onClick={() => onCharacterClick(c)}
               onConsumableClick={(consumable, index) =>

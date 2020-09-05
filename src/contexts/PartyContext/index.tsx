@@ -88,7 +88,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
   }
 
   const equipItem = (characterId: string, item: WeaponT | ArmorT) => {
-    const character = findRawCharacter(activeCharacter.id)
+    const character = findRawCharacter(characterId)
     if (!character) return
     if (item.itemType === 'armor') {
       const armor = item as ArmorT

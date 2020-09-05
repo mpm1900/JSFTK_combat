@@ -51,7 +51,7 @@ export const CombatPlayerParty = (props: CombatPartyPlayerPropsT) => {
                 </FlexContainer>
               )}
             <PartyCharacter
-              activeCharacter={activeCharacter}
+              selected={c.id === activeCharacter.id}
               character={c}
               onConsumableClick={(consumable, index) => {
                 if (c.id === activeCharacter.id) {
