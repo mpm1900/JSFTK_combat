@@ -68,6 +68,12 @@ export const BEASTMAN = (): CharacterT => {
         consumables: [],
       },
       {
+        gold: 1,
+        xp: 12,
+        items: [],
+        consumables: [],
+      },
+      {
         gold: 6,
         xp: 15,
         items: [getRandom(ALL_WEAPONS)],

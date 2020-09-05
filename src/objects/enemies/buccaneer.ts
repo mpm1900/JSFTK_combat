@@ -66,6 +66,12 @@ export const BUCCANEER = (): CharacterT => {
       {
         gold: 20,
         xp: 20,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 20,
+        xp: 20,
         items: [ADVENTURE_BOOTS],
         consumables: [],
       },

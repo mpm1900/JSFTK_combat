@@ -64,6 +64,12 @@ export const BANDIT = (): CharacterT => {
         consumables: [],
       },
       {
+        gold: 1,
+        xp: 12,
+        items: [],
+        consumables: [],
+      },
+      {
         gold: 20,
         xp: 20,
         items: [EXPLORERS_BOOTS],
