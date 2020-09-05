@@ -53,6 +53,7 @@ export const CombatPlayerParty = (props: CombatPartyPlayerPropsT) => {
             <PartyCharacter
               activeCharacter={activeCharacter}
               character={c}
+              showActions={false}
               onConsumableClick={(consumable, index) => {
                 if (c.id === activeCharacter.id) {
                   onSkillSelect(consumable.skill, index)

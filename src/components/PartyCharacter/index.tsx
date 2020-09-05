@@ -42,6 +42,7 @@ export interface PartyCharacterProps {
   selected?: boolean
   isHovering?: boolean
   canEquip?: boolean
+  showActions?: boolean
   onClick?: () => void
   onConsumableClick?: (consumable: ConsumableT, index: number) => void
 }
@@ -95,6 +96,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
     selected,
     isHovering,
     canEquip = false,
+    showActions = true,
     onClick,
     onConsumableClick,
   } = props
@@ -174,65 +176,67 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               </FlexContainer>
               <FlexContainer $full $direction='column'>
                 <FullContainer />
-                <FlexContainer>
-                  <FlexContainer
-                    $full
-                    style={{ alignItems: 'center', justifyContent: 'center' }}
-                  >
-                    <ClickToolTip
-                      distance={80}
-                      content={({ onClick }) => (
-                        <div
-                          style={{
-                            opacity:
-                              character.id === activeCharacter.id ? 1 : 0,
-                          }}
-                        >
-                          <PartyActiveCharacter
-                            character={character}
-                            party={party}
-                            active={character.id === activeCharacter.id}
-                            equipItem={equipItem}
-                            canEquip={canEquip}
-                            onRequestClose={onClick}
-                          />
-                        </div>
-                      )}
+                {showActions && (
+                  <FlexContainer>
+                    <FlexContainer
+                      $full
+                      style={{ alignItems: 'center', justifyContent: 'center' }}
                     >
-                      {({ onClick, ref }) => (
-                        <div onClick={onClick}>
-                          <Hover delay={0}>
-                            {({ isHovering }) => (
-                              <Icon
-                                src={Inventory}
-                                fill={
-                                  isHovering
-                                    ? 'rgba(255,255,255,1)'
-                                    : 'rgba(255,255,255,0.7)'
-                                }
-                                size={18}
-                                shadow
-                                style={{ padding: 6, cursor: 'pointer' }}
-                              />
-                            )}
-                          </Hover>
-                        </div>
-                      )}
-                    </ClickToolTip>
+                      <ClickToolTip
+                        distance={80}
+                        content={({ onClick }) => (
+                          <div
+                            style={{
+                              opacity:
+                                character.id === activeCharacter.id ? 1 : 0,
+                            }}
+                          >
+                            <PartyActiveCharacter
+                              character={character}
+                              party={party}
+                              active={character.id === activeCharacter.id}
+                              equipItem={equipItem}
+                              canEquip={canEquip}
+                              onRequestClose={onClick}
+                            />
+                          </div>
+                        )}
+                      >
+                        {({ onClick, ref }) => (
+                          <div onClick={onClick}>
+                            <Hover delay={0}>
+                              {({ isHovering }) => (
+                                <Icon
+                                  src={Inventory}
+                                  fill={
+                                    isHovering
+                                      ? 'rgba(255,255,255,1)'
+                                      : 'rgba(255,255,255,0.7)'
+                                  }
+                                  size={18}
+                                  shadow
+                                  style={{ padding: 6, cursor: 'pointer' }}
+                                />
+                              )}
+                            </Hover>
+                          </div>
+                        )}
+                      </ClickToolTip>
+                    </FlexContainer>
+                    <FlexContainer
+                      $full
+                      style={{ alignItems: 'center', justifyContent: 'center' }}
+                    >
+                      <Icon
+                        src={Details}
+                        fill={'rgba(255,255,255,0.7)'}
+                        size={18}
+                        shadow
+                        style={{ padding: 6, cursor: 'pointer' }}
+                      />
+                    </FlexContainer>
                   </FlexContainer>
-                  <FlexContainer
-                    $full
-                    style={{ alignItems: 'center', justifyContent: 'center' }}
-                  >
-                    <Icon
-                      src={Details}
-                      fill={'rgba(255,255,255,0.7)'}
-                      size={18}
-                      shadow
-                      style={{ padding: 6, cursor: 'pointer' }}
-                    />
-                  </FlexContainer>
-                </FlexContainer>
+                )}
               </FlexContainer>
             </FlexContainer>
             <FullContainer />

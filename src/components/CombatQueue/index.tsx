@@ -66,7 +66,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
           background: '#222',
         }}
       >
-        <FlexContainer>
+        <FlexContainer style={{ position: 'relative' }}>
           <img
             alt='profile'
             height='64'
@@ -81,6 +81,21 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
               zIndex: 2,
             }}
           />
+          <FlexContainer
+            $direction='column'
+            style={{
+              position: 'absolute',
+              background: 'rgba(255,255,255,0.8)',
+              color: '#111',
+              zIndex: 2,
+              width: 120,
+              top: 16,
+              paddingLeft: 4,
+              right: '-124px',
+            }}
+          >
+            <span>{first.name}'s Turn</span>
+          </FlexContainer>
         </FlexContainer>
         <FlexContainer $full $direction='column'>
           <FullContainer />

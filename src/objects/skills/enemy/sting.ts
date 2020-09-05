@@ -15,7 +15,7 @@ export const STING: SkillT = {
     makeCheck('perception'),
   ],
   perfectSplash: false,
-  perfectPierce: false,
+  perfectPierce: true,
   perfectStatus: [],
 }
 
