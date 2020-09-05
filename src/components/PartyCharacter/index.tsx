@@ -153,7 +153,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                   fontWeight: 'bolder',
                   padding: 4,
                   fontSize: 42,
-                  height: 42,
+                  height: 62,
                   lineHeight: '70px',
                   color: '#b55553',
                 }}
@@ -165,54 +165,65 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                   {(hpp) => <span>{Math.floor(hpp.hp)}</span>}
                 </Spring>
               </span>
-              <PartyCharacterConsumables
-                character={character}
-                consumables={character.consumables}
-                onClick={onConsumableClick}
-              />
-              <FullContainer />
-              <FlexContainer $direction='column'>
+              <FlexContainer $full style={{ maxWidth: 175, minWidth: 175 }}>
+                <PartyCharacterConsumables
+                  character={character}
+                  consumables={character.consumables}
+                  onClick={onConsumableClick}
+                />
+              </FlexContainer>
+              <FlexContainer $full $direction='column'>
                 <FullContainer />
                 <FlexContainer>
-                  <ClickToolTip
-                    distance={80}
-                    content={({ onClick }) => (
-                      <PartyActiveCharacter
-                        character={character}
-                        party={party}
-                        equipItem={equipItem}
-                        canEquip={canEquip}
-                        onRequestClose={onClick}
-                      />
-                    )}
+                  <FlexContainer
+                    $full
+                    style={{ alignItems: 'center', justifyContent: 'center' }}
                   >
-                    {({ onClick, ref }) => (
-                      <div onClick={onClick}>
-                        <Hover delay={0}>
-                          {({ isHovering }) => (
-                            <Icon
-                              src={Inventory}
-                              fill={
-                                isHovering
-                                  ? 'rgba(255,255,255,1)'
-                                  : 'rgba(255,255,255,0.7)'
-                              }
-                              size={18}
-                              shadow
-                              style={{ padding: 6, cursor: 'pointer' }}
-                            />
-                          )}
-                        </Hover>
-                      </div>
-                    )}
-                  </ClickToolTip>
-                  <Icon
-                    src={Details}
-                    fill={'rgba(255,255,255,0.7)'}
-                    size={18}
-                    shadow
-                    style={{ padding: 6, cursor: 'pointer' }}
-                  />
+                    <ClickToolTip
+                      distance={80}
+                      content={({ onClick }) => (
+                        <PartyActiveCharacter
+                          character={character}
+                          party={party}
+                          equipItem={equipItem}
+                          canEquip={canEquip}
+                          onRequestClose={onClick}
+                        />
+                      )}
+                    >
+                      {({ onClick, ref }) => (
+                        <div onClick={onClick}>
+                          <Hover delay={0}>
+                            {({ isHovering }) => (
+                              <Icon
+                                src={Inventory}
+                                fill={
+                                  isHovering
+                                    ? 'rgba(255,255,255,1)'
+                                    : 'rgba(255,255,255,0.7)'
+                                }
+                                size={18}
+                                shadow
+                                style={{ padding: 6, cursor: 'pointer' }}
+                              />
+                            )}
+                          </Hover>
+                        </div>
+                      )}
+                    </ClickToolTip>
+                  </FlexContainer>
+                  <FlexContainer
+                    $full
+                    style={{ alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <Icon
+                      src={Details}
+                      fill={'rgba(255,255,255,0.7)'}
+                      size={18}
+                      shadow
+                      style={{ padding: 6, cursor: 'pointer' }}
+                    />
+                  </FlexContainer>
                 </FlexContainer>
               </FlexContainer>
             </FlexContainer>

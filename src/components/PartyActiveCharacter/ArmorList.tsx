@@ -51,11 +51,21 @@ export const ArmorList = (props: ArmorListPropsT) => {
         .map((armor) => (
           <ClickToolTip
             direction='down'
+            distance={-2}
             content={() => (
               <>
                 {canEquip && (
-                  <BoxContainer substyle={{ padding: 4 }}>
+                  <BoxContainer
+                    substyle={{
+                      padding: 4,
+                      width: 346,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      background: '#333',
+                    }}
+                  >
                     <Button
+                      style={{ padding: '4px 8px' }}
                       onClick={() => {
                         equipItem(character.id, armor)
                         setActiveItemId(undefined)
