@@ -6,8 +6,10 @@ const Div = styled('div', {
   transform: 'rotateY(0deg) rotate(-45deg)',
 })
 export const Badge = withWrapper(Div, (Element) => (props: any) => {
+  const { onClick, ...rest } = props
   return (
     <div
+      onClick={onClick}
       style={{
         position: props.$absolute === false ? 'relative' : 'absolute',
         background: '#111',
@@ -24,13 +26,14 @@ export const Badge = withWrapper(Div, (Element) => (props: any) => {
         borderRadius: '30%',
         transform: 'rotateY(0deg) rotate(45deg)',
         color: props.$color || 'white',
+        cursor: 'pointer',
         top: props.$top,
         bottom: props.$bottom,
         right: props.$right,
         left: props.$left,
       }}
     >
-      <Element {...props} />
+      <Element {...rest} />
     </div>
   )
 })

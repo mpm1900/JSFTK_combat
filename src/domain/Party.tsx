@@ -5,11 +5,9 @@ import { PartyCharacters } from '../components/PartyCharacters'
 import { BoxContainer } from '../elements/box'
 import { RedButton } from '../elements/button'
 import { useHistory } from 'react-router'
-import { PartyActiveCharacter } from '../components/PartyActiveCharacter'
-import { getSkillResults, commitSkillResults, equipArmor } from '../functions'
-import { ArmorPreview } from '../components/ArmorPreview'
-import { ArmorT, ProcessedWeaponT } from '../types'
-import { WeaponPreview } from '../components/WeaponPreview'
+import { getSkillResults, commitSkillResults } from '../functions'
+import ForestBg from '../assets/img/flat-forestred.jpg'
+import { AppHeader } from '../components/AppHeader'
 
 export const Party = () => {
   const {
@@ -17,9 +15,7 @@ export const Party = () => {
     rawParty,
     activeCharacter,
     updateParty,
-    findRawCharacter,
     setActiveCharacter,
-    equipItem,
   } = usePartyContext()
   const history = useHistory()
   const enterCombat = () => {
@@ -29,46 +25,63 @@ export const Party = () => {
     <FlexContainer
       $full
       $direction='column'
-      style={{ height: '100%', overflow: 'hidden' }}
+      style={{
+        height: '100%',
+        overflow: 'hidden',
+        background: `url(${ForestBg}) center center fixed no-repeat`,
+        backgroundSize: 'cover',
+      }}
     >
-      <FlexContainer>
-        <BoxContainer
-          style={{ flex: 1 }}
-          substyle={{ display: 'flex', background: '#111' }}
-        >
-          <RedButton onClick={enterCombat}>Enter Combat</RedButton>
-          <FullContainer />
-        </BoxContainer>
-      </FlexContainer>
-      <FlexContainer $full></FlexContainer>
-      <div style={{ marginBottom: 30 }}>
-        <PartyCharacters
-          party={party}
-          activeCharacter={activeCharacter}
-          canEquip={true}
-          onCharacterClick={(c) => setActiveCharacter(c)}
-          onConsumableClick={(character, consumableIndex) => {
-            const consumable = character.consumables[consumableIndex]
-            const targets =
-              consumable.skill.targetType === 'self'
-                ? [character]
-                : consumable.skill.targetType === 'party'
-                ? party.characters
-                : []
-            const result = getSkillResults(
-              consumable.skill,
-              character,
-              targets,
-              consumableIndex,
-            )
-            const parties = commitSkillResults(rawParty, rawParty)(
-              result,
-              false,
-            )
-            updateParty(parties.party)
+      <AppHeader
+        left={
+          <>
+            <RedButton onClick={enterCombat}>Enter Combat</RedButton>
+            <FullContainer />
+          </>
+        }
+      >
+        <FlexContainer
+          $full
+          style={{
+            color: 'white',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
-        />
-      </div>
+        >
+          Edit Party
+        </FlexContainer>
+      </AppHeader>
+      <FlexContainer $full $direction='column' style={{ padding: '30px 10px' }}>
+        <FlexContainer $full></FlexContainer>
+        <div>
+          <PartyCharacters
+            party={party}
+            activeCharacter={activeCharacter}
+            canEquip={true}
+            onCharacterClick={(c) => setActiveCharacter(c)}
+            onConsumableClick={(character, consumableIndex) => {
+              const consumable = character.consumables[consumableIndex]
+              const targets =
+                consumable.skill.targetType === 'self'
+                  ? [character]
+                  : consumable.skill.targetType === 'party'
+                  ? party.characters
+                  : []
+              const result = getSkillResults(
+                consumable.skill,
+                character,
+                targets,
+                consumableIndex,
+              )
+              const parties = commitSkillResults(rawParty, rawParty)(
+                result,
+                false,
+              )
+              updateParty(parties.party)
+            }}
+          />
+        </div>
+      </FlexContainer>
     </FlexContainer>
   )
 }

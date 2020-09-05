@@ -26,7 +26,7 @@ export interface PartyActiveCharacterPropsT {
 
 export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
   const { character, party, canEquip, equipItem, onRequestClose } = props
-  const [activeMenuKey, setActiveMenuKey] = useState('weapons')
+  const [activeMenuKey, setActiveMenuKey] = useState('armor')
   const [activeItem, setActiveItem] = useState<ArmorT | WeaponT | undefined>()
   const activeOption = ACTIVE_CHARACTER_MENU_KEYS.find(
     (o) => o.key === activeMenuKey,
@@ -36,8 +36,8 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
       <Badge
         onClick={onRequestClose}
         $top={-10}
-        $right={0}
-        style={{ cursor: 'pointer' }}
+        $right={-2}
+        style={{ cursor: 'pointer', userSelect: 'none' }}
       >
         X
       </Badge>

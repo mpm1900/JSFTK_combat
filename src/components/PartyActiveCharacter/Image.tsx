@@ -15,7 +15,7 @@ export const Image = (props: ItemPropsT) => {
     <FlexContainer $full style={{ justifyContent: 'flex-end' }}>
       <div>
         <BoxContainer
-          style={{ marginRight: 30 }}
+          style={{ marginRight: 20, marginBottom: 10 }}
           substyle={{ padding: 0, height: SIZE, width: SIZE }}
         >
           <CharacterImage character={character} size={100} />
