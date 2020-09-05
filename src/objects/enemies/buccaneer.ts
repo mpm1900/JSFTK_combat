@@ -1,6 +1,9 @@
 import { CharacterT } from '../../types'
 import { makeEntity } from '../../functions/Entity'
 import { STAB } from '../skills/enemy/stab'
+import { ADVENTURE_BOOTS } from '../armor/adventure_boots'
+import { FUR_BOOTS } from '../armor/fur_boots'
+import { FUR_ARMOR } from '../armor/fur_armor'
 
 export const BUCCANEER = (): CharacterT => {
   return {
@@ -53,9 +56,27 @@ export const BUCCANEER = (): CharacterT => {
     },
     possibleRewards: [
       {
-        gold: 12,
-        xp: 35,
+        gold: 20,
+        xp: 20,
         items: [],
+        consumables: [],
+      },
+      {
+        gold: 20,
+        xp: 20,
+        items: [ADVENTURE_BOOTS],
+        consumables: [],
+      },
+      {
+        gold: 20,
+        xp: 20,
+        items: [FUR_BOOTS],
+        consumables: [],
+      },
+      {
+        gold: 80,
+        xp: 20,
+        items: [FUR_ARMOR],
         consumables: [],
       },
     ],

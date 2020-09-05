@@ -238,7 +238,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   useEffect(() => {
     if (isDone) return
     if (enemyParty.characters.every((c) => c.dead)) {
-      console.log('VICTORY')
       setIsDone(true)
       const rewards = consolidateRewards(
         getRolledRewards(
@@ -259,12 +258,17 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
           rewards,
         ),
       )
-      console.log(rewards)
       open(
         <div style={{ textAlign: 'center' }}>
           <h1>You Win!</h1>
           <FlexContainer $direction='column' style={{ color: 'white' }}>
-            <pre>{JSON.stringify(rewards, null, 2)}</pre>
+            <span>{rewards.gold} Gold</span>
+            <span>{rewards.xp} XP</span>
+            {rewards.items.map((item) => (
+              <span>
+                {item.name} {item.rarity} {item.itemType}
+              </span>
+            ))}
           </FlexContainer>
           <Button
             onClick={() => {

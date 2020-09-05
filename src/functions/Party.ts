@@ -92,8 +92,10 @@ export const commitRewards = (
   return {
     ...party,
     gold: party.gold + rewards.gold,
+    items: [...party.items, ...rewards.items],
     characters: party.characters.map((c) => ({
       ...c,
+      consumables: [...c.consumables, ...rewards.consumables],
       xp: c.xp + rewards.xp,
     })),
   }

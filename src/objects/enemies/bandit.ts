@@ -1,6 +1,9 @@
 import { CharacterT } from '../../types'
 import { makeEntity } from '../../functions/Entity'
 import { STAB } from '../skills/enemy/stab'
+import { EXPLORERS_BOOTS } from '../armor/explorers_boots'
+import { EXPLORERS_HAT } from '../armor/explorers_hat'
+import { EXPLORERS_CLOAK } from '../armor/explorers_cloak'
 
 export const BANDIT = (): CharacterT => {
   return {
@@ -56,6 +59,24 @@ export const BANDIT = (): CharacterT => {
         gold: 20,
         xp: 20,
         items: [],
+        consumables: [],
+      },
+      {
+        gold: 20,
+        xp: 20,
+        items: [EXPLORERS_BOOTS],
+        consumables: [],
+      },
+      {
+        gold: 20,
+        xp: 20,
+        items: [EXPLORERS_HAT],
+        consumables: [],
+      },
+      {
+        gold: 20,
+        xp: 20,
+        items: [EXPLORERS_CLOAK],
         consumables: [],
       },
     ],
