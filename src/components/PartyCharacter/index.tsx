@@ -17,10 +17,11 @@ import { PartyCharacterConsumables } from '../PartyCharacterConsumables'
 import { Spring } from 'react-spring/renderprops'
 import { noneg } from '../../util'
 import { usePrevious } from '../../hooks/usePrevious'
-import { HoverToolTip, ClickToolTip } from '../Tooltip'
+import { HoverToolTip, ClickToolTip, Tooltip } from '../Tooltip'
 import { PartyActiveCharacter } from '../PartyActiveCharacter'
 import { usePartyContext } from '../../contexts/PartyContext'
 import { Hover } from '../Hover'
+import { useUIContext } from '../../contexts/UIContext'
 
 const ResourceE = withStyle(Monodiv, (props: any) => ({
   height: 15,
@@ -97,10 +98,13 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
     isHovering,
     canEquip = false,
     showActions = true,
-    onClick,
     onConsumableClick,
   } = props
   const { party, equipItem } = usePartyContext()
+  const {
+    openCharacterInventoryId,
+    setOpenCharacterInventoryId,
+  } = useUIContext()
   const health = noneg(character.health - character.stats.healthOffset)
   const previousHealth = usePrevious<number>(health)
   return (
@@ -114,10 +118,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       }}
     >
       <BoxContainer
-        onClick={() => (onClick && !character.dead ? onClick() : null)}
         style={{
           borderWidth: 2,
-          cursor: onClick ? 'pointer' : 'default',
         }}
         substyle={{ padding: 0, minWidth: 420 }}
       >
@@ -182,46 +184,44 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                       $full
                       style={{ alignItems: 'center', justifyContent: 'center' }}
                     >
-                      <ClickToolTip
+                      <Tooltip
+                        isOpen={character.id === openCharacterInventoryId}
+                        direction='up'
                         distance={80}
-                        content={({ onClick }) => (
-                          <div
-                            style={{
-                              opacity:
-                                character.id === activeCharacter.id ? 1 : 0,
+                        content={
+                          <PartyActiveCharacter
+                            character={character}
+                            party={party}
+                            equipItem={equipItem}
+                            canEquip={canEquip}
+                            onRequestClose={() => {
+                              setOpenCharacterInventoryId(undefined)
                             }}
-                          >
-                            <PartyActiveCharacter
-                              character={character}
-                              party={party}
-                              active={character.id === activeCharacter.id}
-                              equipItem={equipItem}
-                              canEquip={canEquip}
-                              onRequestClose={onClick}
-                            />
-                          </div>
-                        )}
+                          />
+                        }
                       >
-                        {({ onClick, ref }) => (
-                          <div onClick={onClick}>
-                            <Hover delay={0}>
-                              {({ isHovering }) => (
-                                <Icon
-                                  src={Inventory}
-                                  fill={
-                                    isHovering
-                                      ? 'rgba(255,255,255,1)'
-                                      : 'rgba(255,255,255,0.7)'
-                                  }
-                                  size={18}
-                                  shadow
-                                  style={{ padding: 6, cursor: 'pointer' }}
-                                />
-                              )}
-                            </Hover>
-                          </div>
-                        )}
-                      </ClickToolTip>
+                        <Hover delay={0}>
+                          {({ isHovering }) => (
+                            <Icon
+                              src={Inventory}
+                              fill={
+                                isHovering
+                                  ? 'rgba(255,255,255,1)'
+                                  : 'rgba(255,255,255,0.7)'
+                              }
+                              size={18}
+                              shadow
+                              onClick={() => {
+                                if (character.id === openCharacterInventoryId) {
+                                  return setOpenCharacterInventoryId(undefined)
+                                }
+                                setOpenCharacterInventoryId(character.id)
+                              }}
+                              style={{ padding: 6, cursor: 'pointer' }}
+                            />
+                          )}
+                        </Hover>
+                      </Tooltip>
                     </FlexContainer>
                     <FlexContainer
                       $full

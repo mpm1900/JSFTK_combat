@@ -21,28 +21,16 @@ export interface PartyActiveCharacterPropsT {
   party: ProcessedPartyT
   equipItem: (characterId: string, item: WeaponT | ArmorT) => void
   canEquip: boolean
-  active?: boolean
   onRequestClose: () => void
 }
 
 export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
-  const {
-    character,
-    party,
-    canEquip,
-    active = true,
-    equipItem,
-    onRequestClose,
-  } = props
+  const { character, party, canEquip, equipItem, onRequestClose } = props
   const [activeMenuKey, setActiveMenuKey] = useState('armor')
   const [activeItem, setActiveItem] = useState<ArmorT | WeaponT | undefined>()
   const activeOption = ACTIVE_CHARACTER_MENU_KEYS.find(
     (o) => o.key === activeMenuKey,
   )
-
-  useEffect(() => {
-    if (!active) onRequestClose()
-  }, [active])
 
   return (
     <FlexContainer style={{ width: 880, justifyContent: 'flex-end' }}>

@@ -9,23 +9,22 @@ import { ModalContextProvider } from './contexts/ModalContext'
 import { makeRoute } from './routes'
 import { Party } from './domain/Party'
 import { Start } from './domain/Start'
+import { UIContextProvider } from './contexts/UIContext'
 
 const CombatDomain = () => {
   const [rawEnemyParty, setRawEnemyParty] = useState<PartyT>(makeParty(3))
   return (
-    <ModalContextProvider>
-      <CombatContextProvider
-        enemyParty={rawEnemyParty}
-        setEnemyParty={setRawEnemyParty}
-        onRequestNewParty={() => setRawEnemyParty(makeParty(3))}
-      >
-        <CombatLogContextProvider>
-          <ModalContextProvider>
-            <Combat />
-          </ModalContextProvider>
-        </CombatLogContextProvider>
-      </CombatContextProvider>
-    </ModalContextProvider>
+    <CombatContextProvider
+      enemyParty={rawEnemyParty}
+      setEnemyParty={setRawEnemyParty}
+      onRequestNewParty={() => setRawEnemyParty(makeParty(3))}
+    >
+      <CombatLogContextProvider>
+        <ModalContextProvider>
+          <Combat />
+        </ModalContextProvider>
+      </CombatLogContextProvider>
+    </CombatContextProvider>
   )
 }
 
@@ -35,10 +34,14 @@ const PartyDomain = () => {
 
 export const App = () => {
   return (
-    <Switch>
-      {makeRoute('/party', PartyDomain)}
-      {makeRoute('/combat', CombatDomain)}
-      {makeRoute('/', Start)}
-    </Switch>
+    <ModalContextProvider>
+      <UIContextProvider>
+        <Switch>
+          {makeRoute('/party', PartyDomain)}
+          {makeRoute('/combat', CombatDomain)}
+          {makeRoute('/', Start)}
+        </Switch>
+      </UIContextProvider>
+    </ModalContextProvider>
   )
 }

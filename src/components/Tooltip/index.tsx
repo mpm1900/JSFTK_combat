@@ -4,7 +4,7 @@ import { Hover } from '../Hover'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
 export interface ClickToolTipChildrenT {
-  onClick: () => void
+  onClick: (value?: boolean) => void
   ref: React.MutableRefObject<HTMLElement | undefined>
 }
 interface PropsT extends TooltipProps {
@@ -42,8 +42,9 @@ export const ClickToolTip = (props: PropsT) => {
   if (typeof children !== 'function') return null
   if (typeof content !== 'function') return null
   const p = {
-    onClick: () => {
-      setIsOpen((v) => !v)
+    onClick: (value?: boolean) => {
+      console.log('onClick', value)
+      setIsOpen((v) => (value !== undefined ? value : !v))
     },
     ref,
   }
