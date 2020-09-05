@@ -23,6 +23,7 @@ import {
   makeCharacter,
   resolveSkillTarget,
   makeSkillTarget,
+  removeTemporaryStatus,
 } from '../../functions'
 import { usePartyContext } from '../PartyContext'
 import {
@@ -231,6 +232,10 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   useEffect(() => {
     if (isDone) return
     if (enemyParty.characters.every((c) => c.dead)) {
+      updateParty({
+        ...rawParty,
+        characters: party.characters.map((c) => removeTemporaryStatus(c)),
+      })
       alert('you win')
       history.push('/JSFTK_combat/party')
       return

@@ -213,6 +213,16 @@ export const addMultipleStatus = (
   )
 }
 
+export const removeTemporaryStatus = (character: CharacterT): CharacterT => {
+  checkForProcessedCharacter(character)
+  return {
+    ...character,
+    status: character.status
+      .map((s) => STATUS_EFFECTS[s.type])
+      .filter((s) => s.persist),
+  }
+}
+
 export const getCharacterStat = (character: CharacterT, statValue: CheckT) => {
   const resolvedStatValue = statValue.key ? character.stats[statValue.key] : 0
   return resolvedStatValue + (statValue.offset || 0)

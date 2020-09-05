@@ -10,6 +10,7 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     canStack: false,
     duration: STATUS_DURATION,
     traits: [],
+    persist: true,
     commitChance: 50,
     committedTraits: [
       {
@@ -27,6 +28,7 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     canStack: false,
     duration: STATUS_DURATION,
     traits: [],
+    persist: true,
     commitChance: 100,
     committedTraits: [
       {
@@ -42,6 +44,7 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     ...makeEntity('Frozen'),
     type: 'frozen',
     canStack: false,
+    persist: true,
     duration: STATUS_DURATION,
     traits: [
       {
@@ -59,6 +62,7 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     ...makeEntity('Poisoned'),
     type: 'poisoned',
     canStack: true,
+    persist: true,
     duration: STATUS_DURATION,
     traits: [
       {
@@ -88,6 +92,7 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     type: 'targeted',
     duration: 5,
     traits: [],
+    persist: false,
     committedTraits: [],
     commitChance: 100,
     canStack: false,
@@ -98,6 +103,7 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     type: 'dazed',
     duration: 5,
     traits: [],
+    persist: false,
     committedTraits: [],
     commitChance: 100,
     canStack: false,
@@ -108,6 +114,7 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     type: 'evasive',
     duration: 5,
     traits: [],
+    persist: true,
     committedTraits: [],
     commitChance: 100,
     canStack: false,
@@ -118,6 +125,7 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     type: 'protected',
     duration: -1,
     traits: [],
+    persist: false,
     committedTraits: [],
     commitChance: 100,
     canStack: false,
@@ -127,6 +135,7 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     ...makeEntity('Speed Down'),
     type: 'speed-down',
     duration: 5,
+    persist: false,
     traits: [
       {
         duration: 5,

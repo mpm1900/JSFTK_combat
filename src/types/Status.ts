@@ -24,4 +24,5 @@ export interface StatusT extends EntityT {
   canStack: boolean
   duration: number
   description?: string
+  persist: boolean
 }
