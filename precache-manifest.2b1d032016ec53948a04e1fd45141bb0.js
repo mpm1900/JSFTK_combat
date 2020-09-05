@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e03809a1328900168dd3d81458dfb2a6",
+    "revision": "793c35765db22bdce88d368349b234e9",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "38f8a4f43776db65dda7",
+    "revision": "956505549c4e722c6a79",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
-    "revision": "fe6e754bfe3647c70f91",
-    "url": "/JSFTK_combat/static/js/2.d1ce4124.chunk.js"
+    "revision": "e789b9e4dcf92442f12e",
+    "url": "/JSFTK_combat/static/js/2.fa15959e.chunk.js"
   },
   {
     "revision": "27ae53ac28c8041a12f7e74077995ac2",
-    "url": "/JSFTK_combat/static/js/2.d1ce4124.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.fa15959e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "38f8a4f43776db65dda7",
-    "url": "/JSFTK_combat/static/js/main.798c8ae7.chunk.js"
+    "revision": "956505549c4e722c6a79",
+    "url": "/JSFTK_combat/static/js/main.7c8bf4d9.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -34,6 +34,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ce65603aad418a38f66ca50c558c6d54",
     "url": "/JSFTK_combat/static/media/brain.ce65603a.svg"
+  },
+  {
+    "revision": "47ecfebcafe637d7ce3fbf18e3abc9fd",
+    "url": "/JSFTK_combat/static/media/broadsword.47ecfebc.svg"
   },
   {
     "revision": "f1f52a3c22bdc7a554ea337d72bc906d",
@@ -100,8 +104,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/knapsack.62049a62.svg"
   },
   {
+    "revision": "f3d5462f482a656be6dd0ea9d43030e2",
+    "url": "/JSFTK_combat/static/media/leather-armor.f3d5462f.svg"
+  },
+  {
     "revision": "89b854745fdc6aa5832dc2cd2c439680",
     "url": "/JSFTK_combat/static/media/leather-boot.89b85474.svg"
+  },
+  {
+    "revision": "6ad63d45bcabfb490cecbbd2758ccfea",
+    "url": "/JSFTK_combat/static/media/light-backpack.6ad63d45.svg"
   },
   {
     "revision": "853672545c995fa342577d1e493f2958",
