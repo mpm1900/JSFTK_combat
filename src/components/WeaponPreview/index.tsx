@@ -52,7 +52,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
           >
             <span style={{ fontWeight: 600 }}>{weapon.name}</span>
             <span style={{ color: 'rgba(255,255,255,0.6)' }}>
-              {weapon.rarity}
+              {weapon.rarity} {weapon.type}
             </span>
           </FlexContainer>
           <FullContainer />

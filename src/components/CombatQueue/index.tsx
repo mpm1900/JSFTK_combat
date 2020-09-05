@@ -57,6 +57,12 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
           >
             Edit Party
           </Button>
+          <Button
+            style={{ margin: 8 }}
+            onClick={() => history.push('/JSFTK_combat')}
+          >
+            Restart
+          </Button>
         </FlexContainer>
         <FlexContainer
           style={{
