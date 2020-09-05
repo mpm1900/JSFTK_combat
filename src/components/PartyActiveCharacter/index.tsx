@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
   ProcessedCharacterT,
   ProcessedPartyT,
@@ -31,8 +31,9 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
   const activeOption = ACTIVE_CHARACTER_MENU_KEYS.find(
     (o) => o.key === activeMenuKey,
   )
+
   return (
-    <FlexContainer>
+    <FlexContainer style={{ width: 880, justifyContent: 'flex-end' }}>
       <Badge
         onClick={onRequestClose}
         $top={-10}
@@ -46,9 +47,10 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
           maxHeight: 440,
           padding: 10,
           position: 'absolute',
-          left: '-500px',
+          left: '-10px',
           width: 486,
           justifyContent: 'flex-end',
+          zIndex: -1,
         }}
       >
         {activeItem && (
