@@ -182,13 +182,21 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                     <ClickToolTip
                       distance={80}
                       content={({ onClick }) => (
-                        <PartyActiveCharacter
-                          character={character}
-                          party={party}
-                          equipItem={equipItem}
-                          canEquip={canEquip}
-                          onRequestClose={onClick}
-                        />
+                        <div
+                          style={{
+                            opacity:
+                              character.id === activeCharacter.id ? 1 : 0,
+                          }}
+                        >
+                          <PartyActiveCharacter
+                            character={character}
+                            party={party}
+                            active={character.id === activeCharacter.id}
+                            equipItem={equipItem}
+                            canEquip={canEquip}
+                            onRequestClose={onClick}
+                          />
+                        </div>
                       )}
                     >
                       {({ onClick, ref }) => (
