@@ -16,33 +16,34 @@ export interface HoverAreaPropsT {
 
 export const HoverArea = (props: HoverAreaPropsT) => {
   const { character, activeItem } = props
+  const foundArmor = character.armor.find(
+    (a) => a.resource === (activeItem as ArmorT).resource,
+  )
 
   return (
     <div>
       {activeItem.itemType === 'armor' && (
         <FlexContainer>
-          {character.armor.find(
-            (a) => a.resource === (activeItem as ArmorT).resource,
-          ) && (
+          {foundArmor && (
+            <ArmorPreview armor={foundArmor} showEquipButton={false} />
+          )}
+          {foundArmor?.id !== activeItem.id && (
             <ArmorPreview
-              armor={
-                character.armor.find(
-                  (a) => a.resource === (activeItem as ArmorT).resource,
-                ) as ArmorT
-              }
+              armor={activeItem as ArmorT}
               showEquipButton={false}
             />
           )}
-          <ArmorPreview armor={activeItem as ArmorT} showEquipButton={false} />
         </FlexContainer>
       )}
       {activeItem.itemType === 'weapon' && (
         <FlexContainer>
           <WeaponPreview weapon={character.weapon} showEquipButton={false} />
-          <WeaponPreview
-            weapon={activeItem as ProcessedWeaponT}
-            showEquipButton={false}
-          />
+          {character.weapon.id !== activeItem.id && (
+            <WeaponPreview
+              weapon={activeItem as ProcessedWeaponT}
+              showEquipButton={false}
+            />
+          )}
         </FlexContainer>
       )}
     </div>

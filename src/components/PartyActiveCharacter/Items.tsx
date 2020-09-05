@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProcessedCharacterT } from '../../types'
+import { ProcessedCharacterT, WeaponT, ArmorT } from '../../types'
 import { FlexContainer } from '../../elements/flex'
 import { CHARACTER_RESOURCES } from '../../objects/Item'
 import { Icon } from '../Icon'
@@ -24,12 +24,13 @@ const ItemRow = styled(FlexContainer, (props: any) => {
 
 export interface ItemPropsT {
   character: ProcessedCharacterT
+  setActiveItem: (item: WeaponT | ArmorT | undefined) => void
 }
 export const Items = (props: ItemPropsT) => {
-  const { character } = props
+  const { character, setActiveItem } = props
   return (
     <FlexContainer $full $direction='column'>
-      <ItemRow>
+      <ItemRow onMouseEnter={() => setActiveItem(character.weapon)}>
         <Icon
           src={RESOURCE_ICONS.weapon || ''}
           size={16}
@@ -38,7 +39,11 @@ export const Items = (props: ItemPropsT) => {
         {character.weapon.name}
       </ItemRow>
       {CHARACTER_RESOURCES.map((res) => (
-        <ItemRow>
+        <ItemRow
+          onMouseEnter={() =>
+            setActiveItem(character.armor.find((a) => a.resource === res))
+          }
+        >
           <Icon
             src={RESOURCE_ICONS[res] || ''}
             size={16}

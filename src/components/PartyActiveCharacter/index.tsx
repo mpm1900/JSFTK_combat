@@ -65,7 +65,7 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
             substyle={{ background: '#111', padding: '16px 0 2px 0' }}
           >
             <FlexContainer>
-              <Items character={character} />
+              <Items character={character} setActiveItem={setActiveItem} />
               <Image character={character} />
             </FlexContainer>
             <MenuSelect
