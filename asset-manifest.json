@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.90182d2b.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.90182d2b.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.d4acdfa5.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.d4acdfa5.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
-    "static/js/2.4b4963d2.chunk.js": "/JSFTK_combat/static/js/2.4b4963d2.chunk.js",
-    "static/js/2.4b4963d2.chunk.js.map": "/JSFTK_combat/static/js/2.4b4963d2.chunk.js.map",
+    "static/js/2.d1ce4124.chunk.js": "/JSFTK_combat/static/js/2.d1ce4124.chunk.js",
+    "static/js/2.d1ce4124.chunk.js.map": "/JSFTK_combat/static/js/2.d1ce4124.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.b1b9df91cd298f319804c7f5a5886497.js": "/JSFTK_combat/precache-manifest.b1b9df91cd298f319804c7f5a5886497.js",
+    "precache-manifest.5ca0dd21bc5f2f1437bb6395712169d8.js": "/JSFTK_combat/precache-manifest.5ca0dd21bc5f2f1437bb6395712169d8.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/main.a8c8ac70.chunk.css.map": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css.map",
-    "static/js/2.4b4963d2.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.4b4963d2.chunk.js.LICENSE.txt",
+    "static/js/2.d1ce4124.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.d1ce4124.chunk.js.LICENSE.txt",
     "static/media/biceps.svg": "/JSFTK_combat/static/media/biceps.e62c221f.svg",
     "static/media/bordered-shield.svg": "/JSFTK_combat/static/media/bordered-shield.56c12b47.svg",
     "static/media/brain.svg": "/JSFTK_combat/static/media/brain.ce65603a.svg",
@@ -38,10 +38,12 @@
     "static/media/robin-hood-hat.svg": "/JSFTK_combat/static/media/robin-hood-hat.6bab1449.svg",
     "static/media/scale-mail.svg": "/JSFTK_combat/static/media/scale-mail.cb5ff7d5.svg",
     "static/media/shield-impact.svg": "/JSFTK_combat/static/media/shield-impact.54fdc5c4.svg",
+    "static/media/shieldcomb.svg": "/JSFTK_combat/static/media/shieldcomb.802f20f3.svg",
     "static/media/skills.svg": "/JSFTK_combat/static/media/skills.60519e24.svg",
     "static/media/split-cross.svg": "/JSFTK_combat/static/media/split-cross.fa0be1a3.svg",
     "static/media/sprint.svg": "/JSFTK_combat/static/media/sprint.968b443a.svg",
     "static/media/star-swirl.svg": "/JSFTK_combat/static/media/star-swirl.3045bd1f.svg",
+    "static/media/sticky-boot.svg": "/JSFTK_combat/static/media/sticky-boot.f097559f.svg",
     "static/media/targeted.svg": "/JSFTK_combat/static/media/targeted.b4ce8dd7.svg",
     "static/media/ubisoft-sun.svg": "/JSFTK_combat/static/media/ubisoft-sun.30335592.svg",
     "static/media/viking-shield.svg": "/JSFTK_combat/static/media/viking-shield.a61f8230.svg",
@@ -49,8 +51,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
-    "static/js/2.4b4963d2.chunk.js",
+    "static/js/2.d1ce4124.chunk.js",
     "static/css/main.a8c8ac70.chunk.css",
-    "static/js/main.90182d2b.chunk.js"
+    "static/js/main.d4acdfa5.chunk.js"
   ]
 }
