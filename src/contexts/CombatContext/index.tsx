@@ -186,6 +186,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       ),
     )
     setRoundId(v4())
+    setActiveRound(undefined)
     setIsRenderingResult(false)
   }
 
@@ -195,12 +196,10 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     setRoundResults((r) => [...r, activeRound])
     setEnemyParty(parties.enemyParty)
     updateParty(parties.party)
-    setActiveRound(undefined)
     const updatedCharacters = [
       ...parties.party.characters,
       ...parties.enemyParty.characters,
     ].map((c) => processCharacter(c))
-
     completeRound(activeRound[0].source, updatedCharacters)
   }, [activeRound, queue])
 
@@ -234,7 +233,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     if (enemyParty.characters.every((c) => c.dead)) {
       updateParty({
         ...rawParty,
-        characters: party.characters.map((c) => removeTemporaryStatus(c)),
+        characters: rawParty.characters.map((c) => removeTemporaryStatus(c)),
       })
       alert('you win')
       history.push('/JSFTK_combat/party')
