@@ -4,6 +4,8 @@ import {
   ProcessedPartyT,
   CharacterT,
   ProcessedCharacterT,
+  WeaponT,
+  ArmorT,
 } from '../../types'
 import { usePartyActions, useParty } from '../../state/party'
 import {
@@ -12,6 +14,8 @@ import {
   makeParty,
   processCharacter,
   makeCharacter,
+  equipArmor,
+  equipWeapon,
 } from '../../functions'
 
 export interface PartyContextT {
@@ -24,6 +28,7 @@ export interface PartyContextT {
   findCharacter: (characterId: string) => ProcessedCharacterT | undefined
   findRawCharacter: (characterId: string) => CharacterT | undefined
   setActiveCharacter: (character: ProcessedCharacterT) => void
+  equipItem: (characterId: string, item: WeaponT | ArmorT) => void
 }
 const defaultContextValue: PartyContextT = {
   rawParty: makeParty(),
@@ -35,6 +40,7 @@ const defaultContextValue: PartyContextT = {
   findCharacter: (characterId) => undefined,
   findRawCharacter: (characterId) => undefined,
   setActiveCharacter: (character) => {},
+  equipItem: (characterId, item) => {},
 }
 export const PartyContext = React.createContext<PartyContextT>(
   defaultContextValue,
@@ -81,6 +87,39 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
     return findCharacterInParty(rawParty, characterId)
   }
 
+  const equipItem = (characterId: string, item: WeaponT | ArmorT) => {
+    const character = findRawCharacter(activeCharacter.id)
+    if (!character) return
+    if (item.itemType === 'armor') {
+      const armor = item as ArmorT
+      const result = equipArmor(character, armor)
+      updateParty({
+        ...rawParty,
+        items: [
+          ...rawParty.items.filter((i) => i.id !== item.id),
+          ...(result.armor ? [result.armor] : []),
+        ],
+        characters: rawParty.characters.map((c) =>
+          c.id === result.character.id ? result.character : c,
+        ),
+      })
+    }
+    if (item.itemType === 'weapon') {
+      const weapon = item as WeaponT
+      const result = equipWeapon(character, weapon)
+      updateParty({
+        ...rawParty,
+        items: [
+          ...rawParty.items.filter((i) => i.id !== item.id),
+          ...(result.weapon ? [result.weapon] : []),
+        ],
+        characters: rawParty.characters.map((c) =>
+          c.id === result.character.id ? result.character : c,
+        ),
+      })
+    }
+  }
+
   return (
     <PartyContext.Provider
       value={{
@@ -93,6 +132,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
         findCharacter,
         findRawCharacter,
         setActiveCharacter,
+        equipItem,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FullContainer, FlexContainer } from '../elements/flex'
 import { BoxContainer } from '../elements/box'
 import { usePartyContext } from '../contexts/PartyContext'
@@ -8,10 +8,19 @@ import { STAT_BONUS_KEYS } from '../objects'
 import { Gauge } from '../components/Gauge'
 import { RedButton } from '../elements/button'
 import { useHistory } from 'react-router'
+import { INITIAL_STATE } from '../state/party'
 
 export const Start = () => {
-  const { party, upsertCharacter, findRawCharacter } = usePartyContext()
+  const {
+    party,
+    updateParty,
+    upsertCharacter,
+    findRawCharacter,
+  } = usePartyContext()
   const history = useHistory()
+  useEffect(() => {
+    updateParty(INITIAL_STATE)
+  }, [])
   return (
     <FlexContainer
       $full

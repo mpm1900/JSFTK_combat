@@ -17,9 +17,9 @@ export const Party = () => {
     rawParty,
     activeCharacter,
     updateParty,
-    upsertCharacter,
     findRawCharacter,
     setActiveCharacter,
+    equipItem,
   } = usePartyContext()
   const history = useHistory()
   const enterCombat = () => {
@@ -62,20 +62,7 @@ export const Party = () => {
                       (item as ArmorT).resource !== 'offhand'
                     }
                     onEquipClick={() => {
-                      const rc = findRawCharacter(activeCharacter.id)
-                      if (rc) {
-                        const result = equipArmor(rc, item as ArmorT)
-                        updateParty({
-                          ...rawParty,
-                          items: [
-                            ...rawParty.items.filter((i) => i.id !== item.id),
-                            ...(result.armor ? [result.armor] : []),
-                          ],
-                          characters: rawParty.characters.map((c) =>
-                            c.id === result.character.id ? result.character : c,
-                          ),
-                        })
-                      }
+                      equipItem(activeCharacter.id, item)
                     }}
                   />
                 ))}
@@ -84,7 +71,13 @@ export const Party = () => {
               {party.items
                 .filter((i) => i.itemType === 'weapon')
                 .map((item) => (
-                  <WeaponPreview weapon={item as ProcessedWeaponT} />
+                  <WeaponPreview
+                    weapon={item as ProcessedWeaponT}
+                    showEquipButton={true}
+                    onEquipClick={() => {
+                      equipItem(activeCharacter.id, item)
+                    }}
+                  />
                 ))}
             </FlexContainer>
           </FlexContainer>

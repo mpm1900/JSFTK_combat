@@ -238,6 +238,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     if (party.characters.every((c) => c.dead)) {
       alert('you lose')
       setIsDone(true)
+      history.push('/JSFTK_combat/')
       return
     }
   }, [party, enemyParty])
