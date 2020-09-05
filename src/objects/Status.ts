@@ -113,4 +113,14 @@ export const STATUS_EFFECTS: Record<StatusTypeT, StatusT> = {
     canStack: false,
     description: 'Non-perfect attacks will miss when targeting this character.',
   },
+  protected: {
+    ...makeEntity('Protected'),
+    type: 'protected',
+    duration: -1,
+    traits: [],
+    committedTraits: [],
+    commitChance: 100,
+    canStack: false,
+    description: 'Negate the next damage that targets this character.',
+  },
 }

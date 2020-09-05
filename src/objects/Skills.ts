@@ -12,4 +12,5 @@ export const PERFECT_DISPLAY_INFO: Record<PerfectKeyT, string> = {
   dazed: 'Daze',
   evasive: 'Become Evasive',
   heal: 'Heal',
+  protected: 'Protect',
 }

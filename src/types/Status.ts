@@ -9,6 +9,7 @@ export type StatusTypeT =
   | 'targeted'
   | 'dazed'
   | 'evasive'
+  | 'protected'
 export interface CharacterStatusT {
   type: StatusTypeT
   duration: number

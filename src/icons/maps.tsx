@@ -22,6 +22,7 @@ import Smash from './svg/lorc/flat-hammer.svg'
 import Shockwave from './svg/lorc/hammer-drop.svg'
 import Taunt from './svg/lorc/bordered-shield.svg'
 import Alto from './svg/delapouite/g-clef.svg'
+import Protect from './svg/lorc/shieldcomb.svg'
 import { SHOT } from '../objects/skills/shot'
 import { SNIPE_SHOT } from '../objects/skills/snipe_shot'
 import { SURGE } from '../objects/skills/surge'
@@ -44,6 +45,7 @@ import Helmet from './svg/lorc/visored-helm.svg'
 
 import Godsbeard from './svg/delapouite/herbs-bundle.svg'
 import { GODSBEARD } from '../objects/consumables/godsbeard'
+import { PROTECT } from '../objects/skills/protect'
 
 export const STATI_ICONS: Partial<Record<keyof StatsT | 'accuracy', string>> = {
   vigor: Vigor,
@@ -72,6 +74,7 @@ export const SKILL_ICONS: Record<string, string> = {
   [SHOCKWAVE.id]: Shockwave,
   [TAUNT.id]: Taunt,
   [ALTO.id]: Alto,
+  [PROTECT.id]: Protect,
 }
 
 export const ARMOR_TYPE_ICONS: Record<ArmorTypeT, string> = {

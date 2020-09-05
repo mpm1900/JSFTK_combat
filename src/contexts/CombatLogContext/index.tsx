@@ -145,7 +145,8 @@ export const CombatLogContextProvider = (
         round.addedStatus.forEach((tag) => {
           log(
             <span>
-              {NameSpan(round.target)} became {tag.type} ({tag.duration} turns).
+              {NameSpan(round.target)} became {tag.type}
+              {tag.duration > 0 ? ` (${tag.duration} turns)` : ''}.
             </span>,
           )
         })

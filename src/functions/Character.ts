@@ -25,7 +25,7 @@ import { combineStats } from './Stats'
 import { CLASS_STARTING_WEAPONS } from '../objects/Weapon'
 import { CLASS_STARTING_ARMOR } from '../objects/Armor'
 import { ALL_ENEMIES } from '../objects/enemies'
-import { getRandom } from '../util'
+import { getRandom, noneg } from '../util'
 import { CLASS_STARTING_CONSUMABLES } from '../objects/Item'
 
 export const checkForProcessedCharacter = (character: CharacterT) => {
@@ -247,5 +247,26 @@ export const equipWeapon = (
       weapon,
     },
     weapon: existingWeapon,
+  }
+}
+
+export const commitDamage = (
+  character: CharacterT,
+  damage: number,
+): CharacterT => {
+  checkForProcessedCharacter(character)
+  if (hasStatus(character, 'protected')) {
+    return {
+      ...character,
+      status: character.status.filter((s) => s.type !== 'protected'),
+    }
+  } else {
+    return {
+      ...character,
+      stats: {
+        ...character.stats,
+        healthOffset: noneg(character.stats.healthOffset + damage),
+      },
+    }
   }
 }

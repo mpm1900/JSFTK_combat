@@ -43,7 +43,13 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
           </BoxContainer>
           <FullContainer />
         </FlexContainer>
-        <span style={{ color: 'rgba(255,255,255,0.4)', marginTop: 8 }}>
+        <span
+          style={{
+            color: 'rgba(255,255,255,0.4)',
+            marginTop: 8,
+            marginBottom: 8,
+          }}
+        >
           Perfect ({Math.floor(perfectChance * 100)}%){' '}
           {perfectKeys.length > 0 && '='} {perfectKeys}
         </span>

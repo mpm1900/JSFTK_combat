@@ -5,6 +5,7 @@ import {
   getDamageResistance,
   processCharacter,
   decrementStatusDurations,
+  commitDamage,
 } from './Character'
 import { PLAYER_PARTY_ID } from '../objects/Party'
 import { noneg } from '../util'
@@ -50,15 +51,7 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
 
     localUpdate(targetParty, target.id, (c) => {
       return addStatusAndTags(
-        {
-          ...c,
-          stats: {
-            ...c.stats,
-            healthOffset: noneg(
-              c.stats.healthOffset + result.totalDamage.damage - result.healing,
-            ),
-          },
-        },
+        commitDamage(c, result.totalDamage.damage - result.healing),
         result.addedStatus.map((s) => s.type),
       )
     })
@@ -72,15 +65,10 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
               processCharacter(character),
               result.splashDamage.type,
             )
-            return {
-              ...c,
-              stats: {
-                ...c.stats,
-                healthOffset:
-                  c.stats.healthOffset +
-                  (result.splashDamage.damage - splashDamageResistance),
-              },
-            }
+            return commitDamage(
+              c,
+              result.splashDamage.damage - splashDamageResistance,
+            )
           })
         })
     }
@@ -102,13 +90,7 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
     if (result.reflectedDamage.damage > 0 && !result.willDie) {
       localUpdate(sourceParty, source.id, (c) => {
         // TODO: consider adding in reflected resistance here
-        return {
-          ...c,
-          stats: {
-            ...c.stats,
-            healthOffset: c.stats.healthOffset + result.reflectedDamage.damage,
-          },
-        }
+        return commitDamage(c, result.reflectedDamage.damage)
       })
     }
 
