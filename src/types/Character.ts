@@ -23,6 +23,7 @@ export interface CharacterT extends EntityT {
   armor: ArmorT[]
   consumables: ConsumableT[]
   status: CharacterStatusT[]
+  immunities: CharacterStatusT[]
   isCharacter: true
 }
 

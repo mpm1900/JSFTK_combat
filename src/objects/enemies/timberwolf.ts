@@ -35,6 +35,7 @@ export const TIMBERWOLF = (): CharacterT => {
     armor: [],
     consumables: [],
     status: [],
+    immunities: [],
     weapon: {
       ...makeEntity('Wolf Fangs'),
       itemType: 'weapon',

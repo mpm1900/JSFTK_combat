@@ -35,6 +35,7 @@ export const BEASTMAN = (): CharacterT => {
     armor: [],
     status: [],
     consumables: [],
+    immunities: [],
     weapon: {
       ...makeEntity('Beastman Spear'),
       itemType: 'weapon',

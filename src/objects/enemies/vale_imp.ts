@@ -40,6 +40,7 @@ export const VALE_IMP = (): CharacterT => {
         type: 'evasive',
       },
     ],
+    immunities: [],
     weapon: {
       ...makeEntity('Imp Fists'),
       itemType: 'weapon',

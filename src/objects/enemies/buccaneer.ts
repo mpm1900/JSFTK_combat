@@ -35,6 +35,7 @@ export const BUCCANEER = (): CharacterT => {
     armor: [],
     consumables: [],
     status: [],
+    immunities: [],
     weapon: {
       ...makeEntity('Buccaneer Dagger'),
       itemType: 'weapon',

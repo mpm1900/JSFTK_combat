@@ -108,6 +108,7 @@ export const makeCharacter = (
     armor: CLASS_STARTING_ARMOR[characterClass],
     consumables: CLASS_STARTING_CONSUMABLES[characterClass],
     status: [],
+    immunities: [],
   }
 }
 
@@ -150,18 +151,28 @@ export const decrementStatusDurations = (character: CharacterT): CharacterT => {
 export const hasStatus = (character: CharacterT, statusType: StatusTypeT) => {
   return character.status.map((s) => s.type).includes(statusType)
 }
+export const hasImmunity = (character: CharacterT, statusType: StatusTypeT) => {
+  return character.immunities.map((i) => i.type).includes(statusType)
+}
 export const findStatus = (character: CharacterT, statusType: StatusTypeT) => {
   return character.status.find((s) => s.type === statusType)
 }
-export const addStatus = (character: CharacterT, statusType: StatusTypeT) => {
+export const addStatus = (
+  character: CharacterT,
+  statusType: StatusTypeT,
+  duration?: number,
+) => {
   const statusEffect = STATUS_EFFECTS[statusType]
   const existingStatus = findStatus(character, statusType)
+  if (hasImmunity(character, statusType)) {
+    return character
+  }
   if (existingStatus && !statusEffect.canStack) {
     return {
       ...character,
       status: [
         ...character.status.filter((t) => t.type !== statusType),
-        { type: statusType, duration: statusEffect.duration },
+        { type: statusType, duration: duration || statusEffect.duration },
       ],
     }
   }
@@ -172,7 +183,7 @@ export const addStatus = (character: CharacterT, statusType: StatusTypeT) => {
         ...character.status.filter((t) => t.type !== statusType),
         {
           type: statusType,
-          duration: statusEffect.duration,
+          duration: duration || statusEffect.duration,
           stack: (existingStatus.stack || 0) + 1,
         },
       ],
@@ -182,7 +193,11 @@ export const addStatus = (character: CharacterT, statusType: StatusTypeT) => {
     ...character,
     status: [
       ...character.status,
-      { type: statusType, duration: statusEffect.duration, stack: 0 },
+      {
+        type: statusType,
+        duration: duration || statusEffect.duration,
+        stack: 0,
+      },
     ],
   }
 }

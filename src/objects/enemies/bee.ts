@@ -35,6 +35,7 @@ export const BEE = (): CharacterT => {
     armor: [],
     consumables: [],
     status: [],
+    immunities: [],
     weapon: {
       ...makeEntity('Bee Stinger'),
       itemType: 'weapon',

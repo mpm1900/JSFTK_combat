@@ -35,6 +35,7 @@ export const BANDIT = (): CharacterT => {
     armor: [],
     consumables: [],
     status: [],
+    immunities: [],
     weapon: {
       ...makeEntity('Buccaneer Dagger'),
       itemType: 'weapon',
