@@ -94,6 +94,7 @@ export const ArmorItem = (props: ArmorItemProps) => {
               >
                 Unequip
               </Button>
+              <Button style={{ padding: '4px 8px' }}>Cancel</Button>
             </BoxContainer>
           )}
         </>
