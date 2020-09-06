@@ -55,11 +55,11 @@ export interface CombatContextT {
   roundResults: TargetSkillResultT[][]
   activeRound: TargetSkillResultT[] | undefined
   isRunning: boolean
-  isDone: boolean
   isRenderingResult: boolean
   onSkillSelect: (skill: SkillT, consumableIndex?: number) => void
   onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => void
   onConsumableSelect: (consumableIndex: number | undefined) => void
+  reset: () => void
   start: () => void
   next: (nextTarget?: ProcessedCharacterT | ProcessedPartyT) => void
   commit: () => void
@@ -76,11 +76,11 @@ const defaultValue: CombatContextT = {
   roundResults: [],
   activeRound: undefined,
   isRunning: false,
-  isDone: false,
   isRenderingResult: false,
   onSkillSelect: (skill: SkillT) => {},
   onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => {},
   onConsumableSelect: (consumableIndex) => {},
+  reset: () => {},
   start: () => {},
   next: () => {},
   commit: () => {},
@@ -95,7 +95,7 @@ export interface CombatContextProviderPropsT {
   onRequestNewParty: () => void
 }
 export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
-  const { children, setEnemyParty } = props
+  const { children, setEnemyParty, onRequestNewParty } = props
   const { party, rawParty, updateParty } = usePartyContext()
   const { open, close } = useModalContext()
   const history = useHistory()
@@ -107,7 +107,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     props.enemyParty,
   ])
   const [isRunning, setIsRunning] = useState<boolean>(false)
-  const [isDone, setIsDone] = useState<boolean>(false)
   const [isRenderingResult, setIsRenderingResult] = useState<boolean>(false)
   const characters = useMemo(
     () => [...party.characters, ...enemyParty.characters],
@@ -136,17 +135,25 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     [queue, characters],
   )
 
-  const start = useCallback(() => {
-    setIsDone(false)
+  const start = () => {
+    console.log('start')
     setIsRunning(true)
-  }, [activeCharacter])
+    setQueue(makeCombatQueue([...party.characters, ...enemyParty.characters]))
+    setRoundId(v4())
+    setActiveRound(undefined)
+    setIsRenderingResult(false)
+  }
 
-  // temp code
-  useEffect(() => {
-    if (isRunning) {
-      setQueue(makeCombatQueue([...party.characters, ...enemyParty.characters]))
-    }
-  }, [isRunning])
+  const reset = () => {
+    console.log('reset')
+    onRequestNewParty()
+    setIsRunning(false)
+    setActiveRound(undefined)
+    setSelectedSkill(undefined)
+    setSelectedTarget(undefined)
+    setSelectedConsumableIndex(undefined)
+    setIsRenderingResult(false)
+  }
 
   const next = (nextTarget?: ProcessedCharacterT | ProcessedPartyT) => {
     if (!selectedSkill) return
@@ -207,6 +214,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       ...parties.party.characters,
       ...parties.enemyParty.characters,
     ].map((c) => processCharacter(c))
+
     completeRound(activeRound[0].source, updatedCharacters)
   }, [activeRound, queue])
 
@@ -220,14 +228,13 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   }
 
   useEffect(() => {
-    if (activeCharacter) {
+    if (activeCharacter && isRunning) {
       if (activeCharacter.partyId === enemyParty.id) {
         const { skill, target } = getAIAction(
           activeCharacter,
           party,
           enemyParty,
         )
-
         execEnemyTurn(skill, makeSkillTarget(skill.targetType, target))
       } else {
         setSelectedSkill(activeCharacter.skills[0])
@@ -236,9 +243,9 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   }, [roundId])
 
   useEffect(() => {
-    if (isDone) return
+    if (!isRunning) return
     if (enemyParty.characters.every((c) => c.dead)) {
-      setIsDone(true)
+      setIsRunning(false)
       const rewards = consolidateRewards(
         getRolledRewards(
           enemyParty,
@@ -282,22 +289,15 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
         {},
         true,
       )
-      setIsDone(true)
       return
     }
     if (party.characters.every((c) => c.dead)) {
+      setIsRunning(false)
       alert('you lose')
-      setIsDone(true)
       history.push('/JSFTK_combat/')
       return
     }
   }, [party, enemyParty])
-
-  useEffect(() => {
-    if (activeCharacter && activeCharacter.skills[0]) {
-      setSelectedSkill(activeCharacter.skills[0])
-    }
-  }, [activeCharacter])
 
   return (
     <CombatContext.Provider
@@ -314,7 +314,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
           : [],
         selectedConsumableIndex,
         roundResults,
-        isDone,
         isRunning,
         isRenderingResult,
         onSkillSelect,
@@ -323,6 +322,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
         start,
         next,
         commit,
+        reset,
       }}
     >
       {children}

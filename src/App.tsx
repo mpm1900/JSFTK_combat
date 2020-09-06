@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ForestBg from './assets/img/flat-forestred.jpg'
 import { Switch, Route } from 'react-router-dom'
 import { CombatContextProvider } from './contexts/CombatContext'
 import { PartyT } from './types'
@@ -9,22 +10,18 @@ import { ModalContextProvider } from './contexts/ModalContext'
 import { makeRoute } from './routes'
 import { Party } from './domain/Party'
 import { Start } from './domain/Start'
-import { UIContextProvider } from './contexts/UIContext'
+import { UIContextProvider, useUIContext } from './contexts/UIContext'
+import { usePartyContext } from './contexts/PartyContext'
+import { CombatPlayerParty } from './components/CombatPlayerParty'
+import { FlexContainer, FullContainer } from './elements/flex'
 
 const CombatDomain = () => {
-  const [rawEnemyParty, setRawEnemyParty] = useState<PartyT>(makeParty(3))
   return (
-    <CombatContextProvider
-      enemyParty={rawEnemyParty}
-      setEnemyParty={setRawEnemyParty}
-      onRequestNewParty={() => setRawEnemyParty(makeParty(3))}
-    >
-      <CombatLogContextProvider>
-        <ModalContextProvider>
-          <Combat />
-        </ModalContextProvider>
-      </CombatLogContextProvider>
-    </CombatContextProvider>
+    <CombatLogContextProvider>
+      <ModalContextProvider>
+        <Combat />
+      </ModalContextProvider>
+    </CombatLogContextProvider>
   )
 }
 
@@ -32,16 +29,54 @@ const PartyDomain = () => {
   return <Party />
 }
 
+const GlobalCharacters = () => {
+  const { party } = usePartyContext()
+  const { onCharacterConsumableClick } = useUIContext()
+  return (
+    <div style={{ margin: '30px 0' }}>
+      <CombatPlayerParty
+        party={party}
+        onConsumableClick={(c, i, item) => {
+          if (onCharacterConsumableClick) {
+            onCharacterConsumableClick(c, i, item)
+          }
+        }}
+      />
+    </div>
+  )
+}
+
 export const App = () => {
+  const [rawEnemyParty, setRawEnemyParty] = useState<PartyT>(makeParty(3))
   return (
     <ModalContextProvider>
-      <UIContextProvider>
-        <Switch>
-          {makeRoute('/party', PartyDomain)}
-          {makeRoute('/combat', CombatDomain)}
-          {makeRoute('/', Start)}
-        </Switch>
-      </UIContextProvider>
+      <CombatContextProvider
+        enemyParty={rawEnemyParty}
+        setEnemyParty={setRawEnemyParty}
+        onRequestNewParty={() => setRawEnemyParty(makeParty(3))}
+      >
+        <UIContextProvider>
+          <FlexContainer
+            $full
+            $direction='column'
+            style={{
+              height: '100%',
+              overflow: 'hidden',
+              background: `url(${ForestBg}) center center fixed no-repeat`,
+              backgroundSize: 'cover',
+            }}
+          >
+            <FullContainer>
+              <Switch>
+                {makeRoute('/party', PartyDomain)}
+                {makeRoute('/combat', CombatDomain)}
+                {makeRoute('/', Start)}
+              </Switch>
+            </FullContainer>
+            <GlobalCharacters />
+          </FlexContainer>
+        </UIContextProvider>
+      </CombatContextProvider>
     </ModalContextProvider>
   )
 }

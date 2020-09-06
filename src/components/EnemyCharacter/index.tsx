@@ -20,8 +20,7 @@ export interface EnemyCharacterPropsT {
   onClick?: () => void
 }
 const Wrapper = styled('div', (props: any) => {
-  const { $selected, $active, $hoverable, $isHovering } = props
-  const hoverable = $hoverable && !$selected
+  const { $selected, $active } = props
   return {
     margin: 10,
     boxShadow: $active ? '0px 0px 20px white' : 'none',
@@ -47,7 +46,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
       <FlexContainer style={{ alignItems: 'center' }}>
         <FlexContainer style={{ border: '1px solid black' }}>
           <Wrapper
-            $active={character.id === activeCharacter.id}
+            $active={activeCharacter && character.id === activeCharacter.id}
             style={{
               height: 64,
               width: 64,
@@ -139,7 +138,11 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             color: '#b55553',
           }}
         >
-          <Spring from={{ hp: previousHealth || health }} to={{ hp: health }}>
+          <Spring
+            from={{ hp: previousHealth || 0 }}
+            to={{ hp: health }}
+            config={{ duration: 800 }}
+          >
             {(hpp) => <span>{Math.floor(hpp.hp)}</span>}
           </Spring>
         </span>

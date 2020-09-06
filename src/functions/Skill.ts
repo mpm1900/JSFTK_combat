@@ -110,7 +110,6 @@ export const getTargetSkillResult = (
   target: ProcessedCharacterT,
   sourceResult: SourceSkillResultT,
 ): TargetSkillResultT => {
-  console.log(sourceResult)
   if (sourceResult.accuracySuccess) {
     const dodgeResult = resolveCheck(target, { key: 'evasion' })
     const damageResistances = sourceResult.pierce

@@ -7,9 +7,11 @@ import { noneg } from '../../util'
 
 export interface CombatLogContextT {
   combatLog: JSX.Element[]
+  clear: () => void
 }
 const defualtValue: CombatLogContextT = {
   combatLog: [],
+  clear: () => {},
 }
 export const CombatLogContext = createContext<CombatLogContextT>(defualtValue)
 export const useCombatLogContext = () => useContext(CombatLogContext)
@@ -25,6 +27,7 @@ export const CombatLogContextProvider = (
   const { children } = props
   const { activeRound, roundResults, enemyParty, party } = useCombatContext()
   const [combatLog, setCombatLog] = useState<JSX.Element[]>([])
+  const clear = () => setCombatLog([])
   const [deadLog, setDeadLog] = useState<DeadLogT>({})
   const NameSpan = NameSpanBuilder(party, enemyParty)
   const log = (line: JSX.Element) =>
@@ -163,7 +166,7 @@ export const CombatLogContextProvider = (
   }, [roundResults.length])
 
   return (
-    <CombatLogContext.Provider value={{ combatLog }}>
+    <CombatLogContext.Provider value={{ combatLog, clear }}>
       {children}
     </CombatLogContext.Provider>
   )

@@ -1,30 +1,31 @@
 import React, { useEffect } from 'react'
 import { useCombatContext } from '../contexts/CombatContext'
-import { BoxContainer } from '../elements/box'
 import { FlexContainer, FullContainer } from '../elements/flex'
-import { useCombatLogContext } from '../contexts/CombatLogContext'
-import { CombatPlayerParty } from '../components/CombatPlayerParty'
 import { RoundResultRenderer } from '../components/RoundResultRenderer'
 import { CombatActions } from '../components/CombatActions'
 import { CombatParty } from '../components/CombatParty'
 import { useModalContext } from '../contexts/ModalContext'
 import { CombatQueue } from '../components/CombatQueue'
-import ForestBg from '../assets/img/flat-forestred.jpg'
 import { CombatLog } from '../components/CombatLog'
+import { useUIContext } from '../contexts/UIContext'
+import { useCombatLogContext } from '../contexts/CombatLogContext'
 
 export const Combat = () => {
   const {
-    party,
     enemyParty,
     activeCharacter,
     characters,
     queue,
-    isDone,
     isRunning,
     isRenderingResult,
     start,
+    onSkillSelect,
+    reset,
   } = useCombatContext()
+  const { clear } = useCombatLogContext()
+  const { setOnCharacterConsumableClick } = useUIContext()
   const { open, close } = useModalContext()
+
   useEffect(() => {
     if (!isRunning) {
       open(
@@ -34,21 +35,27 @@ export const Combat = () => {
       )
       setTimeout(() => {
         close()
+        clear()
         start()
       }, 1000)
     }
+    return () => {
+      reset()
+      clear()
+    }
   }, [])
 
-  if (!activeCharacter) return <span>Loading...</span>
+  useEffect(() => {
+    setOnCharacterConsumableClick((c, index, item) => {
+      if (!c) return
+      if (c.id === activeCharacter.id) {
+        onSkillSelect(item.skill, index)
+      }
+    })
+  }, [onSkillSelect, activeCharacter])
 
   return (
-    <FlexContainer
-      style={{
-        height: '100vh',
-        background: `url(${ForestBg}) center center fixed no-repeat`,
-        backgroundSize: 'cover',
-      }}
-    >
+    <FlexContainer $full style={{ height: '100%' }}>
       <FlexContainer $full $direction='column'>
         <CombatQueue queue={queue} characters={characters} />
         <FlexContainer
@@ -60,7 +67,7 @@ export const Combat = () => {
             <CombatParty party={enemyParty} />
           </FlexContainer>
           <FlexContainer $full>
-            {!isDone && (
+            {isRunning && activeCharacter && (
               <>
                 <FullContainer />
                 <FlexContainer $direction='column'>
@@ -72,13 +79,6 @@ export const Combat = () => {
                 </FlexContainer>
               </>
             )}
-          </FlexContainer>
-          <FlexContainer
-            $direction='column'
-            $full
-            style={{ justifyContent: 'flex-end' }}
-          >
-            <CombatPlayerParty party={party} />
           </FlexContainer>
         </FlexContainer>
       </FlexContainer>

@@ -45,8 +45,8 @@ export const PartyCharacterConsumables = (
           onClick={onStackClick}
         />
       ))}
-      {filler.map((f) => (
-        <ConsumableBox />
+      {filler.map((f, i) => (
+        <ConsumableBox key={i} />
       ))}
     </FlexContainer>
   )

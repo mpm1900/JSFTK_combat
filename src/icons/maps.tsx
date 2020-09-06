@@ -13,6 +13,7 @@ import Dazed from './svg/lorc/star-swirl.svg'
 import Targeted from './svg/sbed/targeted.svg'
 import Evasive from './svg/lorc/dodging.svg'
 import SpeedDown from './svg/delapouite/sticky-boot.svg'
+import Poisoned from './svg/lorc/biohazard.svg'
 
 import Shot from './svg/lorc/high-shot.svg'
 import SnipeShot from './svg/delapouite/shield-impact.svg'
@@ -68,6 +69,7 @@ export const STATUS_ICONS: Partial<Record<StatusTypeT, string>> = {
   evasive: Evasive,
   protected: Protect,
   ['speed-down']: SpeedDown,
+  poisoned: Poisoned,
 }
 
 export const SKILL_ICONS: Record<string, string> = {

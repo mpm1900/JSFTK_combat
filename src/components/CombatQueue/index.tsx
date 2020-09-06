@@ -11,6 +11,7 @@ import { Button, RedButton } from '../../elements/button'
 import { useHistory } from 'react-router'
 import { AppHeader } from '../AppHeader'
 import { PartyResources } from '../PartyResources'
+import { useCombatContext } from '../../contexts/CombatContext'
 
 const size = 40
 export interface CombatQueuePropsT {
@@ -19,6 +20,7 @@ export interface CombatQueuePropsT {
 }
 export const CombatQueue = (props: CombatQueuePropsT) => {
   const { queue, characters } = props
+  const { isRunning } = useCombatContext()
   const history = useHistory()
   const first = characters.find(
     (c) => c.id === getFirst(queue),
@@ -57,80 +59,86 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
         </FlexContainer>
       }
     >
-      <FlexContainer
-        style={{
-          width: 800,
-          flexDirection: 'row-reverse',
-          boxShadow: '0px 0px 3px black',
-          borderLeft: '1px solid rgba(255,255,255,0.3)',
-          background: '#222',
-        }}
-      >
-        <FlexContainer style={{ position: 'relative', marginLeft: 22 }}>
-          <img
-            alt='profile'
-            height='64'
-            width='64'
-            src={`https://picsum.photos/seed/${first.name}/115/115`}
-            style={{
-              height: 64,
-              width: 64,
-              border: '2px solid rgba(255,255,255,0.8)',
-              borderTop: 'none',
-              boxShadow: '1px 1px 1px black',
-              zIndex: 2,
-            }}
-          />
+      <>
+        {first && isRunning && (
           <FlexContainer
-            $direction='column'
             style={{
-              position: 'absolute',
-              background: 'rgba(255,255,255,0.8)',
-              color: '#111',
-              zIndex: 2,
-              width: 120,
-              top: 16,
-              paddingLeft: 4,
-              right: '-124px',
+              width: 800,
+              flexDirection: 'row-reverse',
+              boxShadow: '0px 0px 3px black',
+              borderLeft: '1px solid rgba(255,255,255,0.3)',
+              background: '#222',
             }}
           >
-            <span>{first.name}'s Turn</span>
+            <FlexContainer style={{ position: 'relative', marginLeft: 22 }}>
+              <img
+                alt='profile'
+                height='64'
+                width='64'
+                src={`https://picsum.photos/seed/${first?.name}/115/115`}
+                style={{
+                  height: 64,
+                  width: 64,
+                  border: '2px solid rgba(255,255,255,0.8)',
+                  borderTop: 'none',
+                  boxShadow: '1px 1px 1px black',
+                  zIndex: 2,
+                }}
+              />
+              <FlexContainer
+                $direction='column'
+                style={{
+                  position: 'absolute',
+                  background: 'rgba(255,255,255,0.8)',
+                  color: '#111',
+                  zIndex: 2,
+                  width: 120,
+                  top: 16,
+                  paddingLeft: 4,
+                  right: '-124px',
+                }}
+              >
+                {first && <span>{first.name}'s Turn</span>}
+              </FlexContainer>
+            </FlexContainer>
+            <FlexContainer $full $direction='column'>
+              <FullContainer />
+              <FlexContainer $full style={{ position: 'relative' }}>
+                {characters
+                  .filter((c) => c.id !== first?.id && !c.dead)
+                  .map((c, i) => (
+                    <div
+                      key={`${c?.id}-${i}`}
+                      style={{
+                        height: size - 10,
+                        width: size - 7,
+                        position: 'absolute',
+                        bottom: '0px',
+                        right: `calc(${queue[c.id] * widthCoef}% - ${
+                          size - 6
+                        }px)`,
+                        transition: 'all 0.3s',
+                      }}
+                    >
+                      <img
+                        alt={`${queue[c?.id || '']}`}
+                        height={size}
+                        width={size}
+                        src={`https://picsum.photos/seed/${c?.name}/115/115`}
+                        style={{
+                          height: size - 10,
+                          width: size - 7,
+                          border: '1px solid rgba(255,255,255,0.5)',
+                          borderBottom: 'none',
+                        }}
+                      />
+                    </div>
+                  ))}
+              </FlexContainer>
+            </FlexContainer>
           </FlexContainer>
-        </FlexContainer>
-        <FlexContainer $full $direction='column'>
-          <FullContainer />
-          <FlexContainer $full style={{ position: 'relative' }}>
-            {characters
-              .filter((c) => c.id !== first.id && !c.dead)
-              .map((c, i) => (
-                <div
-                  key={`${c?.id}-${i}`}
-                  style={{
-                    height: size - 10,
-                    width: size - 7,
-                    position: 'absolute',
-                    bottom: '0px',
-                    right: `calc(${queue[c.id] * widthCoef}% - ${size - 6}px)`,
-                    transition: 'all 0.3s',
-                  }}
-                >
-                  <img
-                    alt={`${queue[c?.id || '']}`}
-                    height={size}
-                    width={size}
-                    src={`https://picsum.photos/seed/${c?.name}/115/115`}
-                    style={{
-                      height: size - 10,
-                      width: size - 7,
-                      border: '1px solid rgba(255,255,255,0.5)',
-                      borderBottom: 'none',
-                    }}
-                  />
-                </div>
-              ))}
-          </FlexContainer>
-        </FlexContainer>
-      </FlexContainer>
+        )}
+      </>
     </AppHeader>
   )
 }

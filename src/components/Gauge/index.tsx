@@ -6,6 +6,8 @@ import { Monodiv } from '../../elements/monospace'
 import { ProcessedCharacterT } from '../../types'
 import { noneg } from '../../util'
 import { CHARACTER_XP_MAX } from '../../objects/Character'
+import { usePrevious } from '../../hooks/usePrevious'
+import { Spring } from 'react-spring/renderprops'
 
 export interface GaugePropsT {
   name?: string
@@ -20,6 +22,7 @@ export const Gauge = (props: GaugePropsT) => {
   const { name = '', value, max, color, height = 30, children } = props
   const p = (value / max) * 100
   const percentage = p > 100 ? 100 : p
+  const oldPercentage = usePrevious(percentage)
   return (
     <HoverToolTip
       direction='right'
@@ -35,23 +38,30 @@ export const Gauge = (props: GaugePropsT) => {
           borderColor: '1px rgba(255,255,255,0.3)',
         }}
       >
-        <FlexContainer
-          style={{
-            position: 'absolute',
-            left: 0,
-            boxSizing: 'border-box',
-            height: height - 2,
-            maxWidth: `${percentage}%`,
-            minWidth: `${percentage}%`,
-            boxShadow: 'inset 0px 0px 1px rgba(0,0,0,0.5)',
-            textShadow: '1px 1px 1px black',
-            backgroundColor: color,
-            color: 'white',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'all 0.5s',
-          }}
-        ></FlexContainer>
+        <Spring
+          from={{ value: oldPercentage || 0 }}
+          to={{ value: percentage }}
+          config={{ friction: 70, mass: 5, tension: 300 }}
+        >
+          {(p) => (
+            <div
+              style={{
+                position: 'absolute',
+                left: 0,
+                boxSizing: 'border-box',
+                height: height - 2,
+                maxWidth: `${p.value}%`,
+                minWidth: `${p.value}%`,
+                boxShadow: 'inset 0px 0px 1px rgba(0,0,0,0.5)',
+                textShadow: '1px 1px 1px black',
+                backgroundColor: color,
+                color: 'white',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            ></div>
+          )}
+        </Spring>
         <FullContainer
           style={{
             position: 'absolute',
