@@ -6,7 +6,7 @@ import { useCombatContext } from '../../contexts/CombatContext'
 import { ConfirmButton } from '../../elements/button'
 import { ConsumableT } from '../../types/Consumable'
 
-export interface CombatPartyPlayerPropsT {
+export interface PlayerPartyPropsT {
   party: ProcessedPartyT
   onCharacterClick?: (character: ProcessedCharacterT) => void
   onConsumableClick?: (
@@ -15,7 +15,7 @@ export interface CombatPartyPlayerPropsT {
     consumable: ConsumableT,
   ) => void
 }
-export const CombatPlayerParty = (props: CombatPartyPlayerPropsT) => {
+export const PlayerParty = (props: PlayerPartyPropsT) => {
   const { party, onCharacterClick, onConsumableClick } = props
   const {
     activeCharacter,

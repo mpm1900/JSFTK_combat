@@ -12,7 +12,7 @@ import { Party } from './domain/Party'
 import { Start } from './domain/Start'
 import { UIContextProvider, useUIContext } from './contexts/UIContext'
 import { usePartyContext } from './contexts/PartyContext'
-import { CombatPlayerParty } from './components/CombatPlayerParty'
+import { PlayerParty } from './components/PlayerParty'
 import { FlexContainer, FullContainer } from './elements/flex'
 
 const CombatDomain = () => {
@@ -34,7 +34,7 @@ const GlobalCharacters = () => {
   const { onCharacterConsumableClick } = useUIContext()
   return (
     <div style={{ margin: '30px 0' }}>
-      <CombatPlayerParty
+      <PlayerParty
         party={party}
         onConsumableClick={(c, i, item) => {
           if (onCharacterConsumableClick) {
