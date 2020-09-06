@@ -114,7 +114,9 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         substyle={{ padding: 0, minWidth: 420 }}
       >
         <FlexContainer style={{ border: '2px solid black' }}>
-          <FlexContainer style={{ borderRight: '2px solid black' }}>
+          <FlexContainer
+            style={{ borderRight: '2px solid black', background: '#111' }}
+          >
             <CharacterImage character={character} size={115} />
           </FlexContainer>
           <FlexContainer $full $direction='column'>
