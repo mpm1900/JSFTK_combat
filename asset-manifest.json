@@ -1,19 +1,21 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.3b543515.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.3b543515.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.9d63a9bf.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.9d63a9bf.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
     "static/css/2.d34346ea.chunk.css": "/JSFTK_combat/static/css/2.d34346ea.chunk.css",
-    "static/js/2.48c864c2.chunk.js": "/JSFTK_combat/static/js/2.48c864c2.chunk.js",
-    "static/js/2.48c864c2.chunk.js.map": "/JSFTK_combat/static/js/2.48c864c2.chunk.js.map",
+    "static/js/2.0637b32b.chunk.js": "/JSFTK_combat/static/js/2.0637b32b.chunk.js",
+    "static/js/2.0637b32b.chunk.js.map": "/JSFTK_combat/static/js/2.0637b32b.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.f3f58edf9db71d608d0bc081e2f8444d.js": "/JSFTK_combat/precache-manifest.f3f58edf9db71d608d0bc081e2f8444d.js",
+    "precache-manifest.7032dee491107f34869eeb2d97e1e50e.js": "/JSFTK_combat/precache-manifest.7032dee491107f34869eeb2d97e1e50e.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/2.d34346ea.chunk.css.map": "/JSFTK_combat/static/css/2.d34346ea.chunk.css.map",
     "static/css/main.a8c8ac70.chunk.css.map": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css.map",
-    "static/js/2.48c864c2.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.48c864c2.chunk.js.LICENSE.txt",
+    "static/js/2.0637b32b.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.0637b32b.chunk.js.LICENSE.txt",
+    "static/media/bandit.svg": "/JSFTK_combat/static/media/bandit.f798765b.svg",
+    "static/media/bee.svg": "/JSFTK_combat/static/media/bee.7b0a0467.svg",
     "static/media/biceps.svg": "/JSFTK_combat/static/media/biceps.e62c221f.svg",
     "static/media/biohazard.svg": "/JSFTK_combat/static/media/biohazard.cdfb567d.svg",
     "static/media/bordered-shield.svg": "/JSFTK_combat/static/media/bordered-shield.56c12b47.svg",
@@ -34,12 +36,15 @@
     "static/media/heavy-timer.svg": "/JSFTK_combat/static/media/heavy-timer.1072a406.svg",
     "static/media/herbs-bundle.svg": "/JSFTK_combat/static/media/herbs-bundle.e02bcec1.svg",
     "static/media/high-shot.svg": "/JSFTK_combat/static/media/high-shot.eed9def8.svg",
+    "static/media/imp-laugh.svg": "/JSFTK_combat/static/media/imp-laugh.b3e04d0d.svg",
     "static/media/juggler.svg": "/JSFTK_combat/static/media/juggler.1188c0be.svg",
     "static/media/knapsack.svg": "/JSFTK_combat/static/media/knapsack.62049a62.svg",
     "static/media/leather-armor.svg": "/JSFTK_combat/static/media/leather-armor.f3d5462f.svg",
     "static/media/leather-boot.svg": "/JSFTK_combat/static/media/leather-boot.89b85474.svg",
     "static/media/light-backpack.svg": "/JSFTK_combat/static/media/light-backpack.6ad63d45.svg",
     "static/media/lightning-shield.svg": "/JSFTK_combat/static/media/lightning-shield.85367254.svg",
+    "static/media/orc-head.svg": "/JSFTK_combat/static/media/orc-head.ff410513.svg",
+    "static/media/pirate-captain.svg": "/JSFTK_combat/static/media/pirate-captain.daa0fd39.svg",
     "static/media/pointy-hat.svg": "/JSFTK_combat/static/media/pointy-hat.d042ac98.svg",
     "static/media/robe.svg": "/JSFTK_combat/static/media/robe.5b61ecba.svg",
     "static/media/robin-hood-hat.svg": "/JSFTK_combat/static/media/robin-hood-hat.6bab1449.svg",
@@ -54,13 +59,14 @@
     "static/media/targeted.svg": "/JSFTK_combat/static/media/targeted.b4ce8dd7.svg",
     "static/media/ubisoft-sun.svg": "/JSFTK_combat/static/media/ubisoft-sun.30335592.svg",
     "static/media/viking-shield.svg": "/JSFTK_combat/static/media/viking-shield.a61f8230.svg",
-    "static/media/visored-helm.svg": "/JSFTK_combat/static/media/visored-helm.1f2ced7f.svg"
+    "static/media/visored-helm.svg": "/JSFTK_combat/static/media/visored-helm.1f2ced7f.svg",
+    "static/media/wolf-head.svg": "/JSFTK_combat/static/media/wolf-head.4e7bf362.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
     "static/css/2.d34346ea.chunk.css",
-    "static/js/2.48c864c2.chunk.js",
+    "static/js/2.0637b32b.chunk.js",
     "static/css/main.a8c8ac70.chunk.css",
-    "static/js/main.3b543515.chunk.js"
+    "static/js/main.9d63a9bf.chunk.js"
   ]
 }

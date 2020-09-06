@@ -1,31 +1,39 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "87b9668cb4d8f7612471cfe8b00b4a55",
+    "revision": "1b0052ce741f67b12e97bfa4ef5206d2",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "5cf24df011cf1a341c63",
+    "revision": "f2998aa0cb9dab126597",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "204e83529998fb6e63e3",
+    "revision": "870fefe29d92b4fac21f",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
-    "revision": "5cf24df011cf1a341c63",
-    "url": "/JSFTK_combat/static/js/2.48c864c2.chunk.js"
+    "revision": "f2998aa0cb9dab126597",
+    "url": "/JSFTK_combat/static/js/2.0637b32b.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.48c864c2.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.0637b32b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "204e83529998fb6e63e3",
-    "url": "/JSFTK_combat/static/js/main.3b543515.chunk.js"
+    "revision": "870fefe29d92b4fac21f",
+    "url": "/JSFTK_combat/static/js/main.9d63a9bf.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
     "url": "/JSFTK_combat/static/js/runtime-main.0208154f.js"
+  },
+  {
+    "revision": "f798765b7d03667cb4e97519c2d8ac31",
+    "url": "/JSFTK_combat/static/media/bandit.f798765b.svg"
+  },
+  {
+    "revision": "7b0a046716be2b0b94affb756cd143a8",
+    "url": "/JSFTK_combat/static/media/bee.7b0a0467.svg"
   },
   {
     "revision": "e62c221fb378995303467ee8619449db",
@@ -108,6 +116,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/high-shot.eed9def8.svg"
   },
   {
+    "revision": "b3e04d0db146942a6ddc2a1a632ab127",
+    "url": "/JSFTK_combat/static/media/imp-laugh.b3e04d0d.svg"
+  },
+  {
     "revision": "1188c0beb2a8bc34681d4f12564d6bae",
     "url": "/JSFTK_combat/static/media/juggler.1188c0be.svg"
   },
@@ -130,6 +142,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "853672545c995fa342577d1e493f2958",
     "url": "/JSFTK_combat/static/media/lightning-shield.85367254.svg"
+  },
+  {
+    "revision": "ff410513bff5092b5cbcd882e6a9dbe6",
+    "url": "/JSFTK_combat/static/media/orc-head.ff410513.svg"
+  },
+  {
+    "revision": "daa0fd39690604417f8e68e21b8b8c66",
+    "url": "/JSFTK_combat/static/media/pirate-captain.daa0fd39.svg"
   },
   {
     "revision": "d042ac9872801c1f6b9c303ae81827d7",
@@ -190,5 +210,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "1f2ced7f3e4f768c0c73542c5b8a9619",
     "url": "/JSFTK_combat/static/media/visored-helm.1f2ced7f.svg"
+  },
+  {
+    "revision": "4e7bf3628a2aea541efd90e40fe98ac9",
+    "url": "/JSFTK_combat/static/media/wolf-head.4e7bf362.svg"
   }
 ]);
