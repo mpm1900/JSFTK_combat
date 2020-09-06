@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.fa91d68c.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.fa91d68c.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.8a97a543.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.8a97a543.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
-    "static/css/2.d34346ea.chunk.css": "/JSFTK_combat/static/css/2.d34346ea.chunk.css",
-    "static/js/2.5332ff62.chunk.js": "/JSFTK_combat/static/js/2.5332ff62.chunk.js",
-    "static/js/2.5332ff62.chunk.js.map": "/JSFTK_combat/static/js/2.5332ff62.chunk.js.map",
+    "static/css/2.b469419a.chunk.css": "/JSFTK_combat/static/css/2.b469419a.chunk.css",
+    "static/js/2.cd8b82e6.chunk.js": "/JSFTK_combat/static/js/2.cd8b82e6.chunk.js",
+    "static/js/2.cd8b82e6.chunk.js.map": "/JSFTK_combat/static/js/2.cd8b82e6.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.2b4e2b820706e4da2421d0ecadd34b20.js": "/JSFTK_combat/precache-manifest.2b4e2b820706e4da2421d0ecadd34b20.js",
+    "precache-manifest.e8ee0a0d2f907f2238215e3e68697acb.js": "/JSFTK_combat/precache-manifest.e8ee0a0d2f907f2238215e3e68697acb.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
-    "static/css/2.d34346ea.chunk.css.map": "/JSFTK_combat/static/css/2.d34346ea.chunk.css.map",
+    "static/css/2.b469419a.chunk.css.map": "/JSFTK_combat/static/css/2.b469419a.chunk.css.map",
     "static/css/main.a8c8ac70.chunk.css.map": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css.map",
-    "static/js/2.5332ff62.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.5332ff62.chunk.js.LICENSE.txt",
+    "static/js/2.cd8b82e6.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.cd8b82e6.chunk.js.LICENSE.txt",
     "static/media/bandit.svg": "/JSFTK_combat/static/media/bandit.f798765b.svg",
     "static/media/bee.svg": "/JSFTK_combat/static/media/bee.7b0a0467.svg",
     "static/media/biceps.svg": "/JSFTK_combat/static/media/biceps.e62c221f.svg",
@@ -65,9 +65,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
-    "static/css/2.d34346ea.chunk.css",
-    "static/js/2.5332ff62.chunk.js",
+    "static/css/2.b469419a.chunk.css",
+    "static/js/2.cd8b82e6.chunk.js",
     "static/css/main.a8c8ac70.chunk.css",
-    "static/js/main.fa91d68c.chunk.js"
+    "static/js/main.8a97a543.chunk.js"
   ]
 }
