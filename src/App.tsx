@@ -14,6 +14,7 @@ import { UIContextProvider, useUIContext } from './contexts/UIContext'
 import { usePartyContext } from './contexts/PartyContext'
 import { PlayerParty } from './components/PlayerParty'
 import { FlexContainer, FullContainer } from './elements/flex'
+import { useGameStateContext } from './contexts/GameStateContext'
 
 const CombatDomain = () => {
   return (
@@ -47,13 +48,18 @@ const GlobalCharacters = () => {
 }
 
 export const App = () => {
-  const [rawEnemyParty, setRawEnemyParty] = useState<PartyT>(makeParty(3))
+  const { activeNode } = useGameStateContext()
+  const [rawEnemyParty, setRawEnemyParty] = useState<PartyT>(makeParty(0))
   return (
     <ModalContextProvider>
       <CombatContextProvider
         enemyParty={rawEnemyParty}
         setEnemyParty={setRawEnemyParty}
-        onRequestNewParty={() => setRawEnemyParty(makeParty(3))}
+        onRequestNewParty={() => {
+          console.log('REQUEST NEW PARTY')
+          console.log(activeNode.level)
+          setRawEnemyParty(makeParty(activeNode.level + 1))
+        }}
       >
         <UIContextProvider>
           <FlexContainer

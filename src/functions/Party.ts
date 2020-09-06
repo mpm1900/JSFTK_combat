@@ -16,7 +16,7 @@ import { TIMBERWOLF } from '../objects/enemies/timberwolf'
 import { VALE_IMP } from '../objects/enemies/vale_imp'
 import { BEASTMAN } from '../objects/enemies/beastman'
 import { getRandom } from '../util'
-import { ALL_ENEMY_PARTY_COMBOS } from '../objects/Party'
+import { ALL_ENEMY_PARTY_COMBOS, ENEMY_COMBOS_BY_LEVEL } from '../objects/Party'
 import { CombatRewardT } from '../types/CombatReward'
 
 export const isParty = (e: EntityT) => e && (e as PartyT).isParty
@@ -30,13 +30,15 @@ export const checkForProcessedParty = (party: PartyT) => {
   })
 }
 
-export const makeParty = (characterCount: number = 0): PartyT => {
+export const makeParty = (level: number = 0): PartyT => {
+  level = level > 5 ? 5 : level
+  console.log(level)
   return {
     ...makeEntity(),
     isParty: true,
     items: [],
     gold: 0,
-    characters: getRandom(ALL_ENEMY_PARTY_COMBOS),
+    characters: getRandom(ENEMY_COMBOS_BY_LEVEL[level]),
   }
 }
 

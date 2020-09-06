@@ -8,6 +8,7 @@ export interface NodeT<T = any> extends EntityT {
   children: NodeT[]
   type: 0 | 1
   completed: boolean
+  level: number
   parentId?: string
   gProps?: HTMLProps<SVGGElement>
   payload?: T
@@ -28,6 +29,7 @@ export const generateTree = (): NodeT => {
       completed: false,
       name: '@randomInteger(0,1)',
       children: '@child()', // Child field pointer (not required, if children are not needed)
+      level: '@level()',
     },
     rootNodesNumber: 1, // Number of root nodes
     childNodesNumber: [1, 2], // Number of children nodes (from 2 to 5)
