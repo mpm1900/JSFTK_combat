@@ -32,18 +32,17 @@ export const Combat = () => {
   const { open, close } = useModalContext()
 
   useEffect(() => {
-    if (!isRunning) {
-      open(
-        <div style={{ textAlign: 'center' }}>
-          <h1>Combat Start!</h1>
-        </div>,
-      )
-      setTimeout(() => {
-        close()
-        clear()
-        start()
-      }, 1000)
-    }
+    console.log('COMBAT START', isRunning)
+    open(
+      <div style={{ textAlign: 'center' }}>
+        <h1>Combat Start!</h1>
+      </div>,
+    )
+    setTimeout(() => {
+      close()
+      clear()
+      start()
+    }, 1000)
     return () => {
       reset()
       setNodeCompleted(activeNode.id)
