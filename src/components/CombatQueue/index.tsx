@@ -14,6 +14,8 @@ import { PartyResources } from '../PartyResources'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { PLAYER_PARTY_ID } from '../../objects/Party'
 import { Icon } from '../Icon'
+import { useGameStateContext } from '../../contexts/GameStateContext'
+import { findNode, processTree, ProcessedNodeT } from '../../types/Tree'
 
 const size = 40
 export interface CombatQueuePropsT {
@@ -24,6 +26,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
   const { queue, characters } = props
   const { isRunning } = useCombatContext()
   const history = useHistory()
+  const { setActiveNode, activeNode, processedTree } = useGameStateContext()
   const first = characters.find(
     (c) => c.id === getFirst(queue),
   ) as ProcessedCharacterT
@@ -45,13 +48,19 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
   const max = getMax(queue)
   const min = 50
   const widthCoef = max > min ? 100 / max : 100 / min
+  const gotoParty = () => {
+    console.log(activeNode, processedTree)
+    const node = findNode(processedTree, activeNode.parentId) as ProcessedNodeT
+    if (node) {
+      setActiveNode(node)
+      history.push('/JSFTK_combat/party')
+    }
+  }
   return (
     <AppHeader
       left={
         <>
-          <RedButton onClick={() => history.push('/JSFTK_combat/party')}>
-            Edit Party
-          </RedButton>
+          {/*<RedButton onClick={gotoParty}>Edit Party</RedButton>*/}
           <Button onClick={() => history.push('/JSFTK_combat')}>Restart</Button>
         </>
       }

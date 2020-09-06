@@ -36,11 +36,13 @@
     "react-spring": "^8.0.27",
     "react-toastify": "^6.0.8",
     "react-tooltip-lite": "^1.12.0",
+    "react-tree-graph": "^5.1.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "rpg-dice-roller": "^4.4.1",
     "styletron-engine-atomic": "^1.4.6",
     "styletron-react": "^5.2.7",
+    "tree-json-generator": "^0.1.1",
     "typescript": "^4.0.2",
     "uuid": "^8.3.0"
   },

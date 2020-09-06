@@ -9,6 +9,8 @@ import { CombatQueue } from '../components/CombatQueue'
 import { CombatLog } from '../components/CombatLog'
 import { useUIContext } from '../contexts/UIContext'
 import { useCombatLogContext } from '../contexts/CombatLogContext'
+import { useGameStateContext } from '../contexts/GameStateContext'
+import { useHistory } from 'react-router'
 
 export const Combat = () => {
   const {
@@ -22,8 +24,11 @@ export const Combat = () => {
     onSkillSelect,
     reset,
   } = useCombatContext()
+  const history = useHistory()
   const { clear } = useCombatLogContext()
+  const { activeNode, setNodeCompleted } = useGameStateContext()
   const { setOnCharacterConsumableClick } = useUIContext()
+  const {} = useGameStateContext()
   const { open, close } = useModalContext()
 
   useEffect(() => {
@@ -41,9 +46,16 @@ export const Combat = () => {
     }
     return () => {
       reset()
+      setNodeCompleted(activeNode.id)
       clear()
     }
   }, [])
+
+  useEffect(() => {
+    if (activeNode.completed) {
+      history.push('/JSFTK_combat/party')
+    }
+  }, [activeNode])
 
   useEffect(() => {
     setOnCharacterConsumableClick((c, index, item) => {

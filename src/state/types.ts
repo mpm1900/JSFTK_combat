@@ -1,7 +1,9 @@
 import { PartyT } from '../types/Party'
+import { GameStateT } from './game'
 
 export interface StateT {
   party: PartyT
+  game: GameStateT
 }
 
 export interface StateActionT<T = any> {

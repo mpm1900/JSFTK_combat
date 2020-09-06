@@ -10,6 +10,7 @@ import { Provider as ReduxProvider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { makeStore } from './state'
 import { PartyContextProvider } from './contexts/PartyContext'
+import { GameStateContextProvider } from './contexts/GameStateContext'
 
 const debug = process.env.NODE_ENV === 'production' ? void 0 : new DebugEngine()
 const engine: Styletron = new Styletron()
@@ -20,9 +21,11 @@ ReactDOM.render(
     <ReduxProvider store={store}>
       <StyletronProvider value={engine} debug={debug} debugAfterHydration>
         <PartyContextProvider>
-          <Router>
-            <App />
-          </Router>
+          <GameStateContextProvider>
+            <Router>
+              <App />
+            </Router>
+          </GameStateContextProvider>
         </PartyContextProvider>
       </StyletronProvider>
     </ReduxProvider>

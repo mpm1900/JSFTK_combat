@@ -10,6 +10,7 @@ import { RedButton } from '../elements/button'
 import { useHistory } from 'react-router'
 import { INITIAL_STATE } from '../state/party'
 import { Monospace } from '../elements/monospace'
+import { useGameStateContext } from '../contexts/GameStateContext'
 
 export const Start = () => {
   const {
@@ -19,8 +20,10 @@ export const Start = () => {
     findRawCharacter,
   } = usePartyContext()
   const history = useHistory()
+  const { reset } = useGameStateContext()
   useEffect(() => {
     updateParty(INITIAL_STATE)
+    reset()
   }, [])
   return (
     <FlexContainer
@@ -55,7 +58,7 @@ export const Start = () => {
             <RedButton
               style={{ marginTop: 16 }}
               onClick={() => {
-                history.push('/JSFTK_combat/combat')
+                history.push('/JSFTK_combat/party')
               }}
             >
               Begin Adventure

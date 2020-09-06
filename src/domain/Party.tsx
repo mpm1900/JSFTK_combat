@@ -1,26 +1,31 @@
 import React, { useEffect } from 'react'
 import { usePartyContext } from '../contexts/PartyContext'
 import { FlexContainer, FullContainer } from '../elements/flex'
-import { RedButton } from '../elements/button'
+import { RedButton, Button } from '../elements/button'
 import { useHistory } from 'react-router'
 import { getSkillResults, commitSkillResults } from '../functions'
 import { AppHeader } from '../components/AppHeader'
 import { PartyResources } from '../components/PartyResources'
 import { useUIContext } from '../contexts/UIContext'
+import Tree from 'react-tree-graph'
+import 'react-tree-graph/dist/style.css'
+import { useGameStateContext } from '../contexts/GameStateContext'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()
+  const { processedTree, activeNode } = useGameStateContext()
   const history = useHistory()
   const {
     setPlayerCanEquipItem,
     setOnCharacterConsumableClick,
   } = useUIContext()
+
   const enterCombat = () => {
     history.push('/JSFTK_combat/combat')
   }
+
   useEffect(() => {
     setPlayerCanEquipItem(true)
-    console.log('setting')
     setOnCharacterConsumableClick((character, consumableIndex) => {
       if (!character) return
       const consumable = character.consumables[consumableIndex]
@@ -44,6 +49,14 @@ export const Party = () => {
       setOnCharacterConsumableClick((c, i, item) => {})
     }
   }, [party, rawParty, updateParty])
+
+  useEffect(() => {
+    console.log('PARTY', activeNode)
+    if (activeNode.type === 0 && !activeNode.completed) {
+      history.push('/JSFTK_combat/combat')
+    }
+  }, [activeNode])
+
   return (
     <FlexContainer
       $full
@@ -56,7 +69,10 @@ export const Party = () => {
       <AppHeader
         left={
           <>
-            <RedButton onClick={enterCombat}>Enter Combat</RedButton>
+            {/*<RedButton onClick={enterCombat}>Enter Combat</RedButton>*/}
+            <Button onClick={() => history.push('/JSFTK_combat')}>
+              Restart
+            </Button>
             <FullContainer />
           </>
         }
@@ -78,7 +94,16 @@ export const Party = () => {
         </FlexContainer>
       </AppHeader>
       <FlexContainer $full $direction='column' style={{ padding: '30px 10px' }}>
-        <FlexContainer $full></FlexContainer>
+        <FlexContainer
+          $full
+          style={{
+            justifyContent: 'center',
+            background: 'rgba(255,255,255,0.4)',
+            padding: 10,
+          }}
+        >
+          <Tree data={processedTree} height={600} width={1200}></Tree>
+        </FlexContainer>
       </FlexContainer>
     </FlexContainer>
   )
