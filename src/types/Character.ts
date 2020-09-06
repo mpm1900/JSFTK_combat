@@ -18,6 +18,7 @@ export interface CharacterT extends EntityT {
   partyId: string
   level: number
   xp: number
+  icon?: string
   class: CharacterClassT
   stats: StatsT
   traits: []

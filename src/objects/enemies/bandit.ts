@@ -6,11 +6,13 @@ import { EXPLORERS_HAT } from '../armor/explorers_hat'
 import { EXPLORERS_CLOAK } from '../armor/explorers_cloak'
 import { getRandom } from '../../util'
 import { ALL_WEAPONS } from '../weapons'
+import Bandit from '../../icons/svg/delapouite/bandit.svg'
 
 export const BANDIT = (): CharacterT => {
   return {
     ...makeEntity('Bandit'),
     isCharacter: true,
+    icon: Bandit,
     partyId: '',
     level: 2,
     xp: 0,

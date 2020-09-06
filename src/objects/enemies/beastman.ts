@@ -4,11 +4,13 @@ import { IMPALE } from '../skills/enemy/impale'
 import { getRandom } from '../../util'
 import { ALL_WEAPONS } from '../weapons'
 import { ALL_ARMOR } from '../armor/index'
+import BeastMan from '../../icons/svg/delapouite/orc-head.svg'
 
 export const BEASTMAN = (): CharacterT => {
   return {
     ...makeEntity('Beastman'),
     isCharacter: true,
+    icon: BeastMan,
     partyId: '',
     level: 1,
     xp: 0,

@@ -51,6 +51,8 @@ import Godsbeard from './svg/delapouite/herbs-bundle.svg'
 import { GODSBEARD } from '../objects/consumables/godsbeard'
 import { PROTECT } from '../objects/skills/protect'
 import { RITARDANDO } from '../objects/skills/ritardando'
+import { stringify } from 'querystring'
+import { BANDIT } from '../objects/enemies/bandit'
 
 export const STATI_ICONS: Partial<Record<keyof StatsT | 'accuracy', string>> = {
   vigor: Vigor,

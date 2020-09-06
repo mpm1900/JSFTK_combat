@@ -4,11 +4,13 @@ import { STING, INFECTIOUS_STING } from '../skills/enemy/sting'
 import { GODSBEARD } from '../consumables/godsbeard'
 import { getRandom } from '../../util'
 import { ALL_ARMOR } from '../armor/index'
+import Bee from '../../icons/svg/lorc/bee.svg'
 
 export const BEE = (): CharacterT => {
   return {
     ...makeEntity('Bee'),
     isCharacter: true,
+    icon: Bee,
     partyId: '',
     level: 1,
     xp: 0,

@@ -10,6 +10,7 @@ import { CharacterImage } from '../CharacterImage'
 import { usePrevious } from '../../hooks/usePrevious'
 import { Spring } from 'react-spring/renderprops'
 import { noneg } from '../../util'
+import { Icon } from '../Icon'
 
 export interface EnemyCharacterPropsT {
   character: ProcessedCharacterT
@@ -44,16 +45,18 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
       }}
     >
       <FlexContainer style={{ alignItems: 'center' }}>
-        <FlexContainer style={{ border: '1px solid black' }}>
-          <Wrapper
-            $active={activeCharacter && character.id === activeCharacter.id}
-            style={{
-              height: 48,
-              width: 48,
-            }}
-          >
-            <CharacterImage character={character} size={48} />
-          </Wrapper>
+        <FlexContainer>
+          <Icon
+            src={character.icon || ''}
+            shadow
+            fill={
+              activeCharacter && character.id === activeCharacter.id
+                ? 'lightsalmon'
+                : 'white'
+            }
+            size={64}
+            style={{ zIndex: 1, position: 'relative', marginRight: -24 }}
+          />
         </FlexContainer>
         <FlexContainer $full $direction='column'>
           <FlexContainer

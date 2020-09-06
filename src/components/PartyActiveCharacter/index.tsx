@@ -32,7 +32,13 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
   )
 
   return (
-    <FlexContainer style={{ width: 880, justifyContent: 'flex-end' }}>
+    <FlexContainer
+      style={{
+        width: 880,
+        justifyContent: 'flex-end',
+        background: 'rgba(0,0,0,0.5)',
+      }}
+    >
       <Badge
         onClick={onRequestClose}
         $top={-10}
@@ -49,7 +55,6 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
           left: '-10px',
           width: 486,
           justifyContent: 'flex-end',
-          zIndex: -1,
         }}
       >
         {activeItem && (

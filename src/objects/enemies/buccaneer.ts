@@ -6,11 +6,13 @@ import { FUR_BOOTS } from '../armor/fur_boots'
 import { FUR_ARMOR } from '../armor/fur_armor'
 import { getRandom } from '../../util'
 import { ALL_WEAPONS } from '../weapons'
+import Icon from '../../icons/svg/delapouite/pirate-captain.svg'
 
 export const BUCCANEER = (): CharacterT => {
   return {
     ...makeEntity('Buccaneer'),
     isCharacter: true,
+    icon: Icon,
     partyId: '',
     level: 4,
     xp: 0,

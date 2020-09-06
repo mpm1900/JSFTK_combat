@@ -12,6 +12,8 @@ import { useHistory } from 'react-router'
 import { AppHeader } from '../AppHeader'
 import { PartyResources } from '../PartyResources'
 import { useCombatContext } from '../../contexts/CombatContext'
+import { PLAYER_PARTY_ID } from '../../objects/Party'
+import { Icon } from '../Icon'
 
 const size = 40
 export interface CombatQueuePropsT {
@@ -71,20 +73,30 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
             }}
           >
             <FlexContainer style={{ position: 'relative', marginLeft: 22 }}>
-              <img
-                alt='profile'
-                height='64'
-                width='64'
-                src={`https://picsum.photos/seed/${first?.name}/115/115`}
-                style={{
-                  height: 64,
-                  width: 64,
-                  border: '2px solid rgba(255,255,255,0.8)',
-                  borderTop: 'none',
-                  boxShadow: '1px 1px 1px black',
-                  zIndex: 2,
-                }}
-              />
+              {first?.partyId === PLAYER_PARTY_ID ? (
+                <img
+                  alt='profile'
+                  height='64'
+                  width='64'
+                  src={`https://picsum.photos/seed/${first?.name}/115/115`}
+                  style={{
+                    height: 64,
+                    width: 64,
+                    border: '2px solid rgba(255,255,255,0.8)',
+                    borderTop: 'none',
+                    boxShadow: '1px 1px 1px black',
+                    zIndex: 2,
+                  }}
+                />
+              ) : (
+                <Icon
+                  src={first?.icon || ''}
+                  shadow
+                  fill={'white'}
+                  size={60}
+                  style={{ zIndex: 1, position: 'relative' }}
+                />
+              )}
               <FlexContainer
                 $direction='column'
                 style={{
@@ -120,18 +132,32 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                         transition: 'all 0.3s',
                       }}
                     >
-                      <img
-                        alt={`${queue[c?.id || '']}`}
-                        height={size}
-                        width={size}
-                        src={`https://picsum.photos/seed/${c?.name}/115/115`}
-                        style={{
-                          height: size - 10,
-                          width: size - 7,
-                          border: '1px solid rgba(255,255,255,0.5)',
-                          borderBottom: 'none',
-                        }}
-                      />
+                      {c.partyId === PLAYER_PARTY_ID ? (
+                        <img
+                          alt={`${queue[c?.id || '']}`}
+                          height={size}
+                          width={size}
+                          src={`https://picsum.photos/seed/${c?.name}/115/115`}
+                          style={{
+                            height: size - 10,
+                            width: size - 7,
+                            border: `1px solid ${
+                              c.partyId === PLAYER_PARTY_ID
+                                ? 'lightgreen'
+                                : 'lightcoral'
+                            }`,
+                            borderBottom: 'none',
+                          }}
+                        />
+                      ) : (
+                        <Icon
+                          src={c.icon || ''}
+                          shadow
+                          fill={'white'}
+                          size={size - 10}
+                          style={{ zIndex: 1, position: 'relative' }}
+                        />
+                      )}
                     </div>
                   ))}
               </FlexContainer>

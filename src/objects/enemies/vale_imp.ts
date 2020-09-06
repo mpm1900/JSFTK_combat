@@ -4,11 +4,13 @@ import { SLAP } from '../skills/enemy/slap'
 import { getRandom } from '../../util'
 import { ALL_WEAPONS } from '../weapons'
 import { ALL_ARMOR } from '../armor/index'
+import Imp from '../../icons/svg/lorc/imp-laugh.svg'
 
 export const VALE_IMP = (): CharacterT => {
   return {
     ...makeEntity('Vale Imp'),
     isCharacter: true,
+    icon: Imp,
     partyId: '',
     level: 1,
     xp: 0,

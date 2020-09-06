@@ -4,11 +4,13 @@ import { BITE } from '../skills/enemy/bite'
 import { getRandom } from '../../util'
 import { ALL_WEAPONS } from '../weapons'
 import { ALL_ARMOR } from '../armor/index'
+import Wolf from '../../icons/svg/lorc/wolf-head.svg'
 
 export const TIMBERWOLF = (): CharacterT => {
   return {
     ...makeEntity('Timberwolf'),
     isCharacter: true,
+    icon: Wolf,
     partyId: '',
     level: 1,
     xp: 0,
