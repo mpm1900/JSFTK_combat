@@ -89,9 +89,16 @@ export const commitRewards = (
   rewards: CombatRewardT,
 ): PartyT => {
   checkForProcessedParty(party)
+  const goldMultiplier =
+    1 +
+    processParty(party).characters.reduce(
+      (r, c) => (r > c.stats.goldModifier ? r : c.stats.goldModifier),
+      0,
+    ) /
+      100
   return {
     ...party,
-    gold: party.gold + rewards.gold,
+    gold: party.gold + Math.floor(rewards.gold * goldMultiplier),
     items: [...party.items, ...rewards.items],
     characters: party.characters.map((c) => ({
       ...c,
