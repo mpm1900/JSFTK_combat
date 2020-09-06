@@ -89,13 +89,24 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                   }}
                 />
               ) : (
-                <Icon
-                  src={first?.icon || ''}
-                  shadow
-                  fill={'white'}
-                  size={60}
-                  style={{ zIndex: 1, position: 'relative' }}
-                />
+                <FlexContainer
+                  style={{
+                    background: 'lightsalmon',
+                    border: '2px solid rgba(255,255,255,0.8)',
+                    height: 64,
+                    width: 64,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Icon
+                    src={first?.icon || ''}
+                    shadow
+                    fill={'white'}
+                    size={52}
+                    style={{ zIndex: 1, position: 'relative' }}
+                  />
+                </FlexContainer>
               )}
               <FlexContainer
                 $direction='column'
@@ -150,13 +161,24 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                           }}
                         />
                       ) : (
-                        <Icon
-                          src={c.icon || ''}
-                          shadow
-                          fill={'white'}
-                          size={size - 10}
-                          style={{ zIndex: 1, position: 'relative' }}
-                        />
+                        <FlexContainer
+                          style={{
+                            background: 'lightsalmon',
+                            border: '2px solid rgba(255,255,255,0.8)',
+                            height: size - 10,
+                            width: size - 7,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}
+                        >
+                          <Icon
+                            src={c.icon || ''}
+                            shadow
+                            fill={'white'}
+                            size={size - 13}
+                            style={{ zIndex: 1, position: 'relative' }}
+                          />
+                        </FlexContainer>
                       )}
                     </div>
                   ))}
