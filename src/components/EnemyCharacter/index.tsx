@@ -141,7 +141,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           <Spring
             from={{ hp: previousHealth || 0 }}
             to={{ hp: health }}
-            config={{ duration: 800 }}
+            config={{ friction: 70, mass: 5, tension: 300, clamp: true }}
           >
             {(hpp) => <span>{Math.floor(hpp.hp)}</span>}
           </Spring>
