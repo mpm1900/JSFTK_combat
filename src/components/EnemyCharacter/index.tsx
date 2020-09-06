@@ -36,7 +36,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
       onClick={() => (onClick && !character.dead ? onClick() : null)}
       style={{
         borderWidth: 2,
-        width: 380,
+        width: 320,
         position: 'relative',
         cursor: onClick ? 'pointer' : 'default',
         color: 'rgba(255,255,255,0.8)',
@@ -48,11 +48,11 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           <Wrapper
             $active={activeCharacter && character.id === activeCharacter.id}
             style={{
-              height: 64,
-              width: 64,
+              height: 48,
+              width: 48,
             }}
           >
-            <CharacterImage character={character} size={64} />
+            <CharacterImage character={character} size={48} />
           </Wrapper>
         </FlexContainer>
         <FlexContainer $full $direction='column'>
@@ -81,8 +81,8 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             direction='down'
             content={<BoxContainer>Enemy Level</BoxContainer>}
             badgeProps={{
-              $left: '-6px',
-              $bottom: '-6px',
+              $left: '-14px',
+              $bottom: '-12px',
               $size: '20px',
               $color: 'lightcoral',
             }}
@@ -92,8 +92,8 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           <FlexContainer
             style={{
               position: 'absolute',
-              bottom: '-10px',
-              left: '70px',
+              bottom: '-17px',
+              left: '52px',
             }}
           >
             {character.statusEffects.map((tag, i) => (
@@ -103,7 +103,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           <FlexContainer
             style={{
               position: 'absolute',
-              bottom: '-6px',
+              bottom: '-16px',
               right: '16px',
               width: 52,
               alignItems: 'center',
