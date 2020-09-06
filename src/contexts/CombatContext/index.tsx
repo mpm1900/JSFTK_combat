@@ -42,6 +42,7 @@ import { useHistory } from 'react-router'
 import { useModalContext } from '../ModalContext'
 import { Button } from '../../elements/button'
 import { FlexContainer } from '../../elements/flex'
+import { CombatVictoryModal } from '../../components/CombatVictoryModal'
 
 export interface CombatContextT {
   party: ProcessedPartyT
@@ -247,49 +248,17 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     if (!isRunning) return
     if (enemyParty.characters.every((c) => c.dead)) {
       setIsRunning(false)
-      const rewards = consolidateRewards(
-        getRolledRewards(
-          enemyParty,
-          party.characters.reduce((p, c) =>
-            p.stats.luck > c.stats.luck ? p : c,
-          ),
+      const rewards = getRolledRewards(
+        enemyParty,
+        party.characters.reduce((p, c) =>
+          p.stats.luck > c.stats.luck ? p : c,
         ),
       )
-      updateParty(
-        commitRewards(
-          {
-            ...rawParty,
-            characters: rawParty.characters.map((c) =>
-              removeTemporaryStatus(c),
-            ),
-          },
-          rewards,
-        ),
-      )
-      open(
-        <div style={{ textAlign: 'center' }}>
-          <h1>You Win!</h1>
-          <FlexContainer $direction='column' style={{ color: 'white' }}>
-            <span>{rewards.gold} Gold</span>
-            <span>{rewards.xp} XP</span>
-            {rewards.items.map((item) => (
-              <span>
-                {item.name} {item.rarity} {item.itemType}
-              </span>
-            ))}
-          </FlexContainer>
-          <Button
-            onClick={() => {
-              close()
-              history.push('/JSFTK_combat/party')
-            }}
-          >
-            Close
-          </Button>
-        </div>,
-        {},
-        true,
-      )
+      updateParty({
+        ...rawParty,
+        characters: rawParty.characters.map((c) => removeTemporaryStatus(c)),
+      })
+      open(<CombatVictoryModal rewards={rewards} />, {}, true)
       return
     }
     if (party.characters.every((c) => c.dead)) {
