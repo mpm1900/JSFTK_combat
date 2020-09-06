@@ -39,7 +39,7 @@ export const CombatParty = (props: CombatPartyPropsT) => {
               !c.dead &&
               activeCharacter.partyId === PLAYER_PARTY_ID && (
                 <FlexContainer
-                  style={{ justifyContent: 'center', marginTop: -5 }}
+                  style={{ justifyContent: 'center', marginTop: -11 }}
                 >
                   <div style={{ boxShadow: '0px 2px 5px black' }}>
                     <ConfirmButton onClick={() => next(c)} $direction='down'>

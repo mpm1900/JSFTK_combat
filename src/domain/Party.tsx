@@ -102,7 +102,9 @@ export const Party = () => {
             padding: 10,
           }}
         >
-          <Tree data={processedTree} height={600} width={1200}></Tree>
+          {activeNode.completed && (
+            <Tree data={processedTree} height={600} width={1200}></Tree>
+          )}
         </FlexContainer>
       </FlexContainer>
     </FlexContainer>
