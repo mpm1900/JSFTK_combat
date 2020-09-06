@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.686c76e2.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.686c76e2.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.4091f4fd.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.4091f4fd.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
     "static/js/2.40c4a580.chunk.js": "/JSFTK_combat/static/js/2.40c4a580.chunk.js",
     "static/js/2.40c4a580.chunk.js.map": "/JSFTK_combat/static/js/2.40c4a580.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.a686260c699d27f0ed6458b607e0bb2b.js": "/JSFTK_combat/precache-manifest.a686260c699d27f0ed6458b607e0bb2b.js",
+    "precache-manifest.8a6dab841db22998a1caeb1c1529926b.js": "/JSFTK_combat/precache-manifest.8a6dab841db22998a1caeb1c1529926b.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/main.a8c8ac70.chunk.css.map": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css.map",
     "static/js/2.40c4a580.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.40c4a580.chunk.js.LICENSE.txt",
@@ -57,6 +57,6 @@
     "static/js/runtime-main.0208154f.js",
     "static/js/2.40c4a580.chunk.js",
     "static/css/main.a8c8ac70.chunk.css",
-    "static/js/main.686c76e2.chunk.js"
+    "static/js/main.4091f4fd.chunk.js"
   ]
 }
