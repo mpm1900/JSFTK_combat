@@ -14,6 +14,7 @@ import { ClickToolTip } from '../Tooltip'
 import { BoxContainer } from '../../elements/box'
 import { Button } from '../../elements/button'
 import { usePartyContext } from '../../contexts/PartyContext'
+import { useUIContext } from '../../contexts/UIContext'
 
 const ItemRow = styled(FlexContainer, (props: any) => {
   return {
@@ -37,6 +38,7 @@ export interface ItemPropsT {
 }
 export const Items = (props: ItemPropsT) => {
   const { character, setActiveItem } = props
+  const { playerCanEquipItem } = useUIContext()
   return (
     <FlexContainer $full $direction='column'>
       <ItemRow onMouseEnter={() => setActiveItem(character.weapon)}>
@@ -52,6 +54,7 @@ export const Items = (props: ItemPropsT) => {
           character={character}
           resource={res}
           onHover={setActiveItem}
+          canUnequip={playerCanEquipItem}
         />
       ))}
     </FlexContainer>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
   ProcessedCharacterT,
   ProcessedPartyT,
@@ -13,7 +13,6 @@ import { Name } from './Name'
 import { Image } from './Image'
 import { MenuSelect, ACTIVE_CHARACTER_MENU_KEYS } from './MenuSelect'
 import { HoverArea } from './HoverArea'
-import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { Badge } from '../../elements/badge'
 
 export interface PartyActiveCharacterPropsT {
