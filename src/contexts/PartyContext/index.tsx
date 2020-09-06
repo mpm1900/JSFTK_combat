@@ -95,6 +95,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
     if (!character) return
     if (item.itemType === 'armor') {
       const armor = item as ArmorT
+      if (armor.resource === 'offhand' && character.weapon.twoHand) return
       const result = equipArmor(character, armor)
       updateParty({
         ...rawParty,
@@ -109,6 +110,11 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
     }
     if (item.itemType === 'weapon') {
       const weapon = item as WeaponT
+      if (character.weapon.twoHand) {
+        if (character.armor.find((a) => a.resource === 'offhand')) {
+          return
+        }
+      }
       const result = equipWeapon(character, weapon)
       updateParty({
         ...rawParty,
