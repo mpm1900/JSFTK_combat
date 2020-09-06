@@ -153,6 +153,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     setSelectedTarget(undefined)
     setSelectedConsumableIndex(undefined)
     setIsRenderingResult(false)
+    setQueue({})
   }
 
   const next = (nextTarget?: ProcessedCharacterT | ProcessedPartyT) => {
