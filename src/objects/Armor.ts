@@ -11,7 +11,7 @@ import { PERFORMERS_BOOTS } from './armor/performers_boots'
 import { EXPLORERS_BOOTS } from './armor/explorers_boots'
 
 export const CLASS_STARTING_ARMOR: Record<CharacterClassT, ArmorT[]> = {
-  blacksmith: [SIMPLE_IRON_SHIELD],
+  blacksmith: [SIMPLE_IRON_SHIELD()],
   hunter: [],
   scholar: [],
   bard: [],

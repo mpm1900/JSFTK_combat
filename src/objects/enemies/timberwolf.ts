@@ -70,7 +70,7 @@ export const TIMBERWOLF = (): CharacterT => {
       {
         gold: 19,
         xp: 20,
-        items: [getRandom([...ALL_WEAPONS, ...ALL_ARMOR])],
+        items: [getRandom([...ALL_WEAPONS, ...ALL_ARMOR()])],
         consumables: [],
       },
     ],

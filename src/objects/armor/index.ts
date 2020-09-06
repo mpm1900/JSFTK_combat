@@ -10,19 +10,19 @@ import { PERFORMERS_BOOTS } from './performers_boots'
 import { PERFORMERS_VEST } from './performers_vest'
 import { SIMPLE_IRON_SHIELD } from './simple_iron_shield'
 
-export const ALL_ARMOR: ArmorT[] = [
-  ADVENTURE_BOOTS,
-  ADVENTURE_CLOAK,
+export const ALL_ARMOR = (): ArmorT[] => [
+  ADVENTURE_BOOTS(),
+  ADVENTURE_CLOAK(),
 
-  EXPLORERS_BOOTS,
-  EXPLORERS_CLOAK,
-  EXPLORERS_HAT,
+  EXPLORERS_BOOTS(),
+  EXPLORERS_CLOAK(),
+  EXPLORERS_HAT(),
 
-  FUR_ARMOR,
-  FUR_BOOTS,
+  FUR_ARMOR(),
+  FUR_BOOTS(),
 
-  PERFORMERS_BOOTS,
-  PERFORMERS_VEST,
+  PERFORMERS_BOOTS(),
+  PERFORMERS_VEST(),
 
-  SIMPLE_IRON_SHIELD,
+  SIMPLE_IRON_SHIELD(),
 ]

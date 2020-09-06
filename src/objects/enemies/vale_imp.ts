@@ -75,7 +75,7 @@ export const VALE_IMP = (): CharacterT => {
       {
         gold: 0,
         xp: 15,
-        items: [getRandom(ALL_ARMOR)],
+        items: [getRandom(ALL_ARMOR())],
         consumables: [],
       },
       {

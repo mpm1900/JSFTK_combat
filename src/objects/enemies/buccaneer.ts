@@ -72,19 +72,19 @@ export const BUCCANEER = (): CharacterT => {
       {
         gold: 20,
         xp: 20,
-        items: [ADVENTURE_BOOTS],
+        items: [ADVENTURE_BOOTS()],
         consumables: [],
       },
       {
         gold: 20,
         xp: 20,
-        items: [FUR_BOOTS],
+        items: [FUR_BOOTS()],
         consumables: [],
       },
       {
         gold: 80,
         xp: 20,
-        items: [FUR_ARMOR, getRandom(ALL_WEAPONS)],
+        items: [FUR_ARMOR(), getRandom(ALL_WEAPONS)],
         consumables: [],
       },
     ],

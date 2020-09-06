@@ -2,7 +2,7 @@ import { ArmorT } from '../../types'
 import { makeEntity } from '../../functions/Entity'
 import { ZERO_STATS } from '../Stats'
 
-export const PERFORMERS_BOOTS: ArmorT = {
+export const PERFORMERS_BOOTS = (): ArmorT => ({
   ...makeEntity(`Performer's Boots`),
   itemType: 'armor',
   resource: 'feet',
@@ -22,4 +22,4 @@ export const PERFORMERS_BOOTS: ArmorT = {
     },
   ],
   skills: [],
-}
+})

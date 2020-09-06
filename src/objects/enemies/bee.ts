@@ -70,7 +70,7 @@ export const BEE = (): CharacterT => {
       {
         gold: 1,
         xp: 12,
-        items: [getRandom(ALL_ARMOR)],
+        items: [getRandom(ALL_ARMOR())],
         consumables: [],
       },
       {

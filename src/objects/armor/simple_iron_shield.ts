@@ -3,7 +3,7 @@ import { makeEntity } from '../../functions/Entity'
 import { ZERO_STATS } from '../Stats'
 import { TAUNT } from '../skills/taunt'
 
-export const SIMPLE_IRON_SHIELD: ArmorT = {
+export const SIMPLE_IRON_SHIELD = (): ArmorT => ({
   ...makeEntity('Simple Iron Shield'),
   itemType: 'armor',
   resource: 'offhand',
@@ -19,4 +19,4 @@ export const SIMPLE_IRON_SHIELD: ArmorT = {
     },
   ],
   skills: [TAUNT],
-}
+})
