@@ -73,6 +73,14 @@ export const ArmorList = (props: ArmorListPropsT) => {
                     >
                       Equip
                     </Button>
+                    <Button
+                      style={{ padding: '4px 8px' }}
+                      onClick={() => {
+                        setActiveItemId(undefined)
+                      }}
+                    >
+                      Cancel
+                    </Button>
                   </BoxContainer>
                 )}
               </>

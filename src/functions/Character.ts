@@ -11,6 +11,7 @@ import {
   WeaponT,
   StatusT,
   ArmorT,
+  ArmorResourceType,
 } from '../types'
 import { STATUS_EFFECTS, CLASS_STARTING_STATS } from '../objects'
 import {
@@ -269,6 +270,21 @@ export const equipArmor = (
   }
 }
 
+export const unequipArmor = (
+  character: CharacterT,
+  resource: ArmorResourceType,
+): { character: CharacterT; armor: ArmorT | undefined } => {
+  checkForProcessedCharacter(character)
+  const armor = character.armor.find((a) => a.resource === resource)
+  return {
+    character: {
+      ...character,
+      armor: character.armor.filter((a) => a.resource !== resource),
+    },
+    armor,
+  }
+}
+
 export const equipWeapon = (
   character: CharacterT,
   weapon: WeaponT,
@@ -278,6 +294,19 @@ export const equipWeapon = (
     character: {
       ...character,
       weapon,
+    },
+    weapon: existingWeapon,
+  }
+}
+
+export const unequipWeapon = (
+  character: CharacterT,
+): { character: CharacterT; weapon: WeaponT | undefined } => {
+  const existingWeapon = character.weapon
+  return {
+    character: {
+      ...character,
+      // weapon: undefined
     },
     weapon: existingWeapon,
   }
