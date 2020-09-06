@@ -66,7 +66,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
           background: '#222',
         }}
       >
-        <FlexContainer style={{ position: 'relative' }}>
+        <FlexContainer style={{ position: 'relative', marginLeft: 22 }}>
           <img
             alt='profile'
             height='64'
