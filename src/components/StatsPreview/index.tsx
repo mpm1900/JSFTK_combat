@@ -1,15 +1,15 @@
 import React from 'react'
-import { StatsT } from '../../types'
 import { FlexContainer } from '../../elements/flex'
+import { tStats } from '../../game/Stats/type'
 import {
   DEFENSE_BONUS_KEYS,
-  DAMAGE_BONUS_KEYS,
   STAT_KEY_LABELS,
+  DAMAGE_BONUS_KEYS,
   STAT_BONUS_KEYS,
-} from '../../objects'
+} from '../../game/Stats/constants'
 
 export interface StatsPreviewPropsT {
-  stats: StatsT
+  stats: tStats
 }
 
 const defense_key_colors: any = {

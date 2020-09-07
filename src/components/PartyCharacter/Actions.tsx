@@ -1,7 +1,6 @@
 import React from 'react'
 import Details from '../../icons/svg/delapouite/skills.svg'
 import Inventory from '../../icons/svg/lorc/knapsack.svg'
-import { ProcessedCharacterT } from '../../types'
 import { FlexContainer } from '../../elements/flex'
 import { Tooltip } from '../Tooltip'
 import { PartyActiveCharacter } from '../PartyActiveCharacter'
@@ -9,9 +8,10 @@ import { usePartyContext } from '../../contexts/PartyContext'
 import { useUIContext } from '../../contexts/UIContext'
 import { Hover } from '../Hover'
 import { Icon } from '../Icon'
+import { tProcessedCharacter } from '../../game/Character/type'
 
 export interface ActionsPropsT {
-  character: ProcessedCharacterT
+  character: tProcessedCharacter
   canEquip: boolean
 }
 

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import ForestBg from './assets/img/flat-forestred.jpg'
 import { Switch, Route } from 'react-router-dom'
 import { CombatContextProvider } from './contexts/CombatContext'
-import { PartyT } from './types'
-import { makeParty } from './functions'
 import { Combat } from './domain/Combat'
 import { CombatLogContextProvider } from './contexts/CombatLogContext'
 import { ModalContextProvider } from './contexts/ModalContext'
@@ -16,6 +14,8 @@ import { PlayerParty } from './components/PlayerParty'
 import { FlexContainer, FullContainer } from './elements/flex'
 import { useGameStateContext } from './contexts/GameStateContext'
 import { CombatEncounterT } from './types/Encounter'
+import { tParty } from './game/Party/type'
+import { makeParty } from './game/Party/util'
 
 const CombatDomain = () => {
   return (
@@ -50,7 +50,7 @@ const GlobalCharacters = () => {
 
 export const App = () => {
   const { currentEncounter, level, encounters } = useGameStateContext()
-  const [rawEnemyParty, setRawEnemyParty] = useState<PartyT>(makeParty(0))
+  const [rawEnemyParty, setRawEnemyParty] = useState<tParty>(makeParty(0))
   useEffect(() => {
     if (currentEncounter && (currentEncounter as CombatEncounterT).party)
       setRawEnemyParty((currentEncounter as CombatEncounterT).party)

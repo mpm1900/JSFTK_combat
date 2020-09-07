@@ -63,20 +63,23 @@ import { RUBATO } from '../objects/skills/rubato'
 import { SPREAD_SHOT } from '../objects/skills/spread_shot'
 import { STUN_ATTACK } from '../objects/skills/stun_attack'
 import { TIME_JUMP } from '../objects/skills/time_jump'
+import { tBaseStats } from '../game/Stats/type'
+import { tStatusType } from '../game/Status/type'
 
-export const STATI_ICONS: Partial<Record<keyof StatsT | 'accuracy', string>> = {
+export const STAT_ICONS: Record<keyof tBaseStats, string> = {
   vigor: Vigor,
   strength: Strength,
   intelligence: Brain,
-  perception: Awareness,
-  talent: Juggler,
+  dexterity: Awareness,
+  charisma: Juggler,
   agility: Agility,
   luck: Clover,
-  accuracy: Accuracy,
+  evasion: '',
+  criticalChance: '',
 }
 
-export const STATUS_ICONS: Partial<Record<StatusTypeT, string>> = {
-  dazed: Dazed,
+export const STATUS_ICONS: Partial<Record<tStatusType, string>> = {
+  stunned: Dazed,
   targeted: Targeted,
   evasive: Evasive,
   protected: Protect,

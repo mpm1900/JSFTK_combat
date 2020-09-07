@@ -1,30 +1,27 @@
 import React from 'react'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { Button } from '../../elements/button'
-import {
-  ProcessedCharacterT,
-  ProcessedPartyT,
-  WeaponT,
-  ArmorT,
-} from '../../types'
-
 import Items from '../../icons/svg/delapouite/light-backpack.svg'
 import Weapons from '../../icons/svg/lorc/broadsword.svg'
 import Armor from '../../icons/svg/delapouite/leather-armor.svg'
 import { Icon } from '../Icon'
 import { ArmorList } from './ArmorList'
 import { WeaponList } from './WeaponList'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { tProcessedParty } from '../../game/Party/type'
+import { tWeapon } from '../../game/Weapon/type'
+import { tArmor } from '../../game/Armor/type'
 
 export interface MenuOptionT {
   key: string
   icon: string
-  count: (character: ProcessedCharacterT, party: ProcessedPartyT) => number
+  count: (character: tProcessedCharacter, party: tProcessedParty) => number
   render: (
-    character: ProcessedCharacterT,
-    party: ProcessedPartyT,
+    character: tProcessedCharacter,
+    party: tProcessedParty,
     canEquip: boolean,
-    equipItem: (characterId: string, item: WeaponT | ArmorT) => void,
-    setActiveItem: (item: WeaponT | ArmorT) => void,
+    equipItem: (characterId: string, item: tWeapon | tArmor) => void,
+    setActiveItem: (item: tWeapon | tArmor) => void,
   ) => JSX.Element
 }
 export const ACTIVE_CHARACTER_MENU_KEYS: MenuOptionT[] = [
@@ -83,8 +80,8 @@ export const ACTIVE_CHARACTER_MENU_KEYS: MenuOptionT[] = [
 ]
 
 export interface MenuSelectPropsT {
-  character: ProcessedCharacterT
-  party: ProcessedPartyT
+  character: tProcessedCharacter
+  party: tProcessedParty
   activeKey: string
   onActiveKeyChange: (key: string) => void
 }

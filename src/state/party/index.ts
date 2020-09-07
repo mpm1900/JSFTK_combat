@@ -1,17 +1,13 @@
 import { useSelector } from 'react-redux'
 import { StateCoreT, StateActionT, StateT } from '../types'
-import { PartyT, CharacterT } from '../../types'
 import { Dispatch } from 'redux'
 import { makeReducer } from '../util'
 import { useActions } from '../../hooks/useActions'
-import {
-  updateCharacter,
-  makeCharacter,
-  checkForProcessedParty,
-} from '../../functions'
-import { PLAYER_PARTY_ID } from '../../objects/Party'
-import { ALL_ARMOR } from '../../objects/armor/index'
-import { ALL_WEAPONS } from '../../objects/weapons/index'
+import { tParty } from '../../game/Party/type'
+import { checkForProcessedParty, updateCharacter } from '../../game/Party/util'
+import { tCharacter } from '../../game/Character/type'
+import { makeCharacter } from '../../game/Character/util'
+import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 
 export const UPDATE_PARTY = '@actions/parties/set-party'
 export const UPSERT_CHARACTER = '@actions/parties/upsert-character'
@@ -22,7 +18,7 @@ export const UPSERT_MOD = '@actions/parties/upsert-mod'
 export const DELETE_MOD = '@actions/parties/delete-mod'
 
 export const actionCreators = {
-  updateParty: (party: PartyT): StateActionT => {
+  updateParty: (party: tParty): StateActionT => {
     return {
       type: UPDATE_PARTY,
       payload: {
@@ -30,7 +26,7 @@ export const actionCreators = {
       },
     }
   },
-  upsertCharacter: (character: CharacterT): StateActionT => {
+  upsertCharacter: (character: tCharacter): StateActionT => {
     return {
       type: UPSERT_CHARACTER,
       payload: {
@@ -49,11 +45,11 @@ export const actionCreators = {
 }
 
 export const actions = {
-  updateParty: (party: PartyT) => (dispatch: Dispatch) => {
+  updateParty: (party: tParty) => (dispatch: Dispatch) => {
     checkForProcessedParty(party)
     dispatch(actionCreators.updateParty(party))
   },
-  upsertCharacter: (character: CharacterT) => (dispatch: Dispatch) => {
+  upsertCharacter: (character: tCharacter) => (dispatch: Dispatch) => {
     dispatch(actionCreators.upsertCharacter(character))
   },
   deleteCharacter: (characterId: string) => (dispatch: Dispatch) => {
@@ -61,7 +57,7 @@ export const actions = {
   },
 }
 
-export const core: StateCoreT<PartyT> = {
+export const core: StateCoreT<tParty> = {
   [UPDATE_PARTY]: (state, action) => {
     return {
       ...action.payload.party,
@@ -84,10 +80,9 @@ export const core: StateCoreT<PartyT> = {
   },
 }
 const jack = { ...makeCharacter('blacksmith'), name: 'Jack' }
-export const INITIAL_STATE: PartyT = {
+export const INITIAL_STATE: tParty = {
   isParty: true,
   id: PLAYER_PARTY_ID,
-  name: 'PlayerParty',
   items: [],
   gold: 0,
   characters: [
@@ -102,7 +97,7 @@ export default makeReducer(core, INITIAL_STATE)
 export const useParty = () => useSelector((state: StateT) => state.party)
 export const usePartyActions = () =>
   useActions(actions) as {
-    updateParty: (party: PartyT) => void
-    upsertCharacter: (character: CharacterT) => void
+    updateParty: (party: tParty) => void
+    upsertCharacter: (character: tCharacter) => void
     deleteCharacter: (characterId: string) => void
   }

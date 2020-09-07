@@ -1,10 +1,4 @@
 import React from 'react'
-import {
-  ProcessedCharacterT,
-  WeaponT,
-  ArmorT,
-  ArmorResourceType,
-} from '../../types'
 import { FlexContainer } from '../../elements/flex'
 import { CHARACTER_RESOURCES } from '../../objects/Item'
 import { Icon } from '../Icon'
@@ -15,6 +9,9 @@ import { BoxContainer } from '../../elements/box'
 import { Button } from '../../elements/button'
 import { usePartyContext } from '../../contexts/PartyContext'
 import { useUIContext } from '../../contexts/UIContext'
+import { tWeapon } from '../../game/Weapon/type'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { tArmor, tArmorResourceType } from '../../game/Armor/type'
 
 const ItemRow = styled(FlexContainer, (props: any) => {
   return {
@@ -33,8 +30,8 @@ const ItemRow = styled(FlexContainer, (props: any) => {
 })
 
 export interface ItemPropsT {
-  character: ProcessedCharacterT
-  setActiveItem: (item: WeaponT | ArmorT | undefined) => void
+  character: tProcessedCharacter
+  setActiveItem: (item: tWeapon | tArmor | undefined) => void
 }
 export const Items = (props: ItemPropsT) => {
   const { character, setActiveItem } = props
@@ -62,10 +59,10 @@ export const Items = (props: ItemPropsT) => {
 }
 
 export interface ArmorItemProps {
-  character: ProcessedCharacterT
-  resource: ArmorResourceType
+  character: tProcessedCharacter
+  resource: tArmorResourceType
   canUnequip?: boolean
-  onHover: (item: ArmorT | WeaponT | undefined) => void
+  onHover: (item: tArmor | tWeapon | undefined) => void
 }
 export const ArmorItem = (props: ArmorItemProps) => {
   const { character, resource, canUnequip = true, onHover } = props

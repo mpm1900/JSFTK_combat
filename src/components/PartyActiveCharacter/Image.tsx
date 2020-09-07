@@ -1,12 +1,12 @@
 import React from 'react'
-import { ProcessedCharacterT } from '../../types'
 import { FlexContainer } from '../../elements/flex'
 import { BoxContainer } from '../../elements/box'
 import { CharacterImage } from '../CharacterImage'
+import { tProcessedCharacter } from '../../game/Character/type'
 
 const SIZE = 100
 export interface ImagePropsT {
-  character: ProcessedCharacterT
+  character: tProcessedCharacter
 }
 
 export const Image = (props: ImagePropsT) => {

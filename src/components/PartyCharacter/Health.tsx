@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { ProcessedCharacterT } from '../../types'
 import { Spring } from 'react-spring/renderprops'
 import { noneg } from '../../util'
 import { usePrevious } from '../../hooks/usePrevious'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { tProcessedCharacter } from '../../game/Character/type'
 
 export interface HealthPropsT {
-  character: ProcessedCharacterT
+  character: tProcessedCharacter
 }
 
 export const Health = (props: HealthPropsT) => {
   const { character } = props
-  const health = noneg(character.health - character.stats.healthOffset)
+  const health = noneg(character.health)
   const previousHealth = usePrevious<number>(health) || 0
   const [storedHealth, setStoredHealth] = useState(0)
 

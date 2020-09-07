@@ -13,7 +13,6 @@ import {
   ArmorT,
   ArmorResourceType,
 } from '../types'
-import { STATUS_EFFECTS, CLASS_STARTING_STATS } from '../objects'
 import {
   combineTraits,
   getTraitsFromObjects,
@@ -41,88 +40,9 @@ export const checkForProcessedCharacter = (character: CharacterT) => {
 
 export const isCharacter = (e: EntityT) => e && (e as CharacterT).isCharacter
 
-export const getStatusEffects = (character: CharacterT): StatusT[] => {
-  return character.status.map((status) => ({
-    ...STATUS_EFFECTS[status.type],
-    duration: status.duration,
-  }))
-}
-
-export const getTraits = (character: CharacterT): TraitT[] => {
-  checkForProcessedCharacter(character)
-  const statusEffects = getStatusEffects(character)
-  const ret = [
-    ...character.traits,
-    ...character.weapon.traits,
-    ...getTraitsFromObjects(statusEffects),
-    ...getTraitsFromObjects(character.armor),
-    ...getTraitsFromObjects(getStatusEffects(character)),
-  ]
-  return ret
-}
-
 export const getSkills = (character: CharacterT) => {
   checkForProcessedCharacter(character)
   return [...character.weapon.skills, ...getSkillsFromObjects(character.armor)]
-}
-
-export const processCharacter = (
-  character: CharacterT,
-): ProcessedCharacterT => {
-  checkForProcessedCharacter(character)
-  const traits = getTraits(character)
-  const combinedTrait = combineTraits(...traits)
-  const stats: StatsT = combineStats(character.stats, combinedTrait.stats)
-  const weapon = processWeapon(character.weapon)
-  const statusEffects = getStatusEffects(character)
-  const skills = getSkills(character)
-  const hVigor =
-    CLASS_STARTING_STATS[character.class].vigor || character.stats.vigor
-  const startingHealth = 25 + Math.floor(0.1 * hVigor)
-  const health =
-    Math.floor(
-      startingHealth + character.level + 0.1 * character.level * stats.vigor,
-    ) + stats.health
-
-  return {
-    ...character,
-    health,
-    stats,
-    rawStats: character.stats,
-    weapon,
-    statusEffects,
-    skills,
-    dead: stats.healthOffset >= health,
-    processed: true,
-  }
-}
-
-export const makeCharacter = (
-  characterClass: CharacterClassT,
-  partyId: string = '',
-): CharacterT => {
-  return {
-    ...makeEntity(),
-    isCharacter: true,
-    partyId,
-    level: 1,
-    xp: 0,
-    class: characterClass,
-    stats: CLASS_STARTING_STATS[characterClass],
-    traits: [],
-    weapon: CLASS_STARTING_WEAPONS[characterClass] as WeaponT,
-    armor: CLASS_STARTING_ARMOR[characterClass],
-    consumables: CLASS_STARTING_CONSUMABLES[characterClass],
-    status: [],
-    immunities: [],
-    possibleRewards: [],
-  }
-}
-
-export const makeEnemy = () => {
-  const staicEnemy = getRandom(ALL_ENEMIES)
-  if (staicEnemy) return staicEnemy()
-  return makeCharacter(getRandom(['blacksmith', 'hunter', 'scholar']))
 }
 
 export const commitTrait = (
@@ -135,17 +55,7 @@ export const commitTrait = (
     stats: combineStats(character.stats, trait.stats),
   }
 }
-export const commitStatusEffects = (character: CharacterT): CharacterT => {
-  checkForProcessedCharacter(character)
-  const statusEffects = getStatusEffects(character)
-  const traits = getCommittedTraitsFromObjects(statusEffects)
-  return traits.reduce(
-    (char, trait) => {
-      return commitTrait(char, trait)
-    },
-    { ...character },
-  )
-}
+
 export const decrementStatusDurations = (character: CharacterT): CharacterT => {
   checkForProcessedCharacter(character)
   return {

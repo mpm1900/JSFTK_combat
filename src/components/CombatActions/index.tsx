@@ -22,7 +22,9 @@ export const CombatActions = () => {
 
   return (
     <FlexContainer $direction='column' style={{ minWidth: 340 }}>
-      {selectedSkill && <SkillChecks skill={selectedSkill} />}
+      {selectedSkill && (
+        <SkillChecks stat={activeCharacter.weapon.stat} skill={selectedSkill} />
+      )}
       <FlexContainer style={{ justifyContent: 'center' }}>
         {activeCharacter.skills.map((skill) => (
           <React.Fragment key={skill.id}>

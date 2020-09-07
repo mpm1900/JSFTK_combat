@@ -1,29 +1,27 @@
 import React from 'react'
 import Color from 'color'
-import { ProcessedWeaponT } from '../../types'
 import { BoxContainer } from '../../elements/box'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { SkillCheck } from '../SkillChecks'
-import { combineTraits } from '../../functions'
 import { StatsPreview } from '../StatsPreview'
 import { ITEM_RARITY_COLORS } from '../../objects/Item'
 import { Button } from '../../elements/button'
+import { tWeapon } from '../../game/Weapon/type'
 
-export const getDamageColor = (weapon: ProcessedWeaponT) => {
+export const getDamageColor = (weapon: tWeapon) => {
   if (weapon.damage.type === 'physical') return 'lightblue'
   if (weapon.damage.type === 'magic') return 'plum'
   return 'white'
 }
 
 export interface WeaponPreviewPropsT {
-  weapon: ProcessedWeaponT
+  weapon: tWeapon
   showEquipButton?: boolean
   onEquipClick?: () => void
 }
 export const WeaponPreview = (props: WeaponPreviewPropsT) => {
   const { weapon, showEquipButton, onEquipClick } = props
-  const basicAttack = weapon.skills.find((s) => s.isBasicAttack)
-  const combinedTrait = combineTraits(...weapon.traits)
+  const basicAttack = weapon.skills[0]
   const rarityColor = ITEM_RARITY_COLORS[weapon.rarity]
   const from = Color(rarityColor).darken(0.5).rgb().toString()
   const to = Color(rarityColor).darken(0.7).rgb().toString()
@@ -33,13 +31,15 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
       <FlexContainer $direction='column'>
         {basicAttack && (
           <FlexContainer style={{ justifyContent: 'center', marginBottom: 10 }}>
-            {basicAttack.rolls.map((roll) => (
-              <SkillCheck
-                check={{ label: roll.key || 'strength', result: true }}
-                size={18}
-                padding={4}
-              />
-            ))}
+            {Array(basicAttack.rolls)
+              .fill(null)
+              .map((_, i) => (
+                <SkillCheck
+                  check={{ label: weapon.stat, result: true }}
+                  size={18}
+                  padding={4}
+                />
+              ))}
           </FlexContainer>
         )}
         <FlexContainer>
@@ -77,7 +77,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
                   fontSize: 24,
                 }}
               >
-                {weapon.damage.damage}
+                {weapon.damage.value}
               </span>
               <span style={{ textTransform: 'capitalize' }}>
                 {weapon.damage.type} Damage
@@ -88,7 +88,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
                 (skill, i) => `${i > 0 ? ', ' : ''}${skill.name}`,
               )}
             </span>
-            <StatsPreview stats={combinedTrait.stats} />
+            <StatsPreview stats={weapon.stats} />
           </FlexContainer>
         </BoxContainer>
       </FlexContainer>

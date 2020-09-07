@@ -1,16 +1,17 @@
 import React from 'react'
-import { ProcessedPartyT, ProcessedCharacterT } from '../../types'
-import { FlexContainer, FullContainer } from '../../elements/flex'
+import { FlexContainer } from '../../elements/flex'
 import { PartyCharacter } from '../PartyCharacter'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { ConfirmButton } from '../../elements/button'
 import { ConsumableT } from '../../types/Consumable'
+import { tProcessedParty } from '../../game/Party/type'
+import { tProcessedCharacter } from '../../game/Character/type'
 
 export interface PlayerPartyPropsT {
-  party: ProcessedPartyT
-  onCharacterClick?: (character: ProcessedCharacterT) => void
+  party: tProcessedParty
+  onCharacterClick?: (character: tProcessedCharacter) => void
   onConsumableClick?: (
-    character: ProcessedCharacterT,
+    character: tProcessedCharacter,
     consumableIndex: number,
     consumable: ConsumableT,
   ) => void
@@ -24,10 +25,10 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
     next,
   } = useCombatContext()
 
-  const showConfirmButton = (c: ProcessedCharacterT) =>
+  const showConfirmButton = (c: tProcessedCharacter) =>
     selectedSkill &&
     activeCharacter &&
-    !c.dead &&
+    c.health > 0 &&
     ((selectedSkill.targetType === 'self' && c.id === activeCharacter.id) ||
       selectedSkill.targetType === 'ally')
 
@@ -60,6 +61,7 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
               character={c}
               onClick={() => onCharacterClick && onCharacterClick(c)}
               onConsumableClick={(consumable, index) => {
+                /* TODO
                 try {
                   if (!c || !consumable || index === undefined) return
                   if (onConsumableClick) {
@@ -69,6 +71,7 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
                     onSkillSelect(consumable.skill, index)
                   }
                 } catch (e) {}
+                */
               }}
             />
           </FlexContainer>

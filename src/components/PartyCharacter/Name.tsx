@@ -1,9 +1,9 @@
 import React from 'react'
-import { ProcessedCharacterT } from '../../types'
 import { FlexContainer } from '../../elements/flex'
+import { tProcessedCharacter } from '../../game/Character/type'
 
 export interface NamePropsT {
-  character: ProcessedCharacterT
+  character: tProcessedCharacter
 }
 
 export const Name = (props: NamePropsT) => {

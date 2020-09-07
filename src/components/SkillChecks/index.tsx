@@ -1,27 +1,28 @@
 import React from 'react'
-import { SkillT, StatsT } from '../../types'
 import { FlexContainer } from '../../elements/flex'
-import { STATI_ICONS } from '../../icons/maps'
+import { STAT_ICONS } from '../../icons/maps'
 import { Icon } from '../Icon'
 import { Badge } from '../../elements/badge'
 import { CheckKVT } from '../RoundResultRenderer'
 import X from '../../icons/svg/lorc/split-cross.svg'
+import { tSkill } from '../../game/Skill/type'
+import { tStats, tBaseStats } from '../../game/Stats/type'
 
 export interface SkillChecksPropsT {
-  skill: SkillT
+  stat: keyof tBaseStats
+  skill: tSkill
 }
 export const SkillChecks = (props: SkillChecksPropsT) => {
-  const { skill } = props
+  const { stat, skill } = props
   return (
     <FlexContainer
       style={{ justifyContent: 'center', padding: '0px 0 24px 0' }}
     >
-      {skill.rolls.map((roll, i) => (
-        <SkillCheck
-          key={i}
-          check={{ label: roll.key || 'strength', result: undefined }}
-        />
-      ))}
+      {Array(skill.rolls)
+        .fill(null)
+        .map((_, i) => (
+          <SkillCheck key={i} check={{ label: stat, result: undefined }} />
+        ))}
     </FlexContainer>
   )
 }
@@ -42,7 +43,7 @@ export const SkillCheck = (props: SkillCheckT) => {
     >
       <Badge $absolute={false} $size={size}>
         <Icon
-          src={STATI_ICONS[(check.label as keyof StatsT) || 'strength'] || ''}
+          src={STAT_ICONS[check.label as keyof tBaseStats]}
           fill={getColor(check.result)}
           size={size - 4}
         />

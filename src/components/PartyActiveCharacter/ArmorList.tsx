@@ -1,25 +1,23 @@
 import React, { useState } from 'react'
 import { FlexContainer } from '../../elements/flex'
 import { BoxContainer } from '../../elements/box'
-import {
-  ProcessedPartyT,
-  ArmorT,
-  WeaponT,
-  ProcessedCharacterT,
-} from '../../types'
 import { withStyle } from 'styletron-react'
 import { Icon } from '../Icon'
 import { ARMOR_TYPE_ICONS } from '../../icons/maps'
 import { ITEM_RARITY_COLORS } from '../../objects/Item'
 import { ClickToolTip } from '../Tooltip'
 import { Button } from '../../elements/button'
+import { tProcessedParty } from '../../game/Party/type'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { tWeapon } from '../../game/Weapon/type'
+import { tArmor } from '../../game/Armor/type'
 
 export interface ArmorListPropsT {
-  party: ProcessedPartyT
-  character: ProcessedCharacterT
+  party: tProcessedParty
+  character: tProcessedCharacter
   canEquip: boolean
-  equipItem: (characterId: string, item: WeaponT | ArmorT) => void
-  setActiveItem: (item: WeaponT | ArmorT) => void
+  equipItem: (characterId: string, item: tWeapon | tArmor) => void
+  setActiveItem: (item: tWeapon | tArmor) => void
 }
 
 const ArmorItem = withStyle(FlexContainer, (props: any) => {
@@ -46,7 +44,7 @@ export const ArmorList = (props: ArmorListPropsT) => {
     <FlexContainer $direction='column'>
       {party.items
         .filter((i) => i.itemType === 'armor')
-        .map((i) => i as ArmorT)
+        .map((i) => i as tArmor)
         .sort((a, b) => a.name.localeCompare(b.name))
         .map((armor) => (
           <ClickToolTip

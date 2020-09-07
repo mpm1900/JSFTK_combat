@@ -1,10 +1,12 @@
 import { EntityT } from './core'
-import { PartyT } from './Party'
 import { ArmorT } from './Armor'
 import { WeaponT } from './Weapon'
 import { ConsumableT } from './Consumable'
 import { CheckT } from './Roll'
 import { CharacterStatusT } from './Status'
+import { tParty } from '../game/Party/type'
+import { tWeapon } from '../game/Weapon/type'
+import { tArmor } from '../game/Armor/type'
 
 export type EncounterTypeT = 'combat' | 'shop' | 'rest' | 'reward' | 'shrine'
 export interface EncounterT extends EntityT {
@@ -12,11 +14,11 @@ export interface EncounterT extends EntityT {
   reward: EncounterRewardT
 }
 export interface CombatEncounterT extends EncounterT {
-  party: PartyT
+  party: tParty
 }
 export interface ShopEncounterT extends EncounterT {
-  weapons: WeaponT[]
-  armor: ArmorT[]
+  weapons: tWeapon[]
+  armor: tArmor[]
   consumables: ConsumableT[]
   costs: Record<string, number>
 }

@@ -4,14 +4,16 @@ import { BoxContainer } from '../../elements/box'
 import { FlexContainer } from '../../elements/flex'
 import { STATUS_ICONS } from '../../icons/maps'
 import { Icon } from '../Icon'
-import { StatusT } from '../../types'
+import { tStatus } from '../../game/Status/type'
+import { STATUS_CONFIG } from '../../game/Status/constants'
 
 export interface TagPreviewPropsT {
-  tag: StatusT
+  status: tStatus
   direction?: 'up' | 'down' | 'left' | 'right'
 }
 export const TagPreview = (props: TagPreviewPropsT) => {
-  const { tag, direction } = props
+  const { status, direction } = props
+  const statusConfig = STATUS_CONFIG[status.type]
   return (
     <Tooltip
       direction={direction || 'bottom'}
@@ -19,14 +21,16 @@ export const TagPreview = (props: TagPreviewPropsT) => {
         <BoxContainer style={{ maxWidth: 200 }}>
           <FlexContainer $direction='column'>
             <strong style={{ marginBottom: 8 }}>
-              {tag.type} {tag.duration > 0 ? `(${tag.duration})` : ''}
+              {status.type} {status.duration > 0 ? `(${status.duration})` : ''}
             </strong>
-            {tag.description && <span>{tag.description}</span>}
+            {statusConfig.description && (
+              <span>{statusConfig.description}</span>
+            )}
           </FlexContainer>
         </BoxContainer>
       }
     >
-      <Icon shadow src={STATUS_ICONS[tag.type] || ''} size={20} />
+      <Icon shadow src={STATUS_ICONS[status.type] || ''} size={20} />
     </Tooltip>
   )
 }

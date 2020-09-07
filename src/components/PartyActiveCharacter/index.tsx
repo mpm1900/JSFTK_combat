@@ -1,10 +1,4 @@
 import React, { useState } from 'react'
-import {
-  ProcessedCharacterT,
-  ProcessedPartyT,
-  WeaponT,
-  ArmorT,
-} from '../../types'
 import { FlexContainer } from '../../elements/flex'
 import { BoxContainer } from '../../elements/box'
 import { StatBar } from './StatBar'
@@ -14,11 +8,15 @@ import { Image } from './Image'
 import { MenuSelect, ACTIVE_CHARACTER_MENU_KEYS } from './MenuSelect'
 import { HoverArea } from './HoverArea'
 import { Badge } from '../../elements/badge'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { tProcessedParty } from '../../game/Party/type'
+import { tWeapon } from '../../game/Weapon/type'
+import { tArmor } from '../../game/Armor/type'
 
 export interface PartyActiveCharacterPropsT {
-  character: ProcessedCharacterT
-  party: ProcessedPartyT
-  equipItem: (characterId: string, item: WeaponT | ArmorT) => void
+  character: tProcessedCharacter
+  party: tProcessedParty
+  equipItem: (characterId: string, item: tWeapon | tArmor) => void
   canEquip: boolean
   onRequestClose: () => void
 }
@@ -26,7 +24,7 @@ export interface PartyActiveCharacterPropsT {
 export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
   const { character, party, canEquip, equipItem, onRequestClose } = props
   const [activeMenuKey, setActiveMenuKey] = useState('armor')
-  const [activeItem, setActiveItem] = useState<ArmorT | WeaponT | undefined>()
+  const [activeItem, setActiveItem] = useState<tArmor | tWeapon | undefined>()
   const activeOption = ACTIVE_CHARACTER_MENU_KEYS.find(
     (o) => o.key === activeMenuKey,
   )
