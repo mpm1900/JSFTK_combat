@@ -1,11 +1,11 @@
-import { WeaponT } from '../../types'
-import { makeEntity } from '../../functions/Entity'
-import { ZERO_STATS } from '../Stats'
-import { RITARDANDO } from '../skills/ritardando'
-import { SYMPHONY } from '../skills/symphony'
-import { DAZZLE } from '../skills/dazzle'
+import { WeaponT } from '../../../types'
+import { makeEntity } from '../../../functions/Entity'
+import { ZERO_STATS } from '../../Stats'
+import { RITARDANDO } from '../../skills/ritardando'
+import { SYMPHONY } from '../../skills/symphony'
+import { DAZZLE } from '../../skills/dazzle'
 
-export const BARBAT: WeaponT = {
+export const BARBAT = (): WeaponT => ({
   ...makeEntity(`Barbat`),
   itemType: 'weapon',
   type: 'lute',
@@ -23,4 +23,4 @@ export const BARBAT: WeaponT = {
     },
   ],
   skills: [RITARDANDO, SYMPHONY, DAZZLE],
-}
+})

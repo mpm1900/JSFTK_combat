@@ -19,6 +19,8 @@ export interface SkillT extends EntityT {
   perfectStatus: CharacterStatusT[]
   perfectSplash: boolean
   perfectPierce: boolean
+  targetQueueOffset: number
+  targetQueueSet: number | undefined
 }
 export interface SkillTargetT {
   type: TargetTypeT
@@ -40,6 +42,8 @@ export interface SourceSkillResultT {
   addedStatus: CharacterStatusT[]
   splashDamage: DamageT
   pierce: boolean
+  targetQueueOffset: number
+  targetQueueSet: number | undefined
 }
 
 export interface TargetSkillResultT extends SourceSkillResultT {

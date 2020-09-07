@@ -17,6 +17,8 @@ export const STING: SkillT = {
   perfectSplash: false,
   perfectPierce: true,
   perfectStatus: [],
+  targetQueueOffset: 0,
+  targetQueueSet: undefined,
 }
 
 export const INFECTIOUS_STING: SkillT = {
@@ -39,4 +41,6 @@ export const INFECTIOUS_STING: SkillT = {
       duration: 10,
     },
   ],
+  targetQueueOffset: 0,
+  targetQueueSet: undefined,
 }

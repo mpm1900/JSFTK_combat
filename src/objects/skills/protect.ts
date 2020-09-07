@@ -18,4 +18,6 @@ export const PROTECT: SkillT = {
       duration: -1,
     },
   ],
+  targetQueueOffset: 0,
+  targetQueueSet: undefined,
 }

@@ -26,13 +26,12 @@ export const Combat = () => {
   } = useCombatContext()
   const history = useHistory()
   const { clear } = useCombatLogContext()
-  const { activeNode, setNodeCompleted } = useGameStateContext()
+  const { nextLevel } = useGameStateContext()
   const { setOnCharacterConsumableClick } = useUIContext()
   const {} = useGameStateContext()
   const { open, close } = useModalContext()
 
   useEffect(() => {
-    console.log('COMBAT START', isRunning)
     open(
       <div style={{ textAlign: 'center' }}>
         <h1>Combat Start!</h1>
@@ -45,16 +44,9 @@ export const Combat = () => {
     }, 1000)
     return () => {
       reset()
-      setNodeCompleted(activeNode.id)
       clear()
     }
   }, [])
-
-  useEffect(() => {
-    if (activeNode.completed) {
-      history.push('/JSFTK_combat/party')
-    }
-  }, [activeNode])
 
   useEffect(() => {
     setOnCharacterConsumableClick((c, index, item) => {

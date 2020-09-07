@@ -3,10 +3,10 @@ import { makeEntity } from '../../functions/Entity'
 import { STAB } from '../skills/enemy/stab'
 import { EXPLORERS_BOOTS } from '../armor/explorers_boots'
 import { EXPLORERS_HAT } from '../armor/explorers_hat'
-import { EXPLORERS_CLOAK } from '../armor/explorers_cloak'
 import { getRandom } from '../../util'
 import { ALL_WEAPONS } from '../weapons'
 import Bandit from '../../icons/svg/delapouite/bandit.svg'
+import { ALL_ARMOR } from '../armor/index'
 
 export const BANDIT = (): CharacterT => {
   return {
@@ -86,13 +86,13 @@ export const BANDIT = (): CharacterT => {
       {
         gold: 80,
         xp: 20,
-        items: [EXPLORERS_CLOAK()],
+        items: [getRandom(ALL_ARMOR())],
         consumables: [],
       },
       {
         gold: 80,
         xp: 20,
-        items: [EXPLORERS_CLOAK(), getRandom(ALL_WEAPONS)],
+        items: [getRandom(ALL_ARMOR()), getRandom(ALL_WEAPONS())],
         consumables: [],
       },
     ],

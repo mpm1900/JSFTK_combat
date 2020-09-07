@@ -18,4 +18,6 @@ export const TAUNT: SkillT = {
       duration: 5,
     },
   ],
+  targetQueueOffset: 0,
+  targetQueueSet: undefined,
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ForestBg from './assets/img/flat-forestred.jpg'
 import { Switch, Route } from 'react-router-dom'
 import { CombatContextProvider } from './contexts/CombatContext'
@@ -15,6 +15,7 @@ import { usePartyContext } from './contexts/PartyContext'
 import { PlayerParty } from './components/PlayerParty'
 import { FlexContainer, FullContainer } from './elements/flex'
 import { useGameStateContext } from './contexts/GameStateContext'
+import { CombatEncounterT } from './types/Encounter'
 
 const CombatDomain = () => {
   return (
@@ -48,17 +49,19 @@ const GlobalCharacters = () => {
 }
 
 export const App = () => {
-  const { activeNode } = useGameStateContext()
+  const { currentEncounter, level, encounters } = useGameStateContext()
   const [rawEnemyParty, setRawEnemyParty] = useState<PartyT>(makeParty(0))
+  useEffect(() => {
+    if (currentEncounter && (currentEncounter as CombatEncounterT).party)
+      setRawEnemyParty((currentEncounter as CombatEncounterT).party)
+  }, [level])
   return (
     <ModalContextProvider>
       <CombatContextProvider
         enemyParty={rawEnemyParty}
         setEnemyParty={setRawEnemyParty}
         onRequestNewParty={() => {
-          console.log('REQUEST NEW PARTY')
-          console.log(activeNode.level)
-          setRawEnemyParty(makeParty(activeNode.level + 1))
+          setRawEnemyParty(makeParty(level + 1))
         }}
       >
         <UIContextProvider>

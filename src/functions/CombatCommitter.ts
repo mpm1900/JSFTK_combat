@@ -9,6 +9,7 @@ import {
 } from './Character'
 import { PLAYER_PARTY_ID } from '../objects/Party'
 import { noneg } from '../util'
+import { CombatQueueT } from '../types/CombatQueue'
 
 const localUpdater = (
   p: PartyT,
@@ -21,8 +22,13 @@ const localUpdater = (
 interface CommitSkillResultsT {
   party: PartyT
   enemyParty: PartyT
+  queue: CombatQueueT
 }
-export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
+export const commitSkillResults = (
+  party: PartyT,
+  enemyParty: PartyT,
+  queue: CombatQueueT,
+) => (
   results: TargetSkillResultT[],
   commitRoundActions: boolean = true,
 ): CommitSkillResultsT => {
@@ -55,6 +61,20 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
         result.addedStatus.map((s) => s.type),
       )
     })
+
+    if (result.targetQueueOffset) {
+      queue = {
+        ...queue,
+        [result.target.id]: queue[result.target.id] + result.targetQueueOffset,
+      }
+    }
+    if (result.targetQueueSet !== undefined) {
+      console.log('setting queue position')
+      queue = {
+        ...queue,
+        [result.target.id]: result.targetQueueSet,
+      }
+    }
 
     if (result.splashDamage.damage > 0) {
       targetParty.characters
@@ -131,6 +151,9 @@ export const commitSkillResults = (party: PartyT, enemyParty: PartyT) => (
     enemyParty: {
       ...enemyParty,
       characters: enemyParty.characters.map((c) => decrementStatusDurations(c)),
+    },
+    queue: {
+      ...queue,
     },
   }
 }

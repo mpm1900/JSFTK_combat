@@ -18,4 +18,6 @@ export const BLEED: SkillT = {
       duration: 10,
     },
   ],
+  targetQueueOffset: 0,
+  targetQueueSet: undefined,
 }

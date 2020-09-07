@@ -1,10 +1,10 @@
-import { WeaponT } from '../../types'
-import { makeEntity } from '../../functions/Entity'
-import { ZERO_STATS } from '../Stats'
-import { SHOT } from '../skills/shot'
-import { SNIPE_SHOT } from '../skills/snipe_shot'
+import { WeaponT } from '../../../types'
+import { makeEntity } from '../../../functions/Entity'
+import { ZERO_STATS } from '../../Stats'
+import { SHOT } from '../../skills/shot'
+import { SNIPE_SHOT } from '../../skills/snipe_shot'
 
-export const HUNTING_BOW: WeaponT = {
+export const HUNTING_BOW = (): WeaponT => ({
   ...makeEntity(`Hunting Bow`),
   itemType: 'weapon',
   type: 'bow',
@@ -22,4 +22,4 @@ export const HUNTING_BOW: WeaponT = {
     },
   ],
   skills: [SHOT, SNIPE_SHOT],
-}
+})

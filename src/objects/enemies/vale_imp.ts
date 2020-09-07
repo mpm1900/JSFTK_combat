@@ -51,7 +51,7 @@ export const VALE_IMP = (): CharacterT => {
       ...makeEntity('Imp Fists'),
       itemType: 'weapon',
       rarity: 'common',
-      type: 'imp-fists',
+      type: 'enemy',
       twoHand: true,
       attackType: 'melee',
       damage: {
@@ -83,7 +83,7 @@ export const VALE_IMP = (): CharacterT => {
       {
         gold: 0,
         xp: 15,
-        items: [getRandom(ALL_WEAPONS)],
+        items: [getRandom(ALL_WEAPONS())],
         consumables: [],
       },
     ],

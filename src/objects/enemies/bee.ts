@@ -46,7 +46,7 @@ export const BEE = (): CharacterT => {
       ...makeEntity('Bee Stinger'),
       itemType: 'weapon',
       rarity: 'common',
-      type: 'bee-stinger',
+      type: 'enemy',
       twoHand: true,
       attackType: 'melee',
       damage: {

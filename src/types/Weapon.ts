@@ -3,7 +3,19 @@ import { SkillT } from './Skill'
 import { DamageT } from './Damage'
 import { ItemT } from './Item'
 
-export type WeaponTypeT = string
+export type WeaponTypeT =
+  | 'enemy'
+  | 'axe'
+  | 'blunt'
+  | 'bow'
+  | 'dagger'
+  | 'pistol'
+  | 'lute'
+  | 'magic-staff'
+  | 'spear'
+  | 'sword'
+  | 'tome'
+  | 'torch'
 export type WeaponAttackType = 'melee' | 'ranged'
 export interface WeaponT extends ItemT {
   type: WeaponTypeT

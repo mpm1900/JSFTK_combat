@@ -13,4 +13,6 @@ export const ALTO: SkillT = {
   perfectSplash: false,
   perfectPierce: true,
   perfectStatus: [],
+  targetQueueOffset: 0,
+  targetQueueSet: undefined,
 }

@@ -1,28 +1,32 @@
 import React, { useEffect } from 'react'
 import { usePartyContext } from '../contexts/PartyContext'
 import { FlexContainer, FullContainer } from '../elements/flex'
-import { RedButton, Button } from '../elements/button'
+import { Button } from '../elements/button'
 import { useHistory } from 'react-router'
 import { getSkillResults, commitSkillResults } from '../functions'
 import { AppHeader } from '../components/AppHeader'
 import { PartyResources } from '../components/PartyResources'
 import { useUIContext } from '../contexts/UIContext'
-import Tree from 'react-tree-graph'
-import 'react-tree-graph/dist/style.css'
 import { useGameStateContext } from '../contexts/GameStateContext'
+import { BoxContainer } from '../elements/box'
+import { useModalContext } from '../contexts/ModalContext'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()
-  const { processedTree, activeNode } = useGameStateContext()
+  const {
+    encounters,
+    currentEncounter,
+    currentChoice,
+    level,
+    chooseCurrent,
+    nextLevel,
+  } = useGameStateContext()
   const history = useHistory()
   const {
     setPlayerCanEquipItem,
     setOnCharacterConsumableClick,
   } = useUIContext()
-
-  const enterCombat = () => {
-    history.push('/JSFTK_combat/combat')
-  }
+  const { open } = useModalContext()
 
   useEffect(() => {
     setPlayerCanEquipItem(true)
@@ -41,7 +45,7 @@ export const Party = () => {
         targets,
         consumableIndex,
       )
-      const parties = commitSkillResults(rawParty, rawParty)(result, false)
+      const parties = commitSkillResults(rawParty, rawParty, {})(result, false)
       updateParty(parties.party)
     })
     return () => {
@@ -51,21 +55,20 @@ export const Party = () => {
   }, [party, rawParty, updateParty])
 
   useEffect(() => {
-    console.log('PARTY', activeNode)
-    if (activeNode.type === 0 && !activeNode.completed) {
+    if (level > encounters.length) {
+      open(
+        <div>
+          <h1>You Win!!!!!!!!!!!</h1>
+        </div>,
+      )
+      history.push('/JSFTK_combat')
+    } else if (currentEncounter && currentEncounter.type === 'combat') {
       history.push('/JSFTK_combat/combat')
     }
-  }, [activeNode])
+  }, [currentEncounter])
 
   return (
-    <FlexContainer
-      $full
-      $direction='column'
-      style={{
-        overflow: 'hidden',
-        backgroundSize: 'cover',
-      }}
-    >
+    <FlexContainer $full $direction='column' style={{ height: '100%' }}>
       <AppHeader
         left={
           <>
@@ -90,21 +93,61 @@ export const Party = () => {
             alignItems: 'center',
           }}
         >
-          Edit Party
+          Level {level}
         </FlexContainer>
       </AppHeader>
-      <FlexContainer $full $direction='column' style={{ padding: '30px 10px' }}>
-        <FlexContainer
-          $full
-          style={{
-            justifyContent: 'center',
-            background: 'rgba(255,255,255,0.4)',
-            padding: 10,
-          }}
-        >
-          {activeNode.completed && (
-            <Tree data={processedTree} height={600} width={1200}></Tree>
-          )}
+      <FlexContainer $full $direction='column'>
+        <FlexContainer $full>
+          <FlexContainer $direction='column' $full>
+            {currentEncounter && currentEncounter.type !== 'combat' && (
+              <FlexContainer>
+                <BoxContainer>
+                  <pre>{JSON.stringify(currentEncounter, null, 2)}</pre>
+                </BoxContainer>
+              </FlexContainer>
+            )}
+          </FlexContainer>
+          <FlexContainer
+            $direction='column'
+            style={{
+              background:
+                'linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(8,8,8,0.6811099439775911) 10%, rgba(17,17,17,1) 35%)',
+              marginRight: '10%',
+              padding: '16px 8px',
+              width: 300,
+            }}
+          >
+            {currentChoice && !currentEncounter && (
+              <FlexContainer $direction='column'>
+                <h3
+                  style={{
+                    margin: '0 0 16px 0',
+                    color: 'white',
+                    textAlign: 'center',
+                  }}
+                >
+                  You have a choice.
+                </h3>
+                <span
+                  style={{ color: 'rgba(255,255,255,0.7)', marginBottom: 24 }}
+                >
+                  You arrive at a split path, you must make a choice on which
+                  way to proceed.
+                </span>
+                <FlexContainer style={{ justifyContent: 'center' }}>
+                  <Button onClick={() => chooseCurrent('left')}>Go Left</Button>
+                  <Button onClick={() => chooseCurrent('right')}>
+                    Go Right
+                  </Button>
+                </FlexContainer>
+              </FlexContainer>
+            )}
+            {currentEncounter && (
+              <FlexContainer style={{ justifyContent: 'center' }}>
+                <Button onClick={() => nextLevel()}>Travel Deeper</Button>
+              </FlexContainer>
+            )}
+          </FlexContainer>
         </FlexContainer>
       </FlexContainer>
     </FlexContainer>

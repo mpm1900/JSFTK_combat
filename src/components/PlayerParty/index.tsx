@@ -60,7 +60,6 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
               character={c}
               onClick={() => onCharacterClick && onCharacterClick(c)}
               onConsumableClick={(consumable, index) => {
-                console.log('click', consumable, c)
                 try {
                   if (!c || !consumable || index === undefined) return
                   if (onConsumableClick) {
@@ -69,9 +68,7 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
                   if (c && c.id === activeCharacter.id) {
                     onSkillSelect(consumable.skill, index)
                   }
-                } catch (e) {
-                  console.log(e)
-                }
+                } catch (e) {}
               }}
             />
           </FlexContainer>

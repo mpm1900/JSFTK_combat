@@ -10,6 +10,7 @@ import Gold from '../../icons/svg/delapouite/coins.svg'
 import XP from '../../icons/svg/lorc/laurel-crown.svg'
 import { Icon } from '../Icon'
 import { ItemPreivew } from '../ItemPreview'
+import { useGameStateContext } from '../../contexts/GameStateContext'
 
 export interface CombatVictoryModalPropsT {
   rewards: CombatRewardT[]
@@ -18,6 +19,7 @@ export interface CombatVictoryModalPropsT {
 export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
   const { rewards } = props
   const { rawParty, updateParty } = usePartyContext()
+  const { nextLevel } = useGameStateContext()
   const { close } = useModalContext()
   const history = useHistory()
   const consolidatedRewards = useMemo(() => consolidateRewards(rewards), [
@@ -29,6 +31,7 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
   const next = () => {
     if (items.length === 0) {
       close()
+      nextLevel()
       history.push('/JSFTK_combat/party')
     } else {
       setItems((i) => {

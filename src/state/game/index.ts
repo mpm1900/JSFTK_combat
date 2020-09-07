@@ -2,85 +2,89 @@ import { StateCoreT, StateT, StateActionT } from '../types'
 import { makeReducer } from '../util'
 import { useSelector } from 'react-redux'
 import { useActions } from '../../hooks/useActions'
-import { NodeT, generateTree, complete } from '../../types/Tree'
 import { Dispatch } from 'redux'
-import { StatsPreview } from '../../components/StatsPreview'
+import { EncounterChoiceT } from '../../types/Encounter'
+import { makeEncounterList } from '../../functions/Encounter'
+import { stat } from 'fs'
 
 export interface GameStateT {
-  tree: NodeT
-  activeNodeId: string
+  encounters: EncounterChoiceT[]
+  level: number
 }
 
 export const RESET = '@action/game/reset'
-export const SET_ACTIVE_NODE_ID = '@actions/game/set-active-node-id'
-export const SET_NODE_AS_COMPLETED = '@actions/game/set-node-as-completed'
+export const CHOOSE_CURRENT = '@action/game/choose-current'
+export const NEXT_LEVEL = '@action/game/next-level'
 
 export const actionCreators = {
-  reset: (tree?: NodeT): StateActionT => ({
+  reset: (): StateActionT => ({
     type: RESET,
+    payload: {},
+  }),
+  chooseCurrent: (value: 'left' | 'right'): StateActionT => ({
+    type: CHOOSE_CURRENT,
     payload: {
-      tree,
+      value,
     },
   }),
-  setActiveNodeId: (activeNodeId: string): StateActionT => ({
-    type: SET_ACTIVE_NODE_ID,
-    payload: {
-      activeNodeId,
-    },
-  }),
-  setNodeAsCompleted: (activeNodeId: string): StateActionT => ({
-    type: SET_NODE_AS_COMPLETED,
-    payload: {
-      activeNodeId,
-    },
+  nextLevel: (): StateActionT => ({
+    type: NEXT_LEVEL,
+    payload: {},
   }),
 }
 
 export const actions = {
-  reset: (tree?: NodeT) => (dispatch: Dispatch) => {
-    dispatch(actionCreators.reset(tree))
+  reset: () => (dispatch: Dispatch) => {
+    dispatch(actionCreators.reset())
   },
-  setActiveNodeId: (activeNodeId: string) => (dispatch: Dispatch) => {
-    dispatch(actionCreators.setActiveNodeId(activeNodeId))
+  chooseCurrent: (value: 'left' | 'right') => (dispatch: Dispatch) => {
+    dispatch(actionCreators.chooseCurrent(value))
   },
-  setNodeAsCompleted: (activeNodeId: string) => (dispatch: Dispatch) => {
-    dispatch(actionCreators.setNodeAsCompleted(activeNodeId))
+  nextLevel: () => (dispatch: Dispatch) => {
+    dispatch(actionCreators.nextLevel())
   },
 }
 
 export const core: StateCoreT<GameStateT> = {
   [RESET]: (state, action) => {
-    const tree = action.payload.tree || generateTree()
-    return {
-      tree,
-      activeNodeId: tree.id,
-    }
-  },
-  [SET_ACTIVE_NODE_ID]: (state, action) => {
     return {
       ...state,
-      activeNodeId: action.payload.activeNodeId,
+      level: 0,
+      encounters: makeEncounterList(10),
     }
   },
-  [SET_NODE_AS_COMPLETED]: (state, action) => {
+  [CHOOSE_CURRENT]: (state, action) => {
     return {
       ...state,
-      tree: complete(state.tree, action.payload.activeNodeId),
+      encounters: state.encounters.map((e, i) => {
+        if (i === state.level) {
+          return {
+            ...e,
+            value: action.payload.value,
+          }
+        }
+        return e
+      }),
+    }
+  },
+  [NEXT_LEVEL]: (state, action) => {
+    return {
+      ...state,
+      level: state.level + 1,
     }
   },
 }
 
-const tree = generateTree()
 export const INITIAL_STATE: GameStateT = {
-  tree,
-  activeNodeId: tree.id,
+  encounters: makeEncounterList(10),
+  level: 0,
 }
 
 export default makeReducer(core, INITIAL_STATE)
 export const useGameState = () => useSelector((state: StateT) => state.game)
 export const useGameStateActions = () =>
   useActions(actions) as {
-    reset: (tree?: NodeT) => void
-    setActiveNodeId: (activeNodeId: string) => void
-    setNodeAsCompleted: (activeNodeId: string) => void
+    reset: () => void
+    chooseCurrent: (value: 'left' | 'right') => void
+    nextLevel: () => void
   }

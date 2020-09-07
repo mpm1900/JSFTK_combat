@@ -8,7 +8,7 @@ export const SNIPE_SHOT: SkillT = {
   targetType: 'single',
   damage: true,
   healing: false,
-  isBasicAttack: false,
+  isBasicAttack: true,
   rolls: [
     makeCheck('perception', -10),
     makeCheck('perception', -10),
@@ -17,4 +17,6 @@ export const SNIPE_SHOT: SkillT = {
   perfectSplash: false,
   perfectPierce: true,
   perfectStatus: [],
+  targetQueueOffset: 0,
+  targetQueueSet: undefined,
 }

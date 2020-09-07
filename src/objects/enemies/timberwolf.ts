@@ -46,7 +46,7 @@ export const TIMBERWOLF = (): CharacterT => {
       ...makeEntity('Wolf Fangs'),
       itemType: 'weapon',
       rarity: 'common',
-      type: 'wolf-fangs',
+      type: 'enemy',
       twoHand: true,
       attackType: 'melee',
       damage: {
@@ -72,7 +72,7 @@ export const TIMBERWOLF = (): CharacterT => {
       {
         gold: 19,
         xp: 20,
-        items: [getRandom([...ALL_WEAPONS, ...ALL_ARMOR()])],
+        items: [getRandom([...ALL_WEAPONS(), ...ALL_ARMOR()])],
         consumables: [],
       },
     ],

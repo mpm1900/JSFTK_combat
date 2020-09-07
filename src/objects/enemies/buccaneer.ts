@@ -7,6 +7,7 @@ import { FUR_ARMOR } from '../armor/fur_armor'
 import { getRandom } from '../../util'
 import { ALL_WEAPONS } from '../weapons'
 import Icon from '../../icons/svg/delapouite/pirate-captain.svg'
+import { ALL_ARMOR } from '../armor/index'
 
 export const BUCCANEER = (): CharacterT => {
   return {
@@ -86,7 +87,7 @@ export const BUCCANEER = (): CharacterT => {
       {
         gold: 80,
         xp: 20,
-        items: [FUR_ARMOR(), getRandom(ALL_WEAPONS)],
+        items: [getRandom(ALL_ARMOR()), getRandom(ALL_WEAPONS())],
         consumables: [],
       },
     ],

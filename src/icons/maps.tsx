@@ -25,6 +25,10 @@ import Shockwave from './svg/lorc/hammer-drop.svg'
 import Taunt from './svg/lorc/bordered-shield.svg'
 import Alto from './svg/delapouite/g-clef.svg'
 import Protect from './svg/lorc/shieldcomb.svg'
+import PinDown from './svg/lorc/energy-arrow.svg'
+import Reset from './svg/delapouite/backward-time.svg'
+import SpreadShot from './svg/lorc/double-shot.svg'
+import TimeJump from './svg/delapouite/extra-time.svg'
 import { SHOT } from '../objects/skills/shot'
 import { SNIPE_SHOT } from '../objects/skills/snipe_shot'
 import { SURGE } from '../objects/skills/surge'
@@ -53,6 +57,12 @@ import { PROTECT } from '../objects/skills/protect'
 import { RITARDANDO } from '../objects/skills/ritardando'
 import { stringify } from 'querystring'
 import { BANDIT } from '../objects/enemies/bandit'
+import { PIERCING_BLOW } from '../objects/skills/piercing_blow'
+import { PIN_DOWN } from '../objects/skills/pin_down'
+import { RUBATO } from '../objects/skills/rubato'
+import { SPREAD_SHOT } from '../objects/skills/spread_shot'
+import { STUN_ATTACK } from '../objects/skills/stun_attack'
+import { TIME_JUMP } from '../objects/skills/time_jump'
 
 export const STATI_ICONS: Partial<Record<keyof StatsT | 'accuracy', string>> = {
   vigor: Vigor,
@@ -77,16 +87,22 @@ export const STATUS_ICONS: Partial<Record<StatusTypeT, string>> = {
 export const SKILL_ICONS: Record<string, string> = {
   [SHOT.id]: Shot,
   [SNIPE_SHOT.id]: SnipeShot,
+  [PIERCING_BLOW.id]: SnipeShot,
+  [PIN_DOWN.id]: PinDown,
   [SURGE.id]: Surge,
   [AREA_BLAST.id]: AreaBast,
   [SYMPHONY.id]: AreaBast,
   [DAZZLE.id]: Dazzle,
+  [RUBATO.id]: Reset,
   [SMASH.id]: Smash,
   [SHOCKWAVE.id]: Shockwave,
   [TAUNT.id]: Taunt,
   [ALTO.id]: Alto,
   [RITARDANDO.id]: Alto,
   [PROTECT.id]: Protect,
+  [SPREAD_SHOT.id]: SpreadShot,
+  [STUN_ATTACK.id]: Dazzle,
+  [TIME_JUMP.id]: TimeJump,
 }
 
 export const ARMOR_TYPE_ICONS: Record<ArmorTypeT, string> = {

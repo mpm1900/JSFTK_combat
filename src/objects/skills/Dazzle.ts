@@ -9,8 +9,10 @@ export const DAZZLE: SkillT = {
   damage: true,
   healing: false,
   isBasicAttack: false,
-  rolls: [makeCheck('talent', -6), makeCheck('talent', -5)],
+  rolls: [makeCheck('talent', -5), makeCheck('talent', -5)],
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [{ type: 'dazed', duration: 4 }],
+  targetQueueOffset: 0,
+  targetQueueSet: undefined,
 }

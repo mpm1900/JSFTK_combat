@@ -1,31 +1,27 @@
-import React, { useContext, useMemo, useState } from 'react'
-import {
-  NodeT,
-  ProcessedNodeT,
-  generateTree,
-  processTree,
-} from '../../types/Tree'
+import React, { useContext, useMemo } from 'react'
+import { generateTree } from '../../types/Tree'
 import { useGameState, useGameStateActions } from '../../state/game'
+import { EncounterT, EncounterChoiceT } from '../../types/Encounter'
 
 export interface GameStateContextT {
-  tree: NodeT
-  processedTree: ProcessedNodeT
-  activeNodeId: string
-  activeNode: NodeT
+  encounters: EncounterChoiceT[]
+  level: number
+  currentChoice: EncounterChoiceT | undefined
+  currentEncounter: EncounterT | undefined
+  chooseCurrent: (value: 'left' | 'right') => void
+  nextLevel: () => void
   reset: () => void
-  setActiveNode: (node: ProcessedNodeT) => void
-  setNodeCompleted: (nodeId: string) => void
 }
 
 const _tree = generateTree()
 export const defaultValue: GameStateContextT = {
-  tree: _tree,
-  processedTree: processTree(_tree, () => {}),
-  activeNodeId: _tree.id,
-  activeNode: processTree(_tree, () => {}),
+  encounters: [],
+  level: 0,
+  currentChoice: undefined,
+  currentEncounter: undefined,
+  chooseCurrent: (value) => {},
+  nextLevel: () => {},
   reset: () => {},
-  setActiveNode: () => {},
-  setNodeCompleted: () => {},
 }
 export const GameStateContext = React.createContext<GameStateContextT>(
   defaultValue,
@@ -37,48 +33,33 @@ export interface GameStateProviderPropsT {
 }
 export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
   const { children } = props
-  const { tree, activeNodeId } = useGameState()
+  const { encounters, level } = useGameState()
   const gsc = useGameStateActions()
-  const { setActiveNodeId, setNodeAsCompleted } = gsc
-  const [activeNode, _setActiveNode] = useState(
-    processTree(tree, () => {}, tree.id),
-  )
-  const setActiveNode = (node: ProcessedNodeT) => {
-    setActiveNodeId(node.id)
-    _setActiveNode(node)
-  }
-
-  const processedTree = useMemo(
-    () => processTree(tree, setActiveNode, activeNodeId),
-    [tree, activeNodeId],
-  )
-
-  const setNodeCompleted = (nodeId: string) => {
-    setNodeAsCompleted(nodeId)
-    if (activeNode.id === nodeId) {
-      setActiveNode({
-        ...activeNode,
-        completed: true,
-      })
+  const { nextLevel, chooseCurrent } = gsc
+  const currentChoice = useMemo(() => {
+    return encounters[level]
+  }, [encounters, level])
+  const currentEncounter = useMemo(() => {
+    const choice = encounters[level]
+    if (choice && choice.value) {
+      return choice[choice.value]
     }
-  }
+  }, [encounters, level])
 
   const reset = () => {
-    const _tree = generateTree()
-    gsc.reset(_tree)
-    setActiveNode(processTree(_tree, setActiveNode, tree.id))
+    gsc.reset()
   }
 
   return (
     <GameStateContext.Provider
       value={{
-        tree,
-        processedTree,
-        activeNodeId,
-        activeNode,
+        encounters,
+        level,
+        currentChoice,
+        currentEncounter,
         reset,
-        setActiveNode,
-        setNodeCompleted,
+        nextLevel,
+        chooseCurrent,
       }}
     >
       {children}

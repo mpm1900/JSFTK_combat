@@ -18,4 +18,6 @@ export const INTERRUPT: SkillT = {
       duration: 2,
     },
   ],
+  targetQueueOffset: 0,
+  targetQueueSet: undefined,
 }

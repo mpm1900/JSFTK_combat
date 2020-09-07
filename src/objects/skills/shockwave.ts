@@ -18,4 +18,6 @@ export const SHOCKWAVE: SkillT = {
   perfectSplash: true,
   perfectPierce: false,
   perfectStatus: [],
+  targetQueueOffset: 0,
+  targetQueueSet: undefined,
 }

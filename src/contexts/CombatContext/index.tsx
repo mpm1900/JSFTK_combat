@@ -100,10 +100,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const { party, rawParty, updateParty } = usePartyContext()
   const { open, close } = useModalContext()
   const history = useHistory()
-  const resultCommitter = useMemo(
-    () => commitSkillResults(rawParty, props.enemyParty),
-    [rawParty, props.enemyParty],
-  )
   const enemyParty = useMemo(() => processParty(props.enemyParty), [
     props.enemyParty,
   ])
@@ -115,6 +111,10 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   )
   const [queue, setQueue] = useState<CombatQueueT>(
     makeCombatQueue([...party.characters, ...enemyParty.characters]),
+  )
+  const resultCommitter = useMemo(
+    () => commitSkillResults(rawParty, props.enemyParty, queue),
+    [rawParty, props.enemyParty, queue],
   )
   const [roundId, setRoundId] = useState<string>(v4())
   const [roundResults, setRoundResults] = useState<TargetSkillResultT[][]>([])
@@ -137,7 +137,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   )
 
   const start = () => {
-    console.log('start')
     setIsRunning(true)
     setQueue(makeCombatQueue([...party.characters, ...enemyParty.characters]))
     setRoundId(v4())
@@ -146,7 +145,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   }
 
   const reset = () => {
-    console.log('reset')
     onRequestNewParty()
     setIsRunning(false)
     setActiveRound(undefined)
@@ -194,10 +192,11 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const completeRound = (
     source: ProcessedCharacterT,
     updatedCharacters: ProcessedCharacterT[],
+    updatedQueue: CombatQueueT,
   ) => {
     setQueue(
       validateQueue(
-        shiftQueue(queue, source, updatedCharacters),
+        shiftQueue(updatedQueue, source, updatedCharacters),
         updatedCharacters,
       ),
     )
@@ -208,16 +207,16 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
 
   const commit = useCallback(() => {
     if (!activeRound || activeRound.length === 0) return
-    const parties = resultCommitter(activeRound)
+    const result = resultCommitter(activeRound)
     setRoundResults((r) => [...r, activeRound])
-    setEnemyParty(parties.enemyParty)
-    updateParty(parties.party)
+    setEnemyParty(result.enemyParty)
+    updateParty(result.party)
     const updatedCharacters = [
-      ...parties.party.characters,
-      ...parties.enemyParty.characters,
+      ...result.party.characters,
+      ...result.enemyParty.characters,
     ].map((c) => processCharacter(c))
 
-    completeRound(activeRound[0].source, updatedCharacters)
+    completeRound(activeRound[0].source, updatedCharacters, result.queue)
   }, [activeRound, queue])
 
   const execEnemyTurn = (skill: SkillT, target: SkillTargetT) => {

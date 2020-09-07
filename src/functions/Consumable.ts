@@ -21,6 +21,11 @@ export const getSourceConsumableResult = (
   const passedCount = getPassedCount(rollResults)
   const perfect = didAllPass(rollResults)
 
+  const targetQueueOffset: number = perfect ? skill.targetQueueOffset : 0
+  const targetQueueSet: number | undefined = perfect
+    ? skill.targetQueueSet
+    : undefined
+
   return {
     rollResults,
     skill,
@@ -36,6 +41,8 @@ export const getSourceConsumableResult = (
     healing:
       perfect && skill.healing ? source.stats.consumableHealthGainOffset : 0,
     consumableIndex: 0,
+    targetQueueSet,
+    targetQueueOffset,
   }
 }
 

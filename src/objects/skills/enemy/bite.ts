@@ -17,4 +17,6 @@ export const BITE: SkillT = {
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: [],
+  targetQueueOffset: 0,
+  targetQueueSet: undefined,
 }
