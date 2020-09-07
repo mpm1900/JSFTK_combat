@@ -1,31 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "84694e748485ab0f6ab85553cfa184b5",
+    "revision": "b7cd2b756e5b60f79f2e7e62724cb8ad",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "322f354058b0c1de29c6",
+    "revision": "d424f3183c3705d84d45",
     "url": "/JSFTK_combat/static/css/2.b469419a.chunk.css"
   },
   {
-    "revision": "e33cf66d868c5d4f38af",
+    "revision": "7358916309874fdc09b2",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
-    "revision": "322f354058b0c1de29c6",
-    "url": "/JSFTK_combat/static/js/2.cd8b82e6.chunk.js"
+    "revision": "d424f3183c3705d84d45",
+    "url": "/JSFTK_combat/static/js/2.fbc126a6.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.cd8b82e6.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.fbc126a6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e33cf66d868c5d4f38af",
-    "url": "/JSFTK_combat/static/js/main.9bc92c0a.chunk.js"
+    "revision": "7358916309874fdc09b2",
+    "url": "/JSFTK_combat/static/js/main.7e6a2ca1.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
     "url": "/JSFTK_combat/static/js/runtime-main.0208154f.js"
+  },
+  {
+    "revision": "d0246d45f337daf2893e0f226ca8125d",
+    "url": "/JSFTK_combat/static/media/backward-time.d0246d45.svg"
   },
   {
     "revision": "f798765b7d03667cb4e97519c2d8ac31",
@@ -74,6 +78,18 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "3c689d6dc1e3d50ce2b5c37e6e3a5d0c",
     "url": "/JSFTK_combat/static/media/dodging.3c689d6d.svg"
+  },
+  {
+    "revision": "702115225b1542cb63f195af822ae9ad",
+    "url": "/JSFTK_combat/static/media/double-shot.70211522.svg"
+  },
+  {
+    "revision": "514fc56c6439f7eb142fc8ec0f37270d",
+    "url": "/JSFTK_combat/static/media/energy-arrow.514fc56c.svg"
+  },
+  {
+    "revision": "4d41833369b8c31b0bcb4fcf446b57e0",
+    "url": "/JSFTK_combat/static/media/extra-time.4d418333.svg"
   },
   {
     "revision": "4c5ae6807d5c2e06657c4625fc0b875d",
