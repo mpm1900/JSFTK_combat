@@ -25,8 +25,8 @@ export const makeRandomEncounter = (depth: number) => {
     'combat',
     'combat',
     'combat',
-    'shop',
-    'shrine',
+    //'shop',
+    //'shrine',
   ])
   let encounter: tEncounter = {
     id: v4(),
@@ -50,6 +50,7 @@ export const makeEncounterList = (depth: number): tEncounterChoice[] => {
     .fill(undefined)
     .map((_, index) => {
       return {
+        depth: index,
         value: undefined,
         left: makeRandomEncounter(index),
         right: makeRandomEncounter(index),

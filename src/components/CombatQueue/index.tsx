@@ -96,6 +96,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                     width: 64,
                     alignItems: 'center',
                     justifyContent: 'center',
+                    zIndex: 2,
                   }}
                 >
                   <Icon
@@ -103,7 +104,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                     shadow
                     fill={'white'}
                     size={52}
-                    style={{ zIndex: 1, position: 'relative' }}
+                    style={{ zIndex: 2, position: 'relative' }}
                   />
                 </FlexContainer>
               )}

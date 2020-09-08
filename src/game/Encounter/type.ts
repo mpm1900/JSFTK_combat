@@ -35,6 +35,7 @@ export interface tEncounterReward {
 }
 
 export interface tEncounterChoice {
+  depth: number
   value: 'left' | 'right' | undefined
   left: tEncounter
   right: tEncounter

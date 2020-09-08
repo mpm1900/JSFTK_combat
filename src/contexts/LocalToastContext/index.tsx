@@ -62,7 +62,6 @@ export const Toast = (props: ToastPropsT) => {
     leave: { top: 0, opacity: 0 },
     from: { top: 0, opacity: 0 },
   })
-  console.log(style)
   return (
     <>
       {style.map((item) => (
