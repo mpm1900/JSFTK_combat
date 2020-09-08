@@ -228,7 +228,7 @@ export const removeTemporaryStatus = (character: tCharacter): tCharacter => {
     ...character,
     status: character.status.filter((s) => {
       const config = STATUS_CONFIG[s.type]
-      return config.isTemporary
+      return !config.isTemporary
     }),
   }
 }
