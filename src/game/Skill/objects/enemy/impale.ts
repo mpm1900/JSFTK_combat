@@ -9,9 +9,9 @@ export const IMPALE: tSkill = {
   targetType: 'single',
   damage: true,
   healing: false,
-  rolls: 3,
+  rolls: 5,
   offset: 0,
   perfectSplash: false,
   perfectPierce: false,
-  perfectStatus: [],
+  perfectStatus: ['bleeding'],
 }

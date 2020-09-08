@@ -77,15 +77,15 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
               {character.name}
             </span>
           </FlexContainer>
-          <div style={{ boxShadow: '0px 5px 15px rgba(0,0,0,0.4)' }}>
+          <div style={{ boxShadow: '0px 4px 15px rgba(0,0,0,1)' }}>
             <HealthGauge character={character} height={20} />
           </div>
           <HoverBadge
             direction='down'
             content={<BoxContainer>Enemy Level</BoxContainer>}
             badgeProps={{
-              $left: '-14px',
-              $bottom: '-12px',
+              $left: '-6px',
+              $bottom: '-6px',
               $size: '20px',
               $color: 'lightcoral',
             }}
@@ -95,8 +95,8 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           <FlexContainer
             style={{
               position: 'absolute',
-              bottom: '-17px',
-              left: '52px',
+              bottom: '-12px',
+              left: '40px',
             }}
           >
             {character.status.map((status, i) => (

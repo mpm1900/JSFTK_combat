@@ -1,17 +1,17 @@
-import { tSkill } from '../../type'
 import { v4 } from 'uuid'
+import { tSkill } from '../../type'
 
-export const STAB: tSkill = {
+export const TORCH: tSkill = {
   id: v4(),
-  name: 'Stab',
+  name: 'Torch',
   damageModifier: 1,
   splashDamageModifier: 0,
   targetType: 'single',
   damage: true,
   healing: false,
-  rolls: 3,
-  offset: 0,
+  rolls: 4,
+  offset: 20,
   perfectSplash: false,
-  perfectPierce: true,
-  perfectStatus: ['bleeding'],
+  perfectPierce: false,
+  perfectStatus: ['burning'],
 }

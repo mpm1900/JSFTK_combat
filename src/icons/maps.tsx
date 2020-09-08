@@ -12,6 +12,8 @@ import Targeted from './svg/sbed/targeted.svg'
 import Evasive from './svg/lorc/dodging.svg'
 import SpeedDown from './svg/delapouite/sticky-boot.svg'
 import Poisoned from './svg/lorc/biohazard.svg'
+import Burning from './svg/carl-olsen/flame.svg'
+import Bleeding from './svg/lorc/bleeding-wound.svg'
 
 import Shot from './svg/lorc/high-shot.svg'
 import SnipeShot from './svg/delapouite/shield-impact.svg'
@@ -84,6 +86,8 @@ export const STATUS_ICONS: Partial<Record<tStatusType, string>> = {
   protected: Protect,
   ['speed-down']: SpeedDown,
   poisoned: Poisoned,
+  burning: Burning,
+  bleeding: Bleeding,
 }
 
 export const SKILL_ICONS: Record<string, string> = {

@@ -7,6 +7,7 @@ import {
   commitDamage,
   addMultipleStatus,
   decrementStatusDurations,
+  processCharacter,
 } from '../Character/util'
 import { noneg } from '../../util/noneg'
 import { commitQueueUpdates } from '../Queue/util'
@@ -96,10 +97,13 @@ export const commitSkillResults = (
     // commet end-of-round actions
     if (index === result.targetResults.length - 1) {
       // source health regen
-      localUpdate(sourceParty, source.id, (c) => ({
-        ...c,
-        healthOffset: noneg(c.healthOffset - c.stats.healthRegeneration),
-      }))
+      localUpdate(sourceParty, source.id, (c) => {
+        const pc = processCharacter(c)
+        return {
+          ...c,
+          healthOffset: noneg(c.healthOffset - pc.stats.healthRegeneration),
+        }
+      })
     }
 
     if (sourceParty.id === PLAYER_PARTY_ID) {

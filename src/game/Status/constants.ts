@@ -4,13 +4,13 @@ import { ZERO_STATS } from '../Stats/constants'
 export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   bleeding: {
     name: 'Bleeding',
-    description: '',
+    description: '-10 HP on your turn.',
     canStack: false,
     isTemporary: true,
     duration: -1,
     stats: {
       ...ZERO_STATS,
-      healthRegeneration: -10,
+      healthRegeneration: -6,
     },
   },
   burning: {
@@ -21,7 +21,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
     duration: -1,
     stats: {
       ...ZERO_STATS,
-      healthRegeneration: -10,
+      healthRegeneration: -6,
     },
   },
   // TODO: Different cursed status' for different stats
@@ -48,7 +48,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   poisoned: {
     name: 'Poisoned',
-    description: '',
+    description: '-5 HP on your turn and -5 to each stat.',
     canStack: true,
     isTemporary: false,
     duration: -1,
@@ -59,7 +59,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       intelligence: -5,
       dexterity: -5,
       charisma: -5,
-      healthRegeneration: -5,
+      healthRegeneration: -3,
     },
   },
   // TODO: Shocked status
@@ -207,7 +207,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   rushed: {
     name: 'Rushed',
-    description: '',
+    description: 'Bring to front of queue.',
     canStack: false,
     isTemporary: true,
     duration: 1,
@@ -218,7 +218,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   interrupted: {
     name: 'Interrupted',
-    description: '',
+    description: 'Set back 70 unites.',
     canStack: false,
     isTemporary: true,
     duration: 1,
@@ -229,7 +229,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   reset: {
     name: 'Reset',
-    description: '',
+    description: 'Set back 100 units.',
     canStack: false,
     isTemporary: true,
     duration: 1,
@@ -240,7 +240,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   evasive: {
     name: 'Evasive',
-    description: '',
+    description: 'Non-perfect attacks will miss when targeting this character.',
     canStack: false,
     isTemporary: true,
     duration: -1,
@@ -260,7 +260,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   protected: {
     name: 'Protected',
-    description: '',
+    description: 'Negate the next bit of damage.',
     canStack: false,
     isTemporary: true,
     duration: -1,
@@ -270,7 +270,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   targeted: {
     name: 'Targeted',
-    description: '',
+    description: 'All enemies will attack this player.',
     canStack: false,
     isTemporary: true,
     duration: 6,
