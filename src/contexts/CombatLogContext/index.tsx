@@ -89,7 +89,7 @@ export const CombatLogContextProvider = (
           log(
             <span>
               {SkillSpan(round.skill)} deals{' '}
-              {Span('white', `${round.totalDamage.value} damage`)} to{' '}
+              {Span('white', `${round.loggedDamgge.value} damage`)} to{' '}
               {NameSpan(round.target)}.
             </span>,
           )
