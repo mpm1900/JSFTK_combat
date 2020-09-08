@@ -1,5 +1,4 @@
 import React from 'react'
-import { CharacterT } from '../../types'
 import { tCharacter } from '../../game/Character/type'
 
 export interface CharacterImagePropsT {

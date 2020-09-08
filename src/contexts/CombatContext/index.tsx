@@ -219,7 +219,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
 
   useEffect(() => {
     if (!isRunning) return
-    if (enemyParty.characters.every((c) => c.health > 0)) {
+    if (enemyParty.characters.every((c) => c.health <= 0)) {
       setIsRunning(false)
       const rewards = getRolledRewards(
         enemyParty,

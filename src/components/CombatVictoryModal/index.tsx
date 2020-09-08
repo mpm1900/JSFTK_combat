@@ -1,6 +1,4 @@
 import React, { useMemo, useEffect, useState } from 'react'
-import { CombatRewardT } from '../../types/CombatReward'
-import { consolidateRewards, commitRewards } from '../../functions'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { Button } from '../../elements/button'
 import { useHistory } from 'react-router'
@@ -11,9 +9,12 @@ import XP from '../../icons/svg/lorc/laurel-crown.svg'
 import { Icon } from '../Icon'
 import { ItemPreivew } from '../ItemPreview'
 import { useGameStateContext } from '../../contexts/GameStateContext'
+import { tCombatReward } from '../../game/Other/types'
+import { consolidateRewards } from '../../game/Other/util'
+import { commitRewards } from '../../game/Party/util'
 
 export interface CombatVictoryModalPropsT {
-  rewards: CombatRewardT[]
+  rewards: tCombatReward[]
 }
 
 export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {

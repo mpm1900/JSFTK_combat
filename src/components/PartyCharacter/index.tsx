@@ -6,7 +6,7 @@ import { styled } from 'styletron-react'
 import { HoverBadge } from '../../elements/badge'
 import { TagPreview } from '../TagPreview'
 import { CharacterImage } from '../CharacterImage'
-import { ConsumableT } from '../../types/Consumable'
+
 import { PartyCharacterConsumables } from '../PartyCharacterConsumables'
 import { Stats } from './Stats'
 import { Name } from './Name'

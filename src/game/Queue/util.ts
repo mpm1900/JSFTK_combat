@@ -2,7 +2,7 @@ import { tQueue } from './type'
 import { tProcessedCharacter, tCharacter } from '../Character/type'
 import { processCharacter } from '../Character/util'
 
-const AGILITY_OFFSET = 100
+const AGILITY_OFFSET = 200
 
 export const makeCombatQueue = (characters: tProcessedCharacter[]): tQueue => {
   const sortedCharacters = characters.sort(
@@ -11,7 +11,7 @@ export const makeCombatQueue = (characters: tProcessedCharacter[]): tQueue => {
   return sortedCharacters.reduce(
     (r, c, i) => ({
       ...r,
-      [c.id]: AGILITY_OFFSET - c.stats.agility,
+      [c.id]: AGILITY_OFFSET / 2 - c.stats.agility,
     }),
     {},
   )
@@ -28,6 +28,7 @@ export const getMin = (
   queue: tQueue,
   characters: tProcessedCharacter[],
 ): number => {
+  if (characters.length === 0) throw new Error('track this call down')
   return Object.keys(queue).reduce((min: number, id: string) => {
     if (queue[id] < min) {
       const c = characters.find((c) => c.id === id) as tProcessedCharacter
@@ -43,12 +44,12 @@ export const getMin = (
 
 export const consolidateQueue = (
   queue: tQueue,
-  characters: tProcessedCharacter[] = [],
+  characters: tProcessedCharacter[],
 ): tQueue => {
   let min = getMin(queue, characters)
   return Object.keys(queue).reduce((r, id) => {
-    const character = characters.find((c) => c.id === id)
-    const offset = (character?.stats?.queueConsolidationModifier || 0) * min
+    const character = characters.find((c) => c.id === id) as tCharacter
+    const offset = (character.stats.queueConsolidationModifier || 0) * min
     return {
       ...r,
       [id]: queue[id] - offset,
@@ -83,28 +84,15 @@ export const getFirst = (queue: tQueue): string => {
   return key
 }
 
-export const removeFromQueue = (queue: tQueue, id: string): tQueue => {
-  return consolidateQueue(
-    Object.keys(queue)
-      .filter((key) => key !== id)
-      .reduce(
-        (r, id) => ({
-          ...r,
-          [id]: queue[id],
-        }),
-        {},
-      ),
-  )
-}
-
 export const validateQueue = (
   queue: tQueue,
   characters: tProcessedCharacter[],
 ): tQueue => {
   return consolidateQueue(
     characters.reduce((r, c) => {
-      return c.health > 0 ? r : { ...r, [c.id]: queue[c.id] }
+      return c.health <= 0 ? r : { ...r, [c.id]: queue[c.id] }
     }, {}),
+    characters,
   )
 }
 
@@ -114,23 +102,25 @@ export const getSortedIds = (queue: tQueue): string[] => {
 
 export const commitQueueUpdates = (
   queue: tQueue,
-  source: tCharacter,
+  source: tProcessedCharacter,
   characters: tCharacter[],
 ): tQueue => {
-  const pc = processCharacter(source)
   const pcs = characters.map((c) => processCharacter(c))
-  const shiftedQueue = shiftQueue(queue, pc, pcs)
-  return validateQueue(
+  const shiftedQueue = shiftQueue(queue, source, pcs)
+  const ret = validateQueue(
+    shiftedQueue,
+    /*
     Object.keys(shiftedQueue).reduce((q, id) => {
       const character = pcs.find((c) => c.id === id)
       return {
         ...q,
         [id]:
           character?.stats?.queueValueSet !== undefined
-            ? character.stats.queueValueSet
+            ? character?.stats?.queueValueSet
             : shiftedQueue[id],
       }
-    }, {}),
+    }, {}), */
     pcs,
   )
+  return ret
 }

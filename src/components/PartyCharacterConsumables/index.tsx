@@ -101,8 +101,8 @@ export const PartyCharacterConsumable = (
       <ConsumableBox onClick={() => onClick && onClick(consumable)}>
         <>
           <Icon
-            src={CONSUMABLE_ITEM_ICONS[consumable.id]}
-            fill={CONSUMABLE_ITEM_COLORS[consumable.id]}
+            src={CONSUMABLE_ITEM_ICONS[consumable.cid]}
+            fill={CONSUMABLE_ITEM_COLORS[consumable.cid]}
             size={24}
           />
           <div

@@ -1,6 +1,5 @@
 import React from 'react'
 import { FlexContainer } from '../../elements/flex'
-import { CHARACTER_RESOURCES } from '../../objects/Item'
 import { Icon } from '../Icon'
 import { RESOURCE_ICONS } from '../../icons/maps'
 import { styled } from 'styletron-react'
@@ -12,6 +11,7 @@ import { useUIContext } from '../../contexts/UIContext'
 import { tWeapon } from '../../game/Weapon/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tArmor, tArmorResourceType } from '../../game/Armor/type'
+import { CHARACTER_RESOURCES } from '../../game/Item/constants'
 
 const ItemRow = styled(FlexContainer, (props: any) => {
   return {

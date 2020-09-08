@@ -1,16 +1,20 @@
-import { WeaponT } from '../../../types'
-import { makeEntity } from '../../../functions/Entity'
-import { SMASH } from '../../skills/smash'
-import { STUN_ATTACK } from '../../skills/stun_attack'
+import { tWeapon } from '../../type'
+import { v4 } from 'uuid'
+import { ZERO_STATS } from '../../../Stats/constants'
+import { SMASH } from '../../../Skill/objects/smash'
+import { STUN_ATTACK } from '../../../Skill/objects/stun_attack'
 
-export const MACE = (): WeaponT => ({
-  ...makeEntity(`Mace`),
+export const MACE = (): tWeapon => ({
+  id: v4(),
+  name: `Mace`,
   itemType: 'weapon',
   type: 'blunt',
   rarity: 'common',
+  stat: 'strength',
   twoHand: false,
-  attackType: 'melee',
-  damage: { type: 'physical', damage: 21 },
-  traits: [],
+  breakable: false,
+  damage: { type: 'physical', range: 'melee', value: 21 },
+  stats: ZERO_STATS,
   skills: [SMASH, STUN_ATTACK],
+  immunities: [],
 })

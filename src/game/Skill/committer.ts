@@ -10,6 +10,7 @@ import {
 } from '../Character/util'
 import { noneg } from '../../util/noneg'
 import { commitQueueUpdates } from '../Queue/util'
+import { PLAYER_PARTY_ID } from '../Party/constants'
 
 const partyUpdater = (
   party: tParty,
@@ -34,16 +35,19 @@ export const commitSkillResults = (
       (p) => p.id === target.partyId,
     ) as tParty
     const localUpdate = (
-      party: tParty,
-      characterId: string,
+      p: tParty,
+      id: string,
       updater: (c: tCharacter) => tCharacter,
     ) => {
-      if (party.id === sourceParty.id) {
-        sourceParty = partyUpdater(party, characterId, updater)
+      if (p.id === sourceParty.id) {
+        sourceParty = partyUpdater(p, id, updater)
+        return
       }
-      if (party.id === targetParty.id) {
-        targetParty = partyUpdater(party, characterId, updater)
+      if (p.id === targetParty.id) {
+        targetParty = partyUpdater(p, id, updater)
+        return
       }
+      throw new Error('bad party id')
     }
 
     // commit main damage
@@ -54,22 +58,40 @@ export const commitSkillResults = (
         targetResult.ignoreResistance,
       )
     })
+
     // commit main status
     localUpdate(targetParty, target.id, (c) => {
       return addMultipleStatus(c, targetResult.addedStatus)
     })
 
-    // commit splash damage
-    getOtherCharacters(targetParty, target.id).forEach((character) => {
-      localUpdate(targetParty, character.id, (c) => {
-        return commitDamage(c, targetResult.splashDamage, false)
+    // comit main heal
+    if (targetResult.skill.healing) {
+      localUpdate(targetParty, target.id, (c) => {
+        return {
+          ...c,
+          healthOffset: c.healthOffset - c.stats.consumableHealthGainOffset,
+          consumables: c.consumables.filter(
+            (i) => i.id !== targetResult.skill.consumableId,
+          ),
+        }
       })
-    })
+    }
+
+    // commit splash damage
+    if (targetResult.splashDamage.value > 0) {
+      getOtherCharacters(targetParty, target.id).forEach((character) => {
+        localUpdate(targetParty, character.id, (c) => {
+          return commitDamage(c, targetResult.splashDamage, false)
+        })
+      })
+    }
 
     // commit reflected damage
-    localUpdate(sourceParty, source.id, (c) => {
-      return commitDamage(c, targetResult.reflectedDamage, false)
-    })
+    if (targetResult.reflectedDamage.value > 0) {
+      localUpdate(sourceParty, source.id, (c) => {
+        return commitDamage(c, targetResult.reflectedDamage, false)
+      })
+    }
 
     // commet end-of-round actions
     if (index === result.targetResults.length - 1) {
@@ -78,15 +100,14 @@ export const commitSkillResults = (
         ...c,
         healthOffset: noneg(c.healthOffset - c.stats.healthRegeneration),
       }))
-      // update queue
     }
 
-    if (sourceParty.id === playerParty.id) {
+    if (sourceParty.id === PLAYER_PARTY_ID) {
       playerParty = sourceParty
     } else {
       enemyParty = sourceParty
     }
-    if (targetParty.id === playerParty.id) {
+    if (targetParty.id === PLAYER_PARTY_ID) {
       if (sourceParty.id !== targetParty.id) {
         playerParty = targetParty
       }

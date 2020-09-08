@@ -4,9 +4,9 @@ import { BoxContainer } from '../../elements/box'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { SkillCheck } from '../SkillChecks'
 import { StatsPreview } from '../StatsPreview'
-import { ITEM_RARITY_COLORS } from '../../objects/Item'
 import { Button } from '../../elements/button'
 import { tWeapon } from '../../game/Weapon/type'
+import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 
 export const getDamageColor = (weapon: tWeapon) => {
   if (weapon.damage.type === 'physical') return 'lightblue'

@@ -4,6 +4,7 @@ import { v4 } from 'uuid'
 export const TAUNT: tSkill = {
   id: v4(),
   name: 'Taunt',
+  weaponStatOverride: 'vigor',
   damageModifier: 0,
   splashDamageModifier: 0,
   targetType: 'self',

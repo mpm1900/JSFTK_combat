@@ -1,5 +1,4 @@
 import React from 'react'
-import { ProcessedCharacterT } from '../../types'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { HealthGauge } from '../Gauge'
 import { styled } from 'styletron-react'
@@ -11,10 +10,11 @@ import { usePrevious } from '../../hooks/usePrevious'
 import { Spring } from 'react-spring/renderprops'
 import { noneg } from '../../util'
 import { Icon } from '../Icon'
+import { tProcessedCharacter } from '../../game/Character/type'
 
 export interface EnemyCharacterPropsT {
-  character: ProcessedCharacterT
-  activeCharacter: ProcessedCharacterT
+  character: tProcessedCharacter
+  activeCharacter: tProcessedCharacter
   hoverable?: boolean
   selected?: boolean
   isHovering?: boolean
@@ -30,18 +30,18 @@ const Wrapper = styled('div', (props: any) => {
 })
 export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
   const { character, activeCharacter, onClick } = props
-  const health = noneg(character.health - character.stats.healthOffset)
+  const health = noneg(character.health)
   const previousHealth = usePrevious<number>(health)
   return (
     <div
-      onClick={() => (onClick && !character.dead ? onClick() : null)}
+      onClick={() => (onClick && character.health > 0 ? onClick() : null)}
       style={{
         borderWidth: 2,
         width: 320,
         position: 'relative',
         cursor: onClick ? 'pointer' : 'default',
         color: 'rgba(255,255,255,0.8)',
-        opacity: character.dead ? 0.5 : 1,
+        opacity: character.health <= 0 ? 0.5 : 1,
       }}
     >
       <FlexContainer style={{ alignItems: 'center' }}>
@@ -99,8 +99,8 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
               left: '52px',
             }}
           >
-            {character.statusEffects.map((tag, i) => (
-              <TagPreview key={i} tag={tag} />
+            {character.status.map((status, i) => (
+              <TagPreview key={i} status={status} />
             ))}
           </FlexContainer>
           <FlexContainer

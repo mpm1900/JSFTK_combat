@@ -26,7 +26,6 @@ export const Combat = () => {
   } = useCombatContext()
   const history = useHistory()
   const { clear } = useCombatLogContext()
-  const { nextLevel } = useGameStateContext()
   const { setOnCharacterConsumableClick } = useUIContext()
   const {} = useGameStateContext()
   const { open, close } = useModalContext()

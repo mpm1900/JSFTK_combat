@@ -5,9 +5,9 @@ import { FlexContainer, FullContainer } from '../../elements/flex'
 import { StatsPreview } from '../StatsPreview'
 import { Icon } from '../Icon'
 import { ARMOR_TYPE_ICONS } from '../../icons/maps'
-import { ITEM_RARITY_COLORS } from '../../objects/Item'
 import { Button } from '../../elements/button'
 import { tArmor } from '../../game/Armor/type'
+import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 
 export interface ArmorPreviewPropsT {
   armor: tArmor

@@ -11,8 +11,11 @@ import { noneg } from '../../util/noneg'
 import { CLASS_WEAPONS } from '../Weapon/constants'
 import { tWeapon } from '../Weapon/type'
 import { tArmorResourceType, tArmor } from '../Armor/type'
-import { CombatRewardT } from '../../types/CombatReward'
 import { resolveCheck } from '../Roll/util'
+import { CLASS_ARMOR } from '../Armor/constants'
+import { tCombatReward } from '../Other/types'
+import { CLASS_CONSUMABLES } from '../Consumable/constants'
+import { considateConsumableListToStack } from '../Consumable/util'
 
 export const isCharacter = (obj: any): boolean => obj.isCharacter !== undefined
 
@@ -39,8 +42,8 @@ export const makeCharacter = (characterClass: tCharacterClass): tCharacter => {
     tags: [],
 
     weapon: CLASS_WEAPONS[characterClass],
-    armor: [],
-    consumables: [],
+    armor: CLASS_ARMOR[characterClass],
+    consumables: CLASS_CONSUMABLES[characterClass],
 
     status: [],
     immunities: [],
@@ -52,6 +55,10 @@ export const getSkills = (character: tCharacter): tSkill[] => {
   return [
     ...character.weapon.skills,
     ...character.armor.reduce((r, a) => [...r, ...a.skills], [] as tSkill[]),
+    ...considateConsumableListToStack(character.consumables).reduce(
+      (r, s) => [...r, s.consumable.skill],
+      [] as tSkill[],
+    ),
   ]
 }
 
@@ -72,7 +79,7 @@ export const processCharacter = (
     Math.floor(
       startingHealth + character.level + 0.1 * character.level * stats.vigor,
     ) + stats.maxHealthOffset
-  const health = maxHealth + character.healthOffset
+  const health = maxHealth - character.healthOffset
   const maxInspiration = 3 + stats.maxInspirationOffset
   const inspiration = maxInspiration + character.inspirationOffset
 
@@ -291,7 +298,7 @@ export const unequipWeapon = (
 export const getRewardsFromCharacter = (
   character: tProcessedCharacter,
   checkedCharacter: tProcessedCharacter,
-): CombatRewardT[] => {
+): tCombatReward[] => {
   let index: number | undefined = undefined
   character.possibleRewards.forEach((rewards, i) => {
     const luckReslt = resolveCheck(checkedCharacter, 'luck')

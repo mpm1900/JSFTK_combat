@@ -22,6 +22,7 @@ export interface tSkill {
   perfectStatus: tStatusType[]
   perfectSplash: boolean
   perfectPierce: boolean
+  consumableId?: string
 }
 
 export interface tSkillTarget {

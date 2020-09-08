@@ -1,25 +1,22 @@
 import React from 'react'
-import {
-  CombatQueueT,
-  getFirst,
-  getSortedIds,
-  getMax,
-} from '../../types/CombatQueue'
-import { ProcessedCharacterT } from '../../types'
+
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { Button, RedButton } from '../../elements/button'
 import { useHistory } from 'react-router'
 import { AppHeader } from '../AppHeader'
 import { PartyResources } from '../PartyResources'
 import { useCombatContext } from '../../contexts/CombatContext'
-import { PLAYER_PARTY_ID } from '../../objects/Party'
 import { Icon } from '../Icon'
 import { useGameStateContext } from '../../contexts/GameStateContext'
+import { tQueue } from '../../game/Queue/type'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { getMax, getFirst, getSortedIds } from '../../game/Queue/util'
+import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 
 const size = 40
 export interface CombatQueuePropsT {
-  queue: CombatQueueT
-  characters: ProcessedCharacterT[]
+  queue: tQueue
+  characters: tProcessedCharacter[]
 }
 export const CombatQueue = (props: CombatQueuePropsT) => {
   const { queue, characters } = props
@@ -28,7 +25,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
   const { level, nextLevel } = useGameStateContext()
   const first = characters.find(
     (c) => c.id === getFirst(queue),
-  ) as ProcessedCharacterT
+  ) as tProcessedCharacter
   const sortedIds = getSortedIds(queue)
   const bigList = [
     ...sortedIds,
@@ -130,7 +127,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
               <FullContainer />
               <FlexContainer $full style={{ position: 'relative' }}>
                 {characters
-                  .filter((c) => c.id !== first?.id && !c.dead)
+                  .filter((c) => c.id !== first?.id && c.health > 0)
                   .map((c, i) => (
                     <div
                       key={`${c?.id}-${i}`}

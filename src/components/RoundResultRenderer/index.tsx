@@ -38,7 +38,7 @@ export const RoundResultRenderer = (props: RoundResultRendererPropsT) => {
     }
   }, [isRunning, isModal, isOpen, activeRound, open, close, commit])
 
-  if (!isModal && activeRound && activeRound[0] && isRunning) {
+  if (!isModal && activeRound && isRunning) {
     return (
       <FlexContainer style={{ height: 315 }}>
         <RoundResult
@@ -64,13 +64,12 @@ export const RoundResult = (props: RoundResultPropsT) => {
   const { close } = props
   const { activeRound } = useCombatContext()
   const [isDone, setIsDone] = useState(false)
-  const rounds = activeRound || []
-  const round = rounds[0]
+  const round = activeRound?.sourceResult
   const [roundResults, setRoundResults] = useState<CheckKVT[]>(
     !round
       ? []
       : round.rollResults.map((result, i) => ({
-          label: round.skill.rolls[i].key || '<NULL>',
+          label: round.skill.weaponStatOverride || round.source.weapon.stat,
           result: undefined,
         })),
   )
@@ -79,6 +78,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
     setRoundResults((r) => r.map((r, i) => (i === index ? value : r)))
 
   useEffect(() => {
+    if (!round) return
     const stream = Kefir.sequentially(
       200,
       roundResults.map((r, i) => ({ ...r, index: i })),
@@ -87,10 +87,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
       updateRoundResult(
         {
           label: result.label,
-          result:
-            result.label === 'accuracy'
-              ? round.accuracySuccess
-              : round.rollResults[result.index].result,
+          result: round.rollResults[result.index],
         },
         result.index,
       )
@@ -109,11 +106,6 @@ export const RoundResult = (props: RoundResultPropsT) => {
   }, [isDone, close])
 
   if (!round) return null
-
-  const target = {
-    ...round.target,
-    name: rounds.length > 1 ? `${rounds.length} characters` : round.target.name,
-  }
 
   return (
     <FlexContainer $direction='column' style={{ textAlign: 'center' }}>

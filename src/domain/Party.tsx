@@ -3,13 +3,14 @@ import { usePartyContext } from '../contexts/PartyContext'
 import { FlexContainer, FullContainer } from '../elements/flex'
 import { Button } from '../elements/button'
 import { useHistory } from 'react-router'
-import { getSkillResults, commitSkillResults } from '../functions'
 import { AppHeader } from '../components/AppHeader'
 import { PartyResources } from '../components/PartyResources'
 import { useUIContext } from '../contexts/UIContext'
 import { useGameStateContext } from '../contexts/GameStateContext'
 import { BoxContainer } from '../elements/box'
 import { useModalContext } from '../contexts/ModalContext'
+import { getSkillResult } from '../game/Skill/util'
+import { commitSkillResults } from '../game/Skill/committer'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()
@@ -39,14 +40,9 @@ export const Party = () => {
           : consumable.skill.targetType === 'party'
           ? party.characters
           : []
-      const result = getSkillResults(
-        consumable.skill,
-        character,
-        targets,
-        consumableIndex,
-      )
-      const parties = commitSkillResults(rawParty, rawParty, {})(result, false)
-      updateParty(parties.party)
+      const result = getSkillResult(character, targets, consumable.skill)
+      const parties = commitSkillResults(rawParty, rawParty, {})(result)
+      updateParty(parties.playerParty)
     })
     return () => {
       setPlayerCanEquipItem(false)

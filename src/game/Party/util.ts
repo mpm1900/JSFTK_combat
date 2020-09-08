@@ -6,7 +6,9 @@ import {
 } from '../Character/util'
 import { tCharacter, tProcessedCharacter } from '../Character/type'
 import { v4 } from 'uuid'
-import { CombatRewardT } from '../../types/CombatReward'
+import { tCombatReward } from '../Other/types'
+import { getRandom } from '../../util'
+import { ENEMY_COMBOS_BY_LEVEL } from './constants'
 
 export const isParty = (obj: any): boolean => obj.isParty !== undefined
 
@@ -61,20 +63,45 @@ export const updateCharacter = (
 }
 
 export const makeParty = (level: number = 0): tParty => {
+  level = level > 4 ? 4 : level
   return {
     isParty: true,
     id: v4(),
     gold: 0,
     items: [],
-    characters: [],
+    characters: getRandom(ENEMY_COMBOS_BY_LEVEL[level]),
   }
 }
 
 export const getRolledRewards = (
   party: tProcessedParty,
   checkedCharacter: tProcessedCharacter,
-): CombatRewardT[] => {
+): tCombatReward[] => {
   return party.characters.reduce((r, character) => {
     return [...r, ...getRewardsFromCharacter(character, checkedCharacter)]
-  }, [] as CombatRewardT[])
+  }, [] as tCombatReward[])
+}
+
+export const commitRewards = (
+  party: tParty,
+  rewards: tCombatReward,
+): tParty => {
+  checkForProcessedParty(party)
+  const goldMultiplier =
+    1 +
+    processParty(party).characters.reduce(
+      (r, c) => (r > c.stats.goldModifier ? r : c.stats.goldModifier),
+      0,
+    ) /
+      100
+  return {
+    ...party,
+    gold: party.gold + Math.floor(rewards.gold * goldMultiplier),
+    items: [...party.items, ...rewards.items],
+    characters: party.characters.map((c) => ({
+      ...c,
+      consumables: [...c.consumables, ...rewards.consumables],
+      experience: c.experience + rewards.xp,
+    })),
+  }
 }

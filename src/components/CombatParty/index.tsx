@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { ProcessedPartyT } from '../../types'
 import { FlexContainer } from '../../elements/flex'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { ConfirmButton2, ConfirmButton } from '../../elements/button'
 import { EnemyCharacter } from '../EnemyCharacter'
-import { PLAYER_PARTY_ID } from '../../objects/Party'
+import { tProcessedParty } from '../../game/Party/type'
+import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 
 export interface CombatPartyPropsT {
-  party: ProcessedPartyT
+  party: tProcessedParty
 }
 export const CombatParty = (props: CombatPartyPropsT) => {
   const { party } = props
@@ -36,7 +36,7 @@ export const CombatParty = (props: CombatPartyPropsT) => {
             <EnemyCharacter activeCharacter={activeCharacter} character={c} />
             {selectedSkill &&
               selectedSkill.targetType === 'single' &&
-              !c.dead &&
+              c.health > 0 &&
               activeCharacter.partyId === PLAYER_PARTY_ID && (
                 <FlexContainer
                   style={{ justifyContent: 'center', marginTop: -11 }}

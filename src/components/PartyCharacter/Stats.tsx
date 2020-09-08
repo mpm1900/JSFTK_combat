@@ -1,5 +1,4 @@
 import React from 'react'
-import { ProcessedCharacterT, StatsT } from '../../types'
 import { FlexContainer } from '../../elements/flex'
 import { withStyle } from 'styletron-react'
 import { Monodiv } from '../../elements/monospace'

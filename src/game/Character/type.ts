@@ -4,7 +4,7 @@ import { tSkill } from '../Skill/type'
 import { tStatus, tStatusType } from '../Status/type'
 import { tArmor } from '../Armor/type'
 import { tConsumable } from '../Consumable/type'
-import { CombatRewardT } from '../../types/CombatReward'
+import { tCombatReward } from '../Other/types'
 
 export type tCharacterTag = 'flying' | 'undead'
 export type tCharacterClass =
@@ -21,6 +21,7 @@ export interface tCharacter {
   experience: number
   level: number
   class: tCharacterClass
+  icon?: string
 
   stats: tStats
   healthOffset: number
@@ -34,7 +35,7 @@ export interface tCharacter {
 
   status: tStatus[]
   immunities: tStatusType[]
-  possibleRewards: CombatRewardT[]
+  possibleRewards: tCombatReward[]
 }
 
 export interface tProcessedCharacter extends tCharacter {

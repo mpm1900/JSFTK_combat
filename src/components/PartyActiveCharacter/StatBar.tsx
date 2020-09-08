@@ -1,11 +1,11 @@
 import React from 'react'
 import { BoxContainer } from '../../elements/box'
 import { FlexContainer } from '../../elements/flex'
-import { STAT_BONUS_KEYS } from '../../objects'
 import { STAT_ICONS } from '../../icons/maps'
 import { Icon } from '../Icon'
 import { tStats } from '../../game/Stats/type'
 import { tProcessedCharacter } from '../../game/Character/type'
+import { STAT_BONUS_KEYS } from '../../game/Stats/constants'
 
 const getStatColor = (
   character: tProcessedCharacter,

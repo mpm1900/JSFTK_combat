@@ -13,9 +13,9 @@ import { usePartyContext } from './contexts/PartyContext'
 import { PlayerParty } from './components/PlayerParty'
 import { FlexContainer, FullContainer } from './elements/flex'
 import { useGameStateContext } from './contexts/GameStateContext'
-import { CombatEncounterT } from './types/Encounter'
 import { tParty } from './game/Party/type'
 import { makeParty } from './game/Party/util'
+import { tCombatEncounter } from './game/Encounter/type'
 
 const CombatDomain = () => {
   return (
@@ -49,11 +49,11 @@ const GlobalCharacters = () => {
 }
 
 export const App = () => {
-  const { currentEncounter, level, encounters } = useGameStateContext()
+  const { currentEncounter, level } = useGameStateContext()
   const [rawEnemyParty, setRawEnemyParty] = useState<tParty>(makeParty(0))
   useEffect(() => {
-    if (currentEncounter && (currentEncounter as CombatEncounterT).party)
-      setRawEnemyParty((currentEncounter as CombatEncounterT).party)
+    if (currentEncounter && (currentEncounter as tCombatEncounter).party)
+      setRawEnemyParty((currentEncounter as tCombatEncounter).party)
   }, [level])
   return (
     <ModalContextProvider>

@@ -4,13 +4,13 @@ import { BoxContainer } from '../../elements/box'
 import { withStyle } from 'styletron-react'
 import { Icon } from '../Icon'
 import { ARMOR_TYPE_ICONS } from '../../icons/maps'
-import { ITEM_RARITY_COLORS } from '../../objects/Item'
 import { ClickToolTip } from '../Tooltip'
 import { Button } from '../../elements/button'
 import { tProcessedParty } from '../../game/Party/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
+import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 
 export interface ArmorListPropsT {
   party: tProcessedParty

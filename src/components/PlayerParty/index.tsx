@@ -3,9 +3,9 @@ import { FlexContainer } from '../../elements/flex'
 import { PartyCharacter } from '../PartyCharacter'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { ConfirmButton } from '../../elements/button'
-import { ConsumableT } from '../../types/Consumable'
 import { tProcessedParty } from '../../game/Party/type'
 import { tProcessedCharacter } from '../../game/Character/type'
+import { tConsumable } from '../../game/Consumable/type'
 
 export interface PlayerPartyPropsT {
   party: tProcessedParty
@@ -13,7 +13,7 @@ export interface PlayerPartyPropsT {
   onConsumableClick?: (
     character: tProcessedCharacter,
     consumableIndex: number,
-    consumable: ConsumableT,
+    consumable: tConsumable,
   ) => void
 }
 export const PlayerParty = (props: PlayerPartyPropsT) => {
@@ -21,8 +21,8 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
   const {
     activeCharacter,
     selectedSkill,
-    onSkillSelect,
     next,
+    onSkillSelect,
   } = useCombatContext()
 
   const showConfirmButton = (c: tProcessedCharacter) =>
@@ -61,7 +61,6 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
               character={c}
               onClick={() => onCharacterClick && onCharacterClick(c)}
               onConsumableClick={(consumable, index) => {
-                /* TODO
                 try {
                   if (!c || !consumable || index === undefined) return
                   if (onConsumableClick) {
@@ -71,7 +70,6 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
                     onSkillSelect(consumable.skill, index)
                   }
                 } catch (e) {}
-                */
               }}
             />
           </FlexContainer>

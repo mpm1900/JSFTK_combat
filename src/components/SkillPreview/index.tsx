@@ -19,6 +19,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
       .fill(null)
       .map((_, i) => ({ key: source.weapon.stat, offset: skill.offset })),
   )
+  const stat = skill.weaponStatOverride || source.weapon.stat
   const damage = getSkillDamage(skill, source)
   const perfectKeys = getPerfectText(skill, source)
   return (
@@ -64,7 +65,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
                   fontSize: 32,
                 }}
               >
-                {damage}
+                {`${Math.floor(damage.value)}`}
               </span>
               <span style={{ color: 'rgba(255,255,255,0.2)' }}>Max DMG</span>
             </FlexContainer>
@@ -81,7 +82,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
                   fontSize: 32,
                 }}
               >
-                {source.stats[source.weapon.stat] + skill.offset}%
+                {source.stats[stat] + skill.offset}%
               </span>
               <span style={{ color: 'rgba(255,255,255,0.2)' }}>
                 Per Check ACC

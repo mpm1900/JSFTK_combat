@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { FlexContainer } from '../../elements/flex'
 import { BoxContainer } from '../../elements/box'
 import { withStyle } from 'styletron-react'
-import { ITEM_RARITY_COLORS } from '../../objects/Item'
 import { ClickToolTip } from '../Tooltip'
 import { Button } from '../../elements/button'
 import { tProcessedParty } from '../../game/Party/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tArmor } from '../../game/Armor/type'
 import { tWeapon } from '../../game/Weapon/type'
+import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 
 export interface WeaponListPropsT {
   party: tProcessedParty

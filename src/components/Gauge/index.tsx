@@ -4,10 +4,10 @@ import { FullContainer } from '../../elements/flex'
 import { HoverToolTip } from '../Tooltip'
 import { Monodiv } from '../../elements/monospace'
 import { noneg } from '../../util'
-import { CHARACTER_XP_MAX } from '../../objects/Character'
 import { usePrevious } from '../../hooks/usePrevious'
 import { Spring } from 'react-spring/renderprops'
 import { tProcessedCharacter } from '../../game/Character/type'
+import { CHARACTER_XP_MAX } from '../../game/Character/constants'
 
 export interface GaugePropsT {
   name?: string
@@ -19,7 +19,8 @@ export interface GaugePropsT {
   children?: React.ReactNode | React.ReactNode[]
 }
 export const Gauge = (props: GaugePropsT) => {
-  const { name = '', value, max, color, height = 30, children } = props
+  const { name = '', value, color, height = 30, children } = props
+  const max = props.max < 1 ? 1 : props.max
   const p = (value / max) * 100
   const percentage = p > 100 ? 100 : p
   const oldPercentage = usePrevious(percentage)
@@ -93,11 +94,11 @@ export const HealthGauge = (props: HealthGaugePropsT) => {
     <Gauge
       name='Health'
       color='#8f4e4d'
-      max={character.health}
+      max={character.maxHealth}
       value={health}
       height={height}
     >
-      {health}/{character.health}
+      {health}/{character.maxHealth}
     </Gauge>
   )
 }
