@@ -26,6 +26,6 @@ export const RouteController = () => {
     } else if (!currentEncounter && level > 0) {
       history.push('/JSFTK_combat/party')
     }
-  }, [currentEncounter])
+  }, [currentEncounter, level])
   return null
 }

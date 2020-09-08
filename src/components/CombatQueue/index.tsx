@@ -154,8 +154,8 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                             width: size - 7,
                             border: `1px solid ${
                               c.partyId === PLAYER_PARTY_ID
-                                ? 'lightgreen'
-                                : 'lightcoral'
+                                ? 'lightblue'
+                                : 'lightsalmon'
                             }`,
                             borderBottom: 'none',
                           }}

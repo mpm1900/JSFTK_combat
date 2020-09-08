@@ -106,7 +106,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           <FlexContainer
             style={{
               position: 'absolute',
-              bottom: '-16px',
+              bottom: '-8px',
               right: '16px',
               width: 52,
               alignItems: 'center',
@@ -133,12 +133,12 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
         </FlexContainer>
         <span
           style={{
-            fontWeight: 'bolder',
             fontSize: 52,
             height: 52,
             width: 60,
             textShadow: '1px 1px 10px black',
             color: '#b55553',
+            fontFamily: 'Bangers',
           }}
         >
           <Spring

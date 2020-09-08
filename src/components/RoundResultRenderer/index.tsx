@@ -5,6 +5,8 @@ import { NameSpanBuilder } from '../../contexts/CombatLogContext/util'
 import { FlexContainer } from '../../elements/flex'
 import Kefir from 'kefir'
 import { SkillCheck } from '../SkillChecks'
+import { useSpring, animated } from 'react-spring'
+import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 
 export interface RoundResultRendererPropsT {
   isModal?: boolean
@@ -40,7 +42,7 @@ export const RoundResultRenderer = (props: RoundResultRendererPropsT) => {
 
   if (!isModal && activeRound && isRunning) {
     return (
-      <FlexContainer style={{ height: 315 }}>
+      <FlexContainer style={{ height: 269 }}>
         <RoundResult
           close={() => {
             setIsOpen(false)
@@ -65,6 +67,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
   const { activeRound } = useCombatContext()
   const [isDone, setIsDone] = useState(false)
   const round = activeRound?.sourceResult
+  const [activeIndex, setActiveIndex] = useState(0)
   const [roundResults, setRoundResults] = useState<CheckKVT[]>(
     !round
       ? []
@@ -74,8 +77,10 @@ export const RoundResult = (props: RoundResultPropsT) => {
         })),
   )
 
-  const updateRoundResult = (value: CheckKVT, index: number) =>
+  const updateRoundResult = (value: CheckKVT, index: number) => {
+    setActiveIndex(index)
     setRoundResults((r) => r.map((r, i) => (i === index ? value : r)))
+  }
 
   useEffect(() => {
     if (!round) return
@@ -105,8 +110,9 @@ export const RoundResult = (props: RoundResultPropsT) => {
     }
   }, [isDone, close])
 
+  const showPerfect = activeIndex === roundResults.length - 1 && round?.perfect
+  const style = useSpring({ opacity: showPerfect ? 1 : 0 })
   if (!round) return null
-
   return (
     <FlexContainer $direction='column' style={{ textAlign: 'center' }}>
       <FlexContainer style={{ justifyContent: 'space-evenly' }}>
@@ -114,6 +120,23 @@ export const RoundResult = (props: RoundResultPropsT) => {
           <SkillCheck key={i} check={result} />
         ))}
       </FlexContainer>
+      {showPerfect && (
+        <animated.div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: 30,
+            fontSize: 32,
+            color:
+              round.source.partyId === PLAYER_PARTY_ID ? '#d6c740' : '#c95738',
+            textShadow: '4px 4px 4px black',
+            fontFamily: 'Bangers',
+            ...style,
+          }}
+        >
+          Perfect!
+        </animated.div>
+      )}
     </FlexContainer>
   )
 }
