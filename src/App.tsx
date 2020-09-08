@@ -35,7 +35,7 @@ const GlobalCharacters = () => {
   const { party } = usePartyContext()
   const { onCharacterConsumableClick } = useUIContext()
   return (
-    <div style={{ margin: '30px 0' }}>
+    <div style={{ marginBottom: 30 }}>
       <PlayerParty
         party={party}
         onConsumableClick={(c, i, item) => {

@@ -71,7 +71,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
     >
       <BoxContainer
         style={{ borderWidth: 2 }}
-        substyle={{ padding: 0, minWidth: 420 }}
+        substyle={{ padding: 0, minWidth: 396 }}
       >
         <FlexContainer style={{ border: '2px solid black' }}>
           <FlexContainer
@@ -91,7 +91,6 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                 />
               </FlexContainer>
               <FlexContainer $full $direction='column'>
-                <FullContainer />
                 {showActions && (
                   <Actions
                     character={character}

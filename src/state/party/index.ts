@@ -90,10 +90,16 @@ export const INITIAL_STATE: tParty = {
   characters: [
     {
       ...jack,
-      healthOffset: 30,
+      //healthOffset: 30,
     },
-    { ...jim, healthOffset: 30 },
-    { ...john, healthOffset: 30 },
+    {
+      ...jim,
+      //healthOffset: 30
+    },
+    {
+      ...john,
+      //healthOffset: 30
+    },
   ],
 }
 export default makeReducer(core, INITIAL_STATE)

@@ -23,7 +23,11 @@ export const Actions = (props: ActionsPropsT) => {
     setOpenCharacterInventoryId,
   } = useUIContext()
   return (
-    <FlexContainer>
+    <FlexContainer
+      $full
+      $direction='column'
+      style={{ justifyContent: 'center' }}
+    >
       <FlexContainer
         $full
         style={{ alignItems: 'center', justifyContent: 'center' }}
