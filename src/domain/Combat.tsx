@@ -51,11 +51,10 @@ export const Combat = () => {
               <>
                 <FullContainer />
                 <FlexContainer $direction='column'>
-                  <FullContainer />
-                  <>
+                  <div style={{ marginTop: 40 }}>
                     {!isRenderingResult && <CombatActions />}
                     <RoundResultRenderer isModal={false} />
-                  </>
+                  </div>
                   <FullContainer />
                 </FlexContainer>
                 <FlexContainer $full style={{ justifyContent: 'flex-end' }}>

@@ -16,7 +16,6 @@ export const CombatLog = () => {
   const style = useSpring({
     minHeight: isExpanded ? 263 : 0,
     maxHeight: isExpanded ? 263 : 0,
-    padding: isExpanded ? 8 : 0,
   })
   return (
     <FlexContainer
@@ -47,14 +46,15 @@ export const CombatLog = () => {
       <animated.div
         style={{
           display: 'flex',
-          flexDirection: 'column',
           overflow: 'auto',
           ...style,
         }}
       >
-        {combatLog.map((line, i) => (
-          <span key={i}>{line}</span>
-        ))}
+        <FlexContainer $direction='column' style={{ padding: 8 }}>
+          {combatLog.map((line, i) => (
+            <span key={i}>{line}</span>
+          ))}
+        </FlexContainer>
         <div ref={scrollRef} />
       </animated.div>
     </FlexContainer>

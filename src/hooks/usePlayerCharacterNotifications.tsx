@@ -13,11 +13,13 @@ export const usePlayerCharacterNotifications = (
   useEffect(() => {
     const diff = previousHealth - health
     if (diff > 0) {
-      push(<span style={{ fontFamily: 'Bangers' }}>- {diff} HP</span>)
+      push(<span style={{ fontFamily: 'Bangers' }}>- {diff} health</span>)
     }
     if (diff < 0) {
       push(
-        <span style={{ fontFamily: 'Bangers' }}>+ {Math.abs(diff)} HP</span>,
+        <span style={{ fontFamily: 'Bangers' }}>
+          + {Math.abs(diff)} health
+        </span>,
         'good',
       )
     }

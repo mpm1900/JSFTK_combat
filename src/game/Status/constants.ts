@@ -48,7 +48,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   poisoned: {
     name: 'Poisoned',
-    description: '-5 HP on your turn and -5 to each stat.',
+    description: "-5 HP on this character's turn and -5 to each stat.",
     canStack: true,
     isTemporary: false,
     duration: -1,
@@ -75,7 +75,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   stunned: {
     name: 'Stunned',
-    description: '',
+    description: 'This character will not progress on the battle timeline.',
     canStack: false,
     isTemporary: true,
     duration: 4,

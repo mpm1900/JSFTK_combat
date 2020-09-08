@@ -180,17 +180,21 @@ export const LocalToastRp = (props: LocalToastRpPropsT) => {
 const color = (type: string | undefined) => {
   switch (type) {
     case 'good':
-      return { color: '#aae6bf', textShadow: '0px 1px 0px rgba(0,0,0,0.5)' }
+      return {
+        color: '#aae6bf',
+        textShadow: '0px 3px 1px rgba(0,0,0,0.5)',
+      }
     case 'base':
       return {
         color: 'rgba(255,255,255,0.8)',
-        textShadow: '0px 1px 0px rgba(0,0,0,0.5)',
+        textShadow: '0px 3px 1px rgba(0,0,0,0.5)',
       }
     default:
       return {
         // color: 'rgba(219, 114, 114, 0.8)',
-        color: 'red',
-        textShadow: '0px 1px 0px rgba(0,0,0,0.5)',
+        // color: 'red',
+        color: 'rgba(255,158,158,0.8)',
+        textShadow: '0px 3px 1px rgba(0,0,0,1)',
       }
   }
 }

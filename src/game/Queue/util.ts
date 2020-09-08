@@ -8,12 +8,15 @@ export const makeCombatQueue = (characters: tProcessedCharacter[]): tQueue => {
   const sortedCharacters = characters.sort(
     (a, b) => b.stats.agility - a.stats.agility,
   )
-  return sortedCharacters.reduce(
-    (r, c, i) => ({
-      ...r,
-      [c.id]: AGILITY_OFFSET / 2 - c.stats.agility,
-    }),
-    {},
+  return validateQueue(
+    sortedCharacters.reduce(
+      (r, c, i) => ({
+        ...r,
+        [c.id]: AGILITY_OFFSET / 2 - c.stats.agility,
+      }),
+      {},
+    ),
+    characters,
   )
 }
 
