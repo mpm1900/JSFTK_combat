@@ -15,8 +15,6 @@ import { Health } from './Health'
 import { useUIContext } from '../../contexts/UIContext'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tConsumable } from '../../game/Consumable/type'
-import { useLocalToast } from '../../contexts/LocalToastContext'
-import { usePrevious } from '../../hooks/usePrevious'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -45,7 +43,6 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
     onConsumableClick,
     push,
   } = props
-  // const { push } = useLocalToast()
   const { playerCanEquipItem } = useUIContext()
   const health = character.health
   const status = character.status.map((s) => s.type)
@@ -61,6 +58,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       push(<span>became {added}</span>)
     }
     setPreviousHealth(health)
+    setPreviousStatus(status)
   }, [health])
   return (
     <Wrapper
@@ -70,7 +68,11 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       }}
     >
       <BoxContainer
-        style={{ borderWidth: 2 }}
+        style={{
+          borderWidth: 2,
+          transition: 'all 1s',
+          boxShadow: selected ? '0px 0px 20px white' : 'none',
+        }}
         substyle={{ padding: 0, minWidth: 396 }}
       >
         <FlexContainer style={{ border: '2px solid black' }}>

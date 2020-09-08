@@ -24,13 +24,13 @@ export const Combat = () => {
     onSkillSelect,
     reset,
   } = useCombatContext()
-  const history = useHistory()
   const { clear } = useCombatLogContext()
   const { setOnCharacterConsumableClick } = useUIContext()
   const {} = useGameStateContext()
   const { open, close } = useModalContext()
 
   useEffect(() => {
+    clear()
     open(
       <div style={{ textAlign: 'center' }}>
         <h1>Combat Start!</h1>
@@ -38,7 +38,6 @@ export const Combat = () => {
     )
     setTimeout(() => {
       close()
-      clear()
       start()
     }, 1000)
     return () => {

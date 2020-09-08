@@ -8,14 +8,12 @@ import { PartyResources } from '../components/PartyResources'
 import { useUIContext } from '../contexts/UIContext'
 import { useGameStateContext } from '../contexts/GameStateContext'
 import { BoxContainer } from '../elements/box'
-import { useModalContext } from '../contexts/ModalContext'
 import { getSkillResult } from '../game/Skill/util'
 import { commitSkillResults } from '../game/Skill/committer'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()
   const {
-    encounters,
     currentEncounter,
     currentChoice,
     level,
@@ -27,7 +25,6 @@ export const Party = () => {
     setPlayerCanEquipItem,
     setOnCharacterConsumableClick,
   } = useUIContext()
-  const { open } = useModalContext()
 
   useEffect(() => {
     setPlayerCanEquipItem(true)
@@ -49,19 +46,6 @@ export const Party = () => {
       setOnCharacterConsumableClick((c, i, item) => {})
     }
   }, [party, rawParty, updateParty])
-
-  useEffect(() => {
-    if (level > encounters.length) {
-      open(
-        <div>
-          <h1>You Win!!!!!!!!!!!</h1>
-        </div>,
-      )
-      history.push('/JSFTK_combat')
-    } else if (currentEncounter && currentEncounter.type === 'combat') {
-      history.push('/JSFTK_combat/combat')
-    }
-  }, [currentEncounter])
 
   return (
     <FlexContainer $full $direction='column' style={{ height: '100%' }}>

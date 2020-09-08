@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlexContainer } from '../../elements/flex'
+import { FlexContainer, FullContainer } from '../../elements/flex'
 import { tProcessedCharacter } from '../../game/Character/type'
 
 export interface NamePropsT {
@@ -24,14 +24,23 @@ export const Name = (props: NamePropsT) => {
         zIndex: 2,
       }}
     >
-      <span
+      <FullContainer
         style={{
           fontWeight: 'bolder',
           textShadow: '0px 0px 2px black',
+          flex: 1,
         }}
       >
         {character.name}
-      </span>
+      </FullContainer>
+      <div
+        style={{
+          fontSize: 12,
+          color: 'rgba(255,255,255,0.3)',
+        }}
+      >
+        {character.class}
+      </div>
     </FlexContainer>
   )
 }

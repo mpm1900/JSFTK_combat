@@ -35,7 +35,7 @@ export const Actions = (props: ActionsPropsT) => {
         <Tooltip
           isOpen={character.id === openCharacterInventoryId}
           direction='up'
-          distance={80}
+          distance={40}
           content={
             <div style={{ minWidth: 887, minHeight: 444 }}>
               {character.id === openCharacterInventoryId && (
