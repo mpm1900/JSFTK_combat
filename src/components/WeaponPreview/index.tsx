@@ -65,7 +65,11 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
           )}
         </FlexContainer>
         <BoxContainer
-          substyle={{ background: 'rgba(0,0,0,0.7)', minHeight: 120 }}
+          substyle={{
+            background: 'rgba(0,0,0,0.7)',
+            minHeight: 120,
+            textAlign: 'left',
+          }}
         >
           <FlexContainer $direction='column'>
             <FlexContainer style={{ lineHeight: '24px', marginBottom: 4 }}>
