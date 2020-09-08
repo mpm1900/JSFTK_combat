@@ -33,15 +33,19 @@ export const Actions = (props: ActionsPropsT) => {
           direction='up'
           distance={80}
           content={
-            <PartyActiveCharacter
-              character={character}
-              party={party}
-              equipItem={equipItem}
-              canEquip={canEquip}
-              onRequestClose={() => {
-                setOpenCharacterInventoryId(undefined)
-              }}
-            />
+            <div style={{ minWidth: 887, minHeight: 444 }}>
+              {character.id === openCharacterInventoryId && (
+                <PartyActiveCharacter
+                  character={character}
+                  party={party}
+                  equipItem={equipItem}
+                  canEquip={canEquip}
+                  onRequestClose={() => {
+                    setOpenCharacterInventoryId(undefined)
+                  }}
+                />
+              )}
+            </div>
           }
         >
           <Hover delay={0}>

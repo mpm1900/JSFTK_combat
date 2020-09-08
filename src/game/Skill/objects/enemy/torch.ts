@@ -10,7 +10,7 @@ export const TORCH: tSkill = {
   damage: true,
   healing: false,
   rolls: 4,
-  offset: 20,
+  offset: -10,
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: ['burning'],
