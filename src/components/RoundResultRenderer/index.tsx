@@ -113,7 +113,10 @@ export const RoundResult = (props: RoundResultPropsT) => {
 
   const showPerfect = activeIndex === roundResults.length - 1 && round?.perfect
   const style = useSpring({ opacity: showPerfect ? 1 : 0 })
-  const sourceIsPlayer = round?.source.partyId === PLAYER_PARTY_ID
+  const isPlayer = (partyId: string) => partyId === PLAYER_PARTY_ID
+  const targetResult = activeRound?.targetResults[0]
+  const showTarget =
+    round && targetResult && targetResult.target.id !== round.source.id
   if (!round) return null
   return (
     <FlexContainer $direction='column' style={{ textAlign: 'center' }}>
@@ -124,10 +127,31 @@ export const RoundResult = (props: RoundResultPropsT) => {
       </FlexContainer>
       <FlexContainer style={{ justifyContent: 'center' }}>
         <BoxContainer style={{ marginTop: 40 }}>
-          <span style={{ color: sourceIsPlayer ? 'lightblue' : 'lightsalmon' }}>
+          <span
+            style={{
+              color: isPlayer(round.source.partyId)
+                ? 'lightblue'
+                : 'lightsalmon',
+            }}
+          >
             {round.source.name}
           </span>{' '}
           uses <span style={{ color: 'plum' }}>{round.skill.name}</span>
+          {showTarget && (
+            <span>
+              {' '}
+              on{' '}
+              <span
+                style={{
+                  color: isPlayer(targetResult?.target.partyId || '')
+                    ? 'lightblue'
+                    : 'lightsalmon',
+                }}
+              >
+                {targetResult?.target.name}
+              </span>
+            </span>
+          )}
         </BoxContainer>
       </FlexContainer>
       {showPerfect && (

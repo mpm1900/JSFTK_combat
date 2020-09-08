@@ -112,7 +112,7 @@ export const Toast = (props: ToastPropsT) => {
           <div
             style={{
               padding: 8,
-              color: item.item.type === 'good' ? '#f2d8d8' : 'red',
+              color: item.item.type === 'good' ? '#aae6bf' : 'red',
               fontWeight: 'bolder',
               marginBottom: 4,
               marginRight: 4,
