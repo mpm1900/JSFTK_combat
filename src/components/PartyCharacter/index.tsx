@@ -22,7 +22,7 @@ export interface PartyCharacterProps {
   showActions?: boolean
   onClick?: () => void
   onConsumableClick?: (consumable: tConsumable, index: number) => void
-  push: (contents: JSX.Element) => void
+  push: (contents: JSX.Element, type?: string) => void
 }
 const Wrapper = styled('div', (props: any) => {
   const { $active } = props
@@ -52,6 +52,9 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
     const diff = previousHealth - health
     if (diff > 0) {
       push(<span>- {diff} HP</span>)
+    }
+    if (diff < 0) {
+      push(<span>+ {Math.abs(diff)} HP</span>, 'good')
     }
     if (status.length > previousStatus.length) {
       const added = status[0]

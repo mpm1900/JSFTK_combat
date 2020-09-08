@@ -13,6 +13,7 @@ import {
   getReflectedDamage,
   isCharacter,
   hasStatus,
+  getDamageResistance,
 } from '../Character/util'
 import { tProcessedParty } from '../Party/type'
 import { isParty } from '../Party/util'
@@ -90,6 +91,12 @@ export const getTargetSkillResult = (
       value: dodgeSuccess ? 0 : damage.value,
     },
     reflectedDamage: getReflectedDamage(target, damage),
+    loggedDamgge: {
+      ...damage,
+      value: dodgeSuccess
+        ? 0
+        : damage.value - getDamageResistance(target, damage),
+    },
   }
 }
 

@@ -51,6 +51,7 @@ export interface tTargetSkillResult extends tSourceSkillResult {
   dodgeSuccess: boolean
   totalDamage: tDamage
   reflectedDamage: tDamage
+  loggedDamgge: tDamage
 }
 
 export interface tSkillResult {

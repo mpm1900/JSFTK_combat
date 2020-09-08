@@ -90,7 +90,7 @@ export const INITIAL_STATE: tParty = {
   characters: [
     {
       ...jack,
-      //healthOffset: 30,
+      // healthOffset: 30,
     },
     {
       ...jim,

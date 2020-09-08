@@ -48,7 +48,7 @@ export const CombatLog = () => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          overflow: 'hidden',
+          overflow: 'auto',
           ...style,
         }}
       >

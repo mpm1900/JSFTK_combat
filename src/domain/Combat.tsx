@@ -61,7 +61,7 @@ export const Combat = () => {
                 <FlexContainer $full style={{ justifyContent: 'flex-end' }}>
                   <FlexContainer
                     $direction='column'
-                    style={{ justifyContent: 'center' }}
+                    // style={{ justifyContent: 'center' }}
                   >
                     <CombatLog />
                   </FlexContainer>
