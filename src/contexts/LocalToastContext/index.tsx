@@ -58,7 +58,7 @@ export const Toast = (props: ToastPropsT) => {
   const { children } = props
   //const children = useMemo(() => props.children, [])
   const style = useTransition(props.children, null, {
-    enter: { top: -40, opacity: props.children !== undefined ? 1 : 0 },
+    enter: { top: -40, opacity: 1 },
     leave: { top: 0, opacity: 0 },
     from: { top: 0, opacity: 0 },
   })
