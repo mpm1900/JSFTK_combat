@@ -3,6 +3,7 @@ import { v4 } from 'uuid'
 import { ZERO_STATS } from '../../../Stats/constants'
 import { SURGE } from '../../../Skill/objects/surge'
 import { AREA_BLAST } from '../../../Skill/objects/area_blast'
+import { TIME_JUMP } from '../../../Skill/objects/time_jump'
 
 export const SCHOLARS_BOOK = (): tWeapon => ({
   id: v4(),
@@ -15,6 +16,6 @@ export const SCHOLARS_BOOK = (): tWeapon => ({
   breakable: false,
   damage: { type: 'magic', range: 'ranged', value: 6 },
   stats: { ...ZERO_STATS },
-  skills: [SURGE, AREA_BLAST],
+  skills: [SURGE, AREA_BLAST, TIME_JUMP],
   immunities: [],
 })

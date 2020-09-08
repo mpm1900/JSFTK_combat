@@ -14,4 +14,5 @@ export const PERFECT_DISPLAY_INFO: Partial<Record<tPerfectKey, string>> = {
   heal: 'Heal',
   protected: 'Protect',
   ['speed-down']: 'Speed Down',
+  rushed: 'Rush Character',
 }

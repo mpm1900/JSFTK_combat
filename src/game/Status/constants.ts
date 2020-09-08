@@ -54,6 +54,11 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
     duration: -1,
     stats: {
       ...ZERO_STATS,
+      vigor: -5,
+      strength: -5,
+      intelligence: -5,
+      dexterity: -5,
+      charisma: -5,
       healthRegeneration: -5,
     },
   },

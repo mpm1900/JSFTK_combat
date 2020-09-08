@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { XPGauge, HealthGauge } from '../Gauge'
 import { BoxContainer } from '../../elements/box'
@@ -15,6 +15,8 @@ import { Health } from './Health'
 import { useUIContext } from '../../contexts/UIContext'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tConsumable } from '../../game/Consumable/type'
+import { useLocalToast } from '../../contexts/LocalToastContext'
+import { usePrevious } from '../../hooks/usePrevious'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -36,7 +38,23 @@ const Wrapper = styled('div', (props: any) => {
 
 export const PartyCharacter = (props: PartyCharacterProps) => {
   const { character, selected, showActions = true, onConsumableClick } = props
+  const { push } = useLocalToast()
   const { playerCanEquipItem } = useUIContext()
+  const health = character.health
+  const status = character.status.map((s) => s.type)
+  const [previousHealth, setPreviousHealth] = useState(health)
+  const [previousStatus, setPreviousStatus] = useState(status)
+  useEffect(() => {
+    const diff = previousHealth - health
+    if (diff > 0) {
+      push(<span>- {diff} HP</span>)
+    }
+    if (status.length > previousStatus.length) {
+      const added = status[status.length - 1]
+      push(<span>became {added}</span>)
+    }
+    setPreviousHealth(health)
+  }, [health])
   return (
     <Wrapper
       $active={selected}

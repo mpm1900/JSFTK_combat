@@ -25,7 +25,7 @@ export const INFECTIOUS_STING: tSkill = {
   damage: true,
   healing: false,
   rolls: 3,
-  offset: 10,
+  offset: -10,
   perfectSplash: false,
   perfectPierce: false,
   perfectStatus: ['poisoned'],
