@@ -13,6 +13,7 @@ const getStatColor = (
 ): string => {
   const a = character.stats[key]
   const b = character.rawStats[key]
+  if (a === undefined || b === undefined) return 'rgba(255,255,255,0.6)'
   if (a > b) return 'lightgreen'
   if (b > a) return 'lightcoral'
   return 'rgba(255,255,255,0.6)'

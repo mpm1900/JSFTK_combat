@@ -1,5 +1,6 @@
 import { tStats } from './type'
 import { ZERO_STATS } from './constants'
+import { undefAdd } from '../../util/undefAdd'
 
 export const combineStats = (...stats: tStats[]) => {
   return stats.reduce(
@@ -36,7 +37,7 @@ export const combineStats = (...stats: tStats[]) => {
 
       queueConsolidationModifier:
         result.queueConsolidationModifier + stats.queueConsolidationModifier,
-      queueValueSet: result.queueValueSet + stats.queueValueSet,
+      queueValueSet: undefAdd(result.queueValueSet, stats.queueValueSet),
 
       goldModifier: result.goldModifier + stats.goldModifier,
       maxInspirationOffset:
@@ -79,7 +80,7 @@ export const multiplyStats = (stats: tStats, modifier: number): tStats => ({
   },
 
   queueConsolidationModifier: stats.queueConsolidationModifier * modifier,
-  queueValueSet: stats.queueValueSet * modifier,
+  queueValueSet: stats.queueValueSet,
 
   goldModifier: stats.goldModifier * modifier,
   maxInspirationOffset: stats.maxInspirationOffset * modifier,

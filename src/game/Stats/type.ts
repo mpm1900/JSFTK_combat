@@ -39,7 +39,7 @@ export interface tStats extends tBaseStats {
   queueConsolidationModifier: number
   // dangerously set, each round, this is added the character's queue value,
   // should be 0 almost always
-  queueValueSet: number // recur
+  queueValueSet: number | undefined // recur
 
   // OTHER
   goldModifier: number

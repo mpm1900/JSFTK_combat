@@ -31,7 +31,7 @@ export const ZERO_STATS: tStats = {
   },
 
   queueConsolidationModifier: 0,
-  queueValueSet: 0,
+  queueValueSet: undefined,
 
   goldModifier: 0,
   maxInspirationOffset: 0,

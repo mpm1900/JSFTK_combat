@@ -23,7 +23,7 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
     <FlexContainer $direction='column' style={{ fontSize: 14 }}>
       {DEFENSE_BONUS_KEYS.map(
         (key) =>
-          stats[key] > 0 && (
+          (stats[key] as number) > 0 && (
             <span
               style={{
                 textTransform: 'capitalize',
@@ -37,7 +37,7 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
       )}
       {DAMAGE_BONUS_KEYS.map(
         (key) =>
-          stats[key] > 0 && (
+          (stats[key] as number) > 0 && (
             <span style={{ textTransform: 'capitalize' }}>
               +{stats[key]}
               {STAT_KEY_LABELS[key]}

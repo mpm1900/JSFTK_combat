@@ -49,7 +49,7 @@ export const consolidateQueue = (
   let min = getMin(queue, characters)
   return Object.keys(queue).reduce((r, id) => {
     const character = characters.find((c) => c.id === id) as tCharacter
-    const offset = (character.stats.queueConsolidationModifier || 0) * min
+    const offset = character.stats.queueConsolidationModifier * min
     return {
       ...r,
       [id]: queue[id] - offset,
@@ -108,8 +108,6 @@ export const commitQueueUpdates = (
   const pcs = characters.map((c) => processCharacter(c))
   const shiftedQueue = shiftQueue(queue, source, pcs)
   const ret = validateQueue(
-    shiftedQueue,
-    /*
     Object.keys(shiftedQueue).reduce((q, id) => {
       const character = pcs.find((c) => c.id === id)
       return {
@@ -119,7 +117,7 @@ export const commitQueueUpdates = (
             ? character?.stats?.queueValueSet
             : shiftedQueue[id],
       }
-    }, {}), */
+    }, {}),
     pcs,
   )
   return ret
