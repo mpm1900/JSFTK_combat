@@ -7,6 +7,7 @@ import Kefir from 'kefir'
 import { SkillCheck } from '../SkillChecks'
 import { useSpring, animated } from 'react-spring'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
+import { BoxContainer } from '../../elements/box'
 
 export interface RoundResultRendererPropsT {
   isModal?: boolean
@@ -98,7 +99,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
       )
     })
     stream.onEnd(() => {
-      Kefir.later(600, undefined).onValue(() => {
+      Kefir.later(round.perfect ? 900 : 600, undefined).onValue(() => {
         setIsDone(true)
       })
     })
@@ -112,6 +113,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
 
   const showPerfect = activeIndex === roundResults.length - 1 && round?.perfect
   const style = useSpring({ opacity: showPerfect ? 1 : 0 })
+  const sourceIsPlayer = round?.source.partyId === PLAYER_PARTY_ID
   if (!round) return null
   return (
     <FlexContainer $direction='column' style={{ textAlign: 'center' }}>
@@ -119,6 +121,14 @@ export const RoundResult = (props: RoundResultPropsT) => {
         {roundResults.map((result, i) => (
           <SkillCheck key={i} check={result} />
         ))}
+      </FlexContainer>
+      <FlexContainer style={{ justifyContent: 'center' }}>
+        <BoxContainer style={{ marginTop: 40 }}>
+          <span style={{ color: sourceIsPlayer ? 'lightblue' : 'lightsalmon' }}>
+            {round.source.name}
+          </span>{' '}
+          uses <span style={{ color: 'plum' }}>{round.skill.name}</span>
+        </BoxContainer>
       </FlexContainer>
       {showPerfect && (
         <animated.div

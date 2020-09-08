@@ -1,4 +1,11 @@
-import React, { useContext, useState, useEffect, useRef, useMemo } from 'react'
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  CSSProperties,
+} from 'react'
 import { useSpring, animated, useTransition } from 'react-spring'
 import { FullContainer } from '../../elements/flex'
 import { v4 } from 'uuid'
@@ -68,20 +75,20 @@ interface ToastQT {
 }
 export interface ToastPropsT {
   queue: ToastQT[]
+  style?: CSSProperties
 }
 export const Toast = (props: ToastPropsT) => {
-  const { queue } = props
+  const { queue, style } = props
   const hasChildren = queue.length > 0
   const rootStyle = useSpring({
     top: hasChildren ? -40 : 0,
     opacity: hasChildren ? 1 : 0,
   })
-  const style = useTransition(queue, (q) => q.id, {
-    from: { transform: 'translate3d(0,40px,0)', maxWidth: 0 },
-    enter: { transform: 'translate3d(0,0px,0)', maxWidth: 120 },
-    leave: { transform: 'translate3d(0,40px,0)', maxWidth: 0 },
+  const animation = useTransition(queue, (q) => q.id, {
+    from: { transform: 'translate3d(0,40px,0)', maxWidth: 0, opacity: 0 },
+    enter: { transform: 'translate3d(0,0px,0)', maxWidth: 120, opacity: 1 },
+    leave: { transform: 'translate3d(0,-80px,0)', maxWidth: 0, opacity: 0 },
   })
-  console.log(style.map((i) => i.item.type))
   return (
     <animated.div
       style={{
@@ -90,10 +97,10 @@ export const Toast = (props: ToastPropsT) => {
         width: '100%',
         display: 'flex',
         height: 40,
-        overflow: 'hidden',
+        ...(style || {}),
       }}
     >
-      {style.map((item) => (
+      {animation.map((item) => (
         <animated.div
           key={item.key}
           style={{
@@ -105,13 +112,11 @@ export const Toast = (props: ToastPropsT) => {
           <div
             style={{
               padding: 8,
-              background: item.item.type === 'good' ? '#446e3f' : '#d4574e',
-              border: '1px solid white',
-              color: 'white',
-              boxShadow: '2px 2px 5px black',
+              color: item.item.type === 'good' ? '#f2d8d8' : 'red',
               fontWeight: 'bolder',
               marginBottom: 4,
               marginRight: 4,
+              fontSize: 20,
               whiteSpace: 'nowrap',
               textShadow: '1px 1px 1px black',
             }}
@@ -127,9 +132,10 @@ export const Toast = (props: ToastPropsT) => {
 
 export interface LocalToastRpPropsT {
   children: (props: LocalToastContextT) => JSX.Element
+  style?: CSSProperties
 }
 export const LocalToastRp = (props: LocalToastRpPropsT) => {
-  const { children } = props
+  const { children, style } = props
   const [queue, setQueue] = useState<ToastQT[]>([])
 
   const push = (c: JSX.Element, type?: string) => {
@@ -151,7 +157,7 @@ export const LocalToastRp = (props: LocalToastRpPropsT) => {
   return (
     <>
       <div style={{ position: 'relative' }}>
-        <Toast queue={queue} />
+        <Toast queue={queue} style={style} />
       </div>
       {children({ push })}
     </>

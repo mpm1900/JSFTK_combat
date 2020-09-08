@@ -11,6 +11,8 @@ import { Spring } from 'react-spring/renderprops'
 import { noneg } from '../../util'
 import { Icon } from '../Icon'
 import { tProcessedCharacter } from '../../game/Character/type'
+import { Health } from './Health'
+import { LocalToastRp } from '../../contexts/LocalToastContext'
 
 export interface EnemyCharacterPropsT {
   character: tProcessedCharacter
@@ -131,24 +133,9 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             <FullContainer />
           </FlexContainer>
         </FlexContainer>
-        <span
-          style={{
-            fontSize: 52,
-            height: 52,
-            width: 60,
-            textShadow: '1px 1px 10px black',
-            color: '#b55553',
-            fontFamily: 'Bangers',
-          }}
-        >
-          <Spring
-            from={{ hp: previousHealth || 0 }}
-            to={{ hp: health }}
-            config={{ friction: 70, mass: 5, tension: 300, clamp: true }}
-          >
-            {(hpp) => <span>{Math.floor(hpp.hp)}</span>}
-          </Spring>
-        </span>
+        <LocalToastRp style={{ top: -20, right: -20, flexDirection: 'column' }}>
+          {({ push }) => <Health character={character} push={push} />}
+        </LocalToastRp>
       </FlexContainer>
     </div>
   )
