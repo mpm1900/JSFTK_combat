@@ -24,6 +24,7 @@ export interface PartyCharacterProps {
   showActions?: boolean
   onClick?: () => void
   onConsumableClick?: (consumable: tConsumable, index: number) => void
+  push: (contents: JSX.Element) => void
 }
 const Wrapper = styled('div', (props: any) => {
   const { $active } = props
@@ -37,8 +38,14 @@ const Wrapper = styled('div', (props: any) => {
 })
 
 export const PartyCharacter = (props: PartyCharacterProps) => {
-  const { character, selected, showActions = true, onConsumableClick } = props
-  const { push } = useLocalToast()
+  const {
+    character,
+    selected,
+    showActions = true,
+    onConsumableClick,
+    push,
+  } = props
+  // const { push } = useLocalToast()
   const { playerCanEquipItem } = useUIContext()
   const health = character.health
   const status = character.status.map((s) => s.type)

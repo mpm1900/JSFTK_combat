@@ -136,7 +136,7 @@ export const STAT_KEY_LABELS: Record<keyof tStats, string> = {
   strength: ' Strength',
   vigor: ' Vigor',
   intelligence: ' Intelligence',
-  dexterity: 'Dexterity',
+  dexterity: ' Dexterity',
   charisma: ' Charisma',
   agility: ' Agility',
   luck: ' Luck',

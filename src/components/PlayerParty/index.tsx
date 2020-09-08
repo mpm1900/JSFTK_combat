@@ -6,7 +6,10 @@ import { ConfirmButton } from '../../elements/button'
 import { tProcessedParty } from '../../game/Party/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tConsumable } from '../../game/Consumable/type'
-import { LocalToastProvider } from '../../contexts/LocalToastContext'
+import {
+  LocalToastProvider,
+  LocalToastRp,
+} from '../../contexts/LocalToastContext'
 
 export interface PlayerPartyPropsT {
   party: tProcessedParty
@@ -57,24 +60,27 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
                 </div>
               </FlexContainer>
             )}
-            <LocalToastProvider>
-              <PartyCharacter
-                selected={activeCharacter && c && c.id === activeCharacter.id}
-                character={c}
-                onClick={() => onCharacterClick && onCharacterClick(c)}
-                onConsumableClick={(consumable, index) => {
-                  try {
-                    if (!c || !consumable || index === undefined) return
-                    if (onConsumableClick) {
-                      onConsumableClick(c, index, consumable)
-                    }
-                    if (c && c.id === activeCharacter.id) {
-                      onSkillSelect(consumable.skill, index)
-                    }
-                  } catch (e) {}
-                }}
-              />
-            </LocalToastProvider>
+            <LocalToastRp>
+              {({ push }) => (
+                <PartyCharacter
+                  push={push}
+                  selected={activeCharacter && c && c.id === activeCharacter.id}
+                  character={c}
+                  onClick={() => onCharacterClick && onCharacterClick(c)}
+                  onConsumableClick={(consumable, index) => {
+                    try {
+                      if (!c || !consumable || index === undefined) return
+                      if (onConsumableClick) {
+                        onConsumableClick(c, index, consumable)
+                      }
+                      if (c && c.id === activeCharacter.id) {
+                        onSkillSelect(consumable.skill, index)
+                      }
+                    } catch (e) {}
+                  }}
+                />
+              )}
+            </LocalToastRp>
           </FlexContainer>
         ))}
       </FlexContainer>

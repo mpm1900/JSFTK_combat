@@ -19,9 +19,6 @@ export interface LocalToastProviderProps {
 export const LocalToastProvider = (props: LocalToastProviderProps) => {
   const { children } = props
   const [queue, setQueue] = useState<JSX.Element[]>([])
-  const [contents, setContents] = useState<JSX.Element | undefined>()
-  const [showToast, setShowToast] = useState<boolean>()
-  let ref = useRef<NodeJS.Timeout>()
 
   useEffect(() => {
     const i = setInterval(() => {
@@ -29,7 +26,7 @@ export const LocalToastProvider = (props: LocalToastProviderProps) => {
         const [f, ...rest] = q
         return rest || []
       })
-    }, 2000)
+    }, 4000)
     return () => {
       clearInterval(i)
     }
@@ -90,6 +87,39 @@ export const Toast = (props: ToastPropsT) => {
           <FullContainer />
         </animated.div>
       ))}
+    </>
+  )
+}
+
+export interface LocalToastRpPropsT {
+  children: (props: LocalToastContextT) => JSX.Element
+}
+export const LocalToastRp = (props: LocalToastRpPropsT) => {
+  const { children } = props
+
+  const [queue, setQueue] = useState<JSX.Element[]>([])
+
+  useEffect(() => {
+    const i = setInterval(() => {
+      setQueue((q) => {
+        const [f, ...rest] = q
+        return rest || []
+      })
+    }, 3000)
+    return () => {
+      clearInterval(i)
+    }
+  }, [])
+
+  const push = (c: JSX.Element) => {
+    setQueue((q) => [...q, c])
+  }
+  return (
+    <>
+      <div style={{ position: 'relative' }}>
+        <Toast children={queue} />
+      </div>
+      {children({ push })}
     </>
   )
 }
