@@ -57,7 +57,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       push(<span>- {diff} HP</span>)
     }
     if (status.length > previousStatus.length) {
-      const added = status[status.length - 1]
+      const added = status[0]
       push(<span>became {added}</span>)
     }
     setPreviousHealth(health)

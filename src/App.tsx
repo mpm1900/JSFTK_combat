@@ -49,20 +49,19 @@ const GlobalCharacters = () => {
 }
 
 export const App = () => {
-  const { currentEncounter, level } = useGameStateContext()
+  const { currentEncounter } = useGameStateContext()
   const [rawEnemyParty, setRawEnemyParty] = useState<tParty>(makeParty(0))
   useEffect(() => {
+    console.log(currentEncounter)
     if (currentEncounter && (currentEncounter as tCombatEncounter).party)
       setRawEnemyParty((currentEncounter as tCombatEncounter).party)
-  }, [level])
+  }, [currentEncounter])
   return (
     <ModalContextProvider>
       <CombatContextProvider
         enemyParty={rawEnemyParty}
         setEnemyParty={setRawEnemyParty}
-        onRequestNewParty={() => {
-          setRawEnemyParty(makeParty(level + 1))
-        }}
+        onRequestNewParty={() => {}}
       >
         <UIContextProvider>
           <FlexContainer
