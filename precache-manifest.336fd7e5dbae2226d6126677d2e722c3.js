@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cc8fddce7bc2c72cbdb50bfd998fc51b",
+    "revision": "66cb24f855bcf7181e600d3d5ab46d4a",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "5fc3fc24629948e86704",
+    "revision": "74dc1e92b074ceeb65d5",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "a925c42299132135de34",
+    "revision": "6eab4cd511260f5f8f0e",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
-    "revision": "5fc3fc24629948e86704",
-    "url": "/JSFTK_combat/static/js/2.de37a5dd.chunk.js"
+    "revision": "74dc1e92b074ceeb65d5",
+    "url": "/JSFTK_combat/static/js/2.34625f53.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.de37a5dd.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.34625f53.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a925c42299132135de34",
-    "url": "/JSFTK_combat/static/js/main.8c01c323.chunk.js"
+    "revision": "6eab4cd511260f5f8f0e",
+    "url": "/JSFTK_combat/static/js/main.3ff7a2a2.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -48,6 +48,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/biohazard.cdfb567d.svg"
   },
   {
+    "revision": "8d92779f63f2598c5551f04aa91dce48",
+    "url": "/JSFTK_combat/static/media/bleeding-wound.8d92779f.svg"
+  },
+  {
     "revision": "56c12b47cb95e4ebc666b80bce202d55",
     "url": "/JSFTK_combat/static/media/bordered-shield.56c12b47.svg"
   },
@@ -72,6 +76,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/coins.97dc8c40.svg"
   },
   {
+    "revision": "d0cad9dbf0f44312a5e35971fcd1353b",
+    "url": "/JSFTK_combat/static/media/cowled.d0cad9db.svg"
+  },
+  {
     "revision": "3c689d6dc1e3d50ce2b5c37e6e3a5d0c",
     "url": "/JSFTK_combat/static/media/dodging.3c689d6d.svg"
   },
@@ -94,6 +102,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "42e1365743e99e9635dbba2b9e9df7d6",
     "url": "/JSFTK_combat/static/media/fire-zone.42e13657.svg"
+  },
+  {
+    "revision": "332be8c2105fc22111b2f94ee0e6c30a",
+    "url": "/JSFTK_combat/static/media/flame.332be8c2.svg"
   },
   {
     "revision": "951e732243b36f2721c606428d202ed6",
