@@ -80,23 +80,35 @@ export interface ToastPropsT {
 export const Toast = (props: ToastPropsT) => {
   const { queue, style } = props
   const hasChildren = queue.length > 0
-  const rootStyle = useSpring({
-    top: hasChildren ? -40 : 0,
-    opacity: hasChildren ? 1 : 0,
-  })
   const animation = useTransition(queue, (q) => q.id, {
-    from: { transform: 'translate3d(0,40px,0)', maxWidth: 0, opacity: 0 },
-    enter: { transform: 'translate3d(0,0px,0)', maxWidth: 120, opacity: 1 },
-    leave: { transform: 'translate3d(0,-80px,0)', maxWidth: 0, opacity: 0 },
+    from: {
+      transform: 'translate3d(0,40px,0)',
+      maxWidth: 0,
+      maxHeight: 0,
+      opacity: 0,
+    },
+    enter: {
+      transform: 'translate3d(0,0px,0)',
+      maxWidth: 180,
+      maxHeight: 40,
+      opacity: 1,
+    },
+    leave: {
+      transform: 'translate3d(0,-80px,0)',
+      maxWidth: 0,
+      maxHeight: 0,
+      opacity: 0,
+    },
   })
+
   return (
     <animated.div
       style={{
-        ...rootStyle,
         position: 'absolute',
         width: '100%',
         display: 'flex',
-        height: 40,
+        height: 0,
+        top: -24,
         ...(style || {}),
       }}
     >
@@ -111,14 +123,15 @@ export const Toast = (props: ToastPropsT) => {
           <FullContainer />
           <div
             style={{
-              padding: 8,
-              color: item.item.type === 'good' ? '#aae6bf' : 'red',
-              fontWeight: 'bolder',
               marginBottom: 4,
               marginRight: 4,
               fontSize: 20,
+              padding: 2,
+              lineHeight: '20px',
               whiteSpace: 'nowrap',
-              textShadow: '1px 1px 1px black',
+              background:
+                'radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%)',
+              ...color(item.item.type),
             }}
           >
             {item.item.content}
@@ -162,4 +175,22 @@ export const LocalToastRp = (props: LocalToastRpPropsT) => {
       {children({ push })}
     </>
   )
+}
+
+const color = (type: string | undefined) => {
+  switch (type) {
+    case 'good':
+      return { color: '#aae6bf', textShadow: '0px 1px 0px rgba(0,0,0,0.5)' }
+    case 'base':
+      return {
+        color: 'rgba(255,255,255,0.8)',
+        textShadow: '0px 1px 0px rgba(0,0,0,0.5)',
+      }
+    default:
+      return {
+        // color: 'rgba(219, 114, 114, 0.8)',
+        color: 'red',
+        textShadow: '0px 1px 0px rgba(0,0,0,0.5)',
+      }
+  }
 }

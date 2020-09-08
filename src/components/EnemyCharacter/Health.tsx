@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { Spring } from 'react-spring/renderprops'
 import { noneg } from '../../util'
+import { useCombatContext } from '../../contexts/CombatContext'
+import { usePlayerCharacterNotifications } from '../../hooks/usePlayerCharacterNotifications'
 
 export interface HealthPropsT {
   character: tProcessedCharacter
@@ -11,15 +13,12 @@ export const Health = (props: HealthPropsT) => {
   const { character, push } = props
   const health = noneg(character.health)
   const [previousHealth, setPreviousHealth] = useState(character.health)
+  usePlayerCharacterNotifications(character, push)
+
   useEffect(() => {
-    const diff = previousHealth - health
-    if (diff > 0) {
-      push(<span>- {diff} HP</span>)
-    }
-    if (diff < 0) {
-      push(<span>+ {Math.abs(diff)} HP</span>, 'good')
-    }
+    setPreviousHealth(health)
   }, [health])
+
   return (
     <span
       style={{
@@ -29,6 +28,7 @@ export const Health = (props: HealthPropsT) => {
         textShadow: '1px 1px 10px black',
         color: '#b55553',
         fontFamily: 'Bangers',
+        userSelect: 'none',
       }}
     >
       <Spring

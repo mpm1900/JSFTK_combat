@@ -15,6 +15,7 @@ import { Health } from './Health'
 import { useUIContext } from '../../contexts/UIContext'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tConsumable } from '../../game/Consumable/type'
+import { usePlayerCharacterNotifications } from '../../hooks/usePlayerCharacterNotifications'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -44,25 +45,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
     push,
   } = props
   const { playerCanEquipItem } = useUIContext()
-  const health = character.health
-  const status = character.status.map((s) => s.type)
-  const [previousHealth, setPreviousHealth] = useState(health)
-  const [previousStatus, setPreviousStatus] = useState(status)
-  useEffect(() => {
-    const diff = previousHealth - health
-    if (diff > 0) {
-      push(<span>- {diff} HP</span>)
-    }
-    if (diff < 0) {
-      push(<span>+ {Math.abs(diff)} HP</span>, 'good')
-    }
-    if (status.length > previousStatus.length) {
-      const added = status[0]
-      push(<span>became {added}</span>)
-    }
-    setPreviousHealth(health)
-    setPreviousStatus(status)
-  }, [health])
+  usePlayerCharacterNotifications(character, push)
   return (
     <Wrapper
       $active={selected}

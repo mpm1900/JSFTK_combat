@@ -28,6 +28,7 @@ export const Badge = withWrapper(Div, (Element) => (props: any) => {
         color: props.$color || 'white',
         cursor: 'pointer',
         top: props.$top,
+        userSelect: 'none',
         bottom: props.$bottom,
         right: props.$right,
         left: props.$left,

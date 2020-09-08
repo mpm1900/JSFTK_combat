@@ -24,6 +24,7 @@ export const Button = styled('button', (props: ButtonPropsT) => {
       outline: 'none',
     },
     padding: '10px 30px',
+    userSelect: 'none',
   }
 })
 

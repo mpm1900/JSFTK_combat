@@ -38,6 +38,7 @@ export interface tSourceSkillResult {
   rollResults: boolean[]
   perfect: boolean
   passedCount: number
+  accuracySuccess: boolean
 
   ignoreResistance: boolean
   criticalHitSuccess: boolean
