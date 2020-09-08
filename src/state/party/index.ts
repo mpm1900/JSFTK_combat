@@ -80,6 +80,8 @@ export const core: StateCoreT<tParty> = {
   },
 }
 const jack = { ...makeCharacter('blacksmith'), name: 'Jack' }
+const jim = { ...makeCharacter('bard'), name: 'Jim' }
+const john = { ...makeCharacter('scholar'), name: 'Johnny' }
 export const INITIAL_STATE: tParty = {
   isParty: true,
   id: PLAYER_PARTY_ID,
@@ -88,9 +90,10 @@ export const INITIAL_STATE: tParty = {
   characters: [
     {
       ...jack,
+      healthOffset: 30,
     },
-    { ...makeCharacter('bard'), name: 'Jim' },
-    { ...makeCharacter('scholar'), name: 'Johnny' },
+    { ...jim, healthOffset: 30 },
+    { ...john, healthOffset: 30 },
   ],
 }
 export default makeReducer(core, INITIAL_STATE)

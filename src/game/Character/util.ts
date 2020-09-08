@@ -17,7 +17,8 @@ import { tCombatReward } from '../Other/types'
 import { CLASS_CONSUMABLES } from '../Consumable/constants'
 import { considateConsumableListToStack } from '../Consumable/util'
 
-export const isCharacter = (obj: any): boolean => obj.isCharacter !== undefined
+export const isCharacter = (obj: any): boolean =>
+  obj !== undefined && obj.isCharacter !== undefined
 
 export const checkForProcessedCharacter = (character: tCharacter) => {
   if ((character as tProcessedCharacter).processed) {

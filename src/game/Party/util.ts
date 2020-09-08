@@ -10,7 +10,8 @@ import { tCombatReward } from '../Other/types'
 import { getRandom } from '../../util'
 import { ENEMY_COMBOS_BY_LEVEL } from './constants'
 
-export const isParty = (obj: any): boolean => obj.isParty !== undefined
+export const isParty = (obj: any): boolean =>
+  obj !== undefined && obj.isParty !== undefined
 
 export const checkForProcessedParty = (party: tParty) => {
   if ((party as tProcessedParty).processed) {
