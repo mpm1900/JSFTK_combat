@@ -32,7 +32,9 @@ export const Badge = withWrapper(Div, (Element) => (props: any) => {
         bottom: props.$bottom,
         right: props.$right,
         left: props.$left,
+        transition: 'all 0.2s',
         zIndex: 2,
+        ...(props.$style || {}),
       }}
     >
       <Element {...rest} />

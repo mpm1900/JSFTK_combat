@@ -3,7 +3,7 @@ import { v4 } from 'uuid'
 
 export const SYMPHONY: tSkill = {
   id: v4(),
-  name: 'Ritardando',
+  name: 'Symphony',
   damageModifier: 0.5,
   splashDamageModifier: 0,
   targetType: 'group',

@@ -34,7 +34,7 @@ export const usePlayerCharacterNotifications = (
       )
       if (chResult) {
         if (chResult.dodgeSuccess) {
-          push(<span style={{ fontFamily: 'Bangers' }}>Dodged</span>, 'base')
+          push(<span style={{ fontFamily: 'Bangers' }}>Dodged!</span>, 'base')
         }
         if (chResult.addedStatus.length > 0) {
           chResult.addedStatus.forEach((status) => {
@@ -44,12 +44,18 @@ export const usePlayerCharacterNotifications = (
             )
           })
         }
+        if (chResult.perfect && chResult.skill.perfectPierce) {
+          push(<span style={{ fontFamily: 'Bangers' }}>Pierced!</span>, 'base')
+        }
+        if (chResult.criticalHitSuccess) {
+          push(<span style={{ fontFamily: 'Bangers' }}>Critical!</span>, 'base')
+        }
       }
       if (
         lastRound.sourceResult.source.id === character.id &&
         !lastRound.sourceResult.accuracySuccess
       ) {
-        push(<span style={{ fontFamily: 'Bangers' }}>Missed</span>, 'base')
+        push(<span style={{ fontFamily: 'Bangers' }}>Missed!</span>, 'base')
       }
     }
   }, [roundResults])

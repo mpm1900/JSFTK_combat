@@ -97,7 +97,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   'armor-up': {
     name: 'Armor Up',
-    description: '',
+    description: '+5 Armor',
     canStack: false,
     isTemporary: true,
     duration: -1,
@@ -108,7 +108,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   'attack-up': {
     name: 'Attack Up',
-    description: '',
+    description: '+5 Attack Damage',
     canStack: false,
     isTemporary: true,
     duration: -1,
@@ -119,7 +119,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   'evade-up': {
     name: 'Evade Up',
-    description: '',
+    description: '+15 Evasion',
     canStack: false,
     isTemporary: true,
     duration: -1,

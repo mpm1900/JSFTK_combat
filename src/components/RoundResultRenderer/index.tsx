@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { useModalContext } from '../../contexts/ModalContext'
-import { NameSpanBuilder } from '../../contexts/CombatLogContext/util'
 import { FlexContainer } from '../../elements/flex'
 import Kefir from 'kefir'
 import { SkillCheck } from '../SkillChecks'
-import { useSpring, animated } from 'react-spring'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 import { BoxContainer } from '../../elements/box'
+import { Perfect } from './Perfect'
 
 export interface RoundResultRendererPropsT {
   isModal?: boolean
@@ -112,7 +111,6 @@ export const RoundResult = (props: RoundResultPropsT) => {
   }, [isDone, close])
 
   const showPerfect = activeIndex === roundResults.length - 1 && round?.perfect
-  const style = useSpring({ opacity: showPerfect ? 1 : 0 })
   const isPlayer = (partyId: string) => partyId === PLAYER_PARTY_ID
   const targetResult = activeRound?.targetResults[0]
   const showTarget =
@@ -120,9 +118,15 @@ export const RoundResult = (props: RoundResultPropsT) => {
   if (!round) return null
   return (
     <FlexContainer $direction='column' style={{ textAlign: 'center' }}>
-      <FlexContainer style={{ justifyContent: 'space-evenly' }}>
+      <FlexContainer style={{ justifyContent: 'center' }}>
         {roundResults.map((result, i) => (
-          <SkillCheck key={i} check={result} />
+          <SkillCheck
+            key={i}
+            check={result}
+            perfect={showPerfect}
+            skill={round.skill}
+            crit={round.criticalHitSuccess}
+          />
         ))}
       </FlexContainer>
       <FlexContainer style={{ justifyContent: 'center' }}>
@@ -157,25 +161,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
           )}
         </BoxContainer>
       </FlexContainer>
-      {showPerfect && (
-        <animated.div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: 30,
-            fontSize: 32,
-            color:
-              round.source.partyId === PLAYER_PARTY_ID
-                ? 'lightgreen'
-                : '#c95738',
-            textShadow: '4px 4px 4px black',
-            fontFamily: 'Bangers',
-            ...style,
-          }}
-        >
-          Perfect!
-        </animated.div>
-      )}
+      <Perfect show={showPerfect} partyId={round.source.partyId} />
     </FlexContainer>
   )
 }

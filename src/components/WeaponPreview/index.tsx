@@ -38,6 +38,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
                   check={{ label: weapon.stat, result: true }}
                   size={18}
                   padding={4}
+                  skill={weapon.skills[0]}
                 />
               ))}
           </FlexContainer>
