@@ -41,7 +41,9 @@ export const CombatParty = (props: CombatPartyPropsT) => {
                 <FlexContainer
                   style={{ justifyContent: 'center', marginTop: -11 }}
                 >
-                  <div style={{ boxShadow: '0px 2px 5px black' }}>
+                  <div
+                    style={{ boxShadow: '0px 2px 5px black', marginTop: -2 }}
+                  >
                     <RedButton onClick={() => next(c)} $direction='down'>
                       Attack
                     </RedButton>
