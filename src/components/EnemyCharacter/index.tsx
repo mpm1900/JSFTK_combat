@@ -74,6 +74,8 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
                 lineHeight: '18px',
                 background: 'rgba(0,0,0,0.4)',
                 textShadow: '1px 1px 2px black',
+                fontFamily: 'Bangers',
+                letterSpacing: '1px',
               }}
             >
               {character.name}

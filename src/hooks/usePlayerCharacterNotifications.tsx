@@ -13,13 +13,11 @@ export const usePlayerCharacterNotifications = (
   useEffect(() => {
     const diff = previousHealth - health
     if (diff > 0) {
-      push(<span style={{ fontFamily: 'Bangers' }}>- {diff} health</span>)
+      push(<span style={{ fontFamily: 'Bangers' }}>- {diff}</span>)
     }
     if (diff < 0) {
       push(
-        <span style={{ fontFamily: 'Bangers' }}>
-          + {Math.abs(diff)} health
-        </span>,
+        <span style={{ fontFamily: 'Bangers' }}>+ {Math.abs(diff)}</span>,
         'good',
       )
     }
@@ -37,6 +35,7 @@ export const usePlayerCharacterNotifications = (
           push(<span style={{ fontFamily: 'Bangers' }}>Dodged!</span>, 'base')
         }
         if (
+          !chResult.dodgeSuccess &&
           chResult.accuracySuccess &&
           chResult.skill.damage &&
           chResult.loggedDamgge.value <= 0

@@ -132,7 +132,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
       <FlexContainer style={{ justifyContent: 'center' }}>
         <BoxContainer
           style={{ marginTop: 40 }}
-          substyle={{ background: '#111', fontSize: 20 }}
+          substyle={{ background: '#111', fontSize: 20, padding: '16px 32px' }}
         >
           <strong
             style={{
@@ -143,7 +143,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
           >
             {round.source.name}
           </strong>{' '}
-          uses <span style={{ color: '#d6bfd6' }}>{round.skill.name}</span>
+          uses <span style={{ color: 'plum' }}>{round.skill.name}</span>
           {showTarget && (
             <span>
               {' '}

@@ -34,7 +34,8 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
             substyle={{
               padding: '4px 12px',
               background: '#555',
-              fontWeight: 'bolder',
+              letterSpacing: '1px',
+              fontFamily: 'Bangers',
             }}
           >
             {skill.name}
