@@ -19,6 +19,7 @@ import { tProcessedParty } from '../Party/type'
 import { isParty } from '../Party/util'
 import { tDamage } from '../Damage/type'
 import { tPerfectKey, PERFECT_DISPLAY_INFO } from './constants'
+import { noneg } from '../../util'
 
 export const getSourceSkillResult = (
   source: tProcessedCharacter,
@@ -96,7 +97,7 @@ export const getTargetSkillResult = (
       ...damage,
       value: dodgeSuccess
         ? 0
-        : damage.value - getDamageResistance(target, damage),
+        : noneg(damage.value - getDamageResistance(target, damage)),
     },
   }
 }
