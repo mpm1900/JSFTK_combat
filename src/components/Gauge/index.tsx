@@ -93,7 +93,7 @@ export const HealthGauge = (props: HealthGaugePropsT) => {
   return (
     <Gauge
       name='Health'
-      color='#8f4e4d'
+      color='rgb(153, 82, 81)'
       max={character.maxHealth}
       value={health}
       height={height}
