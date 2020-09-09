@@ -36,7 +36,7 @@ export const Gauge = (props: GaugePropsT) => {
           background: '#555',
           height: height - 2,
           position: 'relative',
-          borderColor: '1px rgba(255,255,255,0.3)',
+          border: 'none',
         }}
       >
         <Spring
