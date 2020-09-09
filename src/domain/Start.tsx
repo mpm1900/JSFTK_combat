@@ -39,7 +39,9 @@ export const Start = () => {
       <FlexContainer $full>
         <FullContainer />
         <BoxContainer>
-          <h1 style={{ marginTop: 0, textAlign: 'center' }}>
+          <h1
+            style={{ marginTop: 0, textAlign: 'center', fontFamily: 'Bangers' }}
+          >
             Choose your Party!
           </h1>
           <FlexContainer>
@@ -83,7 +85,7 @@ export const Start = () => {
           fontSize: 12,
         }}
       >
-        pre-pre-pre-pre alpha v0.0.1.10
+        pre-pre-pre-pre alpha v0.0.1.11
       </Monospace>
     </FlexContainer>
   )
