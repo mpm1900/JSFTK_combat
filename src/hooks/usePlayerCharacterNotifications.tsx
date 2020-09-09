@@ -36,6 +36,13 @@ export const usePlayerCharacterNotifications = (
         if (chResult.dodgeSuccess) {
           push(<span style={{ fontFamily: 'Bangers' }}>Dodged!</span>, 'base')
         }
+        if (
+          chResult.accuracySuccess &&
+          chResult.skill.damage &&
+          chResult.loggedDamgge.value <= 0
+        ) {
+          push(<span style={{ fontFamily: 'Bangers' }}>Blocked!</span>, 'base')
+        }
         if (chResult.addedStatus.length > 0) {
           chResult.addedStatus.forEach((status) => {
             push(
