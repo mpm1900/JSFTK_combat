@@ -14,6 +14,7 @@ export const Badge = withWrapper(Div, (Element) => (props: any) => {
         position: props.$absolute === false ? 'relative' : 'absolute',
         background: '#111',
         padding: '4px',
+        fontFamily: 'Bangers',
         border: '1px solid rgba(255,255,255,0.5)',
         boxShadow: '1px 1px 0px black',
         height: props.$size || '20px',
@@ -22,16 +23,19 @@ export const Badge = withWrapper(Div, (Element) => (props: any) => {
         alignItems: 'center',
         justifyContent: 'center',
         lineHeight: '20px',
-        fontWeight: 'bolder',
+        letterSpacing: '1px',
         borderRadius: '30%',
         transform: 'rotateY(0deg) rotate(45deg)',
         color: props.$color || 'white',
         cursor: 'pointer',
         top: props.$top,
+        userSelect: 'none',
         bottom: props.$bottom,
         right: props.$right,
         left: props.$left,
+        transition: 'all 0.2s',
         zIndex: 2,
+        ...(props.$style || {}),
       }}
     >
       <Element {...rest} />

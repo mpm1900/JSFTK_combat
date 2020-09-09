@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { ProcessedCharacterT } from '../../types'
 import { Spring } from 'react-spring/renderprops'
 import { noneg } from '../../util'
 import { usePrevious } from '../../hooks/usePrevious'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { tProcessedCharacter } from '../../game/Character/type'
 
 export interface HealthPropsT {
-  character: ProcessedCharacterT
+  character: tProcessedCharacter
 }
 
 export const Health = (props: HealthPropsT) => {
   const { character } = props
-  const health = noneg(character.health - character.stats.healthOffset)
+  const health = noneg(character.health)
   const previousHealth = usePrevious<number>(health) || 0
   const [storedHealth, setStoredHealth] = useState(0)
 
@@ -25,12 +25,16 @@ export const Health = (props: HealthPropsT) => {
     <div style={{ position: 'relative' }}>
       <span
         style={{
-          fontWeight: 'bolder',
           padding: 4,
+          paddingLeft: 2,
           fontSize: 42,
           height: 62,
-          lineHeight: '70px',
+          lineHeight: '72px',
           color: '#b55553',
+          fontFamily: 'Bangers',
+          minWidth: 44,
+          display: 'inline-block',
+          textAlign: 'center',
         }}
       >
         <Spring
@@ -38,7 +42,7 @@ export const Health = (props: HealthPropsT) => {
           to={{ hp: health }}
           config={{ friction: 70, mass: 5, tension: 300, clamp: true }}
         >
-          {(hpp) => <span>{Math.floor(hpp.hp)}</span>}
+          {(hpp) => <span style={{}}>{Math.floor(hpp.hp)}</span>}
         </Spring>
       </span>
       <ToastContainer />

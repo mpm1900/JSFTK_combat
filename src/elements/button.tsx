@@ -24,11 +24,14 @@ export const Button = styled('button', (props: ButtonPropsT) => {
       outline: 'none',
     },
     padding: '10px 30px',
+    userSelect: 'none',
   }
 })
 
 export const RedButton = withStyle(Button, (props: ButtonPropsT) => {
   return {
+    fontFamily: 'Bangers',
+    letterSpacing: '1px',
     background:
       'linear-gradient(0deg, rgba(157,0,0,1) 0%, rgba(110,0,0,1) 100%)',
   }

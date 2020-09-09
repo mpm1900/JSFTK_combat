@@ -4,13 +4,10 @@ import { FlexContainer, FullContainer } from '../elements/flex'
 import { RoundResultRenderer } from '../components/RoundResultRenderer'
 import { CombatActions } from '../components/CombatActions'
 import { CombatParty } from '../components/CombatParty'
-import { useModalContext } from '../contexts/ModalContext'
 import { CombatQueue } from '../components/CombatQueue'
 import { CombatLog } from '../components/CombatLog'
 import { useUIContext } from '../contexts/UIContext'
-import { useCombatLogContext } from '../contexts/CombatLogContext'
-import { useGameStateContext } from '../contexts/GameStateContext'
-import { useHistory } from 'react-router'
+import { useCombatStart } from '../hooks/useCombatStart'
 
 export const Combat = () => {
   const {
@@ -20,34 +17,11 @@ export const Combat = () => {
     queue,
     isRunning,
     isRenderingResult,
-    start,
     onSkillSelect,
-    reset,
   } = useCombatContext()
-  const history = useHistory()
-  const { clear } = useCombatLogContext()
-  const { nextLevel } = useGameStateContext()
+
   const { setOnCharacterConsumableClick } = useUIContext()
-  const {} = useGameStateContext()
-  const { open, close } = useModalContext()
-
-  useEffect(() => {
-    open(
-      <div style={{ textAlign: 'center' }}>
-        <h1>Combat Start!</h1>
-      </div>,
-    )
-    setTimeout(() => {
-      close()
-      clear()
-      start()
-    }, 1000)
-    return () => {
-      reset()
-      clear()
-    }
-  }, [])
-
+  useCombatStart()
   useEffect(() => {
     setOnCharacterConsumableClick((c, index, item) => {
       if (!c) return
@@ -64,9 +38,12 @@ export const Combat = () => {
         <FlexContainer
           $direction='column'
           $full
-          style={{ padding: '30px 10px' }}
+          style={{ padding: '30px 10px 0 10px' }}
         >
-          <FlexContainer $direction='column' $full>
+          <FlexContainer
+            $direction='column'
+            style={{ marginBottom: 40, minHeight: 90 }}
+          >
             <CombatParty party={enemyParty} />
           </FlexContainer>
           <FlexContainer $full>
@@ -74,11 +51,19 @@ export const Combat = () => {
               <>
                 <FullContainer />
                 <FlexContainer $direction='column'>
-                  {!isRenderingResult && <CombatActions />}
-                  <RoundResultRenderer isModal={false} />
+                  <div style={{ marginTop: 40 }}>
+                    {!isRenderingResult && <CombatActions />}
+                    <RoundResultRenderer isModal={false} />
+                  </div>
+                  <FullContainer />
                 </FlexContainer>
                 <FlexContainer $full style={{ justifyContent: 'flex-end' }}>
-                  <CombatLog />
+                  <FlexContainer
+                    $direction='column'
+                    // style={{ justifyContent: 'center' }}
+                  >
+                    <CombatLog />
+                  </FlexContainer>
                 </FlexContainer>
               </>
             )}

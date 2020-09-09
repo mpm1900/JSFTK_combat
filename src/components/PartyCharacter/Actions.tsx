@@ -1,7 +1,6 @@
 import React from 'react'
 import Details from '../../icons/svg/delapouite/skills.svg'
 import Inventory from '../../icons/svg/lorc/knapsack.svg'
-import { ProcessedCharacterT } from '../../types'
 import { FlexContainer } from '../../elements/flex'
 import { Tooltip } from '../Tooltip'
 import { PartyActiveCharacter } from '../PartyActiveCharacter'
@@ -9,9 +8,11 @@ import { usePartyContext } from '../../contexts/PartyContext'
 import { useUIContext } from '../../contexts/UIContext'
 import { Hover } from '../Hover'
 import { Icon } from '../Icon'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { animated, useSpring } from 'react-spring'
 
 export interface ActionsPropsT {
-  character: ProcessedCharacterT
+  character: tProcessedCharacter
   canEquip: boolean
 }
 
@@ -22,26 +23,43 @@ export const Actions = (props: ActionsPropsT) => {
     openCharacterInventoryId,
     setOpenCharacterInventoryId,
   } = useUIContext()
+  const inventoryOpen = character.id === openCharacterInventoryId
+  const inventoryStyle = useSpring({
+    opacity: inventoryOpen ? 1 : 0,
+    config: { tension: 500 },
+  })
   return (
-    <FlexContainer>
+    <FlexContainer
+      $full
+      $direction='column'
+      style={{ justifyContent: 'center' }}
+    >
       <FlexContainer
         $full
         style={{ alignItems: 'center', justifyContent: 'center' }}
       >
         <Tooltip
-          isOpen={character.id === openCharacterInventoryId}
+          isOpen={inventoryOpen}
           direction='up'
-          distance={80}
+          distance={40}
+          background='rgba(0,0,0,0.5)'
+          arrow
           content={
-            <PartyActiveCharacter
-              character={character}
-              party={party}
-              equipItem={equipItem}
-              canEquip={canEquip}
-              onRequestClose={() => {
-                setOpenCharacterInventoryId(undefined)
-              }}
-            />
+            <animated.div
+              style={{ minWidth: 887, minHeight: 444, ...inventoryStyle }}
+            >
+              {inventoryOpen && (
+                <PartyActiveCharacter
+                  character={character}
+                  party={party}
+                  equipItem={equipItem}
+                  canEquip={canEquip}
+                  onRequestClose={() => {
+                    setOpenCharacterInventoryId(undefined)
+                  }}
+                />
+              )}
+            </animated.div>
           }
         >
           <Hover delay={0}>

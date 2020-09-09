@@ -1,8 +1,8 @@
-import { PartyT } from '../types/Party'
 import { GameStateT } from './game'
+import { tParty } from '../game/Party/type'
 
 export interface StateT {
-  party: PartyT
+  party: tParty
   game: GameStateT
 }
 

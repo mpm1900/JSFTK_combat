@@ -1,23 +1,21 @@
 import React from 'react'
 import Color from 'color'
-import { ArmorT } from '../../types'
 import { BoxContainer } from '../../elements/box'
 import { FlexContainer, FullContainer } from '../../elements/flex'
-import { combineTraits } from '../../functions'
 import { StatsPreview } from '../StatsPreview'
 import { Icon } from '../Icon'
 import { ARMOR_TYPE_ICONS } from '../../icons/maps'
-import { ITEM_RARITY_COLORS } from '../../objects/Item'
 import { Button } from '../../elements/button'
+import { tArmor } from '../../game/Armor/type'
+import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 
 export interface ArmorPreviewPropsT {
-  armor: ArmorT
+  armor: tArmor
   showEquipButton?: boolean
   onEquipClick?: () => void
 }
 export const ArmorPreview = (props: ArmorPreviewPropsT) => {
   const { armor, showEquipButton, onEquipClick } = props
-  const combinedTrait = combineTraits(...armor.traits)
   const rarityColor = ITEM_RARITY_COLORS[armor.rarity]
   const from = Color(rarityColor).darken(0.5).rgb().toString()
   const to = Color(rarityColor).darken(0.7).rgb().toString()
@@ -53,7 +51,11 @@ export const ArmorPreview = (props: ArmorPreviewPropsT) => {
           )}
         </FlexContainer>
         <BoxContainer
-          substyle={{ background: 'rgba(0,0,0,0.7)', minHeight: 120 }}
+          substyle={{
+            background: 'rgba(0,0,0,0.7)',
+            minHeight: 120,
+            textAlign: 'left',
+          }}
         >
           <FlexContainer $direction='column'>
             {armor.skills.length > 0 && (
@@ -63,7 +65,7 @@ export const ArmorPreview = (props: ArmorPreviewPropsT) => {
                 )}
               </span>
             )}
-            <StatsPreview stats={combinedTrait.stats} />
+            <StatsPreview stats={armor.stats} />
           </FlexContainer>
         </BoxContainer>
       </FlexContainer>

@@ -1,5 +1,4 @@
-import React from 'react'
-import { ProcessedCharacterT } from '../../types'
+import React, { useEffect, useState } from 'react'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { XPGauge, HealthGauge } from '../Gauge'
 import { BoxContainer } from '../../elements/box'
@@ -7,20 +6,24 @@ import { styled } from 'styletron-react'
 import { HoverBadge } from '../../elements/badge'
 import { TagPreview } from '../TagPreview'
 import { CharacterImage } from '../CharacterImage'
-import { ConsumableT } from '../../types/Consumable'
+
 import { PartyCharacterConsumables } from '../PartyCharacterConsumables'
 import { Stats } from './Stats'
 import { Name } from './Name'
 import { Actions } from './Actions'
 import { Health } from './Health'
 import { useUIContext } from '../../contexts/UIContext'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { tConsumable } from '../../game/Consumable/type'
+import { usePlayerCharacterNotifications } from '../../hooks/usePlayerCharacterNotifications'
 
 export interface PartyCharacterProps {
-  character: ProcessedCharacterT
+  character: tProcessedCharacter
   selected?: boolean
   showActions?: boolean
   onClick?: () => void
-  onConsumableClick?: (consumable: ConsumableT, index: number) => void
+  onConsumableClick?: (consumable: tConsumable, index: number) => void
+  push: (contents: JSX.Element, type?: string) => void
 }
 const Wrapper = styled('div', (props: any) => {
   const { $active } = props
@@ -34,18 +37,29 @@ const Wrapper = styled('div', (props: any) => {
 })
 
 export const PartyCharacter = (props: PartyCharacterProps) => {
-  const { character, selected, showActions = true, onConsumableClick } = props
+  const {
+    character,
+    selected,
+    showActions = true,
+    onConsumableClick,
+    push,
+  } = props
   const { playerCanEquipItem } = useUIContext()
+  usePlayerCharacterNotifications(character, push)
   return (
     <Wrapper
       $active={selected}
       style={{
-        opacity: character.dead ? 0.5 : 1,
+        opacity: character.health <= 0 ? 0.5 : 1,
       }}
     >
       <BoxContainer
-        style={{ borderWidth: 2 }}
-        substyle={{ padding: 0, minWidth: 420 }}
+        style={{
+          borderWidth: 2,
+          transition: 'all 1s',
+          boxShadow: selected ? '0px 0px 20px white' : 'none',
+        }}
+        substyle={{ padding: 0, minWidth: 396 }}
       >
         <FlexContainer style={{ border: '2px solid black' }}>
           <FlexContainer
@@ -65,7 +79,6 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                 />
               </FlexContainer>
               <FlexContainer $full $direction='column'>
-                <FullContainer />
                 {showActions && (
                   <Actions
                     character={character}
@@ -94,8 +107,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           right: '4px',
         }}
       >
-        {character.statusEffects.map((tag) => (
-          <TagPreview direction='up' tag={tag} />
+        {character.status.map((status) => (
+          <TagPreview direction='up' status={status} />
         ))}
       </FlexContainer>
       <HoverBadge
@@ -131,7 +144,9 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         }}
       >
         <span>
-          {character.weapon.damage.damage + character.stats.damageModifier}
+          {(character.weapon.damage.value +
+            character.stats.attackDamageOffset) *
+            character.stats.attackDamageModifier}
         </span>
       </HoverBadge>
     </Wrapper>

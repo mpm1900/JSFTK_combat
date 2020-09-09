@@ -2,15 +2,19 @@ import React, { useEffect } from 'react'
 import { FullContainer, FlexContainer } from '../elements/flex'
 import { BoxContainer } from '../elements/box'
 import { usePartyContext } from '../contexts/PartyContext'
-import { ProcessedCharacterT, CharacterT, CharacterClassT } from '../types'
-import { makeCharacter } from '../functions'
-import { STAT_BONUS_KEYS } from '../objects'
 import { Gauge } from '../components/Gauge'
 import { RedButton } from '../elements/button'
 import { useHistory } from 'react-router'
 import { INITIAL_STATE } from '../state/party'
 import { Monospace } from '../elements/monospace'
 import { useGameStateContext } from '../contexts/GameStateContext'
+import {
+  tProcessedCharacter,
+  tCharacter,
+  tCharacterClass,
+} from '../game/Character/type'
+import { makeCharacter } from '../game/Character/util'
+import { STAT_BONUS_KEYS } from '../game/Stats/constants'
 
 export const Start = () => {
   const {
@@ -35,12 +39,17 @@ export const Start = () => {
       <FlexContainer $full>
         <FullContainer />
         <BoxContainer>
-          <h1 style={{ marginTop: 0, textAlign: 'center' }}>
+          <h1
+            style={{ marginTop: 0, textAlign: 'center', fontFamily: 'Bangers' }}
+          >
             Choose your Party!
           </h1>
           <FlexContainer>
             {party.characters.map((character) => (
-              <BoxContainer substyle={{ background: '#111' }}>
+              <BoxContainer
+                key={character.id}
+                substyle={{ background: '#111' }}
+              >
                 <StartCharacterCard
                   character={character}
                   onChange={(characterId, updater) => {
@@ -76,17 +85,17 @@ export const Start = () => {
           fontSize: 12,
         }}
       >
-        pre-pre-pre-pre alpha v0.0.0.4
+        pre-pre-pre-pre alpha v0.0.1.11
       </Monospace>
     </FlexContainer>
   )
 }
 
 export interface StartCharacterCardPropsT {
-  character: ProcessedCharacterT
+  character: tProcessedCharacter
   onChange: (
     characterId: string,
-    updater: (c: CharacterT) => CharacterT,
+    updater: (c: tCharacter) => tCharacter,
   ) => void
 }
 export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
@@ -120,7 +129,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
         value={character.class}
         onChange={(e) => {
           onChange(character.id, (c) => ({
-            ...makeCharacter(e.target.value as CharacterClassT),
+            ...makeCharacter(e.target.value as tCharacterClass),
             id: character.id,
             name: character.name,
           }))
@@ -133,7 +142,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
       </select>
       <BoxContainer>
         {STAT_BONUS_KEYS.map((key) => (
-          <FlexContainer style={{ height: 20 }}>
+          <FlexContainer key={key} style={{ height: 20 }}>
             <div
               style={{ width: 60, fontSize: 12, textTransform: 'capitalize' }}
             >

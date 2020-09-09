@@ -1,5 +1,4 @@
 import React from 'react'
-import { ProcessedCharacterT } from '../../types'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { HealthGauge } from '../Gauge'
 import { styled } from 'styletron-react'
@@ -11,10 +10,13 @@ import { usePrevious } from '../../hooks/usePrevious'
 import { Spring } from 'react-spring/renderprops'
 import { noneg } from '../../util'
 import { Icon } from '../Icon'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { Health } from './Health'
+import { LocalToastRp } from '../../contexts/LocalToastContext'
 
 export interface EnemyCharacterPropsT {
-  character: ProcessedCharacterT
-  activeCharacter: ProcessedCharacterT
+  character: tProcessedCharacter
+  activeCharacter: tProcessedCharacter
   hoverable?: boolean
   selected?: boolean
   isHovering?: boolean
@@ -30,18 +32,18 @@ const Wrapper = styled('div', (props: any) => {
 })
 export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
   const { character, activeCharacter, onClick } = props
-  const health = noneg(character.health - character.stats.healthOffset)
+  const health = noneg(character.health)
   const previousHealth = usePrevious<number>(health)
   return (
     <div
-      onClick={() => (onClick && !character.dead ? onClick() : null)}
+      onClick={() => (onClick && character.health > 0 ? onClick() : null)}
       style={{
         borderWidth: 2,
         width: 320,
         position: 'relative',
         cursor: onClick ? 'pointer' : 'default',
         color: 'rgba(255,255,255,0.8)',
-        opacity: character.dead ? 0.5 : 1,
+        opacity: character.health <= 0 ? 0.5 : 1,
       }}
     >
       <FlexContainer style={{ alignItems: 'center' }}>
@@ -72,20 +74,22 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
                 lineHeight: '18px',
                 background: 'rgba(0,0,0,0.4)',
                 textShadow: '1px 1px 2px black',
+                fontFamily: 'Bangers',
+                letterSpacing: '1px',
               }}
             >
               {character.name}
             </span>
           </FlexContainer>
-          <div style={{ boxShadow: '0px 5px 15px rgba(0,0,0,0.4)' }}>
+          <div style={{ boxShadow: '0px 4px 15px rgba(0,0,0,1)' }}>
             <HealthGauge character={character} height={20} />
           </div>
           <HoverBadge
             direction='down'
             content={<BoxContainer>Enemy Level</BoxContainer>}
             badgeProps={{
-              $left: '-14px',
-              $bottom: '-12px',
+              $left: '-6px',
+              $bottom: '-6px',
               $size: '20px',
               $color: 'lightcoral',
             }}
@@ -95,18 +99,18 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           <FlexContainer
             style={{
               position: 'absolute',
-              bottom: '-17px',
-              left: '52px',
+              bottom: '-12px',
+              left: '40px',
             }}
           >
-            {character.statusEffects.map((tag, i) => (
-              <TagPreview key={i} tag={tag} />
+            {character.status.map((status, i) => (
+              <TagPreview key={i} status={status} />
             ))}
           </FlexContainer>
           <FlexContainer
             style={{
               position: 'absolute',
-              bottom: '-16px',
+              bottom: '-8px',
               right: '16px',
               width: 52,
               alignItems: 'center',
@@ -131,24 +135,9 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             <FullContainer />
           </FlexContainer>
         </FlexContainer>
-        <span
-          style={{
-            fontWeight: 'bolder',
-            fontSize: 52,
-            height: 52,
-            width: 60,
-            textShadow: '1px 1px 10px black',
-            color: '#b55553',
-          }}
-        >
-          <Spring
-            from={{ hp: previousHealth || 0 }}
-            to={{ hp: health }}
-            config={{ friction: 70, mass: 5, tension: 300, clamp: true }}
-          >
-            {(hpp) => <span>{Math.floor(hpp.hp)}</span>}
-          </Spring>
-        </span>
+        <LocalToastRp style={{ top: -20, right: -30, flexDirection: 'column' }}>
+          {({ push }) => <Health character={character} push={push} />}
+        </LocalToastRp>
       </FlexContainer>
     </div>
   )

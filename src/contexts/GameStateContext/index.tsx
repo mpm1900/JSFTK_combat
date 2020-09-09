@@ -1,19 +1,17 @@
 import React, { useContext, useMemo } from 'react'
-import { generateTree } from '../../types/Tree'
 import { useGameState, useGameStateActions } from '../../state/game'
-import { EncounterT, EncounterChoiceT } from '../../types/Encounter'
+import { tEncounterChoice, tEncounter } from '../../game/Encounter/type'
 
 export interface GameStateContextT {
-  encounters: EncounterChoiceT[]
+  encounters: tEncounterChoice[]
   level: number
-  currentChoice: EncounterChoiceT | undefined
-  currentEncounter: EncounterT | undefined
+  currentChoice: tEncounterChoice | undefined
+  currentEncounter: tEncounter | undefined
   chooseCurrent: (value: 'left' | 'right') => void
   nextLevel: () => void
   reset: () => void
 }
 
-const _tree = generateTree()
 export const defaultValue: GameStateContextT = {
   encounters: [],
   level: 0,

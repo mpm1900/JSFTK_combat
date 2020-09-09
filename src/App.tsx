@@ -1,41 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import ForestBg from './assets/img/flat-forestred.jpg'
-import { Switch, Route } from 'react-router-dom'
-import { CombatContextProvider } from './contexts/CombatContext'
-import { PartyT } from './types'
-import { makeParty } from './functions'
+import { Switch } from 'react-router-dom'
 import { Combat } from './domain/Combat'
 import { CombatLogContextProvider } from './contexts/CombatLogContext'
 import { ModalContextProvider } from './contexts/ModalContext'
-import { makeRoute } from './routes'
+import { makeRoute, RouteController } from './routes'
 import { Party } from './domain/Party'
 import { Start } from './domain/Start'
 import { UIContextProvider, useUIContext } from './contexts/UIContext'
 import { usePartyContext } from './contexts/PartyContext'
 import { PlayerParty } from './components/PlayerParty'
 import { FlexContainer, FullContainer } from './elements/flex'
-import { useGameStateContext } from './contexts/GameStateContext'
-import { CombatEncounterT } from './types/Encounter'
+import { LinkedCombatContext } from './contexts/CombatContext/context'
 
 const CombatDomain = () => {
   return (
     <CombatLogContextProvider>
-      <ModalContextProvider>
-        <Combat />
-      </ModalContextProvider>
+      <Combat />
     </CombatLogContextProvider>
   )
-}
-
-const PartyDomain = () => {
-  return <Party />
 }
 
 const GlobalCharacters = () => {
   const { party } = usePartyContext()
   const { onCharacterConsumableClick } = useUIContext()
   return (
-    <div style={{ margin: '30px 0' }}>
+    <div style={{ marginBottom: 30 }}>
       <PlayerParty
         party={party}
         onConsumableClick={(c, i, item) => {
@@ -49,21 +39,9 @@ const GlobalCharacters = () => {
 }
 
 export const App = () => {
-  const { currentEncounter, level, encounters } = useGameStateContext()
-  const [rawEnemyParty, setRawEnemyParty] = useState<PartyT>(makeParty(0))
-  useEffect(() => {
-    if (currentEncounter && (currentEncounter as CombatEncounterT).party)
-      setRawEnemyParty((currentEncounter as CombatEncounterT).party)
-  }, [level])
   return (
     <ModalContextProvider>
-      <CombatContextProvider
-        enemyParty={rawEnemyParty}
-        setEnemyParty={setRawEnemyParty}
-        onRequestNewParty={() => {
-          setRawEnemyParty(makeParty(level + 1))
-        }}
-      >
+      <LinkedCombatContext>
         <UIContextProvider>
           <FlexContainer
             $full
@@ -75,9 +53,10 @@ export const App = () => {
               backgroundSize: 'cover',
             }}
           >
+            <RouteController />
             <FullContainer>
               <Switch>
-                {makeRoute('/party', PartyDomain)}
+                {makeRoute('/party', Party)}
                 {makeRoute('/combat', CombatDomain)}
                 {makeRoute('/', Start)}
               </Switch>
@@ -85,7 +64,7 @@ export const App = () => {
             <GlobalCharacters />
           </FlexContainer>
         </UIContextProvider>
-      </CombatContextProvider>
+      </LinkedCombatContext>
     </ModalContextProvider>
   )
 }

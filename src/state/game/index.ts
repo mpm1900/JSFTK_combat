@@ -3,12 +3,11 @@ import { makeReducer } from '../util'
 import { useSelector } from 'react-redux'
 import { useActions } from '../../hooks/useActions'
 import { Dispatch } from 'redux'
-import { EncounterChoiceT } from '../../types/Encounter'
-import { makeEncounterList } from '../../functions/Encounter'
-import { stat } from 'fs'
+import { tEncounterChoice } from '../../game/Encounter/type'
+import { makeEncounterList } from '../../game/Encounter/util'
 
 export interface GameStateT {
-  encounters: EncounterChoiceT[]
+  encounters: tEncounterChoice[]
   level: number
 }
 

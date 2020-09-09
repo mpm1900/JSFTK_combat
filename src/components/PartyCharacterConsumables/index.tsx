@@ -1,18 +1,18 @@
 import React, { useMemo } from 'react'
-import { ConsumableT } from '../../types/Consumable'
-import { considateConsumableListToStack } from '../../functions/Consumable'
 import { FlexContainer } from '../../elements/flex'
 import { Icon } from '../Icon'
 import { CONSUMABLE_ITEM_ICONS, CONSUMABLE_ITEM_COLORS } from '../../icons/maps'
-import { ProcessedCharacterT } from '../../types'
 import { HoverToolTip } from '../Tooltip'
 import { BoxContainer } from '../../elements/box'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { tConsumable } from '../../game/Consumable/type'
+import { considateConsumableListToStack } from '../../game/Consumable/util'
 
 const HEIGHT = 70
 export interface PartyCharacterConsumablesPropsT {
-  character: ProcessedCharacterT
-  consumables: ConsumableT[]
-  onClick?: (consumable: ConsumableT, index: number) => void
+  character: tProcessedCharacter
+  consumables: tConsumable[]
+  onClick?: (consumable: tConsumable, index: number) => void
 }
 export const PartyCharacterConsumables = (
   props: PartyCharacterConsumablesPropsT,
@@ -21,12 +21,12 @@ export const PartyCharacterConsumables = (
   const stack = useMemo(() => considateConsumableListToStack(consumables), [
     consumables,
   ])
-  const onStackClick = (consumable: ConsumableT) => {
+  const onStackClick = (consumable: tConsumable) => {
     let index = undefined
     consumables.forEach((c, i) => {
       if (c.id === consumable.id) index = i
     })
-    if (consumable.skill.healing && !(character.stats.healthOffset === 0))
+    if (consumable.skill.healing && !(character.healthOffset === 0))
       return onClick && onClick(consumable, index || 0)
   }
   const filler = Array(10 - stack.length).fill(null)
@@ -80,10 +80,10 @@ const ConsumableBox = (props: ConsumableBoxPropsT) => {
 }
 
 export interface PartyCharacterConsumablePropsT {
-  consumable: ConsumableT
-  character: ProcessedCharacterT
+  consumable: tConsumable
+  character: tProcessedCharacter
   count: number
-  onClick?: (consumable: ConsumableT) => void
+  onClick?: (consumable: tConsumable) => void
 }
 export const PartyCharacterConsumable = (
   props: PartyCharacterConsumablePropsT,
@@ -101,8 +101,8 @@ export const PartyCharacterConsumable = (
       <ConsumableBox onClick={() => onClick && onClick(consumable)}>
         <>
           <Icon
-            src={CONSUMABLE_ITEM_ICONS[consumable.id]}
-            fill={CONSUMABLE_ITEM_COLORS[consumable.id]}
+            src={CONSUMABLE_ITEM_ICONS[consumable.cid]}
+            fill={CONSUMABLE_ITEM_COLORS[consumable.cid]}
             size={24}
           />
           <div
@@ -121,8 +121,8 @@ export const PartyCharacterConsumable = (
 }
 
 export interface PartyCharacterConsumableTooltipProps {
-  character: ProcessedCharacterT
-  consumable: ConsumableT
+  character: tProcessedCharacter
+  consumable: tConsumable
 }
 export const PartyCharacterConsumableTooltip = (
   props: PartyCharacterConsumableTooltipProps,

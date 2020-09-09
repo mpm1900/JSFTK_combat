@@ -1,17 +1,18 @@
 import React from 'react'
-import { WeaponT, ArmorT, ProcessedWeaponT } from '../../types'
 import { ArmorPreview } from '../ArmorPreview'
 import { WeaponPreview } from '../WeaponPreview'
+import { tWeapon } from '../../game/Weapon/type'
+import { tArmor } from '../../game/Armor/type'
 
 export interface ItemPreviewPropsT {
-  item: WeaponT | ArmorT
+  item: tWeapon | tArmor
 }
 
 export const ItemPreivew = (props: ItemPreviewPropsT) => {
   const { item } = props
 
-  if (item.itemType === 'armor') return <ArmorPreview armor={item as ArmorT} />
+  if (item.itemType === 'armor') return <ArmorPreview armor={item as tArmor} />
   if (item.itemType === 'weapon')
-    return <WeaponPreview weapon={item as ProcessedWeaponT} />
+    return <WeaponPreview weapon={item as tWeapon} />
   return <div />
 }

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { useModalContext } from '../../contexts/ModalContext'
-import { NameSpanBuilder } from '../../contexts/CombatLogContext/util'
 import { FlexContainer } from '../../elements/flex'
 import Kefir from 'kefir'
 import { SkillCheck } from '../SkillChecks'
+import { PLAYER_PARTY_ID } from '../../game/Party/constants'
+import { BoxContainer } from '../../elements/box'
+import { Perfect } from './Perfect'
 
 export interface RoundResultRendererPropsT {
   isModal?: boolean
@@ -38,9 +40,9 @@ export const RoundResultRenderer = (props: RoundResultRendererPropsT) => {
     }
   }, [isRunning, isModal, isOpen, activeRound, open, close, commit])
 
-  if (!isModal && activeRound && activeRound[0] && isRunning) {
+  if (!isModal && activeRound && isRunning) {
     return (
-      <FlexContainer style={{ height: 315 }}>
+      <FlexContainer style={{ height: 269 }}>
         <RoundResult
           close={() => {
             setIsOpen(false)
@@ -64,21 +66,24 @@ export const RoundResult = (props: RoundResultPropsT) => {
   const { close } = props
   const { activeRound } = useCombatContext()
   const [isDone, setIsDone] = useState(false)
-  const rounds = activeRound || []
-  const round = rounds[0]
+  const round = activeRound?.sourceResult
+  const [activeIndex, setActiveIndex] = useState(0)
   const [roundResults, setRoundResults] = useState<CheckKVT[]>(
     !round
       ? []
       : round.rollResults.map((result, i) => ({
-          label: round.skill.rolls[i].key || '<NULL>',
+          label: round.skill.weaponStatOverride || round.source.weapon.stat,
           result: undefined,
         })),
   )
 
-  const updateRoundResult = (value: CheckKVT, index: number) =>
+  const updateRoundResult = (value: CheckKVT, index: number) => {
+    setActiveIndex(index)
     setRoundResults((r) => r.map((r, i) => (i === index ? value : r)))
+  }
 
   useEffect(() => {
+    if (!round) return
     const stream = Kefir.sequentially(
       200,
       roundResults.map((r, i) => ({ ...r, index: i })),
@@ -87,16 +92,13 @@ export const RoundResult = (props: RoundResultPropsT) => {
       updateRoundResult(
         {
           label: result.label,
-          result:
-            result.label === 'accuracy'
-              ? round.accuracySuccess
-              : round.rollResults[result.index].result,
+          result: round.rollResults[result.index],
         },
         result.index,
       )
     })
     stream.onEnd(() => {
-      Kefir.later(500, undefined).onValue(() => {
+      Kefir.later(round.perfect ? 900 : 600, undefined).onValue(() => {
         setIsDone(true)
       })
     })
@@ -108,20 +110,58 @@ export const RoundResult = (props: RoundResultPropsT) => {
     }
   }, [isDone, close])
 
+  const showPerfect = activeIndex === roundResults.length - 1 && round?.perfect
+  const isPlayer = (partyId: string) => partyId === PLAYER_PARTY_ID
+  const targetResult = activeRound?.targetResults[0]
+  const showTarget =
+    round && targetResult && targetResult.target.id !== round.source.id
   if (!round) return null
-
-  const target = {
-    ...round.target,
-    name: rounds.length > 1 ? `${rounds.length} characters` : round.target.name,
-  }
-
   return (
     <FlexContainer $direction='column' style={{ textAlign: 'center' }}>
-      <FlexContainer style={{ justifyContent: 'space-evenly' }}>
+      <FlexContainer style={{ justifyContent: 'center' }}>
         {roundResults.map((result, i) => (
-          <SkillCheck key={i} check={result} />
+          <SkillCheck
+            key={i}
+            check={result}
+            perfect={showPerfect}
+            skill={round.skill}
+            crit={round.criticalHitSuccess}
+          />
         ))}
       </FlexContainer>
+      <FlexContainer style={{ justifyContent: 'center' }}>
+        <BoxContainer
+          style={{ marginTop: 40 }}
+          substyle={{ background: '#111', fontSize: 20, padding: '16px 32px' }}
+        >
+          <strong
+            style={{
+              color: isPlayer(round.source.partyId)
+                ? 'lightblue'
+                : 'lightsalmon',
+            }}
+          >
+            {round.source.name}
+          </strong>{' '}
+          uses <span style={{ color: 'plum' }}>{round.skill.name}</span>
+          {showTarget && (
+            <span>
+              {' '}
+              on{' '}
+              <strong
+                style={{
+                  color: isPlayer(targetResult?.target.partyId || '')
+                    ? 'lightblue'
+                    : 'lightsalmon',
+                }}
+              >
+                {targetResult?.target.name}
+              </strong>
+            </span>
+          )}
+        </BoxContainer>
+      </FlexContainer>
+      <Perfect show={showPerfect} partyId={round.source.partyId} />
     </FlexContainer>
   )
 }

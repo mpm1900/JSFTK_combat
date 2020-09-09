@@ -1,24 +1,26 @@
 import React from 'react'
-import { ProcessedCharacterT, StatsT } from '../../types'
 import { BoxContainer } from '../../elements/box'
 import { FlexContainer } from '../../elements/flex'
-import { STAT_BONUS_KEYS } from '../../objects'
-import { STATI_ICONS } from '../../icons/maps'
+import { STAT_ICONS } from '../../icons/maps'
 import { Icon } from '../Icon'
+import { tStats } from '../../game/Stats/type'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { STAT_BONUS_KEYS } from '../../game/Stats/constants'
 
 const getStatColor = (
-  character: ProcessedCharacterT,
-  key: keyof StatsT,
+  character: tProcessedCharacter,
+  key: keyof tStats,
 ): string => {
   const a = character.stats[key]
   const b = character.rawStats[key]
+  if (a === undefined || b === undefined) return 'rgba(255,255,255,0.6)'
   if (a > b) return 'lightgreen'
   if (b > a) return 'lightcoral'
   return 'rgba(255,255,255,0.6)'
 }
 
 export interface StatBarPropsT {
-  character: ProcessedCharacterT
+  character: tProcessedCharacter
 }
 export const StatBar = (props: StatBarPropsT) => {
   const { character } = props
@@ -41,7 +43,7 @@ export const StatBar = (props: StatBarPropsT) => {
             }}
           >
             <Icon
-              src={STATI_ICONS[key] || ''}
+              src={STAT_ICONS[key] || ''}
               size={20}
               fill={getStatColor(character, key)}
               style={{ marginRight: 4 }}

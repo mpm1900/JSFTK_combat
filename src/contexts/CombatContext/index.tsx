@@ -6,63 +6,53 @@ import React, {
   useEffect,
   useCallback,
 } from 'react'
-import {
-  ProcessedPartyT,
-  PartyT,
-  SkillT,
-  ProcessedCharacterT,
-  TargetSkillResultT,
-  SkillTargetT,
-} from '../../types'
-import {
-  makeParty,
-  processParty,
-  getSkillResults,
-  commitSkillResults,
-  processCharacter,
-  makeCharacter,
-  resolveSkillTarget,
-  makeSkillTarget,
-  removeTemporaryStatus,
-  getRolledRewards,
-  consolidateRewards,
-  commitRewards,
-} from '../../functions'
 import { usePartyContext } from '../PartyContext'
-import {
-  CombatQueueT,
-  makeCombatQueue,
-  getFirst,
-  shiftQueue,
-  validateQueue,
-} from '../../types/CombatQueue'
-import { getAIAction } from '../../functions/AI'
 import { v4 } from 'uuid'
 import { useHistory } from 'react-router'
 import { useModalContext } from '../ModalContext'
-import { Button } from '../../elements/button'
-import { FlexContainer } from '../../elements/flex'
 import { CombatVictoryModal } from '../../components/CombatVictoryModal'
+import { tProcessedParty, tParty } from '../../game/Party/type'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { tSkill, tSkillResult, tSkillTarget } from '../../game/Skill/type'
+import { tQueue } from '../../game/Queue/type'
+import {
+  processParty,
+  makeParty,
+  getRolledRewards,
+} from '../../game/Party/util'
+import {
+  processCharacter,
+  makeCharacter,
+  removeTemporaryStatus,
+} from '../../game/Character/util'
+import { makeCombatQueue, getFirst } from '../../game/Queue/util'
+import {
+  makeSkillTarget,
+  resolveSkillTarget,
+  getSkillResult,
+} from '../../game/Skill/util'
+import { commitSkillResults } from '../../game/Skill/committer'
+import { getAIAction } from '../../game/AI/util'
 
 export interface CombatContextT {
-  party: ProcessedPartyT
-  enemyParty: ProcessedPartyT
-  activeCharacter: ProcessedCharacterT
-  characters: ProcessedCharacterT[]
-  queue: CombatQueueT
-  selectedSkill: SkillT | undefined
-  selectedTargets: ProcessedCharacterT[]
+  party: tProcessedParty
+  enemyParty: tProcessedParty
+  activeCharacter: tProcessedCharacter
+  characters: tProcessedCharacter[]
+  queue: tQueue
+  selectedSkill: tSkill | undefined
+  selectedTargets: tProcessedCharacter[]
   selectedConsumableIndex: number | undefined
-  roundResults: TargetSkillResultT[][]
-  activeRound: TargetSkillResultT[] | undefined
+  roundResults: tSkillResult[]
+  activeRound: tSkillResult | undefined
   isRunning: boolean
   isRenderingResult: boolean
-  onSkillSelect: (skill: SkillT, consumableIndex?: number) => void
-  onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => void
+  onSkillSelect: (skill: tSkill, consumableIndex?: number) => void
+  onTargetsSelect: (target: tProcessedCharacter | tProcessedParty) => void
   onConsumableSelect: (consumableIndex: number | undefined) => void
   reset: () => void
   start: () => void
-  next: (nextTarget?: ProcessedCharacterT | ProcessedPartyT) => void
+  next: (nextTarget?: tProcessedCharacter | tProcessedParty) => void
   commit: () => void
 }
 const defaultValue: CombatContextT = {
@@ -78,8 +68,8 @@ const defaultValue: CombatContextT = {
   activeRound: undefined,
   isRunning: false,
   isRenderingResult: false,
-  onSkillSelect: (skill: SkillT) => {},
-  onTargetsSelect: (target: ProcessedCharacterT | ProcessedPartyT) => {},
+  onSkillSelect: (skill: tSkill) => {},
+  onTargetsSelect: (target: tProcessedCharacter | tProcessedParty) => {},
   onConsumableSelect: (consumableIndex) => {},
   reset: () => {},
   start: () => {},
@@ -91,14 +81,14 @@ export const useCombatContext = () => useContext(CombatContext)
 
 export interface CombatContextProviderPropsT {
   children: JSX.Element
-  enemyParty: PartyT
-  setEnemyParty: (party: PartyT) => void
+  enemyParty: tParty
+  setEnemyParty: (party: tParty) => void
   onRequestNewParty: () => void
 }
 export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const { children, setEnemyParty, onRequestNewParty } = props
   const { party, rawParty, updateParty } = usePartyContext()
-  const { open, close } = useModalContext()
+  const { open } = useModalContext()
   const history = useHistory()
   const enemyParty = useMemo(() => processParty(props.enemyParty), [
     props.enemyParty,
@@ -109,7 +99,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     () => [...party.characters, ...enemyParty.characters],
     [party, enemyParty],
   )
-  const [queue, setQueue] = useState<CombatQueueT>(
+  const [queue, setQueue] = useState<tQueue>(
     makeCombatQueue([...party.characters, ...enemyParty.characters]),
   )
   const resultCommitter = useMemo(
@@ -117,22 +107,20 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     [rawParty, props.enemyParty, queue],
   )
   const [roundId, setRoundId] = useState<string>(v4())
-  const [roundResults, setRoundResults] = useState<TargetSkillResultT[][]>([])
-  const [activeRound, setActiveRound] = useState<
-    TargetSkillResultT[] | undefined
-  >()
+  const [roundResults, setRoundResults] = useState<tSkillResult[]>([])
+  const [activeRound, setActiveRound] = useState<tSkillResult | undefined>()
   const [selectedTarget, setSelectedTarget] = useState<
-    SkillTargetT | undefined
+    tSkillTarget | undefined
   >()
-  const [selectedSkill, setSelectedSkill] = useState<SkillT | undefined>()
+  const [selectedSkill, setSelectedSkill] = useState<tSkill | undefined>()
   const [selectedConsumableIndex, setSelectedConsumableIndex] = useState<
     number | undefined
   >()
   const activeCharacter = useMemo(
     () =>
       characters.find(
-        (c) => !c.dead && c.id === getFirst(queue),
-      ) as ProcessedCharacterT,
+        (c) => c.health > 0 && c.id === getFirst(queue),
+      ) as tProcessedCharacter,
     [queue, characters],
   )
 
@@ -155,17 +143,16 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     setQueue({})
   }
 
-  const next = (nextTarget?: ProcessedCharacterT | ProcessedPartyT) => {
+  const next = (nextTarget?: tProcessedCharacter | tProcessedParty) => {
     if (!selectedSkill) return
     const roundTarget = nextTarget
       ? makeSkillTarget(selectedSkill.targetType, nextTarget)
       : selectedTarget
     if (!selectedSkill || !roundTarget) return
-    const results = getSkillResults(
-      selectedSkill,
+    const results = getSkillResult(
       activeCharacter,
-      resolveSkillTarget(roundTarget).filter((c) => !c.dead),
-      selectedConsumableIndex,
+      resolveSkillTarget(roundTarget).filter((c) => c.health > 0),
+      selectedSkill,
     )
     setActiveRound(results)
     setSelectedSkill(undefined)
@@ -174,7 +161,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     setIsRenderingResult(true)
   }
 
-  const onSkillSelect = (skill: SkillT, consumableIndex?: number) => {
+  const onSkillSelect = (skill: tSkill, consumableIndex?: number) => {
     setSelectedSkill(skill)
     if (consumableIndex !== undefined) {
       setSelectedConsumableIndex(consumableIndex)
@@ -184,48 +171,35 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     }
   }
 
-  const onTargetsSelect = (target: ProcessedCharacterT | ProcessedPartyT) => {
+  const onTargetsSelect = (target: tProcessedCharacter | tProcessedParty) => {
     if (!selectedSkill) return
     setSelectedTarget(makeSkillTarget(selectedSkill.targetType, target))
   }
 
-  const completeRound = (
-    source: ProcessedCharacterT,
-    updatedCharacters: ProcessedCharacterT[],
-    updatedQueue: CombatQueueT,
-  ) => {
-    setQueue(
-      validateQueue(
-        shiftQueue(updatedQueue, source, updatedCharacters),
-        updatedCharacters,
-      ),
-    )
+  const completeRound = () => {
     setRoundId(v4())
     setActiveRound(undefined)
     setIsRenderingResult(false)
   }
 
   const commit = useCallback(() => {
-    if (!activeRound || activeRound.length === 0) return
+    if (!activeRound) return
     const result = resultCommitter(activeRound)
     setRoundResults((r) => [...r, activeRound])
     setEnemyParty(result.enemyParty)
-    updateParty(result.party)
-    const updatedCharacters = [
-      ...result.party.characters,
-      ...result.enemyParty.characters,
-    ].map((c) => processCharacter(c))
+    updateParty(result.playerParty)
+    setQueue(result.queue)
 
-    completeRound(activeRound[0].source, updatedCharacters, result.queue)
+    completeRound()
   }, [activeRound, queue])
 
-  const execEnemyTurn = (skill: SkillT, target: SkillTargetT) => {
-    const results = getSkillResults(
-      skill,
+  const execEnemyTurn = (skill: tSkill, target: tSkillTarget) => {
+    const result = getSkillResult(
       activeCharacter,
       resolveSkillTarget(target),
+      skill,
     )
-    setActiveRound(results)
+    setActiveRound(result)
   }
 
   useEffect(() => {
@@ -245,7 +219,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
 
   useEffect(() => {
     if (!isRunning) return
-    if (enemyParty.characters.every((c) => c.dead)) {
+    if (enemyParty.characters.every((c) => c.health <= 0)) {
       setIsRunning(false)
       const rewards = getRolledRewards(
         enemyParty,
@@ -260,7 +234,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       open(<CombatVictoryModal rewards={rewards} />, {}, true)
       return
     }
-    if (party.characters.every((c) => c.dead)) {
+    if (party.characters.every((c) => c.health <= 0)) {
       setIsRunning(false)
       alert('you lose')
       history.push('/JSFTK_combat/')

@@ -1,28 +1,26 @@
 import React from 'react'
 import { BoxContainer } from '../../elements/box'
 import { FlexContainer, FullContainer } from '../../elements/flex'
-import { SkillT, ProcessedCharacterT } from '../../types'
-import {
-  getChecksProbability,
-  getSkillDamageRange,
-  getSkillDamage,
-  getPerfectText,
-} from '../../functions'
+import { tSkill } from '../../game/Skill/type'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { getSkillDamage, getPerfectText } from '../../game/Skill/util'
+import { getChecksProbability } from '../../game/Roll/util'
 
 export interface SkillPreviewPropsT {
-  skill: SkillT
-  source: ProcessedCharacterT
-  targets: ProcessedCharacterT[]
+  skill: tSkill
+  source: tProcessedCharacter
+  targets: tProcessedCharacter[]
 }
 export const SkillPreview = (props: SkillPreviewPropsT) => {
   const { skill, source, targets } = props
-  const perfectChance = getChecksProbability(source, skill.rolls)
-  const damage = getSkillDamage(skill, source)
-  const damageString = getSkillDamageRange(
-    skill,
+  const perfectChance = getChecksProbability(
     source,
-    targets.length === 0 ? undefined : targets,
+    Array(skill.rolls)
+      .fill(null)
+      .map((_, i) => ({ key: source.weapon.stat, offset: skill.offset })),
   )
+  const stat = skill.weaponStatOverride || source.weapon.stat
+  const damage = getSkillDamage(skill, source)
   const perfectKeys = getPerfectText(skill, source)
   return (
     <BoxContainer
@@ -36,7 +34,8 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
             substyle={{
               padding: '4px 12px',
               background: '#555',
-              fontWeight: 'bolder',
+              letterSpacing: '1px',
+              fontFamily: 'Bangers',
             }}
           >
             {skill.name}
@@ -54,7 +53,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
           {perfectKeys.length > 0 && '='} {perfectKeys}
         </span>
         <FlexContainer $full style={{ width: '100%', marginBottom: 8 }}>
-          {damage.damage > 0 && skill.damage && (
+          {damage.value > 0 && skill.damage && (
             <FlexContainer
               $full
               $direction='column'
@@ -67,12 +66,12 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
                   fontSize: 32,
                 }}
               >
-                {damageString}
+                {`${Math.floor(damage.value)}`}
               </span>
               <span style={{ color: 'rgba(255,255,255,0.2)' }}>Max DMG</span>
             </FlexContainer>
           )}
-          {skill.rolls.length > 0 && (
+          {skill.rolls > 0 && (
             <FlexContainer
               $full
               $direction='column'
@@ -84,9 +83,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
                   fontSize: 32,
                 }}
               >
-                {source.stats[skill.rolls[0].key || 'strength'] +
-                  (skill.rolls[0].offset || 0)}
-                %
+                {source.stats[stat] + skill.offset}%
               </span>
               <span style={{ color: 'rgba(255,255,255,0.2)' }}>
                 Per Check ACC

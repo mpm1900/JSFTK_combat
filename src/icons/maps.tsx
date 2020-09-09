@@ -1,5 +1,3 @@
-import { StatsT, ArmorTypeT, StatusTypeT, ArmorResourceType } from '../types'
-
 import Vigor from './svg/delapouite/heart-beats.svg'
 import Strength from './svg/delapouite/biceps.svg'
 import Brain from './svg/lorc/brain.svg'
@@ -14,6 +12,8 @@ import Targeted from './svg/sbed/targeted.svg'
 import Evasive from './svg/lorc/dodging.svg'
 import SpeedDown from './svg/delapouite/sticky-boot.svg'
 import Poisoned from './svg/lorc/biohazard.svg'
+import Burning from './svg/carl-olsen/flame.svg'
+import Bleeding from './svg/lorc/bleeding-wound.svg'
 
 import Shot from './svg/lorc/high-shot.svg'
 import SnipeShot from './svg/delapouite/shield-impact.svg'
@@ -29,16 +29,7 @@ import PinDown from './svg/lorc/energy-arrow.svg'
 import Reset from './svg/delapouite/backward-time.svg'
 import SpreadShot from './svg/lorc/double-shot.svg'
 import TimeJump from './svg/delapouite/extra-time.svg'
-import { SHOT } from '../objects/skills/shot'
-import { SNIPE_SHOT } from '../objects/skills/snipe_shot'
-import { SURGE } from '../objects/skills/surge'
-import { AREA_BLAST } from '../objects/skills/area_blast'
-import { DAZZLE } from '../objects/skills/dazzle'
-import { SMASH } from '../objects/skills/smash'
-import { SHOCKWAVE } from '../objects/skills/shockwave'
-import { TAUNT } from '../objects/skills/taunt'
-import { ALTO } from '../objects/skills/alto'
-import { SYMPHONY } from '../objects/skills/symphony'
+import Heal from './svg/sbed/health-normal.svg'
 
 import MagicArmor from './svg/lorc/robe.svg'
 import ClothArmor from './svg/lorc/scale-mail.svg'
@@ -52,36 +43,51 @@ import Helmet from './svg/lorc/visored-helm.svg'
 import Weapon from './svg/lorc/broadsword.svg'
 
 import Godsbeard from './svg/delapouite/herbs-bundle.svg'
-import { GODSBEARD } from '../objects/consumables/godsbeard'
-import { PROTECT } from '../objects/skills/protect'
-import { RITARDANDO } from '../objects/skills/ritardando'
-import { stringify } from 'querystring'
-import { BANDIT } from '../objects/enemies/bandit'
-import { PIERCING_BLOW } from '../objects/skills/piercing_blow'
-import { PIN_DOWN } from '../objects/skills/pin_down'
-import { RUBATO } from '../objects/skills/rubato'
-import { SPREAD_SHOT } from '../objects/skills/spread_shot'
-import { STUN_ATTACK } from '../objects/skills/stun_attack'
-import { TIME_JUMP } from '../objects/skills/time_jump'
+import { tBaseStats } from '../game/Stats/type'
+import { tStatusType } from '../game/Status/type'
+import { SHOT } from '../game/Skill/objects/shot'
+import { SNIPE_SHOT } from '../game/Skill/objects/snipe_shot'
+import { PIERCING_BLOW } from '../game/Skill/objects/piercing_blow'
+import { PIN_DOWN } from '../game/Skill/objects/pin_down'
+import { SURGE } from '../game/Skill/objects/surge'
+import { AREA_BLAST } from '../game/Skill/objects/area_blast'
+import { SYMPHONY } from '../game/Skill/objects/symphony'
+import { DAZZLE } from '../game/Skill/objects/dazzle'
+import { RUBATO } from '../game/Skill/objects/rubato'
+import { SMASH } from '../game/Skill/objects/smash'
+import { SHOCKWAVE } from '../game/Skill/objects/shockwave'
+import { TAUNT } from '../game/Skill/objects/taunt'
+import { ALTO } from '../game/Skill/objects/alto'
+import { RITARDANDO } from '../game/Skill/objects/ritardando'
+import { PROTECT } from '../game/Skill/objects/protect'
+import { SPREAD_SHOT } from '../game/Skill/objects/spread_shot'
+import { STUN_ATTACK } from '../game/Skill/objects/stun_attack'
+import { TIME_JUMP } from '../game/Skill/objects/time_jump'
+import { GODSBEARD } from '../game/Consumable/objects/godsbeard'
+import { tArmorResourceType, tArmorType } from '../game/Armor/type'
+import { HEAL } from '../game/Skill/objects/heal'
 
-export const STATI_ICONS: Partial<Record<keyof StatsT | 'accuracy', string>> = {
+export const STAT_ICONS: Record<keyof tBaseStats, string> = {
   vigor: Vigor,
   strength: Strength,
   intelligence: Brain,
-  perception: Awareness,
-  talent: Juggler,
+  dexterity: Awareness,
+  charisma: Juggler,
   agility: Agility,
   luck: Clover,
-  accuracy: Accuracy,
+  evasion: '',
+  criticalChance: '',
 }
 
-export const STATUS_ICONS: Partial<Record<StatusTypeT, string>> = {
-  dazed: Dazed,
+export const STATUS_ICONS: Partial<Record<tStatusType, string>> = {
+  stunned: Dazed,
   targeted: Targeted,
   evasive: Evasive,
   protected: Protect,
   ['speed-down']: SpeedDown,
   poisoned: Poisoned,
+  burning: Burning,
+  bleeding: Bleeding,
 }
 
 export const SKILL_ICONS: Record<string, string> = {
@@ -103,9 +109,10 @@ export const SKILL_ICONS: Record<string, string> = {
   [SPREAD_SHOT.id]: SpreadShot,
   [STUN_ATTACK.id]: Dazzle,
   [TIME_JUMP.id]: TimeJump,
+  [HEAL('').id]: Heal,
 }
 
-export const ARMOR_TYPE_ICONS: Record<ArmorTypeT, string> = {
+export const ARMOR_TYPE_ICONS: Record<tArmorType, string> = {
   ['magic-armor']: MagicArmor,
   ['cloth-armor']: ClothArmor,
   armor: Armor,
@@ -119,7 +126,7 @@ export const ARMOR_TYPE_ICONS: Record<ArmorTypeT, string> = {
   ring: '',
 }
 
-export const RESOURCE_ICONS: Record<ArmorResourceType | 'weapon', string> = {
+export const RESOURCE_ICONS: Record<tArmorResourceType | 'weapon', string> = {
   weapon: Weapon,
   offhand: Shield,
   body: Armor,
@@ -128,8 +135,8 @@ export const RESOURCE_ICONS: Record<ArmorResourceType | 'weapon', string> = {
 }
 
 export const CONSUMABLE_ITEM_ICONS: Record<string, string> = {
-  [GODSBEARD.id]: Godsbeard,
+  [GODSBEARD().cid]: Godsbeard,
 }
 export const CONSUMABLE_ITEM_COLORS: Record<string, string> = {
-  [GODSBEARD.id]: '#84a397',
+  [GODSBEARD().cid]: '#84a397',
 }

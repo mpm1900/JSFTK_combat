@@ -1,19 +1,19 @@
 import React, { useContext, useState } from 'react'
-import { ProcessedCharacterT } from '../../types'
-import { ConsumableT } from '../../types/Consumable'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { tConsumable } from '../../game/Consumable/type'
 
 export interface UIContextT {
   playerCanEquipItem: boolean
   openCharacterInventoryId: string | undefined
   onCharacterConsumableClick: (
-    c: ProcessedCharacterT,
+    c: tProcessedCharacter,
     index: number,
-    item: ConsumableT,
+    item: tConsumable,
   ) => void
   setPlayerCanEquipItem: (v: boolean) => void
   setOpenCharacterInventoryId: (id: string | undefined) => void
   setOnCharacterConsumableClick: (
-    fn: (c: ProcessedCharacterT, index: number, item: ConsumableT) => void,
+    fn: (c: tProcessedCharacter, index: number, item: tConsumable) => void,
   ) => void
 }
 
@@ -39,11 +39,11 @@ export const UIContextProvider = (props: UIContextProviderPropsT) => {
     string | undefined
   >()
   const [onCharacterConsumableClick, _setOnCharacterConsumableClick] = useState<
-    (c: ProcessedCharacterT, i: number, item: ConsumableT) => void
+    (c: tProcessedCharacter, i: number, item: tConsumable) => void
   >((c, i, item) => {})
 
   const setOnCharacterConsumableClick = (
-    fn: (c: ProcessedCharacterT, index: number, item: ConsumableT) => void,
+    fn: (c: tProcessedCharacter, index: number, item: tConsumable) => void,
   ) => {
     _setOnCharacterConsumableClick(() => fn)
   }

@@ -2,8 +2,9 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import { useCombatContext } from '../CombatContext'
 import { Monospace } from '../../elements/monospace'
 import { NameSpanBuilder, SkillSpan, Span } from './util'
-import { getDamageResistance } from '../../functions'
 import { noneg } from '../../util'
+import { getDamageResistance } from '../../game/Character/util'
+import { STATUS_CONFIG } from '../../game/Status/constants'
 
 export interface CombatLogContextT {
   combatLog: JSX.Element[]
@@ -42,7 +43,7 @@ export const CombatLogContextProvider = (
     const characters = [...enemyParty.characters, ...party.characters]
     setTimeout(() => {
       characters.forEach((character) => {
-        if (character.dead && !deadLog[character.id]) {
+        if (character.health <= 0 && !deadLog[character.id]) {
           setDeadLog((dLog) => ({ ...dLog, [character.id]: true }))
           log(<span>{Span('lightcoral', `${character.name} died.`)}</span>)
         }
@@ -51,11 +52,11 @@ export const CombatLogContextProvider = (
   }, [enemyParty, party])
 
   useEffect(() => {
-    if (activeRound && activeRound[0]) {
+    if (activeRound && activeRound) {
       log(
         <span>
-          {NameSpan(activeRound[0].source)} uses{' '}
-          {SkillSpan(activeRound[0].skill)}.
+          {NameSpan(activeRound.sourceResult.source)} uses{' '}
+          {SkillSpan(activeRound.sourceResult.skill)}.
         </span>,
       )
     }
@@ -64,34 +65,31 @@ export const CombatLogContextProvider = (
   useEffect(() => {
     if (roundResults.length === 0) return
     const latestRounds = roundResults[roundResults.length - 1]
-    const baseRound = latestRounds[0]
+    const baseRound = latestRounds.sourceResult
     if (!baseRound) return
 
-    if (!baseRound.accuracySuccess) {
-      if (baseRound.skill.damage) {
-        {
-          log(<span>{baseRound.source.name}'s attack missed.</span>)
-        }
-      } else {
-        log(<span>{SkillSpan(baseRound.skill)} failed.</span>)
-      }
+    if (baseRound.skill.damage && baseRound.passedCount === 0) {
+      log(<span>{baseRound.source.name}'s attack missed.</span>)
     }
-    if (baseRound.criticalSuccess) {
+    if (!baseRound.skill.damage && !baseRound.perfect) {
+      log(<span>{SkillSpan(baseRound.skill)} failed.</span>)
+    }
+    if (baseRound.criticalHitSuccess) {
       log(<span>{Span('gold', 'Critical Hit!')}</span>)
     }
     if (baseRound.perfect && baseRound.rollResults.length > 0) {
       log(<span>{Span('gold', 'Perfect!')}</span>)
     }
-    latestRounds.forEach((round) => {
+    latestRounds.targetResults.forEach((round) => {
       const targetParty = party.id === round.source.partyId ? enemyParty : party
-      if (round.accuracySuccess) {
+      if (round.passedCount > 0) {
         if (round.dodgeSuccess) {
           log(<span>{NameSpan(round.target)} dodged the attack.</span>)
-        } else if (round.totalDamage.damage > 0) {
+        } else if (round.totalDamage.value > 0) {
           log(
             <span>
               {SkillSpan(round.skill)} deals{' '}
-              {Span('white', `${round.totalDamage.damage} damage`)} to{' '}
+              {Span('white', `${round.loggedDamgge.value} damage`)} to{' '}
               {NameSpan(round.target)}.
             </span>,
           )
@@ -103,13 +101,13 @@ export const CombatLogContextProvider = (
             </span>,
           )
         }
-        if (round.splashDamage.damage > 0) {
+        if (round.splashDamage.value > 0) {
           targetParty.characters
-            .filter((c) => c.id !== round.target.id && !c.dead)
+            .filter((c) => c.id !== round.target.id && c.health > 0)
             .forEach((subTarget) => {
               const splashDamageResistance = getDamageResistance(
                 subTarget,
-                round.splashDamage.type,
+                round.splashDamage,
               )
               log(
                 <span>
@@ -117,7 +115,7 @@ export const CombatLogContextProvider = (
                   {Span(
                     'white',
                     `${
-                      round.splashDamage.damage - splashDamageResistance
+                      round.splashDamage.value - splashDamageResistance
                     } splash damage`,
                   )}{' '}
                   to {NameSpan(subTarget)}.
@@ -126,15 +124,16 @@ export const CombatLogContextProvider = (
             })
         }
 
-        if (round.reflectedDamage.damage > 0) {
+        if (round.reflectedDamage.value > 0) {
           log(
             <span>
               {NameSpan(round.target)} reflected{' '}
-              {Span('white', `${round.reflectedDamage.damage} damage`)}
+              {Span('white', `${round.reflectedDamage.value} damage`)}
             </span>,
           )
         }
 
+        /* TODO
         if (round.healing > 0) {
           log(
             <span>
@@ -144,25 +143,22 @@ export const CombatLogContextProvider = (
             </span>,
           )
         }
+        */
 
-        round.addedStatus.forEach((tag) => {
+        round.addedStatus.forEach((status) => {
+          const statusConfig = STATUS_CONFIG[status]
           log(
             <span>
-              {NameSpan(round.target)} became {tag.type}
-              {tag.duration > 0 ? ` (${tag.duration} turns)` : ''}.
+              {NameSpan(round.target)} became {status}
+              {statusConfig.duration > 0
+                ? ` (${statusConfig.duration} turns)`
+                : ''}
+              .
             </span>,
           )
         })
       }
     })
-    if (baseRound.regeneratedHealth > 0) {
-      log(
-        <span>
-          {NameSpan(baseRound.source)} gained{' '}
-          {Span('white', `${baseRound.regeneratedHealth} HP`)} from HP regen.
-        </span>,
-      )
-    }
   }, [roundResults.length])
 
   return (

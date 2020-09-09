@@ -1,9 +1,6 @@
 import React, { useMemo, useEffect, useState } from 'react'
-import { CombatRewardT } from '../../types/CombatReward'
-import { consolidateRewards, commitRewards } from '../../functions'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { Button } from '../../elements/button'
-import { useHistory } from 'react-router'
 import { usePartyContext } from '../../contexts/PartyContext'
 import { useModalContext } from '../../contexts/ModalContext'
 import Gold from '../../icons/svg/delapouite/coins.svg'
@@ -11,9 +8,12 @@ import XP from '../../icons/svg/lorc/laurel-crown.svg'
 import { Icon } from '../Icon'
 import { ItemPreivew } from '../ItemPreview'
 import { useGameStateContext } from '../../contexts/GameStateContext'
+import { tCombatReward } from '../../game/Other/types'
+import { consolidateRewards } from '../../game/Other/util'
+import { commitRewards } from '../../game/Party/util'
 
 export interface CombatVictoryModalPropsT {
-  rewards: CombatRewardT[]
+  rewards: tCombatReward[]
 }
 
 export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
@@ -21,7 +21,6 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
   const { rawParty, updateParty } = usePartyContext()
   const { nextLevel } = useGameStateContext()
   const { close } = useModalContext()
-  const history = useHistory()
   const consolidatedRewards = useMemo(() => consolidateRewards(rewards), [
     rewards,
   ])
@@ -32,7 +31,6 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
     if (items.length === 0) {
       close()
       nextLevel()
-      history.push('/JSFTK_combat/party')
     } else {
       setItems((i) => {
         const [first, ...rest] = i

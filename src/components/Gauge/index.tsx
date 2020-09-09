@@ -1,13 +1,13 @@
 import React, { CSSProperties } from 'react'
 import { BoxContainer } from '../../elements/box'
-import { FlexContainer, FullContainer } from '../../elements/flex'
+import { FullContainer } from '../../elements/flex'
 import { HoverToolTip } from '../Tooltip'
 import { Monodiv } from '../../elements/monospace'
-import { ProcessedCharacterT } from '../../types'
 import { noneg } from '../../util'
-import { CHARACTER_XP_MAX } from '../../objects/Character'
 import { usePrevious } from '../../hooks/usePrevious'
 import { Spring } from 'react-spring/renderprops'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { CHARACTER_XP_MAX } from '../../game/Character/constants'
 
 export interface GaugePropsT {
   name?: string
@@ -19,7 +19,8 @@ export interface GaugePropsT {
   children?: React.ReactNode | React.ReactNode[]
 }
 export const Gauge = (props: GaugePropsT) => {
-  const { name = '', value, max, color, height = 30, children } = props
+  const { name = '', value, color, height = 30, children } = props
+  const max = props.max < 1 ? 1 : props.max
   const p = (value / max) * 100
   const percentage = p > 100 ? 100 : p
   const oldPercentage = usePrevious(percentage)
@@ -83,30 +84,30 @@ export const Gauge = (props: GaugePropsT) => {
 }
 
 export interface HealthGaugePropsT {
-  character: ProcessedCharacterT
+  character: tProcessedCharacter
   height?: number
 }
 export const HealthGauge = (props: HealthGaugePropsT) => {
   const { character, height = 12 } = props
-  const health = noneg(character.health - character.stats.healthOffset)
+  const health = noneg(character.health)
   return (
     <Gauge
       name='Health'
       color='#8f4e4d'
-      max={character.health}
+      max={character.maxHealth}
       value={health}
       height={height}
     >
-      {health}/{character.health}
+      {health}/{character.maxHealth}
     </Gauge>
   )
 }
 export interface XPGaugePropsT {
-  character: ProcessedCharacterT
+  character: tProcessedCharacter
 }
 export const XPGauge = (props: HealthGaugePropsT) => {
   const { character } = props
-  const value = character.xp
+  const value = character.experience
   const max = CHARACTER_XP_MAX[character.level]
   return (
     <Gauge name='XP' color='#5e8575' max={max} value={value} height={12}>

@@ -1,36 +1,35 @@
 import React, { useMemo, useContext, useState } from 'react'
-import {
-  PartyT,
-  ProcessedPartyT,
-  CharacterT,
-  ProcessedCharacterT,
-  WeaponT,
-  ArmorT,
-} from '../../types'
 import { usePartyActions, useParty } from '../../state/party'
+import { tProcessedParty, tParty } from '../../game/Party/type'
+import { tProcessedCharacter, tCharacter } from '../../game/Character/type'
 import {
-  findCharacterInParty,
   processParty,
   makeParty,
+  findCharacterInParty,
+} from '../../game/Party/util'
+import {
+  checkForProcessedCharacter,
   processCharacter,
   makeCharacter,
   equipArmor,
   equipWeapon,
   unequipArmor,
-} from '../../functions'
+} from '../../game/Character/util'
+import { tWeapon } from '../../game/Weapon/type'
+import { tArmor } from '../../game/Armor/type'
 
 export interface PartyContextT {
-  party: ProcessedPartyT
-  rawParty: PartyT
-  activeCharacter: ProcessedCharacterT
-  updateParty: (party: PartyT) => void
-  upsertCharacter: (character: CharacterT) => void
+  party: tProcessedParty
+  rawParty: tParty
+  activeCharacter: tProcessedCharacter
+  updateParty: (party: tParty) => void
+  upsertCharacter: (character: tCharacter) => void
   deleteCharacter: (characterId: string) => void
-  findCharacter: (characterId: string) => ProcessedCharacterT | undefined
-  findRawCharacter: (characterId: string) => CharacterT | undefined
-  setActiveCharacter: (character: ProcessedCharacterT) => void
-  equipItem: (characterId: string, item: WeaponT | ArmorT) => void
-  unequipItem: (characterId: string, item: WeaponT | ArmorT) => void
+  findCharacter: (characterId: string) => tProcessedCharacter | undefined
+  findRawCharacter: (characterId: string) => tCharacter | undefined
+  setActiveCharacter: (character: tProcessedCharacter) => void
+  equipItem: (characterId: string, item: tWeapon | tArmor) => void
+  unequipItem: (characterId: string, item: tWeapon | tArmor) => void
 }
 const defaultContextValue: PartyContextT = {
   rawParty: makeParty(),
@@ -63,25 +62,23 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
   const activeCharacter = useMemo(() => {
     return party.characters.find(
       (c) => c.id === activeCharacterId,
-    ) as ProcessedCharacterT
+    ) as tProcessedCharacter
   }, [activeCharacterId, party.characters])
-  const setActiveCharacter = (character: ProcessedCharacterT) =>
+  const setActiveCharacter = (character: tProcessedCharacter) =>
     setActiveCharacterId(character.id)
-  const updateParty = (party: PartyT) => {
+  const updateParty = (party: tParty) => {
     actions.updateParty(party)
   }
-  const upsertCharacter = (character: CharacterT) => {
+  const upsertCharacter = (character: tCharacter) => {
     if (!character) return
-    if ((character as ProcessedCharacterT).processed) {
-      throw new Error('No processed Characters Allowed')
-    }
+    checkForProcessedCharacter(character)
     actions.upsertCharacter(character)
   }
   const deleteCharacter = (characterId: string) => {
     actions.deleteCharacter(characterId)
   }
   const findCharacter = (characterId: string) => {
-    return findCharacterInParty<ProcessedPartyT, ProcessedCharacterT>(
+    return findCharacterInParty<tProcessedParty, tProcessedCharacter>(
       party,
       characterId,
     )
@@ -90,11 +87,11 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
     return findCharacterInParty(rawParty, characterId)
   }
 
-  const equipItem = (characterId: string, item: WeaponT | ArmorT) => {
+  const equipItem = (characterId: string, item: tWeapon | tArmor) => {
     const character = findRawCharacter(characterId)
     if (!character) return
     if (item.itemType === 'armor') {
-      const armor = item as ArmorT
+      const armor = item as tArmor
       if (armor.resource === 'offhand' && character.weapon.twoHand) return
       const result = equipArmor(character, armor)
       updateParty({
@@ -109,7 +106,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
       })
     }
     if (item.itemType === 'weapon') {
-      const weapon = item as WeaponT
+      const weapon = item as tWeapon
       if (character.weapon.twoHand) {
         if (character.armor.find((a) => a.resource === 'offhand')) {
           return
@@ -128,11 +125,11 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
       })
     }
   }
-  const unequipItem = (characterId: string, item: WeaponT | ArmorT) => {
+  const unequipItem = (characterId: string, item: tWeapon | tArmor) => {
     const character = findRawCharacter(characterId)
     if (!character) return
     if (item.itemType === 'armor') {
-      const armor = item as ArmorT
+      const armor = item as tArmor
       const result = unequipArmor(character, armor.resource)
       updateParty({
         ...rawParty,
