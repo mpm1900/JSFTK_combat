@@ -12,6 +12,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       healthRegeneration: -6,
     },
+    immunities: [],
   },
   burning: {
     name: 'Burning',
@@ -23,6 +24,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       healthRegeneration: -6,
     },
+    immunities: [],
   },
   // TODO: Different cursed status' for different stats
   cursed: {
@@ -34,6 +36,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
     stats: {
       ...ZERO_STATS,
     },
+    immunities: [],
   },
   frozen: {
     name: 'Frozen',
@@ -45,6 +48,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       damageTakenModifier: 25,
     },
+    immunities: [],
   },
   poisoned: {
     name: 'Poisoned',
@@ -61,6 +65,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       charisma: -5,
       healthRegeneration: -3,
     },
+    immunities: [],
   },
   // TODO: Shocked status
   shocked: {
@@ -72,6 +77,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
     stats: {
       ...ZERO_STATS,
     },
+    immunities: [],
   },
   stunned: {
     name: 'Stunned',
@@ -83,6 +89,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       queueConsolidationModifier: -1,
     },
+    immunities: [],
   },
   // TODO: Wet Status
   wet: {
@@ -94,6 +101,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
     stats: {
       ...ZERO_STATS,
     },
+    immunities: [],
   },
   'armor-up': {
     name: 'Armor Up',
@@ -105,6 +113,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       armor: 5,
     },
+    immunities: [],
   },
   'attack-up': {
     name: 'Attack Up',
@@ -116,6 +125,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       attackDamageOffset: 5,
     },
+    immunities: [],
   },
   'evade-up': {
     name: 'Evade Up',
@@ -127,6 +137,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       evasion: 15,
     },
+    immunities: [],
   },
   'resistance-up': {
     name: 'Resistance Up',
@@ -138,6 +149,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       resistance: 5,
     },
+    immunities: [],
   },
   'speed-up': {
     name: 'Speed Up',
@@ -149,6 +161,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       agility: 15,
     },
+    immunities: [],
   },
   'armor-down': {
     name: 'Armor Down',
@@ -160,6 +173,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       armor: -5,
     },
+    immunities: [],
   },
   'attack-down': {
     name: 'Attack Down',
@@ -171,6 +185,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       attackDamageOffset: -5,
     },
+    immunities: [],
   },
   'evade-down': {
     name: 'Evade Down',
@@ -182,6 +197,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       evasion: -15,
     },
+    immunities: [],
   },
   'resistance-down': {
     name: 'Resistance Down',
@@ -193,6 +209,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       resistance: -5,
     },
+    immunities: [],
   },
   'speed-down': {
     name: 'Speed Down',
@@ -204,6 +221,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       agility: -15,
     },
+    immunities: [],
   },
   rushed: {
     name: 'Rushed',
@@ -215,6 +233,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       queueValueSet: 0,
     },
+    immunities: [],
   },
   interrupted: {
     name: 'Interrupted',
@@ -226,6 +245,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       queueValueSet: 70,
     },
+    immunities: [],
   },
   reset: {
     name: 'Reset',
@@ -237,6 +257,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
       queueValueSet: 100,
     },
+    immunities: [],
   },
   evasive: {
     name: 'Evasive',
@@ -247,6 +268,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
     stats: {
       ...ZERO_STATS,
     },
+    immunities: [],
   },
   resilient: {
     name: 'Resilient',
@@ -257,6 +279,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
     stats: {
       ...ZERO_STATS,
     },
+    immunities: [],
   },
   protected: {
     name: 'Protected',
@@ -267,6 +290,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
     stats: {
       ...ZERO_STATS,
     },
+    immunities: [],
   },
   targeted: {
     name: 'Targeted',
@@ -277,5 +301,17 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
     stats: {
       ...ZERO_STATS,
     },
+    immunities: [],
+  },
+  cure: {
+    name: 'Cure',
+    description: 'remove Poisoned, Bleeding, and Burning',
+    canStack: false,
+    isTemporary: true,
+    duration: 1,
+    stats: {
+      ...ZERO_STATS,
+    },
+    immunities: ['poisoned', 'bleeding', 'burning', 'frozen', 'wet', 'shocked'],
   },
 }

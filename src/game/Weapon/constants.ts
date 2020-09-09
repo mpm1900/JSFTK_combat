@@ -8,6 +8,9 @@ import { ALL_BLUNT } from './objects/blunt'
 import { ALL_BOWS } from './objects/bow'
 import { ALL_LUTES } from './objects/lute'
 import { ALL_TOMES } from './objects/tome'
+import { BANDIT_GLAIVE } from './objects/spear/bandit_glaive'
+import { BOKKEN } from './objects/sword/bokken'
+import { WOODCUTTERS_AXE } from './objects/axe/woodcutters_axe'
 
 export const CLASS_WEAPONS: Record<tCharacterClass, tWeapon> = {
   blacksmith: BLACKSMITHS_HAMMER(),
@@ -21,4 +24,8 @@ export const ALL_WEAPONS = () => [
   ...ALL_BOWS(),
   ...ALL_LUTES(),
   ...ALL_TOMES(),
+
+  BANDIT_GLAIVE(),
+  BOKKEN(),
+  WOODCUTTERS_AXE(),
 ]

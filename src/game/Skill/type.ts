@@ -14,9 +14,11 @@ export interface tSkill {
   splashDamageModifier: number
   weaponRangeOverride?: tDamageRange
   weaponStatOverride?: keyof tBaseStats
+  statusDurationOverride?: number
   targetType: tSkillTargetType
   rolls: number
   offset: number
+  // TODO change this to isDamageSkill or doesDamage
   damage: boolean
   healing: boolean
   perfectStatus: tStatusType[]

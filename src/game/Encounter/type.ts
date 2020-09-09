@@ -8,6 +8,7 @@ import { tStatusType } from '../Status/type'
 export type tEncounterType = 'combat' | 'shop' | 'rest' | 'reward' | 'shrine'
 export interface tEncounter {
   id: string
+  choiceId: string
   name: string
   type: tEncounterType
   reward: tEncounterReward
@@ -16,8 +17,7 @@ export interface tCombatEncounter extends tEncounter {
   party: tParty
 }
 export interface tShopEncounter extends tEncounter {
-  weapons: tWeapon[]
-  armor: tArmor[]
+  items: (tWeapon | tArmor)[]
   consumables: tConsumable[]
   costs: Record<string, number>
 }
@@ -35,6 +35,7 @@ export interface tEncounterReward {
 }
 
 export interface tEncounterChoice {
+  id: string
   depth: number
   value: 'left' | 'right' | undefined
   left: tEncounter

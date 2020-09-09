@@ -10,6 +10,7 @@ import { useGameStateContext } from '../contexts/GameStateContext'
 import { BoxContainer } from '../elements/box'
 import { getSkillResult } from '../game/Skill/util'
 import { commitSkillResults } from '../game/Skill/committer'
+import { Shop } from '../components/Shop'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()
@@ -78,14 +79,12 @@ export const Party = () => {
       </AppHeader>
       <FlexContainer $full $direction='column'>
         <FlexContainer $full>
-          <FlexContainer $direction='column' $full>
-            {currentEncounter && currentEncounter.type !== 'combat' && (
-              <FlexContainer>
-                <BoxContainer>
-                  <pre>{JSON.stringify(currentEncounter, null, 2)}</pre>
-                </BoxContainer>
-              </FlexContainer>
-            )}
+          <FlexContainer
+            $direction='column'
+            $full
+            style={{ marginLeft: '10%' }}
+          >
+            {currentEncounter && currentEncounter.type === 'shop' && <Shop />}
           </FlexContainer>
           <FlexContainer
             $direction='column'
@@ -123,8 +122,36 @@ export const Party = () => {
               </FlexContainer>
             )}
             {currentEncounter && (
-              <FlexContainer style={{ justifyContent: 'center' }}>
-                <Button onClick={() => nextLevel()}>Travel Deeper</Button>
+              <FlexContainer
+                $direction='column'
+                style={{ justifyContent: 'center' }}
+              >
+                {currentEncounter.type === 'shop' && (
+                  <>
+                    <h3
+                      style={{
+                        margin: '0 0 16px 0',
+                        color: 'white',
+                        textAlign: 'center',
+                      }}
+                    >
+                      You found a shop!
+                    </h3>
+                    <span
+                      style={{
+                        color: 'rgba(255,255,255,0.7)',
+                        marginBottom: 24,
+                      }}
+                    >
+                      Amidst your journey, you discover a merchant, a traveling
+                      salemen with all manor of wares to assist in your
+                      adventure.
+                    </span>
+                  </>
+                )}
+                <FlexContainer style={{ justifyContent: 'center' }}>
+                  <Button onClick={() => nextLevel()}>Travel Deeper</Button>
+                </FlexContainer>
               </FlexContainer>
             )}
           </FlexContainer>

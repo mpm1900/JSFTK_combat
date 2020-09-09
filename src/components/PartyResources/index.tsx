@@ -9,9 +9,9 @@ export const PartyResources = () => {
 
   return (
     <FlexContainer
-      style={{ alignItems: 'center', color: 'white', paddingRight: 20 }}
+      style={{ alignItems: 'center', paddingRight: 20, color: '#ded9a6' }}
     >
-      <Icon src={Gold} size={18} style={{ marginRight: 8 }} />
+      <Icon src={Gold} size={18} style={{ marginRight: 8 }} fill='#ded9a6' />
       {party.gold}
     </FlexContainer>
   )

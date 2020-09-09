@@ -135,7 +135,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             <FullContainer />
           </FlexContainer>
         </FlexContainer>
-        <LocalToastRp style={{ top: -20, right: -30, flexDirection: 'column' }}>
+        <LocalToastRp style={{ top: -24, right: -30, flexDirection: 'column' }}>
           {({ push }) => <Health character={character} push={push} />}
         </LocalToastRp>
       </FlexContainer>

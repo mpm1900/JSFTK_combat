@@ -10,6 +10,7 @@ export interface GameStateContextT {
   chooseCurrent: (value: 'left' | 'right') => void
   nextLevel: () => void
   reset: () => void
+  removeItem: (choiceId: string, encounterId: string, itemId: string) => void
 }
 
 export const defaultValue: GameStateContextT = {
@@ -20,6 +21,7 @@ export const defaultValue: GameStateContextT = {
   chooseCurrent: (value) => {},
   nextLevel: () => {},
   reset: () => {},
+  removeItem: (choiceId, encounterId, itemId) => {},
 }
 export const GameStateContext = React.createContext<GameStateContextT>(
   defaultValue,
@@ -32,8 +34,7 @@ export interface GameStateProviderPropsT {
 export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
   const { children } = props
   const { encounters, level } = useGameState()
-  const gsc = useGameStateActions()
-  const { nextLevel, chooseCurrent } = gsc
+  const { nextLevel, chooseCurrent, reset, removeItem } = useGameStateActions()
   const currentChoice = useMemo(() => {
     return encounters[level]
   }, [encounters, level])
@@ -43,10 +44,6 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
       return choice[choice.value]
     }
   }, [encounters, level])
-
-  const reset = () => {
-    gsc.reset()
-  }
 
   return (
     <GameStateContext.Provider
@@ -58,6 +55,7 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
         reset,
         nextLevel,
         chooseCurrent,
+        removeItem,
       }}
     >
       {children}

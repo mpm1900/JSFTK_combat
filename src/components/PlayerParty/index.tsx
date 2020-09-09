@@ -2,7 +2,7 @@ import React from 'react'
 import { FlexContainer } from '../../elements/flex'
 import { PartyCharacter } from '../PartyCharacter'
 import { useCombatContext } from '../../contexts/CombatContext'
-import { ConfirmButton } from '../../elements/button'
+import { ConfirmButton, RedButton } from '../../elements/button'
 import { tProcessedParty } from '../../game/Party/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tConsumable } from '../../game/Consumable/type'
@@ -54,9 +54,11 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
             {showConfirmButton(c) && (
               <FlexContainer style={{ justifyContent: 'center' }}>
                 <div style={{ boxShadow: '0px 2px 5px black' }}>
-                  <ConfirmButton onClick={() => next(c)} $direction='up'>
-                    Confirm Target
-                  </ConfirmButton>
+                  <RedButton onClick={() => next(c)} $direction='up'>
+                    {c.id === activeCharacter.id
+                      ? 'Target Self'
+                      : 'Target Ally'}
+                  </RedButton>
                 </div>
               </FlexContainer>
             )}
@@ -87,9 +89,7 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
       {selectedSkill && selectedSkill.targetType === 'party' && (
         <FlexContainer style={{ justifyContent: 'center' }}>
           <div style={{ boxShadow: '0px 2px 5px black' }}>
-            <ConfirmButton onClick={() => next(party)}>
-              Confirm Group Target
-            </ConfirmButton>
+            <RedButton onClick={() => next(party)}>Target Party</RedButton>
           </div>
         </FlexContainer>
       )}

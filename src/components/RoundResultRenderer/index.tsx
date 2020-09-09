@@ -98,7 +98,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
       )
     })
     stream.onEnd(() => {
-      Kefir.later(round.perfect ? 900 : 600, undefined).onValue(() => {
+      Kefir.later(round.perfect ? 1200 : 900, undefined).onValue(() => {
         setIsDone(true)
       })
     })

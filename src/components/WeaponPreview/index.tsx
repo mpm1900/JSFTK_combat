@@ -7,6 +7,8 @@ import { StatsPreview } from '../StatsPreview'
 import { Button } from '../../elements/button'
 import { tWeapon } from '../../game/Weapon/type'
 import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
+import { Icon } from '../Icon'
+import { WEAPON_TYPE_ICONS } from '../../icons/maps'
 
 export const getDamageColor = (weapon: tWeapon) => {
   if (weapon.damage.type === 'physical') return 'lightblue'
@@ -17,10 +19,20 @@ export const getDamageColor = (weapon: tWeapon) => {
 export interface WeaponPreviewPropsT {
   weapon: tWeapon
   showEquipButton?: boolean
+  showBuyButton?: boolean
+  cost?: number
   onEquipClick?: () => void
+  onBuyClick?: () => void
 }
 export const WeaponPreview = (props: WeaponPreviewPropsT) => {
-  const { weapon, showEquipButton, onEquipClick } = props
+  const {
+    weapon,
+    showEquipButton,
+    showBuyButton,
+    cost = 0,
+    onEquipClick,
+    onBuyClick,
+  } = props
   const basicAttack = weapon.skills[0]
   const rarityColor = ITEM_RARITY_COLORS[weapon.rarity]
   const from = Color(rarityColor).darken(0.5).rgb().toString()
@@ -43,7 +55,13 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
               ))}
           </FlexContainer>
         )}
-        <FlexContainer>
+        <FlexContainer style={{ alignItems: 'center' }}>
+          <Icon
+            src={WEAPON_TYPE_ICONS[weapon.type]}
+            size={32}
+            style={{ marginRight: 10 }}
+            shadow
+          />
           <FlexContainer
             $direction='column'
             style={{
@@ -96,6 +114,13 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
             <StatsPreview stats={weapon.stats} />
           </FlexContainer>
         </BoxContainer>
+        {showBuyButton && (
+          <FlexContainer style={{ justifyContent: 'center', marginTop: 10 }}>
+            <Button onClick={onBuyClick} style={{ padding: '4px 16px' }}>
+              Buy ({cost || 0})
+            </Button>
+          </FlexContainer>
+        )}
       </FlexContainer>
     </BoxContainer>
   )

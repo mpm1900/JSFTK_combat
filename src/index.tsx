@@ -20,13 +20,13 @@ ReactDOM.render(
   <React.StrictMode>
     <ReduxProvider store={store}>
       <StyletronProvider value={engine} debug={debug} debugAfterHydration>
-        <PartyContextProvider>
-          <GameStateContextProvider>
+        <GameStateContextProvider>
+          <PartyContextProvider>
             <Router>
               <App />
             </Router>
-          </GameStateContextProvider>
-        </PartyContextProvider>
+          </PartyContextProvider>
+        </GameStateContextProvider>
       </StyletronProvider>
     </ReduxProvider>
   </React.StrictMode>,

@@ -2,7 +2,7 @@ import { tDamage } from '../Damage/type'
 import { tBaseStats, tStats } from '../Stats/type'
 import { tItem } from '../Item/type'
 import { tSkill } from '../Skill/type'
-import { tStatus } from '../Status/type'
+import { tStatus, tStatusType } from '../Status/type'
 
 export type tWeaponType =
   | 'enemy'
@@ -26,5 +26,5 @@ export interface tWeapon extends tItem {
 
   skills: tSkill[]
   stats: tStats
-  immunities: tStatus[]
+  immunities: tStatusType[]
 }

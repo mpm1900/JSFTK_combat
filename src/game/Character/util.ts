@@ -3,7 +3,7 @@ import { tStats, tBaseStats } from '../Stats/type'
 import { combineStats } from '../Stats/util'
 import { tSkill } from '../Skill/type'
 import { CLASS_STATS } from '../Stats/constants'
-import { tStatusType } from '../Status/type'
+import { tStatusType, tStatus } from '../Status/type'
 import { STATUS_CONFIG } from '../Status/constants'
 import { v4 } from 'uuid'
 import { tDamage } from '../Damage/type'
@@ -16,6 +16,7 @@ import { CLASS_ARMOR } from '../Armor/constants'
 import { tCombatReward } from '../Other/types'
 import { CLASS_CONSUMABLES } from '../Consumable/constants'
 import { considateConsumableListToStack } from '../Consumable/util'
+import { mapTypeToStatus } from '../Status/util'
 
 export const isCharacter = (obj: any): boolean =>
   obj !== undefined && obj.isCharacter !== undefined
@@ -74,6 +75,19 @@ export const processCharacter = (
     ...character.status.map((s) => s.stats),
   )
   const skills = getSkills(character)
+  const statusImmunities = character.status.reduce(
+    (r, s) => [...r, ...s.immunities],
+    [] as tStatusType[],
+  )
+  const immunities = [
+    ...character.immunities,
+    ...character.weapon.immunities,
+    ...character.armor.reduce(
+      (r, a) => [...r, ...a.immunities],
+      [] as tStatusType[],
+    ),
+    ...statusImmunities,
+  ]
   const baseVigor = CLASS_STATS[character.class].vigor || character.stats.vigor
   const startingHealth = 25 + Math.floor(0.1 * baseVigor)
   const maxHealth =
@@ -94,6 +108,7 @@ export const processCharacter = (
     maxInspiration,
 
     stats,
+    immunities,
     rawStats: character.stats,
     skills,
   }
@@ -181,6 +196,7 @@ export const decrementStatusDurations = (character: tCharacter): tCharacter => {
 export const addStatus = (
   character: tCharacter,
   type: tStatusType,
+  durationOverride?: number,
 ): tCharacter => {
   checkForProcessedCharacter(character)
   const statusConfig = STATUS_CONFIG[type]
@@ -207,7 +223,8 @@ export const addStatus = (
       {
         type,
         stats: statusConfig.stats,
-        duration: statusConfig.duration,
+        immunities: statusConfig.immunities,
+        duration: durationOverride || statusConfig.duration,
         stack: 1,
       },
     ],
@@ -221,6 +238,20 @@ export const addMultipleStatus = (
   return types.reduce((result, type) => {
     return addStatus(result, type)
   }, character)
+}
+
+export const checkStatus = (character: tCharacter) => {
+  checkForProcessedCharacter(character)
+  let c = { ...character }
+  character.status.forEach((status) => {
+    if (hasImmunity(character, status.type)) {
+      c = {
+        ...c,
+        status: c.status.filter((c) => c.type !== status.type),
+      }
+    }
+  })
+  return c
 }
 
 export const removeTemporaryStatus = (character: tCharacter): tCharacter => {

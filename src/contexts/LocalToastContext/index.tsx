@@ -109,6 +109,7 @@ export const Toast = (props: ToastPropsT) => {
         display: 'flex',
         height: 0,
         top: -24,
+        zIndex: 3,
         ...(style || {}),
       }}
     >

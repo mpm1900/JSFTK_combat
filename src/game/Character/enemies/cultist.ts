@@ -75,13 +75,13 @@ export const CULTIST = (): tCharacter => {
       {
         gold: 20,
         xp: 20,
-        items: [EXPLORERS_BOOTS()],
+        items: [getRandom(ALL_ARMOR())],
         consumables: [],
       },
       {
         gold: 20,
         xp: 20,
-        items: [EXPLORERS_HAT()],
+        items: [getRandom(ALL_ARMOR())],
         consumables: [],
       },
       {

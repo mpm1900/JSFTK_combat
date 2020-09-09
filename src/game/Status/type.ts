@@ -31,9 +31,11 @@ export type tStatusType =
   | 'evasive'
   | 'resilient'
   | 'targeted'
+  | 'cure'
 export interface tStatus {
   type: tStatusType
   stats: tStats
+  immunities: tStatusType[]
   duration: number
   stack: number
 }
@@ -44,4 +46,5 @@ export interface tStatusConfig {
   isTemporary: boolean
   duration: number
   stats: tStats
+  immunities: tStatusType[]
 }

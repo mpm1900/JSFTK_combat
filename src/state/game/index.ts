@@ -3,7 +3,7 @@ import { makeReducer } from '../util'
 import { useSelector } from 'react-redux'
 import { useActions } from '../../hooks/useActions'
 import { Dispatch } from 'redux'
-import { tEncounterChoice } from '../../game/Encounter/type'
+import { tEncounterChoice, tShopEncounter } from '../../game/Encounter/type'
 import { makeEncounterList } from '../../game/Encounter/util'
 
 export interface GameStateT {
@@ -14,6 +14,7 @@ export interface GameStateT {
 export const RESET = '@action/game/reset'
 export const CHOOSE_CURRENT = '@action/game/choose-current'
 export const NEXT_LEVEL = '@action/game/next-level'
+export const REMOVE_ITEM = '@action/game/remove-item'
 
 export const actionCreators = {
   reset: (): StateActionT => ({
@@ -30,6 +31,18 @@ export const actionCreators = {
     type: NEXT_LEVEL,
     payload: {},
   }),
+  removeItem: (
+    choiceId: string,
+    encounterId: string,
+    itemId: string,
+  ): StateActionT => ({
+    type: REMOVE_ITEM,
+    payload: {
+      choiceId,
+      encounterId,
+      itemId,
+    },
+  }),
 }
 
 export const actions = {
@@ -41,6 +54,11 @@ export const actions = {
   },
   nextLevel: () => (dispatch: Dispatch) => {
     dispatch(actionCreators.nextLevel())
+  },
+  removeItem: (choiceId: string, encounterId: string, itemId: string) => (
+    dispatch: Dispatch,
+  ) => {
+    dispatch(actionCreators.removeItem(choiceId, encounterId, itemId))
   },
 }
 
@@ -72,6 +90,46 @@ export const core: StateCoreT<GameStateT> = {
       level: state.level + 1,
     }
   },
+  [REMOVE_ITEM]: (state, action) => {
+    return {
+      ...state,
+      encounters: state.encounters.map((choice) => {
+        if (choice.id === action.payload.choiceId) {
+          if (
+            choice.left.id === action.payload.encounterId &&
+            choice.left.type === 'shop'
+          ) {
+            return {
+              ...choice,
+              left: {
+                ...choice.left,
+                items: (choice.left as tShopEncounter).items.filter(
+                  (i) => i.id !== action.payload.itemId,
+                ),
+              } as tShopEncounter,
+            }
+          }
+          if (
+            choice.right.id === action.payload.encounterId &&
+            choice.right.type === 'shop'
+          ) {
+            return {
+              ...choice,
+              right: {
+                ...choice.right,
+                items: (choice.right as tShopEncounter).items.filter(
+                  (i) => i.id !== action.payload.itemId,
+                ),
+              } as tShopEncounter,
+            }
+          }
+          return choice
+        } else {
+          return choice
+        }
+      }),
+    }
+  },
 }
 
 export const INITIAL_STATE: GameStateT = {
@@ -86,4 +144,5 @@ export const useGameStateActions = () =>
     reset: () => void
     chooseCurrent: (value: 'left' | 'right') => void
     nextLevel: () => void
+    removeItem: (choiceId: string, encounterId: string, itemId: string) => void
   }

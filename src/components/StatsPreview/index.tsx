@@ -6,6 +6,7 @@ import {
   STAT_KEY_LABELS,
   DAMAGE_BONUS_KEYS,
   STAT_BONUS_KEYS,
+  HEALTH_FOCUS_BONUS_KEYS,
 } from '../../game/Stats/constants'
 
 export interface StatsPreviewPropsT {
@@ -36,6 +37,15 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
           ),
       )}
       {DAMAGE_BONUS_KEYS.map(
+        (key) =>
+          (stats[key] as number) > 0 && (
+            <span style={{ textTransform: 'capitalize' }}>
+              +{stats[key]}
+              {STAT_KEY_LABELS[key]}
+            </span>
+          ),
+      )}
+      {HEALTH_FOCUS_BONUS_KEYS.map(
         (key) =>
           (stats[key] as number) > 0 && (
             <span style={{ textTransform: 'capitalize' }}>

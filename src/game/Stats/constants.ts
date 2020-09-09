@@ -121,7 +121,10 @@ export const DEFENSE_BONUS_KEYS: (keyof tStats)[] = [
   'healthRegeneration',
   'damageReflection',
 ]
-export const HEALTH_FOCUS_BONUS_KEYS: (keyof tStats)[] = ['maxHealthOffset']
+export const HEALTH_FOCUS_BONUS_KEYS: (keyof tStats)[] = [
+  'maxHealthOffset',
+  'maxInspirationOffset',
+]
 export const STAT_BONUS_KEYS: (keyof tBaseStats)[] = [
   'vigor',
   'strength',
@@ -161,7 +164,7 @@ export const STAT_KEY_LABELS: Record<keyof tStats, string> = {
   attackDamageModifier: '% Attack Damage',
 
   goldModifier: '% Gold Recieved',
-  maxInspirationOffset: ' Inspiration',
+  maxInspirationOffset: ' Max Inspiration',
   minHealthOffset: ' Minumum Health',
   consumableHealthGainOffset: ' HP from Consumables',
 }

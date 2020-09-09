@@ -41,6 +41,7 @@ export const VALE_IMP = (): tCharacter => {
         type: 'evasive',
         stats: ZERO_STATS,
         stack: 0,
+        immunities: [],
       },
     ],
     immunities: [],

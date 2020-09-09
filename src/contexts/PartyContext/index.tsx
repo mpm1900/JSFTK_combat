@@ -17,6 +17,7 @@ import {
 } from '../../game/Character/util'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
+import { useGameStateContext } from '../GameStateContext'
 
 export interface PartyContextT {
   party: tProcessedParty
@@ -30,6 +31,7 @@ export interface PartyContextT {
   setActiveCharacter: (character: tProcessedCharacter) => void
   equipItem: (characterId: string, item: tWeapon | tArmor) => void
   unequipItem: (characterId: string, item: tWeapon | tArmor) => void
+  purchaseItem: (item: tArmor | tWeapon, cost: number) => void
 }
 const defaultContextValue: PartyContextT = {
   rawParty: makeParty(),
@@ -43,6 +45,7 @@ const defaultContextValue: PartyContextT = {
   setActiveCharacter: (character) => {},
   equipItem: (characterId, item) => {},
   unequipItem: (characterId, item) => {},
+  purchaseItem: (item, cost) => {},
 }
 export const PartyContext = React.createContext<PartyContextT>(
   defaultContextValue,
@@ -55,6 +58,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
   const { children } = props
   const actions = usePartyActions()
   const rawParty = useParty()
+  const { currentChoice, currentEncounter, removeItem } = useGameStateContext()
   const party = useMemo(() => processParty(rawParty), [rawParty])
   const [activeCharacterId, setActiveCharacterId] = useState<string>(
     party.characters[0].id,
@@ -145,6 +149,13 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
     if (item.itemType === 'weapon') {
     }
   }
+  const purchaseItem = (item: tArmor | tWeapon, cost: number) => {
+    if (party.gold > cost && currentChoice && currentEncounter) {
+      actions.upsertItem(item)
+      actions.setGold(party.gold - cost)
+      removeItem(currentChoice.id, currentEncounter.id, item.id)
+    }
+  }
 
   return (
     <PartyContext.Provider
@@ -160,6 +171,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
         setActiveCharacter,
         equipItem,
         unequipItem,
+        purchaseItem,
       }}
     >
       {children}
