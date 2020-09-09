@@ -1,31 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7966d4b315c3aa68b3f304fd73129809",
+    "revision": "b2524fa1c18861b97572fa1de60707c6",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "5aba54d20c41dbad2717",
+    "revision": "752bf3b7c340e69d7239",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "43521b79f3488204773f",
+    "revision": "4a313a1fd8ff7d6a93d1",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
-    "revision": "5aba54d20c41dbad2717",
-    "url": "/JSFTK_combat/static/js/2.0f2f276d.chunk.js"
+    "revision": "752bf3b7c340e69d7239",
+    "url": "/JSFTK_combat/static/js/2.6f84b5c8.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.0f2f276d.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.6f84b5c8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "43521b79f3488204773f",
-    "url": "/JSFTK_combat/static/js/main.be07293f.chunk.js"
+    "revision": "4a313a1fd8ff7d6a93d1",
+    "url": "/JSFTK_combat/static/js/main.9e8474ec.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
     "url": "/JSFTK_combat/static/js/runtime-main.0208154f.js"
+  },
+  {
+    "revision": "cd8a3e4eff5a6e8d7b85054c663e7bc7",
+    "url": "/JSFTK_combat/static/media/axe-in-stump.cd8a3e4e.svg"
   },
   {
     "revision": "d0246d45f337daf2893e0f226ca8125d",
@@ -34,6 +38,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "f798765b7d03667cb4e97519c2d8ac31",
     "url": "/JSFTK_combat/static/media/bandit.f798765b.svg"
+  },
+  {
+    "revision": "47a5ba50f04f1cb9bd4d65d4925ffc1d",
+    "url": "/JSFTK_combat/static/media/battle-axe.47a5ba50.svg"
   },
   {
     "revision": "7b0a046716be2b0b94affb756cd143a8",
@@ -52,8 +60,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/bleeding-wound.8d92779f.svg"
   },
   {
+    "revision": "a02eb2a54ff9b7a10e130bde24ec5d45",
+    "url": "/JSFTK_combat/static/media/book-cover.a02eb2a5.svg"
+  },
+  {
     "revision": "56c12b47cb95e4ebc666b80bce202d55",
     "url": "/JSFTK_combat/static/media/bordered-shield.56c12b47.svg"
+  },
+  {
+    "revision": "e782173657660876745de84155043fdf",
+    "url": "/JSFTK_combat/static/media/bowie-knife.e7821736.svg"
   },
   {
     "revision": "ce65603aad418a38f66ca50c558c6d54",
@@ -120,6 +136,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/g-clef.77d209b5.svg"
   },
   {
+    "revision": "e0256fffb50e874db1b94989efe9f33c",
+    "url": "/JSFTK_combat/static/media/gavel.e0256fff.svg"
+  },
+  {
+    "revision": "a02399f04b2fd44aa14b543b0c42769a",
+    "url": "/JSFTK_combat/static/media/guitar.a02399f0.svg"
+  },
+  {
     "revision": "120a92c4a39eb00df25785bfd28ce44a",
     "url": "/JSFTK_combat/static/media/hammer-drop.120a92c4.svg"
   },
@@ -130,6 +154,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "6b1fff9cb5e2110279e244c55db7e48e",
     "url": "/JSFTK_combat/static/media/heart-beats.6b1fff9c.svg"
+  },
+  {
+    "revision": "56b29a8a1e0a443f4e40a494020934ec",
+    "url": "/JSFTK_combat/static/media/heavy-arrow.56b29a8a.svg"
   },
   {
     "revision": "1072a406752da014552c38ff55c28577",
@@ -168,6 +196,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/leather-boot.89b85474.svg"
   },
   {
+    "revision": "c0c7c0400f1c681b506fcfbaf2336935",
+    "url": "/JSFTK_combat/static/media/life-support.c0c7c040.svg"
+  },
+  {
     "revision": "6ad63d45bcabfb490cecbbd2758ccfea",
     "url": "/JSFTK_combat/static/media/light-backpack.6ad63d45.svg"
   },
@@ -186,6 +218,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "d042ac9872801c1f6b9c303ae81827d7",
     "url": "/JSFTK_combat/static/media/pointy-hat.d042ac98.svg"
+  },
+  {
+    "revision": "bd82b38de46ff40a90efe383348b841b",
+    "url": "/JSFTK_combat/static/media/pointy-sword.bd82b38d.svg"
+  },
+  {
+    "revision": "25251236ca46407c1df616bc4ade607e",
+    "url": "/JSFTK_combat/static/media/revolver.25251236.svg"
   },
   {
     "revision": "5b61ecba7d48947b3cea60e131678a07",
@@ -228,8 +268,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/sticky-boot.f097559f.svg"
   },
   {
+    "revision": "446ebd426e202da9fab00b221c58e686",
+    "url": "/JSFTK_combat/static/media/stone-spear.446ebd42.svg"
+  },
+  {
     "revision": "b4ce8dd7f99f409ff77d54e173a690b7",
     "url": "/JSFTK_combat/static/media/targeted.b4ce8dd7.svg"
+  },
+  {
+    "revision": "ae5d9c4cec0cee985ce2aef3dc5f1ba4",
+    "url": "/JSFTK_combat/static/media/torch.ae5d9c4c.svg"
   },
   {
     "revision": "30335592156f2f6ee12e1d65a8cd5a82",
@@ -242,6 +290,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "1f2ced7f3e4f768c0c73542c5b8a9619",
     "url": "/JSFTK_combat/static/media/visored-helm.1f2ced7f.svg"
+  },
+  {
+    "revision": "1fe6dbabb1374c4fc5e1a09dce2e3257",
+    "url": "/JSFTK_combat/static/media/wave-strike.1fe6dbab.svg"
+  },
+  {
+    "revision": "3e6091b9903623c1793701c92f4c4bd7",
+    "url": "/JSFTK_combat/static/media/wizard-staff.3e6091b9.svg"
   },
   {
     "revision": "4e7bf3628a2aea541efd90e40fe98ac9",
