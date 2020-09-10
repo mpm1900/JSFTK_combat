@@ -8,12 +8,12 @@ import XP from '../../icons/svg/lorc/laurel-crown.svg'
 import { Icon } from '../Icon'
 import { ItemPreivew } from '../ItemPreview'
 import { useGameStateContext } from '../../contexts/GameStateContext'
-import { tCombatReward } from '../../game/Other/types'
 import { consolidateRewards } from '../../game/Other/util'
 import { commitRewards } from '../../game/Party/util'
+import { tEncounterReward } from '../../game/Encounter/type'
 
 export interface CombatVictoryModalPropsT {
-  rewards: tCombatReward[]
+  rewards: tEncounterReward[]
 }
 
 export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {

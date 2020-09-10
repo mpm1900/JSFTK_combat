@@ -21,8 +21,10 @@ export interface tShopEncounter extends tEncounter {
   costs: Record<string, number>
 }
 export interface tShrineEncounter extends tEncounter {
-  check: { key: keyof tBaseStats; offset: number }[]
-  results: Record<number, tEncounterReward>
+  stat: keyof tBaseStats
+  offset: number
+  rolls: number
+  results: tEncounterReward[]
 }
 
 export interface tEncounterReward {
@@ -30,6 +32,7 @@ export interface tEncounterReward {
   xp: number
   items: (tArmor | tWeapon | tConsumable)[]
   status: tStatusType[]
+  immunities: tStatusType[]
 }
 
 export interface tEncounterChoice {

@@ -6,26 +6,31 @@ import { Badge } from '../../elements/badge'
 import { CheckKVT } from '../RoundResultRenderer'
 import X from '../../icons/svg/lorc/split-cross.svg'
 import { tSkill } from '../../game/Skill/type'
-import { tStats, tBaseStats } from '../../game/Stats/type'
+import { tBaseStats } from '../../game/Stats/type'
 import { tStatusType } from '../../game/Status/type'
 
 export interface SkillChecksPropsT {
   stat: keyof tBaseStats
-  skill: tSkill
+  skill?: tSkill
+  rolls?: number
+  results?: boolean[]
 }
 export const SkillChecks = (props: SkillChecksPropsT) => {
-  const { stat, skill } = props
+  const { stat, skill, rolls, results = [] } = props
   return (
     <FlexContainer
       style={{ justifyContent: 'center', padding: '0px 0 24px 0' }}
     >
-      {Array(skill.rolls)
+      {Array(skill?.rolls || rolls)
         .fill(null)
         .map((_, i) => (
           <SkillCheck
             key={i}
             skill={skill}
-            check={{ label: stat, result: undefined }}
+            perfect={
+              results.every((r) => r === true) && results.length === rolls
+            }
+            check={{ label: stat, result: results[i] }}
           />
         ))}
     </FlexContainer>
@@ -38,11 +43,11 @@ export interface SkillCheckT {
   padding?: number
   perfect?: boolean
   crit?: boolean
-  skill: tSkill
+  skill?: tSkill
 }
 export const SkillCheck = (props: SkillCheckT) => {
   const { check, size = 36, padding = 12, perfect = false, skill, crit } = props
-  const colors = getPerfectStatusColors(skill.perfectStatus, crit)
+  const colors = getPerfectStatusColors(skill?.perfectStatus || [], crit)
   return (
     <div
       style={{

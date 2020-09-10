@@ -6,6 +6,7 @@ import {
   tCombatEncounter,
   tEncounterChoice,
   tShopEncounter,
+  tShrineEncounter,
 } from './type'
 import { getRandom, noneg } from '../../util'
 import { makeParty } from '../Party/util'
@@ -15,28 +16,28 @@ import { tArmor } from '../Armor/type'
 import { tWeapon } from '../Weapon/type'
 import { GODSBEARD } from '../Consumable/objects/godsbeard'
 import { tConsumable } from '../Consumable/type'
-
-const ZERO_REWARD: tEncounterReward = {
-  gold: 0,
-  xp: 0,
-  items: [],
-  status: [],
-}
+import { tBaseStats } from '../Stats/type'
+import { POSSIBLE_SHINE_REWARDS_BY_VALUE, ZERO_REWARD } from './constants'
 
 export const makeRandomEncounter = (depth: number) => {
-  const encounterType: tEncounterType = getRandom([
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'shop',
-    //'shrine',
-  ])
+  const MAX_DEPTH = 10
+  let encounterType: tEncounterType =
+    depth === 0 || depth === 10
+      ? 'combat'
+      : getRandom([
+          'combat',
+          'combat',
+          'combat',
+          'combat',
+          'combat',
+          'combat',
+          'combat',
+          'combat',
+          'combat',
+          'shop',
+          'shrine',
+        ])
+  // encounterType = 'shrine'
   let encounter: tEncounter = {
     id: v4(),
     choiceId: '',
@@ -64,6 +65,26 @@ export const makeRandomEncounter = (depth: number) => {
         }
       }, {}),
     } as tShopEncounter
+  }
+  if (encounter.type === 'shrine') {
+    const stat: keyof tBaseStats = getRandom<keyof tBaseStats>([
+      'vigor',
+      'strength',
+      'dexterity',
+      'intelligence',
+      'charisma',
+      'luck',
+    ])
+    const rolls = getRandom([2, 3, 3, 3, 3, 4, 4, 5])
+    encounter = {
+      ...encounter,
+      stat,
+      offset: 0,
+      rolls,
+      results: Array(rolls)
+        .fill(0)
+        .map((_, i) => getRandom(POSSIBLE_SHINE_REWARDS_BY_VALUE[i])),
+    } as tShrineEncounter
   }
 
   return encounter

@@ -6,6 +6,7 @@ import { STING, INFECTIOUS_STING } from '../../Skill/objects/enemy/sting'
 import { getRandom } from '../../../util'
 import { ALL_ARMOR } from '../../Armor/objects'
 import { GODSBEARD } from '../../Consumable/objects/godsbeard'
+import { ZERO_REWARD } from '../../Encounter/constants'
 
 export const BEE = (): tCharacter => {
   return {
@@ -58,40 +59,36 @@ export const BEE = (): tCharacter => {
     },
     possibleRewards: [
       {
+        ...ZERO_REWARD,
         gold: 1,
         xp: 4,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 4,
         xp: 6,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 4,
         xp: 6,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 4,
         xp: 6,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 8,
         xp: 8,
         items: [getRandom(ALL_ARMOR())],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 0,
         xp: 10,
-        items: [],
-        consumables: [GODSBEARD()],
+        items: [GODSBEARD()],
       },
     ],
   }

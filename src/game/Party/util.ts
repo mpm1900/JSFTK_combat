@@ -4,12 +4,16 @@ import {
   processCharacter,
   getRewardsFromCharacter,
   addExperience,
+  addMultipleStatus,
 } from '../Character/util'
 import { tCharacter, tProcessedCharacter } from '../Character/type'
 import { v4 } from 'uuid'
-import { tCombatReward } from '../Other/types'
 import { getRandom } from '../../util'
 import { ENEMY_COMBOS_BY_LEVEL } from './constants'
+import { tEncounterReward } from '../Encounter/type'
+import { tArmor } from '../Armor/type'
+import { tWeapon } from '../Weapon/type'
+import { tConsumable } from '../Consumable/type'
 
 export const isParty = (obj: any): boolean =>
   obj !== undefined && obj.isParty !== undefined
@@ -78,15 +82,15 @@ export const makeParty = (level: number = 0): tParty => {
 export const getRolledRewards = (
   party: tProcessedParty,
   checkedCharacter: tProcessedCharacter,
-): tCombatReward[] => {
+): tEncounterReward[] => {
   return party.characters.reduce((r, character) => {
     return [...r, ...getRewardsFromCharacter(character, checkedCharacter)]
-  }, [] as tCombatReward[])
+  }, [] as tEncounterReward[])
 }
 
 export const commitRewards = (
   party: tParty,
-  rewards: tCombatReward,
+  rewards: tEncounterReward,
 ): tParty => {
   checkForProcessedParty(party)
   const goldMultiplier =
@@ -99,14 +103,28 @@ export const commitRewards = (
   return {
     ...party,
     gold: party.gold + Math.floor(rewards.gold * goldMultiplier),
-    items: [...party.items, ...rewards.items],
+    items: [
+      ...party.items,
+      ...(rewards.items.filter((i) => i.itemType !== 'consumable') as (
+        | tArmor
+        | tWeapon
+      )[]),
+    ],
     characters: party.characters.map((c) =>
-      addExperience(
-        {
-          ...c,
-          consumables: [...c.consumables, ...rewards.consumables],
-        },
-        rewards.xp,
+      addMultipleStatus(
+        addExperience(
+          {
+            ...c,
+            consumables: [
+              ...c.consumables,
+              ...(rewards.items.filter(
+                (i) => i.itemType !== 'consumable',
+              ) as tConsumable[]),
+            ],
+          },
+          rewards.xp,
+        ),
+        rewards.status,
       ),
     ),
   }

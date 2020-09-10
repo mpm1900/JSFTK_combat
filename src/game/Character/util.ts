@@ -13,10 +13,10 @@ import { tWeapon } from '../Weapon/type'
 import { tArmorResourceType, tArmor } from '../Armor/type'
 import { resolveCheck } from '../Roll/util'
 import { CLASS_ARMOR } from '../Armor/constants'
-import { tCombatReward } from '../Other/types'
 import { CLASS_CONSUMABLES } from '../Consumable/constants'
 import { considateConsumableListToStack } from '../Consumable/util'
 import { CHARACTER_XP_MAX } from './constants'
+import { tEncounterReward } from '../Encounter/type'
 
 export const isCharacter = (obj: any): boolean =>
   obj !== undefined && obj.isCharacter !== undefined
@@ -330,7 +330,7 @@ export const unequipWeapon = (
 export const getRewardsFromCharacter = (
   character: tProcessedCharacter,
   checkedCharacter: tProcessedCharacter,
-): tCombatReward[] => {
+): tEncounterReward[] => {
   let index: number | undefined = undefined
   character.possibleRewards.forEach((rewards, i) => {
     const luckReslt = resolveCheck(checkedCharacter, 'luck')

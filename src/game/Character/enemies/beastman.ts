@@ -6,6 +6,7 @@ import { IMPALE } from '../../Skill/objects/enemy/impale'
 import { getRandom } from '../../../util'
 import { ALL_WEAPONS } from '../../Weapon/constants'
 import { ALL_ARMOR } from '../../Armor/objects'
+import { ZERO_REWARD } from '../../Encounter/constants'
 
 export const BEASTMAN = (): tCharacter => {
   return {
@@ -57,46 +58,41 @@ export const BEASTMAN = (): tCharacter => {
     },
     possibleRewards: [
       {
+        ...ZERO_REWARD,
         gold: 6,
         xp: 5,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 7,
         xp: 7,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 7,
         xp: 7,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 10,
         xp: 8,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 10,
         xp: 8,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 12,
         xp: 10,
         items: [getRandom([...ALL_WEAPONS(), ...ALL_ARMOR()])],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 19,
         xp: 10,
         items: [getRandom([...ALL_WEAPONS(), ...ALL_ARMOR()])],
-        consumables: [],
       },
     ],
   }

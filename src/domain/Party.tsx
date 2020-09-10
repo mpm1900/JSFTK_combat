@@ -7,10 +7,10 @@ import { AppHeader } from '../components/AppHeader'
 import { PartyResources } from '../components/PartyResources'
 import { useUIContext } from '../contexts/UIContext'
 import { useGameStateContext } from '../contexts/GameStateContext'
-import { BoxContainer } from '../elements/box'
 import { getSkillResult } from '../game/Skill/util'
 import { commitSkillResults } from '../game/Skill/committer'
 import { Shop } from '../components/Shop'
+import { Shrine } from '../components/Shrine'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()
@@ -53,7 +53,6 @@ export const Party = () => {
       <AppHeader
         left={
           <>
-            {/*<RedButton onClick={enterCombat}>Enter Combat</RedButton>*/}
             <Button onClick={() => history.push('/JSFTK_combat')}>
               Restart
             </Button>
@@ -85,6 +84,9 @@ export const Party = () => {
             style={{ marginLeft: '10%' }}
           >
             {currentEncounter && currentEncounter.type === 'shop' && <Shop />}
+            {currentEncounter && currentEncounter.type === 'shrine' && (
+              <Shrine />
+            )}
           </FlexContainer>
           <FlexContainer
             $direction='column'

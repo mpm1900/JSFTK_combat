@@ -6,6 +6,7 @@ import { BITE } from '../../Skill/objects/enemy/bite'
 import { getRandom } from '../../../util'
 import { ALL_WEAPONS } from '../../Weapon/constants'
 import { ALL_ARMOR } from '../../Armor/objects'
+import { ZERO_REWARD } from '../../Encounter/constants'
 
 export const TIMBERWOLF = (): tCharacter => {
   return {
@@ -58,46 +59,40 @@ export const TIMBERWOLF = (): tCharacter => {
     },
     possibleRewards: [
       {
+        ...ZERO_REWARD,
         gold: 4,
         xp: 3,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 4,
         xp: 3,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 4,
         xp: 3,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 4,
         xp: 3,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 4,
         xp: 3,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 4,
         xp: 3,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 19,
         xp: 3,
         items: [getRandom([...ALL_WEAPONS(), ...ALL_ARMOR()])],
-        consumables: [],
       },
     ],
   }

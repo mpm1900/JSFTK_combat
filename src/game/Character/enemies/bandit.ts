@@ -8,6 +8,7 @@ import { EXPLORERS_HAT } from '../../Armor/objects/explorers_hat'
 import { ALL_ARMOR } from '../../Armor/objects'
 import { ALL_WEAPONS } from '../../Weapon/constants'
 import { STAB } from '../../Skill/objects/enemy/stab'
+import { ZERO_REWARD } from '../../Encounter/constants'
 
 export const BANDIT = (): tCharacter => {
   return {
@@ -60,40 +61,36 @@ export const BANDIT = (): tCharacter => {
     },
     possibleRewards: [
       {
+        ...ZERO_REWARD,
         gold: 1,
         xp: 10,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 1,
         xp: 12,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 10,
         xp: 15,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 20,
         xp: 20,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 80,
         xp: 20,
         items: [getRandom(ALL_ARMOR())],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 80,
         xp: 20,
         items: [getRandom(ALL_ARMOR()), getRandom(ALL_WEAPONS())],
-        consumables: [],
       },
     ],
   }

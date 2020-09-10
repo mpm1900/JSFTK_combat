@@ -8,6 +8,7 @@ import { FUR_BOOTS } from '../../Armor/objects/fur_boots'
 import { getRandom } from '../../../util'
 import { ALL_ARMOR } from '../../Armor/objects'
 import { ALL_WEAPONS } from '../../Weapon/constants'
+import { ZERO_REWARD } from '../../Encounter/constants'
 
 export const BUCCANEER = (): tCharacter => {
   return {
@@ -60,40 +61,37 @@ export const BUCCANEER = (): tCharacter => {
     },
     possibleRewards: [
       {
+        ...ZERO_REWARD,
         gold: 20,
         xp: 15,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 20,
         xp: 16,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 20,
         xp: 16,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 20,
         xp: 17,
         items: [getRandom(ALL_ARMOR())],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 20,
         xp: 18,
         items: [getRandom(ALL_ARMOR())],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 80,
         xp: 20,
         items: [getRandom(ALL_ARMOR()), getRandom(ALL_WEAPONS())],
-        consumables: [],
       },
     ],
   }

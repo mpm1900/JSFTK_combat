@@ -6,6 +6,7 @@ import { SLAP } from '../../Skill/objects/enemy/slap'
 import { getRandom } from '../../../util'
 import { ALL_WEAPONS } from '../../Weapon/constants'
 import { ALL_ARMOR } from '../../Armor/objects'
+import { ZERO_REWARD } from '../../Encounter/constants'
 
 export const VALE_IMP = (): tCharacter => {
   return {
@@ -65,40 +66,36 @@ export const VALE_IMP = (): tCharacter => {
     },
     possibleRewards: [
       {
+        ...ZERO_REWARD,
         gold: 0,
         xp: 5,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 3,
         xp: 7,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 3,
         xp: 7,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 3,
         xp: 7,
-        items: [],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 0,
         xp: 7,
         items: [getRandom(ALL_ARMOR())],
-        consumables: [],
       },
       {
+        ...ZERO_REWARD,
         gold: 0,
         xp: 7,
         items: [getRandom(ALL_WEAPONS())],
-        consumables: [],
       },
     ],
   }
