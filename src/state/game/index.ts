@@ -133,7 +133,7 @@ export const core: StateCoreT<GameStateT> = {
 }
 
 export const INITIAL_STATE: GameStateT = {
-  encounters: makeEncounterList(10),
+  encounters: makeEncounterList(11),
   level: 0,
 }
 

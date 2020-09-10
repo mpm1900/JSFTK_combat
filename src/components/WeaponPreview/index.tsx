@@ -67,6 +67,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
             style={{
               margin: '8px 0',
               textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
+              textAlign: 'left',
             }}
           >
             <span style={{ fontWeight: 600 }}>{weapon.name}</span>

@@ -5,7 +5,7 @@ import { tConsumable } from '../Consumable/type'
 import { tBaseStats } from '../Stats/type'
 import { tStatusType } from '../Status/type'
 
-export type tEncounterType = 'combat' | 'shop' | 'rest' | 'reward' | 'shrine'
+export type tEncounterType = 'combat' | 'shop' | 'shrine' | 'boss'
 export interface tEncounter {
   id: string
   choiceId: string
@@ -25,6 +25,9 @@ export interface tShrineEncounter extends tEncounter {
   offset: number
   rolls: number
   results: tEncounterReward[]
+}
+export interface tBossEncounter extends tCombatEncounter {
+  boss: true
 }
 
 export interface tEncounterReward {

@@ -77,7 +77,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             <Icon
               src={CHARACTER_CLASS_ICONS[character.class]}
               size={100}
-              fill='rgba(255,255,255,0.4)'
+              fill={selected ? 'white' : 'rgba(255,255,255,0.4)'}
             />
           </FlexContainer>
           <FlexContainer $full $direction='column'>
@@ -101,8 +101,11 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               </FlexContainer>
             </FlexContainer>
             <FullContainer />
-            <HealthGauge character={character} />
-            <XPGauge character={character} />
+            <HealthGauge
+              character={character}
+              style={{ borderRight: 'none' }}
+            />
+            <XPGauge character={character} style={{ borderRight: 'none' }} />
             <HoverBadge
               badgeProps={{ $bottom: '18px', $left: '105px' }}
               content={<BoxContainer>Character Level</BoxContainer>}

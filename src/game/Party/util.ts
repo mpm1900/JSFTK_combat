@@ -14,6 +14,7 @@ import { tEncounterReward } from '../Encounter/type'
 import { tArmor } from '../Armor/type'
 import { tWeapon } from '../Weapon/type'
 import { tConsumable } from '../Consumable/type'
+import { ALL_BOSSES } from '../Character/bosses'
 
 export const isParty = (obj: any): boolean =>
   obj !== undefined && obj.isParty !== undefined
@@ -76,6 +77,16 @@ export const makeParty = (level: number = 0): tParty => {
     gold: 0,
     items: [],
     characters: getRandom(ENEMY_COMBOS_BY_LEVEL[level]),
+  }
+}
+
+export const makeBossParty = (): tParty => {
+  return {
+    isParty: true,
+    id: v4(),
+    gold: 0,
+    items: [],
+    characters: [getRandom(ALL_BOSSES())],
   }
 }
 

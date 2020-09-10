@@ -9,10 +9,11 @@ import { STATUS_CONFIG } from '../../game/Status/constants'
 
 export interface TagPreviewPropsT {
   status: tStatus
+  immunity?: boolean
   direction?: 'up' | 'down' | 'left' | 'right'
 }
 export const TagPreview = (props: TagPreviewPropsT) => {
-  const { status, direction } = props
+  const { status, direction, immunity } = props
   const statusConfig = STATUS_CONFIG[status.type]
   return (
     <Tooltip
@@ -20,17 +21,24 @@ export const TagPreview = (props: TagPreviewPropsT) => {
       content={
         <BoxContainer style={{ maxWidth: 200 }}>
           <FlexContainer $direction='column'>
-            <strong style={{ marginBottom: 8 }}>
-              {status.type} {status.duration > 0 ? `(${status.duration})` : ''}
+            <strong style={{ marginBottom: statusConfig.description ? 8 : 0 }}>
+              {status.type} {immunity && 'immunity'}{' '}
+              {status.duration > 0 ? `(${status.duration})` : ''}
             </strong>
             {statusConfig.description && (
-              <span>{statusConfig.description}</span>
+              <>{!immunity && <span>{statusConfig.description}</span>}</>
             )}
           </FlexContainer>
         </BoxContainer>
       }
     >
-      <Icon shadow src={STATUS_ICONS[status.type] || ''} size={20} />
+      <Icon
+        shadow
+        src={STATUS_ICONS[status.type] || ''}
+        size={20}
+        fill={immunity ? 'red' : 'white'}
+        style={{ marginLeft: 4 }}
+      />
     </Tooltip>
   )
 }

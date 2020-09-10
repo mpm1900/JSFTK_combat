@@ -21,7 +21,10 @@ export const RouteController = () => {
         </div>,
       )
       history.push('/JSFTK_combat')
-    } else if (currentEncounter && currentEncounter.type === 'combat') {
+    } else if (
+      currentEncounter &&
+      (currentEncounter.type === 'combat' || currentEncounter.type === 'boss')
+    ) {
       history.push('/JSFTK_combat/combat')
     } else if (!currentEncounter && level > 0) {
       history.push('/JSFTK_combat/party')

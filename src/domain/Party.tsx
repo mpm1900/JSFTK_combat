@@ -53,7 +53,10 @@ export const Party = () => {
       <AppHeader
         left={
           <>
-            <Button onClick={() => history.push('/JSFTK_combat')}>
+            <Button
+              onClick={() => history.push('/JSFTK_combat')}
+              style={{ borderBottom: 0 }}
+            >
               Restart
             </Button>
             <FullContainer />

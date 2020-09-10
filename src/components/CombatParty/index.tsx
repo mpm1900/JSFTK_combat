@@ -6,6 +6,7 @@ import { EnemyCharacter } from '../EnemyCharacter'
 import { tProcessedParty } from '../../game/Party/type'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 import { useUIContext } from '../../contexts/UIContext'
+import { useGameStateContext } from '../../contexts/GameStateContext'
 
 export interface CombatPartyPropsT {
   party: tProcessedParty
@@ -13,6 +14,7 @@ export interface CombatPartyPropsT {
 export const CombatParty = (props: CombatPartyPropsT) => {
   const { party } = props
   const { activeCharacter, selectedSkill, next } = useCombatContext()
+  const { currentEncounter } = useGameStateContext()
   const { setShowSkillTooltips } = useUIContext()
   return (
     <FlexContainer $direction='column'>
@@ -25,7 +27,11 @@ export const CombatParty = (props: CombatPartyPropsT) => {
       >
         {party.characters.map((c) => (
           <div key={c.id}>
-            <EnemyCharacter activeCharacter={activeCharacter} character={c} />
+            <EnemyCharacter
+              activeCharacter={activeCharacter}
+              character={c}
+              isBoss={currentEncounter?.type === 'boss'}
+            />
             {selectedSkill &&
               selectedSkill.targetType === 'single' &&
               c.health > 0 &&

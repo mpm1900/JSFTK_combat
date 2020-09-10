@@ -19,7 +19,7 @@ export interface GaugePropsT {
   children?: React.ReactNode | React.ReactNode[]
 }
 export const Gauge = (props: GaugePropsT) => {
-  const { name = '', value, color, height = 30, children } = props
+  const { name = '', value, color, height = 30, children, style } = props
   const max = props.max < 1 ? 1 : props.max
   const p = (value / max) * 100
   const percentage = p > 100 ? 100 : p
@@ -30,7 +30,7 @@ export const Gauge = (props: GaugePropsT) => {
       content={<BoxContainer>{`${name} (${value} / ${max})`}</BoxContainer>}
     >
       <BoxContainer
-        style={{ borderLeft: 'none' }}
+        style={{ borderLeft: 'none', ...(style || {}) }}
         substyle={{
           padding: 0,
           background: '#555',
@@ -86,9 +86,10 @@ export const Gauge = (props: GaugePropsT) => {
 export interface HealthGaugePropsT {
   character: tProcessedCharacter
   height?: number
+  style?: CSSProperties
 }
 export const HealthGauge = (props: HealthGaugePropsT) => {
-  const { character, height = 12 } = props
+  const { character, height = 12, style } = props
   const health = noneg(character.health)
   return (
     <Gauge
@@ -97,6 +98,7 @@ export const HealthGauge = (props: HealthGaugePropsT) => {
       max={character.maxHealth}
       value={health}
       height={height}
+      style={style}
     >
       {health}/{character.maxHealth}
     </Gauge>
@@ -104,13 +106,21 @@ export const HealthGauge = (props: HealthGaugePropsT) => {
 }
 export interface XPGaugePropsT {
   character: tProcessedCharacter
+  style?: CSSProperties
 }
 export const XPGauge = (props: HealthGaugePropsT) => {
-  const { character } = props
+  const { character, style } = props
   const value = character.experience
   const max = CHARACTER_XP_MAX[character.level]
   return (
-    <Gauge name='XP' color='#5e8575' max={max} value={value} height={12}>
+    <Gauge
+      name='XP'
+      color='#5e8575'
+      max={max}
+      value={value}
+      height={12}
+      style={style}
+    >
       {value}/{max}
     </Gauge>
   )

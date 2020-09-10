@@ -6,9 +6,10 @@ import {
   tEncounterChoice,
   tShopEncounter,
   tShrineEncounter,
+  tBossEncounter,
 } from './type'
 import { getRandom, noneg } from '../../util'
-import { makeParty } from '../Party/util'
+import { makeParty, makeBossParty } from '../Party/util'
 import { ALL_WEAPONS } from '../Weapon/constants'
 import { ALL_ARMOR } from '../Armor/objects'
 import { tArmor } from '../Armor/type'
@@ -21,8 +22,10 @@ import { POSSIBLE_SHINE_REWARDS, ZERO_REWARD } from './constants'
 export const makeRandomEncounter = (depth: number) => {
   const MAX_DEPTH = 10
   let encounterType: tEncounterType =
-    depth === 0 || depth === 10
+    depth === 0
       ? 'combat'
+      : depth === 11
+      ? 'boss'
       : getRandom([
           'combat',
           'combat',
@@ -36,7 +39,7 @@ export const makeRandomEncounter = (depth: number) => {
           'shop',
           'shrine',
         ])
-  // encounterType = 'shrine'
+  // encounterType = 'boss'
   let encounter: tEncounter = {
     id: v4(),
     choiceId: '',
@@ -50,6 +53,13 @@ export const makeRandomEncounter = (depth: number) => {
       ...encounter,
       party: makeParty(noneg(depth - 1)),
     } as tCombatEncounter
+  }
+  if (encounter.type === 'boss') {
+    encounter = {
+      ...encounter,
+      boss: true,
+      party: makeBossParty(),
+    } as tBossEncounter
   }
   if (encounter.type === 'shop') {
     const items = [GODSBEARD(), ...ALL_WEAPONS(), ...ALL_ARMOR()]

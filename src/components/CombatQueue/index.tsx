@@ -51,7 +51,10 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
       left={
         <>
           {/*<RedButton onClick={gotoParty}>Edit Party</RedButton>*/}
-          <Button onClick={() => history.push('/JSFTK_combat')}>
+          <Button
+            onClick={() => history.push('/JSFTK_combat')}
+            style={{ borderBottom: 0 }}
+          >
             Restart ({level})
           </Button>
         </>

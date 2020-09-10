@@ -38,7 +38,10 @@ export const Start = () => {
       <FullContainer />
       <FlexContainer $full>
         <FullContainer />
-        <BoxContainer style={{ maxWidth: 340 }} substyle={{ padding: 16 }}>
+        <BoxContainer
+          style={{ maxWidth: 340, marginRight: 8 }}
+          substyle={{ padding: 16 }}
+        >
           <strong style={{ marginBottom: 16 }}>
             Choose your starting classes.
           </strong>
@@ -112,7 +115,7 @@ export const Start = () => {
           fontSize: 12,
         }}
       >
-        pre-pre-pre-pre alpha v0.0.2.2
+        pre-pre-pre-pre alpha v0.0.2.5
       </Monospace>
     </FlexContainer>
   )

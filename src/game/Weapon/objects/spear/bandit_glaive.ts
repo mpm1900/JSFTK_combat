@@ -7,7 +7,7 @@ export const BANDIT_GLAIVE = (): tWeapon => ({
   id: v4(),
   name: `Bandit Glaive`,
   itemType: 'weapon',
-  type: 'blunt',
+  type: 'spear',
   rarity: 'common',
   stat: 'dexterity',
   twoHand: true,

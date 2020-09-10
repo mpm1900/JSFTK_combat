@@ -13,6 +13,10 @@ import { Icon } from '../Icon'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { Health } from './Health'
 import { LocalToastRp } from '../../contexts/LocalToastContext'
+import { STATUS_CONFIG } from '../../game/Status/constants'
+import { tStats } from '../../game/Stats/type'
+import { tStatus } from '../../game/Status/type'
+import { ZERO_STATS } from '../../game/Stats/constants'
 
 export interface EnemyCharacterPropsT {
   character: tProcessedCharacter
@@ -20,6 +24,7 @@ export interface EnemyCharacterPropsT {
   hoverable?: boolean
   selected?: boolean
   isHovering?: boolean
+  isBoss?: boolean
   onClick?: () => void
 }
 const Wrapper = styled('div', (props: any) => {
@@ -31,7 +36,7 @@ const Wrapper = styled('div', (props: any) => {
   }
 })
 export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
-  const { character, activeCharacter, onClick } = props
+  const { character, activeCharacter, isBoss = false, onClick } = props
   const health = noneg(character.health)
   const previousHealth = usePrevious<number>(health)
   return (
@@ -39,7 +44,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
       onClick={() => (onClick && character.health > 0 ? onClick() : null)}
       style={{
         borderWidth: 2,
-        width: 320,
+        width: isBoss ? 600 : 320,
         position: 'relative',
         cursor: onClick ? 'pointer' : 'default',
         color: 'rgba(255,255,255,0.8)',
@@ -75,6 +80,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
                 background: 'rgba(0,0,0,0.4)',
                 textShadow: '1px 1px 2px black',
                 fontFamily: 'Bangers',
+                color: isBoss ? 'red' : 'rgba(255,255,255,0.8)',
                 letterSpacing: '1px',
               }}
             >
@@ -105,6 +111,19 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           >
             {character.status.map((status, i) => (
               <TagPreview key={i} status={status} />
+            ))}
+            {character.immunities.map((status, i) => (
+              <TagPreview
+                key={i}
+                immunity={true}
+                status={{
+                  type: status,
+                  immunities: [],
+                  stack: 0,
+                  stats: ZERO_STATS,
+                  duration: -1,
+                }}
+              />
             ))}
           </FlexContainer>
           <FlexContainer
