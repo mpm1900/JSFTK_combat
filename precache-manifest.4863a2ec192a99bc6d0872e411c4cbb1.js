@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "710273a983faf0b99d49297e6652dc0f",
+    "revision": "0018ad07eadd17ca399303603e5b0b36",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "0ba24fcaaf988b77262d",
+    "revision": "f41cdf54ffd515dbf2e1",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "f9a670574f6ece584058",
+    "revision": "2b745d56e1e1a4fa8a6e",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
-    "revision": "0ba24fcaaf988b77262d",
-    "url": "/JSFTK_combat/static/js/2.34e54465.chunk.js"
+    "revision": "f41cdf54ffd515dbf2e1",
+    "url": "/JSFTK_combat/static/js/2.048083db.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.34e54465.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.048083db.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f9a670574f6ece584058",
-    "url": "/JSFTK_combat/static/js/main.f0ce0308.chunk.js"
+    "revision": "2b745d56e1e1a4fa8a6e",
+    "url": "/JSFTK_combat/static/js/main.2c212164.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -222,6 +222,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ff410513bff5092b5cbcd882e6a9dbe6",
     "url": "/JSFTK_combat/static/media/orc-head.ff410513.svg"
+  },
+  {
+    "revision": "03e5b513c34b96c9497d86703e4e3404",
+    "url": "/JSFTK_combat/static/media/overlord-helm.03e5b513.svg"
   },
   {
     "revision": "daa0fd39690604417f8e68e21b8b8c66",
