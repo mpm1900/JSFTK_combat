@@ -59,7 +59,7 @@ export const ACTIVE_CHARACTER_MENU_KEYS: MenuOptionT[] = [
       />
     ),
   },
-  {
+  /*{
     key: 'ot1',
     icon: '',
     count: (c) => 0,
@@ -76,7 +76,7 @@ export const ACTIVE_CHARACTER_MENU_KEYS: MenuOptionT[] = [
     icon: '',
     count: (c) => 0,
     render: (character) => <div>ot3</div>,
-  },
+  },*/
 ]
 
 export interface MenuSelectPropsT {

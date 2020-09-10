@@ -42,7 +42,7 @@ export const Actions = (props: ActionsPropsT) => {
           isOpen={inventoryOpen}
           direction='up'
           distance={40}
-          background='rgba(0,0,0,0.5)'
+          background='rgba(0,0,0,0.7)'
           arrow
           content={
             <animated.div

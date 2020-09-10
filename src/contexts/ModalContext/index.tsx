@@ -1,6 +1,7 @@
 import React, { useContext, useReducer, useMemo, CSSProperties } from 'react'
 import Modal from 'react-modal'
 import { actions, reducer, initialState, ModalContextStateT } from './reducer'
+import { Theme } from '../../theme'
 
 export interface ModalContextT {
   open: (
@@ -80,7 +81,7 @@ export const ModalContextProvider = (props: ModalContextProviderPropsT) => {
         }}
         style={{
           content: {
-            backgroundColor: '#111',
+            backgroundColor: Theme.darkBgColor,
             color: 'white',
             width: 400,
             margin: '0 auto',

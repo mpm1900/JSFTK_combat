@@ -18,8 +18,9 @@ const ItemRow = styled(FlexContainer, (props: any) => {
     alignItems: 'center',
     marginBottom: '4px',
     textShadow: '1px 1px 1px black',
-    background:
-      'linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%)',
+    background: props.$disabled
+      ? 'rgba(255,255,255,0.05)'
+      : 'linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%)',
     paddingLeft: '8px',
     transition: 'all 0.2s',
     userSelect: 'none',
@@ -46,14 +47,18 @@ export const Items = (props: ItemPropsT) => {
         />
         {character.weapon.name}
       </ItemRow>
-      {CHARACTER_RESOURCES.map((res) => (
-        <ArmorItem
-          character={character}
-          resource={res}
-          onHover={setActiveItem}
-          canUnequip={playerCanEquipItem}
-        />
-      ))}
+      {CHARACTER_RESOURCES.map((res) => {
+        const disabled = res === 'offhand' && character.weapon.twoHand
+        return (
+          <ArmorItem
+            disabled={disabled}
+            character={character}
+            resource={res}
+            onHover={setActiveItem}
+            canUnequip={playerCanEquipItem}
+          />
+        )
+      })}
     </FlexContainer>
   )
 }
@@ -62,10 +67,17 @@ export interface ArmorItemProps {
   character: tProcessedCharacter
   resource: tArmorResourceType
   canUnequip?: boolean
+  disabled?: boolean
   onHover: (item: tArmor | tWeapon | undefined) => void
 }
 export const ArmorItem = (props: ArmorItemProps) => {
-  const { character, resource, canUnequip = true, onHover } = props
+  const {
+    character,
+    resource,
+    canUnequip = true,
+    disabled = false,
+    onHover,
+  } = props
   const { unequipItem } = usePartyContext()
   const item = character.armor.find((a) => a.resource === resource)
   return (
@@ -103,12 +115,14 @@ export const ArmorItem = (props: ArmorItemProps) => {
       {({ onClick, ref }) => (
         <ItemRow
           ref={ref}
+          $disabled={disabled}
           onMouseEnter={() => onHover(item)}
           onClick={() => item && onClick()}
         >
           <Icon
             src={RESOURCE_ICONS[resource] || ''}
             size={16}
+            fill={disabled ? 'rgba(255,255,255,0.3)' : 'white'}
             style={{ marginRight: 6 }}
           />
           {item?.name}

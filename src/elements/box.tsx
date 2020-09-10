@@ -1,5 +1,6 @@
 import React from 'react'
 import { Hover } from '../components/Hover'
+import { Theme } from '../theme'
 
 export interface BoxContainerPropsT extends React.HTMLProps<HTMLDivElement> {
   substyle?: React.CSSProperties
@@ -54,7 +55,7 @@ export const SmallBox = (props: BoxContainerPropsT) => (
       padding: 0,
       justifyContent: 'center',
       alignItems: 'center',
-      background: '#111',
+      background: Theme.darkBgColor,
       ...props.substyle,
     }}
   >
@@ -77,7 +78,7 @@ export const BoxButton = (props: BoxContainerPropsT) => {
             borderColor: isHovering && !props.disabled ? '#999' : '#555',
             padding: '4px',
             cursor: props.disabled ? 'default' : 'pointer',
-            background: props.disabled ? '#444' : '#111',
+            background: props.disabled ? '#444' : Theme.darkBgColor,
             boxShadow: props.disabled ? 'none' : undefined,
             ...(props.substyle || {}),
           }}

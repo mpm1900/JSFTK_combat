@@ -10,6 +10,7 @@ import { tArmor } from '../../game/Armor/type'
 import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 import { STAT_KEY_LABELS } from '../../game/Stats/constants'
 import { SkillCheck } from '../SkillChecks'
+import { Theme } from '../../theme'
 
 export interface ArmorPreviewPropsT {
   armor: tArmor
@@ -108,7 +109,7 @@ export const ArmorPreview = (props: ArmorPreviewPropsT) => {
               >
                 <div
                   style={{
-                    color: 'lightblue',
+                    color: Theme.physicalColor,
                     fontSize: 24,
                     fontWeight: 'bolder',
                     marginRight: 8,

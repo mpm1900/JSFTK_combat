@@ -15,6 +15,7 @@ import {
 } from '../game/Character/type'
 import { makeCharacter } from '../game/Character/util'
 import { STAT_BONUS_KEYS } from '../game/Stats/constants'
+import { Theme } from '../theme'
 
 export const Start = () => {
   const {
@@ -65,7 +66,7 @@ export const Start = () => {
             stat values
           </p>
         </BoxContainer>
-        <BoxContainer substyle={{ background: '#111' }}>
+        <BoxContainer substyle={{ background: Theme.darkBgColor }}>
           <h1
             style={{
               marginTop: 8,
@@ -115,7 +116,7 @@ export const Start = () => {
           fontSize: 12,
         }}
       >
-        pre-pre-pre-pre alpha v0.0.2.6
+        pre-pre-pre-pre alpha v0.0.2.7
       </Monospace>
     </FlexContainer>
   )

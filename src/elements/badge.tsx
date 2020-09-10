@@ -1,18 +1,19 @@
 import React from 'react'
 import { styled, withWrapper } from 'styletron-react'
 import { HoverToolTip } from '../components/Tooltip'
+import { Theme } from '../theme'
 
 const Div = styled('div', {
   transform: 'rotateY(0deg) rotate(-45deg)',
 })
 export const Badge = withWrapper(Div, (Element) => (props: any) => {
-  const { onClick, ...rest } = props
+  const { onClick, $style, ...rest } = props
   return (
     <div
       onClick={onClick}
       style={{
         position: props.$absolute === false ? 'relative' : 'absolute',
-        background: '#111',
+        background: Theme.darkBgColor,
         padding: '4px',
         fontFamily: 'Bangers',
         border: '1px solid rgba(255,255,255,0.5)',
@@ -35,7 +36,7 @@ export const Badge = withWrapper(Div, (Element) => (props: any) => {
         left: props.$left,
         transition: 'all 0.2s',
         zIndex: 2,
-        ...(props.$style || {}),
+        ...($style || {}),
       }}
     >
       <Element {...rest} />

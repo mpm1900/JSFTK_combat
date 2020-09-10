@@ -1,5 +1,6 @@
 import { noneg } from '../../util'
 import { tCharacterClass } from './type'
+import { Theme } from '../../theme'
 
 export const CHARACTER_XP_MAX: Record<number, number> = {
   [-1]: 0,
@@ -19,7 +20,7 @@ export const CHARACTER_XP_MAX: Record<number, number> = {
 }
 
 export const CHARACTER_CLASS_COLORS: Record<tCharacterClass, string> = {
-  enemy: '',
+  enemy: Theme.enemyPartyColor,
   blacksmith: '#5d6a6e',
   bard: '#5e5245',
   scholar: '#665166',

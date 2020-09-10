@@ -14,7 +14,7 @@ export const RouteController = () => {
   const history = useHistory()
   const { open } = useModalContext()
   useEffect(() => {
-    if (level > encounters.length) {
+    if (level > encounters.length - 1) {
       open(
         <div>
           <h1>You Win!!!!!!!!!!!</h1>

@@ -8,6 +8,7 @@ import X from '../../icons/svg/lorc/split-cross.svg'
 import { tSkill } from '../../game/Skill/type'
 import { tBaseStats } from '../../game/Stats/type'
 import { tStatusType } from '../../game/Status/type'
+import { Theme } from '../../theme'
 
 export interface SkillChecksPropsT {
   stat: keyof tBaseStats
@@ -60,7 +61,7 @@ export const SkillCheck = (props: SkillCheckT) => {
         $size={size}
         $style={{
           borderColor: perfect ? colors.border : undefined,
-          background: perfect ? colors.background : '#111',
+          background: perfect ? colors.background : Theme.darkBgColor,
         }}
       >
         <Icon

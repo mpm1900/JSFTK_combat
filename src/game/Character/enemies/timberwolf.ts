@@ -28,7 +28,7 @@ export const TIMBERWOLF = (): tCharacter => {
       intelligence: 40,
       dexterity: 52,
       charisma: 30,
-      agility: 65,
+      agility: getRandom([60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70]),
       luck: 50,
       armor: 0,
       resistance: 0,

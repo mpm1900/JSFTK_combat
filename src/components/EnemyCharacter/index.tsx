@@ -17,6 +17,7 @@ import { STATUS_CONFIG } from '../../game/Status/constants'
 import { tStats } from '../../game/Stats/type'
 import { tStatus } from '../../game/Status/type'
 import { ZERO_STATS } from '../../game/Stats/constants'
+import { Theme } from '../../theme'
 
 export interface EnemyCharacterPropsT {
   character: tProcessedCharacter
@@ -144,7 +145,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
                   $top: '-24px',
                   $right: '4px',
                   $size: '12px',
-                  $color: 'lightblue',
+                  $color: Theme.physicalColor,
                 }}
               >
                 <span>{character.stats.armor}</span>
@@ -157,7 +158,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
                 badgeProps={{
                   $top: '-24px',
                   $size: '12px',
-                  $color: 'plum',
+                  $color: Theme.magicColor,
                 }}
               >
                 <span>{character.stats.resistance}</span>

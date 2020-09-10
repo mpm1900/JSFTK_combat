@@ -13,6 +13,7 @@ import { tArmor } from '../../game/Armor/type'
 import { usePartyContext } from '../../contexts/PartyContext'
 import { tConsumable } from '../../game/Consumable/type'
 import { ConsumablePreview } from '../ConsumablePreview'
+import { Theme } from '../../theme'
 
 const CardList = withStyle(FlexContainer, (props: any) => {
   return {
@@ -117,7 +118,7 @@ export const Shop = (props: ShopPropsT) => {
   return (
     <BoxContainer
       style={{ margin: '20px 20px 20px 0', flex: 1 }}
-      substyle={{ background: '#111' }}
+      substyle={{ background: Theme.darkBgColor }}
     >
       <FlexContainer style={{ alignItems: 'center' }}>
         <FullContainer>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { BoxContainer } from '../../elements/box'
+import { Theme } from '../../theme'
 
 export interface NamePropsT {
   name: string
@@ -18,7 +19,10 @@ export const Name = (props: NamePropsT) => {
       }}
     >
       <FullContainer />
-      <BoxContainer style={{ zIndex: 2 }} substyle={{ background: '#444' }}>
+      <BoxContainer
+        style={{ zIndex: 2 }}
+        substyle={{ background: Theme.darkBgColor }}
+      >
         {name}
       </BoxContainer>
       <FullContainer />

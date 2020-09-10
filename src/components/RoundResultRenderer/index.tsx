@@ -7,6 +7,7 @@ import { SkillCheck } from '../SkillChecks'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 import { BoxContainer } from '../../elements/box'
 import { Perfect } from './Perfect'
+import { Theme } from '../../theme'
 
 export interface RoundResultRendererPropsT {
   isModal?: boolean
@@ -132,13 +133,17 @@ export const RoundResult = (props: RoundResultPropsT) => {
       <FlexContainer style={{ justifyContent: 'center' }}>
         <BoxContainer
           style={{ marginTop: 40 }}
-          substyle={{ background: '#111', fontSize: 20, padding: '16px 32px' }}
+          substyle={{
+            background: Theme.darkBgColor,
+            fontSize: 20,
+            padding: '16px 32px',
+          }}
         >
           <strong
             style={{
               color: isPlayer(round.source.partyId)
-                ? 'lightblue'
-                : 'lightsalmon',
+                ? Theme.playerPartyColor
+                : Theme.enemyPartyColor,
             }}
           >
             {round.source.name}
@@ -146,13 +151,12 @@ export const RoundResult = (props: RoundResultPropsT) => {
           uses <span style={{ color: 'plum' }}>{round.skill.name}</span>
           {showTarget && (
             <span>
-              {' '}
-              on{' '}
+              {' on '}
               <strong
                 style={{
                   color: isPlayer(targetResult?.target.partyId || '')
-                    ? 'lightblue'
-                    : 'lightsalmon',
+                    ? Theme.playerPartyColor
+                    : Theme.enemyPartyColor,
                 }}
               >
                 {targetResult?.target.name}

@@ -12,6 +12,7 @@ import { tProcessedCharacter } from '../../game/Character/type'
 import { tProcessedParty } from '../../game/Party/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
+import { Theme } from '../../theme'
 
 export interface PartyActiveCharacterPropsT {
   character: tProcessedCharacter
@@ -57,12 +58,15 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
           <HoverArea character={character} activeItem={activeItem} />
         )}
       </FlexContainer>
-      <BoxContainer substyle={{ background: '#111', padding: 0 }}>
+      <BoxContainer substyle={{ background: Theme.darkBgColor, padding: 0 }}>
         <FlexContainer $direction='column'>
           <Name name={character.name} />
           <StatBar character={character} />
           <BoxContainer
-            substyle={{ background: '#111', padding: '16px 0 2px 0' }}
+            substyle={{
+              background: Theme.darkBgColor,
+              padding: '16px 0 2px 0',
+            }}
           >
             <FlexContainer>
               <Items character={character} setActiveItem={setActiveItem} />
@@ -77,7 +81,7 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
           </BoxContainer>
           <BoxContainer
             substyle={{
-              background: '#111',
+              background: Theme.darkBgColor,
               padding: '4px 0',
               height: 200,
               overflow: 'auto',

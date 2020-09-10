@@ -6,6 +6,7 @@ import { Icon } from '../Icon'
 import { STAT_ICONS } from '../../icons/maps'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tStats, tBaseStats } from '../../game/Stats/type'
+import { Theme } from '../../theme'
 
 interface CharacterStatPropsT {
   statKey: keyof tBaseStats
@@ -54,7 +55,7 @@ const ResourceE = withStyle(Monodiv, (props: any) => ({
   lineHeight: '15px',
   flex: 1,
   textAlign: 'center',
-  background: '#111',
+  background: Theme.darkBgColor,
   display: 'flex',
 }))
 

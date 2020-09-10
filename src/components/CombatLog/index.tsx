@@ -3,6 +3,7 @@ import { FlexContainer, FullContainer } from '../../elements/flex'
 import { useCombatLogContext } from '../../contexts/CombatLogContext'
 import { useSpring, animated } from 'react-spring'
 import { Button } from '../../elements/button'
+import { Theme } from '../../theme'
 
 export const CombatLog = () => {
   const { combatLog } = useCombatLogContext()
@@ -30,7 +31,7 @@ export const CombatLog = () => {
     >
       <FlexContainer
         style={{
-          background: '#111',
+          background: Theme.darkBgColor,
           padding: 8,
           alignItems: 'center',
         }}

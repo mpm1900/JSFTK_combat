@@ -1,5 +1,6 @@
 import React from 'react'
 import { FlexContainer } from '../../elements/flex'
+import { Theme } from '../../theme'
 
 export interface AppHeaderPropsT {
   children?: JSX.Element
@@ -15,7 +16,7 @@ export const AppHeader = (props: AppHeaderPropsT) => {
       <FlexContainer
         style={{
           justifyContent: 'center',
-          background: '#111',
+          background: Theme.darkBgColor,
           height: 52,
           borderBottom: '2px solid rgba(255,255,255,0.3)',
           boxShadow: '1px 1px 1px black',

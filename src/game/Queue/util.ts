@@ -2,7 +2,7 @@ import { tQueue } from './type'
 import { tProcessedCharacter, tCharacter } from '../Character/type'
 import { processCharacter } from '../Character/util'
 
-const AGILITY_OFFSET = 200
+const AGILITY_OFFSET = 120
 
 export const makeCombatQueue = (characters: tProcessedCharacter[]): tQueue => {
   const sortedCharacters = characters.sort(

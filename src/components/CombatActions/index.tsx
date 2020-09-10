@@ -12,6 +12,7 @@ import { HEAL } from '../../game/Skill/objects/heal'
 import { useUIContext } from '../../contexts/UIContext'
 import { Tooltip } from '../Tooltip'
 import { BoxContainer } from '../../elements/box'
+import { Theme } from '../../theme'
 
 export const CombatActions = () => {
   const {
@@ -41,7 +42,7 @@ export const CombatActions = () => {
         isOpen={showSkillTooltips}
         direction='left'
         arrow={true}
-        background='#111'
+        background={Theme.darkBgColor}
         content={
           <FlexContainer
             $direction='column'
@@ -83,7 +84,7 @@ export const CombatActions = () => {
                   key={skill.id}
                   onClick={() => onSkillSelect(skill)}
                   style={{
-                    background: '#111',
+                    background: Theme.darkBgColor,
                     borderColor:
                       selectedSkill && skill.id === selectedSkill.id
                         ? 'white'

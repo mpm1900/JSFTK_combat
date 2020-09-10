@@ -19,6 +19,7 @@ import { usePlayerCharacterNotifications } from '../../hooks/usePlayerCharacterN
 import { Icon } from '../Icon'
 import { CHARACTER_CLASS_ICONS } from '../../icons/maps'
 import { CHARACTER_CLASS_COLORS } from '../../game/Character/constants'
+import { Theme } from '../../theme'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -68,7 +69,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           <FlexContainer
             style={{
               borderRight: '2px solid black',
-              background: CHARACTER_CLASS_COLORS[character.class] || '#111',
+              background:
+                CHARACTER_CLASS_COLORS[character.class] || Theme.darkBgColor,
               padding: 8,
               alignItems: 'center',
               transition: 'all 0.3s',
@@ -128,19 +130,31 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         ))}
       </FlexContainer>
       <HoverBadge
-        badgeProps={{ $bottom: '64px', $left: '-12px', $color: 'lightblue' }}
+        badgeProps={{
+          $bottom: '64px',
+          $left: '-12px',
+          $color: Theme.physicalColor,
+        }}
         content={<BoxContainer>Armor</BoxContainer>}
       >
         <span>{character.stats.armor}</span>
       </HoverBadge>
       <HoverBadge
-        badgeProps={{ $bottom: '26px', $left: '-12px', $color: 'plum' }}
+        badgeProps={{
+          $bottom: '26px',
+          $left: '-12px',
+          $color: Theme.magicColor,
+        }}
         content={<BoxContainer>Magic Resistance</BoxContainer>}
       >
         <span>{character.stats.resistance}</span>
       </HoverBadge>
       <HoverBadge
-        badgeProps={{ $bottom: '-10px', $left: '-12px', $color: 'lightgreen' }}
+        badgeProps={{
+          $bottom: '-10px',
+          $left: '-12px',
+          $color: Theme.evasionColor,
+        }}
         content={<BoxContainer>Evasion</BoxContainer>}
       >
         <span>{character.stats.evasion}</span>
@@ -155,7 +169,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           $color:
             character.weapon.damage.type === 'physical'
               ? 'rgba(255,255,255,0.8)'
-              : 'plum',
+              : Theme.magicColor,
           style: { fontSize: 24 },
         }}
       >

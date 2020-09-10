@@ -5,6 +5,7 @@ import { tSkill } from '../../game/Skill/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { getSkillDamage, getPerfectText } from '../../game/Skill/util'
 import { getChecksProbability } from '../../game/Roll/util'
+import { Theme } from '../../theme'
 
 export interface SkillPreviewPropsT {
   skill: tSkill
@@ -28,7 +29,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
   return (
     <BoxContainer
       style={{ marginTop: 30, position: 'relative' }}
-      substyle={{ background: '#111' }}
+      substyle={{ background: Theme.darkBgColor }}
     >
       <FlexContainer $direction='column' style={{ alignItems: 'center' }}>
         <FlexContainer style={{ marginTop: -27 }}>

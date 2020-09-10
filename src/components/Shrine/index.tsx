@@ -11,6 +11,7 @@ import { tProcessedCharacter } from '../../game/Character/type'
 import { resolveCheck } from '../../game/Roll/util'
 import { ZERO_REWARD } from '../../game/Encounter/constants'
 import { commitRewards } from '../../game/Party/util'
+import { Theme } from '../../theme'
 
 export interface ShrinePropsT {}
 export const Shrine = (props: ShrinePropsT) => {
@@ -50,7 +51,7 @@ export const Shrine = (props: ShrinePropsT) => {
   return (
     <BoxContainer
       style={{ margin: '20px 20px 20px 0', flex: 1 }}
-      substyle={{ background: '#111' }}
+      substyle={{ background: Theme.darkBgColor }}
     >
       <FlexContainer>
         <FlexContainer $direction='column'>

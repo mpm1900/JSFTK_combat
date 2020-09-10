@@ -1,19 +1,16 @@
 import React from 'react'
-
 import { FlexContainer, FullContainer } from '../../elements/flex'
-import { Button, RedButton } from '../../elements/button'
+import { Button } from '../../elements/button'
 import { useHistory } from 'react-router'
 import { AppHeader } from '../AppHeader'
 import { PartyResources } from '../PartyResources'
 import { useCombatContext } from '../../contexts/CombatContext'
-import { Icon } from '../Icon'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 import { tQueue } from '../../game/Queue/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { getMax, getFirst, getSortedIds } from '../../game/Queue/util'
-import { PLAYER_PARTY_ID } from '../../game/Party/constants'
-import { CHARACTER_CLASS_ICONS } from '../../icons/maps'
-import { CHARACTER_CLASS_COLORS } from '../../game/Character/constants'
+import { Theme } from '../../theme'
+import { CharacterIcon } from '../CharacterIcon'
 
 const size = 40
 export interface CombatQueuePropsT {
@@ -44,20 +41,17 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
     .map((id) => characters.find((c) => c.id === id))
     .filter((c) => c !== undefined)
   const max = getMax(queue)
-  const min = 50
+  const min = 0
   const widthCoef = max > min ? 100 / max : 100 / min
   return (
     <AppHeader
       left={
-        <>
-          {/*<RedButton onClick={gotoParty}>Edit Party</RedButton>*/}
-          <Button
-            onClick={() => history.push('/JSFTK_combat')}
-            style={{ borderBottom: 0 }}
-          >
-            Restart ({level})
-          </Button>
-        </>
+        <Button
+          onClick={() => history.push('/JSFTK_combat')}
+          style={{ borderBottom: 0 }}
+        >
+          Restart ({level})
+        </Button>
       }
       right={
         <FlexContainer $full style={{ justifyContent: 'flex-end' }}>
@@ -79,53 +73,19 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
             <FlexContainer
               style={{ position: 'relative', marginLeft: 22, zIndex: 7 }}
             >
-              {first?.partyId === PLAYER_PARTY_ID ? (
-                <FlexContainer
-                  style={{
-                    background: CHARACTER_CLASS_COLORS[first.class],
-                    border: '2px solid rgba(255,255,255,0.8)',
-                    borderTop: 'none',
-                    height: 64,
-                    width: 64,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    zIndex: 2,
-                  }}
-                >
-                  <Icon
-                    src={CHARACTER_CLASS_ICONS[first.class]}
-                    size={64}
-                    fill='rgba(255,255,255,1)'
-                  />
-                </FlexContainer>
-              ) : (
-                <FlexContainer
-                  style={{
-                    background: '#c27a5d',
-                    border: '2px solid rgba(255,255,255,0.8)',
-                    borderTop: 'none',
-                    height: 64,
-                    width: 64,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    zIndex: 2,
-                  }}
-                >
-                  <Icon
-                    src={first?.icon || ''}
-                    shadow
-                    fill={'white'}
-                    size={52}
-                    style={{ zIndex: 2, position: 'relative' }}
-                  />
-                </FlexContainer>
-              )}
+              <CharacterIcon
+                character={first}
+                size={64}
+                width={64}
+                height={64}
+                style={{ borderTop: 'none' }}
+              />
               <FlexContainer
                 $direction='column'
                 style={{
                   position: 'absolute',
                   background: 'rgba(255,255,255,0.8)',
-                  color: '#111',
+                  color: Theme.darkBgColor,
                   zIndex: 2,
                   width: 120,
                   top: 16,
@@ -148,7 +108,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                         height: size - 10,
                         width: size - 7,
                         position: 'absolute',
-                        bottom: '4px',
+                        bottom: '2px',
                         right: `calc(${queue[c.id] * widthCoef}% - ${
                           size - 6
                         }px)`,
@@ -156,45 +116,13 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                         zIndex: i,
                       }}
                     >
-                      {c.partyId === PLAYER_PARTY_ID ? (
-                        <FlexContainer
-                          style={{
-                            background: CHARACTER_CLASS_COLORS[c.class],
-                            border: '2px solid rgba(255,255,255,0.8)',
-                            height: size - 10,
-                            width: size - 7,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                          }}
-                        >
-                          <Icon
-                            src={CHARACTER_CLASS_ICONS[c.class]}
-                            shadow
-                            fill={'white'}
-                            size={size - 13}
-                            style={{ zIndex: 1, position: 'relative' }}
-                          />
-                        </FlexContainer>
-                      ) : (
-                        <FlexContainer
-                          style={{
-                            background: '#c27a5d',
-                            border: '2px solid rgba(255,255,255,0.8)',
-                            height: size - 10,
-                            width: size - 7,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                          }}
-                        >
-                          <Icon
-                            src={c.icon || ''}
-                            shadow
-                            fill={'white'}
-                            size={size - 13}
-                            style={{ zIndex: 1, position: 'relative' }}
-                          />
-                        </FlexContainer>
-                      )}
+                      <CharacterIcon
+                        character={c}
+                        size={size}
+                        width={size}
+                        index={i}
+                        style={{ borderBottom: 'none' }}
+                      />
                     </div>
                   ))}
               </FlexContainer>
