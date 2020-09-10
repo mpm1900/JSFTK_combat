@@ -34,8 +34,16 @@ export const ArmorPreview = (props: ArmorPreviewPropsT) => {
   const gradient = `linear-gradient(180deg, ${from} 0%, ${to} 100%)`
   const skill = armor.skills[0]
   return (
-    <BoxContainer style={{ minWidth: 240 }} substyle={{ background: gradient }}>
-      <FlexContainer $direction='column'>
+    <BoxContainer
+      style={{ minWidth: 240 }}
+      substyle={{
+        background: gradient,
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <FlexContainer $direction='column' $full>
+        <FullContainer />
         {skill && (
           <FlexContainer style={{ justifyContent: 'center', marginBottom: 10 }}>
             {Array(skill.rolls)
@@ -53,7 +61,7 @@ export const ArmorPreview = (props: ArmorPreviewPropsT) => {
               ))}
           </FlexContainer>
         )}
-        <FlexContainer style={{ marginBottom: 8 }}>
+        <FlexContainer $full style={{ marginBottom: 8 }}>
           <Icon
             src={ARMOR_TYPE_ICONS[armor.type]}
             size={32}

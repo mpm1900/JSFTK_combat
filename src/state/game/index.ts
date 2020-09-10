@@ -67,7 +67,7 @@ export const core: StateCoreT<GameStateT> = {
     return {
       ...state,
       level: 0,
-      encounters: makeEncounterList(10),
+      encounters: makeEncounterList(11),
     }
   },
   [CHOOSE_CURRENT]: (state, action) => {

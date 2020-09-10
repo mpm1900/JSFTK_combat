@@ -76,6 +76,10 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
             </span>
           </FlexContainer>
           <FullContainer />
+          <FlexContainer style={{ fontSize: 18, fontWeight: 'bolder' }}>
+            {weapon.twoHand && '2'}
+            {!weapon.twoHand && '1'}
+          </FlexContainer>
           {showEquipButton && (
             <div style={{ marginLeft: 10 }}>
               <Button onClick={onEquipClick} style={{ padding: 4 }}>

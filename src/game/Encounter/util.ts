@@ -24,7 +24,7 @@ export const makeRandomEncounter = (depth: number) => {
   let encounterType: tEncounterType =
     depth === 0
       ? 'combat'
-      : depth === 11
+      : depth === 10
       ? 'boss'
       : getRandom([
           'combat',
