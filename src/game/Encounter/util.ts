@@ -92,7 +92,7 @@ export const makeEncounterList = (depth: number): tEncounterChoice[] => {
 export const getItemCost = (item: tArmor | tWeapon): number => {
   let cost = 0
   if (item.itemType === 'armor') cost += 40
-  if (item.itemType === 'weapon') cost += 60
+  if (item.itemType === 'weapon') cost += 80
   switch (item.rarity) {
     case 'common':
       cost += 10

@@ -3,6 +3,7 @@ import {
   checkForProcessedCharacter,
   processCharacter,
   getRewardsFromCharacter,
+  addExperience,
 } from '../Character/util'
 import { tCharacter, tProcessedCharacter } from '../Character/type'
 import { v4 } from 'uuid'
@@ -99,10 +100,14 @@ export const commitRewards = (
     ...party,
     gold: party.gold + Math.floor(rewards.gold * goldMultiplier),
     items: [...party.items, ...rewards.items],
-    characters: party.characters.map((c) => ({
-      ...c,
-      consumables: [...c.consumables, ...rewards.consumables],
-      experience: c.experience + rewards.xp,
-    })),
+    characters: party.characters.map((c) =>
+      addExperience(
+        {
+          ...c,
+          consumables: [...c.consumables, ...rewards.consumables],
+        },
+        rewards.xp,
+      ),
+    ),
   }
 }

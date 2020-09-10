@@ -45,7 +45,6 @@ export const CombatLog = () => {
       </FlexContainer>
       <animated.div
         style={{
-          display: 'flex',
           overflow: 'auto',
           ...style,
         }}

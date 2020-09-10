@@ -118,19 +118,31 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           >
             <FullContainer />
             {character.stats.armor > 0 && (
-              <Badge
-                $absolute={false}
-                $right='4px'
-                $size='12px'
-                $color='lightblue'
+              <HoverBadge
+                direction='down'
+                content={<BoxContainer>Armor</BoxContainer>}
+                badgeProps={{
+                  $top: '-24px',
+                  $right: '4px',
+                  $size: '12px',
+                  $color: 'lightblue',
+                }}
               >
-                {character.stats.armor}
-              </Badge>
+                <span>{character.stats.armor}</span>
+              </HoverBadge>
             )}
             {character.stats.resistance > 0 && (
-              <Badge $absolute={false} $size='12px' $color='plum'>
-                {character.stats.resistance}
-              </Badge>
+              <HoverBadge
+                direction='down'
+                content={<BoxContainer>Magic Resistance</BoxContainer>}
+                badgeProps={{
+                  $top: '-24px',
+                  $size: '12px',
+                  $color: 'plum',
+                }}
+              >
+                <span>{character.stats.resistance}</span>
+              </HoverBadge>
             )}
             <FullContainer />
           </FlexContainer>

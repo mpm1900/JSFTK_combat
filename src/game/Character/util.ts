@@ -16,7 +16,7 @@ import { CLASS_ARMOR } from '../Armor/constants'
 import { tCombatReward } from '../Other/types'
 import { CLASS_CONSUMABLES } from '../Consumable/constants'
 import { considateConsumableListToStack } from '../Consumable/util'
-import { mapTypeToStatus } from '../Status/util'
+import { CHARACTER_XP_MAX } from './constants'
 
 export const isCharacter = (obj: any): boolean =>
   obj !== undefined && obj.isCharacter !== undefined
@@ -344,4 +344,38 @@ export const getRewardsFromCharacter = (
       : []
   }
   return []
+}
+
+export const addExperience = (
+  character: tCharacter,
+  xp: number,
+): tCharacter => {
+  checkForProcessedCharacter(character)
+  const xpToNextLevel = CHARACTER_XP_MAX[character.level]
+  const experience = character.experience + xp
+  if (experience > xpToNextLevel) {
+    return addExperience(
+      levelUp({
+        ...character,
+        experience,
+      }),
+      0,
+    )
+  }
+  return {
+    ...character,
+    experience,
+  }
+}
+
+export const levelUp = (character: tCharacter): tCharacter => {
+  checkForProcessedCharacter(character)
+  const experience = character.experience - CHARACTER_XP_MAX[character.level]
+  return {
+    ...character,
+    level: character.level + 1,
+    healthOffset: character.healthOffset / 2,
+    experience,
+    status: character.status.filter((s) => s.type !== 'poisoned'),
+  }
 }

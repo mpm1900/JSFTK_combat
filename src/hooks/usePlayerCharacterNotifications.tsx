@@ -7,22 +7,30 @@ export const usePlayerCharacterNotifications = (
   push: (c: JSX.Element, type?: string) => void,
 ) => {
   const health = character.health
-  const status = character.status.map((s) => s.type)
+  const level = character.level
   const { roundResults } = useCombatContext()
   const [previousHealth, setPreviousHealth] = useState(health)
+  const [previousLevel, setPreviousLevel] = useState(level)
   useEffect(() => {
-    const diff = previousHealth - health
-    if (diff > 0) {
-      push(<span style={{ fontFamily: 'Bangers' }}>- {diff}</span>)
+    const healthDiff = previousHealth - health
+    if (healthDiff > 0) {
+      push(<span style={{ fontFamily: 'Bangers' }}>- {healthDiff}</span>)
     }
-    if (diff < 0) {
+    if (healthDiff < 0) {
       push(
-        <span style={{ fontFamily: 'Bangers' }}>+ {Math.abs(diff)}</span>,
+        <span style={{ fontFamily: 'Bangers' }}>+ {Math.abs(healthDiff)}</span>,
         'good',
       )
     }
+    if (level > previousLevel) {
+      push(
+        <span style={{ fontFamily: 'Bangers', fontSize: 36 }}>Level Up!</span>,
+        'good',
+      )
+    }
+    setPreviousLevel(level)
     setPreviousHealth(health)
-  }, [health])
+  }, [health, level])
 
   useEffect(() => {
     const lastRound = roundResults[roundResults.length - 1]
