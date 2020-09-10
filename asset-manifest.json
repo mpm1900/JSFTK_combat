@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.8ba23963.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.8ba23963.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.03b91b0a.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.03b91b0a.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
     "static/css/2.d34346ea.chunk.css": "/JSFTK_combat/static/css/2.d34346ea.chunk.css",
-    "static/js/2.5ba99437.chunk.js": "/JSFTK_combat/static/js/2.5ba99437.chunk.js",
-    "static/js/2.5ba99437.chunk.js.map": "/JSFTK_combat/static/js/2.5ba99437.chunk.js.map",
+    "static/js/2.34e54465.chunk.js": "/JSFTK_combat/static/js/2.34e54465.chunk.js",
+    "static/js/2.34e54465.chunk.js.map": "/JSFTK_combat/static/js/2.34e54465.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.2a96e91b952b5957548651c7880fb3d3.js": "/JSFTK_combat/precache-manifest.2a96e91b952b5957548651c7880fb3d3.js",
+    "precache-manifest.002cec354eed4b040769147768601429.js": "/JSFTK_combat/precache-manifest.002cec354eed4b040769147768601429.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/2.d34346ea.chunk.css.map": "/JSFTK_combat/static/css/2.d34346ea.chunk.css.map",
     "static/css/main.a8c8ac70.chunk.css.map": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css.map",
-    "static/js/2.5ba99437.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.5ba99437.chunk.js.LICENSE.txt",
+    "static/js/2.34e54465.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.34e54465.chunk.js.LICENSE.txt",
     "static/media/axe-in-stump.svg": "/JSFTK_combat/static/media/axe-in-stump.cd8a3e4e.svg",
     "static/media/backward-time.svg": "/JSFTK_combat/static/media/backward-time.d0246d45.svg",
     "static/media/bandit.svg": "/JSFTK_combat/static/media/bandit.f798765b.svg",
@@ -31,8 +31,10 @@
     "static/media/clover.svg": "/JSFTK_combat/static/media/clover.df6a0d57.svg",
     "static/media/coins.svg": "/JSFTK_combat/static/media/coins.97dc8c40.svg",
     "static/media/cowled.svg": "/JSFTK_combat/static/media/cowled.d0cad9db.svg",
+    "static/media/cultist.svg": "/JSFTK_combat/static/media/cultist.998af3b1.svg",
     "static/media/dodging.svg": "/JSFTK_combat/static/media/dodging.3c689d6d.svg",
     "static/media/double-shot.svg": "/JSFTK_combat/static/media/double-shot.70211522.svg",
+    "static/media/dwarf-face.svg": "/JSFTK_combat/static/media/dwarf-face.5a90fe42.svg",
     "static/media/energy-arrow.svg": "/JSFTK_combat/static/media/energy-arrow.514fc56c.svg",
     "static/media/extra-time.svg": "/JSFTK_combat/static/media/extra-time.4d418333.svg",
     "static/media/eye-target.svg": "/JSFTK_combat/static/media/eye-target.4c5ae680.svg",
@@ -59,6 +61,7 @@
     "static/media/life-support.svg": "/JSFTK_combat/static/media/life-support.c0c7c040.svg",
     "static/media/light-backpack.svg": "/JSFTK_combat/static/media/light-backpack.6ad63d45.svg",
     "static/media/lightning-shield.svg": "/JSFTK_combat/static/media/lightning-shield.85367254.svg",
+    "static/media/nun-face.svg": "/JSFTK_combat/static/media/nun-face.ca639d11.svg",
     "static/media/orc-head.svg": "/JSFTK_combat/static/media/orc-head.ff410513.svg",
     "static/media/pirate-captain.svg": "/JSFTK_combat/static/media/pirate-captain.daa0fd39.svg",
     "static/media/pointy-hat.svg": "/JSFTK_combat/static/media/pointy-hat.d042ac98.svg",
@@ -81,14 +84,15 @@
     "static/media/viking-shield.svg": "/JSFTK_combat/static/media/viking-shield.a61f8230.svg",
     "static/media/visored-helm.svg": "/JSFTK_combat/static/media/visored-helm.1f2ced7f.svg",
     "static/media/wave-strike.svg": "/JSFTK_combat/static/media/wave-strike.1fe6dbab.svg",
+    "static/media/wizard-face.svg": "/JSFTK_combat/static/media/wizard-face.2a49683a.svg",
     "static/media/wizard-staff.svg": "/JSFTK_combat/static/media/wizard-staff.3e6091b9.svg",
     "static/media/wolf-head.svg": "/JSFTK_combat/static/media/wolf-head.4e7bf362.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
     "static/css/2.d34346ea.chunk.css",
-    "static/js/2.5ba99437.chunk.js",
+    "static/js/2.34e54465.chunk.js",
     "static/css/main.a8c8ac70.chunk.css",
-    "static/js/main.8ba23963.chunk.js"
+    "static/js/main.03b91b0a.chunk.js"
   ]
 }
