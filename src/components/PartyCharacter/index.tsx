@@ -70,10 +70,10 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               borderRight: '2px solid black',
               background: CHARACTER_CLASS_COLORS[character.class] || '#111',
               padding: 8,
+              alignItems: 'center',
               transition: 'all 0.3s',
             }}
           >
-            {/*<CharacterImage character={character} size={115} />*/}
             <Icon
               src={CHARACTER_CLASS_ICONS[character.class]}
               size={100}

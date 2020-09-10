@@ -12,6 +12,8 @@ import { tQueue } from '../../game/Queue/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { getMax, getFirst, getSortedIds } from '../../game/Queue/util'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
+import { CHARACTER_CLASS_ICONS } from '../../icons/maps'
+import { CHARACTER_CLASS_COLORS } from '../../game/Character/constants'
 
 const size = 40
 export interface CombatQueuePropsT {
@@ -73,25 +75,30 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
           >
             <FlexContainer style={{ position: 'relative', marginLeft: 22 }}>
               {first?.partyId === PLAYER_PARTY_ID ? (
-                <img
-                  alt='profile'
-                  height='64'
-                  width='64'
-                  src={`https://picsum.photos/seed/${first?.name}/115/115`}
+                <FlexContainer
                   style={{
-                    height: 64,
-                    width: 64,
+                    background: CHARACTER_CLASS_COLORS[first.class],
                     border: '2px solid rgba(255,255,255,0.8)',
                     borderTop: 'none',
-                    boxShadow: '1px 1px 1px black',
+                    height: 64,
+                    width: 64,
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     zIndex: 2,
                   }}
-                />
+                >
+                  <Icon
+                    src={CHARACTER_CLASS_ICONS[first.class]}
+                    size={64}
+                    fill='rgba(255,255,255,0.4)'
+                  />
+                </FlexContainer>
               ) : (
                 <FlexContainer
                   style={{
                     background: 'lightsalmon',
                     border: '2px solid rgba(255,255,255,0.8)',
+                    borderTop: 'none',
                     height: 64,
                     width: 64,
                     alignItems: 'center',
@@ -136,30 +143,33 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                         height: size - 10,
                         width: size - 7,
                         position: 'absolute',
-                        bottom: '0px',
+                        bottom: '4px',
                         right: `calc(${queue[c.id] * widthCoef}% - ${
                           size - 6
                         }px)`,
                         transition: 'all 0.3s',
+                        zIndex: i,
                       }}
                     >
                       {c.partyId === PLAYER_PARTY_ID ? (
-                        <img
-                          alt={`${queue[c?.id || '']}`}
-                          height={size}
-                          width={size}
-                          src={`https://picsum.photos/seed/${c?.name}/115/115`}
+                        <FlexContainer
                           style={{
+                            background: CHARACTER_CLASS_COLORS[c.class],
+                            border: '2px solid rgba(255,255,255,0.8)',
                             height: size - 10,
                             width: size - 7,
-                            border: `1px solid ${
-                              c.partyId === PLAYER_PARTY_ID
-                                ? 'lightblue'
-                                : 'lightsalmon'
-                            }`,
-                            borderBottom: 'none',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                           }}
-                        />
+                        >
+                          <Icon
+                            src={CHARACTER_CLASS_ICONS[c.class]}
+                            shadow
+                            fill={'white'}
+                            size={size - 13}
+                            style={{ zIndex: 1, position: 'relative' }}
+                          />
+                        </FlexContainer>
                       ) : (
                         <FlexContainer
                           style={{

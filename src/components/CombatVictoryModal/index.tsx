@@ -44,7 +44,10 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
   }, [])
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <FlexContainer
+      $direction='column'
+      style={{ textAlign: 'center', minHeight: 420 }}
+    >
       <h1>You Win!</h1>
       <FlexContainer $direction='column' style={{ color: 'white' }}>
         <FlexContainer style={{ marginBottom: 16 }}>
@@ -78,6 +81,7 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
           </FlexContainer>
         )}
       </FlexContainer>
+      <FullContainer />
       <Button
         onClick={() => {
           next()
@@ -85,6 +89,6 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
       >
         {items.length === 0 ? 'Close' : 'Next'}
       </Button>
-    </div>
+    </FlexContainer>
   )
 }

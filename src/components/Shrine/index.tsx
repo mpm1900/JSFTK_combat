@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Kefir from 'kefir'
 import { BoxContainer } from '../../elements/box'
 import { useGameStateContext } from '../../contexts/GameStateContext'
@@ -32,15 +32,21 @@ export const Shrine = (props: ShrinePropsT) => {
     stream.onValue((value) => {
       setResults((r) => [...r, value.result])
     })
-    stream.onEnd(() => {
-      updateParty(
-        commitRewards(
-          rawParty,
-          encounter.results[results.filter((r) => r).length],
-        ),
-      )
-    })
+    stream.onEnd(() => {})
   }
+
+  useEffect(() => {
+    if (results.length === encounter.rolls) {
+      const rewards =
+        encounter.results[results.filter((r) => r === true).length - 1]
+      if (!rewards) {
+        console.log(encounter, results)
+        return
+      }
+      updateParty(commitRewards(rawParty, rewards))
+    }
+  }, [results])
+
   return (
     <BoxContainer
       style={{ margin: '20px 20px 20px 0', flex: 1 }}

@@ -17,7 +17,7 @@ import { tWeapon } from '../Weapon/type'
 import { GODSBEARD } from '../Consumable/objects/godsbeard'
 import { tConsumable } from '../Consumable/type'
 import { tBaseStats } from '../Stats/type'
-import { POSSIBLE_SHINE_REWARDS_BY_VALUE, ZERO_REWARD } from './constants'
+import { POSSIBLE_SHINE_REWARDS, ZERO_REWARD } from './constants'
 
 export const makeRandomEncounter = (depth: number) => {
   const MAX_DEPTH = 10
@@ -75,15 +75,13 @@ export const makeRandomEncounter = (depth: number) => {
       'charisma',
       'luck',
     ])
-    const rolls = getRandom([2, 3, 3, 3, 3, 4, 4, 5])
+    const rewards = getRandom(POSSIBLE_SHINE_REWARDS())
     encounter = {
       ...encounter,
       stat,
       offset: 0,
-      rolls,
-      results: Array(rolls)
-        .fill(0)
-        .map((_, i) => getRandom(POSSIBLE_SHINE_REWARDS_BY_VALUE[i])),
+      rolls: rewards.length,
+      results: rewards,
     } as tShrineEncounter
   }
 
