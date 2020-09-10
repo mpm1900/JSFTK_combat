@@ -3,9 +3,11 @@ import { ArmorPreview } from '../ArmorPreview'
 import { WeaponPreview } from '../WeaponPreview'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
+import { ConsumablePreview } from '../ConsumablePreview'
+import { tConsumable } from '../../game/Consumable/type'
 
 export interface ItemPreviewPropsT {
-  item: tWeapon | tArmor
+  item: tWeapon | tArmor | tConsumable
 }
 
 export const ItemPreivew = (props: ItemPreviewPropsT) => {
@@ -14,5 +16,8 @@ export const ItemPreivew = (props: ItemPreviewPropsT) => {
   if (item.itemType === 'armor') return <ArmorPreview armor={item as tArmor} />
   if (item.itemType === 'weapon')
     return <WeaponPreview weapon={item as tWeapon} />
+  if (item.itemType === 'consumable') {
+    return <ConsumablePreview item={item as tConsumable} />
+  }
   return <div />
 }

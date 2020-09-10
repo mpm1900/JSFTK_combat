@@ -6,6 +6,7 @@ import {
   processParty,
   makeParty,
   findCharacterInParty,
+  updateCharacter,
 } from '../../game/Party/util'
 import {
   checkForProcessedCharacter,
@@ -18,6 +19,7 @@ import {
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
 import { useGameStateContext } from '../GameStateContext'
+import { tConsumable } from '../../game/Consumable/type'
 
 export interface PartyContextT {
   party: tProcessedParty
@@ -31,7 +33,7 @@ export interface PartyContextT {
   setActiveCharacter: (character: tProcessedCharacter) => void
   equipItem: (characterId: string, item: tWeapon | tArmor) => void
   unequipItem: (characterId: string, item: tWeapon | tArmor) => void
-  purchaseItem: (item: tArmor | tWeapon, cost: number) => void
+  purchaseItem: (item: tArmor | tWeapon | tConsumable, cost: number) => void
 }
 const defaultContextValue: PartyContextT = {
   rawParty: makeParty(),
@@ -149,9 +151,20 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
     if (item.itemType === 'weapon') {
     }
   }
-  const purchaseItem = (item: tArmor | tWeapon, cost: number) => {
+  const purchaseItem = (item: tArmor | tWeapon | tConsumable, cost: number) => {
     if (party.gold > cost && currentChoice && currentEncounter) {
-      actions.upsertItem(item)
+      if (item.itemType === 'armor' || item.itemType === 'weapon') {
+        actions.upsertItem(item as tArmor | tWeapon)
+      }
+      if (item.itemType === 'consumable') {
+        updateParty({
+          ...rawParty,
+          characters: rawParty.characters.map((c) => ({
+            ...c,
+            consumables: [...c.consumables, item as tConsumable],
+          })),
+        })
+      }
       actions.setGold(party.gold - cost)
       removeItem(currentChoice.id, currentEncounter.id, item.id)
     }

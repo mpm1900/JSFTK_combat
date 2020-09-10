@@ -13,12 +13,13 @@ import { ALL_WEAPONS } from '../Weapon/constants'
 import { ALL_ARMOR } from '../Armor/objects'
 import { tArmor } from '../Armor/type'
 import { tWeapon } from '../Weapon/type'
+import { GODSBEARD } from '../Consumable/objects/godsbeard'
+import { tConsumable } from '../Consumable/type'
 
 const ZERO_REWARD: tEncounterReward = {
   gold: 0,
   xp: 0,
   items: [],
-  consumables: [],
   status: [],
 }
 
@@ -51,7 +52,7 @@ export const makeRandomEncounter = (depth: number) => {
     } as tCombatEncounter
   }
   if (encounter.type === 'shop') {
-    const items = [...ALL_WEAPONS(), ...ALL_ARMOR()]
+    const items = [GODSBEARD(), ...ALL_WEAPONS(), ...ALL_ARMOR()]
     encounter = {
       ...encounter,
       items,
@@ -89,10 +90,11 @@ export const makeEncounterList = (depth: number): tEncounterChoice[] => {
     })
 }
 
-export const getItemCost = (item: tArmor | tWeapon): number => {
+export const getItemCost = (item: tArmor | tWeapon | tConsumable): number => {
   let cost = 0
   if (item.itemType === 'armor') cost += 40
   if (item.itemType === 'weapon') cost += 80
+  if (item.itemType === 'consumable') cost += 110
   switch (item.rarity) {
     case 'common':
       cost += 10

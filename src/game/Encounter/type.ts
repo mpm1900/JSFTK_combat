@@ -17,8 +17,7 @@ export interface tCombatEncounter extends tEncounter {
   party: tParty
 }
 export interface tShopEncounter extends tEncounter {
-  items: (tWeapon | tArmor)[]
-  consumables: tConsumable[]
+  items: (tWeapon | tArmor | tConsumable)[]
   costs: Record<string, number>
 }
 export interface tShrineEncounter extends tEncounter {
@@ -29,8 +28,7 @@ export interface tShrineEncounter extends tEncounter {
 export interface tEncounterReward {
   gold: number
   xp: number
-  items: (tArmor | tWeapon)[]
-  consumables: tConsumable[]
+  items: (tArmor | tWeapon | tConsumable)[]
   status: tStatusType[]
 }
 

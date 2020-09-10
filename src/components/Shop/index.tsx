@@ -8,9 +8,11 @@ import { tShopEncounter } from '../../game/Encounter/type'
 import { WeaponPreview } from '../WeaponPreview'
 import { ArmorPreview } from '../ArmorPreview'
 import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
-import { tWeapon, tWeaponType } from '../../game/Weapon/type'
+import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
 import { usePartyContext } from '../../contexts/PartyContext'
+import { tConsumable } from '../../game/Consumable/type'
+import { ConsumablePreview } from '../ConsumablePreview'
 
 const CardList = withStyle(FlexContainer, (props: any) => {
   return {
@@ -24,7 +26,7 @@ interface ShopTabT {
   label: string
   render: (
     encounter: tShopEncounter,
-    purchaseItem: (item: tArmor | tWeapon, cost: number) => void,
+    purchaseItem: (item: tArmor | tWeapon | tConsumable, cost: number) => void,
   ) => JSX.Element
 }
 const tabs: ShopTabT[] = [
@@ -33,7 +35,7 @@ const tabs: ShopTabT[] = [
     label: 'All',
     render: (encounter: tShopEncounter, purchaseItem) => (
       <FlexContainer $direction='column'>
-        {[...encounter.items, ...encounter.consumables].map((i) => (
+        {[...encounter.items].map((i) => (
           <FlexContainer style={{ color: ITEM_RARITY_COLORS[i.rarity] }}>
             {i.name}
           </FlexContainer>
@@ -80,7 +82,20 @@ const tabs: ShopTabT[] = [
   {
     key: 'consumables',
     label: 'Consumables',
-    render: (encounter: tShopEncounter) => <span>Consumables</span>,
+    render: (encounter: tShopEncounter, purchaseItem) => (
+      <CardList>
+        {encounter.items
+          .filter((i) => i.itemType === 'consumable')
+          .map((a) => (
+            <ConsumablePreview
+              item={a as tConsumable}
+              showBuyButton={true}
+              cost={encounter.costs[a.id]}
+              onBuyClick={() => purchaseItem(a, encounter.costs[a.id])}
+            />
+          ))}
+      </CardList>
+    ),
   },
 ]
 
