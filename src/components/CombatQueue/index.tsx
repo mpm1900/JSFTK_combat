@@ -73,7 +73,9 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
               background: '#222',
             }}
           >
-            <FlexContainer style={{ position: 'relative', marginLeft: 22 }}>
+            <FlexContainer
+              style={{ position: 'relative', marginLeft: 22, zIndex: 7 }}
+            >
               {first?.partyId === PLAYER_PARTY_ID ? (
                 <FlexContainer
                   style={{

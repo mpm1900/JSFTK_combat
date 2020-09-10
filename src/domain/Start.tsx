@@ -112,7 +112,7 @@ export const Start = () => {
           fontSize: 12,
         }}
       >
-        pre-pre-pre-pre alpha v0.0.2.1
+        pre-pre-pre-pre alpha v0.0.2.2
       </Monospace>
     </FlexContainer>
   )
@@ -171,7 +171,12 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
         {STAT_BONUS_KEYS.map((key) => (
           <FlexContainer key={key} style={{ height: 20 }}>
             <div
-              style={{ width: 60, fontSize: 12, textTransform: 'capitalize' }}
+              style={{
+                width: 60,
+                fontSize: 12,
+                textTransform: 'capitalize',
+                marginRight: 4,
+              }}
             >
               {key}
             </div>

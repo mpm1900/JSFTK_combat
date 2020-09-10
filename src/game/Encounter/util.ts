@@ -1,6 +1,5 @@
 import { v4 } from 'uuid'
 import {
-  tEncounterReward,
   tEncounter,
   tEncounterType,
   tCombatEncounter,
