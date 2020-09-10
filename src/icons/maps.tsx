@@ -89,6 +89,12 @@ import { RESTORE } from '../game/Skill/objects/restore'
 import { PRESTO } from '../game/Skill/objects/presto'
 import { ANIMATO } from '../game/Skill/objects/animato'
 import { POWER_STRIKE } from '../game/Skill/objects/power_strike'
+import { tCharacterClass } from '../game/Character/type'
+
+import Blacksmith from './svg/delapouite/dwarf-face.svg'
+import Hunter from './svg/lorc/cowled.svg'
+import Bard from './svg/cathelineau/nun-face.svg'
+import Scholar from './svg/delapouite/wizard-face.svg'
 
 export const STAT_ICONS: Record<keyof tBaseStats, string> = {
   vigor: Vigor,
@@ -184,4 +190,12 @@ export const CONSUMABLE_ITEM_ICONS: Record<string, string> = {
 }
 export const CONSUMABLE_ITEM_COLORS: Record<string, string> = {
   [GODSBEARD().cid]: '#84a397',
+}
+
+export const CHARACTER_CLASS_ICONS: Record<tCharacterClass, string> = {
+  enemy: '',
+  blacksmith: Blacksmith,
+  bard: Bard,
+  hunter: Hunter,
+  scholar: Scholar,
 }

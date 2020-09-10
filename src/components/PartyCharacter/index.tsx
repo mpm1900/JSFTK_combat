@@ -16,6 +16,9 @@ import { useUIContext } from '../../contexts/UIContext'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tConsumable } from '../../game/Consumable/type'
 import { usePlayerCharacterNotifications } from '../../hooks/usePlayerCharacterNotifications'
+import { Icon } from '../Icon'
+import { CHARACTER_CLASS_ICONS } from '../../icons/maps'
+import { CHARACTER_CLASS_COLORS } from '../../game/Character/constants'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -63,9 +66,19 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       >
         <FlexContainer style={{ border: '2px solid black' }}>
           <FlexContainer
-            style={{ borderRight: '2px solid black', background: '#111' }}
+            style={{
+              borderRight: '2px solid black',
+              background: CHARACTER_CLASS_COLORS[character.class] || '#111',
+              padding: 8,
+              transition: 'all 0.3s',
+            }}
           >
-            <CharacterImage character={character} size={115} />
+            {/*<CharacterImage character={character} size={115} />*/}
+            <Icon
+              src={CHARACTER_CLASS_ICONS[character.class]}
+              size={100}
+              fill='rgba(255,255,255,0.4)'
+            />
           </FlexContainer>
           <FlexContainer $full $direction='column'>
             <Name character={character} />

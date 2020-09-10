@@ -118,7 +118,7 @@ export const commitRewards = (
             consumables: [
               ...c.consumables,
               ...(rewards.items.filter(
-                (i) => i.itemType !== 'consumable',
+                (i) => i.itemType === 'consumable',
               ) as tConsumable[]),
             ],
           },

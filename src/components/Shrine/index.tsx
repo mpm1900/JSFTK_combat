@@ -65,11 +65,13 @@ export const Shrine = (props: ShrinePropsT) => {
               />
               <FlexContainer style={{ justifyContent: 'center' }}>
                 {party.characters.map((c) => (
-                  <Button onClick={() => onClick(c)}>
+                  <Button
+                    onClick={() => onClick(c)}
+                    disabled={results.length > 0}
+                  >
                     {c.name} ({c.stats[encounter.stat]})
                   </Button>
                 ))}
-                <Button onClick={() => setResults([])}>Reset</Button>
               </FlexContainer>
             </FlexContainer>
           </FlexContainer>
