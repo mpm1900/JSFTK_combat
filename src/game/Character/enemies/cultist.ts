@@ -61,21 +61,27 @@ export const CULTIST = (): tCharacter => {
     },
     possibleRewards: [
       {
-        gold: 20,
-        xp: 20,
-        items: [],
-        consumables: [],
-      },
-      {
-        gold: 1,
+        gold: 10,
         xp: 12,
         items: [],
         consumables: [],
       },
       {
-        gold: 20,
-        xp: 20,
-        items: [getRandom(ALL_ARMOR())],
+        gold: 15,
+        xp: 13,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 15,
+        xp: 13,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 15,
+        xp: 13,
+        items: [],
         consumables: [],
       },
       {
@@ -85,7 +91,7 @@ export const CULTIST = (): tCharacter => {
         consumables: [],
       },
       {
-        gold: 80,
+        gold: 20,
         xp: 20,
         items: [getRandom(ALL_ARMOR())],
         consumables: [],

@@ -66,25 +66,37 @@ export const VALE_IMP = (): tCharacter => {
     possibleRewards: [
       {
         gold: 0,
-        xp: 15,
+        xp: 5,
         items: [],
         consumables: [],
       },
       {
-        gold: 1,
-        xp: 12,
+        gold: 3,
+        xp: 7,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 3,
+        xp: 7,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 3,
+        xp: 7,
         items: [],
         consumables: [],
       },
       {
         gold: 0,
-        xp: 15,
+        xp: 7,
         items: [getRandom(ALL_ARMOR())],
         consumables: [],
       },
       {
         gold: 0,
-        xp: 15,
+        xp: 7,
         items: [getRandom(ALL_WEAPONS())],
         consumables: [],
       },

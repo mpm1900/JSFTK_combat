@@ -59,19 +59,43 @@ export const TIMBERWOLF = (): tCharacter => {
     possibleRewards: [
       {
         gold: 4,
-        xp: 10,
+        xp: 3,
         items: [],
         consumables: [],
       },
       {
         gold: 4,
-        xp: 10,
+        xp: 3,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 4,
+        xp: 3,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 4,
+        xp: 3,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 4,
+        xp: 3,
+        items: [],
+        consumables: [],
+      },
+      {
+        gold: 4,
+        xp: 3,
         items: [],
         consumables: [],
       },
       {
         gold: 19,
-        xp: 20,
+        xp: 3,
         items: [getRandom([...ALL_WEAPONS(), ...ALL_ARMOR()])],
         consumables: [],
       },

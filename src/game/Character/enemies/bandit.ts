@@ -60,8 +60,8 @@ export const BANDIT = (): tCharacter => {
     },
     possibleRewards: [
       {
-        gold: 20,
-        xp: 20,
+        gold: 1,
+        xp: 10,
         items: [],
         consumables: [],
       },
@@ -72,15 +72,15 @@ export const BANDIT = (): tCharacter => {
         consumables: [],
       },
       {
-        gold: 20,
-        xp: 20,
-        items: [getRandom(ALL_ARMOR())],
+        gold: 10,
+        xp: 15,
+        items: [],
         consumables: [],
       },
       {
         gold: 20,
         xp: 20,
-        items: [getRandom(ALL_ARMOR())],
+        items: [],
         consumables: [],
       },
       {

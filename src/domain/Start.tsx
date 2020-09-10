@@ -38,18 +38,45 @@ export const Start = () => {
       <FullContainer />
       <FlexContainer $full>
         <FullContainer />
-        <BoxContainer>
+        <BoxContainer style={{ maxWidth: 340 }} substyle={{ padding: 16 }}>
+          <strong style={{ marginBottom: 16 }}>
+            Choose your starting classes.
+          </strong>
+          <p>
+            Each character class has different stats and starting items. Your
+            stats determine your character's chances of succeed in various
+            checks during combat.
+          </p>
+          <p>
+            For example, if your character has 76 Strength, then each Strength
+            check has a 76% chance of succeeding.
+          </p>
+          <p>
+            So if an attack has 4 Strength checks at 76% each, then that attack
+            has a 33% chance of being "perfect." Some attacks will have special
+            bonus actions when they are "perfect." Such as splash damage, or
+            status effects.
+          </p>
+          <p>
+            More power attacks may require more checks or use negative-offset
+            stat values
+          </p>
+        </BoxContainer>
+        <BoxContainer substyle={{ background: '#111' }}>
           <h1
-            style={{ marginTop: 0, textAlign: 'center', fontFamily: 'Bangers' }}
+            style={{
+              marginTop: 8,
+              textAlign: 'center',
+              fontFamily: 'Bangers',
+              letterSpacing: '1px',
+              textShadow: '1px 3px 3px black',
+            }}
           >
             Choose your Party!
           </h1>
           <FlexContainer>
             {party.characters.map((character) => (
-              <BoxContainer
-                key={character.id}
-                substyle={{ background: '#111' }}
-              >
+              <FlexContainer $direction='column' style={{ padding: 4 }}>
                 <StartCharacterCard
                   character={character}
                   onChange={(characterId, updater) => {
@@ -59,13 +86,13 @@ export const Start = () => {
                     }
                   }}
                 />
-              </BoxContainer>
+              </FlexContainer>
             ))}
           </FlexContainer>
           <FlexContainer>
             <FullContainer />
             <RedButton
-              style={{ marginTop: 16 }}
+              style={{ margin: '16px 0 12px 0' }}
               onClick={() => {
                 history.push('/JSFTK_combat/party')
               }}
@@ -104,7 +131,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
     <FlexContainer $direction='column'>
       <input
         style={{
-          background: '#333',
+          background: '#222',
           border: '1px solid rgba(255,255,255,0.4)',
           padding: 8,
           color: 'white',
@@ -120,7 +147,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
       />
       <select
         style={{
-          background: '#333',
+          background: '#222',
           border: '1px solid rgba(255,255,255,0.4)',
           padding: 8,
           color: 'white',
