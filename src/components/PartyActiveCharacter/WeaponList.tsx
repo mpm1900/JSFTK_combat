@@ -62,7 +62,9 @@ export const WeaponList = (props: WeaponListPropsT) => {
                   >
                     <Button
                       style={{ padding: '4px 8px' }}
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
                         equipItem(character.id, weapon)
                         setActiveItemId(undefined)
                       }}

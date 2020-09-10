@@ -64,7 +64,9 @@ export const ArmorList = (props: ArmorListPropsT) => {
                   >
                     <Button
                       style={{ padding: '4px 8px' }}
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
                         equipItem(character.id, armor)
                         setActiveItemId(undefined)
                       }}

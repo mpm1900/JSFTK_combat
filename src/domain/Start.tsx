@@ -44,7 +44,7 @@ export const Start = () => {
           </strong>
           <p>
             Each character class has different stats and starting items. Your
-            stats determine your character's chances of succeed in various
+            stats determine your character's chances of succeeding in various
             checks during combat.
           </p>
           <p>
@@ -112,7 +112,7 @@ export const Start = () => {
           fontSize: 12,
         }}
       >
-        pre-pre-pre-pre alpha v0.0.1.21
+        pre-pre-pre-pre alpha v0.0.1.23
       </Monospace>
     </FlexContainer>
   )
