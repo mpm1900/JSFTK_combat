@@ -5,18 +5,15 @@ import { ConfirmButton2, ConfirmButton, RedButton } from '../../elements/button'
 import { EnemyCharacter } from '../EnemyCharacter'
 import { tProcessedParty } from '../../game/Party/type'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
+import { useUIContext } from '../../contexts/UIContext'
 
 export interface CombatPartyPropsT {
   party: tProcessedParty
 }
 export const CombatParty = (props: CombatPartyPropsT) => {
   const { party } = props
-  const {
-    activeCharacter,
-    selectedSkill,
-    onTargetsSelect,
-    next,
-  } = useCombatContext()
+  const { activeCharacter, selectedSkill, next } = useCombatContext()
+  const { setShowSkillTooltips } = useUIContext()
   return (
     <FlexContainer $direction='column'>
       <FlexContainer
@@ -24,11 +21,6 @@ export const CombatParty = (props: CombatPartyPropsT) => {
           justifyContent: 'space-around',
           padding: '0 120px',
           cursor: selectedSkill?.targetType === 'group' ? 'pointer' : 'default',
-        }}
-        onClick={() => {
-          if (selectedSkill && selectedSkill.targetType === 'group') {
-            onTargetsSelect(party)
-          }
         }}
       >
         {party.characters.map((c) => (
@@ -44,7 +36,13 @@ export const CombatParty = (props: CombatPartyPropsT) => {
                   <div
                     style={{ boxShadow: '0px 2px 5px black', marginTop: -2 }}
                   >
-                    <RedButton onClick={() => next(c)} $direction='down'>
+                    <RedButton
+                      onClick={() => {
+                        next(c)
+                        setShowSkillTooltips(false)
+                      }}
+                      $direction='down'
+                    >
                       Attack
                     </RedButton>
                   </div>
@@ -56,7 +54,14 @@ export const CombatParty = (props: CombatPartyPropsT) => {
       {selectedSkill && selectedSkill.targetType === 'group' && (
         <FlexContainer style={{ justifyContent: 'center' }}>
           <div style={{ boxShadow: '0px 2px 5px black' }}>
-            <RedButton onClick={() => next(party)}>Attack Group</RedButton>
+            <RedButton
+              onClick={() => {
+                next(party)
+                setShowSkillTooltips(false)
+              }}
+            >
+              Attack Group
+            </RedButton>
           </div>
         </FlexContainer>
       )}

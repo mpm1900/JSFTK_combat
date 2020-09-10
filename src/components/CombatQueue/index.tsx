@@ -90,13 +90,13 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                   <Icon
                     src={CHARACTER_CLASS_ICONS[first.class]}
                     size={64}
-                    fill='rgba(255,255,255,0.4)'
+                    fill='rgba(255,255,255,1)'
                   />
                 </FlexContainer>
               ) : (
                 <FlexContainer
                   style={{
-                    background: 'lightsalmon',
+                    background: '#c27a5d',
                     border: '2px solid rgba(255,255,255,0.8)',
                     borderTop: 'none',
                     height: 64,
@@ -173,7 +173,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                       ) : (
                         <FlexContainer
                           style={{
-                            background: 'lightsalmon',
+                            background: '#c27a5d',
                             border: '2px solid rgba(255,255,255,0.8)',
                             height: size - 10,
                             width: size - 7,

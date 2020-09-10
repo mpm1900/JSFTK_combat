@@ -9,6 +9,9 @@ import { Icon } from '../Icon'
 import { Hover } from '../Hover'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 import { HEAL } from '../../game/Skill/objects/heal'
+import { useUIContext } from '../../contexts/UIContext'
+import { Tooltip } from '../Tooltip'
+import { BoxContainer } from '../../elements/box'
 
 export const CombatActions = () => {
   const {
@@ -17,6 +20,8 @@ export const CombatActions = () => {
     selectedTargets,
     onSkillSelect,
   } = useCombatContext()
+
+  const { showSkillTooltips } = useUIContext()
 
   if (!activeCharacter || activeCharacter.partyId !== PLAYER_PARTY_ID)
     return null
@@ -32,49 +37,66 @@ export const CombatActions = () => {
   return (
     <FlexContainer $direction='column' style={{ minWidth: 340 }}>
       {selectedSkill && <SkillChecks stat={stat} skill={selectedSkill} />}
-      <FlexContainer style={{ justifyContent: 'center', minHeight: 42 }}>
-        {skills.map((skill) => (
-          <React.Fragment key={skill.id}>
-            {SKILL_ICONS[skill.id] ? (
-              <Hover delay={0}>
-                {({ isHovering }) => (
-                  <Icon
-                    src={SKILL_ICONS[skill.id]}
-                    size={42}
-                    shadow={true}
-                    style={{
-                      cursor: 'pointer',
-                      padding: '0 12px',
-                    }}
-                    onClick={() => onSkillSelect(skill)}
-                    fill={
-                      skill.id === selectedSkill?.id
-                        ? 'lightsalmon'
-                        : isHovering
+      <Tooltip
+        isOpen={showSkillTooltips}
+        direction='left'
+        arrow={true}
+        background='#111'
+        content={
+          <FlexContainer
+            $direction='column'
+            style={{ padding: 8, color: 'rgba(255,255,255,0.8)' }}
+          >
+            Choose a skill.
+          </FlexContainer>
+        }
+      >
+        <FlexContainer style={{ justifyContent: 'center', minHeight: 42 }}>
+          {skills.map((skill) => (
+            <React.Fragment key={skill.id}>
+              {SKILL_ICONS[skill.id] ? (
+                <Hover delay={0}>
+                  {({ isHovering }) => (
+                    <Icon
+                      src={SKILL_ICONS[skill.id]}
+                      size={42}
+                      shadow={true}
+                      style={{
+                        cursor: 'pointer',
+                        padding: '0 12px',
+                      }}
+                      onClick={() => {
+                        onSkillSelect(skill)
+                      }}
+                      fill={
+                        skill.id === selectedSkill?.id
+                          ? 'lightsalmon'
+                          : isHovering
+                          ? 'white'
+                          : 'rgba(255,255,255,0.8)'
+                      }
+                    />
+                  )}
+                </Hover>
+              ) : (
+                <Button
+                  key={skill.id}
+                  onClick={() => onSkillSelect(skill)}
+                  style={{
+                    background: '#111',
+                    borderColor:
+                      selectedSkill && skill.id === selectedSkill.id
                         ? 'white'
-                        : 'rgba(255,255,255,0.8)'
-                    }
-                  />
-                )}
-              </Hover>
-            ) : (
-              <Button
-                key={skill.id}
-                onClick={() => onSkillSelect(skill)}
-                style={{
-                  background: '#111',
-                  borderColor:
-                    selectedSkill && skill.id === selectedSkill.id
-                      ? 'white'
-                      : undefined,
-                }}
-              >
-                {skill.name}
-              </Button>
-            )}
-          </React.Fragment>
-        ))}
-      </FlexContainer>
+                        : undefined,
+                  }}
+                >
+                  {skill.name}
+                </Button>
+              )}
+            </React.Fragment>
+          ))}
+        </FlexContainer>
+      </Tooltip>
       {selectedSkill && (
         <SkillPreview
           skill={selectedSkill}

@@ -5,6 +5,7 @@ import { tConsumable } from '../../game/Consumable/type'
 export interface UIContextT {
   playerCanEquipItem: boolean
   openCharacterInventoryId: string | undefined
+  showSkillTooltips: boolean
   onCharacterConsumableClick: (
     c: tProcessedCharacter,
     index: number,
@@ -15,15 +16,18 @@ export interface UIContextT {
   setOnCharacterConsumableClick: (
     fn: (c: tProcessedCharacter, index: number, item: tConsumable) => void,
   ) => void
+  setShowSkillTooltips: (v: boolean) => void
 }
 
 const defaultValue: UIContextT = {
   playerCanEquipItem: false,
   openCharacterInventoryId: undefined,
+  showSkillTooltips: false,
   onCharacterConsumableClick: (c, i, item) => {},
   setPlayerCanEquipItem: (v) => {},
   setOpenCharacterInventoryId: (id) => {},
   setOnCharacterConsumableClick: (fn) => {},
+  setShowSkillTooltips: (v) => {},
 }
 
 export const UIContext = React.createContext<UIContextT>(defaultValue)
@@ -35,6 +39,7 @@ export interface UIContextProviderPropsT {
 export const UIContextProvider = (props: UIContextProviderPropsT) => {
   const { children } = props
   const [playerCanEquipItem, setPlayerCanEquipItem] = useState(false)
+  const [showSkillTooltips, setShowSkillTooltips] = useState(true)
   const [openCharacterInventoryId, setOpenCharacterInventoryId] = useState<
     string | undefined
   >()
@@ -52,10 +57,12 @@ export const UIContextProvider = (props: UIContextProviderPropsT) => {
       value={{
         playerCanEquipItem,
         openCharacterInventoryId,
+        showSkillTooltips,
         onCharacterConsumableClick,
         setPlayerCanEquipItem,
         setOpenCharacterInventoryId,
         setOnCharacterConsumableClick,
+        setShowSkillTooltips,
       }}
     >
       {children}
