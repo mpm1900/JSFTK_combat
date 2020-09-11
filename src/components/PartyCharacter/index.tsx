@@ -61,7 +61,6 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         style={{
           borderWidth: 2,
           transition: 'all 1s',
-          boxShadow: selected ? '0px 0px 20px white' : 'none',
         }}
         substyle={{ padding: 0, minWidth: 396 }}
       >

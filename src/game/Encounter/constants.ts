@@ -106,9 +106,9 @@ export const getChoiceText = (
         (previousEncounter as tCombatEncounter).party.characters.map(
           (c) => c.name,
         ),
-      )}, your party again arrives a choice:`,
+      )}, your party again arrives at a choice:`,
     ])
-  } else {
+  } else if (previousChoice) {
     text =
       'After a brief rest, your party continues their journey to dispel the evil. You feel it around you as your travel deeper. However, there now seem to be two options before you:'
   }

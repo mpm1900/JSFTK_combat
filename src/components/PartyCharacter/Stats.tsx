@@ -34,7 +34,7 @@ export interface StatsProps {
 export const Stats = (props: StatsProps) => {
   const { character } = props
   return (
-    <FlexContainer>
+    <FlexContainer style={{ paddingTop: 2, background: Theme.darkBgColor }}>
       <CharacterStat statKey='strength' character={character} />
       <CharacterStat statKey='vigor' character={character} />
       <CharacterStat statKey='intelligence' character={character} />
