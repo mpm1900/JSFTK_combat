@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d0965bc8594a2a6cccc2aa7e1d71a977",
+    "revision": "4d49f4bccc5a408495480e36bcf059da",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "b22d42b3149b63a77306",
+    "revision": "532aa2055d0c8577a2c8",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "353cdb22f46c2a992f17",
+    "revision": "70087c10efa38c458156",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
-    "revision": "b22d42b3149b63a77306",
-    "url": "/JSFTK_combat/static/js/2.8ec27cac.chunk.js"
+    "revision": "532aa2055d0c8577a2c8",
+    "url": "/JSFTK_combat/static/js/2.e5069969.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.8ec27cac.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.e5069969.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "353cdb22f46c2a992f17",
-    "url": "/JSFTK_combat/static/js/main.ac8b434e.chunk.js"
+    "revision": "70087c10efa38c458156",
+    "url": "/JSFTK_combat/static/js/main.4c581e88.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -126,10 +126,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "702115225b1542cb63f195af822ae9ad",
     "url": "/JSFTK_combat/static/media/double-shot.70211522.svg"
-  },
-  {
-    "revision": "5a90fe425cd29e615c188451995ef584",
-    "url": "/JSFTK_combat/static/media/dwarf-face.5a90fe42.svg"
   },
   {
     "revision": "514fc56c6439f7eb142fc8ec0f37270d",
@@ -330,6 +326,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "30335592156f2f6ee12e1d65a8cd5a82",
     "url": "/JSFTK_combat/static/media/ubisoft-sun.30335592.svg"
+  },
+  {
+    "revision": "42e0046dad527dd0382c265760e76d15",
+    "url": "/JSFTK_combat/static/media/viking-head.42e0046d.svg"
   },
   {
     "revision": "a61f823052f5533afe1a07c856728ab0",
