@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.cdd0394c.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.cdd0394c.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.9f12147e.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.9f12147e.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
     "static/css/2.d34346ea.chunk.css": "/JSFTK_combat/static/css/2.d34346ea.chunk.css",
-    "static/js/2.a71078d0.chunk.js": "/JSFTK_combat/static/js/2.a71078d0.chunk.js",
-    "static/js/2.a71078d0.chunk.js.map": "/JSFTK_combat/static/js/2.a71078d0.chunk.js.map",
+    "static/js/2.32b07e67.chunk.js": "/JSFTK_combat/static/js/2.32b07e67.chunk.js",
+    "static/js/2.32b07e67.chunk.js.map": "/JSFTK_combat/static/js/2.32b07e67.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.c3a1cafee1ad261fd3849bb1d0b98283.js": "/JSFTK_combat/precache-manifest.c3a1cafee1ad261fd3849bb1d0b98283.js",
+    "precache-manifest.b183f10adf4080ce62720bd6b074a126.js": "/JSFTK_combat/precache-manifest.b183f10adf4080ce62720bd6b074a126.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/2.d34346ea.chunk.css.map": "/JSFTK_combat/static/css/2.d34346ea.chunk.css.map",
     "static/css/main.a8c8ac70.chunk.css.map": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css.map",
-    "static/js/2.a71078d0.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.a71078d0.chunk.js.LICENSE.txt",
+    "static/js/2.32b07e67.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.32b07e67.chunk.js.LICENSE.txt",
     "static/media/axe-in-stump.svg": "/JSFTK_combat/static/media/axe-in-stump.cd8a3e4e.svg",
     "static/media/backward-time.svg": "/JSFTK_combat/static/media/backward-time.d0246d45.svg",
     "static/media/bandit.svg": "/JSFTK_combat/static/media/bandit.f798765b.svg",
@@ -46,6 +46,7 @@
     "static/media/gavel.svg": "/JSFTK_combat/static/media/gavel.e0256fff.svg",
     "static/media/guitar.svg": "/JSFTK_combat/static/media/guitar.a02399f0.svg",
     "static/media/hammer-drop.svg": "/JSFTK_combat/static/media/hammer-drop.120a92c4.svg",
+    "static/media/hand.svg": "/JSFTK_combat/static/media/hand.7bd9b12d.svg",
     "static/media/health-normal.svg": "/JSFTK_combat/static/media/health-normal.0da85e24.svg",
     "static/media/heart-beats.svg": "/JSFTK_combat/static/media/heart-beats.6b1fff9c.svg",
     "static/media/heavy-arrow.svg": "/JSFTK_combat/static/media/heavy-arrow.56b29a8a.svg",
@@ -92,8 +93,8 @@
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
     "static/css/2.d34346ea.chunk.css",
-    "static/js/2.a71078d0.chunk.js",
+    "static/js/2.32b07e67.chunk.js",
     "static/css/main.a8c8ac70.chunk.css",
-    "static/js/main.cdd0394c.chunk.js"
+    "static/js/main.9f12147e.chunk.js"
   ]
 }
