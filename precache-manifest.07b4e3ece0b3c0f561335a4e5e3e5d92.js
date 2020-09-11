@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3bb9caf944b01281a75ff4ed7ce03847",
+    "revision": "634e3ef4f7c12f006732ab13a660825d",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "4b971e949e11d7f4d817",
+    "revision": "b96532091aa0a28c79f5",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "274e064a104b0bb152e4",
+    "revision": "f9ec6da4a4afd19b27ac",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
-    "revision": "4b971e949e11d7f4d817",
-    "url": "/JSFTK_combat/static/js/2.26fe2a19.chunk.js"
+    "revision": "b96532091aa0a28c79f5",
+    "url": "/JSFTK_combat/static/js/2.2c27e60a.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.26fe2a19.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.2c27e60a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "274e064a104b0bb152e4",
-    "url": "/JSFTK_combat/static/js/main.3b5766fa.chunk.js"
+    "revision": "f9ec6da4a4afd19b27ac",
+    "url": "/JSFTK_combat/static/js/main.069bb09e.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -104,8 +104,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/cowled.d0cad9db.svg"
   },
   {
+    "revision": "b7d2c27aa5e3c339407d1442370fe343",
+    "url": "/JSFTK_combat/static/media/crossed-swords.b7d2c27a.svg"
+  },
+  {
+    "revision": "458d8f7833dab22ef32f683a0ab08964",
+    "url": "/JSFTK_combat/static/media/crowned-skull.458d8f78.svg"
+  },
+  {
     "revision": "998af3b11e23c28040046dba6f94102a",
     "url": "/JSFTK_combat/static/media/cultist.998af3b1.svg"
+  },
+  {
+    "revision": "a8e90e0d15e9d2a427c9cec22e630d3b",
+    "url": "/JSFTK_combat/static/media/divided-spiral.a8e90e0d.svg"
   },
   {
     "revision": "3c689d6dc1e3d50ce2b5c37e6e3a5d0c",
@@ -242,6 +254,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "03e5b513c34b96c9497d86703e4e3404",
     "url": "/JSFTK_combat/static/media/overlord-helm.03e5b513.svg"
+  },
+  {
+    "revision": "8b7e2589e0f2006d38d30e23355afe56",
+    "url": "/JSFTK_combat/static/media/perspective-dice-six.8b7e2589.svg"
   },
   {
     "revision": "daa0fd39690604417f8e68e21b8b8c66",
