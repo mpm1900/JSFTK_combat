@@ -108,6 +108,9 @@ export const getChoiceText = (
         ),
       )}, your party again arrives a choice:`,
     ])
+  } else {
+    text =
+      'After a brief rest, your party continues their journey to dispel the evil. You feel it around you as your travel deeper. However, there now seem to be two options before you:'
   }
   return text
 }

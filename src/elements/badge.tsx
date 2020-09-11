@@ -15,7 +15,7 @@ export const Badge = withWrapper(Div, (Element) => (props: any) => {
         position: props.$absolute === false ? 'relative' : 'absolute',
         background: Theme.darkBgColor,
         padding: '4px',
-        fontFamily: 'Bangers',
+        fontFamily: 'New Rocker',
         border: '1px solid rgba(255,255,255,0.5)',
         boxShadow: '1px 1px 0px black',
         height: props.$size || '20px',
@@ -72,7 +72,7 @@ export const HoverBadge = (props: HoverBadgePropsT) => {
           $absolute={false}
           $size={badgeProps.$size}
           $color={badgeProps.$color}
-          style={badgeProps.style}
+          $style={badgeProps.style}
         >
           {children}
         </Badge>

@@ -116,7 +116,7 @@ export const Start = () => {
           fontSize: 12,
         }}
       >
-        pre-pre-pre-pre alpha v0.0.2.7
+        pre-pre-pre-pre alpha v0.0.2.9
       </Monospace>
     </FlexContainer>
   )

@@ -22,12 +22,12 @@ export const Health = (props: HealthPropsT) => {
   return (
     <span
       style={{
-        fontSize: 52,
-        height: 52,
+        fontSize: 64,
+        height: 64,
         width: 60,
         textShadow: '1px 1px 10px black',
         color: '#b55553',
-        fontFamily: 'Bangers',
+        fontFamily: 'New Rocker',
         userSelect: 'none',
       }}
     >

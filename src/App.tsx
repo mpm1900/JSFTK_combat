@@ -53,15 +53,21 @@ export const App = () => {
               backgroundSize: 'cover',
             }}
           >
-            <RouteController />
-            <FullContainer>
-              <Switch>
-                {makeRoute('/party', Party)}
-                {makeRoute('/combat', CombatDomain)}
-                {makeRoute('/', Start)}
-              </Switch>
-            </FullContainer>
-            <GlobalCharacters />
+            <FlexContainer
+              $full
+              $direction='column'
+              style={{ background: 'rgba(20,0,80,0.3)' }}
+            >
+              <RouteController />
+              <FullContainer>
+                <Switch>
+                  {makeRoute('/party', Party)}
+                  {makeRoute('/combat', CombatDomain)}
+                  {makeRoute('/', Start)}
+                </Switch>
+              </FullContainer>
+              <GlobalCharacters />
+            </FlexContainer>
           </FlexContainer>
         </UIContextProvider>
       </LinkedCombatContext>

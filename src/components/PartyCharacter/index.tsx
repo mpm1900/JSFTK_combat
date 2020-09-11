@@ -170,7 +170,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             character.weapon.damage.type === 'physical'
               ? 'rgba(255,255,255,0.8)'
               : Theme.magicColor,
-          style: { fontSize: 24 },
+          style: { fontSize: 30, lineHeight: '32px' },
         }}
       >
         <span>

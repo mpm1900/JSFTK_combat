@@ -97,7 +97,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             badgeProps={{
               $left: '-6px',
               $bottom: '-6px',
-              $size: '20px',
+              $size: '16px',
               $color: 'lightcoral',
             }}
           >
@@ -142,8 +142,8 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
                 direction='down'
                 content={<BoxContainer>Armor</BoxContainer>}
                 badgeProps={{
-                  $top: '-24px',
-                  $right: '4px',
+                  $top: '-17px',
+                  $right: '-10px',
                   $size: '12px',
                   $color: Theme.physicalColor,
                 }}
@@ -156,7 +156,8 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
                 direction='down'
                 content={<BoxContainer>Magic Resistance</BoxContainer>}
                 badgeProps={{
-                  $top: '-24px',
+                  $top: '-17px',
+                  $right: '17px',
                   $size: '12px',
                   $color: Theme.magicColor,
                 }}

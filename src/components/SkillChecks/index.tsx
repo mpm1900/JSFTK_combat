@@ -115,7 +115,7 @@ export const getPerfectStatusColors = (
     return {
       border: '#00870f',
       background: '#001202',
-      fill: '#ad8e8e',
+      fill: '#888f88',
     }
   }
   if (status.includes('bleeding')) {

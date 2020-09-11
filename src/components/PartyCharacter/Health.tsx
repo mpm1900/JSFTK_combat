@@ -31,7 +31,7 @@ export const Health = (props: HealthPropsT) => {
           height: 62,
           lineHeight: '72px',
           color: '#b55553',
-          fontFamily: 'Bangers',
+          fontFamily: 'New Rocker',
           minWidth: 44,
           display: 'inline-block',
           textAlign: 'center',

@@ -66,7 +66,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
               <span
                 style={{
                   color: damage.type === 'physical' ? 'lightblue' : 'plum',
-                  fontWeight: 'bolder',
+                  fontFamily: 'New Rocker',
                   fontSize: 32,
                 }}
               >
@@ -83,7 +83,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
             >
               <span
                 style={{
-                  fontWeight: 'bolder',
+                  fontFamily: 'New Rocker',
                   fontSize: 32,
                 }}
               >

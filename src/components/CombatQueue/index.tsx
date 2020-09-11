@@ -41,7 +41,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
     .map((id) => characters.find((c) => c.id === id))
     .filter((c) => c !== undefined)
   const max = getMax(queue)
-  const min = 0
+  const min = 25
   const widthCoef = max > min ? 100 / max : 100 / min
   return (
     <AppHeader

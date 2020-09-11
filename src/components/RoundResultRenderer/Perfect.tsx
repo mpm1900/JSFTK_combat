@@ -14,10 +14,9 @@ export const Perfect = (props: PerfectPropsT) => {
       style={{
         display: 'flex',
         justifyContent: 'center',
-        marginTop: 30,
-        fontSize: 32,
-        color:
-          partyId === PLAYER_PARTY_ID ? 'rgba(255,255,255,0.8)' : '#c95738',
+        marginTop: 0,
+        fontSize: 42,
+        color: partyId === PLAYER_PARTY_ID ? 'rgba(255,255,255,1)' : '#c95738',
         textShadow: '4px 4px 4px black',
         fontFamily: 'Bangers',
         ...style,
