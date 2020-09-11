@@ -1,22 +1,24 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.9f12147e.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.9f12147e.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.6da8a8ea.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.6da8a8ea.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
     "static/css/2.d34346ea.chunk.css": "/JSFTK_combat/static/css/2.d34346ea.chunk.css",
-    "static/js/2.32b07e67.chunk.js": "/JSFTK_combat/static/js/2.32b07e67.chunk.js",
-    "static/js/2.32b07e67.chunk.js.map": "/JSFTK_combat/static/js/2.32b07e67.chunk.js.map",
+    "static/js/2.4680e5d8.chunk.js": "/JSFTK_combat/static/js/2.4680e5d8.chunk.js",
+    "static/js/2.4680e5d8.chunk.js.map": "/JSFTK_combat/static/js/2.4680e5d8.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.b183f10adf4080ce62720bd6b074a126.js": "/JSFTK_combat/precache-manifest.b183f10adf4080ce62720bd6b074a126.js",
+    "precache-manifest.3ecf0c70454c37891ae48a4e000247db.js": "/JSFTK_combat/precache-manifest.3ecf0c70454c37891ae48a4e000247db.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/2.d34346ea.chunk.css.map": "/JSFTK_combat/static/css/2.d34346ea.chunk.css.map",
     "static/css/main.a8c8ac70.chunk.css.map": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css.map",
-    "static/js/2.32b07e67.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.32b07e67.chunk.js.LICENSE.txt",
+    "static/js/2.4680e5d8.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.4680e5d8.chunk.js.LICENSE.txt",
+    "static/media/arrow-wings.svg": "/JSFTK_combat/static/media/arrow-wings.bb52c66a.svg",
     "static/media/axe-in-stump.svg": "/JSFTK_combat/static/media/axe-in-stump.cd8a3e4e.svg",
     "static/media/backward-time.svg": "/JSFTK_combat/static/media/backward-time.d0246d45.svg",
     "static/media/bandit.svg": "/JSFTK_combat/static/media/bandit.f798765b.svg",
+    "static/media/battered-axe.svg": "/JSFTK_combat/static/media/battered-axe.819d2726.svg",
     "static/media/battle-axe.svg": "/JSFTK_combat/static/media/battle-axe.47a5ba50.svg",
     "static/media/bee.svg": "/JSFTK_combat/static/media/bee.7b0a0467.svg",
     "static/media/biceps.svg": "/JSFTK_combat/static/media/biceps.e62c221f.svg",
@@ -93,8 +95,8 @@
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
     "static/css/2.d34346ea.chunk.css",
-    "static/js/2.32b07e67.chunk.js",
+    "static/js/2.4680e5d8.chunk.js",
     "static/css/main.a8c8ac70.chunk.css",
-    "static/js/main.9f12147e.chunk.js"
+    "static/js/main.6da8a8ea.chunk.js"
   ]
 }
