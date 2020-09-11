@@ -29,7 +29,7 @@ export interface tCharacter {
 
   tags: tCharacterTag[]
 
-  weapon: tWeapon
+  weapon?: tWeapon
   armor: tArmor[]
   consumables: tConsumable[]
 
@@ -45,6 +45,7 @@ export interface tProcessedCharacter extends tCharacter {
   maxHealth: number
   inspiration: number
   maxInspiration: number
+  weapon: tWeapon
 
   rawStats: tStats
 

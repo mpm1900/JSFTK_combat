@@ -41,7 +41,7 @@ export const Start = () => {
         <FullContainer />
         <BoxContainer
           style={{ maxWidth: 340, marginRight: 8 }}
-          substyle={{ padding: 16 }}
+          substyle={{ padding: 16, background: Theme.darkBgColor }}
         >
           <strong style={{ marginBottom: 16 }}>
             Choose your starting classes.
@@ -66,7 +66,7 @@ export const Start = () => {
             stat values
           </p>
         </BoxContainer>
-        <BoxContainer substyle={{ background: Theme.darkBgColor }}>
+        <BoxContainer>
           <h1
             style={{
               marginTop: 8,
@@ -116,7 +116,7 @@ export const Start = () => {
           fontSize: 12,
         }}
       >
-        pre-pre-pre-pre alpha v0.0.2.9
+        pre-pre-pre-pre alpha v0.0.3.3
       </Monospace>
     </FlexContainer>
   )
@@ -171,7 +171,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
         <option value='scholar'>scholar</option>
         <option value='bard'>bard</option>
       </select>
-      <BoxContainer>
+      <FlexContainer $direction='column' style={{ padding: 8 }}>
         {STAT_BONUS_KEYS.map((key) => (
           <FlexContainer key={key} style={{ height: 20 }}>
             <div
@@ -194,7 +194,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
             </FullContainer>
           </FlexContainer>
         ))}
-      </BoxContainer>
+      </FlexContainer>
     </FlexContainer>
   )
 }

@@ -17,6 +17,10 @@ export const HUNTING_BOW = (): tWeapon => ({
   stats: {
     ...ZERO_STATS,
     evasion: 3,
+    damageModifiers: {
+      ...ZERO_STATS.damageModifiers,
+      flying: 0.15,
+    },
   },
   skills: [SHOT, SNIPE_SHOT],
   immunities: [],

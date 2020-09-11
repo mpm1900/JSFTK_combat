@@ -28,7 +28,10 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
   const [items, setItems] = useState(consolidatedRewards.items)
   const first = items[0]
   const next = () => {
-    if (items.length === 0) {
+    if (
+      (items.length === 1 && consolidatedRewards.items.length > 0) ||
+      consolidatedRewards.items.length === 0
+    ) {
       close()
       nextLevel()
     } else {

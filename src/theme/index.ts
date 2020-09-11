@@ -6,6 +6,8 @@ export const Theme = {
   evasionColor: 'lightgreen',
   playerPartyColor: 'lightblue',
   enemyPartyColor: 'lightsalmon',
+  meleeRangeColor: 'rgba(255,255,255,0.8)',
+  rangedRangeColor: 'rgba(255,255,255,0.8)',
 
   paddingS: '4px',
   padding: '8px',

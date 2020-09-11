@@ -17,6 +17,7 @@ export type tWeaponType =
   | 'sword'
   | 'tome'
   | 'torch'
+  | 'fist'
 export interface tWeapon extends tItem {
   type: tWeaponType
   twoHand: boolean

@@ -20,7 +20,7 @@ export const BEE = (): tCharacter => {
     class: 'enemy',
     healthOffset: 0,
     inspirationOffset: 0,
-    tags: [],
+    tags: ['flying'],
     stats: {
       ...BASE_C_STATS,
       vigor: -80,

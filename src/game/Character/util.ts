@@ -17,6 +17,7 @@ import { CLASS_CONSUMABLES } from '../Consumable/constants'
 import { considateConsumableListToStack } from '../Consumable/util'
 import { CHARACTER_XP_MAX } from './constants'
 import { tEncounterReward } from '../Encounter/type'
+import { FISTS } from '../Weapon/objects/fists'
 
 export const isCharacter = (obj: any): boolean =>
   obj !== undefined && obj.isCharacter !== undefined
@@ -55,7 +56,7 @@ export const makeCharacter = (characterClass: tCharacterClass): tCharacter => {
 
 export const getSkills = (character: tCharacter): tSkill[] => {
   return [
-    ...character.weapon.skills,
+    ...(character.weapon || FISTS()).skills,
     ...character.armor.reduce((r, a) => [...r, ...a.skills], [] as tSkill[]),
     ...considateConsumableListToStack(character.consumables).reduce(
       (r, s) => [...r, s.consumable.skill],
@@ -70,7 +71,7 @@ export const processCharacter = (
   checkForProcessedCharacter(character)
   const stats: tStats = combineStats(
     character.stats,
-    character.weapon.stats,
+    (character.weapon || FISTS()).stats,
     ...character.armor.map((a) => a.stats),
     ...character.status.map((s) => s.stats),
   )
@@ -81,7 +82,7 @@ export const processCharacter = (
   )
   const immunities = [
     ...character.immunities,
-    ...character.weapon.immunities,
+    ...(character?.weapon?.immunities || []),
     ...character.armor.reduce(
       (r, a) => [...r, ...a.immunities],
       [] as tStatusType[],
@@ -107,6 +108,7 @@ export const processCharacter = (
     inspiration,
     maxInspiration,
 
+    weapon: character.weapon || FISTS(),
     stats,
     immunities,
     rawStats: character.stats,
@@ -156,6 +158,8 @@ export const getRawDamage = (
       damageModifier += source.stats.damageModifiers[tag]
     }
   })
+  console.log(source.name, damageModifier)
+  console.log(source)
   return {
     ...rawDamage,
     value: rawDamage.value * damageModifier,
@@ -180,7 +184,9 @@ export const commitDamage = (
   }
   return {
     ...character,
-    healthOffset: character.healthOffset + noneg(rawDamageValue - resistance),
+    healthOffset: Math.ceil(
+      character.healthOffset + noneg(rawDamageValue - resistance),
+    ),
   }
 }
 

@@ -20,6 +20,7 @@ import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
 import { useGameStateContext } from '../GameStateContext'
 import { tConsumable } from '../../game/Consumable/type'
+import { FISTS } from '../../game/Weapon/objects/fists'
 
 export interface PartyContextT {
   party: tProcessedParty
@@ -98,7 +99,8 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
     if (!character) return
     if (item.itemType === 'armor') {
       const armor = item as tArmor
-      if (armor.resource === 'offhand' && character.weapon.twoHand) return
+      if (armor.resource === 'offhand' && (character.weapon || FISTS()).twoHand)
+        return
       const result = equipArmor(character, armor)
       updateParty({
         ...rawParty,
@@ -113,7 +115,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
     }
     if (item.itemType === 'weapon') {
       const weapon = item as tWeapon
-      if (character.weapon.twoHand) {
+      if ((character.weapon || FISTS()).twoHand) {
         if (character.armor.find((a) => a.resource === 'offhand')) {
           return
         }

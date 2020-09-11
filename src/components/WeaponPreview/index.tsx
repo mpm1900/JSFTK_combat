@@ -9,6 +9,9 @@ import { tWeapon } from '../../game/Weapon/type'
 import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 import { Icon } from '../Icon'
 import { WEAPON_TYPE_ICONS } from '../../icons/maps'
+import Hands from '../../icons/svg/lorc/hand.svg'
+import Ranged from '../../icons/svg/delapouite/arrow-wings.svg'
+import Melee from '../../icons/svg/lorc/battered-axe.svg'
 
 export const getDamageColor = (weapon: tWeapon) => {
   if (weapon.damage.type === 'physical') return 'lightblue'
@@ -43,6 +46,12 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
       <FlexContainer $direction='column'>
         {basicAttack && (
           <FlexContainer style={{ justifyContent: 'center', marginBottom: 10 }}>
+            <FlexContainer $full style={{ alignItems: 'center' }}>
+              <Icon
+                src={weapon.damage.range === 'melee' ? Melee : Ranged}
+                size={16}
+              />
+            </FlexContainer>
             {Array(basicAttack.rolls)
               .fill(null)
               .map((_, i) => (
@@ -53,6 +62,24 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
                   skill={weapon.skills[0]}
                 />
               ))}
+            <FlexContainer
+              $full
+              style={{
+                fontSize: 18,
+                justifyContent: 'flex-end',
+                fontWeight: 'bolder',
+                alignItems: 'center',
+              }}
+            >
+              <Icon
+                size={16}
+                src={Hands}
+                fill='rgba(255,255,255,0.8)'
+                style={{ marginRight: 4 }}
+              />
+              {weapon.twoHand && '2'}
+              {!weapon.twoHand && '1'}
+            </FlexContainer>
           </FlexContainer>
         )}
         <FlexContainer style={{ alignItems: 'center' }}>
@@ -76,10 +103,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
             </span>
           </FlexContainer>
           <FullContainer />
-          <FlexContainer style={{ fontSize: 18, fontWeight: 'bolder' }}>
-            {weapon.twoHand && '2'}
-            {!weapon.twoHand && '1'}
-          </FlexContainer>
+
           {showEquipButton && (
             <div style={{ marginLeft: 10 }}>
               <Button onClick={onEquipClick} style={{ padding: 4 }}>

@@ -17,6 +17,10 @@ export const CURVED_BOW = (): tWeapon => ({
   stats: {
     ...ZERO_STATS,
     evasion: 4,
+    damageModifiers: {
+      ...ZERO_STATS.damageModifiers,
+      flying: 0.15,
+    },
   },
   skills: [SPREAD_SHOT, SNIPE_SHOT],
   immunities: [],

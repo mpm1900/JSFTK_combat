@@ -58,6 +58,7 @@ import Sword from './svg/lorc/broadsword.svg'
 import Spear from './svg/lorc/stone-spear.svg'
 import Tome from './svg/lorc/book-cover.svg'
 import Torch from './svg/delapouite/torch.svg'
+import Fist from './svg/skoll/fist.svg'
 
 import Godsbeard from './svg/delapouite/herbs-bundle.svg'
 import { tBaseStats } from '../game/Stats/type'
@@ -175,6 +176,7 @@ export const WEAPON_TYPE_ICONS: Record<tWeaponType, string> = {
   sword: Sword,
   tome: Tome,
   torch: Torch,
+  fist: Fist,
 }
 
 export const RESOURCE_ICONS: Record<tArmorResourceType | 'weapon', string> = {

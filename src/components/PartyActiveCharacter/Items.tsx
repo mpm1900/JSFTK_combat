@@ -1,7 +1,7 @@
 import React from 'react'
 import { FlexContainer } from '../../elements/flex'
 import { Icon } from '../Icon'
-import { RESOURCE_ICONS } from '../../icons/maps'
+import { RESOURCE_ICONS, WEAPON_TYPE_ICONS } from '../../icons/maps'
 import { styled } from 'styletron-react'
 import { ClickToolTip } from '../Tooltip'
 import { BoxContainer } from '../../elements/box'
@@ -39,14 +39,13 @@ export const Items = (props: ItemPropsT) => {
   const { playerCanEquipItem } = useUIContext()
   return (
     <FlexContainer $full $direction='column'>
-      <ItemRow onMouseEnter={() => setActiveItem(character.weapon)}>
-        <Icon
-          src={RESOURCE_ICONS.weapon || ''}
-          size={16}
-          style={{ marginRight: 6 }}
-        />
-        {character.weapon.name}
-      </ItemRow>
+      <ArmorItem
+        disabled={false}
+        character={character}
+        resource={'weapon'}
+        onHover={setActiveItem}
+        canUnequip={playerCanEquipItem}
+      />
       {CHARACTER_RESOURCES.map((res) => {
         const disabled = res === 'offhand' && character.weapon.twoHand
         return (
@@ -65,7 +64,7 @@ export const Items = (props: ItemPropsT) => {
 
 export interface ArmorItemProps {
   character: tProcessedCharacter
-  resource: tArmorResourceType
+  resource: tArmorResourceType | 'weapon'
   canUnequip?: boolean
   disabled?: boolean
   onHover: (item: tArmor | tWeapon | undefined) => void
@@ -79,7 +78,10 @@ export const ArmorItem = (props: ArmorItemProps) => {
     onHover,
   } = props
   const { unequipItem } = usePartyContext()
-  const item = character.armor.find((a) => a.resource === resource)
+  const item =
+    resource === 'weapon'
+      ? character.weapon
+      : character.armor.find((a) => a.resource === resource)
   return (
     <ClickToolTip
       direction='down'
@@ -100,7 +102,10 @@ export const ArmorItem = (props: ArmorItemProps) => {
                 style={{ padding: '4px 8px' }}
                 onClick={() => {
                   if (item) {
-                    unequipItem(character.id, item)
+                    if (resource === 'weapon') {
+                    } else {
+                      unequipItem(character.id, item)
+                    }
                   }
                 }}
               >
@@ -117,10 +122,16 @@ export const ArmorItem = (props: ArmorItemProps) => {
           ref={ref}
           $disabled={disabled}
           onMouseEnter={() => onHover(item)}
-          onClick={() => item && onClick()}
+          onClick={() => {
+            if (item) onClick()
+          }}
         >
           <Icon
-            src={RESOURCE_ICONS[resource] || ''}
+            src={
+              resource === 'weapon'
+                ? WEAPON_TYPE_ICONS[(item as tWeapon)?.type || 'fist']
+                : RESOURCE_ICONS[resource] || ''
+            }
             size={16}
             fill={disabled ? 'rgba(255,255,255,0.3)' : 'white'}
             style={{ marginRight: 6 }}

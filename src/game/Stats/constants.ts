@@ -45,8 +45,8 @@ export const BASE_C_STATS: tStats = {
   attackDamageModifier: 1,
   criticalChance: 5,
   damageModifiers: {
-    flying: 1,
-    undead: 1,
+    flying: 0,
+    undead: 0,
   },
   queueConsolidationModifier: 1,
   consumableHealthGainOffset: 15,

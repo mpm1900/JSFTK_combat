@@ -39,7 +39,7 @@ const Wrapper = styled('div', (props: any) => {
 export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
   const { character, activeCharacter, isBoss = false, onClick } = props
   const health = noneg(character.health)
-  const previousHealth = usePrevious<number>(health)
+  const active = activeCharacter?.id === character?.id
   return (
     <div
       onClick={() => (onClick && character.health > 0 ? onClick() : null)}
@@ -50,6 +50,8 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
         cursor: onClick ? 'pointer' : 'default',
         color: 'rgba(255,255,255,0.8)',
         opacity: character.health <= 0 ? 0.5 : 1,
+        transition: 'all 0.4s',
+        transform: active ? 'scale(1.05)' : 'scale(0.95)',
       }}
     >
       <FlexContainer style={{ alignItems: 'center' }}>

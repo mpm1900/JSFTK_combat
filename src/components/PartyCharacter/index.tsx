@@ -20,6 +20,7 @@ import { Icon } from '../Icon'
 import { CHARACTER_CLASS_ICONS } from '../../icons/maps'
 import { CHARACTER_CLASS_COLORS } from '../../game/Character/constants'
 import { Theme } from '../../theme'
+import { useCombatContext } from '../../contexts/CombatContext'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -30,11 +31,16 @@ export interface PartyCharacterProps {
   push: (contents: JSX.Element, type?: string) => void
 }
 const Wrapper = styled('div', (props: any) => {
-  const { $active } = props
+  const { $active, $targeted } = props
   return {
     margin: 10,
     position: 'relative',
-    boxShadow: $active ? '0px 0px 20px white' : 'none',
+    boxShadow: $active
+      ? '0px 0px 20px white'
+      : $targeted
+      ? '0px 0px 20px red'
+      : 'none',
+    transform: $active ? 'scale(1.04)' : 'scale(0.95)',
     transition: 'all 0.4s',
     userSelect: 'none',
   }
@@ -49,10 +55,13 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
     push,
   } = props
   const { playerCanEquipItem } = useUIContext()
+  const { activeRound } = useCombatContext()
+  const targetIds = activeRound?.targetResults.map((r) => r.target.id)
   usePlayerCharacterNotifications(character, push)
   return (
     <Wrapper
       $active={selected}
+      $targeted={targetIds?.includes(character.id)}
       style={{
         opacity: character.health <= 0 ? 0.5 : 1,
       }}
@@ -78,6 +87,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             <Icon
               src={CHARACTER_CLASS_ICONS[character.class]}
               size={100}
+              shadow
+              style={{ marginTop: -16 }}
               fill={selected ? 'white' : 'rgba(255,255,255,0.4)'}
             />
           </FlexContainer>
@@ -167,7 +178,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           $size: '35px',
           $color:
             character.weapon.damage.type === 'physical'
-              ? 'rgba(255,255,255,0.8)'
+              ? Theme.physicalColor
               : Theme.magicColor,
           style: { fontSize: 30, lineHeight: '32px' },
         }}

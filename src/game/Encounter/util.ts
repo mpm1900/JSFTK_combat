@@ -39,7 +39,7 @@ export const makeRandomEncounter = (depth: number) => {
           'shop',
           'shrine',
         ])
-  // encounterType = 'boss'
+  //encounterType = 'boss'
   let encounter: tEncounter = {
     id: v4(),
     choiceId: '',

@@ -8,6 +8,7 @@ import {
   STAT_BONUS_KEYS,
   HEALTH_FOCUS_BONUS_KEYS,
 } from '../../game/Stats/constants'
+import { tCharacterTag } from '../../game/Character/type'
 
 export interface StatsPreviewPropsT {
   stats: tStats
@@ -82,6 +83,14 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
             </span>
           ),
       )}
+      {(Object.keys(stats.damageModifiers) as tCharacterTag[])
+        .filter((tag) => stats.damageModifiers[tag] > 0)
+        .map((tag) => (
+          <span>
+            +{Math.floor(stats.damageModifiers[tag] * 100)}% damage against{' '}
+            {tag}
+          </span>
+        ))}
     </FlexContainer>
   )
 }

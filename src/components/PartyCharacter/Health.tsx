@@ -27,14 +27,16 @@ export const Health = (props: HealthPropsT) => {
         style={{
           padding: 4,
           paddingLeft: 2,
-          fontSize: 42,
+          fontSize: 56,
           height: 62,
+          width: 62,
           lineHeight: '72px',
           color: '#b55553',
           fontFamily: 'New Rocker',
           minWidth: 44,
           display: 'inline-block',
           textAlign: 'center',
+          textShadow: '1px 1px 3px black',
         }}
       >
         <Spring
