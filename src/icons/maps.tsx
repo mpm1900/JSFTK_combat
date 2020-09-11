@@ -92,10 +92,11 @@ import { ANIMATO } from '../game/Skill/objects/animato'
 import { POWER_STRIKE } from '../game/Skill/objects/power_strike'
 import { tCharacterClass } from '../game/Character/type'
 
-import Blacksmith from './svg/delapouite/dwarf-face.svg'
+import Blacksmith from './svg/delapouite/viking-head.svg'
 import Hunter from './svg/lorc/cowled.svg'
 import Bard from './svg/cathelineau/nun-face.svg'
 import Scholar from './svg/delapouite/wizard-face.svg'
+import Hobo from './svg/delapouite/perspective-dice-six.svg'
 
 export const STAT_ICONS: Record<keyof tBaseStats, string> = {
   vigor: Vigor,
@@ -200,4 +201,5 @@ export const CHARACTER_CLASS_ICONS: Record<tCharacterClass, string> = {
   bard: Bard,
   hunter: Hunter,
   scholar: Scholar,
+  hobo: Hobo,
 }

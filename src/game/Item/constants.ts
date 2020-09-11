@@ -19,6 +19,7 @@ export const CLASS_STARTING_CONSUMABLES: Record<
   hunter: [GODSBEARD()],
   scholar: [GODSBEARD()],
   bard: [GODSBEARD()],
+  hobo: [],
   enemy: [],
 }
 

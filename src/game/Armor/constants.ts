@@ -7,5 +7,6 @@ export const CLASS_ARMOR: Record<tCharacterClass, tArmor[]> = {
   hunter: [],
   scholar: [],
   bard: [],
+  hobo: [],
   enemy: [],
 }

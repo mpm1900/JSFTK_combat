@@ -12,6 +12,7 @@ export type tCharacterClass =
   | 'hunter'
   | 'scholar'
   | 'bard'
+  | 'hobo'
   | 'enemy'
 export interface tCharacter {
   isCharacter: true

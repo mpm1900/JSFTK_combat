@@ -112,5 +112,9 @@ export const getChoiceText = (
     text =
       'After a brief rest, your party continues their journey to dispel the evil. You feel it around you as your travel deeper. However, there now seem to be two options before you:'
   }
+  if (currentChoice?.depth === 11) {
+    text =
+      'Your party has traveled far, but it is now time for the final fight.'
+  }
   return text
 }

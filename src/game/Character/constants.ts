@@ -25,4 +25,5 @@ export const CHARACTER_CLASS_COLORS: Record<tCharacterClass, string> = {
   bard: '#472321',
   scholar: '#665166',
   hunter: '#334233',
+  hobo: '#111',
 }

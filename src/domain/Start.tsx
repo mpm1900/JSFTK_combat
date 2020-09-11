@@ -116,7 +116,7 @@ export const Start = () => {
           fontSize: 12,
         }}
       >
-        alpha v0.0.3.5
+        alpha v0.0.3.7
       </Monospace>
     </FlexContainer>
   )
@@ -166,10 +166,11 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
           }))
         }}
       >
-        <option value='blacksmith'>blacksmith</option>
-        <option value='hunter'>hunter</option>
-        <option value='scholar'>scholar</option>
-        <option value='bard'>bard</option>
+        <option value='blacksmith'>Blacksmith</option>
+        <option value='hunter'>Hunter</option>
+        <option value='scholar'>Scholar</option>
+        <option value='bard'>Bard</option>
+        <option value='hobo'>Hobo</option>
       </select>
       <FlexContainer $direction='column' style={{ padding: 8 }}>
         {STAT_BONUS_KEYS.map((key) => (

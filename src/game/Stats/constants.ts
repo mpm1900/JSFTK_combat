@@ -105,6 +105,19 @@ export const CLASS_STATS: Record<tCharacterClass, tStats> = {
     resistance: 1,
     evasion: 11,
   },
+  hobo: {
+    ...BASE_C_STATS,
+    strength: 70,
+    vigor: 70,
+    intelligence: 70,
+    dexterity: 70,
+    charisma: 70,
+    agility: 70,
+    luck: 50,
+    armor: 1,
+    resistance: 1,
+    evasion: 13,
+  },
   enemy: BASE_C_STATS,
 }
 

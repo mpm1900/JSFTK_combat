@@ -12,6 +12,10 @@ import { WEAPON_TYPE_ICONS } from '../../icons/maps'
 import Hands from '../../icons/svg/lorc/hand.svg'
 import Ranged from '../../icons/svg/delapouite/arrow-wings.svg'
 import Melee from '../../icons/svg/lorc/battered-axe.svg'
+import { FakeLink } from '../../elements/typography'
+import { HoverToolTip } from '../Tooltip'
+import { SkillPreview } from '../SkillPreview'
+import { tProcessedCharacter } from '../../game/Character/type'
 
 export const getDamageColor = (weapon: tWeapon) => {
   if (weapon.damage.type === 'physical') return 'lightblue'
@@ -20,6 +24,7 @@ export const getDamageColor = (weapon: tWeapon) => {
 }
 
 export interface WeaponPreviewPropsT {
+  character?: tProcessedCharacter
   weapon: tWeapon
   showEquipButton?: boolean
   showBuyButton?: boolean
@@ -29,6 +34,7 @@ export interface WeaponPreviewPropsT {
 }
 export const WeaponPreview = (props: WeaponPreviewPropsT) => {
   const {
+    character,
     weapon,
     showEquipButton,
     showBuyButton,
@@ -135,12 +141,33 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
                 {weapon.damage.type} Damage
               </span>
             </FlexContainer>
-            <span style={{ color: 'plum', marginBottom: 8 }}>
-              {weapon.skills.map(
-                (skill, i) => `${i > 0 ? ', ' : ''}${skill.name}`,
-              )}
+            <span style={{ color: 'plum', marginBottom: 8, display: 'flex' }}>
+              {weapon.skills.map((skill, i) => (
+                <>
+                  {i > 0 ? ', ' : ''}
+                  <HoverToolTip
+                    direction='down'
+                    content={
+                      character ? (
+                        <SkillPreview skill={skill} source={character} />
+                      ) : (
+                        <div />
+                      )
+                    }
+                  >
+                    <FakeLink style={{ paddingLeft: i === 0 ? 0 : 4 }}>
+                      {skill.name}
+                    </FakeLink>
+                  </HoverToolTip>
+                </>
+              ))}
             </span>
             <StatsPreview stats={weapon.stats} />
+            {weapon.immunities.map((status) => (
+              <span style={{ textTransform: 'capitalize', fontSize: 14 }}>
+                {status} immunity
+              </span>
+            ))}
           </FlexContainer>
         </BoxContainer>
         {showBuyButton && (

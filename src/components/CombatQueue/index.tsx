@@ -71,7 +71,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
             }}
           >
             <FlexContainer
-              style={{ position: 'relative', marginLeft: 22, zIndex: 7 }}
+              style={{ position: 'relative', marginLeft: size, zIndex: 7 }}
             >
               <CharacterIcon
                 character={first}

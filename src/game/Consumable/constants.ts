@@ -7,5 +7,6 @@ export const CLASS_CONSUMABLES: Record<tCharacterClass, tConsumable[]> = {
   hunter: [GODSBEARD()],
   scholar: [GODSBEARD()],
   bard: [GODSBEARD()],
+  hobo: [],
   enemy: [],
 }

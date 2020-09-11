@@ -21,6 +21,7 @@ import { CHARACTER_CLASS_ICONS } from '../../icons/maps'
 import { CHARACTER_CLASS_COLORS } from '../../game/Character/constants'
 import { Theme } from '../../theme'
 import { useCombatContext } from '../../contexts/CombatContext'
+import { ZERO_STATS } from '../../game/Stats/constants'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -135,9 +136,24 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           right: '4px',
         }}
       >
-        {character.status.map((status) => (
-          <TagPreview direction='up' status={status} />
-        ))}
+        <>
+          {character.status.map((status) => (
+            <TagPreview direction='up' status={status} />
+          ))}
+          {character.immunities.map((status, i) => (
+            <TagPreview
+              key={i}
+              immunity={true}
+              status={{
+                type: status,
+                immunities: [],
+                stack: 0,
+                stats: ZERO_STATS,
+                duration: -1,
+              }}
+            />
+          ))}
+        </>
       </FlexContainer>
       <HoverBadge
         badgeProps={{

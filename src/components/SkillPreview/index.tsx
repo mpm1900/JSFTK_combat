@@ -10,7 +10,7 @@ import { Theme } from '../../theme'
 export interface SkillPreviewPropsT {
   skill: tSkill
   source: tProcessedCharacter
-  targets: tProcessedCharacter[]
+  targets?: tProcessedCharacter[]
 }
 export const SkillPreview = (props: SkillPreviewPropsT) => {
   const { skill, source, targets } = props

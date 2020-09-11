@@ -23,6 +23,7 @@ export const Party = () => {
     level,
     chooseCurrent,
     nextLevel,
+    encounters,
   } = useGameStateContext()
   const history = useHistory()
   const {
@@ -106,7 +107,7 @@ export const Party = () => {
             }}
           >
             {currentChoice && !currentEncounter && (
-              <FlexContainer $direction='column'>
+              <FlexContainer $direction='column' style={{ paddingTop: 24 }}>
                 <h3
                   style={{
                     margin: '0 0 16px 0',
@@ -117,16 +118,31 @@ export const Party = () => {
                   You have a choice.
                 </h3>
                 <span
-                  style={{ color: 'rgba(255,255,255,0.7)', marginBottom: 24 }}
+                  style={{
+                    color: 'rgba(255,255,255,0.7)',
+                    marginBottom: 24,
+                    padding: 8,
+                  }}
                 >
                   {getChoiceText(currentChoice, previousChoice)}
                 </span>
-                <FlexContainer style={{ justifyContent: 'center' }}>
-                  <Button onClick={() => chooseCurrent('left')}>Go Left</Button>
-                  <Button onClick={() => chooseCurrent('right')}>
-                    Go Right
-                  </Button>
-                </FlexContainer>
+                {encounters.length - 1 !== level && (
+                  <FlexContainer style={{ justifyContent: 'center' }}>
+                    <Button onClick={() => chooseCurrent('left')}>
+                      Go Left
+                    </Button>
+                    <Button onClick={() => chooseCurrent('right')}>
+                      Go Right
+                    </Button>
+                  </FlexContainer>
+                )}
+                {encounters.length - 1 === level && (
+                  <FlexContainer style={{ justifyContent: 'center' }}>
+                    <Button onClick={() => chooseCurrent('right')}>
+                      Proceed
+                    </Button>
+                  </FlexContainer>
+                )}
               </FlexContainer>
             )}
             {currentEncounter && (

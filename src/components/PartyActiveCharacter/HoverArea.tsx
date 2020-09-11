@@ -34,9 +34,14 @@ export const HoverArea = (props: HoverAreaPropsT) => {
       )}
       {activeItem.itemType === 'weapon' && (
         <FlexContainer>
-          <WeaponPreview weapon={character.weapon} showEquipButton={false} />
+          <WeaponPreview
+            weapon={character.weapon}
+            showEquipButton={false}
+            character={character}
+          />
           {character.weapon.id !== activeItem.id && (
             <WeaponPreview
+              character={character}
               weapon={activeItem as tWeapon}
               showEquipButton={false}
             />
