@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.81614f95.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.81614f95.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.20781ef8.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.20781ef8.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
     "static/css/2.d34346ea.chunk.css": "/JSFTK_combat/static/css/2.d34346ea.chunk.css",
-    "static/js/2.e5069969.chunk.js": "/JSFTK_combat/static/js/2.e5069969.chunk.js",
-    "static/js/2.e5069969.chunk.js.map": "/JSFTK_combat/static/js/2.e5069969.chunk.js.map",
+    "static/js/2.1d1d3c6d.chunk.js": "/JSFTK_combat/static/js/2.1d1d3c6d.chunk.js",
+    "static/js/2.1d1d3c6d.chunk.js.map": "/JSFTK_combat/static/js/2.1d1d3c6d.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.8f5645b819de7a9a03fe612428be2669.js": "/JSFTK_combat/precache-manifest.8f5645b819de7a9a03fe612428be2669.js",
+    "precache-manifest.21c2f800c6f84f0d17724d234994c2a7.js": "/JSFTK_combat/precache-manifest.21c2f800c6f84f0d17724d234994c2a7.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/2.d34346ea.chunk.css.map": "/JSFTK_combat/static/css/2.d34346ea.chunk.css.map",
     "static/css/main.a8c8ac70.chunk.css.map": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css.map",
-    "static/js/2.e5069969.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.e5069969.chunk.js.LICENSE.txt",
+    "static/js/2.1d1d3c6d.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.1d1d3c6d.chunk.js.LICENSE.txt",
     "static/media/arrow-wings.svg": "/JSFTK_combat/static/media/arrow-wings.bb52c66a.svg",
     "static/media/axe-in-stump.svg": "/JSFTK_combat/static/media/axe-in-stump.cd8a3e4e.svg",
     "static/media/backward-time.svg": "/JSFTK_combat/static/media/backward-time.d0246d45.svg",
@@ -100,8 +100,8 @@
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
     "static/css/2.d34346ea.chunk.css",
-    "static/js/2.e5069969.chunk.js",
+    "static/js/2.1d1d3c6d.chunk.js",
     "static/css/main.a8c8ac70.chunk.css",
-    "static/js/main.81614f95.chunk.js"
+    "static/js/main.20781ef8.chunk.js"
   ]
 }
