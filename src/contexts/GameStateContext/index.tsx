@@ -6,6 +6,7 @@ export interface GameStateContextT {
   encounters: tEncounterChoice[]
   level: number
   currentChoice: tEncounterChoice | undefined
+  previousChoice: tEncounterChoice | undefined
   currentEncounter: tEncounter | undefined
   chooseCurrent: (value: 'left' | 'right') => void
   nextLevel: () => void
@@ -18,6 +19,7 @@ export const defaultValue: GameStateContextT = {
   level: 0,
   currentChoice: undefined,
   currentEncounter: undefined,
+  previousChoice: undefined,
   chooseCurrent: (value) => {},
   nextLevel: () => {},
   reset: () => {},
@@ -38,6 +40,9 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
   const currentChoice = useMemo(() => {
     return encounters[level]
   }, [encounters, level])
+  const previousChoice = useMemo(() => {
+    return encounters[level - 1]
+  }, [encounters, level])
   const currentEncounter = useMemo(() => {
     const choice = encounters[level]
     if (choice && choice.value) {
@@ -51,6 +56,7 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
         encounters,
         level,
         currentChoice,
+        previousChoice,
         currentEncounter,
         reset,
         nextLevel,

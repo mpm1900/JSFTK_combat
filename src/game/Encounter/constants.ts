@@ -1,7 +1,8 @@
-import { tEncounterReward } from './type'
+import { tEncounterReward, tEncounterChoice, tCombatEncounter } from './type'
 import { getRandom } from '../../util'
 import { ALL_WEAPONS } from '../Weapon/constants'
 import { ALL_ARMOR } from '../Armor/objects'
+import { stringArr } from '../../util/stringArr'
 
 export const ZERO_REWARD: tEncounterReward = {
   gold: 0,
@@ -84,3 +85,29 @@ export const POSSIBLE_SHINE_REWARDS = (): tEncounterReward[][] => [
   [attackDown, ZERO_REWARD, attackUp],
   [poisoned, bleeding, resUp, attackUp],
 ]
+
+export const getChoiceText = (
+  currentChoice: tEncounterChoice | undefined,
+  previousChoice: tEncounterChoice | undefined,
+): string => {
+  let text = ''
+  console.log(previousChoice)
+  console.log('get choice text')
+  const previousEncounter = previousChoice
+    ? previousChoice[previousChoice.value || 'left']
+    : undefined
+  if (previousChoice === undefined) {
+    text =
+      'As your party begins their journy, you travel down an empty road. You arrive at a split path, you must make a choice on which way to proceed.'
+  }
+  if (previousEncounter?.type === 'combat') {
+    text = getRandom([
+      `After the fierce battle against the ${stringArr(
+        (previousEncounter as tCombatEncounter).party.characters.map(
+          (c) => c.name,
+        ),
+      )}, your party again arrives a choice:`,
+    ])
+  }
+  return text
+}

@@ -11,12 +11,14 @@ import { getSkillResult } from '../game/Skill/util'
 import { commitSkillResults } from '../game/Skill/committer'
 import { Shop } from '../components/Shop'
 import { Shrine } from '../components/Shrine'
+import { getChoiceText } from '../game/Encounter/constants'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()
   const {
     currentEncounter,
     currentChoice,
+    previousChoice,
     level,
     chooseCurrent,
     nextLevel,
@@ -115,8 +117,7 @@ export const Party = () => {
                 <span
                   style={{ color: 'rgba(255,255,255,0.7)', marginBottom: 24 }}
                 >
-                  You arrive at a split path, you must make a choice on which
-                  way to proceed.
+                  {getChoiceText(currentChoice, previousChoice)}
                 </span>
                 <FlexContainer style={{ justifyContent: 'center' }}>
                   <Button onClick={() => chooseCurrent('left')}>Go Left</Button>
