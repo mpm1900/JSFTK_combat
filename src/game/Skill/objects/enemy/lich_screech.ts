@@ -13,5 +13,6 @@ export const LICH_SCREECH: tSkill = {
   offset: 0,
   perfectSplash: false,
   perfectPierce: false,
+  statusDurationOverride: 3,
   perfectStatus: ['stunned'],
 }

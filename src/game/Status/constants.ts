@@ -84,7 +84,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
     description: 'This character will not progress on the battle timeline.',
     canStack: false,
     isTemporary: true,
-    duration: 4,
+    duration: 2,
     stats: {
       ...ZERO_STATS,
       queueConsolidationModifier: -1,

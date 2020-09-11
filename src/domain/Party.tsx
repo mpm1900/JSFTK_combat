@@ -12,6 +12,7 @@ import { commitSkillResults } from '../game/Skill/committer'
 import { Shop } from '../components/Shop'
 import { Shrine } from '../components/Shrine'
 import { getChoiceText } from '../game/Encounter/constants'
+import { EncounterHistory } from '../components/EncounterHistory'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()
@@ -92,6 +93,7 @@ export const Party = () => {
             {currentEncounter && currentEncounter.type === 'shrine' && (
               <Shrine />
             )}
+            {!currentEncounter && currentChoice && <EncounterHistory />}
           </FlexContainer>
           <FlexContainer
             $direction='column'

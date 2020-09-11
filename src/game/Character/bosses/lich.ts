@@ -50,7 +50,7 @@ export const LICH = (): tCharacter => {
       twoHand: false,
       breakable: false,
       damage: {
-        value: 21,
+        value: 28,
         range: 'melee',
         type: 'physical',
       },

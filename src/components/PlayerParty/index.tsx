@@ -10,6 +10,7 @@ import {
   LocalToastProvider,
   LocalToastRp,
 } from '../../contexts/LocalToastContext'
+import { useGameStateContext } from '../../contexts/GameStateContext'
 
 export interface PlayerPartyPropsT {
   party: tProcessedParty
@@ -28,6 +29,7 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
     next,
     onSkillSelect,
   } = useCombatContext()
+  const { currentEncounter } = useGameStateContext()
 
   const showConfirmButton = (c: tProcessedCharacter) =>
     selectedSkill &&
@@ -66,7 +68,13 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
               {({ push }) => (
                 <PartyCharacter
                   push={push}
-                  selected={activeCharacter && c && c.id === activeCharacter.id}
+                  selected={
+                    currentEncounter &&
+                    currentEncounter.type !== 'shop' &&
+                    activeCharacter &&
+                    c &&
+                    c.id === activeCharacter.id
+                  }
                   character={c}
                   onClick={() => onCharacterClick && onCharacterClick(c)}
                   onConsumableClick={(consumable, index) => {
