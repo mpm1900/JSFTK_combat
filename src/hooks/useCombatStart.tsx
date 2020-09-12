@@ -4,6 +4,7 @@ import { useCombatLogContext } from '../contexts/CombatLogContext'
 import { useCombatContext } from '../contexts/CombatContext'
 import { FlexContainer } from '../elements/flex'
 import { Icon } from '../components/Icon'
+import { Theme } from '../theme'
 
 export const useCombatStart = (delay: number = 1000) => {
   const { open, close } = useModalContext()
@@ -13,9 +14,13 @@ export const useCombatStart = (delay: number = 1000) => {
     clear()
     open(
       <div style={{ textAlign: 'center' }}>
-        <h1>Combat Start!</h1>
+        <h1 style={{ fontFamily: Theme.titleFont }}>Combat Start!</h1>
         <FlexContainer
-          style={{ justifyContent: 'space-around', marginBottom: 40 }}
+          style={{
+            justifyContent: 'space-around',
+            marginTop: 32,
+            marginBottom: 40,
+          }}
         >
           {enemyParty.characters.map((c) => (
             <FlexContainer

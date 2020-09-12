@@ -52,6 +52,7 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
           left: '-6px',
           width: 486,
           justifyContent: 'flex-end',
+          zIndex: 1,
         }}
       >
         {activeItem && (

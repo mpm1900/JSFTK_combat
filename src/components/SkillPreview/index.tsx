@@ -37,9 +37,10 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
           <BoxContainer
             substyle={{
               padding: '4px 12px',
+              fontSize: 18,
               background: Theme.lightBgColor,
-              letterSpacing: '1px',
               fontFamily: Theme.titleFont,
+              textShadow: '1px 1px 3px black',
             }}
           >
             {skill.name}
@@ -99,9 +100,9 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
           <FullContainer />
           <BoxContainer
             substyle={{
-              padding: '0px 12px',
+              padding: '2px 8px',
               background: Theme.lightBgColor,
-              fontWeight: 'bolder',
+              textShadow: '1px 1px 3px black',
               fontSize: 12,
             }}
           >

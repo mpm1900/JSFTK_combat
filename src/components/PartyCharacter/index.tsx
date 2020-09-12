@@ -90,7 +90,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               size={100}
               shadow
               style={{ marginTop: -16 }}
-              fill={selected ? 'white' : 'rgba(255,255,255,0.4)'}
+              fill={selected ? 'white' : 'rgba(255,255,255,0.5)'}
             />
           </FlexContainer>
           <FlexContainer $full $direction='column'>

@@ -141,7 +141,14 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
                 {weapon.damage.type} Damage
               </span>
             </FlexContainer>
-            <span style={{ color: 'plum', marginBottom: 8, display: 'flex' }}>
+            <span
+              style={{
+                color: 'plum',
+                marginBottom: 8,
+                display: 'flex',
+                flexWrap: 'wrap',
+              }}
+            >
               {weapon.skills.map((skill, i) => (
                 <>
                   {i > 0 ? ', ' : ''}

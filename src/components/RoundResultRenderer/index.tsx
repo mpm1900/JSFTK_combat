@@ -141,7 +141,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
       <FlexContainer style={{ justifyContent: 'center' }}>
         <div
           style={{
-            marginTop: 40,
+            marginTop: 24,
             //background: Theme.darkBgColor,
             fontSize: 32,
             padding: '16px 32px',

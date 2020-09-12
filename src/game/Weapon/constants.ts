@@ -12,11 +12,12 @@ import { BANDIT_GLAIVE } from './objects/spear/bandit_glaive'
 import { BOKKEN } from './objects/sword/bokken'
 import { WOODCUTTERS_AXE } from './objects/axe/woodcutters_axe'
 import { HOBO_DAGGER } from './objects/dagger/hobo_dagger'
+import { MAGES_TOME } from './objects/tome/mages_tome'
 
 export const CLASS_WEAPONS: Record<tCharacterClass, tWeapon> = {
   blacksmith: BLACKSMITHS_HAMMER(),
   hunter: HUNTING_BOW(),
-  scholar: SCHOLARS_BOOK(),
+  scholar: MAGES_TOME(), // SCHOLARS_BOOK(),
   bard: SIMPLE_LUTE(),
   hobo: HOBO_DAGGER(),
   enemy: BLACKSMITHS_HAMMER(),

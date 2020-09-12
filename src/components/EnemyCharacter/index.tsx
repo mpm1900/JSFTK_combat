@@ -84,14 +84,17 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
                 textShadow: '1px 1px 2px black',
                 fontFamily: Theme.titleFont,
                 color: isBoss ? 'red' : 'rgba(255,255,255,0.8)',
-                letterSpacing: '1px',
               }}
             >
               {character.name}
             </span>
           </FlexContainer>
           <div style={{ boxShadow: '0px 4px 15px rgba(0,0,0,1)' }}>
-            <HealthGauge character={character} height={20} />
+            <HealthGauge
+              character={character}
+              height={20}
+              showNumbers={false}
+            />
           </div>
           <HoverBadge
             direction='down'

@@ -17,7 +17,13 @@ interface CharacterStatPropsT {
 const CharacterStat = (props: CharacterStatPropsT) => {
   const { statKey, character } = props
   return (
-    <HoverToolTip content={<BoxContainer>{statKey}</BoxContainer>}>
+    <HoverToolTip
+      content={
+        <BoxContainer style={{ textTransform: 'capitalize' }}>
+          {statKey}
+        </BoxContainer>
+      }
+    >
       <ResourceE $color={getStatColor(character, statKey)}>
         <Icon
           src={STAT_ICONS[statKey] || ''}

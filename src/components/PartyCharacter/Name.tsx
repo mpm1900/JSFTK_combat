@@ -28,9 +28,10 @@ export const Name = (props: NamePropsT) => {
       <FullContainer
         style={{
           fontFamily: Theme.titleFont,
-          letterSpacing: '1px',
           textShadow: '0px 0px 2px black',
           flex: 1,
+          fontSize: 18,
+          lineHeight: '20px',
         }}
       >
         {character.name}

@@ -15,7 +15,7 @@ export const Perfect = (props: PerfectPropsT) => {
       style={{
         display: 'flex',
         justifyContent: 'center',
-        marginTop: 0,
+        marginTop: 16,
         fontSize: 42,
         color: partyId === PLAYER_PARTY_ID ? 'rgba(255,255,255,1)' : '#c95738',
         textShadow: '4px 4px 4px black',

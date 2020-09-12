@@ -89,9 +89,10 @@ export interface HealthGaugePropsT {
   character: tProcessedCharacter
   height?: number
   style?: CSSProperties
+  showNumbers?: boolean
 }
 export const HealthGauge = (props: HealthGaugePropsT) => {
-  const { character, height = 12, style } = props
+  const { character, height = 14, style, showNumbers = true } = props
   const health = noneg(character.health)
   return (
     <Gauge2
@@ -102,28 +103,33 @@ export const HealthGauge = (props: HealthGaugePropsT) => {
       height={height}
       style={style}
     >
-      {health}/{character.maxHealth}
+      {showNumbers && (
+        <span>
+          {health}/{character.maxHealth}
+        </span>
+      )}
     </Gauge2>
   )
 }
 export interface XPGaugePropsT {
   character: tProcessedCharacter
   style?: CSSProperties
+  showNumber?: boolean
 }
 export const XPGauge = (props: HealthGaugePropsT) => {
   const { character, style } = props
   const value = character.experience
   const max = CHARACTER_XP_MAX[character.level]
   return (
-    <Gauge
+    <Gauge2
       name='XP'
       color='#5e8575'
       max={max}
       value={value}
-      height={12}
+      height={14}
       style={style}
     >
       {value}/{max}
-    </Gauge>
+    </Gauge2>
   )
 }

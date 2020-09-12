@@ -49,9 +49,6 @@ export const Gauge2 = (props: GaugePropsT) => {
                 boxShadow: 'inset 0px 0px 1px rgba(0,0,0,0.5)',
                 textShadow: '1px 1px 1px black',
                 backgroundColor: 'rgba(255,255,255,0.5)',
-                color: 'white',
-                alignItems: 'center',
-                justifyContent: 'center',
               }}
             ></div>
           )}
@@ -67,9 +64,6 @@ export const Gauge2 = (props: GaugePropsT) => {
             boxShadow: 'inset 0px 0px 1px rgba(0,0,0,0.5)',
             textShadow: '1px 1px 1px black',
             backgroundColor: color,
-            color: 'white',
-            alignItems: 'center',
-            justifyContent: 'center',
           }}
         ></div>
         <FullContainer
@@ -79,13 +73,14 @@ export const Gauge2 = (props: GaugePropsT) => {
             lineHeight: `${height - 2}px`,
             right: 4,
             top: 0,
-            fontSize: 10,
+            fontSize: 12,
             fontWeight: 'bold',
             overflow: 'hidden',
             textShadow: '0px 0px 3px black',
+            color: 'rgba(255,255,255,0.6)',
           }}
         >
-          <Monodiv>{children}</Monodiv>
+          <div>{children}</div>
         </FullContainer>
       </BoxContainer>
     </HoverToolTip>

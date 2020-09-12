@@ -24,7 +24,6 @@ export const Badge = withWrapper(Div, (Element) => (props: any) => {
         alignItems: 'center',
         justifyContent: 'center',
         lineHeight: '20px',
-        letterSpacing: '1px',
         borderRadius: '30%',
         transform: 'rotateY(0deg) rotate(45deg)',
         color: props.$color || 'white',

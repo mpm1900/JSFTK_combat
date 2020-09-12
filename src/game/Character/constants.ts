@@ -21,7 +21,7 @@ export const CHARACTER_XP_MAX: Record<number, number> = {
 
 export const CHARACTER_CLASS_COLORS: Record<tCharacterClass, string> = {
   enemy: Theme.enemyPartyColor,
-  blacksmith: '#3c4d52',
+  blacksmith: '#3c4652',
   bard: '#472321',
   scholar: '#665166',
   hunter: '#334233',
