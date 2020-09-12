@@ -30,7 +30,7 @@ export const BANDIT = (): tCharacter => {
       intelligence: 40,
       dexterity: 52,
       charisma: 72,
-      agility: 61,
+      agility: getRandom([59, 60, 61, 62, 63, 64]),
       luck: 50,
       armor: 4,
       resistance: 0,

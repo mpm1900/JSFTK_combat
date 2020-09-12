@@ -169,6 +169,9 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
                 </>
               ))}
             </span>
+            {weapon.breakable && (
+              <div style={{ color: 'gold', fontSize: 12 }}>Breakable</div>
+            )}
             <StatsPreview stats={weapon.stats} />
             {weapon.immunities.map((status) => (
               <span style={{ textTransform: 'capitalize', fontSize: 14 }}>

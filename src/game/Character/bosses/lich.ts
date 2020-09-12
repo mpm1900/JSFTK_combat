@@ -51,7 +51,7 @@ export const LICH = (): tCharacter => {
       breakable: false,
       goldValue: 0,
       damage: {
-        value: 28,
+        value: 30,
         range: 'melee',
         type: 'physical',
       },

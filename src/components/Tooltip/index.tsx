@@ -10,6 +10,7 @@ export interface ClickToolTipChildrenT {
 interface PropsT extends TooltipProps {
   children: JSX.Element | ((props: ClickToolTipChildrenT) => JSX.Element)
   content: JSX.Element | ((props: ClickToolTipChildrenT) => JSX.Element)
+  flex?: boolean
 }
 export const Tooltip = (props: PropsT) => {
   const { ...rest } = props
@@ -26,7 +27,7 @@ export const Tooltip = (props: PropsT) => {
 
 export const HoverToolTip = (props: PropsT) => {
   return (
-    <Hover>
+    <Hover flex={props.flex}>
       {({ isHovering }) => <Tooltip {...props} isOpen={isHovering} />}
     </Hover>
   )

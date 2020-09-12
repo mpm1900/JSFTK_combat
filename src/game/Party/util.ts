@@ -35,6 +35,7 @@ export const findCharacterInParty = <
   party: T,
   id: string,
 ): R | undefined => {
+  console.log(party.characters, id)
   return (party.characters as R[]).find((c) => c.id === id)
 }
 

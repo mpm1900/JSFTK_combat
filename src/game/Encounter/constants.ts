@@ -98,7 +98,7 @@ export const getChoiceText = (
     : undefined
   if (previousChoice === undefined) {
     text =
-      'As your party begins their journy, you travel down an empty road. You arrive at a split path, you must make a choice on which way to proceed.'
+      'As your party begins their journey, you travel down an empty road. You arrive at a split path, you must make a choice on which way to proceed.'
   }
   if (previousEncounter?.type === 'combat') {
     text = getRandom([

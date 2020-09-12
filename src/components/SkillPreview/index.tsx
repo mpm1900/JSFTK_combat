@@ -51,7 +51,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
           style={{
             color: 'rgba(255,255,255,0.4)',
             marginTop: 8,
-            marginBottom: 8,
+            marginBottom: 20,
           }}
         >
           Perfect ({Math.floor(perfectChance * 100)}%){' '}

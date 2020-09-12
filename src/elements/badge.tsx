@@ -13,11 +13,11 @@ export const Badge = withWrapper(Div, (Element) => (props: any) => {
       onClick={onClick}
       style={{
         position: props.$absolute === false ? 'relative' : 'absolute',
-        background: Theme.darkBgColor,
+        background: Theme.darkBgColorSolid,
         padding: '4px',
         fontFamily: 'New Rocker',
         border: '1px solid rgba(255,255,255,0.5)',
-        boxShadow: '1px 1px 0px black',
+        boxShadow: '1px 1px 3px black',
         height: props.$size || '20px',
         width: props.$size || '20px',
         display: 'flex',
@@ -26,6 +26,7 @@ export const Badge = withWrapper(Div, (Element) => (props: any) => {
         lineHeight: '20px',
         borderRadius: '30%',
         transform: 'rotateY(0deg) rotate(45deg)',
+        textShadow: '1px 1px 3px black',
         color: props.$color || 'white',
         cursor: 'pointer',
         top: props.$top,
@@ -34,7 +35,7 @@ export const Badge = withWrapper(Div, (Element) => (props: any) => {
         right: props.$right,
         left: props.$left,
         transition: 'all 0.2s',
-        zIndex: 2,
+        zIndex: 4,
         ...($style || {}),
       }}
     >

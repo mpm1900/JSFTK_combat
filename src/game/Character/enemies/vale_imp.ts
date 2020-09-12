@@ -28,7 +28,7 @@ export const VALE_IMP = (): tCharacter => {
       intelligence: 40,
       dexterity: 52,
       charisma: 30,
-      agility: 76,
+      agility: getRandom([74, 75, 76, 77, 78]),
       luck: 50,
       armor: 0,
       resistance: 0,

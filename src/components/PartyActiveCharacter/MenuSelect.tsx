@@ -11,6 +11,7 @@ import { tProcessedCharacter } from '../../game/Character/type'
 import { tProcessedParty } from '../../game/Party/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
+import { Theme } from '../../theme'
 
 export interface MenuOptionT {
   key: string
@@ -75,7 +76,8 @@ export const MenuSelect = (props: MenuSelectPropsT) => {
             fontSize: 12,
             display: 'flex',
             justifyContent: 'center',
-            background: option.key === activeKey ? '#444' : undefined,
+            background:
+              option.key === activeKey ? Theme.lightBgColor : undefined,
           }}
           onClick={() => {
             onActiveKeyChange(option.key)

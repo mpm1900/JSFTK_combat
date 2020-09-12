@@ -22,6 +22,7 @@ export const BASIC_ATTACK = (
 
 const SMASH_ID = v4()
 export const SMASH = BASIC_ATTACK('Smash', SMASH_ID)
+export const GLASS_SMASH = BASIC_ATTACK('Smash', SMASH_ID, 1)
 const STRIKE_ID = v4()
 export const STRIKE = BASIC_ATTACK('Strike', STRIKE_ID)
 const CHOP_ID = v4()

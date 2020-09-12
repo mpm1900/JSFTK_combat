@@ -1,7 +1,9 @@
 export const Theme = {
   darkBgColor: 'rgba(0,5,10,0.9)',
+  darkBgColorSolid: 'rgba(0,7,12,1)',
   mediumBgColor: 'rgb(34,34,39)',
   otherGrey: 'rgb(51,51,58)',
+  badgeBgColor: 'rgb(15,15,20)',
   lightBgColor: '#4b5157',
   textColor: 'rgba(255,255,255,0.8)',
   physicalColor: 'lightblue',

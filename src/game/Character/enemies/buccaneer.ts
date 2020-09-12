@@ -30,7 +30,7 @@ export const BUCCANEER = (): tCharacter => {
       intelligence: 46,
       dexterity: 78,
       charisma: 64,
-      agility: 78,
+      agility: getRandom([75, 76, 77, 78, 79, 80, 81, 82]),
       luck: 50,
       armor: 1,
       resistance: 0,

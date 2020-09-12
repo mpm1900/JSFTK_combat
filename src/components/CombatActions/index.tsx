@@ -11,18 +11,23 @@ import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 import { HEAL } from '../../game/Skill/objects/heal'
 import { useUIContext } from '../../contexts/UIContext'
 import { Tooltip } from '../Tooltip'
-import { BoxContainer } from '../../elements/box'
 import { Theme } from '../../theme'
+import { useModalContext } from '../../contexts/ModalContext'
+import { EquipItemModal } from '../EquipItemModal'
+import Inventory from '../../icons/svg/lorc/knapsack.svg'
 
 export const CombatActions = () => {
   const {
+    party,
     activeCharacter,
     selectedSkill,
     selectedTargets,
     onSkillSelect,
+    equipItemCombat,
   } = useCombatContext()
 
   const { showSkillTooltips } = useUIContext()
+  const { open } = useModalContext()
 
   if (!activeCharacter || activeCharacter.partyId !== PLAYER_PARTY_ID)
     return null
@@ -38,66 +43,70 @@ export const CombatActions = () => {
   return (
     <FlexContainer $direction='column' style={{ minWidth: 340 }}>
       {selectedSkill && <SkillChecks stat={stat} skill={selectedSkill} />}
-      <Tooltip
-        isOpen={showSkillTooltips}
-        direction='left'
-        arrow={true}
-        background={Theme.darkBgColor}
-        content={
-          <FlexContainer
-            $direction='column'
-            style={{ padding: 8, color: 'rgba(255,255,255,0.8)' }}
-          >
-            Choose a skill.
-          </FlexContainer>
-        }
-      >
-        <FlexContainer style={{ justifyContent: 'center', minHeight: 42 }}>
-          {skills.map((skill) => (
-            <React.Fragment key={skill.id}>
-              {SKILL_ICONS[skill.id] ? (
-                <Hover delay={0}>
-                  {({ isHovering }) => (
-                    <Icon
-                      src={SKILL_ICONS[skill.id]}
-                      size={42}
-                      shadow={true}
-                      style={{
-                        cursor: 'pointer',
-                        padding: '0 12px',
-                      }}
-                      onClick={() => {
-                        onSkillSelect(skill)
-                      }}
-                      fill={
-                        skill.id === selectedSkill?.id
-                          ? 'lightsalmon'
-                          : isHovering
-                          ? 'white'
-                          : 'rgba(255,255,255,0.8)'
-                      }
-                    />
-                  )}
-                </Hover>
-              ) : (
-                <Button
-                  key={skill.id}
-                  onClick={() => onSkillSelect(skill)}
-                  style={{
-                    background: Theme.darkBgColor,
-                    borderColor:
-                      selectedSkill && skill.id === selectedSkill.id
+      <FlexContainer style={{ justifyContent: 'center', minHeight: 42 }}>
+        {skills.map((skill) => (
+          <React.Fragment key={skill.id}>
+            {SKILL_ICONS[skill.id] ? (
+              <Hover delay={0}>
+                {({ isHovering }) => (
+                  <Icon
+                    src={SKILL_ICONS[skill.id]}
+                    size={42}
+                    shadow={true}
+                    style={{
+                      cursor: 'pointer',
+                      padding: '0 12px',
+                    }}
+                    onClick={() => {
+                      onSkillSelect(skill)
+                    }}
+                    fill={
+                      skill.id === selectedSkill?.id
+                        ? 'lightsalmon'
+                        : isHovering
                         ? 'white'
-                        : undefined,
-                  }}
-                >
-                  {skill.name}
-                </Button>
-              )}
-            </React.Fragment>
-          ))}
-        </FlexContainer>
-      </Tooltip>
+                        : 'rgba(255,255,255,0.8)'
+                    }
+                  />
+                )}
+              </Hover>
+            ) : (
+              <Button
+                key={skill.id}
+                onClick={() => onSkillSelect(skill)}
+                style={{
+                  background: Theme.darkBgColor,
+                  borderColor:
+                    selectedSkill && skill.id === selectedSkill.id
+                      ? 'white'
+                      : undefined,
+                }}
+              >
+                {skill.name}
+              </Button>
+            )}
+          </React.Fragment>
+        ))}
+        {party.items.length > 0 && (
+          <Hover delay={0}>
+            {({ isHovering }) => (
+              <Icon
+                src={Inventory}
+                size={42}
+                shadow={true}
+                style={{
+                  cursor: 'pointer',
+                  padding: '0 12px',
+                }}
+                onClick={() =>
+                  open(<EquipItemModal equipItemCombat={equipItemCombat} />)
+                }
+                fill={isHovering ? 'white' : 'rgba(255,255,255,0.8)'}
+              />
+            )}
+          </Hover>
+        )}
+      </FlexContainer>
       {selectedSkill && (
         <SkillPreview
           skill={selectedSkill}

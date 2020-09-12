@@ -13,6 +13,8 @@ import { Shop } from '../components/Shop'
 import { Shrine } from '../components/Shrine'
 import { getChoiceText } from '../game/Encounter/constants'
 import { EncounterHistory } from '../components/EncounterHistory'
+import { Hexagon, HexBadge } from '../elements/shapes'
+import { Theme } from '../theme'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()
@@ -95,6 +97,9 @@ export const Party = () => {
               <Shrine />
             )}
             {!currentEncounter && currentChoice && <EncounterHistory />}
+            <HexBadge size={48} color={Theme.mediumBgColor}>
+              6
+            </HexBadge>
           </FlexContainer>
           <FlexContainer
             $direction='column'

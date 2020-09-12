@@ -6,10 +6,11 @@ export interface HoverChildrenT {
 }
 export interface HoverPropsT {
   delay?: number
+  flex?: boolean
   children: (props: HoverChildrenT) => JSX.Element
 }
 export const Hover = (props: HoverPropsT) => {
-  const { delay = 500, children } = props
+  const { delay = 500, flex, children } = props
   const [internalHovering, setInternalHovering] = useState<boolean>(false)
   const [isHovering, setIsHovering] = useState<boolean>(false)
   const [guid, setGuid] = useState<string>(v4())
@@ -40,7 +41,11 @@ export const Hover = (props: HoverPropsT) => {
     setIsHovering(false)
   }
   return (
-    <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <div
+      style={{ display: flex ? 'flex' : 'block', flex: flex ? 1 : undefined }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       {children({ isHovering })}
     </div>
   )

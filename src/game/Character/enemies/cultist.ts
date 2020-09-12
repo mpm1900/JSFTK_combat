@@ -29,7 +29,7 @@ export const CULTIST = (): tCharacter => {
       intelligence: 75,
       dexterity: 52,
       charisma: 72,
-      agility: 70,
+      agility: getRandom([68, 69, 70, 71]),
       luck: 50,
       armor: 1,
       resistance: 4,

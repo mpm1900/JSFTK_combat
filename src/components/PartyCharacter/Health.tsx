@@ -27,7 +27,7 @@ export const Health = (props: HealthPropsT) => {
       <span
         style={{
           padding: 4,
-          paddingLeft: 2,
+          paddingLeft: 45,
           fontSize: 56,
           height: 62,
           width: 62,

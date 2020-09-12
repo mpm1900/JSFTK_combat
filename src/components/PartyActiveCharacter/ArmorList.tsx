@@ -15,10 +15,11 @@ export interface ArmorListPropsT {
   character: tProcessedCharacter
   canEquip: boolean
   setActiveItem: (item: tWeapon | tArmor) => void
+  onEquipItem?: (characterId: string, item: tWeapon | tArmor) => void
 }
 
 export const ArmorList = (props: ArmorListPropsT) => {
-  const { character, canEquip, setActiveItem } = props
+  const { character, canEquip, setActiveItem, onEquipItem } = props
   const { party, sellItem, equipItem } = usePartyContext()
   const [activeItemId, setActiveItemId] = useState<string | undefined>()
   return (
@@ -61,7 +62,11 @@ export const ArmorList = (props: ArmorListPropsT) => {
                   onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
-                    equipItem(character.id, armor)
+                    if (onEquipItem) {
+                      onEquipItem(character.id, armor)
+                    } else {
+                      equipItem(character.id, armor)
+                    }
                     setActiveItemId(undefined)
                   }}
                 >

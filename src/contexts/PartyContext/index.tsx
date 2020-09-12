@@ -96,8 +96,11 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
   }
 
   const equipItem = (characterId: string, item: tWeapon | tArmor) => {
+    console.log('EQUIP ITEM')
     const character = findRawCharacter(characterId)
+    console.log(characterId, character)
     if (!character) return
+    console.log('CHARACTER FOUND')
     if (item.itemType === 'armor') {
       const armor = item as tArmor
       if (armor.resource === 'offhand' && (character.weapon || FISTS()).twoHand)

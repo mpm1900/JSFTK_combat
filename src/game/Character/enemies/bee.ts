@@ -28,7 +28,7 @@ export const BEE = (): tCharacter => {
       intelligence: 30,
       dexterity: 52,
       charisma: 30,
-      agility: 80,
+      agility: getRandom([78, 79, 80, 81, 82, 83]),
       luck: 0,
       armor: 0,
       resistance: 0,

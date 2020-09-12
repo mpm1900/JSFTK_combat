@@ -18,6 +18,7 @@ const CharacterStat = (props: CharacterStatPropsT) => {
   const { statKey, character } = props
   return (
     <HoverToolTip
+      flex
       content={
         <BoxContainer style={{ textTransform: 'capitalize' }}>
           {statKey}
@@ -28,8 +29,8 @@ const CharacterStat = (props: CharacterStatPropsT) => {
         <Icon
           src={STAT_ICONS[statKey] || ''}
           fill={getStatColor(character, statKey)}
-          size={14}
-          style={{ marginRight: 4 }}
+          size={16}
+          style={{ marginRight: 3, marginTop: -2 }}
         />
         {character.stats[statKey]}
       </ResourceE>
@@ -44,7 +45,10 @@ export interface StatsProps {
 export const Stats = (props: StatsProps) => {
   const { character } = props
   return (
-    <FlexContainer style={{ paddingTop: 2, background: Theme.darkBgColor }}>
+    <FlexContainer
+      $full
+      style={{ paddingTop: 4, background: Theme.darkBgColor, paddingLeft: 8 }}
+    >
       <CharacterStat statKey='vigor' character={character} />
       <CharacterStat statKey='strength' character={character} />
       <CharacterStat statKey='intelligence' character={character} />
@@ -59,9 +63,9 @@ export const Stats = (props: StatsProps) => {
 const ResourceE = styled('div', (props: any) => ({
   height: 15,
   color: props.$color,
-  fontSize: '15px',
+  fontSize: '17px',
   padding: '0px 4px',
-  lineHeight: '15px',
+  lineHeight: '14px',
   flex: 1,
   textAlign: 'center',
   background: Theme.darkBgColor,

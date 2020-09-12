@@ -15,3 +15,8 @@ export const SHOT: tSkill = {
   perfectPierce: false,
   perfectStatus: [],
 }
+
+export const GLASS_SHOT = {
+  ...SHOT,
+  rolls: 1,
+}

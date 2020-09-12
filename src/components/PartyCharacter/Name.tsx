@@ -15,8 +15,9 @@ export const Name = (props: NamePropsT) => {
       style={{
         marginTop: -3,
         marginRight: -3,
-        padding: '0 4px',
-        paddingLeft: 8,
+        marginLeft: -3,
+        padding: '0 4px 0 4px',
+        paddingLeft: 46,
         background: Theme.lightBgColor,
         height: 20,
         lineHeight: '24px',
