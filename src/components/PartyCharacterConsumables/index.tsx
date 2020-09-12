@@ -7,6 +7,7 @@ import { BoxContainer } from '../../elements/box'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tConsumable } from '../../game/Consumable/type'
 import { considateConsumableListToStack } from '../../game/Consumable/util'
+import { Theme } from '../../theme'
 
 const HEIGHT = 70
 export interface PartyCharacterConsumablesPropsT {
@@ -66,7 +67,7 @@ const ConsumableBox = (props: ConsumableBoxPropsT) => {
         width: HEIGHT / 2,
         boxSizing: 'border-box',
         border: '1px solid rgba(0,0,0,0.5)',
-        background: '#333',
+        background: Theme.otherGrey,
         alignItems: 'center',
         justifyContent: 'center',
         cursor: onClick ? 'pointer' : 'default',

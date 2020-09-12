@@ -12,6 +12,7 @@ import { tWeapon } from '../../game/Weapon/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tArmor, tArmorResourceType } from '../../game/Armor/type'
 import { CHARACTER_RESOURCES } from '../../game/Item/constants'
+import { Theme } from '../../theme'
 
 const ItemRow = styled(FlexContainer, (props: any) => {
   return {
@@ -95,7 +96,7 @@ export const ArmorItem = (props: ArmorItemProps) => {
                 width: 190,
                 display: 'flex',
                 justifyContent: 'center',
-                background: '#333',
+                background: Theme.otherGrey,
               }}
             >
               <Button

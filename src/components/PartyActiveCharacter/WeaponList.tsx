@@ -9,6 +9,7 @@ import { tProcessedCharacter } from '../../game/Character/type'
 import { tArmor } from '../../game/Armor/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
+import { Theme } from '../../theme'
 
 export interface WeaponListPropsT {
   party: tProcessedParty
@@ -57,7 +58,7 @@ export const WeaponList = (props: WeaponListPropsT) => {
                       width: 346,
                       display: 'flex',
                       justifyContent: 'center',
-                      background: '#333',
+                      background: Theme.otherGrey,
                     }}
                   >
                     <Button

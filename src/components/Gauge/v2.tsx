@@ -6,6 +6,7 @@ import { BoxContainer } from '../../elements/box'
 import { Spring } from 'react-spring/renderprops'
 import { FullContainer } from '../../elements/flex'
 import { Monodiv } from '../../elements/monospace'
+import { Theme } from '../../theme'
 
 export const Gauge2 = (props: GaugePropsT) => {
   const { name = '', value, color, height = 30, children, style } = props
@@ -25,7 +26,7 @@ export const Gauge2 = (props: GaugePropsT) => {
         style={{ borderLeft: 'none', ...(style || {}) }}
         substyle={{
           padding: 0,
-          background: '#555',
+          background: Theme.lightBgColor,
           height: height - 2,
           position: 'relative',
           border: 'none',

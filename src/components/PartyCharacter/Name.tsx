@@ -1,6 +1,7 @@
 import React from 'react'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { tProcessedCharacter } from '../../game/Character/type'
+import { Theme } from '../../theme'
 
 export interface NamePropsT {
   character: tProcessedCharacter
@@ -16,7 +17,7 @@ export const Name = (props: NamePropsT) => {
         marginRight: -3,
         padding: '0 4px',
         paddingLeft: 8,
-        background: '#555',
+        background: Theme.lightBgColor,
         height: 20,
         lineHeight: '24px',
         borderBottom: '1px solid rgba(255,255,255,0.2)',

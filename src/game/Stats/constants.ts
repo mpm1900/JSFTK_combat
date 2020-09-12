@@ -113,7 +113,7 @@ export const CLASS_STATS: Record<tCharacterClass, tStats> = {
     dexterity: 70,
     charisma: 70,
     agility: 70,
-    luck: 50,
+    luck: 30,
     armor: 1,
     resistance: 1,
     evasion: 13,

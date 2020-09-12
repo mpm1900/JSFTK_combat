@@ -67,7 +67,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
               flexDirection: 'row-reverse',
               boxShadow: '0px 0px 3px black',
               borderLeft: '1px solid rgba(255,255,255,0.3)',
-              background: '#222',
+              background: Theme.mediumBgColor,
             }}
           >
             <FlexContainer

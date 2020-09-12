@@ -10,6 +10,7 @@ import Shrine from '../../icons/svg/lorc/divided-spiral.svg'
 import Boss from '../../icons/svg/lorc/crowned-skull.svg'
 import { Icon } from '../Icon'
 import { BoxContainer } from '../../elements/box'
+import { Theme } from '../../theme'
 
 export interface EncounterHistoryPropsT {}
 
@@ -41,7 +42,11 @@ export const EncounterHistory = (props: EncounterHistoryPropsT) => {
             substyle={{
               padding: 4,
               borderColor:
-                level === i ? 'white' : e === undefined ? '#555' : '#8b9e96',
+                level === i
+                  ? 'white'
+                  : e === undefined
+                  ? Theme.lightBgColor
+                  : '#8b9e96',
             }}
           >
             <Icon
@@ -60,7 +65,7 @@ export const EncounterHistory = (props: EncounterHistoryPropsT) => {
                 $full
                 style={{
                   maxHeight: 1,
-                  background: e === undefined ? '#555' : 'white',
+                  background: e === undefined ? Theme.lightBgColor : 'white',
                   borderTop: '1px solid black',
                   borderBottom: '1px solid black',
                 }}

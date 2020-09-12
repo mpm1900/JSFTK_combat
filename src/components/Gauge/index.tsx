@@ -9,6 +9,7 @@ import { Spring } from 'react-spring/renderprops'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { CHARACTER_XP_MAX } from '../../game/Character/constants'
 import { Gauge2 } from './v2'
+import { Theme } from '../../theme'
 
 export interface GaugePropsT {
   name?: string
@@ -34,7 +35,7 @@ export const Gauge = (props: GaugePropsT) => {
         style={{ borderLeft: 'none', ...(style || {}) }}
         substyle={{
           padding: 0,
-          background: '#555',
+          background: Theme.lightBgColor,
           height: height - 2,
           position: 'relative',
           border: 'none',

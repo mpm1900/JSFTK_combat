@@ -86,7 +86,7 @@ export const ModalContextProvider = (props: ModalContextProviderPropsT) => {
             width: 400,
             margin: '0 auto',
             bottom: 'unset',
-            borderColor: '#555',
+            borderColor: Theme.lightBgColor,
             ...state.styles.modal,
           },
           overlay: {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { styled, withStyle } from 'styletron-react'
 import { animated, useSpring } from 'react-spring'
+import { Theme } from '../theme'
 
 export interface ButtonPropsT {
   $direction?: 'up' | 'down'
@@ -8,7 +9,7 @@ export interface ButtonPropsT {
 export const Button = styled('button', (props: ButtonPropsT) => {
   return {
     cursor: 'pointer',
-    background: '#222',
+    background: Theme.mediumBgColor,
     boxShadow: 'inset 0px 0px 3px black',
     textShadow: '0px 1px 3px black',
     border: '1px solid rgba(255,255,255,0.2)',

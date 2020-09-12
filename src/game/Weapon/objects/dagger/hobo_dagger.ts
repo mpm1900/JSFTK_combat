@@ -1,7 +1,7 @@
 import { tWeapon } from '../../type'
 import { v4 } from 'uuid'
 import { ZERO_STATS } from '../../../Stats/constants'
-import { STAB } from '../../../Skill/objects/enemy/stab'
+import { HOBO_STAB } from '../../../Skill/objects/smash'
 
 export const HOBO_DAGGER = (): tWeapon => ({
   id: v4(),
@@ -16,6 +16,6 @@ export const HOBO_DAGGER = (): tWeapon => ({
   stats: {
     ...ZERO_STATS,
   },
-  skills: [STAB],
+  skills: [HOBO_STAB],
   immunities: ['poisoned'],
 })

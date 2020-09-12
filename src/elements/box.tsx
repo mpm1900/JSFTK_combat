@@ -26,8 +26,8 @@ export const BoxContainer = (props: BoxContainerPropsT) => {
     >
       <Element
         style={{
-          border: substyle.border || '1px solid #555',
-          background: 'linear-gradient(0deg, #222222 0%, #2a2a2a 100%)',
+          border: substyle.border || `1px solid ${Theme.lightBgColor}`,
+          background: `linear-gradient(0deg, ${Theme.mediumBgColor} 0%, rgba(42,42,44) 100%)`,
           padding: 10,
           color: '#ccc',
           flex: 1,
@@ -75,7 +75,8 @@ export const BoxButton = (props: BoxContainerPropsT) => {
             ...(props.style || {}),
           }}
           substyle={{
-            borderColor: isHovering && !props.disabled ? '#999' : '#555',
+            borderColor:
+              isHovering && !props.disabled ? '#999' : Theme.lightBgColor,
             padding: '4px',
             cursor: props.disabled ? 'default' : 'pointer',
             background: props.disabled ? '#444' : Theme.darkBgColor,

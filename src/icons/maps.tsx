@@ -72,7 +72,7 @@ import { AREA_BLAST } from '../game/Skill/objects/area_blast'
 import { SYMPHONY } from '../game/Skill/objects/symphony'
 import { DAZZLE } from '../game/Skill/objects/dazzle'
 import { RUBATO } from '../game/Skill/objects/rubato'
-import { SMASH, STRIKE, CHOP } from '../game/Skill/objects/smash'
+import { SMASH, STRIKE, CHOP, HOBO_STAB } from '../game/Skill/objects/smash'
 import { SHOCKWAVE } from '../game/Skill/objects/shockwave'
 import { TAUNT } from '../game/Skill/objects/taunt'
 import { ALTO } from '../game/Skill/objects/alto'
@@ -148,6 +148,7 @@ export const SKILL_ICONS: Record<string, string> = {
   [ANIMATO.id]: Dodging,
   [CHOP.id]: Chop,
   [POWER_STRIKE.id]: PowerStrike,
+  [HOBO_STAB.id]: PowerStrike,
 }
 
 export const ARMOR_TYPE_ICONS: Record<tArmorType, string> = {

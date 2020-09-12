@@ -28,7 +28,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
   }
   return (
     <BoxContainer
-      style={{ marginTop: 30, position: 'relative' }}
+      style={{ marginTop: 30, position: 'relative', minWidth: 300 }}
       substyle={{ background: Theme.darkBgColor }}
     >
       <FlexContainer $direction='column' style={{ alignItems: 'center' }}>
@@ -37,7 +37,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
           <BoxContainer
             substyle={{
               padding: '4px 12px',
-              background: '#555',
+              background: Theme.lightBgColor,
               letterSpacing: '1px',
               fontFamily: 'Bangers',
             }}
@@ -98,9 +98,14 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
         <FlexContainer style={{ marginBottom: -18 }}>
           <FullContainer />
           <BoxContainer
-            substyle={{ padding: '0px 12px', background: '#555', fontSize: 10 }}
+            substyle={{
+              padding: '0px 12px',
+              background: Theme.lightBgColor,
+              fontWeight: 'bolder',
+              fontSize: 12,
+            }}
           >
-            {skill.targetType}
+            {skill.targetType} target
           </BoxContainer>
           <FullContainer />
         </FlexContainer>

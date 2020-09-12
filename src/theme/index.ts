@@ -1,5 +1,8 @@
 export const Theme = {
-  darkBgColor: 'rgba(0,0,0,0.9)',
+  darkBgColor: 'rgba(0,5,10,0.9)',
+  mediumBgColor: 'rgb(34,34,39)',
+  otherGrey: 'rgb(51,51,58)',
+  lightBgColor: '#4b5157',
   textColor: 'rgba(255,255,255,0.8)',
   physicalColor: 'lightblue',
   magicColor: 'plum',

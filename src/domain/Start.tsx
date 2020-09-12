@@ -135,7 +135,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
     <FlexContainer $direction='column'>
       <input
         style={{
-          background: '#222',
+          background: Theme.mediumBgColor,
           border: '1px solid rgba(255,255,255,0.4)',
           padding: 8,
           color: 'white',
@@ -151,7 +151,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
       />
       <select
         style={{
-          background: '#222',
+          background: Theme.mediumBgColor,
           border: '1px solid rgba(255,255,255,0.4)',
           padding: 8,
           color: 'white',

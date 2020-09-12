@@ -100,7 +100,7 @@ export const Party = () => {
             $direction='column'
             style={{
               background:
-                'linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(8,8,8,0.6811099439775911) 10%, rgba(17,17,17,1) 35%)',
+                'linear-gradient(0deg, rgba(0,5,8,0) 0%, rgba(8,8,8,0.6811099439775911) 10%, rgba(17,17,25,1) 35%)',
               marginRight: '10%',
               padding: '16px 8px',
               width: 300,
