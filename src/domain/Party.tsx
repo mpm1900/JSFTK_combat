@@ -97,9 +97,6 @@ export const Party = () => {
               <Shrine />
             )}
             {!currentEncounter && currentChoice && <EncounterHistory />}
-            <HexBadge size={48} color={Theme.mediumBgColor}>
-              6
-            </HexBadge>
           </FlexContainer>
           <FlexContainer
             $direction='column'

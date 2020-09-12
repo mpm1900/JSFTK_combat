@@ -15,3 +15,8 @@ export const ALTO: tSkill = {
   perfectPierce: true,
   perfectStatus: [],
 }
+
+export const GLASS_ALTO: tSkill = {
+  ...ALTO,
+  rolls: 1,
+}

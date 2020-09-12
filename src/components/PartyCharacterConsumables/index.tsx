@@ -9,7 +9,7 @@ import { tConsumable } from '../../game/Consumable/type'
 import { considateConsumableListToStack } from '../../game/Consumable/util'
 import { Theme } from '../../theme'
 
-const HEIGHT = 70
+const HEIGHT = 64
 export interface PartyCharacterConsumablesPropsT {
   character: tProcessedCharacter
   consumables: tConsumable[]

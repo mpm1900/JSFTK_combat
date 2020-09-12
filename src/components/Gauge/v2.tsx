@@ -26,7 +26,7 @@ export const Gauge2 = (props: GaugePropsT) => {
         style={{ borderLeft: 'none', ...(style || {}) }}
         substyle={{
           padding: 0,
-          background: Theme.lightBgColor,
+          background: 'rgba(80,80,85,1)',
           height: height - 2,
           position: 'relative',
           border: 'none',

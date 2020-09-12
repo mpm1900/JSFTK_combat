@@ -24,12 +24,12 @@ export interface MenuOptionT {
   ) => JSX.Element
 }
 export const ACTIVE_CHARACTER_MENU_KEYS: MenuOptionT[] = [
-  {
+  /*{
     key: 'items',
     icon: Items,
     count: (c) => c.consumables.length,
     render: (character) => <div>items</div>,
-  },
+  }, */
   {
     key: 'weapons',
     icon: Weapons,
@@ -71,8 +71,8 @@ export const MenuSelect = (props: MenuSelectPropsT) => {
       {ACTIVE_CHARACTER_MENU_KEYS.map((option) => (
         <Button
           style={{
-            padding: '4px 0',
-            width: 56,
+            padding: '4px 8px',
+            //width: 56,
             fontSize: 12,
             display: 'flex',
             justifyContent: 'center',
@@ -83,10 +83,15 @@ export const MenuSelect = (props: MenuSelectPropsT) => {
             onActiveKeyChange(option.key)
           }}
         >
-          <FullContainer />
-          <FullContainer>
-            <Icon src={option.icon} size={14} />
+          <FullContainer
+            style={{ marginRight: 8, textTransform: 'capitalize' }}
+          >
+            {option.key}
           </FullContainer>
+          {/*
+          <FullContainer style={{ marginRight: 4 }}>
+            <Icon src={option.icon} size={14} />
+          </FullContainer> */}
           <FullContainer style={{ paddingRight: 2 }}>
             {option.count(character, party)}
           </FullContainer>

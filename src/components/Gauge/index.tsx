@@ -32,10 +32,14 @@ export const Gauge = (props: GaugePropsT) => {
       content={<BoxContainer>{`${name} (${value} / ${max})`}</BoxContainer>}
     >
       <BoxContainer
-        style={{ borderLeft: 'none', ...(style || {}) }}
+        style={{
+          borderLeft: 'none',
+          background: Theme.darkBgColorSolid,
+          ...(style || {}),
+        }}
         substyle={{
           padding: 0,
-          background: Theme.lightBgColor,
+          background: 'rgba(255,255,255,0.2)',
           height: height - 2,
           position: 'relative',
           border: 'none',
@@ -92,7 +96,7 @@ export interface HealthGaugePropsT {
   showNumbers?: boolean
 }
 export const HealthGauge = (props: HealthGaugePropsT) => {
-  const { character, height = 14, style, showNumbers = true } = props
+  const { character, height = 16, style, showNumbers = true } = props
   const health = noneg(character.health)
   return (
     <Gauge2
@@ -126,7 +130,7 @@ export const XPGauge = (props: HealthGaugePropsT) => {
       color='#5e8575'
       max={max}
       value={value}
-      height={14}
+      height={16}
       style={style}
     >
       {value}/{max}

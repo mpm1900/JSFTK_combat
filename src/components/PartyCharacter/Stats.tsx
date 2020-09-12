@@ -1,11 +1,10 @@
 import React from 'react'
 import { FlexContainer } from '../../elements/flex'
-import { withStyle, styled } from 'styletron-react'
-import { Monodiv } from '../../elements/monospace'
+import { styled } from 'styletron-react'
 import { Icon } from '../Icon'
 import { STAT_ICONS } from '../../icons/maps'
 import { tProcessedCharacter } from '../../game/Character/type'
-import { tStats, tBaseStats } from '../../game/Stats/type'
+import { tBaseStats } from '../../game/Stats/type'
 import { Theme } from '../../theme'
 import { HoverToolTip } from '../Tooltip'
 import { BoxContainer } from '../../elements/box'
@@ -29,8 +28,8 @@ const CharacterStat = (props: CharacterStatPropsT) => {
         <Icon
           src={STAT_ICONS[statKey] || ''}
           fill={getStatColor(character, statKey)}
-          size={16}
-          style={{ marginRight: 3, marginTop: -2 }}
+          size={14}
+          style={{ marginRight: 3, marginTop: 0 }}
         />
         {character.stats[statKey]}
       </ResourceE>
@@ -47,7 +46,7 @@ export const Stats = (props: StatsProps) => {
   return (
     <FlexContainer
       $full
-      style={{ paddingTop: 4, background: Theme.darkBgColor, paddingLeft: 8 }}
+      style={{ paddingTop: 2, background: Theme.darkBgColor, paddingLeft: 24 }}
     >
       <CharacterStat statKey='vigor' character={character} />
       <CharacterStat statKey='strength' character={character} />
@@ -63,7 +62,7 @@ export const Stats = (props: StatsProps) => {
 const ResourceE = styled('div', (props: any) => ({
   height: 15,
   color: props.$color,
-  fontSize: '17px',
+  fontSize: '15px',
   padding: '0px 4px',
   lineHeight: '14px',
   flex: 1,
@@ -78,7 +77,7 @@ const getStatColor = (
 ): string => {
   const a = character.stats[key]
   const b = character.rawStats[key]
-  if (a > b) return 'lightgreen'
+  if (a > b) return Theme.evasionColor
   if (b > a) return 'lightcoral'
   return 'rgba(255,255,255,0.6)'
 }

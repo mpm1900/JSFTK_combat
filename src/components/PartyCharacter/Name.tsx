@@ -1,7 +1,9 @@
 import React from 'react'
+import Color from 'color'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { Theme } from '../../theme'
+import { CHARACTER_CLASS_COLORS } from '../../game/Character/constants'
 
 export interface NamePropsT {
   character: tProcessedCharacter
@@ -16,12 +18,13 @@ export const Name = (props: NamePropsT) => {
         marginTop: -3,
         marginRight: -3,
         marginLeft: -3,
-        padding: '0 4px 0 4px',
-        paddingLeft: 46,
-        background: Theme.lightBgColor,
-        height: 20,
+        paddingLeft: 52,
+        paddingRight: 8,
+        background: Theme.otherGrey2,
+        height: 24,
+        alignItems: 'center',
         lineHeight: '24px',
-        borderBottom: '1px solid rgba(255,255,255,0.2)',
+        borderBottom: '1px solid rgba(255,255,255,0.1)',
         boxShadow: '0px 4px 5px black',
         zIndex: 2,
       }}

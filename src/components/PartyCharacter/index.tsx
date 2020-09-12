@@ -38,7 +38,7 @@ const Wrapper = styled('div', (props: any) => {
     margin: 10,
     display: 'flex',
     position: 'relative',
-    transform: $active ? 'scale(1.02)' : 'scale(0.95)',
+    transform: $active ? 'scale(1.04)' : 'scale(0.95)',
     transition: 'all 0.4s',
     userSelect: 'none',
   }
@@ -80,25 +80,26 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       }}
     >
       <HexBadge
-        size={120}
+        size={110}
         color={CHARACTER_CLASS_COLORS[character.class] || Theme.darkBgColor}
         style={{
           padding: 8,
           alignItems: 'center',
           justifyContent: 'center',
           transition: 'all 0.3s',
-          marginRight: -56,
-          marginTop: -18,
+          marginRight: -58,
+          marginTop: -12,
           zIndex: 3,
         }}
         childStyle={{
-          marginTop: -8,
+          marginTop: -12,
         }}
       >
         <Icon
           src={CHARACTER_CLASS_ICONS[character.class]}
-          size={92}
+          size={82}
           shadow
+          style={{ marginRight: 0 }}
           fill={selected ? 'white' : 'rgba(255,255,255,0.5)'}
         />
       </HexBadge>
@@ -113,7 +114,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           }}
           substyle={{
             padding: 0,
-            minWidth: 324,
+            minWidth: 312,
             background: Theme.darkBgColorSolid,
           }}
         >
@@ -122,7 +123,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               <Name character={character} />
               <FlexContainer style={{ background: Theme.mediumBgColor }}>
                 <Health character={character} />
-                <FlexContainer $full style={{ maxWidth: 175, minWidth: 175 }}>
+                <FlexContainer $full style={{ maxWidth: 160, minWidth: 160 }}>
                   <PartyCharacterConsumables
                     character={character}
                     consumables={character.consumables}
@@ -150,7 +151,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                 />
               </FlexContainer>
               <HoverHexBadge
-                position={{ bottom: 18, left: 94 }}
+                position={{ bottom: 16, left: 90 }}
                 size={36}
                 rotate
                 childStyle={{ paddingTop: 1 }}
@@ -158,7 +159,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               >
                 <span
                   style={{
-                    color: 'rgba(200,200,255,0.7)',
+                    color: 'rgba(98, 128, 116,1)',
                     fontSize: 24,
                     lineHeight: '28px',
                   }}
@@ -199,7 +200,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       </FlexContainer>
       <HoverHexBadge
         position={{
-          bottom: 78,
+          bottom: 72,
           left: -7,
         }}
         rotate
@@ -215,7 +216,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       </HoverHexBadge>
       <HoverHexBadge
         position={{
-          bottom: 44,
+          bottom: 40,
           left: -7,
         }}
         rotate
@@ -231,8 +232,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       </HoverHexBadge>
       <HoverHexBadge
         position={{
-          bottom: 18,
-          left: 16,
+          bottom: 23,
+          left: 19,
         }}
         rotate
         size={32}
@@ -251,7 +252,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         content={<BoxContainer>Weapon Damage</BoxContainer>}
         position={{
           bottom: -4,
-          left: 48,
+          left: 44,
         }}
         size={45}
         childStyle={{
