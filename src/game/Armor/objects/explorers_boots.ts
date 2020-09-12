@@ -20,4 +20,5 @@ export const EXPLORERS_BOOTS = (): tArmor => ({
 
   skills: [],
   immunities: [],
+  goldValue: 15,
 })

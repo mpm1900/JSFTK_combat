@@ -18,4 +18,5 @@ export const BONE_BUCKLER = (): tArmor => ({
   },
   skills: [TAUNT],
   immunities: [],
+  goldValue: 20,
 })

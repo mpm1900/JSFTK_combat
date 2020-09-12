@@ -55,6 +55,7 @@ export const VALE_IMP = (): tCharacter => {
       stat: 'dexterity',
       twoHand: true,
       breakable: false,
+      goldValue: 0,
       damage: {
         value: 6,
         range: 'melee',

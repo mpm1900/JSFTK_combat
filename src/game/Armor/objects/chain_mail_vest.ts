@@ -18,4 +18,5 @@ export const CHAIN_MAIL_VEST = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 30,
 })

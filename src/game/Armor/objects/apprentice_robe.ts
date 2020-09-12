@@ -20,4 +20,5 @@ export const APRRENTICE_ROBE = (): tArmor => ({
   },
   skills: [],
   immunities: ['cursed'],
+  goldValue: 30,
 })

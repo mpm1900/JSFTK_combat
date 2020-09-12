@@ -21,4 +21,5 @@ export const TRAVELLERS_BOOTS = (): tArmor => ({
 
   skills: [],
   immunities: [],
+  goldValue: 15,
 })

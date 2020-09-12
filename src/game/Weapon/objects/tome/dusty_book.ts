@@ -18,4 +18,5 @@ export const DUSTY_BOOK = (): tWeapon => ({
   stats: { ...ZERO_STATS },
   skills: [SURGE, AREA_BLAST, PROTECT],
   immunities: [],
+  goldValue: 30,
 })

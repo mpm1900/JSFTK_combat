@@ -6,7 +6,6 @@ import {
   processParty,
   makeParty,
   findCharacterInParty,
-  updateCharacter,
 } from '../../game/Party/util'
 import {
   checkForProcessedCharacter,
@@ -35,6 +34,7 @@ export interface PartyContextT {
   equipItem: (characterId: string, item: tWeapon | tArmor) => void
   unequipItem: (characterId: string, item: tWeapon | tArmor) => void
   purchaseItem: (item: tArmor | tWeapon | tConsumable, cost: number) => void
+  sellItem: (itemId: string) => void
 }
 const defaultContextValue: PartyContextT = {
   rawParty: makeParty(),
@@ -49,6 +49,7 @@ const defaultContextValue: PartyContextT = {
   equipItem: (characterId, item) => {},
   unequipItem: (characterId, item) => {},
   purchaseItem: (item, cost) => {},
+  sellItem: (itemId) => {},
 }
 export const PartyContext = React.createContext<PartyContextT>(
   defaultContextValue,
@@ -171,6 +172,16 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
       removeItem(currentChoice.id, currentEncounter.id, item.id)
     }
   }
+  const sellItem = (itemId: string) => {
+    const item = rawParty.items.find((i) => i.id === itemId)
+    if (item) {
+      updateParty({
+        ...rawParty,
+        items: rawParty.items.filter((i) => i.id !== itemId),
+        gold: rawParty.gold + item.goldValue,
+      })
+    }
+  }
 
   return (
     <PartyContext.Provider
@@ -187,6 +198,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
         equipItem,
         unequipItem,
         purchaseItem,
+        sellItem,
       }}
     >
       {children}

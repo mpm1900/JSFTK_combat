@@ -18,4 +18,5 @@ export const APPRENTICE_CAP = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 15,
 })

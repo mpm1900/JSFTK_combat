@@ -19,4 +19,5 @@ export const FUR_BOOTS = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 20,
 })

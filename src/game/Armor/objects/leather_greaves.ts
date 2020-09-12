@@ -20,4 +20,5 @@ export const LEATHER_GREAVES = (): tArmor => ({
 
   skills: [],
   immunities: [],
+  goldValue: 15,
 })

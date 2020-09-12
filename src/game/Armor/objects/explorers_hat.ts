@@ -18,4 +18,5 @@ export const EXPLORERS_HAT = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 15,
 })

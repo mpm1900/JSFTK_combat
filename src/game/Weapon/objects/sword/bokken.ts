@@ -19,4 +19,5 @@ export const BOKKEN = (): tWeapon => ({
   },
   skills: [STRIKE, RESTORE],
   immunities: [],
+  goldValue: 50,
 })

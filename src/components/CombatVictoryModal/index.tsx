@@ -11,6 +11,7 @@ import { useGameStateContext } from '../../contexts/GameStateContext'
 import { consolidateRewards } from '../../game/Other/util'
 import { commitRewards } from '../../game/Party/util'
 import { tEncounterReward } from '../../game/Encounter/type'
+import { useCombatLogContext } from '../../contexts/CombatLogContext'
 
 export interface CombatVictoryModalPropsT {
   rewards: tEncounterReward[]
@@ -19,6 +20,7 @@ export interface CombatVictoryModalPropsT {
 export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
   const { rewards } = props
   const { rawParty, updateParty } = usePartyContext()
+  const { clear } = useCombatLogContext()
   const { nextLevel } = useGameStateContext()
   const { close } = useModalContext()
   const consolidatedRewards = useMemo(() => consolidateRewards(rewards), [

@@ -16,4 +16,5 @@ export const FISTS = (): tWeapon => ({
   skills: [PUNCH],
   immunities: [],
   stats: ZERO_STATS,
+  goldValue: 0,
 })

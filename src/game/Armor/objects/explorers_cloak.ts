@@ -20,4 +20,5 @@ export const EXPLORERS_CLOAK = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 15,
 })

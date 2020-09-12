@@ -18,4 +18,5 @@ export const WOODEN_HEATER = (): tArmor => ({
   },
   skills: [TAUNT],
   immunities: [],
+  goldValue: 20,
 })

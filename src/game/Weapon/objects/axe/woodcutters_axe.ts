@@ -17,4 +17,5 @@ export const WOODCUTTERS_AXE = (): tWeapon => ({
   skills: [CHOP, POWER_STRIKE],
   immunities: [],
   stats: ZERO_STATS,
+  goldValue: 35,
 })

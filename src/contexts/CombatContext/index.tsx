@@ -33,6 +33,7 @@ import {
 } from '../../game/Skill/util'
 import { commitSkillResults } from '../../game/Skill/committer'
 import { getAIAction } from '../../game/AI/util'
+import { clear } from 'console'
 
 export interface CombatContextT {
   party: tProcessedParty
@@ -140,6 +141,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     setSelectedTarget(undefined)
     setSelectedConsumableIndex(undefined)
     setIsRenderingResult(false)
+    setRoundResults([])
     setQueue({})
   }
 

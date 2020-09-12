@@ -13,5 +13,6 @@ export const GODSBEARD = (): tConsumable => {
     itemType: 'consumable',
     rarity: 'common',
     skill: HEAL(id),
+    goldValue: 40,
   }
 }

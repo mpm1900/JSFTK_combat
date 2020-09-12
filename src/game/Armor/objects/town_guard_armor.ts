@@ -17,4 +17,5 @@ export const TOWN_GUARD_ARMOR = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 25,
 })

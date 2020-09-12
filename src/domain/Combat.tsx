@@ -8,6 +8,7 @@ import { CombatQueue } from '../components/CombatQueue'
 import { CombatLog } from '../components/CombatLog'
 import { useUIContext } from '../contexts/UIContext'
 import { useCombatStart } from '../hooks/useCombatStart'
+import { useCombatLogContext } from '../contexts/CombatLogContext'
 
 export const Combat = () => {
   const {
@@ -21,6 +22,7 @@ export const Combat = () => {
   } = useCombatContext()
 
   const { setOnCharacterConsumableClick } = useUIContext()
+  const { clear } = useCombatLogContext()
   useCombatStart()
   useEffect(() => {
     setOnCharacterConsumableClick((c, index, item) => {
@@ -30,6 +32,9 @@ export const Combat = () => {
       }
     })
   }, [onSkillSelect, activeCharacter])
+  useEffect(() => {
+    clear()
+  }, [])
 
   return (
     <FlexContainer $full style={{ height: '100%' }}>

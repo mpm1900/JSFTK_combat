@@ -21,4 +21,5 @@ export const ARCHLUTE = (): tWeapon => ({
   },
   skills: [RITARDANDO, SYMPHONY, RUBATO],
   immunities: [],
+  goldValue: 45,
 })

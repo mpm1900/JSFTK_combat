@@ -46,6 +46,7 @@ export const BEE = (): tCharacter => {
       rarity: 'common',
       type: 'enemy',
       stat: 'dexterity',
+      goldValue: 0,
       twoHand: true,
       breakable: false,
       damage: {

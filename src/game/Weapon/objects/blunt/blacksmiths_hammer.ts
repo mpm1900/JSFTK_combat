@@ -17,4 +17,5 @@ export const BLACKSMITHS_HAMMER = (): tWeapon => ({
   skills: [SMASH, SHOCKWAVE],
   immunities: [],
   stats: ZERO_STATS,
+  goldValue: 10,
 })

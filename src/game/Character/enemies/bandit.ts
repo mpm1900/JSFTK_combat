@@ -48,6 +48,7 @@ export const BANDIT = (): tCharacter => {
       rarity: 'common',
       type: 'dagger',
       stat: 'strength',
+      goldValue: 0,
       twoHand: false,
       breakable: false,
       damage: {

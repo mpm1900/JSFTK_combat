@@ -20,4 +20,5 @@ export const WAR_PICK = (): tWeapon => ({
   },
   skills: [PIERCING_BLOW],
   immunities: [],
+  goldValue: 45,
 })

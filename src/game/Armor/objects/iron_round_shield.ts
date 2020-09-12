@@ -18,4 +18,5 @@ export const IRON_ROUND_SHIELD = (): tArmor => ({
   },
   skills: [TAUNT],
   immunities: [],
+  goldValue: 15,
 })

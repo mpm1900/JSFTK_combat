@@ -20,4 +20,5 @@ export const FUR_ARMOR = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 45,
 })

@@ -18,4 +18,5 @@ export const HOBO_DAGGER = (): tWeapon => ({
   },
   skills: [HOBO_STAB],
   immunities: ['poisoned'],
+  goldValue: 0,
 })

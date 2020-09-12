@@ -47,6 +47,7 @@ export const CULTIST = (): tCharacter => {
       rarity: 'common',
       type: 'magic-staff',
       stat: 'intelligence',
+      goldValue: 0,
       twoHand: true,
       breakable: false,
       damage: {

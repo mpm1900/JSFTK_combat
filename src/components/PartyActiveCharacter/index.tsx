@@ -13,6 +13,8 @@ import { tProcessedParty } from '../../game/Party/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
 import { Theme } from '../../theme'
+import { tItem } from '../../game/Item/type'
+import { tConsumable } from '../../game/Consumable/type'
 
 export interface PartyActiveCharacterPropsT {
   character: tProcessedCharacter
@@ -20,6 +22,26 @@ export interface PartyActiveCharacterPropsT {
   equipItem: (characterId: string, item: tWeapon | tArmor) => void
   canEquip: boolean
   onRequestClose: () => void
+}
+
+export interface ItemStackT<T> {
+  count: number
+  item: T
+}
+
+type ItemT = tConsumable | tArmor | tWeapon
+export const condenseListToStack = (items: ItemT[]): ItemStackT<ItemT>[] => {
+  let stack: ItemStackT<ItemT>[] = []
+  items.forEach((i) => {
+    if (stack.map((s) => s.item.name).includes(i.name)) {
+      stack = stack.map((s) =>
+        s.item.name === i.name ? { ...s, count: s.count + 1 } : s,
+      )
+    } else {
+      stack = [...stack, { item: i, count: 1 }]
+    }
+  })
+  return stack
 }
 
 export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {

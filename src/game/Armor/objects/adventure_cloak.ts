@@ -19,4 +19,5 @@ export const ADVENTURE_CLOAK = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 30,
 })

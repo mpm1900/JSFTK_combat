@@ -39,7 +39,7 @@ export const makeRandomEncounter = (depth: number) => {
           'shop',
           'shrine',
         ])
-  //encounterType = 'boss'
+  encounterType = 'shop'
   let encounter: tEncounter = {
     id: v4(),
     choiceId: '',
@@ -119,27 +119,5 @@ export const makeEncounterList = (depth: number): tEncounterChoice[] => {
 }
 
 export const getItemCost = (item: tArmor | tWeapon | tConsumable): number => {
-  let cost = 0
-  if (item.itemType === 'armor') cost += 40
-  if (item.itemType === 'weapon') cost += 80
-  if (item.itemType === 'consumable') cost += 110
-  switch (item.rarity) {
-    case 'common':
-      cost += 10
-      break
-    case 'uncommon':
-      cost += 30
-      break
-    case 'rare':
-      cost += 50
-      break
-    case 'mythic':
-      cost += 70
-      break
-    default: {
-      cost += 0
-      break
-    }
-  }
-  return cost
+  return item.goldValue * 3
 }

@@ -10,6 +10,8 @@ import { makeCharacter } from '../../game/Character/util'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 import { tArmor } from '../../game/Armor/type'
 import { tWeapon } from '../../game/Weapon/type'
+import { ALL_ARMOR } from '../../game/Armor/objects'
+import { ALL_WEAPONS } from '../../game/Weapon/constants'
 
 export const UPDATE_PARTY = '@actions/parties/set-party'
 export const UPSERT_CHARACTER = '@actions/parties/upsert-character'
@@ -122,7 +124,7 @@ const john = { ...makeCharacter('scholar'), name: 'Johnny' }
 export const INITIAL_STATE: tParty = {
   isParty: true,
   id: PLAYER_PARTY_ID,
-  items: [],
+  items: [...ALL_WEAPONS(), ...ALL_ARMOR()],
   gold: 0,
   characters: [
     {

@@ -25,4 +25,5 @@ export const COMPOSITE_BOW = (): tWeapon => ({
   },
   skills: [SHOT, SPREAD_SHOT, PIN_DOWN],
   immunities: [],
+  goldValue: 35,
 })

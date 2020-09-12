@@ -36,11 +36,45 @@ const tabs: ShopTabT[] = [
     label: 'All',
     render: (encounter: tShopEncounter, purchaseItem) => (
       <FlexContainer $direction='column'>
-        {[...encounter.items].map((i) => (
-          <FlexContainer style={{ color: ITEM_RARITY_COLORS[i.rarity] }}>
-            {i.name}
-          </FlexContainer>
-        ))}
+        <h3>Consumables</h3>
+        <CardList>
+          {encounter.items
+            .filter((i) => i.itemType === 'consumable')
+            .map((a) => (
+              <ConsumablePreview
+                item={a as tConsumable}
+                showBuyButton={true}
+                cost={encounter.costs[a.id]}
+                onBuyClick={() => purchaseItem(a, encounter.costs[a.id])}
+              />
+            ))}
+        </CardList>
+        <h3>Weaopns</h3>
+        <CardList>
+          {encounter.items
+            .filter((i) => i.itemType === 'weapon')
+            .map((w) => (
+              <WeaponPreview
+                weapon={w as tWeapon}
+                showBuyButton={true}
+                cost={encounter.costs[w.id]}
+                onBuyClick={() => purchaseItem(w, encounter.costs[w.id])}
+              />
+            ))}
+        </CardList>
+        <h3>Armor</h3>
+        <CardList>
+          {encounter.items
+            .filter((i) => i.itemType === 'armor')
+            .map((a) => (
+              <ArmorPreview
+                armor={a as tArmor}
+                showBuyButton={true}
+                cost={encounter.costs[a.id]}
+                onBuyClick={() => purchaseItem(a, encounter.costs[a.id])}
+              />
+            ))}
+        </CardList>
       </FlexContainer>
     ),
   },
@@ -122,7 +156,7 @@ export const Shop = (props: ShopPropsT) => {
     >
       <FlexContainer style={{ alignItems: 'center' }}>
         <FullContainer>
-          <h1 style={{ margin: 0 }}>Shop</h1>
+          <h1 style={{ margin: 0, fontFamily: Theme.titleFont }}>Shop</h1>
         </FullContainer>
         <FlexContainer>
           {tabs.map((tab) => (

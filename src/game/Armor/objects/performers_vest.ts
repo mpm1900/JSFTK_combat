@@ -21,4 +21,5 @@ export const PERFORMERS_VEST = (): tArmor => ({
 
   skills: [],
   immunities: [],
+  goldValue: 30,
 })

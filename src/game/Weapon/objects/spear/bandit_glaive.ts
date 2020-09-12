@@ -19,4 +19,5 @@ export const BANDIT_GLAIVE = (): tWeapon => ({
     ...ZERO_STATS,
     armor: 1,
   },
+  goldValue: 50,
 })

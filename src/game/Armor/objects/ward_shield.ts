@@ -17,4 +17,5 @@ export const WARD_SHIELD = (): tArmor => ({
   },
   skills: [TAUNT],
   immunities: [],
+  goldValue: 25,
 })

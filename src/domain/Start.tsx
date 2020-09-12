@@ -41,9 +41,21 @@ export const Start = () => {
         <FullContainer />
         <BoxContainer
           style={{ maxWidth: 340, marginRight: 8 }}
-          substyle={{ padding: 16, background: Theme.darkBgColor }}
+          substyle={{
+            padding: 16,
+            background: Theme.darkBgColor,
+            lineHeight: 1.4,
+            fontSize: 14,
+          }}
         >
-          <strong style={{ marginBottom: 16 }}>
+          <strong
+            style={{
+              marginTop: 8,
+              marginBottom: 16,
+              fontSize: 20,
+              display: 'inline-block',
+            }}
+          >
             Choose your starting classes.
           </strong>
           <p>

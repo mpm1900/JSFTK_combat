@@ -19,4 +19,5 @@ export const APPRENTICE_SHOES = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 15,
 })

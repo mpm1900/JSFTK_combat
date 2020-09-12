@@ -22,4 +22,5 @@ export const FANCY_SHOES = (): tArmor => ({
 
   skills: [],
   immunities: [],
+  goldValue: 15,
 })

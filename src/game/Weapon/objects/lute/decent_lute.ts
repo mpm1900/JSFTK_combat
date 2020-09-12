@@ -20,4 +20,5 @@ export const DECENT_LUTE = (): tWeapon => ({
   },
   skills: [ALTO, DAZZLE],
   immunities: [],
+  goldValue: 30,
 })

@@ -45,6 +45,7 @@ export const BEASTMAN = (): tCharacter => {
       rarity: 'common',
       type: 'spear',
       stat: 'strength',
+      goldValue: 0,
       twoHand: true,
       breakable: false,
       damage: {

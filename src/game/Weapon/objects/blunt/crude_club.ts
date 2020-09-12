@@ -17,4 +17,5 @@ export const CRUDE_CLUB = (): tWeapon => ({
   skills: [SMASH, DAZE],
   immunities: [],
   stats: ZERO_STATS,
+  goldValue: 30,
 })

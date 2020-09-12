@@ -17,4 +17,5 @@ export const SCHOLARS_BOOK = (): tWeapon => ({
   stats: { ...ZERO_STATS },
   skills: [SURGE, AREA_BLAST],
   immunities: [],
+  goldValue: 10,
 })

@@ -19,4 +19,5 @@ export const MAGES_TOME = (): tWeapon => ({
   stats: { ...ZERO_STATS },
   skills: [SURGE, AREA_BLAST, PROTECT, TIME_JUMP],
   immunities: [],
+  goldValue: 70,
 })

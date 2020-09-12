@@ -21,4 +21,5 @@ export const APPRENTICES_TOME = (): tWeapon => ({
   },
   skills: [SURGE, AREA_BLAST, PROTECT, TIME_JUMP],
   immunities: [],
+  goldValue: 40,
 })

@@ -17,7 +17,7 @@ import { MAGES_TOME } from './objects/tome/mages_tome'
 export const CLASS_WEAPONS: Record<tCharacterClass, tWeapon> = {
   blacksmith: BLACKSMITHS_HAMMER(),
   hunter: HUNTING_BOW(),
-  scholar: MAGES_TOME(), // SCHOLARS_BOOK(),
+  scholar: SCHOLARS_BOOK(),
   bard: SIMPLE_LUTE(),
   hobo: HOBO_DAGGER(),
   enemy: BLACKSMITHS_HAMMER(),

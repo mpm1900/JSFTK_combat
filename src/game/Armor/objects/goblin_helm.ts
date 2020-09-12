@@ -17,4 +17,5 @@ export const GOBLIN_HELM = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 15,
 })

@@ -17,4 +17,5 @@ export const MACE = (): tWeapon => ({
   stats: ZERO_STATS,
   skills: [SMASH, STUN_ATTACK],
   immunities: [],
+  goldValue: 70,
 })

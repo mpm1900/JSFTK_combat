@@ -20,4 +20,5 @@ export const TRAVELLERS_TUNIC = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 30,
 })

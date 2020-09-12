@@ -11,7 +11,10 @@ import { useUIContext } from '../../contexts/UIContext'
 import { tWeapon } from '../../game/Weapon/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tArmor, tArmorResourceType } from '../../game/Armor/type'
-import { CHARACTER_RESOURCES } from '../../game/Item/constants'
+import {
+  CHARACTER_RESOURCES,
+  ITEM_RARITY_COLORS,
+} from '../../game/Item/constants'
 import { Theme } from '../../theme'
 
 const ItemRow = styled(FlexContainer, (props: any) => {
@@ -40,7 +43,7 @@ export const Items = (props: ItemPropsT) => {
   const { playerCanEquipItem } = useUIContext()
   return (
     <FlexContainer $full $direction='column'>
-      <ArmorItem
+      <Item
         disabled={false}
         character={character}
         resource={'weapon'}
@@ -50,7 +53,7 @@ export const Items = (props: ItemPropsT) => {
       {CHARACTER_RESOURCES.map((res) => {
         const disabled = res === 'offhand' && character.weapon.twoHand
         return (
-          <ArmorItem
+          <Item
             disabled={disabled}
             character={character}
             resource={res}
@@ -63,14 +66,14 @@ export const Items = (props: ItemPropsT) => {
   )
 }
 
-export interface ArmorItemProps {
+export interface ItemProps {
   character: tProcessedCharacter
   resource: tArmorResourceType | 'weapon'
   canUnequip?: boolean
   disabled?: boolean
   onHover: (item: tArmor | tWeapon | undefined) => void
 }
-export const ArmorItem = (props: ArmorItemProps) => {
+export const Item = (props: ItemProps) => {
   const {
     character,
     resource,
@@ -125,6 +128,9 @@ export const ArmorItem = (props: ArmorItemProps) => {
           onMouseEnter={() => onHover(item)}
           onClick={() => {
             if (item) onClick()
+          }}
+          style={{
+            color: ITEM_RARITY_COLORS[item?.rarity || 'common'],
           }}
         >
           <Icon

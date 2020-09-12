@@ -5,4 +5,5 @@ export interface tItem {
   name: string
   rarity: tItemRarity
   itemType: tItemType
+  goldValue: number
 }

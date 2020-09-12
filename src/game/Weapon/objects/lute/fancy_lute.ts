@@ -21,4 +21,5 @@ export const FANCY_LUTE = (): tWeapon => ({
   },
   skills: [ALTO, PRESTO, DAZZLE],
   immunities: [],
+  goldValue: 70,
 })

@@ -49,6 +49,7 @@ export const LICH = (): tCharacter => {
       stat: 'strength',
       twoHand: false,
       breakable: false,
+      goldValue: 0,
       damage: {
         value: 28,
         range: 'melee',

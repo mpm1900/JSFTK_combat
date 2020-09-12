@@ -17,4 +17,5 @@ export const LEATHER_ARMOR = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 15,
 })

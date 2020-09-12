@@ -18,4 +18,5 @@ export const TRAVELLERS_HAT = (): tArmor => ({
   },
   skills: [],
   immunities: [],
+  goldValue: 15,
 })

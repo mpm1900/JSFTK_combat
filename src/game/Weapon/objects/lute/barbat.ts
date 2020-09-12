@@ -21,4 +21,5 @@ export const BARBAT = (): tWeapon => ({
   },
   skills: [RITARDANDO, SYMPHONY, DAZZLE],
   immunities: [],
+  goldValue: 35,
 })

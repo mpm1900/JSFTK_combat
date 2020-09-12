@@ -24,4 +24,5 @@ export const HUNTING_BOW = (): tWeapon => ({
   },
   skills: [SHOT, SNIPE_SHOT],
   immunities: [],
+  goldValue: 10,
 })

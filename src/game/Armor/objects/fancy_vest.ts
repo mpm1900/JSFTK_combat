@@ -20,4 +20,5 @@ export const FANCY_VEST = (): tArmor => ({
 
   skills: [],
   immunities: [],
+  goldValue: 30,
 })

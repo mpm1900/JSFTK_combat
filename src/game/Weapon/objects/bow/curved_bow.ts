@@ -24,4 +24,5 @@ export const CURVED_BOW = (): tWeapon => ({
   },
   skills: [SPREAD_SHOT, SNIPE_SHOT],
   immunities: [],
+  goldValue: 35,
 })
