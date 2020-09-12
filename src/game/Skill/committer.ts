@@ -51,6 +51,15 @@ export const commitSkillResults = (
       throw new Error('bad party id')
     }
 
+    if (index === 0 && targetResult.weaponDidBreak) {
+      localUpdate(sourceParty, source.id, (c) => {
+        return {
+          ...c,
+          weapon: undefined,
+        }
+      })
+    }
+
     // commit main damage
     localUpdate(targetParty, target.id, (c) => {
       return commitDamage(

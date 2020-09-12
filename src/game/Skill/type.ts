@@ -44,6 +44,7 @@ export interface tSourceSkillResult {
 
   ignoreResistance: boolean
   criticalHitSuccess: boolean
+  weaponDidBreak: boolean
   rawDamage: tDamage
   splashDamage: tDamage
   addedStatus: tStatusType[]

@@ -3,6 +3,7 @@ import { FlexContainer } from '../../elements/flex'
 import { BoxContainer } from '../../elements/box'
 import { CharacterImage } from '../CharacterImage'
 import { tProcessedCharacter } from '../../game/Character/type'
+import { CharacterIcon } from '../CharacterIcon'
 
 const SIZE = 100
 export interface ImagePropsT {
@@ -14,12 +15,9 @@ export const Image = (props: ImagePropsT) => {
   return (
     <FlexContainer $full style={{ justifyContent: 'flex-end' }}>
       <div>
-        <BoxContainer
-          style={{ marginRight: 20, marginBottom: 10 }}
-          substyle={{ padding: 0, height: SIZE, width: SIZE }}
-        >
-          <CharacterImage character={character} size={100} />
-        </BoxContainer>
+        <FlexContainer style={{ marginRight: 20, marginBottom: 10 }}>
+          <CharacterIcon character={character} size={100} />
+        </FlexContainer>
       </div>
     </FlexContainer>
   )

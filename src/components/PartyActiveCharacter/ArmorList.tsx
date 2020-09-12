@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FlexContainer } from '../../elements/flex'
+import { FlexContainer, FullContainer } from '../../elements/flex'
 import { Icon } from '../Icon'
 import { ARMOR_TYPE_ICONS } from '../../icons/maps'
 import { Button } from '../../elements/button'
@@ -67,6 +67,7 @@ export const ArmorList = (props: ArmorListPropsT) => {
                 >
                   Equip
                 </Button>
+                <FullContainer />
                 <Button
                   style={{ padding: '4px 8px', marginRight: 10 }}
                   onClick={(e) => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FlexContainer } from '../../elements/flex'
+import { FlexContainer, FullContainer } from '../../elements/flex'
 import { Button } from '../../elements/button'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tArmor } from '../../game/Armor/type'
@@ -66,6 +66,7 @@ export const WeaponList = (props: WeaponListPropsT) => {
                 >
                   Equip
                 </Button>
+                <FullContainer />
                 <Button
                   style={{ padding: '4px 8px', marginRight: 10 }}
                   onClick={(e) => {

@@ -57,6 +57,8 @@ export const getSourceSkillResult = (
     perfect,
     accuracySuccess: skill.damage ? passedCount > 0 : perfect,
     criticalHitSuccess: perfect && criticalHitSuccess,
+    weaponDidBreak:
+      rollResults.every((r) => r === false) && source.weapon.breakable,
     rawDamage,
     splashDamage: {
       ...source.weapon.damage,

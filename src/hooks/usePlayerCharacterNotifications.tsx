@@ -40,6 +40,13 @@ export const usePlayerCharacterNotifications = (
   useEffect(() => {
     const lastRound = roundResults[roundResults.length - 1]
     if (lastRound) {
+      if (lastRound.sourceResult.weaponDidBreak) {
+        push(
+          <span style={{ fontFamily: Theme.titleFont, fontSize: 36 }}>
+            Weapon Break!
+          </span>,
+        )
+      }
       const chResult = lastRound.targetResults.find(
         (r) => r.target.id === character.id,
       )

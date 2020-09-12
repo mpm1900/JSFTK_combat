@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Route, useHistory } from 'react-router-dom'
 import { useGameStateContext } from '../contexts/GameStateContext'
 import { useModalContext } from '../contexts/ModalContext'
+import { Theme } from '../theme'
 
 export const makeRoute = (path: string, Component: React.FC) => (
   <Route path={`/JSFTK_combat${path}`}>
@@ -16,8 +17,8 @@ export const RouteController = () => {
   useEffect(() => {
     if (level > encounters.length - 1) {
       open(
-        <div>
-          <h1>You Win!!!!!!!!!!!</h1>
+        <div style={{ textAlign: 'center', fontFamily: Theme.titleFont }}>
+          <h1>You've Defeated the Lich! You did it!</h1>
         </div>,
       )
       history.push('/JSFTK_combat')

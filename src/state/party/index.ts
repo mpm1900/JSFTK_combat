@@ -124,7 +124,7 @@ const john = { ...makeCharacter('scholar'), name: 'Johnny' }
 export const INITIAL_STATE: tParty = {
   isParty: true,
   id: PLAYER_PARTY_ID,
-  items: [...ALL_WEAPONS(), ...ALL_ARMOR()],
+  items: [],
   gold: 0,
   characters: [
     {
