@@ -5,6 +5,7 @@ import { usePrevious } from '../../hooks/usePrevious'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { tProcessedCharacter } from '../../game/Character/type'
+import { Theme } from '../../theme'
 
 export interface HealthPropsT {
   character: tProcessedCharacter
@@ -31,7 +32,7 @@ export const Health = (props: HealthPropsT) => {
           height: 62,
           width: 62,
           lineHeight: '72px',
-          color: '#b55553',
+          color: Theme.healthRedColor,
           fontFamily: 'New Rocker',
           minWidth: 44,
           display: 'inline-block',

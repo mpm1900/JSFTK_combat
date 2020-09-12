@@ -6,6 +6,7 @@ import { STATUS_ICONS } from '../../icons/maps'
 import { Icon } from '../Icon'
 import { tStatus } from '../../game/Status/type'
 import { STATUS_CONFIG } from '../../game/Status/constants'
+import { Theme } from '../../theme'
 
 export interface TagPreviewPropsT {
   status: tStatus
@@ -36,7 +37,7 @@ export const TagPreview = (props: TagPreviewPropsT) => {
         shadow
         src={STATUS_ICONS[status.type] || ''}
         size={20}
-        fill={immunity ? 'red' : 'white'}
+        fill={immunity ? Theme.healthRedColor : 'white'}
         style={{ marginLeft: 4 }}
       />
     </Tooltip>

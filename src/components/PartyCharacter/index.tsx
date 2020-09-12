@@ -39,7 +39,7 @@ const Wrapper = styled('div', (props: any) => {
     boxShadow: $active
       ? '0px 0px 20px white'
       : $targeted
-      ? '0px 0px 20px red'
+      ? `0px 0px 20px red`
       : 'none',
     transform: $active ? 'scale(1.04)' : 'scale(0.95)',
     transition: 'all 0.4s',

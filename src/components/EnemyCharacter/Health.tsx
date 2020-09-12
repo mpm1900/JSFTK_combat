@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { Spring } from 'react-spring/renderprops'
 import { noneg } from '../../util'
-import { useCombatContext } from '../../contexts/CombatContext'
 import { usePlayerCharacterNotifications } from '../../hooks/usePlayerCharacterNotifications'
+import { Theme } from '../../theme'
 
 export interface HealthPropsT {
   character: tProcessedCharacter
@@ -26,7 +26,7 @@ export const Health = (props: HealthPropsT) => {
         height: 64,
         width: 60,
         textShadow: '1px 1px 10px black',
-        color: '#b55553',
+        color: Theme.healthRedColor,
         fontFamily: 'New Rocker',
         userSelect: 'none',
       }}

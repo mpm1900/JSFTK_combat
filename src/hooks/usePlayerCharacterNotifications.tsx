@@ -1,6 +1,7 @@
 import { tProcessedCharacter } from '../game/Character/type'
 import React, { useState, useEffect } from 'react'
 import { useCombatContext } from '../contexts/CombatContext'
+import { Theme } from '../theme'
 
 export const usePlayerCharacterNotifications = (
   character: tProcessedCharacter,
@@ -14,17 +15,21 @@ export const usePlayerCharacterNotifications = (
   useEffect(() => {
     const healthDiff = previousHealth - health
     if (healthDiff > 0) {
-      push(<span style={{ fontFamily: 'Bangers' }}>- {healthDiff}</span>)
+      push(<span style={{ fontFamily: Theme.titleFont }}>- {healthDiff}</span>)
     }
     if (healthDiff < 0) {
       push(
-        <span style={{ fontFamily: 'Bangers' }}>+ {Math.abs(healthDiff)}</span>,
+        <span style={{ fontFamily: Theme.titleFont }}>
+          + {Math.abs(healthDiff)}
+        </span>,
         'good',
       )
     }
     if (level > previousLevel) {
       push(
-        <span style={{ fontFamily: 'Bangers', fontSize: 36 }}>Level Up!</span>,
+        <span style={{ fontFamily: Theme.titleFont, fontSize: 36 }}>
+          Level Up!
+        </span>,
         'good',
       )
     }
@@ -40,7 +45,10 @@ export const usePlayerCharacterNotifications = (
       )
       if (chResult) {
         if (chResult.dodgeSuccess) {
-          push(<span style={{ fontFamily: 'Bangers' }}>Dodged!</span>, 'base')
+          push(
+            <span style={{ fontFamily: Theme.titleFont }}>Dodged!</span>,
+            'base',
+          )
         }
         if (
           !chResult.dodgeSuccess &&
@@ -48,28 +56,40 @@ export const usePlayerCharacterNotifications = (
           chResult.skill.damage &&
           chResult.loggedDamgge.value <= 0
         ) {
-          push(<span style={{ fontFamily: 'Bangers' }}>Blocked!</span>, 'base')
+          push(
+            <span style={{ fontFamily: Theme.titleFont }}>Blocked!</span>,
+            'base',
+          )
         }
         if (chResult.addedStatus.length > 0) {
           chResult.addedStatus.forEach((status) => {
             push(
-              <span style={{ fontFamily: 'Bangers' }}>{status}</span>,
+              <span style={{ fontFamily: Theme.titleFont }}>{status}</span>,
               'base',
             )
           })
         }
         if (chResult.perfect && chResult.skill.perfectPierce) {
-          push(<span style={{ fontFamily: 'Bangers' }}>Pierced!</span>, 'base')
+          push(
+            <span style={{ fontFamily: Theme.titleFont }}>Pierced!</span>,
+            'base',
+          )
         }
         if (chResult.criticalHitSuccess) {
-          push(<span style={{ fontFamily: 'Bangers' }}>Critical!</span>, 'base')
+          push(
+            <span style={{ fontFamily: Theme.titleFont }}>Critical!</span>,
+            'base',
+          )
         }
       }
       if (
         lastRound.sourceResult.source.id === character.id &&
         !lastRound.sourceResult.accuracySuccess
       ) {
-        push(<span style={{ fontFamily: 'Bangers' }}>Missed!</span>, 'base')
+        push(
+          <span style={{ fontFamily: Theme.titleFont }}>Missed!</span>,
+          'base',
+        )
       }
     }
   }, [roundResults])

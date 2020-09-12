@@ -11,9 +11,12 @@ export const Theme = {
   enemyPartyColor: 'lightsalmon',
   meleeRangeColor: 'rgba(255,255,255,0.8)',
   rangedRangeColor: 'rgba(255,255,255,0.8)',
+  healthRedColor: 'rgb(151,75,75)',
 
   paddingS: '4px',
   padding: '8px',
   paddingL: '16px',
   paddingXL: '24px',
+
+  titleFont: 'New Rocker',
 }

@@ -71,7 +71,7 @@ export const Start = () => {
             style={{
               marginTop: 8,
               textAlign: 'center',
-              fontFamily: 'Bangers',
+              fontFamily: Theme.titleFont,
               letterSpacing: '1px',
               textShadow: '1px 3px 3px black',
             }}

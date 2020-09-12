@@ -82,7 +82,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
                 lineHeight: '18px',
                 background: 'rgba(0,0,0,0.4)',
                 textShadow: '1px 1px 2px black',
-                fontFamily: 'Bangers',
+                fontFamily: Theme.titleFont,
                 color: isBoss ? 'red' : 'rgba(255,255,255,0.8)',
                 letterSpacing: '1px',
               }}

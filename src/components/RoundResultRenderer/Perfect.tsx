@@ -1,6 +1,7 @@
 import React from 'react'
 import { animated, useSpring } from 'react-spring'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
+import { Theme } from '../../theme'
 
 export interface PerfectPropsT {
   show: boolean | undefined
@@ -18,7 +19,7 @@ export const Perfect = (props: PerfectPropsT) => {
         fontSize: 42,
         color: partyId === PLAYER_PARTY_ID ? 'rgba(255,255,255,1)' : '#c95738',
         textShadow: '4px 4px 4px black',
-        fontFamily: 'Bangers',
+        fontFamily: Theme.titleFont,
         ...style,
       }}
     >

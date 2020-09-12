@@ -39,7 +39,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
               padding: '4px 12px',
               background: Theme.lightBgColor,
               letterSpacing: '1px',
-              fontFamily: 'Bangers',
+              fontFamily: Theme.titleFont,
             }}
           >
             {skill.name}

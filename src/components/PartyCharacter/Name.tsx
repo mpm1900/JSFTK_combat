@@ -27,7 +27,7 @@ export const Name = (props: NamePropsT) => {
     >
       <FullContainer
         style={{
-          fontFamily: 'Bangers',
+          fontFamily: Theme.titleFont,
           letterSpacing: '1px',
           textShadow: '0px 0px 2px black',
           flex: 1,
