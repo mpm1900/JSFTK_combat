@@ -3,7 +3,6 @@ import { FlexContainer } from '../../elements/flex'
 import { Icon } from '../Icon'
 import { ARMOR_TYPE_ICONS } from '../../icons/maps'
 import { Button } from '../../elements/button'
-import { tProcessedParty } from '../../game/Party/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
@@ -13,16 +12,14 @@ import { Row, ActionsRow } from './elements'
 import { usePartyContext } from '../../contexts/PartyContext'
 
 export interface ArmorListPropsT {
-  party: tProcessedParty
   character: tProcessedCharacter
   canEquip: boolean
-  equipItem: (characterId: string, item: tWeapon | tArmor) => void
   setActiveItem: (item: tWeapon | tArmor) => void
 }
 
 export const ArmorList = (props: ArmorListPropsT) => {
-  const { party, character, canEquip, equipItem, setActiveItem } = props
-  const { sellItem } = usePartyContext()
+  const { character, canEquip, setActiveItem } = props
+  const { party, sellItem, equipItem } = usePartyContext()
   const [activeItemId, setActiveItemId] = useState<string | undefined>()
   return (
     <FlexContainer $direction='column'>

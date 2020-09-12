@@ -18,9 +18,7 @@ export interface MenuOptionT {
   count: (character: tProcessedCharacter, party: tProcessedParty) => number
   render: (
     character: tProcessedCharacter,
-    party: tProcessedParty,
     canEquip: boolean,
-    equipItem: (characterId: string, item: tWeapon | tArmor) => void,
     setActiveItem: (item: tWeapon | tArmor) => void,
   ) => JSX.Element
 }
@@ -35,12 +33,10 @@ export const ACTIVE_CHARACTER_MENU_KEYS: MenuOptionT[] = [
     key: 'weapons',
     icon: Weapons,
     count: (c, p) => p.items.filter((i) => i.itemType === 'weapon').length,
-    render: (character, party, canEquip, equipItem, setActiveItem) => (
+    render: (character, canEquip, setActiveItem) => (
       <WeaponList
         character={character}
-        party={party}
         canEquip={canEquip}
-        equipItem={equipItem}
         setActiveItem={setActiveItem}
       />
     ),
@@ -49,34 +45,14 @@ export const ACTIVE_CHARACTER_MENU_KEYS: MenuOptionT[] = [
     key: 'armor',
     icon: Armor,
     count: (c, p) => p.items.filter((i) => i.itemType === 'armor').length,
-    render: (character, party, canEquip, equipItem, setActiveItem) => (
+    render: (character, canEquip, setActiveItem) => (
       <ArmorList
         character={character}
-        party={party}
         canEquip={canEquip}
-        equipItem={equipItem}
         setActiveItem={setActiveItem}
       />
     ),
   },
-  /*{
-    key: 'ot1',
-    icon: '',
-    count: (c) => 0,
-    render: (character) => <div>ot1</div>,
-  },
-  {
-    key: 'ot2',
-    icon: '',
-    count: (c) => 0,
-    render: (character) => <div>ot2</div>,
-  },
-  {
-    key: 'ot3',
-    icon: '',
-    count: (c) => 0,
-    render: (character) => <div>ot3</div>,
-  },*/
 ]
 
 export interface MenuSelectPropsT {

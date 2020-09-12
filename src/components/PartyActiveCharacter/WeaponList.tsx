@@ -1,15 +1,10 @@
 import React, { useState } from 'react'
 import { FlexContainer } from '../../elements/flex'
-import { BoxContainer } from '../../elements/box'
-import { withStyle } from 'styletron-react'
-import { ClickToolTip } from '../Tooltip'
 import { Button } from '../../elements/button'
-import { tProcessedParty } from '../../game/Party/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tArmor } from '../../game/Armor/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
-import { Theme } from '../../theme'
 import { condenseListToStack } from '.'
 import { WEAPON_TYPE_ICONS } from '../../icons/maps'
 import { Icon } from '../Icon'
@@ -17,16 +12,14 @@ import { Row, ActionsRow } from './elements'
 import { usePartyContext } from '../../contexts/PartyContext'
 
 export interface WeaponListPropsT {
-  party: tProcessedParty
   character: tProcessedCharacter
   canEquip: boolean
-  equipItem: (characterId: string, item: tWeapon | tArmor) => void
   setActiveItem: (item: tWeapon | tArmor) => void
 }
 
 export const WeaponList = (props: WeaponListPropsT) => {
-  const { party, character, canEquip, equipItem, setActiveItem } = props
-  const { sellItem } = usePartyContext()
+  const { character, canEquip, setActiveItem } = props
+  const { party, sellItem, equipItem } = usePartyContext()
   const [activeItemId, setActiveItemId] = useState<string | undefined>()
   return (
     <FlexContainer $direction='column'>

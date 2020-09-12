@@ -13,13 +13,11 @@ import { tProcessedParty } from '../../game/Party/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
 import { Theme } from '../../theme'
-import { tItem } from '../../game/Item/type'
 import { tConsumable } from '../../game/Consumable/type'
 
 export interface PartyActiveCharacterPropsT {
   character: tProcessedCharacter
   party: tProcessedParty
-  equipItem: (characterId: string, item: tWeapon | tArmor) => void
   canEquip: boolean
   onRequestClose: () => void
 }
@@ -45,7 +43,7 @@ export const condenseListToStack = (items: ItemT[]): ItemStackT<ItemT>[] => {
 }
 
 export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
-  const { character, party, canEquip, equipItem, onRequestClose } = props
+  const { character, party, canEquip, onRequestClose } = props
   const [activeMenuKey, setActiveMenuKey] = useState('armor')
   const [activeItem, setActiveItem] = useState<tArmor | tWeapon | undefined>()
   const activeOption = ACTIVE_CHARACTER_MENU_KEYS.find(
@@ -111,13 +109,7 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
             }}
           >
             {activeOption &&
-              activeOption.render(
-                character,
-                party,
-                canEquip,
-                equipItem,
-                setActiveItem,
-              )}
+              activeOption.render(character, canEquip, setActiveItem)}
           </BoxContainer>
         </FlexContainer>
       </BoxContainer>

@@ -18,7 +18,7 @@ export interface ActionsPropsT {
 
 export const Actions = (props: ActionsPropsT) => {
   const { character, canEquip } = props
-  const { party, equipItem } = usePartyContext()
+  const { party } = usePartyContext()
   const {
     openCharacterInventoryId,
     setOpenCharacterInventoryId,
@@ -52,7 +52,6 @@ export const Actions = (props: ActionsPropsT) => {
                 <PartyActiveCharacter
                   character={character}
                   party={party}
-                  equipItem={equipItem}
                   canEquip={canEquip}
                   onRequestClose={() => {
                     setOpenCharacterInventoryId(undefined)
