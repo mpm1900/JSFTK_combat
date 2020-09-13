@@ -3,17 +3,19 @@ import { makeReducer } from '../util'
 import { useSelector } from 'react-redux'
 import { useActions } from '../../hooks/useActions'
 import { Dispatch } from 'redux'
-import { tEncounterChoice, tShopEncounter } from '../../game/Encounter/type'
-import { makeEncounterList } from '../../game/Encounter/util'
+import { tShopEncounter, tFloor } from '../../game/Encounter/type'
+import { makeFloor } from '../../game/Encounter/util'
 
 export interface GameStateT {
-  encounters: tEncounterChoice[]
   level: number
+  floor: number
+  floors: tFloor[]
 }
 
 export const RESET = '@action/game/reset'
 export const CHOOSE_CURRENT = '@action/game/choose-current'
 export const NEXT_LEVEL = '@action/game/next-level'
+export const NEXT_FLOOR = '@action/game/next-floor'
 export const REMOVE_ITEM = '@action/game/remove-item'
 
 export const actionCreators = {
@@ -29,6 +31,10 @@ export const actionCreators = {
   }),
   nextLevel: (): StateActionT => ({
     type: NEXT_LEVEL,
+    payload: {},
+  }),
+  nextFloor: (): StateActionT => ({
+    type: NEXT_FLOOR,
     payload: {},
   }),
   removeItem: (
@@ -55,6 +61,9 @@ export const actions = {
   nextLevel: () => (dispatch: Dispatch) => {
     dispatch(actionCreators.nextLevel())
   },
+  nextFloor: () => (dispatch: Dispatch) => {
+    dispatch(actionCreators.nextFloor())
+  },
   removeItem: (choiceId: string, encounterId: string, itemId: string) => (
     dispatch: Dispatch,
   ) => {
@@ -62,27 +71,42 @@ export const actions = {
   },
 }
 
+const updateCurrentFloor = (
+  state: GameStateT,
+  updater: (floor: tFloor) => tFloor,
+): GameStateT => {
+  return {
+    ...state,
+    floors: state.floors.map((floor) =>
+      floor.depth === state.floor ? updater(floor) : floor,
+    ),
+  }
+}
+
 export const core: StateCoreT<GameStateT> = {
   [RESET]: (state, action) => {
     return {
       ...state,
       level: 0,
-      encounters: makeEncounterList(11),
+      floor: 0,
+      floors: [makeFloor(0, 2), makeFloor(1, 11)],
     }
   },
   [CHOOSE_CURRENT]: (state, action) => {
-    return {
-      ...state,
-      encounters: state.encounters.map((e, i) => {
-        if (i === state.level) {
-          return {
-            ...e,
-            value: action.payload.value,
+    return updateCurrentFloor(state, (floor) => {
+      return {
+        ...floor,
+        encounters: floor.encounters.map((e, i) => {
+          if (i === state.level) {
+            return {
+              ...e,
+              value: action.payload.value,
+            }
           }
-        }
-        return e
-      }),
-    }
+          return e
+        }),
+      }
+    })
   },
   [NEXT_LEVEL]: (state, action) => {
     return {
@@ -90,51 +114,61 @@ export const core: StateCoreT<GameStateT> = {
       level: state.level + 1,
     }
   },
-  [REMOVE_ITEM]: (state, action) => {
+  [NEXT_FLOOR]: (state, action) => {
     return {
       ...state,
-      encounters: state.encounters.map((choice) => {
-        if (choice.id === action.payload.choiceId) {
-          if (
-            choice.left.id === action.payload.encounterId &&
-            choice.left.type === 'shop'
-          ) {
-            return {
-              ...choice,
-              left: {
-                ...choice.left,
-                items: (choice.left as tShopEncounter).items.filter(
-                  (i) => i.id !== action.payload.itemId,
-                ),
-              } as tShopEncounter,
-            }
-          }
-          if (
-            choice.right.id === action.payload.encounterId &&
-            choice.right.type === 'shop'
-          ) {
-            return {
-              ...choice,
-              right: {
-                ...choice.right,
-                items: (choice.right as tShopEncounter).items.filter(
-                  (i) => i.id !== action.payload.itemId,
-                ),
-              } as tShopEncounter,
-            }
-          }
-          return choice
-        } else {
-          return choice
-        }
-      }),
+      level: 0,
+      floor: state.floor + 1,
     }
+  },
+  [REMOVE_ITEM]: (state, action) => {
+    return updateCurrentFloor(state, (floor) => {
+      return {
+        ...floor,
+        encounters: floor.encounters.map((choice) => {
+          if (choice.id === action.payload.choiceId) {
+            if (
+              choice.left.id === action.payload.encounterId &&
+              choice.left.type === 'shop'
+            ) {
+              return {
+                ...choice,
+                left: {
+                  ...choice.left,
+                  items: (choice.left as tShopEncounter).items.filter(
+                    (i) => i.id !== action.payload.itemId,
+                  ),
+                } as tShopEncounter,
+              }
+            }
+            if (
+              choice.right.id === action.payload.encounterId &&
+              choice.right.type === 'shop'
+            ) {
+              return {
+                ...choice,
+                right: {
+                  ...choice.right,
+                  items: (choice.right as tShopEncounter).items.filter(
+                    (i) => i.id !== action.payload.itemId,
+                  ),
+                } as tShopEncounter,
+              }
+            }
+            return choice
+          } else {
+            return choice
+          }
+        }),
+      }
+    })
   },
 }
 
 export const INITIAL_STATE: GameStateT = {
-  encounters: makeEncounterList(11),
   level: 0,
+  floor: 0,
+  floors: [makeFloor(0, 11), makeFloor(1, 11)],
 }
 
 export default makeReducer(core, INITIAL_STATE)
@@ -144,5 +178,6 @@ export const useGameStateActions = () =>
     reset: () => void
     chooseCurrent: (value: 'left' | 'right') => void
     nextLevel: () => void
+    nextFloor: () => void
     removeItem: (choiceId: string, encounterId: string, itemId: string) => void
   }

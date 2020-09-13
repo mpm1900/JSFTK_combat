@@ -3,7 +3,7 @@ import { tStats, tBaseStats } from '../Stats/type'
 import { combineStats } from '../Stats/util'
 import { tSkill } from '../Skill/type'
 import { CLASS_STATS } from '../Stats/constants'
-import { tStatusType, tStatus } from '../Status/type'
+import { tStatusType } from '../Status/type'
 import { STATUS_CONFIG } from '../Status/constants'
 import { v4 } from 'uuid'
 import { tDamage } from '../Damage/type'
@@ -158,8 +158,6 @@ export const getRawDamage = (
       damageModifier += source.stats.damageModifiers[tag]
     }
   })
-  console.log(source.name, damageModifier)
-  console.log(source)
   return {
     ...rawDamage,
     value: rawDamage.value * damageModifier,

@@ -4,8 +4,9 @@ import { tArmor } from '../Armor/type'
 import { tConsumable } from '../Consumable/type'
 import { tBaseStats } from '../Stats/type'
 import { tStatusType } from '../Status/type'
+import { tCharacter } from '../Character/type'
 
-export type tEncounterType = 'combat' | 'shop' | 'shrine' | 'boss'
+export type tEncounterType = 'combat' | 'shop' | 'shrine' | 'boss' | 'reward'
 export interface tEncounter {
   id: string
   choiceId: string
@@ -29,6 +30,7 @@ export interface tShrineEncounter extends tEncounter {
 export interface tBossEncounter extends tCombatEncounter {
   boss: true
 }
+export interface tRewardEncounter extends tEncounter {}
 
 export interface tEncounterReward {
   gold: number
@@ -44,4 +46,15 @@ export interface tEncounterChoice {
   value: 'left' | 'right' | undefined
   left: tEncounter
   right: tEncounter
+}
+
+export interface tFloor {
+  id: string
+  depth: number
+  encounters: tEncounterChoice[]
+  image: string
+}
+export interface tFloorConfig {
+  items: (tWeapon | tArmor)[]
+  enemies: Record<number, tCharacter[][]>
 }

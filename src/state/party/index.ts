@@ -6,12 +6,10 @@ import { useActions } from '../../hooks/useActions'
 import { tParty } from '../../game/Party/type'
 import { checkForProcessedParty, updateCharacter } from '../../game/Party/util'
 import { tCharacter } from '../../game/Character/type'
-import { makeCharacter } from '../../game/Character/util'
+import { makeCharacter, addMultipleStatus } from '../../game/Character/util'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 import { tArmor } from '../../game/Armor/type'
 import { tWeapon } from '../../game/Weapon/type'
-import { ALL_ARMOR } from '../../game/Armor/objects'
-import { ALL_WEAPONS } from '../../game/Weapon/constants'
 
 export const UPDATE_PARTY = '@actions/parties/set-party'
 export const UPSERT_CHARACTER = '@actions/parties/upsert-character'
@@ -127,10 +125,25 @@ export const INITIAL_STATE: tParty = {
   items: [],
   gold: 0,
   characters: [
-    {
-      ...jack,
-      // healthOffset: 30,
-    },
+    addMultipleStatus(
+      {
+        ...jack,
+        // healthOffset: 30,
+      },
+      [
+        /*
+        'frozen',
+        'bleeding',
+        'burning',
+        'poisoned',
+        'stunned',
+        'speed-down',
+        'targeted',
+        'evasive',
+        'armor-down',
+        */
+      ],
+    ),
     {
       ...jim,
       //healthOffset: 30

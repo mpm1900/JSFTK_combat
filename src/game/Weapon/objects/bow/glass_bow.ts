@@ -1,8 +1,7 @@
 import { tWeapon } from '../../type'
 import { v4 } from 'uuid'
 import { ZERO_STATS } from '../../../Stats/constants'
-import { SHOT, GLASS_SHOT } from '../../../Skill/objects/shot'
-import { SNIPE_SHOT } from '../../../Skill/objects/snipe_shot'
+import { GLASS_SHOT } from '../../../Skill/objects/shot'
 
 export const GLASS_BOW = (): tWeapon => ({
   id: v4(),

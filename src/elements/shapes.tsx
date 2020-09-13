@@ -12,11 +12,11 @@ export interface HexagonPropsT {
 }
 export const Hexagon = (props: HexagonPropsT) => {
   const { color, size, children, childStyle } = props
-  const mod = size / 104
-  const boxW = mod * 104
-  const boxH = mod * 60
-  const triH = mod * 30
-  const triW = mod * 52
+  const mod = size / 100
+  const boxW = mod * 100
+  const boxH = mod * 57.74
+  const triH = mod * 28.8774
+  const triW = mod * 50
   const tHeight = boxH + 2 * triH
   return (
     <FlexContainer $direction='column'>
@@ -63,9 +63,18 @@ export const Hexagon = (props: HexagonPropsT) => {
 
 export interface HexBadgePropsT extends HexagonPropsT {
   rotate?: boolean
+  onClick?: () => void
 }
 export const HexBadge = (props: HexBadgePropsT) => {
-  const { color, size, style, children, childStyle, rotate = false } = props
+  const {
+    color,
+    size,
+    style,
+    children,
+    childStyle,
+    onClick,
+    rotate = false,
+  } = props
   const angle = rotate ? 30 : 0
   return (
     <div
@@ -73,6 +82,7 @@ export const HexBadge = (props: HexBadgePropsT) => {
         transform: `rotateY(0deg) rotate(-${angle}deg)`,
         ...(style || {}),
       }}
+      onClick={onClick}
     >
       <Hexagon size={size} color={Theme.darkBgColorSolid}>
         <Hexagon size={size - 4} color={Theme.lightBgColor}>

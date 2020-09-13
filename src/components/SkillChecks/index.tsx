@@ -125,7 +125,7 @@ export const getPerfectStatusColors = (
       fill: '#d19999',
     }
   }
-  if (status.includes('cursed')) {
+  if (status.includes('cursed-vigor')) {
     return {
       border: '#6400a3',
       background: '#10001a',

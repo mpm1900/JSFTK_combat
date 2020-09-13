@@ -9,12 +9,12 @@ import {
 import { tCharacter, tProcessedCharacter } from '../Character/type'
 import { v4 } from 'uuid'
 import { getRandom } from '../../util'
-import { ENEMY_COMBOS_BY_LEVEL } from './constants'
 import { tEncounterReward } from '../Encounter/type'
 import { tArmor } from '../Armor/type'
 import { tWeapon } from '../Weapon/type'
 import { tConsumable } from '../Consumable/type'
 import { ALL_BOSSES } from '../Character/bosses'
+import { FLOOR_CONFIGS_BY_INDEX } from '../Encounter/floors'
 
 export const isParty = (obj: any): boolean =>
   obj !== undefined && obj.isParty !== undefined
@@ -35,7 +35,6 @@ export const findCharacterInParty = <
   party: T,
   id: string,
 ): R | undefined => {
-  console.log(party.characters, id)
   return (party.characters as R[]).find((c) => c.id === id)
 }
 
@@ -70,18 +69,19 @@ export const updateCharacter = (
   }
 }
 
-export const makeParty = (level: number = 0): tParty => {
+export const makeParty = (level: number, floor: number): tParty => {
   level = level > 4 ? 4 : level
+  const floorConfig = FLOOR_CONFIGS_BY_INDEX[floor]
   return {
     isParty: true,
     id: v4(),
     gold: 0,
     items: [],
-    characters: getRandom(ENEMY_COMBOS_BY_LEVEL[level]),
+    characters: getRandom(floorConfig.enemies[level] || []),
   }
 }
 
-export const makeBossParty = (): tParty => {
+export const makeBossParty = (floor: number): tParty => {
   return {
     isParty: true,
     id: v4(),

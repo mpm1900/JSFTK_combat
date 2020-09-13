@@ -13,9 +13,13 @@ export const BLACKSMITHS_HAMMER = (): tWeapon => ({
   stat: 'strength',
   twoHand: false,
   breakable: false,
-  damage: { type: 'physical', range: 'melee', value: 10 },
+  damage: { type: 'physical', range: 'melee', value: 100 },
   skills: [SMASH, SHOCKWAVE],
   immunities: [],
-  stats: ZERO_STATS,
+  stats: {
+    ...ZERO_STATS,
+    agility: 100,
+    maxHealthOffset: 100,
+  },
   goldValue: 10,
 })

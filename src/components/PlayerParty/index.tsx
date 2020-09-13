@@ -2,14 +2,11 @@ import React from 'react'
 import { FlexContainer } from '../../elements/flex'
 import { PartyCharacter } from '../PartyCharacter'
 import { useCombatContext } from '../../contexts/CombatContext'
-import { ConfirmButton, RedButton } from '../../elements/button'
+import { RedButton } from '../../elements/button'
 import { tProcessedParty } from '../../game/Party/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tConsumable } from '../../game/Consumable/type'
-import {
-  LocalToastProvider,
-  LocalToastRp,
-} from '../../contexts/LocalToastContext'
+import { LocalToastRp } from '../../contexts/LocalToastContext'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 
 export interface PlayerPartyPropsT {

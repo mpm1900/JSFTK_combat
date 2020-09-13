@@ -33,7 +33,6 @@ import {
 } from '../../game/Skill/util'
 import { commitSkillResults } from '../../game/Skill/committer'
 import { getAIAction } from '../../game/AI/util'
-import { clear } from 'console'
 import { tArmor } from '../../game/Armor/type'
 import { tWeapon } from '../../game/Weapon/type'
 
@@ -60,8 +59,8 @@ export interface CombatContextT {
   equipItemCombat: (characterId: string, item?: tArmor | tWeapon) => void
 }
 const defaultValue: CombatContextT = {
-  party: processParty(makeParty()),
-  enemyParty: processParty(makeParty()),
+  party: processParty(makeParty(0, 0)),
+  enemyParty: processParty(makeParty(0, 0)),
   activeCharacter: processCharacter(makeCharacter('blacksmith')),
   characters: [],
   queue: {},

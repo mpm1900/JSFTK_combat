@@ -4,8 +4,6 @@ import { v4 } from 'uuid'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
 import { IMPALE } from '../../Skill/objects/enemy/impale'
 import { getRandom } from '../../../util'
-import { ALL_WEAPONS } from '../../Weapon/constants'
-import { ALL_ARMOR } from '../../Armor/objects'
 import { ZERO_REWARD } from '../../Encounter/constants'
 
 export const BEASTMAN = (): tCharacter => {
@@ -85,15 +83,15 @@ export const BEASTMAN = (): tCharacter => {
       },
       {
         ...ZERO_REWARD,
-        gold: 12,
+        gold: 20,
         xp: 10,
-        items: [getRandom([...ALL_WEAPONS(), ...ALL_ARMOR()])],
+        items: [],
       },
       {
         ...ZERO_REWARD,
-        gold: 19,
+        gold: 20,
         xp: 10,
-        items: [getRandom([...ALL_WEAPONS(), ...ALL_ARMOR()])],
+        items: [],
       },
     ],
   }

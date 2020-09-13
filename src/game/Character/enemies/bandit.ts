@@ -3,10 +3,6 @@ import Bandit from '../../../icons/svg/delapouite/bandit.svg'
 import { tCharacter } from '../type'
 import { v4 } from 'uuid'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { EXPLORERS_BOOTS } from '../../Armor/objects/explorers_boots'
-import { EXPLORERS_HAT } from '../../Armor/objects/explorers_hat'
-import { ALL_ARMOR } from '../../Armor/objects'
-import { ALL_WEAPONS } from '../../Weapon/constants'
 import { STAB } from '../../Skill/objects/enemy/stab'
 import { ZERO_REWARD } from '../../Encounter/constants'
 
@@ -63,35 +59,33 @@ export const BANDIT = (): tCharacter => {
     possibleRewards: [
       {
         ...ZERO_REWARD,
-        gold: 1,
+        gold: 4,
+        xp: 5,
+      },
+      {
+        ...ZERO_REWARD,
+        gold: 4,
+        xp: 5,
+      },
+      {
+        ...ZERO_REWARD,
+        gold: 8,
         xp: 10,
       },
       {
         ...ZERO_REWARD,
-        gold: 1,
-        xp: 12,
-      },
-      {
-        ...ZERO_REWARD,
-        gold: 10,
-        xp: 15,
+        gold: 8,
+        xp: 10,
       },
       {
         ...ZERO_REWARD,
         gold: 20,
-        xp: 20,
+        xp: 15,
       },
       {
         ...ZERO_REWARD,
         gold: 80,
-        xp: 20,
-        items: [getRandom(ALL_ARMOR())],
-      },
-      {
-        ...ZERO_REWARD,
-        gold: 80,
-        xp: 20,
-        items: [getRandom(ALL_ARMOR()), getRandom(ALL_WEAPONS())],
+        xp: 15,
       },
     ],
   }

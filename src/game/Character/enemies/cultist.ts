@@ -3,8 +3,6 @@ import Cultist from '../../../icons/svg/lorc/cultist.svg'
 import { tCharacter } from '../type'
 import { v4 } from 'uuid'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { ALL_ARMOR } from '../../Armor/objects'
-import { ALL_WEAPONS } from '../../Weapon/constants'
 import { TORCH } from '../../Skill/objects/enemy/torch'
 import { IMPALE } from '../../Skill/objects/enemy/impale'
 import { ZERO_REWARD } from '../../Encounter/constants'
@@ -84,19 +82,19 @@ export const CULTIST = (): tCharacter => {
         ...ZERO_REWARD,
         gold: 20,
         xp: 20,
-        items: [getRandom(ALL_ARMOR())],
+        items: [],
       },
       {
         ...ZERO_REWARD,
         gold: 20,
         xp: 20,
-        items: [getRandom(ALL_ARMOR())],
+        items: [],
       },
       {
         ...ZERO_REWARD,
         gold: 80,
         xp: 20,
-        items: [getRandom(ALL_ARMOR()), getRandom(ALL_WEAPONS())],
+        items: [],
       },
     ],
   }

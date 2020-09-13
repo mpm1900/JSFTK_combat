@@ -37,8 +37,8 @@ export interface PartyContextT {
   sellItem: (itemId: string) => void
 }
 const defaultContextValue: PartyContextT = {
-  rawParty: makeParty(),
-  party: processParty(makeParty()),
+  rawParty: makeParty(0, 0),
+  party: processParty(makeParty(0, 0)),
   activeCharacter: processCharacter(makeCharacter('blacksmith')),
   updateParty: (party) => {},
   upsertCharacter: (character) => {},
@@ -96,11 +96,8 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
   }
 
   const equipItem = (characterId: string, item: tWeapon | tArmor) => {
-    console.log('EQUIP ITEM')
     const character = findRawCharacter(characterId)
-    console.log(characterId, character)
     if (!character) return
-    console.log('CHARACTER FOUND')
     if (item.itemType === 'armor') {
       const armor = item as tArmor
       if (armor.resource === 'offhand' && (character.weapon || FISTS()).twoHand)

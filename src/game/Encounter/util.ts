@@ -7,39 +7,54 @@ import {
   tShopEncounter,
   tShrineEncounter,
   tBossEncounter,
+  tFloor,
 } from './type'
 import { getRandom, noneg } from '../../util'
 import { makeParty, makeBossParty } from '../Party/util'
-import { ALL_WEAPONS } from '../Weapon/constants'
-import { ALL_ARMOR } from '../Armor/objects'
 import { tArmor } from '../Armor/type'
 import { tWeapon } from '../Weapon/type'
 import { GODSBEARD } from '../Consumable/objects/godsbeard'
 import { tConsumable } from '../Consumable/type'
 import { tBaseStats } from '../Stats/type'
 import { POSSIBLE_SHINE_REWARDS, ZERO_REWARD } from './constants'
+import { FLOOR_CONFIGS_BY_INDEX } from './floors'
 
-export const makeRandomEncounter = (depth: number) => {
-  const MAX_DEPTH = 10
-  let encounterType: tEncounterType =
-    depth === 0
-      ? 'combat'
-      : depth === 10
-      ? 'boss'
-      : getRandom([
-          'combat',
-          'combat',
-          'combat',
-          'combat',
-          'combat',
-          'combat',
-          'combat',
-          'combat',
-          'combat',
-          'shop',
-          'shrine',
-        ])
-  // encounterType = 'shop'
+export const makeEncounterType = (
+  depth: number,
+  max: number,
+): tEncounterType => {
+  //return 'shop'
+  if (depth === max - 2) {
+    return 'boss'
+  }
+  if (depth === max - 1) {
+    return 'reward'
+  }
+  if (depth === 0) {
+    return 'combat'
+  }
+  return getRandom([
+    'combat',
+    'combat',
+    'combat',
+    'combat',
+    'combat',
+    'combat',
+    'combat',
+    'combat',
+    'combat',
+    'shop',
+    'shrine',
+  ])
+}
+
+export const makeRandomEncounter = (
+  depth: number,
+  max: number,
+  floor: number,
+) => {
+  let encounterType = makeEncounterType(depth, max)
+  const floorConfig = FLOOR_CONFIGS_BY_INDEX[floor]
   let encounter: tEncounter = {
     id: v4(),
     choiceId: '',
@@ -51,18 +66,23 @@ export const makeRandomEncounter = (depth: number) => {
   if (encounter.type === 'combat') {
     encounter = {
       ...encounter,
-      party: makeParty(noneg(depth - 1)),
+      party: makeParty(noneg(depth - 1), floor),
     } as tCombatEncounter
   }
   if (encounter.type === 'boss') {
     encounter = {
       ...encounter,
       boss: true,
-      party: makeBossParty(),
+      party: makeBossParty(floor),
     } as tBossEncounter
   }
+  if (encounter.type === 'reward') {
+    encounter = {
+      ...encounter,
+    }
+  }
   if (encounter.type === 'shop') {
-    const items = [GODSBEARD(), ...ALL_WEAPONS(), ...ALL_ARMOR()]
+    const items = [GODSBEARD(), ...floorConfig.items]
     encounter = {
       ...encounter,
       items,
@@ -97,7 +117,10 @@ export const makeRandomEncounter = (depth: number) => {
   return encounter
 }
 
-export const makeEncounterList = (depth: number): tEncounterChoice[] => {
+export const makeEncounterList = (
+  depth: number,
+  floor: number,
+): tEncounterChoice[] => {
   return Array(depth)
     .fill(undefined)
     .map((_, index) => {
@@ -107,11 +130,11 @@ export const makeEncounterList = (depth: number): tEncounterChoice[] => {
         depth: index,
         value: undefined,
         left: {
-          ...makeRandomEncounter(index),
+          ...makeRandomEncounter(index, depth, floor),
           choiceId: id,
         },
         right: {
-          ...makeRandomEncounter(index),
+          ...makeRandomEncounter(index, depth, floor),
           choiceId: id,
         },
       }
@@ -120,4 +143,13 @@ export const makeEncounterList = (depth: number): tEncounterChoice[] => {
 
 export const getItemCost = (item: tArmor | tWeapon | tConsumable): number => {
   return item.goldValue * 3
+}
+
+export const makeFloor = (depth: number, encounterCount: number): tFloor => {
+  return {
+    id: v4(),
+    encounters: makeEncounterList(encounterCount, depth),
+    depth,
+    image: '',
+  }
 }

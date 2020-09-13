@@ -4,8 +4,6 @@ import { v4 } from 'uuid'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
 import { BITE } from '../../Skill/objects/enemy/bite'
 import { getRandom } from '../../../util'
-import { ALL_WEAPONS } from '../../Weapon/constants'
-import { ALL_ARMOR } from '../../Armor/objects'
 import { ZERO_REWARD } from '../../Encounter/constants'
 
 export const TIMBERWOLF = (): tCharacter => {
@@ -93,7 +91,7 @@ export const TIMBERWOLF = (): tCharacter => {
         ...ZERO_REWARD,
         gold: 19,
         xp: 3,
-        items: [getRandom([...ALL_WEAPONS(), ...ALL_ARMOR()])],
+        items: [],
       },
     ],
   }

@@ -3,11 +3,7 @@ import { tCharacter } from '../type'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
 import { v4 } from 'uuid'
 import { STAB } from '../../Skill/objects/enemy/stab'
-import { ADVENTURE_BOOTS } from '../../Armor/objects/adventure_boots'
-import { FUR_BOOTS } from '../../Armor/objects/fur_boots'
 import { getRandom } from '../../../util'
-import { ALL_ARMOR } from '../../Armor/objects'
-import { ALL_WEAPONS } from '../../Weapon/constants'
 import { ZERO_REWARD } from '../../Encounter/constants'
 
 export const BUCCANEER = (): tCharacter => {
@@ -80,19 +76,19 @@ export const BUCCANEER = (): tCharacter => {
         ...ZERO_REWARD,
         gold: 20,
         xp: 17,
-        items: [getRandom(ALL_ARMOR())],
+        items: [],
       },
       {
         ...ZERO_REWARD,
         gold: 20,
         xp: 18,
-        items: [getRandom(ALL_ARMOR())],
+        items: [],
       },
       {
         ...ZERO_REWARD,
         gold: 80,
         xp: 20,
-        items: [getRandom(ALL_ARMOR()), getRandom(ALL_WEAPONS())],
+        items: [],
       },
     ],
   }

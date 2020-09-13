@@ -4,7 +4,6 @@ import { tCharacter } from '../type'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
 import { STING, INFECTIOUS_STING } from '../../Skill/objects/enemy/sting'
 import { getRandom } from '../../../util'
-import { ALL_ARMOR } from '../../Armor/objects'
 import { GODSBEARD } from '../../Consumable/objects/godsbeard'
 import { ZERO_REWARD } from '../../Encounter/constants'
 
@@ -83,7 +82,7 @@ export const BEE = (): tCharacter => {
         ...ZERO_REWARD,
         gold: 8,
         xp: 8,
-        items: [getRandom(ALL_ARMOR())],
+        items: [],
       },
       {
         ...ZERO_REWARD,

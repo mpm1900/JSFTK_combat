@@ -4,8 +4,6 @@ import { v4 } from 'uuid'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
 import { SLAP } from '../../Skill/objects/enemy/slap'
 import { getRandom } from '../../../util'
-import { ALL_WEAPONS } from '../../Weapon/constants'
-import { ALL_ARMOR } from '../../Armor/objects'
 import { ZERO_REWARD } from '../../Encounter/constants'
 
 export const VALE_IMP = (): tCharacter => {
@@ -90,13 +88,13 @@ export const VALE_IMP = (): tCharacter => {
         ...ZERO_REWARD,
         gold: 0,
         xp: 7,
-        items: [getRandom(ALL_ARMOR())],
+        items: [],
       },
       {
         ...ZERO_REWARD,
         gold: 0,
         xp: 7,
-        items: [getRandom(ALL_WEAPONS())],
+        items: [],
       },
     ],
   }

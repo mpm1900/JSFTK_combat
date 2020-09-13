@@ -5,7 +5,6 @@ import Awareness from './svg/delapouite/eye-target.svg'
 import Juggler from './svg/lorc/juggler.svg'
 import Agility from './svg/lorc/sprint.svg'
 import Clover from './svg/lorc/clover.svg'
-import Accuracy from './svg/delapouite/convergence-target.svg'
 
 import Dazed from './svg/lorc/star-swirl.svg'
 import Targeted from './svg/sbed/targeted.svg'
@@ -14,6 +13,8 @@ import SpeedDown from './svg/delapouite/sticky-boot.svg'
 import Poisoned from './svg/lorc/biohazard.svg'
 import Burning from './svg/carl-olsen/flame.svg'
 import Bleeding from './svg/lorc/bleeding-wound.svg'
+import Snowflake from './svg/lorc/snowflake-2.svg'
+import ArmorDown from './svg/lorc/broken-shield.svg'
 
 import Shot from './svg/lorc/high-shot.svg'
 import SnipeShot from './svg/delapouite/shield-impact.svg'
@@ -115,10 +116,12 @@ export const STATUS_ICONS: Partial<Record<tStatusType, string>> = {
   targeted: Targeted,
   evasive: Evasive,
   protected: Protect,
-  ['speed-down']: SpeedDown,
+  'speed-down': SpeedDown,
   poisoned: Poisoned,
   burning: Burning,
   bleeding: Bleeding,
+  frozen: Snowflake,
+  'armor-down': ArmorDown,
 }
 
 export const SKILL_ICONS: Record<string, string> = {
@@ -152,14 +155,14 @@ export const SKILL_ICONS: Record<string, string> = {
 }
 
 export const ARMOR_TYPE_ICONS: Record<tArmorType, string> = {
-  ['magic-armor']: MagicArmor,
-  ['cloth-armor']: ClothArmor,
+  'magic-armor': MagicArmor,
+  'cloth-armor': ClothArmor,
   armor: Armor,
   shield: Shield,
-  ['magic-shield']: MagicShield,
+  'magic-shield': MagicShield,
   footwear: Footwear,
   hat: Hat,
-  ['magic-hat']: MagicHat,
+  'magic-hat': MagicHat,
   helmet: Helmet,
   charm: '',
   ring: '',
@@ -173,7 +176,7 @@ export const WEAPON_TYPE_ICONS: Record<tWeaponType, string> = {
   dagger: Dagger,
   pistol: Handgun,
   lute: Lute,
-  ['magic-staff']: MagicStaff,
+  'magic-staff': MagicStaff,
   spear: Spear,
   sword: Sword,
   tome: Tome,

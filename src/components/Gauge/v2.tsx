@@ -1,12 +1,9 @@
 import { GaugePropsT } from '.'
-
 import React, { useState, useEffect } from 'react'
 import { HoverToolTip } from '../Tooltip'
 import { BoxContainer } from '../../elements/box'
 import { Spring } from 'react-spring/renderprops'
 import { FullContainer } from '../../elements/flex'
-import { Monodiv } from '../../elements/monospace'
-import { Theme } from '../../theme'
 
 export const Gauge2 = (props: GaugePropsT) => {
   const { name = '', value, color, height = 30, children, style } = props

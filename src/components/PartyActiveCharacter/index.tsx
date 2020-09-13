@@ -7,13 +7,13 @@ import { Name } from './Name'
 import { Image } from './Image'
 import { MenuSelect, ACTIVE_CHARACTER_MENU_KEYS } from './MenuSelect'
 import { HoverArea } from './HoverArea'
-import { Badge } from '../../elements/badge'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tProcessedParty } from '../../game/Party/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
 import { Theme } from '../../theme'
 import { tConsumable } from '../../game/Consumable/type'
+import { HexBadge } from '../../elements/shapes'
 
 export interface PartyActiveCharacterPropsT {
   character: tProcessedCharacter
@@ -56,14 +56,21 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
         justifyContent: 'flex-end',
       }}
     >
-      <Badge
+      <HexBadge
+        color={Theme.healthRedColor}
+        size={32}
         onClick={onRequestClose}
-        $top={-10}
-        $right={-2}
-        style={{ cursor: 'pointer', userSelect: 'none' }}
+        style={{
+          position: 'absolute',
+          top: -16,
+          right: -9,
+          cursor: 'pointer',
+          userSelect: 'none',
+          textShadow: '1px 1px 3px black',
+        }}
       >
         X
-      </Badge>
+      </HexBadge>
       <FlexContainer
         style={{
           maxHeight: 440,

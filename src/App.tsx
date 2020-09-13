@@ -1,5 +1,7 @@
 import React from 'react'
-import ForestBg from './assets/img/flat-forestred.jpg'
+import ForestBg from './assets/img/forests/flat-forestred.jpg'
+import Forest2 from './assets/img/forests/8.png'
+import Dungeon1 from './assets/img/dungeon/4.png'
 import { Switch } from 'react-router-dom'
 import { Combat } from './domain/Combat'
 import { CombatLogContextProvider } from './contexts/CombatLogContext'
@@ -49,14 +51,14 @@ export const App = () => {
             style={{
               height: '100%',
               overflow: 'hidden',
-              background: `url(${ForestBg}) center center fixed no-repeat`,
+              background: `url(${Forest2}) center center fixed no-repeat`,
               backgroundSize: 'cover',
             }}
           >
             <FlexContainer
               $full
               $direction='column'
-              style={{ background: 'rgba(20,0,80,0.3)' }}
+              style={{ background: 'rgba(20,0,20,0.3)' }}
             >
               <RouteController />
               <FullContainer>

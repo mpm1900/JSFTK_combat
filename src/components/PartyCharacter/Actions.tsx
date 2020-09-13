@@ -41,7 +41,7 @@ export const Actions = (props: ActionsPropsT) => {
         <Tooltip
           isOpen={inventoryOpen}
           direction='up'
-          distance={40}
+          distance={60}
           background='rgba(0,0,0,0.7)'
           arrow
           content={
@@ -82,7 +82,7 @@ export const Actions = (props: ActionsPropsT) => {
           </Hover>
         </Tooltip>
       </FlexContainer>
-      <FlexContainer
+      {/*<FlexContainer
         $full
         style={{ alignItems: 'center', justifyContent: 'center' }}
       >
@@ -93,7 +93,7 @@ export const Actions = (props: ActionsPropsT) => {
           shadow
           style={{ padding: 6, cursor: 'pointer' }}
         />
-      </FlexContainer>
+      </FlexContainer>*/}
     </FlexContainer>
   )
 }

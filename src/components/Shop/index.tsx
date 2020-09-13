@@ -148,15 +148,16 @@ export const Shop = (props: ShopPropsT) => {
           borderColor: 'white',
         }
       : {}
-  // console.log(currentEncounter)
   return (
     <BoxContainer
-      style={{ margin: '20px 20px 20px 0', flex: 1 }}
+      style={{ margin: '20px 20px 20px 0', flex: 1, minWidth: 762 }}
       substyle={{ background: Theme.darkBgColor }}
     >
       <FlexContainer style={{ alignItems: 'center' }}>
         <FullContainer>
-          <h1 style={{ margin: 0, fontFamily: Theme.titleFont }}>Shop</h1>
+          <h1 style={{ margin: 0, fontFamily: Theme.titleFont }}>
+            Black Market
+          </h1>
         </FullContainer>
         <FlexContainer>
           {tabs.map((tab) => (

@@ -1,10 +1,7 @@
-import { getRandom } from '../../../util'
 import Lich from '../../../icons/svg/delapouite/overlord-helm.svg'
 import { tCharacter } from '../type'
 import { v4 } from 'uuid'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { ALL_ARMOR } from '../../Armor/objects'
-import { ALL_WEAPONS } from '../../Weapon/constants'
 import { LICH_DRAIN } from '../../Skill/objects/enemy/lich_drain'
 import { LICH_SCREECH } from '../../Skill/objects/enemy/lich_screech'
 import { LICH_MASS_SCREECH } from '../../Skill/objects/enemy/lich_mass_screech'
@@ -25,14 +22,14 @@ export const LICH = (): tCharacter => {
     tags: ['undead'],
     stats: {
       ...BASE_C_STATS,
-      strength: 82,
+      strength: 84,
       vigor: 64,
       intelligence: 70,
       dexterity: 48,
-      charisma: 60,
+      charisma: 30,
       agility: 80,
       luck: 50,
-      armor: 6,
+      armor: 7,
       resistance: 8,
       evasion: 16,
     },
@@ -51,7 +48,7 @@ export const LICH = (): tCharacter => {
       breakable: false,
       goldValue: 0,
       damage: {
-        value: 30,
+        value: 34,
         range: 'melee',
         type: 'physical',
       },
