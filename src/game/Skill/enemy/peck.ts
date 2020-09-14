@@ -1,9 +1,9 @@
 import { tSkill } from '../type'
 import { v4 } from 'uuid'
 
-export const SLAP: tSkill = {
+export const PECK: tSkill = {
   id: v4(),
-  name: 'Slap',
+  name: 'Peck',
   damageModifier: 1,
   splashDamageModifier: 0,
   targetType: 'single',

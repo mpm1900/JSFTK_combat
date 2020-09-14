@@ -1,4 +1,4 @@
-import Icon from '../../../icons/svg/delapouite/pirate-captain.svg'
+import Icon from '../../../icons/svg/delapouite/kenku-head.svg'
 import { tCharacter } from '../type'
 import { BASE_C_STATS } from '../../Stats/constants'
 import { STAB } from '../../Skill/enemy/stab'
@@ -7,30 +7,31 @@ import { ZERO_REWARD } from '../../Encounter/constants'
 import { BASE_CHARACTER } from '../constants'
 import { BASE_WEAPON } from '../../Weapon/constants'
 import { getRandomItem } from '../../Item/util'
+import { IMPALE } from '../../Skill/enemy/impale'
 
-export const BUCCANEER = (): tCharacter => {
+export const CULTIST_BRUTE = (): tCharacter => {
   return {
     ...BASE_CHARACTER(),
-    name: 'Buccaneer',
+    name: 'Cultist Brute',
     icon: Icon,
     level: 4,
     stats: {
       ...BASE_C_STATS,
-      strength: 52,
+      strength: 72,
       vigor: 66,
       intelligence: 46,
-      dexterity: 78,
+      dexterity: 50,
       charisma: 64,
       agility: getRandom([75, 76, 77, 78, 79, 80, 81, 82]),
       luck: 50,
       armor: 6,
-      resistance: 0,
+      resistance: 2,
       evasion: 20,
-      maxHealthOffset: -34,
+      maxHealthOffset: -37,
     },
     weapon: {
       ...BASE_WEAPON(),
-      name: 'Buccaneer Dagger',
+      name: 'Cultist Axe',
       type: 'enemy',
       stat: 'strength',
       damage: {
@@ -38,7 +39,7 @@ export const BUCCANEER = (): tCharacter => {
         range: 'melee',
         type: 'physical',
       },
-      skills: [STAB],
+      skills: [STAB, IMPALE],
     },
     possibleRewards: [
       {

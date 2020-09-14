@@ -34,7 +34,7 @@ export const Reward = (props: RewardPropsT) => {
         You've cleansed an evil.
       </h3>
       <span style={{ marginBottom: 40, padding: 8 }}>
-        You've defeated the Lich Lorde of the Forest, but you discoved what he
+        You've defeated the Lich Lord of the Forest, but you discoved what he
         was guarding. A tomb, sealed for centuries, a relic of civilizations
         past.
       </span>

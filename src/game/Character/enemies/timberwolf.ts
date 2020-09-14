@@ -1,7 +1,6 @@
 import Wolf from '../../../icons/svg/lorc/wolf-head.svg'
 import { tCharacter } from '../type'
-import { v4 } from 'uuid'
-import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
+import { BASE_C_STATS } from '../../Stats/constants'
 import { BITE } from '../../Skill/enemy/bite'
 import { getRandom } from '../../../util'
 import { ZERO_REWARD } from '../../Encounter/constants'

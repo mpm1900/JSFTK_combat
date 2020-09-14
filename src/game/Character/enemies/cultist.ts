@@ -1,14 +1,14 @@
 import { getRandom } from '../../../util'
 import Cultist from '../../../icons/svg/lorc/cultist.svg'
 import { tCharacter } from '../type'
-import { v4 } from 'uuid'
-import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
+import { BASE_C_STATS } from '../../Stats/constants'
 import { TORCH } from '../../Skill/enemy/torch'
-import { IMPALE } from '../../Skill/enemy/impale'
 import { ZERO_REWARD } from '../../Encounter/constants'
 import { BASE_CHARACTER } from '../constants'
 import { BASE_WEAPON } from '../../Weapon/constants'
 import { getRandomItem } from '../../Item/util'
+import { ARCANE } from '../../Skill/skills/catalyst'
+import { BLAST } from '../../Skill/enemy/arcane'
 
 export const CULTIST = (): tCharacter => {
   return {
@@ -40,7 +40,7 @@ export const CULTIST = (): tCharacter => {
         range: 'melee',
         type: 'magic',
       },
-      skills: [TORCH, IMPALE],
+      skills: [TORCH, ARCANE, BLAST],
     },
     possibleRewards: [
       {

@@ -8,10 +8,10 @@ import { BASE_CHARACTER } from '../constants'
 import { BASE_WEAPON } from '../../Weapon/constants'
 import { getRandomItem } from '../../Item/util'
 
-export const BEASTMAN = (): tCharacter => {
+export const FOREST_BEAST = (): tCharacter => {
   return {
     ...BASE_CHARACTER(),
-    name: 'Beastman',
+    name: 'Forest Beast',
     icon: BeastMan,
     level: 1,
     stats: {

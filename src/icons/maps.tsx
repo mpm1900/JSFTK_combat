@@ -19,6 +19,7 @@ import ArmorDown from './svg/lorc/broken-shield.svg'
 import Shot from './svg/lorc/high-shot.svg'
 import Headshot from './svg/delapouite/shield-impact.svg'
 import Arcane from './svg/lorc/fire-zone.svg'
+import Blast from './svg/lorc/magic-swirl.svg'
 import Nova from './svg/lorc/heavy-timer.svg'
 import Stun from './svg/lorc/ubisoft-sun.svg'
 import Smash from './svg/lorc/flat-hammer.svg'
@@ -75,9 +76,9 @@ import { tArmorResourceType, tArmorType } from '../game/Armor/type'
 import { tWeaponType } from '../game/Weapon/type'
 import { tCharacterClass } from '../game/Character/type'
 
-import Blacksmith from './svg/delapouite/viking-head.svg'
+import Executioner from './svg/delapouite/executioner-hood.svg'
 import Hunter from './svg/lorc/cowled.svg'
-import Bard from './svg/cathelineau/nun-face.svg'
+import Bard from './svg/delapouite/female-vampire.svg'
 import Scholar from './svg/delapouite/wizard-face.svg'
 import Hobo from './svg/delapouite/perspective-dice-six.svg'
 
@@ -114,6 +115,7 @@ export const SKILL_ICONS: Record<string, string> = {
 
   Arcane: Arcane,
   Nova: Nova,
+  Blast: Blast,
 
   Ring: Ring,
   Reverberate: Reverberate,
@@ -122,7 +124,9 @@ export const SKILL_ICONS: Record<string, string> = {
   Strike: Strike,
   Swing: Chop,
   Chop: Chop,
+  Thrust: Scythe,
   Earthquake: Shockwave,
+  Ripple: Shockwave,
   'Axe Spin': AxeSpin,
   Cleave: Cleave,
   Lunge: Lunge,
@@ -192,7 +196,7 @@ export const CONSUMABLE_ITEM_COLORS: Record<string, string> = {
 
 export const CHARACTER_CLASS_ICONS: Record<tCharacterClass, string> = {
   enemy: '',
-  executioner: Blacksmith,
+  executioner: Executioner,
   patrician: Bard,
   ranger: Hunter,
   student: Scholar,

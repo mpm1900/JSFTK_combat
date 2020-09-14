@@ -1,19 +1,19 @@
-import Imp from '../../../icons/svg/lorc/imp-laugh.svg'
+import Raven from '../../../icons/svg/lorc/raven.svg'
 import { tCharacter } from '../type'
-import { v4 } from 'uuid'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { SLAP } from '../../Skill/enemy/slap'
+import { PECK } from '../../Skill/enemy/peck'
 import { getRandom } from '../../../util'
 import { ZERO_REWARD } from '../../Encounter/constants'
 import { BASE_CHARACTER } from '../constants'
 import { BASE_WEAPON } from '../../Weapon/constants'
 import { getRandomItem } from '../../Item/util'
+import { CAW } from '../../Skill/enemy/caw'
 
-export const VALE_IMP = (): tCharacter => {
+export const FOREST_RAVEN = (): tCharacter => {
   return {
     ...BASE_CHARACTER(),
-    name: 'Vale Imp',
-    icon: Imp,
+    name: 'Forest Raven',
+    icon: Raven,
     level: 1,
     stats: {
       ...BASE_C_STATS,
@@ -39,7 +39,7 @@ export const VALE_IMP = (): tCharacter => {
     ],
     weapon: {
       ...BASE_WEAPON(),
-      name: 'Imp Fists',
+      name: 'Crow Beak',
       type: 'enemy',
       stat: 'dexterity',
       damage: {
@@ -47,7 +47,7 @@ export const VALE_IMP = (): tCharacter => {
         range: 'melee',
         type: 'physical',
       },
-      skills: [SLAP],
+      skills: [PECK, CAW],
     },
     possibleRewards: [
       {

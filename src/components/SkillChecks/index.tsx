@@ -18,11 +18,16 @@ export interface SkillChecksPropsT {
 }
 export const SkillChecks = (props: SkillChecksPropsT) => {
   const { stat, skill, rolls, results = [] } = props
+  console.log(skill, rolls)
   return (
     <FlexContainer
-      style={{ justifyContent: 'center', padding: '0px 0 24px 0' }}
+      style={{
+        justifyContent: 'center',
+        minHeight: 46,
+        padding: '0px 0 24px 0',
+      }}
     >
-      {Array(skill?.rolls || rolls)
+      {Array(skill?.rolls || rolls || 0)
         .fill(null)
         .map((_, i) => (
           <SkillCheck
