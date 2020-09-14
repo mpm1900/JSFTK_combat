@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.19b7b21d.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.19b7b21d.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.2ed50f7b.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.2ed50f7b.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
     "static/css/2.d34346ea.chunk.css": "/JSFTK_combat/static/css/2.d34346ea.chunk.css",
     "static/js/2.ea33864e.chunk.js": "/JSFTK_combat/static/js/2.ea33864e.chunk.js",
     "static/js/2.ea33864e.chunk.js.map": "/JSFTK_combat/static/js/2.ea33864e.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.f1f7d51bda4f2c00870c0251f1ab465d.js": "/JSFTK_combat/precache-manifest.f1f7d51bda4f2c00870c0251f1ab465d.js",
+    "precache-manifest.687de773dcfde949ba193402657fbca0.js": "/JSFTK_combat/precache-manifest.687de773dcfde949ba193402657fbca0.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/2.d34346ea.chunk.css.map": "/JSFTK_combat/static/css/2.d34346ea.chunk.css.map",
     "static/css/main.a8c8ac70.chunk.css.map": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css.map",
@@ -63,8 +63,8 @@
     "static/media/heavy-timer.svg": "/JSFTK_combat/static/media/heavy-timer.1072a406.svg",
     "static/media/herbs-bundle.svg": "/JSFTK_combat/static/media/herbs-bundle.e02bcec1.svg",
     "static/media/high-shot.svg": "/JSFTK_combat/static/media/high-shot.eed9def8.svg",
-    "static/media/imp-laugh.svg": "/JSFTK_combat/static/media/imp-laugh.b3e04d0d.svg",
     "static/media/juggler.svg": "/JSFTK_combat/static/media/juggler.1188c0be.svg",
+    "static/media/kenku-head.svg": "/JSFTK_combat/static/media/kenku-head.3292e596.svg",
     "static/media/knapsack.svg": "/JSFTK_combat/static/media/knapsack.62049a62.svg",
     "static/media/knife-thrust.svg": "/JSFTK_combat/static/media/knife-thrust.1e29ef7c.svg",
     "static/media/laurel-crown.svg": "/JSFTK_combat/static/media/laurel-crown.00b6e803.svg",
@@ -75,10 +75,10 @@
     "static/media/orc-head.svg": "/JSFTK_combat/static/media/orc-head.ff410513.svg",
     "static/media/overlord-helm.svg": "/JSFTK_combat/static/media/overlord-helm.03e5b513.svg",
     "static/media/perspective-dice-six.svg": "/JSFTK_combat/static/media/perspective-dice-six.8b7e2589.svg",
-    "static/media/pirate-captain.svg": "/JSFTK_combat/static/media/pirate-captain.daa0fd39.svg",
     "static/media/plain-dagger.svg": "/JSFTK_combat/static/media/plain-dagger.0509dd2c.svg",
     "static/media/pointy-hat.svg": "/JSFTK_combat/static/media/pointy-hat.d042ac98.svg",
     "static/media/pointy-sword.svg": "/JSFTK_combat/static/media/pointy-sword.bd82b38d.svg",
+    "static/media/raven.svg": "/JSFTK_combat/static/media/raven.581ee1b6.svg",
     "static/media/resonance.svg": "/JSFTK_combat/static/media/resonance.4c1d217b.svg",
     "static/media/revolver.svg": "/JSFTK_combat/static/media/revolver.25251236.svg",
     "static/media/ringing-bell.svg": "/JSFTK_combat/static/media/ringing-bell.f8953cca.svg",
@@ -110,6 +110,6 @@
     "static/css/2.d34346ea.chunk.css",
     "static/js/2.ea33864e.chunk.js",
     "static/css/main.a8c8ac70.chunk.css",
-    "static/js/main.19b7b21d.chunk.js"
+    "static/js/main.2ed50f7b.chunk.js"
   ]
 }
