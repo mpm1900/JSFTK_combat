@@ -4,6 +4,7 @@ import { tEncounterChoice } from '../../game/Encounter/type'
 import { getChoiceText } from '../../game/Encounter/constants'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 import { Button } from '../../elements/button'
+import { Theme } from '../../theme'
 
 export interface ChoicePropsT {
   currentChoice: tEncounterChoice
@@ -24,6 +25,8 @@ export const Choice = (props: ChoicePropsT) => {
           margin: '0 0 16px 0',
           color: 'white',
           textAlign: 'center',
+          fontWeight: 'normal',
+          fontFamily: Theme.titleFont,
         }}
       >
         You have a choice.

@@ -4,7 +4,8 @@ import { stringArr } from '../../util/stringArr'
 import { FLOOR_CONFIGS_BY_INDEX } from './floors'
 import Forest1 from '../../assets/img/forests/7.png'
 import Forest2 from '../../assets/img/forests/8.png'
-import Dungeon1 from '../../assets/img/dungeon/4.png'
+import Forest3 from '../../assets/img/forests/1.png'
+import Dungeon1 from '../../assets/img/dungeon/3.png'
 
 export const ZERO_REWARD: tEncounterReward = {
   gold: 0,
@@ -143,27 +144,27 @@ export const getEncounterBg = (
       {
         // 3
         bg: Forest1,
-        overlay: 'rgba(20,0,50,0.4)',
+        overlay: 'rgba(20,0,50,0.5)',
       },
       {
         // 4
         bg: Forest1,
-        overlay: 'rgba(20,0,50,0.4)',
+        overlay: 'rgba(20,0,50,0.5)',
       },
       {
         // 5
         bg: Forest2,
-        overlay: 'rgba(20,0,50,0.2)',
+        overlay: 'rgba(20,0,50,0.4)',
       },
       {
         // 6
         bg: Forest2,
-        overlay: 'rgba(20,0,50,0.3)',
+        overlay: 'rgba(20,0,50,0.4)',
       },
       {
         // 7
         bg: Forest2,
-        overlay: 'rgba(20,0,50,0.4)',
+        overlay: 'rgba(20,0,50,0.5)',
       },
       {
         // 8
@@ -172,7 +173,7 @@ export const getEncounterBg = (
       },
       {
         // 9
-        bg: Forest2,
+        bg: Forest3,
         overlay: 'rgba(20,0,50,0.5)',
       },
       {

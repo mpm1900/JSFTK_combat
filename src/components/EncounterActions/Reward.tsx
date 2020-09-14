@@ -33,8 +33,13 @@ export const Reward = (props: RewardPropsT) => {
       <h3 style={{ fontFamily: Theme.titleFont, fontWeight: 'normal' }}>
         You've cleansed an evil.
       </h3>
+      <span style={{ marginBottom: 40, padding: 8 }}>
+        You've defeated the Lich Lorde of the Forest, but you discoved what he
+        was guarding. A tomb, sealed for centuries, a relic of civilizations
+        past.
+      </span>
       <FlexContainer style={{ justifyContent: 'center' }}>
-        <Button onClick={onClick}>Travel Deeper</Button>
+        <Button onClick={onClick}>Enter the Tomb</Button>
       </FlexContainer>
     </FlexContainer>
   )
