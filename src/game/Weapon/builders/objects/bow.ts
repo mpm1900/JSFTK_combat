@@ -14,7 +14,7 @@ import { tWeaponsByLevel } from '../type'
 const type = 'bow'
 export const RANGERS_BOW = () => ({
   ...createWeapon(type, 'starting', [SHOT, HEADSHOT], {}),
-  name: `Ranger's Bow`,
+  name: `Ranger Bow`,
 })
 export const RUSTED_BOW = () =>
   createWeapon(type, 'rusted', [SHOT, HEADSHOT], {})

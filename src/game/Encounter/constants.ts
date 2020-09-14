@@ -2,6 +2,9 @@ import { tEncounterReward, tEncounterChoice, tCombatEncounter } from './type'
 import { getRandom } from '../../util'
 import { stringArr } from '../../util/stringArr'
 import { FLOOR_CONFIGS_BY_INDEX } from './floors'
+import Forest1 from '../../assets/img/forests/7.png'
+import Forest2 from '../../assets/img/forests/8.png'
+import Dungeon1 from '../../assets/img/dungeon/4.png'
 
 export const ZERO_REWARD: tEncounterReward = {
   gold: 0,
@@ -114,4 +117,69 @@ export const getChoiceText = (
       'Your party has traveled far, but it is now time for the final fight.'
   }
   return text
+}
+
+export const getEncounterBg = (
+  level: number,
+  floor: number,
+): { bg: string; overlay: string } => {
+  return [
+    [
+      {
+        // 0
+        bg: Forest1,
+        overlay: 'transparent',
+      },
+      {
+        // 1
+        bg: Forest1,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 2
+        bg: Forest1,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 3
+        bg: Forest1,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 4
+        bg: Forest1,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 5
+        bg: Forest2,
+        overlay: 'rgba(20,0,50,0.2)',
+      },
+      {
+        // 6
+        bg: Forest2,
+        overlay: 'rgba(20,0,50,0.3)',
+      },
+      {
+        // 7
+        bg: Forest2,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 8
+        bg: Forest2,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 9
+        bg: Forest2,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 10
+        bg: Dungeon1,
+        overlay: 'transparent',
+      },
+    ],
+  ][floor][level]
 }

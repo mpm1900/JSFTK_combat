@@ -23,7 +23,7 @@ export const BEASTMAN = (): tCharacter => {
       charisma: 30,
       agility: getRandom([55, 56, 57, 58, 59, 60, 61]),
       luck: 50,
-      armor: 2,
+      armor: 3,
       resistance: 0,
       evasion: 10,
     },

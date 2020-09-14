@@ -15,7 +15,7 @@ import { tWeaponsByLevel } from '../type'
 const type = 'chime'
 export const PATRICIANS_CHIME = () => ({
   ...createWeapon(type, 'starting', [RING, STUN], {}),
-  name: `Patrician's Chime`,
+  name: `Patrician Chime`,
 })
 export const RUSTED_CHIME = () =>
   createWeapon(type, 'rusted', [RING, REVERBERATE], {})

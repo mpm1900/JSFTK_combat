@@ -15,9 +15,9 @@ import { tWeapon } from '../../type'
 import { tWeaponsByLevel } from '../type'
 
 const type = 'axe'
-export const BUTCHERS_AXE = (): tWeapon => ({
+export const EXECUTIONER_AXE = (): tWeapon => ({
   ...createWeapon(type, 'starting', [CHOP, AXE_SPIN], {}),
-  name: `Butcher's Axe`,
+  name: `Executioner Axe`,
 })
 
 export const RUSTED_AXE = () => createWeapon(type, 'rusted', [CHOP, SWING], {})
@@ -60,7 +60,7 @@ export const CELESTIAL_AXE = () =>
   createBreakableWeapon(type, 'celestial', [GLASS_SWING], {})
 
 export const AXES: tWeaponsByLevel = {
-  0: [BUTCHERS_AXE],
+  0: [EXECUTIONER_AXE],
   1: [RUSTED_AXE, TOMB_AXE, BURRIED_AXE, WITHERING_AXE, GLASS_AXE],
   2: [IRON_AXE, STEEL_AXE, STAINLESS_AXE],
   3: [ANCIENT_AXE, CRYSTAL_AXE, ELEMENTAL_AXE, CURSED_AXE],

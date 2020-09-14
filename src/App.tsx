@@ -14,6 +14,7 @@ import { usePartyContext } from './contexts/PartyContext'
 import { PlayerParty } from './components/PlayerParty'
 import { FlexContainer, FullContainer } from './elements/flex'
 import { LinkedCombatContext } from './contexts/CombatContext/context'
+import { AppBg } from './components/AppBg'
 
 const CombatDomain = () => {
   return (
@@ -45,32 +46,17 @@ export const App = () => {
     <ModalContextProvider>
       <LinkedCombatContext>
         <UIContextProvider>
-          <FlexContainer
-            $full
-            $direction='column'
-            style={{
-              height: '100%',
-              overflow: 'hidden',
-              background: `url(${Forest2}) center center fixed no-repeat`,
-              backgroundSize: 'cover',
-            }}
-          >
-            <FlexContainer
-              $full
-              $direction='column'
-              style={{ background: 'rgba(20,0,30,0.4)' }}
-            >
-              <RouteController />
-              <FullContainer>
-                <Switch>
-                  {makeRoute('/party', Party)}
-                  {makeRoute('/combat', CombatDomain)}
-                  {makeRoute('/', Start)}
-                </Switch>
-              </FullContainer>
-              <GlobalCharacters />
-            </FlexContainer>
-          </FlexContainer>
+          <AppBg>
+            <RouteController />
+            <FullContainer>
+              <Switch>
+                {makeRoute('/party', Party)}
+                {makeRoute('/combat', CombatDomain)}
+                {makeRoute('/', Start)}
+              </Switch>
+            </FullContainer>
+            <GlobalCharacters />
+          </AppBg>
         </UIContextProvider>
       </LinkedCombatContext>
     </ModalContextProvider>

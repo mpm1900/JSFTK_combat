@@ -5,7 +5,7 @@ import { tWeaponsByLevel } from '../type'
 const type = 'pistol'
 export const PATRICIANS_PISTOL = () => ({
   ...createWeapon(type, 'starting', [], {}),
-  name: `Patrician's Pistol`,
+  name: `Patrician Pistol`,
 })
 export const RUSTED_PISTOL = () =>
   createWeapon(type, 'rusted', [FIRE, SNIPE, FAN_FIRE], {})

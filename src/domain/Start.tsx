@@ -181,11 +181,11 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
           }))
         }}
       >
-        <option value='blacksmith'>Blacksmith</option>
-        <option value='hunter'>Hunter</option>
-        <option value='scholar'>Scholar</option>
-        <option value='bard'>Bard</option>
-        <option value='hobo'>Hobo</option>
+        <option value='executioner'>Executioner</option>
+        <option value='ranger'>Ranger</option>
+        <option value='student'>Student</option>
+        <option value='patrician'>Patrician</option>
+        <option value='drifter'>Drifter</option>
       </select>
       <FlexContainer $direction='column' style={{ padding: 8 }}>
         {STAT_BONUS_KEYS.map((key) => (

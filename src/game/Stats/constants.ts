@@ -53,7 +53,7 @@ export const BASE_C_STATS: tStats = {
 }
 
 export const CLASS_STATS: Record<tCharacterClass, tStats> = {
-  blacksmith: {
+  executioner: {
     ...BASE_C_STATS,
     strength: 76,
     vigor: 80,
@@ -66,7 +66,7 @@ export const CLASS_STATS: Record<tCharacterClass, tStats> = {
     resistance: 0,
     evasion: 7,
   },
-  hunter: {
+  ranger: {
     ...BASE_C_STATS,
     strength: 52,
     vigor: 66,
@@ -79,7 +79,7 @@ export const CLASS_STATS: Record<tCharacterClass, tStats> = {
     resistance: 0,
     evasion: 20,
   },
-  scholar: {
+  student: {
     ...BASE_C_STATS,
     strength: 42,
     vigor: 60,
@@ -92,7 +92,7 @@ export const CLASS_STATS: Record<tCharacterClass, tStats> = {
     resistance: 1,
     evasion: 13,
   },
-  bard: {
+  patrician: {
     ...BASE_C_STATS,
     strength: 44,
     vigor: 50,
@@ -105,7 +105,7 @@ export const CLASS_STATS: Record<tCharacterClass, tStats> = {
     resistance: 1,
     evasion: 11,
   },
-  hobo: {
+  drifter: {
     ...BASE_C_STATS,
     strength: 70,
     vigor: 70,

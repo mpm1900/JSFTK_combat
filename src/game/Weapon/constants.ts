@@ -2,17 +2,17 @@ import { tCharacterClass } from '../Character/type'
 import { tWeapon } from './type'
 import { v4 } from 'uuid'
 import { ZERO_STATS } from '../Stats/constants'
-import { BUTCHERS_AXE } from './builders/objects/axe'
+import { EXECUTIONER_AXE } from './builders/objects/axe'
 import { RANGERS_BOW } from './builders/objects/bow'
 import { STUDENTS_CATALYST } from './builders/objects/catalyst'
 import { PATRICIANS_CHIME } from './builders/objects/chime'
 
 export const CLASS_WEAPONS: Record<tCharacterClass, tWeapon | undefined> = {
-  blacksmith: BUTCHERS_AXE(),
-  hunter: RANGERS_BOW(),
-  scholar: STUDENTS_CATALYST(),
-  bard: PATRICIANS_CHIME(),
-  hobo: undefined,
+  executioner: EXECUTIONER_AXE(),
+  ranger: RANGERS_BOW(),
+  student: STUDENTS_CATALYST(),
+  patrician: PATRICIANS_CHIME(),
+  drifter: undefined,
   enemy: undefined,
 }
 

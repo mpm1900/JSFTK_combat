@@ -61,7 +61,7 @@ export interface CombatContextT {
 const defaultValue: CombatContextT = {
   party: processParty(makeParty(0, 0)),
   enemyParty: processParty(makeParty(0, 0)),
-  activeCharacter: processCharacter(makeCharacter('blacksmith')),
+  activeCharacter: processCharacter(makeCharacter('executioner')),
   characters: [],
   queue: {},
   selectedSkill: undefined,

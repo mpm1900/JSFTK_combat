@@ -192,9 +192,9 @@ export const CONSUMABLE_ITEM_COLORS: Record<string, string> = {
 
 export const CHARACTER_CLASS_ICONS: Record<tCharacterClass, string> = {
   enemy: '',
-  blacksmith: Blacksmith,
-  bard: Bard,
-  hunter: Hunter,
-  scholar: Scholar,
-  hobo: Hobo,
+  executioner: Blacksmith,
+  patrician: Bard,
+  ranger: Hunter,
+  student: Scholar,
+  drifter: Hobo,
 }

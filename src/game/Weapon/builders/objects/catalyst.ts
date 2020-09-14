@@ -15,7 +15,7 @@ import { tWeaponsByLevel } from '../type'
 const type = 'catalyst'
 export const STUDENTS_CATALYST = () => ({
   ...createWeapon(type, 'starting', [ARCANE, NOVA], {}),
-  name: `Student's Catalyst`,
+  name: `Student Catalyst`,
 })
 export const RUSTED_CATALYST = () =>
   createWeapon(type, 'rusted', [BLAST, ARCANE], {})

@@ -119,9 +119,9 @@ export const core: StateCoreT<tParty> = {
     }
   },
 }
-const jack = { ...makeCharacter('blacksmith'), name: 'Jack' }
-const jim = { ...makeCharacter('bard'), name: 'Jim' }
-const john = { ...makeCharacter('scholar'), name: 'Johnny' }
+const jack = { ...makeCharacter('executioner'), name: 'Jack' }
+const jim = { ...makeCharacter('patrician'), name: 'Jim' }
+const john = { ...makeCharacter('student'), name: 'Johnny' }
 export const INITIAL_STATE: tParty = {
   isParty: true,
   id: PLAYER_PARTY_ID,

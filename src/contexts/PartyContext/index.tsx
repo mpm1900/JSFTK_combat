@@ -39,7 +39,7 @@ export interface PartyContextT {
 const defaultContextValue: PartyContextT = {
   rawParty: makeParty(0, 0),
   party: processParty(makeParty(0, 0)),
-  activeCharacter: processCharacter(makeCharacter('blacksmith')),
+  activeCharacter: processCharacter(makeCharacter('executioner')),
   updateParty: (party) => {},
   upsertCharacter: (character) => {},
   deleteCharacter: (characterId) => {},

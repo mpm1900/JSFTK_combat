@@ -13,11 +13,11 @@ import { tWeapon } from '../Weapon/type'
 import { tArmorResourceType, tArmor } from '../Armor/type'
 import { resolveCheck } from '../Roll/util'
 import { CLASS_ARMOR } from '../Armor/constants'
-import { CLASS_CONSUMABLES } from '../Consumable/constants'
 import { considateConsumableListToStack } from '../Consumable/util'
 import { CHARACTER_XP_MAX } from './constants'
 import { tEncounterReward } from '../Encounter/type'
 import { FISTS } from '../Weapon/fists'
+import { CLASS_STARTING_CONSUMABLES } from '../Item/constants'
 
 export const isCharacter = (obj: any): boolean =>
   obj !== undefined && obj.isCharacter !== undefined
@@ -46,7 +46,7 @@ export const makeCharacter = (characterClass: tCharacterClass): tCharacter => {
 
     weapon: CLASS_WEAPONS[characterClass],
     armor: CLASS_ARMOR[characterClass],
-    consumables: CLASS_CONSUMABLES[characterClass],
+    consumables: CLASS_STARTING_CONSUMABLES[characterClass],
 
     status: [],
     immunities: [],
