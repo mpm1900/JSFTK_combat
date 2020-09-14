@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a8f0fdd84090b8b576c7da60720be6fe",
+    "revision": "48ffef5d3c36408299a153ab09e89e34",
     "url": "/JSFTK_combat/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "7f8097adabbaa39d341e",
+    "revision": "b2b837e7bdd8bbaa33b0",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/js/2.b2138d10.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7f8097adabbaa39d341e",
-    "url": "/JSFTK_combat/static/js/main.bbab1645.chunk.js"
+    "revision": "b2b837e7bdd8bbaa33b0",
+    "url": "/JSFTK_combat/static/js/main.2966f829.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -156,12 +156,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/energy-arrow.514fc56c.svg"
   },
   {
+    "revision": "6e796b5c719c316637e9d6aa850e4849",
+    "url": "/JSFTK_combat/static/media/executioner-hood.6e796b5c.svg"
+  },
+  {
     "revision": "4d41833369b8c31b0bcb4fcf446b57e0",
     "url": "/JSFTK_combat/static/media/extra-time.4d418333.svg"
   },
   {
     "revision": "4c5ae6807d5c2e06657c4625fc0b875d",
     "url": "/JSFTK_combat/static/media/eye-target.4c5ae680.svg"
+  },
+  {
+    "revision": "27d5f882091017d5eb3b99fe12c722af",
+    "url": "/JSFTK_combat/static/media/female-vampire.27d5f882.svg"
   },
   {
     "revision": "42e1365743e99e9635dbba2b9e9df7d6",
@@ -250,10 +258,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "853672545c995fa342577d1e493f2958",
     "url": "/JSFTK_combat/static/media/lightning-shield.85367254.svg"
-  },
-  {
-    "revision": "ca639d11582d1b52bd6f93dc0a8df5cc",
-    "url": "/JSFTK_combat/static/media/nun-face.ca639d11.svg"
   },
   {
     "revision": "ff410513bff5092b5cbcd882e6a9dbe6",
@@ -358,10 +362,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "14198b166b6226fb4040ace17324fd7b",
     "url": "/JSFTK_combat/static/media/vibrating-shield.14198b16.svg"
-  },
-  {
-    "revision": "42e0046dad527dd0382c265760e76d15",
-    "url": "/JSFTK_combat/static/media/viking-head.42e0046d.svg"
   },
   {
     "revision": "a61f823052f5533afe1a07c856728ab0",
