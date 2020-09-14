@@ -2,23 +2,19 @@ import Wolf from '../../../icons/svg/lorc/wolf-head.svg'
 import { tCharacter } from '../type'
 import { v4 } from 'uuid'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { BITE } from '../../Skill/objects/enemy/bite'
+import { BITE } from '../../Skill/enemy/bite'
 import { getRandom } from '../../../util'
 import { ZERO_REWARD } from '../../Encounter/constants'
+import { BASE_CHARACTER } from '../constants'
+import { BASE_WEAPON } from '../../Weapon/constants'
+import { getRandomItem } from '../../Item/util'
 
 export const TIMBERWOLF = (): tCharacter => {
   return {
-    id: v4(),
+    ...BASE_CHARACTER(),
     name: 'Timberwolf',
-    isCharacter: true,
     icon: Wolf,
-    partyId: '',
     level: 1,
-    experience: 0,
-    class: 'enemy',
-    healthOffset: 0,
-    inspirationOffset: 0,
-    tags: [],
     stats: {
       ...BASE_C_STATS,
       vigor: -80,
@@ -33,28 +29,17 @@ export const TIMBERWOLF = (): tCharacter => {
       evasion: 10,
       maxHealthOffset: -1,
     },
-    armor: [],
-    consumables: [],
-    status: [],
-    immunities: [],
     weapon: {
-      id: v4(),
+      ...BASE_WEAPON(),
       name: 'Wolf Fangs',
-      itemType: 'weapon',
-      rarity: 'common',
       type: 'enemy',
       stat: 'dexterity',
-      goldValue: 0,
-      twoHand: true,
-      breakable: false,
       damage: {
         value: 7,
         range: 'melee',
         type: 'physical',
       },
-      stats: ZERO_STATS,
       skills: [BITE],
-      immunities: [],
     },
     possibleRewards: [
       {
@@ -86,12 +71,13 @@ export const TIMBERWOLF = (): tCharacter => {
         ...ZERO_REWARD,
         gold: 4,
         xp: 3,
+        items: [getRandomItem(0)],
       },
       {
         ...ZERO_REWARD,
         gold: 19,
         xp: 3,
-        items: [],
+        items: [getRandomItem(0)],
       },
     ],
   }

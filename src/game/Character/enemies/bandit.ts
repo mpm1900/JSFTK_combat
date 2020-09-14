@@ -1,24 +1,19 @@
 import { getRandom } from '../../../util'
 import Bandit from '../../../icons/svg/delapouite/bandit.svg'
 import { tCharacter } from '../type'
-import { v4 } from 'uuid'
-import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { STAB } from '../../Skill/objects/enemy/stab'
+import { BASE_C_STATS } from '../../Stats/constants'
+import { STAB } from '../../Skill/enemy/stab'
 import { ZERO_REWARD } from '../../Encounter/constants'
+import { BASE_CHARACTER } from '../constants'
+import { BASE_WEAPON } from '../../Weapon/constants'
+import { getRandomItem } from '../../Item/util'
 
 export const BANDIT = (): tCharacter => {
   return {
-    id: v4(),
+    ...BASE_CHARACTER(),
     name: 'Bandit',
-    isCharacter: true,
     icon: Bandit,
-    partyId: '',
     level: 2,
-    experience: 0,
-    class: 'enemy',
-    healthOffset: 0,
-    inspirationOffset: 0,
-    tags: [],
     stats: {
       ...BASE_C_STATS,
       strength: 76,
@@ -33,28 +28,17 @@ export const BANDIT = (): tCharacter => {
       evasion: 10,
       maxHealthOffset: -20,
     },
-    armor: [],
-    consumables: [],
-    status: [],
-    immunities: [],
     weapon: {
-      id: v4(),
+      ...BASE_WEAPON(),
       name: 'Buccaneer Dagger',
-      itemType: 'weapon',
-      rarity: 'common',
-      type: 'dagger',
+      type: 'enemy',
       stat: 'strength',
-      goldValue: 0,
-      twoHand: false,
-      breakable: false,
       damage: {
         value: 12,
         range: 'melee',
         type: 'physical',
       },
-      stats: ZERO_STATS,
       skills: [STAB],
-      immunities: [],
     },
     possibleRewards: [
       {
@@ -81,11 +65,13 @@ export const BANDIT = (): tCharacter => {
         ...ZERO_REWARD,
         gold: 20,
         xp: 15,
+        items: [getRandomItem(1)],
       },
       {
         ...ZERO_REWARD,
         gold: 80,
         xp: 15,
+        items: [getRandomItem(1)],
       },
     ],
   }

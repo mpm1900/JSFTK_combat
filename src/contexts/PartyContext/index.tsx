@@ -19,7 +19,7 @@ import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
 import { useGameStateContext } from '../GameStateContext'
 import { tConsumable } from '../../game/Consumable/type'
-import { FISTS } from '../../game/Weapon/objects/fists'
+import { FISTS } from '../../game/Weapon/fists'
 
 export interface PartyContextT {
   party: tProcessedParty

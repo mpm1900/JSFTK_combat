@@ -62,6 +62,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
               .fill(null)
               .map((_, i) => (
                 <SkillCheck
+                  key={i}
                   check={{ label: weapon.stat, result: true }}
                   size={18}
                   padding={4}
@@ -150,7 +151,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
               }}
             >
               {weapon.skills.map((skill, i) => (
-                <>
+                <React.Fragment key={skill.id}>
                   {i > 0 ? ', ' : ''}
                   <HoverToolTip
                     direction='down'
@@ -166,7 +167,7 @@ export const WeaponPreview = (props: WeaponPreviewPropsT) => {
                       {skill.name}
                     </FakeLink>
                   </HoverToolTip>
-                </>
+                </React.Fragment>
               ))}
             </span>
             {weapon.breakable && (

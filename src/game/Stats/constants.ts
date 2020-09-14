@@ -17,6 +17,10 @@ export const ZERO_STATS: tStats = {
   maxHealthOffset: 0,
   healthRegeneration: 0,
   damageTakenModifier: 0,
+  damageTakenRangeModifiers: {
+    melee: 0,
+    ranged: 0,
+  },
   damageReflection: {
     melee: 0,
     ranged: 0,
@@ -44,10 +48,6 @@ export const BASE_C_STATS: tStats = {
   damageTakenModifier: 1,
   attackDamageModifier: 1,
   criticalChance: 5,
-  damageModifiers: {
-    flying: 0,
-    undead: 0,
-  },
   queueConsolidationModifier: 1,
   consumableHealthGainOffset: 15,
 }
@@ -166,8 +166,8 @@ export const STAT_KEY_LABELS: Record<keyof tStats, string> = {
   healthRegeneration: ' Health Regen',
   damageReflection: ' Damage Reflection',
   damageTakenModifier: '% Recieved Damage',
+  damageTakenRangeModifiers: '% Recieved Damage from certain sources',
 
-  // TODO: Make this work
   damageModifiers: ' Damage to certain Enemeies',
 
   queueConsolidationModifier: ' Queue Consolidation Modifier',

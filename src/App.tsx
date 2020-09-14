@@ -58,7 +58,7 @@ export const App = () => {
             <FlexContainer
               $full
               $direction='column'
-              style={{ background: 'rgba(20,0,20,0.3)' }}
+              style={{ background: 'rgba(20,0,30,0.4)' }}
             >
               <RouteController />
               <FullContainer>

@@ -1,5 +1,4 @@
 import React from 'react'
-import Details from '../../icons/svg/delapouite/skills.svg'
 import Inventory from '../../icons/svg/lorc/knapsack.svg'
 import { FlexContainer } from '../../elements/flex'
 import { Tooltip } from '../Tooltip'

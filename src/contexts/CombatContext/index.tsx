@@ -94,9 +94,9 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const { party, rawParty, updateParty, equipItem } = usePartyContext()
   const { open } = useModalContext()
   const history = useHistory()
-  const enemyParty = useMemo(() => processParty(props.enemyParty), [
-    props.enemyParty,
-  ])
+  const enemyParty = useMemo(() => {
+    return processParty(props.enemyParty)
+  }, [props.enemyParty])
   const [isRunning, setIsRunning] = useState<boolean>(false)
   const [isRenderingResult, setIsRenderingResult] = useState<boolean>(false)
   const characters = useMemo(

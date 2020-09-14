@@ -1,0 +1,27 @@
+import { tWeaponRarityConfig } from './type'
+
+export const WEAPON_CLASS_RARIES: tWeaponRarityConfig = {
+  starting: 'common',
+  rusted: 'common',
+  tomb: 'common',
+  burried: 'common',
+  withering: 'uncommon',
+  glass: 'rare',
+  iron: 'common',
+  steel: 'common',
+  stainless: 'common',
+  ancient: 'common',
+  crystal: 'rare',
+  elemental: 'rare',
+  cursed: 'rare',
+  sharp: 'common',
+  hardened: 'uncommon',
+  engraved: 'uncommon',
+  ethereal: 'rare',
+  exquisite: 'uncommon',
+  divine: 'rare',
+  arcane: 'mythic',
+  celestial: 'mythic',
+  mythic: 'mythic',
+  unique: 'mythic',
+}

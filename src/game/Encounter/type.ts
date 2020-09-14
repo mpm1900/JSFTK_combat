@@ -57,4 +57,5 @@ export interface tFloor {
 export interface tFloorConfig {
   items: (tWeapon | tArmor)[]
   enemies: Record<number, tCharacter[][]>
+  bosses: tCharacter[]
 }

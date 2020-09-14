@@ -1,10 +1,7 @@
 import React from 'react'
-import Color from 'color'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { Theme } from '../../theme'
-import { CHARACTER_CLASS_COLORS } from '../../game/Character/constants'
-
 export interface NamePropsT {
   character: tProcessedCharacter
 }

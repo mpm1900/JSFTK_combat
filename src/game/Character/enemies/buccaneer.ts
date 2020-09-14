@@ -1,24 +1,19 @@
 import Icon from '../../../icons/svg/delapouite/pirate-captain.svg'
 import { tCharacter } from '../type'
-import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { v4 } from 'uuid'
-import { STAB } from '../../Skill/objects/enemy/stab'
+import { BASE_C_STATS } from '../../Stats/constants'
+import { STAB } from '../../Skill/enemy/stab'
 import { getRandom } from '../../../util'
 import { ZERO_REWARD } from '../../Encounter/constants'
+import { BASE_CHARACTER } from '../constants'
+import { BASE_WEAPON } from '../../Weapon/constants'
+import { getRandomItem } from '../../Item/util'
 
 export const BUCCANEER = (): tCharacter => {
   return {
-    id: v4(),
+    ...BASE_CHARACTER(),
     name: 'Buccaneer',
-    isCharacter: true,
     icon: Icon,
-    partyId: '',
     level: 4,
-    experience: 0,
-    class: 'enemy',
-    healthOffset: 0,
-    inspirationOffset: 0,
-    tags: [],
     stats: {
       ...BASE_C_STATS,
       strength: 52,
@@ -28,33 +23,22 @@ export const BUCCANEER = (): tCharacter => {
       charisma: 64,
       agility: getRandom([75, 76, 77, 78, 79, 80, 81, 82]),
       luck: 50,
-      armor: 1,
+      armor: 6,
       resistance: 0,
       evasion: 20,
-      maxHealthOffset: -31,
+      maxHealthOffset: -34,
     },
-    armor: [],
-    consumables: [],
-    status: [],
-    immunities: [],
     weapon: {
-      id: v4(),
+      ...BASE_WEAPON(),
       name: 'Buccaneer Dagger',
-      itemType: 'weapon',
-      rarity: 'common',
-      type: 'dagger',
+      type: 'enemy',
       stat: 'strength',
-      goldValue: 0,
-      twoHand: false,
-      breakable: false,
       damage: {
         value: 12,
         range: 'melee',
         type: 'physical',
       },
-      stats: ZERO_STATS,
       skills: [STAB],
-      immunities: [],
     },
     possibleRewards: [
       {
@@ -82,13 +66,13 @@ export const BUCCANEER = (): tCharacter => {
         ...ZERO_REWARD,
         gold: 20,
         xp: 18,
-        items: [],
+        items: [getRandomItem(1)],
       },
       {
         ...ZERO_REWARD,
         gold: 80,
         xp: 20,
-        items: [],
+        items: [getRandomItem(2)],
       },
     ],
   }

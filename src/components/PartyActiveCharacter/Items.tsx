@@ -54,6 +54,7 @@ export const Items = (props: ItemPropsT) => {
         const disabled = res === 'offhand' && character.weapon.twoHand
         return (
           <Item
+            key={res}
             disabled={disabled}
             character={character}
             resource={res}

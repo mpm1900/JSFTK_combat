@@ -19,6 +19,7 @@ export const EncounterHistory = (props: EncounterHistoryPropsT) => {
   const { floors, floor, level } = useGameStateContext()
   const chosenEncounters = (floor: tFloor) =>
     floor.encounters.map((e) => (e.value ? e[e.value] : undefined))
+
   const getIcon = (type: tEncounterType | undefined): string => {
     switch (type) {
       case 'combat':
@@ -44,7 +45,7 @@ export const EncounterHistory = (props: EncounterHistoryPropsT) => {
           style={{ justifyContent: 'space-evenly', padding: 32 }}
         >
           {chosenEncounters(f).map((e, i) => (
-            <FlexContainer $full>
+            <FlexContainer key={i} $full>
               <BoxContainer
                 substyle={{
                   padding: 4,

@@ -61,7 +61,7 @@ export const SkillCheck = (props: SkillCheckT) => {
         $size={size}
         $style={{
           borderColor: perfect ? colors.border : undefined,
-          background: perfect ? colors.background : Theme.darkBgColor,
+          background: perfect ? colors.background : Theme.darkBgColorSolid,
         }}
       >
         <Icon

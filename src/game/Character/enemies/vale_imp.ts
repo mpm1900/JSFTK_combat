@@ -2,23 +2,19 @@ import Imp from '../../../icons/svg/lorc/imp-laugh.svg'
 import { tCharacter } from '../type'
 import { v4 } from 'uuid'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { SLAP } from '../../Skill/objects/enemy/slap'
+import { SLAP } from '../../Skill/enemy/slap'
 import { getRandom } from '../../../util'
 import { ZERO_REWARD } from '../../Encounter/constants'
+import { BASE_CHARACTER } from '../constants'
+import { BASE_WEAPON } from '../../Weapon/constants'
+import { getRandomItem } from '../../Item/util'
 
 export const VALE_IMP = (): tCharacter => {
   return {
-    id: v4(),
+    ...BASE_CHARACTER(),
     name: 'Vale Imp',
-    isCharacter: true,
     icon: Imp,
-    partyId: '',
     level: 1,
-    experience: 0,
-    class: 'enemy',
-    healthOffset: 0,
-    inspirationOffset: 0,
-    tags: [],
     stats: {
       ...BASE_C_STATS,
       vigor: -80,
@@ -32,8 +28,6 @@ export const VALE_IMP = (): tCharacter => {
       resistance: 0,
       evasion: 10,
     },
-    armor: [],
-    consumables: [],
     status: [
       {
         duration: -1,
@@ -43,25 +37,17 @@ export const VALE_IMP = (): tCharacter => {
         immunities: [],
       },
     ],
-    immunities: [],
     weapon: {
-      id: v4(),
+      ...BASE_WEAPON(),
       name: 'Imp Fists',
-      itemType: 'weapon',
-      rarity: 'common',
       type: 'enemy',
       stat: 'dexterity',
-      twoHand: true,
-      breakable: false,
-      goldValue: 0,
       damage: {
         value: 6,
         range: 'melee',
         type: 'physical',
       },
-      stats: ZERO_STATS,
       skills: [SLAP],
-      immunities: [],
     },
     possibleRewards: [
       {
@@ -88,13 +74,13 @@ export const VALE_IMP = (): tCharacter => {
         ...ZERO_REWARD,
         gold: 0,
         xp: 7,
-        items: [],
+        items: [getRandomItem(0)],
       },
       {
         ...ZERO_REWARD,
         gold: 0,
         xp: 7,
-        items: [],
+        items: [getRandomItem(1)],
       },
     ],
   }

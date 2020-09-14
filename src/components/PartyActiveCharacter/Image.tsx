@@ -1,11 +1,8 @@
 import React from 'react'
 import { FlexContainer } from '../../elements/flex'
-import { BoxContainer } from '../../elements/box'
-import { CharacterImage } from '../CharacterImage'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { CharacterIcon } from '../CharacterIcon'
 
-const SIZE = 100
 export interface ImagePropsT {
   character: tProcessedCharacter
 }

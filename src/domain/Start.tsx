@@ -91,7 +91,11 @@ export const Start = () => {
           </h1>
           <FlexContainer>
             {party.characters.map((character) => (
-              <FlexContainer $direction='column' style={{ padding: 4 }}>
+              <FlexContainer
+                key={character.id}
+                $direction='column'
+                style={{ padding: 4 }}
+              >
                 <StartCharacterCard
                   character={character}
                   onChange={(characterId, updater) => {

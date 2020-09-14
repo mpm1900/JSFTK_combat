@@ -13,7 +13,6 @@ import { tEncounterReward } from '../Encounter/type'
 import { tArmor } from '../Armor/type'
 import { tWeapon } from '../Weapon/type'
 import { tConsumable } from '../Consumable/type'
-import { ALL_BOSSES } from '../Character/bosses'
 import { FLOOR_CONFIGS_BY_INDEX } from '../Encounter/floors'
 
 export const isParty = (obj: any): boolean =>
@@ -82,12 +81,13 @@ export const makeParty = (level: number, floor: number): tParty => {
 }
 
 export const makeBossParty = (floor: number): tParty => {
+  const config = FLOOR_CONFIGS_BY_INDEX[floor]
   return {
     isParty: true,
     id: v4(),
     gold: 0,
     items: [],
-    characters: [getRandom(ALL_BOSSES())],
+    characters: [getRandom(config.bosses)],
   }
 }
 

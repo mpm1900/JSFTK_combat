@@ -26,6 +26,10 @@ export interface tStats extends tBaseStats {
   maxHealthOffset: number
   healthRegeneration: number // recur
   damageTakenModifier: number
+  damageTakenRangeModifiers: {
+    melee: number
+    ranged: number
+  }
   damageReflection: Record<tDamageRange, number>
 
   // DAMAGE

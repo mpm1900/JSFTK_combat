@@ -8,13 +8,11 @@ import { SKILL_ICONS } from '../../icons/maps'
 import { Icon } from '../Icon'
 import { Hover } from '../Hover'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
-import { HEAL } from '../../game/Skill/objects/heal'
-import { useUIContext } from '../../contexts/UIContext'
-import { Tooltip } from '../Tooltip'
 import { Theme } from '../../theme'
 import { useModalContext } from '../../contexts/ModalContext'
 import { EquipItemModal } from '../EquipItemModal'
 import Inventory from '../../icons/svg/lorc/knapsack.svg'
+import { HEAL } from '../../game/Skill/skills/armor'
 
 export const CombatActions = () => {
   const {
@@ -25,8 +23,6 @@ export const CombatActions = () => {
     onSkillSelect,
     equipItemCombat,
   } = useCombatContext()
-
-  const { showSkillTooltips } = useUIContext()
   const { open } = useModalContext()
 
   if (!activeCharacter || activeCharacter.partyId !== PLAYER_PARTY_ID)
@@ -34,7 +30,7 @@ export const CombatActions = () => {
 
   const stat = selectedSkill?.weaponStatOverride || activeCharacter.weapon.stat
   const skills = activeCharacter.skills.filter((skill) => {
-    if (activeCharacter.healthOffset === 0 && skill.id === HEAL('').id) {
+    if (activeCharacter.healthOffset === 0 && skill.id === HEAL.id) {
       return false
     } else {
       return true
@@ -46,11 +42,11 @@ export const CombatActions = () => {
       <FlexContainer style={{ justifyContent: 'center', minHeight: 42 }}>
         {skills.map((skill) => (
           <React.Fragment key={skill.id}>
-            {SKILL_ICONS[skill.id] ? (
+            {SKILL_ICONS[skill.name] ? (
               <Hover delay={0}>
                 {({ isHovering }) => (
                   <Icon
-                    src={SKILL_ICONS[skill.id]}
+                    src={SKILL_ICONS[skill.name]}
                     size={42}
                     shadow={true}
                     style={{

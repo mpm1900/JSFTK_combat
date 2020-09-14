@@ -1,24 +1,19 @@
 import BeastMan from '../../../icons/svg/delapouite/orc-head.svg'
 import { tCharacter } from '../type'
-import { v4 } from 'uuid'
-import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { IMPALE } from '../../Skill/objects/enemy/impale'
+import { BASE_C_STATS } from '../../Stats/constants'
+import { IMPALE } from '../../Skill/enemy/impale'
 import { getRandom } from '../../../util'
 import { ZERO_REWARD } from '../../Encounter/constants'
+import { BASE_CHARACTER } from '../constants'
+import { BASE_WEAPON } from '../../Weapon/constants'
+import { getRandomItem } from '../../Item/util'
 
 export const BEASTMAN = (): tCharacter => {
   return {
-    id: v4(),
+    ...BASE_CHARACTER(),
     name: 'Beastman',
-    isCharacter: true,
     icon: BeastMan,
-    partyId: '',
     level: 1,
-    experience: 0,
-    class: 'enemy',
-    healthOffset: 0,
-    inspirationOffset: 0,
-    tags: [],
     stats: {
       ...BASE_C_STATS,
       vigor: -80,
@@ -32,28 +27,17 @@ export const BEASTMAN = (): tCharacter => {
       resistance: 0,
       evasion: 10,
     },
-    armor: [],
-    status: [],
-    consumables: [],
-    immunities: [],
     weapon: {
-      id: v4(),
+      ...BASE_WEAPON(),
       name: 'Beastman Spear',
-      itemType: 'weapon',
-      rarity: 'common',
-      type: 'spear',
+      type: 'enemy',
       stat: 'strength',
-      goldValue: 0,
-      twoHand: true,
-      breakable: false,
       damage: {
         value: 8,
         range: 'melee',
         type: 'physical',
       },
-      stats: ZERO_STATS,
       skills: [IMPALE],
-      immunities: [],
     },
     possibleRewards: [
       {
@@ -85,13 +69,13 @@ export const BEASTMAN = (): tCharacter => {
         ...ZERO_REWARD,
         gold: 20,
         xp: 10,
-        items: [],
+        items: [getRandomItem(1)],
       },
       {
         ...ZERO_REWARD,
         gold: 20,
         xp: 10,
-        items: [],
+        items: [getRandomItem(1)],
       },
     ],
   }

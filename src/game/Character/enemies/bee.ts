@@ -1,24 +1,20 @@
 import Bee from '../../../icons/svg/lorc/bee.svg'
-import { v4 } from 'uuid'
 import { tCharacter } from '../type'
-import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { STING, INFECTIOUS_STING } from '../../Skill/objects/enemy/sting'
+import { BASE_C_STATS } from '../../Stats/constants'
+import { STING, INFECTIOUS_STING } from '../../Skill/enemy/sting'
 import { getRandom } from '../../../util'
 import { GODSBEARD } from '../../Consumable/objects/godsbeard'
 import { ZERO_REWARD } from '../../Encounter/constants'
+import { BASE_CHARACTER } from '../constants'
+import { BASE_WEAPON } from '../../Weapon/constants'
+import { getRandomItem } from '../../Item/util'
 
 export const BEE = (): tCharacter => {
   return {
-    id: v4(),
+    ...BASE_CHARACTER(),
     name: 'Bee',
-    isCharacter: true,
     icon: Bee,
-    partyId: '',
     level: 1,
-    experience: 0,
-    class: 'enemy',
-    healthOffset: 0,
-    inspirationOffset: 0,
     tags: ['flying'],
     stats: {
       ...BASE_C_STATS,
@@ -34,28 +30,17 @@ export const BEE = (): tCharacter => {
       evasion: 17,
       maxHealthOffset: -4,
     },
-    armor: [],
-    consumables: [],
-    status: [],
-    immunities: [],
     weapon: {
-      id: v4(),
+      ...BASE_WEAPON(),
       name: 'Bee Stinger',
-      itemType: 'weapon',
-      rarity: 'common',
       type: 'enemy',
       stat: 'dexterity',
-      goldValue: 0,
-      twoHand: true,
-      breakable: false,
       damage: {
         value: 12,
         range: 'melee',
         type: 'physical',
       },
-      stats: ZERO_STATS,
       skills: [STING, INFECTIOUS_STING],
-      immunities: [],
     },
     possibleRewards: [
       {
@@ -82,7 +67,7 @@ export const BEE = (): tCharacter => {
         ...ZERO_REWARD,
         gold: 8,
         xp: 8,
-        items: [],
+        items: [getRandomItem(0)],
       },
       {
         ...ZERO_REWARD,

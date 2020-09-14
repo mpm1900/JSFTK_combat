@@ -31,8 +31,9 @@ export const Hexagon = (props: HexagonPropsT) => {
       <div
         style={{
           width: `${boxW}px`,
-          height: `${boxH + 1}px`,
+          height: `${boxH + 2}px`,
           marginTop: '-1px',
+          marginBottom: '-1px',
           background: color,
         }}
       />
@@ -85,7 +86,7 @@ export const HexBadge = (props: HexBadgePropsT) => {
       onClick={onClick}
     >
       <Hexagon size={size} color={Theme.darkBgColorSolid}>
-        <Hexagon size={size - 4} color={Theme.lightBgColor}>
+        <Hexagon size={size - 4} color={Theme.badgeBorderColor}>
           <Hexagon size={size - 6} color={Theme.darkBgColorSolid}>
             <Hexagon
               size={size - 8}

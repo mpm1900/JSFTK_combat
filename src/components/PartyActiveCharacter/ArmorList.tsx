@@ -32,7 +32,7 @@ export const ArmorList = (props: ArmorListPropsT) => {
       ).map(({ item, count }) => {
         const armor = item as tArmor
         return (
-          <FlexContainer $direction='column'>
+          <FlexContainer key={armor.id} $direction='column'>
             <Row
               $active={item.id === activeItemId}
               onMouseEnter={() => setActiveItem(armor)}

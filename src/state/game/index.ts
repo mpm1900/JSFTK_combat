@@ -89,7 +89,7 @@ export const core: StateCoreT<GameStateT> = {
       ...state,
       level: 0,
       floor: 0,
-      floors: [makeFloor(0, 2), makeFloor(1, 11)],
+      floors: [makeFloor(0, 11)],
     }
   },
   [CHOOSE_CURRENT]: (state, action) => {
@@ -168,7 +168,7 @@ export const core: StateCoreT<GameStateT> = {
 export const INITIAL_STATE: GameStateT = {
   level: 0,
   floor: 0,
-  floors: [makeFloor(0, 11), makeFloor(1, 11)],
+  floors: [makeFloor(0, 11)],
 }
 
 export default makeReducer(core, INITIAL_STATE)

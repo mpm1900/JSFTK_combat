@@ -1,6 +1,6 @@
 import { tConsumable } from '../type'
 import { v4 } from 'uuid'
-import { HEAL } from '../../Skill/objects/heal'
+import { HEAL } from '../../Skill/skills/armor'
 
 const cid = v4()
 export const GODSBEARD = (): tConsumable => {
@@ -11,7 +11,10 @@ export const GODSBEARD = (): tConsumable => {
     name: 'Godsbeard',
     itemType: 'consumable',
     rarity: 'common',
-    skill: HEAL(id),
+    skill: {
+      ...HEAL,
+      consumableId: id,
+    },
     goldValue: 40,
   }
 }

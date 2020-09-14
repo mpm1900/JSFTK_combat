@@ -12,6 +12,7 @@ import { Health } from './Health'
 import { LocalToastRp } from '../../contexts/LocalToastContext'
 import { ZERO_STATS } from '../../game/Stats/constants'
 import { Theme } from '../../theme'
+import { HoverHexBadge } from '../../elements/shapes'
 
 export interface EnemyCharacterPropsT {
   character: tProcessedCharacter
@@ -90,18 +91,21 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
               showNumbers={false}
             />
           </div>
-          <HoverBadge
+          <HoverHexBadge
             direction='down'
             content={<BoxContainer>Enemy Level</BoxContainer>}
-            badgeProps={{
-              $left: '-6px',
-              $bottom: '-6px',
-              $size: '16px',
-              $color: 'lightcoral',
+            position={{
+              left: -6,
+              bottom: -12,
+            }}
+            size={32}
+            childStyle={{
+              color: 'lightcoral',
+              paddingTop: 1,
             }}
           >
-            <span>{character.level}</span>
-          </HoverBadge>
+            {character.level}
+          </HoverHexBadge>
           <FlexContainer
             style={{
               position: 'absolute',
@@ -129,42 +133,38 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
           <FlexContainer
             style={{
               position: 'absolute',
-              bottom: '-8px',
-              right: '16px',
-              width: 52,
+              bottom: '-22px',
+              left: 'calc(100% - 58px)',
               alignItems: 'center',
+              justifyContent: 'flex-start',
             }}
           >
-            <FullContainer />
             {character.stats.armor > 0 && (
-              <HoverBadge
+              <HoverHexBadge
                 direction='down'
                 content={<BoxContainer>Armor</BoxContainer>}
-                badgeProps={{
-                  $top: '-17px',
-                  $right: '-10px',
-                  $size: '12px',
-                  $color: Theme.physicalColor,
+                size={28}
+                childStyle={{
+                  color: Theme.physicalColor,
+                  paddingTop: 1,
                 }}
               >
                 <span>{character.stats.armor}</span>
-              </HoverBadge>
+              </HoverHexBadge>
             )}
             {character.stats.resistance > 0 && (
-              <HoverBadge
+              <HoverHexBadge
                 direction='down'
                 content={<BoxContainer>Magic Resistance</BoxContainer>}
-                badgeProps={{
-                  $top: '-17px',
-                  $right: '17px',
-                  $size: '12px',
-                  $color: Theme.magicColor,
+                size={28}
+                childStyle={{
+                  color: Theme.magicColor,
+                  paddingTop: 1,
                 }}
               >
                 <span>{character.stats.resistance}</span>
-              </HoverBadge>
+              </HoverHexBadge>
             )}
-            <FullContainer />
           </FlexContainer>
         </FlexContainer>
         <LocalToastRp style={{ top: -24, right: -30, flexDirection: 'column' }}>

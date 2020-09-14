@@ -16,7 +16,7 @@ export const AppHeader = (props: AppHeaderPropsT) => {
       <FlexContainer
         style={{
           justifyContent: 'center',
-          background: Theme.darkBgColor,
+          background: Theme.darkBgColorSolid,
           height: 52,
           borderBottom: '2px solid rgba(255,255,255,0.3)',
           boxShadow: '1px 1px 1px black',

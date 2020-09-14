@@ -1,16 +1,7 @@
-import { TIMBERWOLF } from './timberwolf'
-import { VALE_IMP } from './vale_imp'
-import { BEASTMAN } from './beastman'
-import { BANDIT } from './bandit'
-import { BEE } from './bee'
-import { BUCCANEER } from './buccaneer'
-import { tCharacter } from '../type'
-
-export const ALL_ENEMIES: (() => tCharacter)[] = [
-  BANDIT,
-  BEASTMAN,
-  BEE,
-  BUCCANEER,
-  TIMBERWOLF,
-  VALE_IMP,
-]
+export { BANDIT } from './bandit'
+export { BEASTMAN } from './beastman'
+export { BEE } from './bee'
+export { BUCCANEER } from './buccaneer'
+export { CULTIST } from './cultist'
+export { TIMBERWOLF } from './timberwolf'
+export { VALE_IMP } from './vale_imp'

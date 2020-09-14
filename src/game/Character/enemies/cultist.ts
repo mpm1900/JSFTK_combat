@@ -3,23 +3,19 @@ import Cultist from '../../../icons/svg/lorc/cultist.svg'
 import { tCharacter } from '../type'
 import { v4 } from 'uuid'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { TORCH } from '../../Skill/objects/enemy/torch'
-import { IMPALE } from '../../Skill/objects/enemy/impale'
+import { TORCH } from '../../Skill/enemy/torch'
+import { IMPALE } from '../../Skill/enemy/impale'
 import { ZERO_REWARD } from '../../Encounter/constants'
+import { BASE_CHARACTER } from '../constants'
+import { BASE_WEAPON } from '../../Weapon/constants'
+import { getRandomItem } from '../../Item/util'
 
 export const CULTIST = (): tCharacter => {
   return {
-    id: v4(),
+    ...BASE_CHARACTER(),
     name: 'Cultist',
-    isCharacter: true,
     icon: Cultist,
-    partyId: '',
     level: 1,
-    experience: 0,
-    class: 'enemy',
-    healthOffset: 0,
-    inspirationOffset: 0,
-    tags: [],
     stats: {
       ...BASE_C_STATS,
       strength: 50,
@@ -34,28 +30,17 @@ export const CULTIST = (): tCharacter => {
       evasion: 15,
       maxHealthOffset: -19,
     },
-    armor: [],
-    consumables: [],
-    status: [],
-    immunities: [],
     weapon: {
-      id: v4(),
+      ...BASE_WEAPON(),
       name: 'Cultist Torch',
-      itemType: 'weapon',
-      rarity: 'common',
-      type: 'magic-staff',
+      type: 'enemy',
       stat: 'intelligence',
-      goldValue: 0,
-      twoHand: true,
-      breakable: false,
       damage: {
         value: 14,
         range: 'melee',
         type: 'magic',
       },
-      stats: ZERO_STATS,
       skills: [TORCH, IMPALE],
-      immunities: [],
     },
     possibleRewards: [
       {
@@ -88,13 +73,13 @@ export const CULTIST = (): tCharacter => {
         ...ZERO_REWARD,
         gold: 20,
         xp: 20,
-        items: [],
+        items: [getRandomItem(1)],
       },
       {
         ...ZERO_REWARD,
         gold: 80,
         xp: 20,
-        items: [],
+        items: [getRandomItem(2)],
       },
     ],
   }

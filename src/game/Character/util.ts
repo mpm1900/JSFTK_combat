@@ -17,7 +17,7 @@ import { CLASS_CONSUMABLES } from '../Consumable/constants'
 import { considateConsumableListToStack } from '../Consumable/util'
 import { CHARACTER_XP_MAX } from './constants'
 import { tEncounterReward } from '../Encounter/type'
-import { FISTS } from '../Weapon/objects/fists'
+import { FISTS } from '../Weapon/fists'
 
 export const isCharacter = (obj: any): boolean =>
   obj !== undefined && obj.isCharacter !== undefined
@@ -172,7 +172,9 @@ export const commitDamage = (
   checkForProcessedCharacter(character)
   const pc = processCharacter(character)
   const resistance = ignoreResistance ? 0 : getDamageResistance(pc, damage)
-  const damageTakenModifier = pc.stats.damageTakenModifier
+  const damageTakenModifier =
+    pc.stats.damageTakenModifier +
+    pc.stats.damageTakenRangeModifiers[damage.range]
   const rawDamageValue = damage.value * damageTakenModifier
   if (hasStatus(character, 'protected')) {
     return {

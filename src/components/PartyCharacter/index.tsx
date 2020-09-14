@@ -197,8 +197,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       </FlexContainer>
       <HoverHexBadge
         position={{
-          bottom: 72,
-          left: 0,
+          bottom: 67,
+          left: -3,
         }}
         rotate
         size={32}
@@ -213,8 +213,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       </HoverHexBadge>
       <HoverHexBadge
         position={{
-          bottom: 40,
-          left: 0,
+          bottom: 36,
+          left: -3,
         }}
         rotate
         size={32}
@@ -229,8 +229,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       </HoverHexBadge>
       <HoverHexBadge
         position={{
-          bottom: 23,
-          left: 25,
+          bottom: 18,
+          left: 23,
         }}
         rotate
         size={32}

@@ -21,6 +21,14 @@ export const combineStats = (...stats: tStats[]) => {
       healthRegeneration: result.healthRegeneration + stats.healthRegeneration,
       damageTakenModifier:
         result.damageTakenModifier + stats.damageTakenModifier,
+      damageTakenRangeModifiers: {
+        melee:
+          result.damageTakenRangeModifiers.melee +
+          stats.damageTakenRangeModifiers.melee,
+        ranged:
+          result.damageTakenRangeModifiers.ranged +
+          stats.damageTakenRangeModifiers.ranged,
+      },
       damageReflection: {
         melee: result.damageReflection.melee + stats.damageReflection.melee,
         ranged: result.damageReflection.ranged + stats.damageReflection.ranged,
@@ -66,6 +74,10 @@ export const multiplyStats = (stats: tStats, modifier: number): tStats => ({
   maxHealthOffset: stats.maxHealthOffset * modifier,
   healthRegeneration: stats.healthRegeneration * modifier,
   damageTakenModifier: stats.damageTakenModifier * modifier,
+  damageTakenRangeModifiers: {
+    melee: stats.damageTakenRangeModifiers.melee * modifier,
+    ranged: stats.damageTakenRangeModifiers.ranged * modifier,
+  },
   damageReflection: {
     melee: stats.damageReflection.melee * modifier,
     ranged: stats.damageReflection.ranged * modifier,

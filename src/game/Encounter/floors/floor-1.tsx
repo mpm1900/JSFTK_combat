@@ -1,67 +1,37 @@
-import { WOODCUTTERS_AXE } from '../../Weapon/objects/axe'
-import {
-  CRUDE_CLUB,
-  GLASS_HAMMER,
-  MACE,
-  WAR_PICK,
-} from '../../Weapon/objects/blunt'
-import { COMPOSITE_BOW, CURVED_BOW, GLASS_BOW } from '../../Weapon/objects/bow'
-import {
-  ARCHLUTE,
-  BARBAT,
-  DECENT_LUTE,
-  FANCY_LUTE,
-} from '../../Weapon/objects/lute'
-import { BANDIT_GLAIVE } from '../../Weapon/objects/spear'
-import { BOKKEN } from '../../Weapon/objects/sword'
-import {
-  APPRENTICES_TOME,
-  DUSTY_BOOK,
-  MAGES_TOME,
-} from '../../Weapon/objects/tome'
-import { ALL_FLOOR_1_ARMOR } from '../../Armor/objects/index'
 import { tFloorConfig } from '../type'
-import { TIMBERWOLF } from '../../Character/enemies/timberwolf'
-import { BEASTMAN } from '../../Character/enemies/beastman'
-import { VALE_IMP } from '../../Character/enemies/vale_imp'
-import { BEE } from '../../Character/enemies/bee'
-import { CULTIST } from '../../Character/enemies/cultist'
-import { BANDIT } from '../../Character/enemies/bandit'
-import { BUCCANEER } from '../../Character/enemies/buccaneer'
+import {
+  TIMBERWOLF,
+  BEASTMAN,
+  VALE_IMP,
+  BEE,
+  CULTIST,
+  BANDIT,
+  BUCCANEER,
+} from '../../Character/enemies'
+import { LICH } from '../../Character/bosses'
+import { WEAPONS } from '../../Weapon/builders/objects'
+import { ARMOR_BY_LEVEL } from '../../Armor/builders/sets'
 
 const FLOOR_1_WEAPONS = () => [
-  // blunt
-  CRUDE_CLUB(),
-  GLASS_HAMMER(),
-  MACE(),
-  WAR_PICK(),
-  // axe
-  WOODCUTTERS_AXE(),
-  // bow
-  COMPOSITE_BOW(),
-  CURVED_BOW(),
-  GLASS_BOW(),
-  // dagger
-  // lute
-  ARCHLUTE(),
-  BARBAT(),
-  DECENT_LUTE(),
-  FANCY_LUTE(),
-  // magic-staff
-  // pistol
-  // spear
-  BANDIT_GLAIVE(),
-  // sword
-  BOKKEN(),
-  // tome
-  APPRENTICES_TOME(),
-  DUSTY_BOOK(),
-  MAGES_TOME(),
-  // torch
+  ...WEAPONS[1],
+  ...WEAPONS[2],
+  ...WEAPONS[3],
+  ...WEAPONS[4],
+  ...WEAPONS[5],
+]
+
+const FLOOR_1_ARMOR = () => [
+  ...ARMOR_BY_LEVEL[0],
+  ...ARMOR_BY_LEVEL[1],
+  ...ARMOR_BY_LEVEL[2],
 ]
 
 export const FloorConfig1: tFloorConfig = {
-  items: [...FLOOR_1_WEAPONS(), ...ALL_FLOOR_1_ARMOR()],
+  bosses: [LICH()],
+  items: [
+    ...FLOOR_1_WEAPONS().map((w) => w()),
+    ...FLOOR_1_ARMOR().map((a) => a()),
+  ],
   enemies: {
     0: [
       [TIMBERWOLF(), TIMBERWOLF(), TIMBERWOLF()],

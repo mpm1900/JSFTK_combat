@@ -1,6 +1,7 @@
-import { noneg } from '../../util'
-import { tCharacterClass } from './type'
+import { tCharacter, tCharacterClass } from './type'
 import { Theme } from '../../theme'
+import { v4 } from 'uuid'
+import { BASE_C_STATS } from '../Stats/constants'
 
 export const CHARACTER_XP_MAX: Record<number, number> = {
   [-1]: 0,
@@ -26,4 +27,27 @@ export const CHARACTER_CLASS_COLORS: Record<tCharacterClass, string> = {
   scholar: '#665166',
   hunter: '#334233',
   hobo: '#111',
+}
+
+export const BASE_CHARACTER = (): tCharacter => {
+  return {
+    id: v4(),
+    name: '',
+    isCharacter: true,
+    icon: '',
+    partyId: '',
+    level: 0,
+    experience: 0,
+    class: 'enemy',
+    healthOffset: 0,
+    inspirationOffset: 0,
+    tags: [],
+    stats: BASE_C_STATS,
+    weapon: undefined,
+    armor: [],
+    consumables: [],
+    status: [],
+    immunities: [],
+    possibleRewards: [],
+  }
 }

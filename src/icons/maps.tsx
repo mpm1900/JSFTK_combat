@@ -17,25 +17,32 @@ import Snowflake from './svg/lorc/snowflake-2.svg'
 import ArmorDown from './svg/lorc/broken-shield.svg'
 
 import Shot from './svg/lorc/high-shot.svg'
-import SnipeShot from './svg/delapouite/shield-impact.svg'
-import Surge from './svg/lorc/fire-zone.svg'
-import AreaBast from './svg/lorc/heavy-timer.svg'
-import Dazzle from './svg/lorc/ubisoft-sun.svg'
+import Headshot from './svg/delapouite/shield-impact.svg'
+import Arcane from './svg/lorc/fire-zone.svg'
+import Nova from './svg/lorc/heavy-timer.svg'
+import Stun from './svg/lorc/ubisoft-sun.svg'
 import Smash from './svg/lorc/flat-hammer.svg'
 import Shockwave from './svg/lorc/hammer-drop.svg'
 import Taunt from './svg/lorc/bordered-shield.svg'
-import Alto from './svg/delapouite/g-clef.svg'
+import Ring from './svg/lorc/ringing-bell.svg'
+import Reverberate from './svg/lorc/resonance.svg'
 import Protect from './svg/lorc/shieldcomb.svg'
 import PinDown from './svg/lorc/energy-arrow.svg'
 import Reset from './svg/delapouite/backward-time.svg'
+import Slow from './svg/lorc/snail.svg'
 import SpreadShot from './svg/lorc/double-shot.svg'
 import TimeJump from './svg/delapouite/extra-time.svg'
 import Heal from './svg/sbed/health-normal.svg'
-import CuttingSwing from './svg/lorc/wave-strike.svg'
+import Lunge from './svg/lorc/wave-strike.svg'
 import Restore from './svg/lorc/life-support.svg'
 import Dodging from './svg/lorc/dodging.svg'
 import Chop from './svg/lorc/axe-in-stump.svg'
-import PowerStrike from './svg/lorc/pointy-sword.svg'
+import Strike from './svg/lorc/plain-dagger.svg'
+import Stab from './svg/lorc/knife-thrust.svg'
+import Cleave from './svg/lorc/pointy-sword.svg'
+import AxeSpin from './svg/lorc/axe-swing.svg'
+import Slice from './svg/lorc/saber-slash.svg'
+import ArmorUp from './svg/delapouite/vibrating-shield.svg'
 
 import MagicArmor from './svg/lorc/robe.svg'
 import ClothArmor from './svg/lorc/scale-mail.svg'
@@ -53,44 +60,19 @@ import Blunt from './svg/lorc/gavel.svg'
 import Bow from './svg/lorc/heavy-arrow.svg'
 import Dagger from './svg/lorc/bowie-knife.svg'
 import Handgun from './svg/skoll/revolver.svg'
-import Lute from './svg/lorc/guitar.svg'
 import MagicStaff from './svg/lorc/wizard-staff.svg'
 import Sword from './svg/lorc/broadsword.svg'
-import Spear from './svg/lorc/stone-spear.svg'
-import Tome from './svg/lorc/book-cover.svg'
-import Torch from './svg/delapouite/torch.svg'
+import Scythe from './svg/lorc/scythe.svg'
+import Chime from './svg/lorc/ringing-bell.svg'
+import Greatsword from './svg/lorc/croc-sword.svg'
 import Fist from './svg/skoll/fist.svg'
 
 import Godsbeard from './svg/delapouite/herbs-bundle.svg'
 import { tBaseStats } from '../game/Stats/type'
 import { tStatusType } from '../game/Status/type'
-import { SHOT } from '../game/Skill/objects/shot'
-import { SNIPE_SHOT } from '../game/Skill/objects/snipe_shot'
-import { PIERCING_BLOW } from '../game/Skill/objects/piercing_blow'
-import { PIN_DOWN } from '../game/Skill/objects/pin_down'
-import { SURGE } from '../game/Skill/objects/surge'
-import { AREA_BLAST } from '../game/Skill/objects/area_blast'
-import { SYMPHONY } from '../game/Skill/objects/symphony'
-import { DAZZLE } from '../game/Skill/objects/dazzle'
-import { RUBATO } from '../game/Skill/objects/rubato'
-import { SMASH, STRIKE, CHOP, HOBO_STAB } from '../game/Skill/objects/smash'
-import { SHOCKWAVE } from '../game/Skill/objects/shockwave'
-import { TAUNT } from '../game/Skill/objects/taunt'
-import { ALTO } from '../game/Skill/objects/alto'
-import { RITARDANDO } from '../game/Skill/objects/ritardando'
-import { PROTECT } from '../game/Skill/objects/protect'
-import { SPREAD_SHOT } from '../game/Skill/objects/spread_shot'
-import { STUN_ATTACK } from '../game/Skill/objects/stun_attack'
-import { TIME_JUMP } from '../game/Skill/objects/time_jump'
 import { GODSBEARD } from '../game/Consumable/objects/godsbeard'
 import { tArmorResourceType, tArmorType } from '../game/Armor/type'
-import { HEAL } from '../game/Skill/objects/heal'
 import { tWeaponType } from '../game/Weapon/type'
-import { CUTTING_SWING } from '../game/Skill/objects/cutting_swing'
-import { RESTORE } from '../game/Skill/objects/restore'
-import { PRESTO } from '../game/Skill/objects/presto'
-import { ANIMATO } from '../game/Skill/objects/animato'
-import { POWER_STRIKE } from '../game/Skill/objects/power_strike'
 import { tCharacterClass } from '../game/Character/type'
 
 import Blacksmith from './svg/delapouite/viking-head.svg'
@@ -125,41 +107,51 @@ export const STATUS_ICONS: Partial<Record<tStatusType, string>> = {
 }
 
 export const SKILL_ICONS: Record<string, string> = {
-  [SHOT.id]: Shot,
-  [SNIPE_SHOT.id]: SnipeShot,
-  [PIERCING_BLOW.id]: SnipeShot,
-  [PIN_DOWN.id]: PinDown,
-  [SURGE.id]: Surge,
-  [AREA_BLAST.id]: AreaBast,
-  [SYMPHONY.id]: AreaBast,
-  [DAZZLE.id]: Dazzle,
-  [RUBATO.id]: Reset,
-  [SMASH.id]: Smash,
-  [STRIKE.id]: Smash,
-  [SHOCKWAVE.id]: Shockwave,
-  [TAUNT.id]: Taunt,
-  [ALTO.id]: Alto,
-  [RITARDANDO.id]: Alto,
-  [PROTECT.id]: Protect,
-  [SPREAD_SHOT.id]: SpreadShot,
-  [STUN_ATTACK.id]: Dazzle,
-  [TIME_JUMP.id]: TimeJump,
-  [HEAL('').id]: Heal,
-  [CUTTING_SWING.id]: CuttingSwing,
-  [RESTORE.id]: Restore,
-  [PRESTO.id]: Agility,
-  [ANIMATO.id]: Dodging,
-  [CHOP.id]: Chop,
-  [POWER_STRIKE.id]: PowerStrike,
-  [HOBO_STAB.id]: PowerStrike,
+  Shot: Shot,
+  Headshot: Headshot,
+  'Pin Down': PinDown,
+  Flurry: SpreadShot,
+
+  Arcane: Arcane,
+  Nova: Nova,
+
+  Ring: Ring,
+  Reverberate: Reverberate,
+
+  Smash: Smash,
+  Strike: Strike,
+  Swing: Chop,
+  Chop: Chop,
+  Earthquake: Shockwave,
+  'Axe Spin': AxeSpin,
+  Cleave: Cleave,
+  Lunge: Lunge,
+  Stab: Stab,
+  Slice: Slice,
+  Swipe: Slice,
+
+  Stun: Stun,
+  Reset: Reset,
+
+  Taunt: Taunt,
+
+  Slow: Slow,
+  Protect: Protect,
+  'Time Jump': TimeJump,
+  Heal: Heal,
+  Restore: Restore,
+  Rush: Agility,
+  Vanish: Dodging,
+  'Evade Up': Dodging,
+  'Armor Up': ArmorUp,
 }
 
 export const ARMOR_TYPE_ICONS: Record<tArmorType, string> = {
   'magic-armor': MagicArmor,
-  'cloth-armor': ClothArmor,
-  armor: Armor,
+  'light-armor': ClothArmor,
+  'heavy-armor': Armor,
   shield: Shield,
-  'magic-shield': MagicShield,
+  ward: MagicShield,
   footwear: Footwear,
   hat: Hat,
   'magic-hat': MagicHat,
@@ -171,16 +163,15 @@ export const ARMOR_TYPE_ICONS: Record<tArmorType, string> = {
 export const WEAPON_TYPE_ICONS: Record<tWeaponType, string> = {
   enemy: '',
   axe: Axe,
-  blunt: Blunt,
+  hammer: Blunt,
   bow: Bow,
   dagger: Dagger,
+  chime: Chime,
   pistol: Handgun,
-  lute: Lute,
-  'magic-staff': MagicStaff,
-  spear: Spear,
+  catalyst: MagicStaff,
+  scythe: Scythe,
   sword: Sword,
-  tome: Tome,
-  torch: Torch,
+  greatsword: Greatsword,
   fist: Fist,
 }
 

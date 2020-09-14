@@ -2,10 +2,10 @@ import Lich from '../../../icons/svg/delapouite/overlord-helm.svg'
 import { tCharacter } from '../type'
 import { v4 } from 'uuid'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { LICH_DRAIN } from '../../Skill/objects/enemy/lich_drain'
-import { LICH_SCREECH } from '../../Skill/objects/enemy/lich_screech'
-import { LICH_MASS_SCREECH } from '../../Skill/objects/enemy/lich_mass_screech'
-import { LICH_SMITE } from '../../Skill/objects/enemy/lich_smite'
+import { LICH_DRAIN } from '../../Skill/enemy/lich_drain'
+import { LICH_SCREECH } from '../../Skill/enemy/lich_screech'
+import { LICH_MASS_SCREECH } from '../../Skill/enemy/lich_mass_screech'
+import { LICH_SMITE } from '../../Skill/enemy/lich_smite'
 
 export const LICH = (): tCharacter => {
   return {

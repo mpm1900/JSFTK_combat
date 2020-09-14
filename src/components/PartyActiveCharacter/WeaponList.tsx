@@ -32,7 +32,7 @@ export const WeaponList = (props: WeaponListPropsT) => {
       ).map(({ item, count }) => {
         const weapon = item as tWeapon
         return (
-          <FlexContainer $direction='column'>
+          <FlexContainer $direction='column' key={weapon.id}>
             <Row
               $active={weapon.id === activeItemId}
               onMouseEnter={() => setActiveItem(weapon)}

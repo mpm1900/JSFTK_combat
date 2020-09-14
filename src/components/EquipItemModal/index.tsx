@@ -14,7 +14,7 @@ export interface EquipItemModalPropsT {
 
 export const EquipItemModal = (props: EquipItemModalPropsT) => {
   const { equipItemCombat } = props
-  const { activeCharacter, party } = useCombatContext()
+  const { activeCharacter } = useCombatContext()
   const { close } = useModalContext()
   const onEquipItem = (characterId: string, item: tWeapon | tArmor) => {
     equipItemCombat(characterId, item)

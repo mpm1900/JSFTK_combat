@@ -24,19 +24,18 @@ export const Health = (props: HealthPropsT) => {
     <div style={{ position: 'relative', zIndex: 3 }}>
       <span
         style={{
-          padding: 4,
-          paddingLeft: 50,
+          padding: '4px 0',
+          paddingLeft: 44,
           fontSize: 56,
           height: 56,
-          width: 62,
+          minWidth: 86,
           lineHeight: '64px',
           color: Theme.healthRedColor,
           fontFamily: 'New Rocker',
-          minWidth: 44,
           display: 'flex',
           textAlign: 'center',
           textShadow: '1px 1px 3px black',
-          justifyContent: 'flex-end',
+          justifyContent: 'center',
         }}
       >
         <Spring
