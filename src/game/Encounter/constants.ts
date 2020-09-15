@@ -1,8 +1,12 @@
 import { tEncounterReward, tEncounterChoice, tCombatEncounter } from './type'
 import { getRandom } from '../../util'
-import { ALL_WEAPONS } from '../Weapon/constants'
-import { ALL_ARMOR } from '../Armor/objects'
 import { stringArr } from '../../util/stringArr'
+import { FLOOR_CONFIGS_BY_INDEX } from './floors'
+import Forest1 from '../../assets/img/forests/7.png'
+import Forest2 from '../../assets/img/forests/8.png'
+import Forest3 from '../../assets/img/forests/1.png'
+import Dungeon1 from '../../assets/img/dungeon/3.png'
+import Dungeon2 from '../../assets/img/dungeon/1.png'
 
 export const ZERO_REWARD: tEncounterReward = {
   gold: 0,
@@ -58,9 +62,9 @@ const justXp = (xp: number) => ({
   ...ZERO_REWARD,
   xp,
 })
-const justRandomItem = (): tEncounterReward => ({
+const justRandomItem = (floor: number = 0): tEncounterReward => ({
   ...ZERO_REWARD,
-  items: [getRandom([...ALL_WEAPONS(), ...ALL_ARMOR()])],
+  items: [getRandom(FLOOR_CONFIGS_BY_INDEX()[floor].items)],
 })
 
 export const POSSIBLE_SHINE_REWARDS = (): tEncounterReward[][] => [
@@ -91,8 +95,6 @@ export const getChoiceText = (
   previousChoice: tEncounterChoice | undefined,
 ): string => {
   let text = ''
-  console.log(previousChoice)
-  console.log('get choice text')
   const previousEncounter = previousChoice
     ? previousChoice[previousChoice.value || 'left']
     : undefined
@@ -117,4 +119,86 @@ export const getChoiceText = (
       'Your party has traveled far, but it is now time for the final fight.'
   }
   return text
+}
+
+export const getEncounterBg = (
+  level: number,
+  floor: number,
+): { bg: string; overlay: string } => {
+  return [
+    [
+      {
+        // 0
+        bg: Forest1,
+        overlay: 'transparent',
+      },
+      {
+        // 1
+        bg: Forest1,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 2
+        bg: Forest1,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 3
+        bg: Forest1,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 4
+        bg: Forest1,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 5
+        bg: Forest2,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 6
+        bg: Forest2,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 7
+        bg: Forest2,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 8
+        bg: Forest2,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 9
+        bg: Forest3,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 10
+        bg: Dungeon1,
+        overlay: 'transparent',
+      },
+    ],
+    [
+      {
+        // 0
+        bg: Dungeon2,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 1
+        bg: Dungeon2,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 2
+        bg: Dungeon2,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+    ],
+  ][floor][level]
 }

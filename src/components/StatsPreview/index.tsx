@@ -27,6 +27,7 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
         (key) =>
           (stats[key] as number) > 0 && (
             <span
+              key={key}
               style={{
                 textTransform: 'capitalize',
                 color: defense_key_colors[key],
@@ -40,7 +41,7 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
       {DAMAGE_BONUS_KEYS.map(
         (key) =>
           (stats[key] as number) > 0 && (
-            <span style={{ textTransform: 'capitalize' }}>
+            <span key={key} style={{ textTransform: 'capitalize' }}>
               +{stats[key]}
               {STAT_KEY_LABELS[key]}
             </span>
@@ -49,7 +50,7 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
       {HEALTH_FOCUS_BONUS_KEYS.map(
         (key) =>
           (stats[key] as number) > 0 && (
-            <span style={{ textTransform: 'capitalize' }}>
+            <span key={key} style={{ textTransform: 'capitalize' }}>
               +{stats[key]}
               {STAT_KEY_LABELS[key]}
             </span>
@@ -59,6 +60,7 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
         (key) =>
           stats[key] > 0 && (
             <span
+              key={key}
               style={{
                 textTransform: 'capitalize',
                 color: 'lightgreen',
@@ -73,6 +75,7 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
         (key) =>
           stats[key] < 0 && (
             <span
+              key={key}
               style={{
                 textTransform: 'capitalize',
                 color: 'lightcoral',
@@ -86,7 +89,7 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
       {(Object.keys(stats.damageModifiers) as tCharacterTag[])
         .filter((tag) => stats.damageModifiers[tag] > 0)
         .map((tag) => (
-          <span>
+          <span key={tag}>
             +{Math.floor(stats.damageModifiers[tag] * 100)}% damage against{' '}
             {tag}
           </span>

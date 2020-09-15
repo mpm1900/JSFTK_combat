@@ -91,7 +91,11 @@ export const Start = () => {
           </h1>
           <FlexContainer>
             {party.characters.map((character) => (
-              <FlexContainer $direction='column' style={{ padding: 4 }}>
+              <FlexContainer
+                key={character.id}
+                $direction='column'
+                style={{ padding: 4 }}
+              >
                 <StartCharacterCard
                   character={character}
                   onChange={(characterId, updater) => {
@@ -127,7 +131,7 @@ export const Start = () => {
           fontSize: 12,
         }}
       >
-        alpha v0.0.3.10
+        alpha v0.0.4.9
       </Monospace>
     </FlexContainer>
   )
@@ -177,11 +181,11 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
           }))
         }}
       >
-        <option value='blacksmith'>Blacksmith</option>
-        <option value='hunter'>Hunter</option>
-        <option value='scholar'>Scholar</option>
-        <option value='bard'>Bard</option>
-        <option value='hobo'>Hobo</option>
+        <option value='executioner'>Executioner</option>
+        <option value='ranger'>Ranger</option>
+        <option value='student'>Student</option>
+        <option value='patrician'>Patrician</option>
+        <option value='drifter'>Drifter</option>
       </select>
       <FlexContainer $direction='column' style={{ padding: 8 }}>
         {STAT_BONUS_KEYS.map((key) => (

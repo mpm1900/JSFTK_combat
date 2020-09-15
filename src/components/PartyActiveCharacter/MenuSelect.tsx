@@ -1,10 +1,8 @@
 import React from 'react'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { Button } from '../../elements/button'
-import Items from '../../icons/svg/delapouite/light-backpack.svg'
 import Weapons from '../../icons/svg/lorc/broadsword.svg'
 import Armor from '../../icons/svg/delapouite/leather-armor.svg'
-import { Icon } from '../Icon'
 import { ArmorList } from './ArmorList'
 import { WeaponList } from './WeaponList'
 import { tProcessedCharacter } from '../../game/Character/type'
@@ -70,6 +68,7 @@ export const MenuSelect = (props: MenuSelectPropsT) => {
     <FlexContainer style={{ justifyContent: 'center', marginTop: 8 }}>
       {ACTIVE_CHARACTER_MENU_KEYS.map((option) => (
         <Button
+          key={option.key}
           style={{
             padding: '4px 8px',
             //width: 56,
@@ -88,10 +87,6 @@ export const MenuSelect = (props: MenuSelectPropsT) => {
           >
             {option.key}
           </FullContainer>
-          {/*
-          <FullContainer style={{ marginRight: 4 }}>
-            <Icon src={option.icon} size={14} />
-          </FullContainer> */}
           <FullContainer style={{ paddingRight: 2 }}>
             {option.count(character, party)}
           </FullContainer>

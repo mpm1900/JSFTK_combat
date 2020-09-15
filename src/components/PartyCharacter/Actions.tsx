@@ -1,5 +1,4 @@
 import React from 'react'
-import Details from '../../icons/svg/delapouite/skills.svg'
 import Inventory from '../../icons/svg/lorc/knapsack.svg'
 import { FlexContainer } from '../../elements/flex'
 import { Tooltip } from '../Tooltip'
@@ -41,7 +40,7 @@ export const Actions = (props: ActionsPropsT) => {
         <Tooltip
           isOpen={inventoryOpen}
           direction='up'
-          distance={40}
+          distance={60}
           background='rgba(0,0,0,0.7)'
           arrow
           content={
@@ -82,7 +81,7 @@ export const Actions = (props: ActionsPropsT) => {
           </Hover>
         </Tooltip>
       </FlexContainer>
-      <FlexContainer
+      {/*<FlexContainer
         $full
         style={{ alignItems: 'center', justifyContent: 'center' }}
       >
@@ -93,7 +92,7 @@ export const Actions = (props: ActionsPropsT) => {
           shadow
           style={{ padding: 6, cursor: 'pointer' }}
         />
-      </FlexContainer>
+      </FlexContainer>*/}
     </FlexContainer>
   )
 }

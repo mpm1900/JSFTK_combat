@@ -33,7 +33,6 @@ import {
 } from '../../game/Skill/util'
 import { commitSkillResults } from '../../game/Skill/committer'
 import { getAIAction } from '../../game/AI/util'
-import { clear } from 'console'
 import { tArmor } from '../../game/Armor/type'
 import { tWeapon } from '../../game/Weapon/type'
 
@@ -60,9 +59,9 @@ export interface CombatContextT {
   equipItemCombat: (characterId: string, item?: tArmor | tWeapon) => void
 }
 const defaultValue: CombatContextT = {
-  party: processParty(makeParty()),
-  enemyParty: processParty(makeParty()),
-  activeCharacter: processCharacter(makeCharacter('blacksmith')),
+  party: processParty(makeParty(0, 0)),
+  enemyParty: processParty(makeParty(0, 0)),
+  activeCharacter: processCharacter(makeCharacter('executioner')),
   characters: [],
   queue: {},
   selectedSkill: undefined,
@@ -95,9 +94,9 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const { party, rawParty, updateParty, equipItem } = usePartyContext()
   const { open } = useModalContext()
   const history = useHistory()
-  const enemyParty = useMemo(() => processParty(props.enemyParty), [
-    props.enemyParty,
-  ])
+  const enemyParty = useMemo(() => {
+    return processParty(props.enemyParty)
+  }, [props.enemyParty])
   const [isRunning, setIsRunning] = useState<boolean>(false)
   const [isRenderingResult, setIsRenderingResult] = useState<boolean>(false)
   const characters = useMemo(

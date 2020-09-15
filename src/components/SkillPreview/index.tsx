@@ -6,6 +6,8 @@ import { tProcessedCharacter } from '../../game/Character/type'
 import { getSkillDamage, getPerfectText } from '../../game/Skill/util'
 import { getChecksProbability } from '../../game/Roll/util'
 import { Theme } from '../../theme'
+import { Icon } from '../Icon'
+import { SKILL_ICONS } from '../../icons/maps'
 
 export interface SkillPreviewPropsT {
   skill: tSkill
@@ -41,8 +43,15 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
               background: Theme.otherGrey,
               fontFamily: Theme.titleFont,
               textShadow: '1px 1px 3px black',
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
+            <Icon
+              src={SKILL_ICONS[skill.name]}
+              size={16}
+              style={{ marginRight: 8 }}
+            />
             {skill.name}
           </BoxContainer>
           <FullContainer />

@@ -16,6 +16,7 @@ export const Row = withStyle(FlexContainer, (props: any) => {
     ':hover': {
       background: 'rgba(255,255,255,0.2)',
     },
+    textTransform: 'capitalize',
   }
 })
 export const ActionsRow = withStyle(FlexContainer, (props: any) => {

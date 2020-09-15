@@ -7,7 +7,6 @@ import { Button } from '../../elements/button'
 import { tShopEncounter } from '../../game/Encounter/type'
 import { WeaponPreview } from '../WeaponPreview'
 import { ArmorPreview } from '../ArmorPreview'
-import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
 import { usePartyContext } from '../../contexts/PartyContext'
@@ -148,15 +147,16 @@ export const Shop = (props: ShopPropsT) => {
           borderColor: 'white',
         }
       : {}
-  // console.log(currentEncounter)
   return (
     <BoxContainer
-      style={{ margin: '20px 20px 20px 0', flex: 1 }}
+      style={{ margin: '20px 20px 20px 0', flex: 1, minWidth: 762 }}
       substyle={{ background: Theme.darkBgColor }}
     >
       <FlexContainer style={{ alignItems: 'center' }}>
         <FullContainer>
-          <h1 style={{ margin: 0, fontFamily: Theme.titleFont }}>Shop</h1>
+          <h1 style={{ margin: 0, fontFamily: Theme.titleFont }}>
+            Black Market
+          </h1>
         </FullContainer>
         <FlexContainer>
           {tabs.map((tab) => (

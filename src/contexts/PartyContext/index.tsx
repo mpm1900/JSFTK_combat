@@ -19,7 +19,7 @@ import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
 import { useGameStateContext } from '../GameStateContext'
 import { tConsumable } from '../../game/Consumable/type'
-import { FISTS } from '../../game/Weapon/objects/fists'
+import { FISTS } from '../../game/Weapon/fists'
 
 export interface PartyContextT {
   party: tProcessedParty
@@ -35,11 +35,12 @@ export interface PartyContextT {
   unequipItem: (characterId: string, item: tWeapon | tArmor) => void
   purchaseItem: (item: tArmor | tWeapon | tConsumable, cost: number) => void
   sellItem: (itemId: string) => void
+  refreshParty: () => void
 }
 const defaultContextValue: PartyContextT = {
-  rawParty: makeParty(),
-  party: processParty(makeParty()),
-  activeCharacter: processCharacter(makeCharacter('blacksmith')),
+  rawParty: makeParty(0, 0),
+  party: processParty(makeParty(0, 0)),
+  activeCharacter: processCharacter(makeCharacter('executioner')),
   updateParty: (party) => {},
   upsertCharacter: (character) => {},
   deleteCharacter: (characterId) => {},
@@ -50,6 +51,7 @@ const defaultContextValue: PartyContextT = {
   unequipItem: (characterId, item) => {},
   purchaseItem: (item, cost) => {},
   sellItem: (itemId) => {},
+  refreshParty: () => {},
 }
 export const PartyContext = React.createContext<PartyContextT>(
   defaultContextValue,
@@ -96,11 +98,8 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
   }
 
   const equipItem = (characterId: string, item: tWeapon | tArmor) => {
-    console.log('EQUIP ITEM')
     const character = findRawCharacter(characterId)
-    console.log(characterId, character)
     if (!character) return
-    console.log('CHARACTER FOUND')
     if (item.itemType === 'armor') {
       const armor = item as tArmor
       if (armor.resource === 'offhand' && (character.weapon || FISTS()).twoHand)
@@ -185,6 +184,16 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
       })
     }
   }
+  const refreshParty = () => {
+    updateParty({
+      ...rawParty,
+      characters: rawParty.characters.map((c) => ({
+        ...c,
+        healthOffset: 0,
+        status: [],
+      })),
+    })
+  }
 
   return (
     <PartyContext.Provider
@@ -202,6 +211,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
         unequipItem,
         purchaseItem,
         sellItem,
+        refreshParty,
       }}
     >
       {children}

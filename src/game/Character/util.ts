@@ -3,7 +3,7 @@ import { tStats, tBaseStats } from '../Stats/type'
 import { combineStats } from '../Stats/util'
 import { tSkill } from '../Skill/type'
 import { CLASS_STATS } from '../Stats/constants'
-import { tStatusType, tStatus } from '../Status/type'
+import { tStatusType } from '../Status/type'
 import { STATUS_CONFIG } from '../Status/constants'
 import { v4 } from 'uuid'
 import { tDamage } from '../Damage/type'
@@ -13,11 +13,11 @@ import { tWeapon } from '../Weapon/type'
 import { tArmorResourceType, tArmor } from '../Armor/type'
 import { resolveCheck } from '../Roll/util'
 import { CLASS_ARMOR } from '../Armor/constants'
-import { CLASS_CONSUMABLES } from '../Consumable/constants'
 import { considateConsumableListToStack } from '../Consumable/util'
 import { CHARACTER_XP_MAX } from './constants'
 import { tEncounterReward } from '../Encounter/type'
-import { FISTS } from '../Weapon/objects/fists'
+import { FISTS } from '../Weapon/fists'
+import { CLASS_STARTING_CONSUMABLES } from '../Item/constants'
 
 export const isCharacter = (obj: any): boolean =>
   obj !== undefined && obj.isCharacter !== undefined
@@ -46,7 +46,7 @@ export const makeCharacter = (characterClass: tCharacterClass): tCharacter => {
 
     weapon: CLASS_WEAPONS[characterClass],
     armor: CLASS_ARMOR[characterClass],
-    consumables: CLASS_CONSUMABLES[characterClass],
+    consumables: CLASS_STARTING_CONSUMABLES[characterClass],
 
     status: [],
     immunities: [],
@@ -158,8 +158,6 @@ export const getRawDamage = (
       damageModifier += source.stats.damageModifiers[tag]
     }
   })
-  console.log(source.name, damageModifier)
-  console.log(source)
   return {
     ...rawDamage,
     value: rawDamage.value * damageModifier,
@@ -174,7 +172,9 @@ export const commitDamage = (
   checkForProcessedCharacter(character)
   const pc = processCharacter(character)
   const resistance = ignoreResistance ? 0 : getDamageResistance(pc, damage)
-  const damageTakenModifier = pc.stats.damageTakenModifier
+  const damageTakenModifier =
+    pc.stats.damageTakenModifier +
+    pc.stats.damageTakenRangeModifiers[damage.range]
   const rawDamageValue = damage.value * damageTakenModifier
   if (hasStatus(character, 'protected')) {
     return {

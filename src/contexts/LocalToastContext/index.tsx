@@ -1,12 +1,5 @@
-import React, {
-  useContext,
-  useState,
-  useEffect,
-  useRef,
-  useMemo,
-  CSSProperties,
-} from 'react'
-import { useSpring, animated, useTransition } from 'react-spring'
+import React, { useContext, useState, useEffect, CSSProperties } from 'react'
+import { animated, useTransition } from 'react-spring'
 import { FullContainer } from '../../elements/flex'
 import { v4 } from 'uuid'
 

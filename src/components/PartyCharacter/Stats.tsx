@@ -46,7 +46,7 @@ export const Stats = (props: StatsProps) => {
   return (
     <FlexContainer
       $full
-      style={{ paddingTop: 2, background: Theme.darkBgColor, paddingLeft: 24 }}
+      style={{ paddingTop: 4, background: Theme.darkBgColor, paddingLeft: 42 }}
     >
       <CharacterStat statKey='vigor' character={character} />
       <CharacterStat statKey='strength' character={character} />

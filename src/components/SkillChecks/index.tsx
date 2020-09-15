@@ -18,11 +18,16 @@ export interface SkillChecksPropsT {
 }
 export const SkillChecks = (props: SkillChecksPropsT) => {
   const { stat, skill, rolls, results = [] } = props
+  console.log(skill, rolls)
   return (
     <FlexContainer
-      style={{ justifyContent: 'center', padding: '0px 0 24px 0' }}
+      style={{
+        justifyContent: 'center',
+        minHeight: 46,
+        padding: '0px 0 24px 0',
+      }}
     >
-      {Array(skill?.rolls || rolls)
+      {Array(skill?.rolls || rolls || 0)
         .fill(null)
         .map((_, i) => (
           <SkillCheck
@@ -61,7 +66,7 @@ export const SkillCheck = (props: SkillCheckT) => {
         $size={size}
         $style={{
           borderColor: perfect ? colors.border : undefined,
-          background: perfect ? colors.background : Theme.darkBgColor,
+          background: perfect ? colors.background : Theme.darkBgColorSolid,
         }}
       >
         <Icon
@@ -125,7 +130,7 @@ export const getPerfectStatusColors = (
       fill: '#d19999',
     }
   }
-  if (status.includes('cursed')) {
+  if (status.includes('cursed-vigor')) {
     return {
       border: '#6400a3',
       background: '#10001a',

@@ -1,0 +1,25 @@
+import React from 'react'
+import { useGameStateContext } from '../../contexts/GameStateContext'
+import { Button } from '../../elements/button'
+import { FlexContainer } from '../../elements/flex'
+import { tShrineEncounter } from '../../game/Encounter/type'
+import { Theme } from '../../theme'
+
+export interface ShrinePropsT {
+  currentEncounter: tShrineEncounter
+}
+
+export const Shrine = (props: ShrinePropsT) => {
+  const { currentEncounter } = props
+  const { nextLevel } = useGameStateContext()
+  return (
+    <FlexContainer $direction='column' style={{ justifyContent: 'center' }}>
+      <h3 style={{ fontFamily: Theme.titleFont, fontWeight: 'normal' }}>
+        You've discoved a secret shrine.
+      </h3>
+      <FlexContainer style={{ justifyContent: 'center' }}>
+        <Button onClick={() => nextLevel()}>Travel Deeper</Button>
+      </FlexContainer>
+    </FlexContainer>
+  )
+}

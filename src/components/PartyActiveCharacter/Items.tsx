@@ -28,6 +28,7 @@ const ItemRow = styled(FlexContainer, (props: any) => {
     paddingLeft: '8px',
     transition: 'all 0.2s',
     userSelect: 'none',
+    textTransform: 'capitalize',
     ':hover': {
       background: 'rgba(255,255,255,0.2)',
     },
@@ -54,6 +55,7 @@ export const Items = (props: ItemPropsT) => {
         const disabled = res === 'offhand' && character.weapon.twoHand
         return (
           <Item
+            key={res}
             disabled={disabled}
             character={character}
             resource={res}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Spring } from 'react-spring/renderprops'
 import { noneg } from '../../util'
 import { usePrevious } from '../../hooks/usePrevious'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { Theme } from '../../theme'
@@ -14,34 +14,32 @@ export interface HealthPropsT {
 export const Health = (props: HealthPropsT) => {
   const { character } = props
   const health = noneg(character.health)
-  const previousHealth = usePrevious<number>(health) || 0
   const [storedHealth, setStoredHealth] = useState(0)
 
   useEffect(() => {
     setStoredHealth(health)
-    // toast(`${character.name} -${storedHealth - health} HP`)
   }, [health])
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', zIndex: 3 }}>
       <span
         style={{
-          padding: 4,
-          paddingLeft: 45,
+          padding: '4px 0',
+          paddingLeft: 44,
           fontSize: 56,
           height: 56,
-          width: 62,
+          minWidth: 86,
           lineHeight: '64px',
           color: Theme.healthRedColor,
           fontFamily: 'New Rocker',
-          minWidth: 44,
-          display: 'inline-block',
+          display: 'flex',
           textAlign: 'center',
           textShadow: '1px 1px 3px black',
+          justifyContent: 'center',
         }}
       >
         <Spring
-          from={{ hp: previousHealth || 0 }}
+          from={{ hp: storedHealth || 0 }}
           to={{ hp: health }}
           config={{ friction: 70, mass: 5, tension: 300, clamp: true }}
         >

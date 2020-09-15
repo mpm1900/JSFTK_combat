@@ -24,6 +24,7 @@ export const useCombatStart = (delay: number = 1000) => {
         >
           {enemyParty.characters.map((c) => (
             <FlexContainer
+              key={c.id}
               style={{
                 background: '#c27a5d',
                 border: '2px solid rgba(255,255,255,0.8)',

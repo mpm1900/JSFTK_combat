@@ -19,7 +19,6 @@ export const Shrine = (props: ShrinePropsT) => {
   const { party, rawParty, updateParty } = usePartyContext()
   const encounter = currentEncounter as tShrineEncounter
   const [results, setResults] = useState<boolean[]>([])
-  console.log(encounter.results)
   const onClick = (c: tProcessedCharacter) => {
     const stream = Kefir.sequentially(
       200,
@@ -41,7 +40,6 @@ export const Shrine = (props: ShrinePropsT) => {
       const rewards =
         encounter.results[results.filter((r) => r === true).length - 1]
       if (!rewards) {
-        console.log(encounter, results)
         return
       }
       updateParty(commitRewards(rawParty, rewards))

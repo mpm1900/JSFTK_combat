@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { XPGauge, HealthGauge } from '../Gauge'
 import { BoxContainer } from '../../elements/box'
 import { styled } from 'styletron-react'
-import { HoverBadge } from '../../elements/badge'
 import { TagPreview } from '../TagPreview'
-import { CharacterImage } from '../CharacterImage'
-
 import { PartyCharacterConsumables } from '../PartyCharacterConsumables'
 import { Stats } from './Stats'
 import { Name } from './Name'
@@ -38,7 +35,7 @@ const Wrapper = styled('div', (props: any) => {
     margin: 10,
     display: 'flex',
     position: 'relative',
-    transform: $active ? 'scale(1.04)' : 'scale(0.95)',
+    transform: $active ? 'scale(1.05)' : 'scale(0.97)',
     transition: 'all 0.4s',
     userSelect: 'none',
   }
@@ -92,14 +89,14 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           zIndex: 3,
         }}
         childStyle={{
-          marginTop: -12,
+          marginTop: -20,
         }}
       >
         <Icon
           src={CHARACTER_CLASS_ICONS[character.class]}
-          size={82}
+          size={72}
           shadow
-          style={{ marginRight: 0 }}
+          style={{ marginRight: -4 }}
           fill={selected ? 'white' : 'rgba(255,255,255,0.5)'}
         />
       </HexBadge>
@@ -151,8 +148,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                 />
               </FlexContainer>
               <HoverHexBadge
-                position={{ bottom: 16, left: 90 }}
-                size={36}
+                position={{ bottom: 17, left: 88 }}
+                size={40}
                 rotate
                 childStyle={{ paddingTop: 1 }}
                 content={<BoxContainer>Character Level</BoxContainer>}
@@ -200,8 +197,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       </FlexContainer>
       <HoverHexBadge
         position={{
-          bottom: 72,
-          left: -7,
+          bottom: 67,
+          left: -3,
         }}
         rotate
         size={32}
@@ -216,8 +213,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       </HoverHexBadge>
       <HoverHexBadge
         position={{
-          bottom: 40,
-          left: -7,
+          bottom: 36,
+          left: -3,
         }}
         rotate
         size={32}
@@ -232,8 +229,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       </HoverHexBadge>
       <HoverHexBadge
         position={{
-          bottom: 23,
-          left: 19,
+          bottom: 18,
+          left: 23,
         }}
         rotate
         size={32}
@@ -251,10 +248,10 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         rotate={true}
         content={<BoxContainer>Weapon Damage</BoxContainer>}
         position={{
-          bottom: -4,
-          left: 44,
+          bottom: -5,
+          left: 50,
         }}
-        size={45}
+        size={44}
         childStyle={{
           color:
             character.weapon.damage.type === 'physical'

@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import { useCombatContext } from '../CombatContext'
 import { Monospace } from '../../elements/monospace'
 import { NameSpanBuilder, SkillSpan, Span } from './util'
-import { noneg } from '../../util'
 import { getDamageResistance } from '../../game/Character/util'
 import { STATUS_CONFIG } from '../../game/Status/constants'
 
