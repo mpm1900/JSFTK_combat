@@ -12,7 +12,8 @@ import { Theme } from '../../theme'
 import { useModalContext } from '../../contexts/ModalContext'
 import { EquipItemModal } from '../EquipItemModal'
 import Inventory from '../../icons/svg/lorc/knapsack.svg'
-import { HEAL } from '../../game/Skill/skills/armor'
+import { HEAL, REMOVE_CURSES } from '../../game/Skill/skills/armor'
+import { hasAnyStatus, hasStatus } from '../../game/Character/util'
 
 export const CombatActions = () => {
   const {
@@ -33,7 +34,22 @@ export const CombatActions = () => {
     if (activeCharacter.healthOffset === 0 && skill.id === HEAL.id) {
       return false
     } else {
-      return true
+      if (
+        !hasAnyStatus(activeCharacter, [
+          'cursed-agility',
+          'cursed-charisma',
+          'cursed-dexterity',
+          'cursed-intelligence',
+          'cursed-luck',
+          'cursed-strength',
+          'cursed-vigor',
+        ]) &&
+        skill.id === REMOVE_CURSES.id
+      ) {
+        return false
+      } else {
+        return true
+      }
     }
   })
   return (

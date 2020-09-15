@@ -102,7 +102,7 @@ export const usePlayerCharacterNotifications = (
             'base',
           )
         }
-        if (chResult.criticalHitSuccess) {
+        if (chResult.criticalHitSuccess && chResult.skill.damage) {
           push(
             <span style={{ fontFamily: Theme.titleFont }}>Critical!</span>,
             'base',

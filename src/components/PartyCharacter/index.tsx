@@ -82,6 +82,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
     >
       <HexBadge
         size={110}
+        stroke={2}
         color={CHARACTER_CLASS_COLORS[character.class] || Theme.darkBgColor}
         style={{
           padding: 8,
@@ -89,7 +90,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           justifyContent: 'center',
           transition: 'all 0.3s',
           marginRight: -58,
-          marginTop: -12,
+          marginTop: -11,
           zIndex: 3,
         }}
         childStyle={{
@@ -152,8 +153,8 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                 />
               </FlexContainer>
               <HoverHexBadge
-                position={{ bottom: 17, left: 88 }}
-                size={40}
+                position={{ bottom: 15, left: 88 }}
+                size={42}
                 rotate
                 childStyle={{ paddingTop: 1 }}
                 content={<BoxContainer>Character Level</BoxContainer>}
@@ -201,15 +202,15 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       </FlexContainer>
       <HoverHexBadge
         position={{
-          bottom: 67,
-          left: -3,
+          bottom: 64,
+          left: -1,
         }}
         rotate
         size={32}
         childStyle={{
           color: Theme.physicalColor,
           fontSize: 18,
-          paddingTop: 0,
+          paddingTop: 1,
         }}
         content={<BoxContainer>Armor</BoxContainer>}
       >
@@ -217,15 +218,15 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       </HoverHexBadge>
       <HoverHexBadge
         position={{
-          bottom: 36,
-          left: -3,
+          bottom: 33,
+          left: -1,
         }}
         rotate
         size={32}
         childStyle={{
           color: Theme.magicColor,
           fontSize: 18,
-          paddingTop: 0,
+          paddingTop: 1,
         }}
         content={<BoxContainer>Magic Resistance</BoxContainer>}
       >
@@ -234,14 +235,14 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       <HoverHexBadge
         position={{
           bottom: 18,
-          left: 23,
+          left: 25,
         }}
         rotate
         size={32}
         childStyle={{
           color: Theme.evasionColor,
           fontSize: 18,
-          paddingTop: 0,
+          paddingTop: 1,
         }}
         content={<BoxContainer>Evasion</BoxContainer>}
       >
@@ -252,17 +253,17 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         rotate={true}
         content={<BoxContainer>Weapon Damage</BoxContainer>}
         position={{
-          bottom: -5,
-          left: 50,
+          bottom: -4,
+          left: 52,
         }}
-        size={44}
+        size={42}
         childStyle={{
           color:
             character.weapon.damage.type === 'physical'
               ? Theme.physicalColor
               : Theme.magicColor,
           fontSize: 24,
-          paddingTop: 0,
+          paddingTop: 1,
         }}
       >
         <span>

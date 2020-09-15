@@ -31,9 +31,9 @@ export const Hexagon = (props: HexagonPropsT) => {
       <div
         style={{
           width: `${boxW}px`,
-          height: `${boxH + 2}px`,
-          marginTop: '-1px',
-          marginBottom: '-1px',
+          height: `${boxH + 0}px`,
+          //marginTop: '-1px',
+          //marginBottom: '-1px',
           background: color,
         }}
       />
@@ -64,6 +64,7 @@ export const Hexagon = (props: HexagonPropsT) => {
 
 export interface HexBadgePropsT extends HexagonPropsT {
   rotate?: boolean
+  stroke?: number
   onClick?: () => void
 }
 export const HexBadge = (props: HexBadgePropsT) => {
@@ -74,6 +75,7 @@ export const HexBadge = (props: HexBadgePropsT) => {
     children,
     childStyle,
     onClick,
+    stroke = 1.2,
     rotate = false,
   } = props
   const angle = rotate ? 30 : 0
@@ -86,10 +88,10 @@ export const HexBadge = (props: HexBadgePropsT) => {
       onClick={onClick}
     >
       <Hexagon size={size} color={Theme.darkBgColorSolid}>
-        <Hexagon size={size - 4} color={Theme.badgeBorderColor}>
-          <Hexagon size={size - 6} color={Theme.darkBgColorSolid}>
+        <Hexagon size={size - stroke * 2} color={Theme.lightBgColor}>
+          <Hexagon size={size - stroke * 2 - 2} color={Theme.darkBgColorSolid}>
             <Hexagon
-              size={size - 8}
+              size={size - stroke * 4 - 2}
               color={color}
               childStyle={{
                 fontFamily: Theme.titleFont,
@@ -117,6 +119,7 @@ export interface HoverBadgePropsT {
   childStyle?: CSSProperties
   size?: number
   rotate?: boolean
+  stroke?: number
   position?: {
     top?: number
     bottom?: number
@@ -133,6 +136,7 @@ export const HoverHexBadge = (props: HoverBadgePropsT) => {
     childStyle,
     size,
     rotate,
+    stroke,
     position,
   } = props
   return (
@@ -154,7 +158,8 @@ export const HoverHexBadge = (props: HoverBadgePropsT) => {
         <HexBadge
           style={style}
           rotate={rotate}
-          childStyle={childStyle}
+          stroke={stroke}
+          childStyle={{ ...childStyle, textShadow: '1px 1px 3px black' }}
           size={size || 20}
           color={Theme.badgeBgColor}
         >

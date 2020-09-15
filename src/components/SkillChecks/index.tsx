@@ -18,7 +18,6 @@ export interface SkillChecksPropsT {
 }
 export const SkillChecks = (props: SkillChecksPropsT) => {
   const { stat, skill, rolls, results = [] } = props
-  console.log(skill, rolls)
   return (
     <FlexContainer
       style={{

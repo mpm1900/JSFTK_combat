@@ -27,6 +27,7 @@ import Slow from './svg/lorc/snail.svg'
 import SpreadShot from './svg/lorc/double-shot.svg'
 
 import Heal from './svg/sbed/health-normal.svg'
+import Bless from './svg/lorc/embrassed-energy.svg'
 import Lunge from './svg/lorc/wave-strike.svg'
 import Restore from './svg/lorc/life-support.svg'
 import EvadeUp from './svg/lorc/dodging.svg'
@@ -82,6 +83,7 @@ export const SKILL_ICONS: Record<string, string> = {
   Protect: Protect,
 
   Heal: Heal,
+  'Remove Curses': Bless,
   Restore: Restore,
   Rush: Rush,
   Vanish: EvadeUp,

@@ -8,6 +8,7 @@ import { tProcessedCharacter } from '../../game/Character/type'
 import { tConsumable } from '../../game/Consumable/type'
 import { considateConsumableListToStack } from '../../game/Consumable/util'
 import { Theme } from '../../theme'
+import { CELESTIAL_LOTUS } from '../../game/Consumable/objects/celestial_lotus'
 
 const HEIGHT = 64
 export interface PartyCharacterConsumablesPropsT {
@@ -135,6 +136,7 @@ export const PartyCharacterConsumableTooltip = (
       {consumable.skill.healing && (
         <div>Heal for {character.stats.consumableHealthGainOffset} HP</div>
       )}
+      {consumable.cid === CELESTIAL_LOTUS().cid && <div>Remove all Curses</div>}
     </BoxContainer>
   )
 }

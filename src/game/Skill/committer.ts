@@ -8,6 +8,7 @@ import {
   addMultipleStatus,
   decrementStatusDurations,
   processCharacter,
+  checkStatus,
 } from '../Character/util'
 import { noneg } from '../../util/noneg'
 import { commitQueueUpdates } from '../Queue/util'
@@ -51,13 +52,15 @@ export const commitSkillResults = (
       throw new Error('bad party id')
     }
 
-    if (index === 0 && targetResult.weaponDidBreak) {
-      localUpdate(sourceParty, source.id, (c) => {
-        return {
-          ...c,
-          weapon: undefined,
-        }
-      })
+    if (index === 0) {
+      if (targetResult.weaponDidBreak) {
+        localUpdate(sourceParty, source.id, (c) => {
+          return {
+            ...c,
+            weapon: undefined,
+          }
+        })
+      }
     }
 
     // commit main damage
@@ -80,9 +83,6 @@ export const commitSkillResults = (
         return {
           ...c,
           healthOffset: c.healthOffset - c.stats.consumableHealthGainOffset,
-          consumables: c.consumables.filter(
-            (i) => i.id !== targetResult.skill.consumableId,
-          ),
         }
       })
     }
@@ -111,6 +111,9 @@ export const commitSkillResults = (
         return {
           ...c,
           healthOffset: noneg(c.healthOffset - pc.stats.healthRegeneration),
+          consumables: c.consumables.filter(
+            (i) => i.id !== targetResult.skill.consumableId,
+          ),
         }
       })
     }
@@ -133,12 +136,14 @@ export const commitSkillResults = (
     playerParty: {
       ...playerParty,
       characters: playerParty.characters.map((c) =>
-        decrementStatusDurations(c),
+        decrementStatusDurations(checkStatus(c)),
       ),
     },
     enemyParty: {
       ...enemyParty,
-      characters: enemyParty.characters.map((c) => decrementStatusDurations(c)),
+      characters: enemyParty.characters.map((c) =>
+        decrementStatusDurations(checkStatus(c)),
+      ),
     },
     queue: commitQueueUpdates(queue, source, [
       ...playerParty.characters,

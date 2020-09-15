@@ -14,3 +14,9 @@ export const HEAL = createSkill('Heal', 0, 0, {
   damage: false,
   healing: true,
 })
+
+export const REMOVE_CURSES = createSkill('Remove Curses', 0, 0, {
+  targetType: 'self',
+  damage: false,
+  perfectStatus: ['blessed'],
+})

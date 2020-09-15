@@ -38,6 +38,7 @@ export type tStatusType =
   | 'resilient'
   | 'targeted'
   | 'cure'
+  | 'blessed'
 export interface tStatus {
   type: tStatusType
   stats: tStats

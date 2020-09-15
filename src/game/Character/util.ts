@@ -135,6 +135,12 @@ export const getDamageResistance = (
 export const hasStatus = (character: tCharacter, statusType: tStatusType) => {
   return character.status.map((s) => s.type).includes(statusType)
 }
+export const hasAnyStatus = (
+  character: tCharacter,
+  statusTypes: tStatusType[],
+) => {
+  return statusTypes.some((type) => hasStatus(character, type))
+}
 export const findStatus = (character: tCharacter, statusType: tStatusType) => {
   return character.status.find((s) => s.type === statusType)
 }

@@ -131,16 +131,12 @@ export const makeEncounterList = (
         id,
         depth: index,
         chosen: undefined,
-        choices: [
-          {
+        choices: Array(getRandom([1, 2, 3]))
+          .fill(null)
+          .map((_) => ({
             ...makeRandomEncounter(index, depth, floor),
             choiceId: id,
-          },
-          {
-            ...makeRandomEncounter(index, depth, floor),
-            choiceId: id,
-          },
-        ],
+          })),
       }
     })
 }

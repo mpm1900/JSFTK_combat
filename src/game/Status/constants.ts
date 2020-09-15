@@ -378,7 +378,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   cure: {
     name: 'Cure',
-    description: 'remove Poisoned, Bleeding, and Burning',
+    description: 'Remove Poisoned, Bleeding, and Burning',
     canStack: false,
     isTemporary: true,
     duration: 1,
@@ -386,5 +386,22 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       ...ZERO_STATS,
     },
     immunities: ['poisoned', 'bleeding', 'burning', 'frozen', 'wet', 'shocked'],
+  },
+  blessed: {
+    name: 'Blessed',
+    description: 'Temporary Curse Immunity',
+    canStack: false,
+    isTemporary: true,
+    duration: 1,
+    stats: ZERO_STATS,
+    immunities: [
+      'cursed-agility',
+      'cursed-charisma',
+      'cursed-dexterity',
+      'cursed-intelligence',
+      'cursed-luck',
+      'cursed-strength',
+      'cursed-vigor',
+    ],
   },
 }
