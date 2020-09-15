@@ -43,16 +43,14 @@ export interface tEncounterReward {
 export interface tEncounterChoice {
   id: string
   depth: number
-  value: 'left' | 'right' | undefined
-  left: tEncounter
-  right: tEncounter
+  chosen: number | undefined
+  choices: tEncounter[]
 }
 
 export interface tFloor {
   id: string
   depth: number
   encounters: tEncounterChoice[]
-  image: string
 }
 export interface tFloorConfig {
   items: (tWeapon | tArmor)[]

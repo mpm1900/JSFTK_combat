@@ -18,8 +18,8 @@ export const EncounterActions = () => {
     chooseCurrent,
   } = useGameStateContext()
   useEffect(() => {
-    if (currentChoice?.left.type === 'reward') {
-      chooseCurrent('left')
+    if (currentChoice?.choices[0].type === 'reward') {
+      chooseCurrent(0)
     }
   }, [])
   return (

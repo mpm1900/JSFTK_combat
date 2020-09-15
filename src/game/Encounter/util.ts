@@ -130,15 +130,17 @@ export const makeEncounterList = (
       return {
         id,
         depth: index,
-        value: undefined,
-        left: {
-          ...makeRandomEncounter(index, depth, floor),
-          choiceId: id,
-        },
-        right: {
-          ...makeRandomEncounter(index, depth, floor),
-          choiceId: id,
-        },
+        chosen: undefined,
+        choices: [
+          {
+            ...makeRandomEncounter(index, depth, floor),
+            choiceId: id,
+          },
+          {
+            ...makeRandomEncounter(index, depth, floor),
+            choiceId: id,
+          },
+        ],
       }
     })
 }
@@ -152,6 +154,5 @@ export const makeFloor = (depth: number, encounterCount: number): tFloor => {
     id: v4(),
     encounters: makeEncounterList(encounterCount, depth),
     depth,
-    image: '',
   }
 }

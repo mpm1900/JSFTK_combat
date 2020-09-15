@@ -96,7 +96,7 @@ export const getChoiceText = (
 ): string => {
   let text = ''
   const previousEncounter = previousChoice
-    ? previousChoice[previousChoice.value || 'left']
+    ? previousChoice.choices[previousChoice.chosen || 0]
     : undefined
   if (previousChoice === undefined) {
     text =

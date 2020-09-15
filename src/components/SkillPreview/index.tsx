@@ -25,9 +25,6 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
   const stat = skill.weaponStatOverride || source.weapon.stat
   const damage = getSkillDamage(skill, source)
   const perfectKeys = getPerfectText(skill, source)
-  if (damage.value === 0) {
-    console.log('ZERO DAMGE', skill.name, skill, source)
-  }
   return (
     <BoxContainer
       style={{ marginTop: 30, position: 'relative', minWidth: 300 }}

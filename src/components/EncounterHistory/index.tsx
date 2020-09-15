@@ -18,7 +18,7 @@ export interface EncounterHistoryPropsT {}
 export const EncounterHistory = (props: EncounterHistoryPropsT) => {
   const { floors, floor, level } = useGameStateContext()
   const chosenEncounters = (floor: tFloor) =>
-    floor.encounters.map((e) => (e.value ? e[e.value] : undefined))
+    floor.encounters.map((e) => (e.chosen ? e.choices[e.chosen] : undefined))
 
   const getIcon = (type: tEncounterType | undefined): string => {
     switch (type) {

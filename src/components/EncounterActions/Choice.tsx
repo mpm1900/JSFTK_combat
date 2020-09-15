@@ -25,7 +25,7 @@ export const Choice = (props: ChoicePropsT) => {
           textAlign: 'center',
         }}
       >
-        You have a choice.
+        You have a choice. {currentChoice.chosen}
       </HeadingSm>
       <Text
         style={{
@@ -37,13 +37,16 @@ export const Choice = (props: ChoicePropsT) => {
       </Text>
       {encounters.length - 1 !== level && (
         <FlexContainer style={{ justifyContent: 'center' }}>
-          <Button onClick={() => chooseCurrent('left')}>Go Left</Button>
-          <Button onClick={() => chooseCurrent('right')}>Go Right</Button>
+          {encounters[level].choices.map((e, i) => (
+            <Button onClick={() => chooseCurrent(i)}>
+              Go {i === 0 ? 'Left' : 'Right'}
+            </Button>
+          ))}
         </FlexContainer>
       )}
       {encounters.length - 1 === level && (
         <FlexContainer style={{ justifyContent: 'center' }}>
-          <Button onClick={() => chooseCurrent('right')}>Proceed</Button>
+          <Button onClick={() => chooseCurrent(0)}>Proceed</Button>
         </FlexContainer>
       )}
     </FlexContainer>

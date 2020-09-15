@@ -23,7 +23,7 @@ export const actionCreators = {
     type: RESET,
     payload: {},
   }),
-  chooseCurrent: (value: 'left' | 'right'): StateActionT => ({
+  chooseCurrent: (value: number): StateActionT => ({
     type: CHOOSE_CURRENT,
     payload: {
       value,
@@ -55,7 +55,7 @@ export const actions = {
   reset: () => (dispatch: Dispatch) => {
     dispatch(actionCreators.reset())
   },
-  chooseCurrent: (value: 'left' | 'right') => (dispatch: Dispatch) => {
+  chooseCurrent: (value: number) => (dispatch: Dispatch) => {
     dispatch(actionCreators.chooseCurrent(value))
   },
   nextLevel: () => (dispatch: Dispatch) => {
@@ -100,7 +100,7 @@ export const core: StateCoreT<GameStateT> = {
           if (i === state.level) {
             return {
               ...e,
-              value: action.payload.value,
+              chosen: action.payload.value,
             }
           }
           return e
@@ -127,38 +127,29 @@ export const core: StateCoreT<GameStateT> = {
         ...floor,
         encounters: floor.encounters.map((choice) => {
           if (choice.id === action.payload.choiceId) {
+            const chosen = choice.chosen
+              ? choice.choices[choice.chosen]
+              : undefined
             if (
-              choice.left.id === action.payload.encounterId &&
-              choice.left.type === 'shop'
+              chosen &&
+              chosen.id === action.payload.encounterId &&
+              chosen.type === 'shop'
             ) {
               return {
                 ...choice,
-                left: {
-                  ...choice.left,
-                  items: (choice.left as tShopEncounter).items.filter(
-                    (i) => i.id !== action.payload.itemId,
-                  ),
-                } as tShopEncounter,
+                choices: choice.choices.map(
+                  (c) =>
+                    ({
+                      ...c,
+                      items: (c as tShopEncounter).items.filter(
+                        (i) => i.id !== action.payload.itemId,
+                      ),
+                    } as tShopEncounter),
+                ),
               }
             }
-            if (
-              choice.right.id === action.payload.encounterId &&
-              choice.right.type === 'shop'
-            ) {
-              return {
-                ...choice,
-                right: {
-                  ...choice.right,
-                  items: (choice.right as tShopEncounter).items.filter(
-                    (i) => i.id !== action.payload.itemId,
-                  ),
-                } as tShopEncounter,
-              }
-            }
-            return choice
-          } else {
-            return choice
           }
+          return choice
         }),
       }
     })
@@ -176,7 +167,7 @@ export const useGameState = () => useSelector((state: StateT) => state.game)
 export const useGameStateActions = () =>
   useActions(actions) as {
     reset: () => void
-    chooseCurrent: (value: 'left' | 'right') => void
+    chooseCurrent: (value: number) => void
     nextLevel: () => void
     nextFloor: () => void
     removeItem: (choiceId: string, encounterId: string, itemId: string) => void
