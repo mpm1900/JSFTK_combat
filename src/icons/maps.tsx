@@ -38,13 +38,17 @@ import Heal from './svg/sbed/health-normal.svg'
 import Lunge from './svg/lorc/wave-strike.svg'
 import Restore from './svg/lorc/life-support.svg'
 import Dodging from './svg/lorc/dodging.svg'
-import Chop from './svg/lorc/axe-in-stump.svg'
+import Chop from './svg/lorc/battered-axe.svg'
 import Strike from './svg/lorc/plain-dagger.svg'
 import Stab from './svg/lorc/knife-thrust.svg'
 import Cleave from './svg/lorc/pointy-sword.svg'
 import AxeSpin from './svg/lorc/axe-swing.svg'
 import Slice from './svg/lorc/saber-slash.svg'
 import ArmorUp from './svg/delapouite/vibrating-shield.svg'
+import Punch from './svg/lorc/punch.svg'
+import Fire from './svg/lorc/gunshot.svg'
+import Snipe from './svg/delapouite/crosshair.svg'
+import FanFire from './svg/delapouite/bullet-impacts.svg'
 
 import MagicArmor from './svg/lorc/robe.svg'
 import ClothArmor from './svg/lorc/scale-mail.svg'
@@ -116,6 +120,7 @@ export const STATUS_ICONS: Partial<Record<tStatusType, string>> = {
 }
 
 export const SKILL_ICONS: Record<string, string> = {
+  Punch: Punch,
   Shot: Shot,
   Headshot: Headshot,
   'Pin Down': PinDown,
@@ -141,6 +146,10 @@ export const SKILL_ICONS: Record<string, string> = {
   Stab: Stab,
   Slice: Slice,
   Swipe: Slice,
+
+  Fire: Fire,
+  Snipe: Snipe,
+  'Fan Fire': FanFire,
 
   Stun: Stun,
   Reset: Reset,

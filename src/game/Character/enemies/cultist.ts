@@ -31,8 +31,8 @@ export const CULTIST = (): tCharacter => {
       makeEnemyReward(15, 13),
       makeEnemyReward(15, 13),
       makeEnemyReward(15, 13),
-      makeEnemyReward(20, 20),
-      makeEnemyReward(20, 20, [getRandomItem(2)]),
+      makeEnemyReward(30, 20),
+      makeEnemyReward(30, 20, [getRandomItem(2)]),
     ],
   )
 }

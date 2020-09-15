@@ -43,6 +43,8 @@ export const makeEncounterType = (
     'combat',
     'combat',
     'combat',
+    'combat',
+    'combat',
     'shop',
     'shrine',
   ])

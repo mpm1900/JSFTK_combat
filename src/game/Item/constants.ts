@@ -15,11 +15,11 @@ export const CLASS_STARTING_CONSUMABLES: Record<
   tCharacterClass,
   tConsumable[]
 > = {
-  executioner: [GODSBEARD()],
-  ranger: [GODSBEARD()],
-  student: [GODSBEARD()],
-  patrician: [GODSBEARD()],
-  drifter: [],
+  executioner: [GODSBEARD(), GODSBEARD()],
+  ranger: [GODSBEARD(), GODSBEARD()],
+  student: [GODSBEARD(), GODSBEARD()],
+  patrician: [GODSBEARD(), GODSBEARD()],
+  drifter: [GODSBEARD()],
   enemy: [],
 }
 

@@ -12,7 +12,7 @@ export const FOREST_WITCH = (): tCharacter => {
     Witch,
     1,
     9,
-    makeEnemyWeapon('intelligence', 12, 'ranged', 'magic', [
+    makeEnemyWeapon('intelligence', 8, 'ranged', 'magic', [
       createSkill('Curse', 2, -10, {
         perfectStatus: [
           getRandom<tStatusType>([
@@ -30,15 +30,15 @@ export const FOREST_WITCH = (): tCharacter => {
     {
       intelligence: 84,
       agility: getRandom([60, 62, 64, 66, 68]),
-      resistance: 1,
+      resistance: 2,
       evasion: 10,
     },
     [],
     [
       makeEnemyReward(5, 15),
       makeEnemyReward(5, 15),
-      makeEnemyReward(8, 15),
-      makeEnemyReward(8, 15),
+      makeEnemyReward(20, 15),
+      makeEnemyReward(20, 15),
       makeEnemyReward(20, 15, [getRandomItem(1)]),
     ],
   )

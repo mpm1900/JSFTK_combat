@@ -8,13 +8,13 @@ export const GODSBEARD = (): tConsumable => {
   return {
     id,
     cid,
-    name: 'Godsbeard',
+    name: 'Mellow Grass',
     itemType: 'consumable',
     rarity: 'common',
     skill: {
       ...HEAL,
       consumableId: id,
     },
-    goldValue: 40,
+    goldValue: 20,
   }
 }
