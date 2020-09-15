@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "86159f86777582fe56c7cc48ce9cb743",
+    "revision": "9672dade1b7556622b8e7e48871965c6",
     "url": "/JSFTK_combat/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "d34e0cc7dd16f5564376",
+    "revision": "9f5aac333c310b3f76b7",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/js/2.06eb78e3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d34e0cc7dd16f5564376",
-    "url": "/JSFTK_combat/static/js/main.829e64e0.chunk.js"
+    "revision": "9f5aac333c310b3f76b7",
+    "url": "/JSFTK_combat/static/js/main.d5704b5d.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
