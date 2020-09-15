@@ -50,7 +50,9 @@ export const EncounterHistory = (props: EncounterHistoryPropsT) => {
           }}
         >
           <FlexContainer>
-            <HeadingSm>{f.name}</HeadingSm>
+            <HeadingSm style={{ color: 'rgba(255,255,255,0.6)' }}>
+              {f.name}
+            </HeadingSm>
           </FlexContainer>
           <FlexContainer
             key={f.id}

@@ -9,6 +9,8 @@ import { tConsumable } from '../../game/Consumable/type'
 import { considateConsumableListToStack } from '../../game/Consumable/util'
 import { Theme } from '../../theme'
 import { CELESTIAL_LOTUS } from '../../game/Consumable/objects/celestial_lotus'
+import { REMOVE_CURSES } from '../../game/Skill/skills/armor'
+import { hasAnyStatus } from '../../game/Character/util'
 
 const HEIGHT = 64
 export interface PartyCharacterConsumablesPropsT {
@@ -30,6 +32,20 @@ export const PartyCharacterConsumables = (
     })
     if (consumable.skill.healing && !(character.healthOffset === 0))
       return onClick && onClick(consumable, index || 0)
+    if (
+      consumable.skill.id === REMOVE_CURSES.id &&
+      hasAnyStatus(character, [
+        'cursed-vigor',
+        'cursed-strength',
+        'cursed-luck',
+        'cursed-intelligence',
+        'cursed-dexterity',
+        'cursed-charisma',
+        'cursed-agility',
+      ])
+    ) {
+      return onClick && onClick(consumable, index || 0)
+    }
   }
   const filler = Array(10 - stack.length).fill(null)
 
