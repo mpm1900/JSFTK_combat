@@ -1,7 +1,7 @@
 ## Welcome to my Turn-based combat game!
 
 There currently is no name, but this game is a work in progress.
-It started as a tech demo to keep my React skills shart and turned into something fun.
+It started as a tech demo to keep my React skills sharp and turned into something fun.
 
 # Things that I need help with
 
