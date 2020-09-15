@@ -22,7 +22,7 @@ export const RUSTED_CATALYST = () =>
 export const TOMB_CATALYST = () =>
   createWeapon(type, 'tomb', [BLAST, ARCANE, NOVA], {})
 export const BURRIED_CATALYST = () =>
-  createWeapon(type, 'burried', [BLAST, ARCANE, PROTECT], {})
+  createWeapon(type, 'buried', [BLAST, ARCANE, PROTECT], {})
 export const WITHERING_CATALYST = () =>
   createBreakableWeapon(type, 'withering', [BLAST], {})
 export const GLASS_CATALYST = () =>

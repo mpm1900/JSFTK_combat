@@ -17,7 +17,7 @@ const type = 'scythe'
 export const RUSTED_SCYTHE = () => createWeapon(type, 'rusted', [THRUST], {})
 export const TOMB_SCYTHE = () => createWeapon(type, 'tomb', [SWING, FLURRY], {})
 export const BURRIED_SCYTHE = () =>
-  createWeapon(type, 'burried', [SWING, SLICE], {})
+  createWeapon(type, 'buried', [SWING, SLICE], {})
 export const WITHERING_SCYTHE = () =>
   createBreakableWeapon(type, 'withering', [WITHERING_SWING], {})
 export const GLASS_SCYTHE = () =>

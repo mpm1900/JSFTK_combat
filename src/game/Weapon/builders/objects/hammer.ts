@@ -17,7 +17,7 @@ export const RUSTED_HAMMER = () =>
 export const TOMB_HAMMER = () =>
   createWeapon(type, 'tomb', [SMASH, EARTHQUAKE], {})
 export const BURRIED_HAMMER = () =>
-  createWeapon(type, 'burried', [SMASH, STAB], {})
+  createWeapon(type, 'buried', [SMASH, STAB], {})
 export const WITHERING_HAMMER = () =>
   createBreakableWeapon(type, 'withering', [WITHERING_SMASH], {})
 export const GLASS_HAMMER = () =>

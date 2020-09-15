@@ -11,7 +11,22 @@ import { useGameStateContext } from '../../contexts/GameStateContext'
 import { consolidateRewards } from '../../game/Other/util'
 import { commitRewards } from '../../game/Party/util'
 import { tEncounterReward } from '../../game/Encounter/type'
-import { useCombatLogContext } from '../../contexts/CombatLogContext'
+import { tArmor } from '../../game/Armor/type'
+import { tWeapon } from '../../game/Weapon/type'
+import { tProcessedCharacter } from '../../game/Character/type'
+import { HoverToolTip } from '../Tooltip'
+
+const getItem = (
+  character: tProcessedCharacter,
+  item: tWeapon | tArmor,
+): tWeapon | tArmor | undefined => {
+  if (item.itemType === 'weapon') {
+    return character.weapon
+  } else {
+    const armor = item as tArmor
+    return character.armor.find((a) => a.resource === armor.resource)
+  }
+}
 
 export interface CombatVictoryModalPropsT {
   rewards: tEncounterReward[]
@@ -19,8 +34,7 @@ export interface CombatVictoryModalPropsT {
 
 export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
   const { rewards } = props
-  const { rawParty, updateParty } = usePartyContext()
-  const { clear } = useCombatLogContext()
+  const { rawParty, party, updateParty, equipItem } = usePartyContext()
   const { nextLevel } = useGameStateContext()
   const { close } = useModalContext()
   const consolidatedRewards = useMemo(() => consolidateRewards(rewards), [
@@ -41,6 +55,12 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
         const [first, ...rest] = i
         return rest
       })
+    }
+  }
+  const equip = (characterId: string) => {
+    if (first) {
+      equipItem(characterId, first as tArmor | tWeapon)
+      next()
     }
   }
 
@@ -67,22 +87,55 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
           </FlexContainer>
         </FlexContainer>
         {first && (
-          <FlexContainer style={{ marginBottom: 16 }}>
-            <FullContainer />
-            <FlexContainer $direction='column'>
-              <ItemPreivew item={first} />
-              <span
-                style={{
-                  marginTop: 8,
-                  color: 'rgba(255,255,255,0.3)',
-                  fontWeight: 'bold',
-                  fontSize: 12,
-                }}
-              >
-                1 of {items.length}
-              </span>
+          <FlexContainer $direction='column'>
+            <FlexContainer style={{ marginBottom: 16 }}>
+              <FullContainer />
+              <FlexContainer $direction='column'>
+                <ItemPreivew item={first} />
+                <span
+                  style={{
+                    marginTop: 8,
+                    color: 'rgba(255,255,255,0.3)',
+                    fontWeight: 'bold',
+                    fontSize: 12,
+                  }}
+                >
+                  1 of {items.length}
+                </span>
+              </FlexContainer>
+              <FullContainer />
             </FlexContainer>
-            <FullContainer />
+            {(first.itemType === 'armor' || first.itemType === 'weapon') && (
+              <FlexContainer
+                style={{ marginBottom: 8, justifyContent: 'center' }}
+              >
+                {party.characters.map((character) => (
+                  <HoverToolTip
+                    direction='down'
+                    content={
+                      <>
+                        {getItem(character, first as tWeapon | tArmor) && (
+                          <ItemPreivew
+                            item={
+                              getItem(character, first as tWeapon | tArmor) as
+                                | tWeapon
+                                | tArmor
+                            }
+                          />
+                        )}
+                      </>
+                    }
+                  >
+                    <Button
+                      style={{ padding: 8 }}
+                      onClick={() => equip(character.id)}
+                    >
+                      Equip to {character.name}
+                    </Button>
+                  </HoverToolTip>
+                ))}
+              </FlexContainer>
+            )}
           </FlexContainer>
         )}
       </FlexContainer>

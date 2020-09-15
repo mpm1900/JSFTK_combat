@@ -22,7 +22,7 @@ export const RUSTED_CHIME = () =>
 export const TOMB_CHIME = () =>
   createWeapon(type, 'tomb', [RING, SLOW, VANISH], {})
 export const BURRIED_CHIME = () =>
-  createWeapon(type, 'burried', [RING, STUN, VANISH], {})
+  createWeapon(type, 'buried', [RING, STUN, VANISH], {})
 export const WITHERING_CHIME = () =>
   createBreakableWeapon(type, 'withering', [WITHERING_RING], {})
 export const GLASS_CHIME = () =>

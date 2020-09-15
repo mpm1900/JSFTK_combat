@@ -19,7 +19,7 @@ export const RUSTED_GREATSWORD = () =>
 export const TOMB_GREATSWORD = () =>
   createWeapon(type, 'tomb', [SWING, FLURRY], {})
 export const BURRIED_GREATSWORD = () =>
-  createWeapon(type, 'burried', [STRIKE, FLURRY, SLICE], {})
+  createWeapon(type, 'buried', [STRIKE, FLURRY, SLICE], {})
 export const WITHERING_GREATSWORD = () =>
   createBreakableWeapon(type, 'withering', [WITHERING_STRIKE], {})
 export const GLASS_GREATSWORD = () =>

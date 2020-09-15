@@ -15,7 +15,7 @@ export const RUSTED_DAGGER = () =>
   createWeapon(type, 'rusted', [STRIKE, SWING], {})
 export const TOMB_DAGGER = () => createWeapon(type, 'tomb', [SWING, LUNGE], {})
 export const BURRIED_DAGGER = () =>
-  createWeapon(type, 'burried', [STRIKE, STAB], {})
+  createWeapon(type, 'buried', [STRIKE, STAB], {})
 export const WITHERING_DAGGER = () =>
   createBreakableWeapon(type, 'withering', [WITHERING_STRIKE], {})
 export const GLASS_DAGGER = () =>

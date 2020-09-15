@@ -12,7 +12,7 @@ export const RUSTED_PISTOL = () =>
 export const TOMB_PISTOL = () =>
   createWeapon(type, 'tomb', [FIRE, SNIPE, FAN_FIRE], {})
 export const BURRIED_PISTOL = () =>
-  createWeapon(type, 'burried', [FIRE, SNIPE, FAN_FIRE], {})
+  createWeapon(type, 'buried', [FIRE, SNIPE, FAN_FIRE], {})
 export const WITHERING_PISTOL = () =>
   createBreakableWeapon(type, 'withering', [FIRE], {})
 export const GLASS_PISTOL = () =>

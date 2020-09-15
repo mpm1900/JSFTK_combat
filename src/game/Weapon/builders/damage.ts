@@ -59,7 +59,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     fist: 0,
     enemy: 0,
   },
-  burried: {
+  buried: {
     axe: 16,
     hammer: 13,
     sword: 13,

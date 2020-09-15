@@ -28,6 +28,7 @@ const ItemRow = styled(FlexContainer, (props: any) => {
     paddingLeft: '8px',
     transition: 'all 0.2s',
     userSelect: 'none',
+    textTransform: 'capitalize',
     ':hover': {
       background: 'rgba(255,255,255,0.2)',
     },

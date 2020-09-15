@@ -16,14 +16,22 @@ import { tWeaponsByLevel } from '../type'
 
 const type = 'axe'
 export const EXECUTIONER_AXE = (): tWeapon => ({
-  ...createWeapon(type, 'starting', [CHOP, AXE_SPIN], {}),
+  ...createWeapon(type, 'starting', [CHOP, AXE_SPIN], {
+    agility: 100,
+    strength: 100,
+  }),
   name: `Executioner Axe`,
+  damage: {
+    value: 100,
+    type: 'physical',
+    range: 'melee',
+  },
 })
 
 export const RUSTED_AXE = () => createWeapon(type, 'rusted', [CHOP, SWING], {})
 export const TOMB_AXE = () => createWeapon(type, 'tomb', [SWING, FLURRY], {})
 export const BURRIED_AXE = () =>
-  createWeapon(type, 'burried', [CHOP, FLURRY, SLICE], {})
+  createWeapon(type, 'buried', [CHOP, FLURRY, SLICE], {})
 export const WITHERING_AXE = () =>
   createBreakableWeapon(type, 'withering', [WITHERING_SWING], {})
 export const GLASS_AXE = () =>

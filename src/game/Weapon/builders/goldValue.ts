@@ -20,7 +20,7 @@ export const WEAPON_CLASS_GOLD_OFFSETS: Record<tWeaponClass, number> = {
   starting: -20,
   rusted: 0,
   tomb: 5,
-  burried: 10,
+  buried: 10,
   withering: 30,
   glass: 40,
 

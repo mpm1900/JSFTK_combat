@@ -15,7 +15,7 @@ const type = 'sword'
 export const RUSTED_SWORD = () => createWeapon(type, 'rusted', [STRIKE], {})
 export const TOMB_SWORD = () => createWeapon(type, 'tomb', [SWING, FLURRY], {})
 export const BURRIED_SWORD = () =>
-  createWeapon(type, 'burried', [SWING, STAB], {})
+  createWeapon(type, 'buried', [SWING, STAB], {})
 export const WITHERING_SWORD = () =>
   createBreakableWeapon(type, 'withering', [WITHERING_STRIKE], {})
 export const GLASS_SWORD = () =>

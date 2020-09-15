@@ -8,7 +8,7 @@ export type tWeaponClass =
   // LEVEL 1 ccc ur
   | 'rusted'
   | 'tomb'
-  | 'burried'
+  | 'buried'
   | 'withering'
   | 'glass'
 

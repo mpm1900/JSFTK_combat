@@ -21,7 +21,7 @@ export const RUSTED_BOW = () =>
 export const TOMB_BOW = () =>
   createWeapon(type, 'tomb', [SHOT, HEADSHOT, FLURRY], {})
 export const BURRIED_BOW = () =>
-  createWeapon(type, 'burried', [SHOT, FLURRY, PIN_DOWN], {})
+  createWeapon(type, 'buried', [SHOT, FLURRY, PIN_DOWN], {})
 export const WITHERING_BOW = () =>
   createBreakableWeapon(type, 'withering', [WITHERING_SHOT], {})
 export const GLASS_BOW = () =>

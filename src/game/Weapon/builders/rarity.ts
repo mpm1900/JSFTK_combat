@@ -4,7 +4,7 @@ export const WEAPON_CLASS_RARIES: tWeaponRarityConfig = {
   starting: 'common',
   rusted: 'common',
   tomb: 'common',
-  burried: 'common',
+  buried: 'common',
   withering: 'uncommon',
   glass: 'rare',
   iron: 'common',
