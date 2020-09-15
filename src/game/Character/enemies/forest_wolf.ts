@@ -14,7 +14,7 @@ export const FOREST_WOLF = (): tCharacter => {
     makeEnemyWeapon('dexterity', 7, 'melee', 'physical', [BITE]),
     {
       dexterity: 52,
-      agility: getRandom([60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70]),
+      agility: getRandom([55, 56, 57, 58, 59, 60, 61, 62, 63, 64]),
       evasion: 10,
     },
     [],
