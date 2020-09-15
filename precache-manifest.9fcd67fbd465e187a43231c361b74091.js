@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3e8549514e86918a290e4367102faba5",
+    "revision": "d561a30978ffad0371c0ce1f1a867433",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "7fb58fe6e0b8993b07a4",
+    "revision": "ab3c3f734da2b8f6973e",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "57a3b6e6f4d4840fc9a7",
+    "revision": "ea17ac1da4b587e8a4b6",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
-    "revision": "7fb58fe6e0b8993b07a4",
-    "url": "/JSFTK_combat/static/js/2.f546a0c9.chunk.js"
+    "revision": "ab3c3f734da2b8f6973e",
+    "url": "/JSFTK_combat/static/js/2.05948c31.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.f546a0c9.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.05948c31.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "57a3b6e6f4d4840fc9a7",
-    "url": "/JSFTK_combat/static/js/main.b402334c.chunk.js"
+    "revision": "ea17ac1da4b587e8a4b6",
+    "url": "/JSFTK_combat/static/js/main.2d998092.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -58,10 +58,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "d0246d45f337daf2893e0f226ca8125d",
     "url": "/JSFTK_combat/static/media/backward-time.d0246d45.svg"
-  },
-  {
-    "revision": "f798765b7d03667cb4e97519c2d8ac31",
-    "url": "/JSFTK_combat/static/media/bandit.f798765b.svg"
   },
   {
     "revision": "819d27263bc37c3a8ac475335056efa5",
@@ -264,12 +260,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/magic-swirl.854dc419.svg"
   },
   {
-    "revision": "ff410513bff5092b5cbcd882e6a9dbe6",
-    "url": "/JSFTK_combat/static/media/orc-head.ff410513.svg"
-  },
-  {
     "revision": "03e5b513c34b96c9497d86703e4e3404",
     "url": "/JSFTK_combat/static/media/overlord-helm.03e5b513.svg"
+  },
+  {
+    "revision": "d7458af6d26cd78febf860b6171456ed",
+    "url": "/JSFTK_combat/static/media/pentagram-rose.d7458af6.svg"
   },
   {
     "revision": "8b7e2589e0f2006d38d30e23355afe56",
@@ -340,6 +336,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/snowflake-2.a0b68bb3.svg"
   },
   {
+    "revision": "a7c36843ab309dbf56a0be48219132c7",
+    "url": "/JSFTK_combat/static/media/spectre.a7c36843.svg"
+  },
+  {
     "revision": "fa0be1a3a91e20cac72ab372d0bdd15a",
     "url": "/JSFTK_combat/static/media/split-cross.fa0be1a3.svg"
   },
@@ -360,6 +360,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/targeted.b4ce8dd7.svg"
   },
   {
+    "revision": "8e45be35ce9b073f3e84b217c4e4ea52",
+    "url": "/JSFTK_combat/static/media/troll.8e45be35.svg"
+  },
+  {
     "revision": "30335592156f2f6ee12e1d65a8cd5a82",
     "url": "/JSFTK_combat/static/media/ubisoft-sun.30335592.svg"
   },
@@ -378,6 +382,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "1fe6dbabb1374c4fc5e1a09dce2e3257",
     "url": "/JSFTK_combat/static/media/wave-strike.1fe6dbab.svg"
+  },
+  {
+    "revision": "fa211e2aca23e499e422ccbba43ae1b4",
+    "url": "/JSFTK_combat/static/media/werewolf.fa211e2a.svg"
+  },
+  {
+    "revision": "4d7f9b27c9938fa3cccdb1fb6d62e620",
+    "url": "/JSFTK_combat/static/media/witch-flight.4d7f9b27.svg"
   },
   {
     "revision": "2a49683a7464db7e3bfdb28b1d1a91fb",
