@@ -25,7 +25,7 @@ export const FOREST_WITCH = (): tCharacter => {
           ]),
         ],
       }),
-      // createSkill('Blast', 3, 0),
+      createSkill('Blast', 3, 0),
     ]),
     {
       intelligence: 84,

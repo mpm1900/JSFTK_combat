@@ -7,6 +7,7 @@ import { hasImmunity } from '../game/Character/util'
 export const usePlayerCharacterNotifications = (
   character: tProcessedCharacter,
   push: (c: JSX.Element, type?: string) => void,
+  shake: () => void,
 ) => {
   const health = character.health
   const level = character.level
@@ -17,6 +18,7 @@ export const usePlayerCharacterNotifications = (
     const healthDiff = previousHealth - health
     if (healthDiff > 0) {
       push(<span style={{ fontFamily: Theme.titleFont }}>- {healthDiff}</span>)
+      shake()
     }
     if (healthDiff < 0) {
       push(

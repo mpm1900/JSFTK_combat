@@ -17,6 +17,7 @@ import { makeCharacter } from '../game/Character/util'
 import { STAT_BONUS_KEYS } from '../game/Stats/constants'
 import { Theme } from '../theme'
 import { AppHeader } from '../components/AppHeader'
+import { HeadingSm } from '../elements/typography'
 
 export const Start = () => {
   const {
@@ -37,7 +38,19 @@ export const Start = () => {
       $direction='column'
       style={{ height: '100%', overflow: 'hidden' }}
     >
-      <AppHeader>
+      <AppHeader
+        left={
+          <Monospace
+            style={{
+              fontWeight: 'normal',
+              color: 'rgba(255,255,255,0.5)',
+              fontSize: 12,
+            }}
+          >
+            alpha-0.0.4.10
+          </Monospace>
+        }
+      >
         <span
           style={{ color: 'white', lineHeight: '52px', whiteSpace: 'nowrap' }}
         >
@@ -60,16 +73,13 @@ export const Start = () => {
             fontSize: 14,
           }}
         >
-          <strong
+          <HeadingSm
             style={{
               marginTop: 8,
-              marginBottom: 16,
-              fontSize: 20,
-              display: 'inline-block',
             }}
           >
-            Choose your starting classes.
-          </strong>
+            About this game
+          </HeadingSm>
           <p>
             Each character class has different stats and starting items. Your
             stats determine your character's chances of succeeding in various
@@ -136,15 +146,6 @@ export const Start = () => {
         <FullContainer />
       </FlexContainer>
       <FullContainer />
-      <Monospace
-        style={{
-          fontWeight: 'normal',
-          color: 'rgba(255,255,255,0.5)',
-          fontSize: 12,
-        }}
-      >
-        alpha v0.0.4.9
-      </Monospace>
     </FlexContainer>
   )
 }

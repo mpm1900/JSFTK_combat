@@ -20,6 +20,8 @@ import { Theme } from '../../theme'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { ZERO_STATS } from '../../game/Stats/constants'
 import { HoverHexBadge, HexBadge } from '../../elements/shapes'
+import { animated, useSpring } from 'react-spring'
+import { useElementShake } from '../../hooks/useElementShake'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -29,7 +31,7 @@ export interface PartyCharacterProps {
   onConsumableClick?: (consumable: tConsumable, index: number) => void
   push: (contents: JSX.Element, type?: string) => void
 }
-const Wrapper = styled('div', (props: any) => {
+const Wrapper = styled(animated.div, (props: any) => {
   const { $active, $targeted } = props
   return {
     margin: 10,
@@ -49,7 +51,7 @@ const Halo = styled('div', (props: any) => {
     boxShadow: $active
       ? `${left}px 0px 20px ${$light ? 'rgba(255,255,255,0.4)' : 'white'}`
       : $targeted
-      ? `${leftR}px 0px 20px red`
+      ? `${leftR}px 0px 20px #ff6224  `
       : 'none',
   }
 })
@@ -67,13 +69,15 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
   const targetIds = activeRound?.targetResults.map((r) => r.target.id)
   const active = activeCharacter?.id === character.id
   const targeted = targetIds?.includes(character.id)
-  usePlayerCharacterNotifications(character, push)
+  const { styles, exec } = useElementShake()
+  usePlayerCharacterNotifications(character, push, exec)
   return (
     <Wrapper
       $active={active}
       $targeted={targeted}
       style={{
         opacity: character.health <= 0 ? 0.5 : 1,
+        ...styles,
       }}
     >
       <HexBadge

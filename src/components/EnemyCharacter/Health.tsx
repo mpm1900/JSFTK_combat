@@ -13,7 +13,7 @@ export const Health = (props: HealthPropsT) => {
   const { character, push } = props
   const health = noneg(character.health)
   const [previousHealth, setPreviousHealth] = useState(character.health)
-  usePlayerCharacterNotifications(character, push)
+  usePlayerCharacterNotifications(character, push, () => {})
 
   useEffect(() => {
     setPreviousHealth(health)
