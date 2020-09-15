@@ -127,7 +127,9 @@ export const PartyCharacterConsumable = (
           <div
             style={{
               position: 'absolute',
+              textShadow: '-1px 1px 1px black',
               bottom: -2,
+              zIndex: 2,
               right: 1,
             }}
           >
@@ -149,7 +151,10 @@ export const PartyCharacterConsumableTooltip = (
   const { character, consumable } = props
   const getText = CONSUMABLE_DESCRIPTIONS[consumable.cid]
   return (
-    <BoxContainer>
+    <BoxContainer
+      style={{ maxWidth: 200 }}
+      substyle={{ background: Theme.darkBgColor }}
+    >
       <strong>{consumable.name}</strong>
       {getText && <div>{getText(character)}</div>}
     </BoxContainer>

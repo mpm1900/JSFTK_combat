@@ -14,6 +14,7 @@ import { EquipItemModal } from '../EquipItemModal'
 import Inventory from '../../icons/svg/lorc/knapsack.svg'
 import { HEAL, REMOVE_CURSES } from '../../game/Skill/skills/consumables'
 import { hasAnyStatus, hasStatus } from '../../game/Character/util'
+import { CURE_POTION } from '../../game/Consumable/objects/curing_potion'
 
 export const CombatActions = () => {
   const {
@@ -33,24 +34,33 @@ export const CombatActions = () => {
   const skills = activeCharacter.skills.filter((skill) => {
     if (activeCharacter.healthOffset === 0 && skill.id === HEAL.id) {
       return false
-    } else {
-      if (
-        !hasAnyStatus(activeCharacter, [
-          'cursed-agility',
-          'cursed-charisma',
-          'cursed-dexterity',
-          'cursed-intelligence',
-          'cursed-luck',
-          'cursed-strength',
-          'cursed-vigor',
-        ]) &&
-        skill.id === REMOVE_CURSES.id
-      ) {
-        return false
-      } else {
-        return true
-      }
     }
+    if (
+      !hasAnyStatus(activeCharacter, [
+        'cursed-agility',
+        'cursed-charisma',
+        'cursed-dexterity',
+        'cursed-intelligence',
+        'cursed-luck',
+        'cursed-strength',
+        'cursed-vigor',
+      ]) &&
+      skill.id === REMOVE_CURSES.id
+    ) {
+      return false
+    }
+    if (
+      !hasAnyStatus(activeCharacter, [
+        'bleeding',
+        'burning',
+        'frozen',
+        'poisoned',
+      ]) &&
+      skill.id === CURE_POTION().skill.id
+    ) {
+      return false
+    }
+    return true
   })
   return (
     <FlexContainer $direction='column' style={{ minWidth: 340 }}>

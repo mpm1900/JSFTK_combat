@@ -102,6 +102,18 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
             </FlexContainer>
           )}
         </FlexContainer>
+        {skill.consumableId && (
+          <div
+            style={{
+              color: Theme.healthRedColor,
+              fontSize: 12,
+              fontWeight: 'bolder',
+              marginBottom: 8,
+            }}
+          >
+            consumable
+          </div>
+        )}
         <FlexContainer style={{ marginBottom: -18 }}>
           <FullContainer />
           <BoxContainer

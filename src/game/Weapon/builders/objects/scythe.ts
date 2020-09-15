@@ -11,9 +11,14 @@ import {
   THRUST,
   WITHERING_SWING,
 } from '../../../Skill/skills/scythe'
+import { tWeapon } from '../../type'
 import { tWeaponsByLevel } from '../type'
 
 const type = 'scythe'
+export const FARMER_SCYTHE = (): tWeapon => ({
+  ...createWeapon(type, 'starting', [SLICE], {}),
+  name: `Farmer Scythe`,
+})
 export const RUSTED_SCYTHE = () => createWeapon(type, 'rusted', [THRUST], {})
 export const TOMB_SCYTHE = () => createWeapon(type, 'tomb', [SWING, FLURRY], {})
 export const BURRIED_SCYTHE = () =>

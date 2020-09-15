@@ -147,10 +147,13 @@ export const INITIAL_STATE: tParty = {
         */
       ],
     ),
-    {
-      ...jim,
-      //healthOffset: 30
-    },
+    addMultipleStatus(
+      {
+        ...jim,
+        //healthOffset: 30
+      },
+      [],
+    ),
     {
       ...john,
       //healthOffset: 30

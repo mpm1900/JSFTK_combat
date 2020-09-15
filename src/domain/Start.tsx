@@ -18,6 +18,7 @@ import { STAT_BONUS_KEYS } from '../game/Stats/constants'
 import { Theme } from '../theme'
 import { AppHeader } from '../components/AppHeader'
 import { HeadingSm } from '../elements/typography'
+import { Gauge2 } from '../components/Gauge/v2'
 
 export const Start = () => {
   const {
@@ -47,7 +48,7 @@ export const Start = () => {
               fontSize: 12,
             }}
           >
-            alpha-0.0.4.12
+            alpha-0.0.4.14
           </Monospace>
         }
       >
@@ -107,6 +108,7 @@ export const Start = () => {
               textAlign: 'center',
               fontFamily: Theme.titleFont,
               textShadow: '1px 3px 3px black',
+              color: 'rgba(255,255,255,1)',
             }}
           >
             Choose your Party!
@@ -198,6 +200,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
         <option value='ranger'>Ranger</option>
         <option value='student'>Student</option>
         <option value='patrician'>Patrician</option>
+        <option value='reaper'>Reaper</option>
         <option value='drifter'>Drifter</option>
       </select>
       <FlexContainer $direction='column' style={{ padding: 8 }}>
@@ -214,10 +217,10 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
               {key}
             </div>
             <FullContainer>
-              <Gauge
-                max={100}
-                value={character.stats[key]}
-                color='white'
+              <Gauge2
+                max={45}
+                value={character.stats[key] - 40}
+                color='rgba(255,255,255,0.6)'
                 height={15}
               />
             </FullContainer>

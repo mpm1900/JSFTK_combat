@@ -7,7 +7,7 @@ export const GLOBAL_DAMAGE_OFFSETS: tWeaponTypeDamageConfig = {
   greatsword: 0,
   bow: 0,
   dagger: 0,
-  scythe: 0,
+  scythe: -1,
   catalyst: 0,
   chime: 0,
   pistol: 0,
@@ -16,8 +16,8 @@ export const GLOBAL_DAMAGE_OFFSETS: tWeaponTypeDamageConfig = {
 }
 export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
   starting: {
-    axe: 12,
-    hammer: 10,
+    axe: 11,
+    hammer: 9,
     sword: 8,
     greatsword: 13,
     bow: 6,

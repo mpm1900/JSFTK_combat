@@ -10,6 +10,7 @@ export type tCharacterTag = 'flying' | 'undead'
 export type tCharacterClass =
   | 'executioner'
   | 'ranger'
+  | 'reaper'
   | 'student'
   | 'patrician'
   | 'drifter'

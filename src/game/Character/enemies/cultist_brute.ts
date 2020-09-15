@@ -1,4 +1,4 @@
-import Icon from '../../../icons/svg/delapouite/kenku-head.svg'
+import Cultist from '../../../icons/svg/lorc/cultist.svg'
 import { tCharacter } from '../type'
 import { getRandom } from '../../../util'
 import { getRandomItem } from '../../Item/util'
@@ -8,7 +8,7 @@ import { createSkill } from '../../Skill/skills'
 export const CULTIST_BRUTE = (): tCharacter => {
   return makeEnemy(
     'Cultist Brute',
-    Icon,
+    Cultist,
     4,
     26,
     makeEnemyWeapon('strength', 12, 'melee', 'physical', [

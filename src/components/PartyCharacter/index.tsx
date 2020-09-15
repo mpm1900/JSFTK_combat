@@ -20,7 +20,7 @@ import { Theme } from '../../theme'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { ZERO_STATS } from '../../game/Stats/constants'
 import { HoverHexBadge, HexBadge } from '../../elements/shapes'
-import { animated, useSpring } from 'react-spring'
+import { animated } from 'react-spring'
 import { useElementShake } from '../../hooks/useElementShake'
 
 export interface PartyCharacterProps {
@@ -157,7 +157,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                 size={42}
                 rotate
                 childStyle={{ paddingTop: 1 }}
-                content={<BoxContainer>Character Level</BoxContainer>}
+                content={<BoxContainer dark>Character Level</BoxContainer>}
               >
                 <span
                   style={{
@@ -212,7 +212,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           fontSize: 18,
           paddingTop: 1,
         }}
-        content={<BoxContainer>Armor</BoxContainer>}
+        content={<BoxContainer dark>Armor</BoxContainer>}
       >
         <span>{character.stats.armor}</span>
       </HoverHexBadge>
@@ -228,7 +228,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           fontSize: 18,
           paddingTop: 1,
         }}
-        content={<BoxContainer>Magic Resistance</BoxContainer>}
+        content={<BoxContainer dark>Magic Resistance</BoxContainer>}
       >
         <span>{character.stats.resistance}</span>
       </HoverHexBadge>
@@ -244,14 +244,14 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           fontSize: 18,
           paddingTop: 1,
         }}
-        content={<BoxContainer>Evasion</BoxContainer>}
+        content={<BoxContainer dark>Evasion</BoxContainer>}
       >
         <span>{character.stats.evasion}</span>
       </HoverHexBadge>
       <HoverHexBadge
         direction='up'
         rotate={true}
-        content={<BoxContainer>Weapon Damage</BoxContainer>}
+        content={<BoxContainer dark>Weapon Damage</BoxContainer>}
         position={{
           bottom: -4,
           left: 52,

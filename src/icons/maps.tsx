@@ -32,6 +32,8 @@ import Fist from './svg/skoll/fist.svg'
 import Godsbeard from './svg/delapouite/herbs-bundle.svg'
 import Lotus from './svg/lorc/lotus-flower.svg'
 import PoisonKnife from './svg/lorc/bone-knife.svg'
+import BeastDrug from './svg/delapouite/medicine-pills.svg'
+import CurePotion from './svg/lorc/drink-me.svg'
 import { tBaseStats } from '../game/Stats/type'
 import { GODSBEARD } from '../game/Consumable/objects/godsbeard'
 import { tArmorResourceType, tArmorType } from '../game/Armor/type'
@@ -43,8 +45,11 @@ import Hunter from './svg/lorc/cowled.svg'
 import Bard from './svg/delapouite/female-vampire.svg'
 import Scholar from './svg/delapouite/wizard-face.svg'
 import Hobo from './svg/delapouite/perspective-dice-six.svg'
+import Reaper from './svg/delapouite/kenku-head.svg'
 import { CELESTIAL_LOTUS } from '../game/Consumable/objects/celestial_lotus'
 import { POISON_KNIFE } from '../game/Consumable/objects/poison_knife'
+import { BEAST_DRUG } from '../game/Consumable/objects/beast_drug'
+import { CURE_POTION } from '../game/Consumable/objects/curing_potion'
 
 export { SKILL_ICONS } from './skills'
 export { STATUS_ICONS } from './status'
@@ -102,11 +107,15 @@ export const CONSUMABLE_ITEM_ICONS: Record<string, string> = {
   [GODSBEARD().cid]: Godsbeard,
   [CELESTIAL_LOTUS().cid]: Lotus,
   [POISON_KNIFE().cid]: PoisonKnife,
+  [BEAST_DRUG().cid]: BeastDrug,
+  [CURE_POTION().cid]: CurePotion,
 }
 export const CONSUMABLE_ITEM_COLORS: Record<string, string> = {
   [GODSBEARD().cid]: '#84a397',
   [CELESTIAL_LOTUS().cid]: '#7a80a1',
   [POISON_KNIFE().cid]: '#9c6c9e',
+  [BEAST_DRUG().cid]: '#b07171',
+  [CURE_POTION().cid]: '#8a8248',
 }
 
 export const CHARACTER_CLASS_ICONS: Record<tCharacterClass, string> = {
@@ -114,6 +123,7 @@ export const CHARACTER_CLASS_ICONS: Record<tCharacterClass, string> = {
   executioner: Executioner,
   patrician: Bard,
   ranger: Hunter,
+  reaper: Reaper,
   student: Scholar,
   drifter: Hobo,
 }

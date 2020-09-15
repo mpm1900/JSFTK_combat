@@ -29,7 +29,7 @@ export const Name = (props: NamePropsT) => {
       <FullContainer
         style={{
           fontFamily: Theme.titleFont,
-          textShadow: '0px 0px 2px black',
+          textShadow: '1px 1px 3px black',
           flex: 1,
           fontSize: 18,
           lineHeight: '20px',

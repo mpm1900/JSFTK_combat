@@ -6,12 +6,14 @@ export interface BoxContainerPropsT extends React.HTMLProps<HTMLDivElement> {
   substyle?: React.CSSProperties
   tag?: any
   to?: string
+  dark?: boolean
 }
 export const BoxContainer = (props: BoxContainerPropsT) => {
   const {
     style = {},
     substyle = {},
     children,
+    dark,
     tag: Element = 'div',
     ...rest
   } = props
@@ -27,7 +29,9 @@ export const BoxContainer = (props: BoxContainerPropsT) => {
       <Element
         style={{
           border: substyle.border || `1px solid ${Theme.lightBgColor}`,
-          background: `linear-gradient(0deg, ${Theme.mediumBgColor} 0%, rgba(42,42,44) 100%)`,
+          background: dark
+            ? Theme.darkBgColor
+            : `linear-gradient(0deg, ${Theme.mediumBgColor} 0%, rgba(42,42,44) 100%)`,
           padding: 10,
           color: '#ccc',
           flex: 1,

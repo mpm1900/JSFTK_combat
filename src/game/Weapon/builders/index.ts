@@ -4,7 +4,7 @@ import { ZERO_STATS } from '../../Stats/constants'
 import { tStats } from '../../Stats/type'
 import { tStatusType } from '../../Status/type'
 import { tWeapon, tWeaponType } from '../type'
-import { WEAPON_DAMAGE_CONFIG } from './damage'
+import { GLOBAL_DAMAGE_OFFSETS, WEAPON_DAMAGE_CONFIG } from './damage'
 import { BASE_WEAPON_TYPES_GOLD, WEAPON_CLASS_GOLD_OFFSETS } from './goldValue'
 import { WEAPON_CLASS_RARIES } from './rarity'
 import { DEFAULT_WEAPON_TYPE_STATS } from './stats'
@@ -19,7 +19,9 @@ export const createWeapon = (
   immunities: tStatusType[] = [],
   goldValue?: number,
 ): tWeapon => {
-  const damageValue = WEAPON_DAMAGE_CONFIG[weaponClass][weaponType]
+  const damageValue =
+    WEAPON_DAMAGE_CONFIG[weaponClass][weaponType] +
+    GLOBAL_DAMAGE_OFFSETS[weaponType]
   const { stat, twoHand, range, damageType } = DEFAULT_WEAPON_TYPE_CONFIG[
     weaponType
   ]

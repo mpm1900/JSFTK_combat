@@ -19,7 +19,12 @@ const CharacterStat = (props: CharacterStatPropsT) => {
     <HoverToolTip
       flex
       content={
-        <BoxContainer style={{ textTransform: 'capitalize' }}>
+        <BoxContainer
+          substyle={{
+            textTransform: 'capitalize',
+            background: Theme.darkBgColor,
+          }}
+        >
           {statKey}
         </BoxContainer>
       }

@@ -107,7 +107,7 @@ export const commitSkillResults = (
     if (index === result.targetResults.length - 1) {
       // source health regen
       localUpdate(sourceParty, source.id, (c) => {
-        const pc = processCharacter(c)
+        const pc = processCharacter(checkStatus(c))
         return {
           ...c,
           healthOffset: noneg(c.healthOffset - pc.stats.healthRegeneration),

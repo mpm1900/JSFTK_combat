@@ -6,10 +6,12 @@ import { EXECUTIONER_AXE } from './builders/objects/axe'
 import { RANGERS_BOW } from './builders/objects/bow'
 import { STUDENTS_CATALYST } from './builders/objects/catalyst'
 import { PATRICIANS_CHIME } from './builders/objects/chime'
+import { FARMER_SCYTHE } from './builders/objects/scythe'
 
 export const CLASS_WEAPONS: Record<tCharacterClass, tWeapon | undefined> = {
   executioner: EXECUTIONER_AXE(),
   ranger: RANGERS_BOW(),
+  reaper: FARMER_SCYTHE(),
   student: STUDENTS_CATALYST(),
   patrician: PATRICIANS_CHIME(),
   drifter: undefined,

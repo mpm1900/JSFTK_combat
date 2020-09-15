@@ -43,6 +43,9 @@ import Punch from './svg/lorc/punch.svg'
 
 import Stun from './svg/lorc/ubisoft-sun.svg'
 
+import AttackUp from './svg/lorc/all-for-one.svg'
+import CurePotion from './svg/lorc/drink-me.svg'
+
 export const SKILL_ICONS: Record<string, string> = {
   Punch: Punch,
 
@@ -86,9 +89,12 @@ export const SKILL_ICONS: Record<string, string> = {
   Heal: Heal,
   'Remove Curses': Bless,
   'Poison Knife': PoisonKnife,
+  'Cure Potion': CurePotion,
   Restore: Restore,
   Rush: Rush,
   Vanish: EvadeUp,
   'Evade Up': EvadeUp,
   'Armor Up': ArmorUp,
+  'Attack Up': AttackUp,
+  'Beast Drug': AttackUp,
 }
