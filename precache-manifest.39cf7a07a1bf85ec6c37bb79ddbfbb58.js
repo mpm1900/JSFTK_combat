@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0f81fb3465a9a253e2d7d93ffaccf143",
+    "revision": "5f9f3189d3aa5e824b8467565b61767f",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "ca841961145dedee7b00",
+    "revision": "b795538d383773f70a08",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "d82728535702a272a34a",
+    "revision": "446974dfa0b5a08a0952",
     "url": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css"
   },
   {
-    "revision": "ca841961145dedee7b00",
-    "url": "/JSFTK_combat/static/js/2.8a1b0aab.chunk.js"
+    "revision": "b795538d383773f70a08",
+    "url": "/JSFTK_combat/static/js/2.1bc48fc0.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.8a1b0aab.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.1bc48fc0.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d82728535702a272a34a",
-    "url": "/JSFTK_combat/static/js/main.dbc6c790.chunk.js"
+    "revision": "446974dfa0b5a08a0952",
+    "url": "/JSFTK_combat/static/js/main.9bba965c.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -156,6 +156,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/double-shot.70211522.svg"
   },
   {
+    "revision": "58fa9df0302420304fcb9e93e86c88e7",
+    "url": "/JSFTK_combat/static/media/embrassed-energy.58fa9df0.svg"
+  },
+  {
     "revision": "514fc56c6439f7eb142fc8ec0f37270d",
     "url": "/JSFTK_combat/static/media/energy-arrow.514fc56c.svg"
   },
@@ -266,6 +270,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "853672545c995fa342577d1e493f2958",
     "url": "/JSFTK_combat/static/media/lightning-shield.85367254.svg"
+  },
+  {
+    "revision": "4b207eda2771249f8de821c266e42d05",
+    "url": "/JSFTK_combat/static/media/lotus-flower.4b207eda.svg"
   },
   {
     "revision": "854dc4192d6fa9ad8943cb8eb7103f6f",
