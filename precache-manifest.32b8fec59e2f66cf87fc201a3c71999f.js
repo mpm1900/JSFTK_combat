@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9672dade1b7556622b8e7e48871965c6",
+    "revision": "227b2c3d3003a3391ff5e285b6734923",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "a4188da8ff7c09e1beb5",
+    "revision": "5855b630c09516d87376",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "9f5aac333c310b3f76b7",
+    "revision": "f240aefb9e7b2f5b63cf",
     "url": "/JSFTK_combat/static/css/main.a8c8ac70.chunk.css"
   },
   {
-    "revision": "a4188da8ff7c09e1beb5",
-    "url": "/JSFTK_combat/static/js/2.06eb78e3.chunk.js"
+    "revision": "5855b630c09516d87376",
+    "url": "/JSFTK_combat/static/js/2.849891f7.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.06eb78e3.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.849891f7.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9f5aac333c310b3f76b7",
-    "url": "/JSFTK_combat/static/js/main.d5704b5d.chunk.js"
+    "revision": "f240aefb9e7b2f5b63cf",
+    "url": "/JSFTK_combat/static/js/main.c139f59a.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -100,6 +100,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/broken-shield.c26ddd72.svg"
   },
   {
+    "revision": "00562b6bca0baea5573c204b14aeaa29",
+    "url": "/JSFTK_combat/static/media/bullet-impacts.00562b6b.svg"
+  },
+  {
     "revision": "f1f52a3c22bdc7a554ea337d72bc906d",
     "url": "/JSFTK_combat/static/media/chest-armor.f1f52a3c.svg"
   },
@@ -122,6 +126,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "b7d2c27aa5e3c339407d1442370fe343",
     "url": "/JSFTK_combat/static/media/crossed-swords.b7d2c27a.svg"
+  },
+  {
+    "revision": "d2c9a9ed90f4fc0145d61f3fe7f8402f",
+    "url": "/JSFTK_combat/static/media/crosshair.d2c9a9ed.svg"
   },
   {
     "revision": "458d8f7833dab22ef32f683a0ab08964",
@@ -182,6 +190,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "e0256fffb50e874db1b94989efe9f33c",
     "url": "/JSFTK_combat/static/media/gavel.e0256fff.svg"
+  },
+  {
+    "revision": "cf3eceba2cd2282883d409c4e1df9044",
+    "url": "/JSFTK_combat/static/media/gunshot.cf3eceba.svg"
   },
   {
     "revision": "120a92c4a39eb00df25785bfd28ce44a",
