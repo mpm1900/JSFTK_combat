@@ -12,6 +12,7 @@ import Reward from '../../icons/svg/lorc/laurel-crown.svg'
 import { Icon } from '../Icon'
 import { BoxContainer } from '../../elements/box'
 import { Theme } from '../../theme'
+import { HeadingSm } from '../../elements/typography'
 
 export interface EncounterHistoryPropsT {}
 
@@ -41,54 +42,71 @@ export const EncounterHistory = (props: EncounterHistoryPropsT) => {
     <FlexContainer $direction='column'>
       {floors.map((f, fi) => (
         <FlexContainer
-          key={f.id}
-          style={{ justifyContent: 'space-evenly', padding: 32 }}
+          $direction='column'
+          style={{
+            background: Theme.darkBgColor,
+            padding: 16,
+            margin: '16px 32px 16px 0',
+          }}
         >
-          {chosenEncounters(f).map((e, i) => (
-            <FlexContainer key={i} $full>
-              <BoxContainer
-                substyle={{
-                  padding: 4,
-                  borderColor:
-                    level === i && fi === floor
-                      ? 'white'
-                      : e === undefined
-                      ? Theme.lightBgColor
-                      : '#8b9e96',
-                }}
+          <FlexContainer>
+            <HeadingSm>{f.name}</HeadingSm>
+          </FlexContainer>
+          <FlexContainer
+            key={f.id}
+            style={{
+              justifyContent: 'space-between',
+            }}
+          >
+            {chosenEncounters(f).map((e, i) => (
+              <FlexContainer
+                key={i}
+                $full={i !== chosenEncounters(f).length - 1}
               >
-                <Icon
-                  src={getIcon(
-                    i === f.encounters.length - 2
-                      ? 'boss'
-                      : i === f.encounters.length - 1
-                      ? 'reward'
-                      : e?.type,
-                  )}
-                  size={32}
-                  fill={e === undefined ? 'rgba(255,255,255,0.5)' : '#8b9e96'}
-                />
-              </BoxContainer>
-              {i !== chosenEncounters(f).length - 1 && (
-                <FlexContainer
-                  $direction='column'
-                  $full
-                  style={{ justifyContent: 'center' }}
+                <BoxContainer
+                  substyle={{
+                    padding: 4,
+                    borderColor:
+                      level === i && fi === floor
+                        ? 'white'
+                        : e === undefined
+                        ? Theme.lightBgColor
+                        : '#8b9e96',
+                  }}
                 >
-                  <FlexContainer
-                    $full
-                    style={{
-                      maxHeight: 1,
-                      background:
-                        e === undefined ? Theme.lightBgColor : 'white',
-                      borderTop: '1px solid black',
-                      borderBottom: '1px solid black',
-                    }}
+                  <Icon
+                    src={getIcon(
+                      i === f.encounters.length - 2
+                        ? 'boss'
+                        : i === f.encounters.length - 1
+                        ? 'reward'
+                        : e?.type,
+                    )}
+                    size={32}
+                    fill={e === undefined ? 'rgba(255,255,255,0.5)' : '#8b9e96'}
                   />
-                </FlexContainer>
-              )}
-            </FlexContainer>
-          ))}
+                </BoxContainer>
+                {i !== chosenEncounters(f).length - 1 && (
+                  <FlexContainer
+                    $direction='column'
+                    $full
+                    style={{ justifyContent: 'center' }}
+                  >
+                    <FlexContainer
+                      $full
+                      style={{
+                        maxHeight: 1,
+                        background:
+                          e === undefined ? Theme.lightBgColor : 'white',
+                        borderTop: '1px solid black',
+                        borderBottom: '1px solid black',
+                      }}
+                    />
+                  </FlexContainer>
+                )}
+              </FlexContainer>
+            ))}
+          </FlexContainer>
         </FlexContainer>
       ))}
     </FlexContainer>

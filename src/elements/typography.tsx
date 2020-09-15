@@ -14,6 +14,7 @@ export const FakeLink = styled('span', (props: any) => {
 export const HeadingSm = styled('span', (props: any) => {
   return {
     fontFamily: Theme.titleFont,
+    color: 'white',
     fontSize: '20px',
     display: 'inline-block',
     marginBottom: '16px',

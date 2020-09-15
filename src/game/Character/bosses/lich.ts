@@ -1,7 +1,5 @@
 import Lich from '../../../icons/svg/delapouite/overlord-helm.svg'
 import { tCharacter } from '../type'
-import { v4 } from 'uuid'
-import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
 import {
   makeEnemy,
   makeEnemyReward,
@@ -60,7 +58,7 @@ export const LICH = (): tCharacter => {
           getRandomItem(3),
         ]),
       ],
-      ['stunned', 'bleeding'],
+      ['stunned', 'bleeding', 'poisoned'],
     ),
   }
 }

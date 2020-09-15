@@ -134,7 +134,6 @@ export const INITIAL_STATE: tParty = {
         // healthOffset: 30,
       },
       [
-        'cursed-dexterity',
         /*
         'frozen',
         'bleeding',

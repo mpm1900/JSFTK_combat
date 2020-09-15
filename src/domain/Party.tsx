@@ -11,10 +11,13 @@ import { getSkillResult } from '../game/Skill/util'
 import { commitSkillResults } from '../game/Skill/committer'
 import { NonCombatEncounter } from '../components/NonCombatEncounter'
 import { EncounterActions } from '../components/EncounterActions'
+import { Theme } from '../theme'
+import { HeadingSm } from '../elements/typography'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()
-  const { level } = useGameStateContext()
+  const { level, floors, floor } = useGameStateContext()
+  const currentFloor = floors[floor]
   const history = useHistory()
   const {
     setPlayerCanEquipItem,
@@ -70,7 +73,9 @@ export const Party = () => {
             alignItems: 'center',
           }}
         >
-          Level {level}
+          <HeadingSm style={{ margin: 0 }}>
+            {currentFloor.name} - Level {level}
+          </HeadingSm>
         </FlexContainer>
       </AppHeader>
       <FlexContainer $full $direction='column'>

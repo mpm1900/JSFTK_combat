@@ -102,7 +102,7 @@ export const CONSUMABLE_ITEM_ICONS: Record<string, string> = {
 }
 export const CONSUMABLE_ITEM_COLORS: Record<string, string> = {
   [GODSBEARD().cid]: '#84a397',
-  [CELESTIAL_LOTUS().cid]: '#827582',
+  [CELESTIAL_LOTUS().cid]: '#9c809c',
 }
 
 export const CHARACTER_CLASS_ICONS: Record<tCharacterClass, string> = {

@@ -146,8 +146,16 @@ export const getItemCost = (item: tArmor | tWeapon | tConsumable): number => {
 }
 
 export const makeFloor = (depth: number, encounterCount: number): tFloor => {
+  let name = ''
+  if (depth === 0) {
+    name = 'The Forgotten Woods'
+  }
+  if (depth === 1) {
+    name = 'Tomb of the Formless One (in-progress)'
+  }
   return {
     id: v4(),
+    name,
     encounters: makeEncounterList(encounterCount, depth),
     depth,
   }

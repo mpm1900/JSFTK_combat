@@ -49,6 +49,7 @@ export interface tEncounterChoice {
 
 export interface tFloor {
   id: string
+  name: string
   depth: number
   encounters: tEncounterChoice[]
 }
