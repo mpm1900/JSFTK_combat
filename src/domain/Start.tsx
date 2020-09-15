@@ -16,6 +16,7 @@ import {
 import { makeCharacter } from '../game/Character/util'
 import { STAT_BONUS_KEYS } from '../game/Stats/constants'
 import { Theme } from '../theme'
+import { AppHeader } from '../components/AppHeader'
 
 export const Start = () => {
   const {
@@ -36,6 +37,17 @@ export const Start = () => {
       $direction='column'
       style={{ height: '100%', overflow: 'hidden' }}
     >
+      <AppHeader>
+        <span
+          style={{ color: 'white', lineHeight: '52px', whiteSpace: 'nowrap' }}
+        >
+          I am looking for help with: item, and enemy, and general design! If
+          you would like to help, shoot me a message or head over to{' '}
+          <a href='https://github.com/mpm1900/JSFTK_combat' target='_blank'>
+            my github
+          </a>
+        </span>
+      </AppHeader>
       <FullContainer />
       <FlexContainer $full>
         <FullContainer />

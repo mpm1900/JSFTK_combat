@@ -13,6 +13,11 @@ body {
   height: 100%;
 }
 
+a,
+a:visited {
+  color: rgb(151, 75, 75);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
