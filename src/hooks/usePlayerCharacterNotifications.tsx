@@ -2,6 +2,7 @@ import { tProcessedCharacter } from '../game/Character/type'
 import React, { useState, useEffect } from 'react'
 import { useCombatContext } from '../contexts/CombatContext'
 import { Theme } from '../theme'
+import { hasImmunity } from '../game/Character/util'
 
 export const usePlayerCharacterNotifications = (
   character: tProcessedCharacter,
@@ -73,10 +74,24 @@ export const usePlayerCharacterNotifications = (
         }
         if (chResult.addedStatus.length > 0) {
           chResult.addedStatus.forEach((status) => {
-            push(
-              <span style={{ fontFamily: Theme.titleFont }}>{status}</span>,
-              'base',
-            )
+            if (hasImmunity(character, status)) {
+              push(
+                <span style={{ fontFamily: Theme.titleFont }}>Immune</span>,
+                'base',
+              )
+            } else {
+              push(
+                <span
+                  style={{
+                    textTransform: 'capitalize',
+                    fontFamily: Theme.titleFont,
+                  }}
+                >
+                  {status}
+                </span>,
+                'base',
+              )
+            }
           })
         }
         if (chResult.perfect && chResult.skill.perfectPierce) {

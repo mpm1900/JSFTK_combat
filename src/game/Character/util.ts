@@ -207,7 +207,7 @@ export const addStatus = (
   checkForProcessedCharacter(character)
   const statusConfig = STATUS_CONFIG[type]
   const existingStatus = findStatus(character, type)
-  if (hasImmunity(character, type)) {
+  if (hasImmunity(processCharacter(character), type)) {
     return character
   }
   if (existingStatus && !statusConfig.canStack) {
@@ -250,7 +250,7 @@ export const checkStatus = (character: tCharacter) => {
   checkForProcessedCharacter(character)
   let c = { ...character }
   character.status.forEach((status) => {
-    if (hasImmunity(character, status.type)) {
+    if (hasImmunity(processCharacter(character), status.type)) {
       c = {
         ...c,
         status: c.status.filter((c) => c.type !== status.type),
