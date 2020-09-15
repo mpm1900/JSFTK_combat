@@ -1,23 +1,24 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.ef50f7eb.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.ef50f7eb.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.35dc433a.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.35dc433a.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
     "static/css/2.d34346ea.chunk.css": "/JSFTK_combat/static/css/2.d34346ea.chunk.css",
-    "static/js/2.3f3306d5.chunk.js": "/JSFTK_combat/static/js/2.3f3306d5.chunk.js",
-    "static/js/2.3f3306d5.chunk.js.map": "/JSFTK_combat/static/js/2.3f3306d5.chunk.js.map",
+    "static/js/2.5437fb04.chunk.js": "/JSFTK_combat/static/js/2.5437fb04.chunk.js",
+    "static/js/2.5437fb04.chunk.js.map": "/JSFTK_combat/static/js/2.5437fb04.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.a99dd5706c35fb04a297e7d7b2c9c572.js": "/JSFTK_combat/precache-manifest.a99dd5706c35fb04a297e7d7b2c9c572.js",
+    "precache-manifest.37b7c8435b596893bd1bb597a33f48a8.js": "/JSFTK_combat/precache-manifest.37b7c8435b596893bd1bb597a33f48a8.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/2.d34346ea.chunk.css.map": "/JSFTK_combat/static/css/2.d34346ea.chunk.css.map",
     "static/css/main.ace9f9a4.chunk.css.map": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css.map",
-    "static/js/2.3f3306d5.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.3f3306d5.chunk.js.LICENSE.txt",
+    "static/js/2.5437fb04.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.5437fb04.chunk.js.LICENSE.txt",
     "static/media/1.png": "/JSFTK_combat/static/media/1.a7dcd7d0.png",
     "static/media/3.png": "/JSFTK_combat/static/media/3.5b81afea.png",
     "static/media/7.png": "/JSFTK_combat/static/media/7.d2e528ea.png",
     "static/media/8.png": "/JSFTK_combat/static/media/8.d80166bd.png",
+    "static/media/all-for-one.svg": "/JSFTK_combat/static/media/all-for-one.33b25b62.svg",
     "static/media/arrow-wings.svg": "/JSFTK_combat/static/media/arrow-wings.bb52c66a.svg",
     "static/media/axe-swing.svg": "/JSFTK_combat/static/media/axe-swing.6958cc19.svg",
     "static/media/backward-time.svg": "/JSFTK_combat/static/media/backward-time.d0246d45.svg",
@@ -46,6 +47,7 @@
     "static/media/divided-spiral.svg": "/JSFTK_combat/static/media/divided-spiral.a8e90e0d.svg",
     "static/media/dodging.svg": "/JSFTK_combat/static/media/dodging.3c689d6d.svg",
     "static/media/double-shot.svg": "/JSFTK_combat/static/media/double-shot.70211522.svg",
+    "static/media/drink-me.svg": "/JSFTK_combat/static/media/drink-me.2ee1fbb7.svg",
     "static/media/embrassed-energy.svg": "/JSFTK_combat/static/media/embrassed-energy.58fa9df0.svg",
     "static/media/energy-arrow.svg": "/JSFTK_combat/static/media/energy-arrow.514fc56c.svg",
     "static/media/executioner-hood.svg": "/JSFTK_combat/static/media/executioner-hood.6e796b5c.svg",
@@ -77,6 +79,7 @@
     "static/media/lightning-shield.svg": "/JSFTK_combat/static/media/lightning-shield.85367254.svg",
     "static/media/lotus-flower.svg": "/JSFTK_combat/static/media/lotus-flower.4b207eda.svg",
     "static/media/magic-swirl.svg": "/JSFTK_combat/static/media/magic-swirl.854dc419.svg",
+    "static/media/medicine-pills.svg": "/JSFTK_combat/static/media/medicine-pills.ef75e681.svg",
     "static/media/overlord-helm.svg": "/JSFTK_combat/static/media/overlord-helm.03e5b513.svg",
     "static/media/pentagram-rose.svg": "/JSFTK_combat/static/media/pentagram-rose.d7458af6.svg",
     "static/media/perspective-dice-six.svg": "/JSFTK_combat/static/media/perspective-dice-six.8b7e2589.svg",
@@ -118,8 +121,8 @@
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
     "static/css/2.d34346ea.chunk.css",
-    "static/js/2.3f3306d5.chunk.js",
+    "static/js/2.5437fb04.chunk.js",
     "static/css/main.ace9f9a4.chunk.css",
-    "static/js/main.ef50f7eb.chunk.js"
+    "static/js/main.35dc433a.chunk.js"
   ]
 }
