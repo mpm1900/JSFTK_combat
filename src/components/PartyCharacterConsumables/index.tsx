@@ -9,8 +9,9 @@ import { tConsumable } from '../../game/Consumable/type'
 import { considateConsumableListToStack } from '../../game/Consumable/util'
 import { Theme } from '../../theme'
 import { CELESTIAL_LOTUS } from '../../game/Consumable/objects/celestial_lotus'
-import { REMOVE_CURSES } from '../../game/Skill/skills/armor'
+import { REMOVE_CURSES } from '../../game/Skill/skills/consumables'
 import { hasAnyStatus } from '../../game/Character/util'
+import { CONSUMABLE_DESCRIPTIONS } from '../../game/Consumable/constants'
 
 const HEIGHT = 64
 export interface PartyCharacterConsumablesPropsT {
@@ -146,13 +147,11 @@ export const PartyCharacterConsumableTooltip = (
   props: PartyCharacterConsumableTooltipProps,
 ) => {
   const { character, consumable } = props
+  const getText = CONSUMABLE_DESCRIPTIONS[consumable.cid]
   return (
     <BoxContainer>
       <strong>{consumable.name}</strong>
-      {consumable.skill.healing && (
-        <div>Heal for {character.stats.consumableHealthGainOffset} HP</div>
-      )}
-      {consumable.cid === CELESTIAL_LOTUS().cid && <div>Remove all Curses</div>}
+      {getText && <div>{getText(character)}</div>}
     </BoxContainer>
   )
 }

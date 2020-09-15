@@ -32,6 +32,7 @@ export const Button = styled('button', (props: ButtonPropsT) => {
 export const RedButton = withStyle(Button, (props: ButtonPropsT) => {
   return {
     // fontFamily: Theme.titleFont,
+    fontWeight: 'bold',
     background:
       'linear-gradient(0deg, rgba(157,30,30,1) 0%, rgba(110,23,23,1) 100%)',
   }

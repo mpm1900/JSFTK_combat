@@ -9,6 +9,7 @@ import { Hover } from '../Hover'
 import { Icon } from '../Icon'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { animated, useSpring } from 'react-spring'
+import { Theme } from '../../theme'
 
 export interface ActionsPropsT {
   character: tProcessedCharacter
@@ -41,7 +42,7 @@ export const Actions = (props: ActionsPropsT) => {
           isOpen={inventoryOpen}
           direction='up'
           distance={60}
-          background='rgba(0,0,0,0.7)'
+          background={Theme.darkBgColor}
           arrow
           content={
             <animated.div

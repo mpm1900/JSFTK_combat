@@ -4,6 +4,7 @@ import { tConsumable } from '../Consumable/type'
 import { tArmorResourceType } from '../Armor/type'
 import { GODSBEARD } from '../Consumable/objects/godsbeard'
 import { CELESTIAL_LOTUS } from '../Consumable/objects/celestial_lotus'
+import { POISON_KNIFE } from '../Consumable/objects/poison_knife'
 
 export const ITEM_RARITY_COLORS: Record<tItemRarity, string> = {
   common: 'rgba(255, 255, 255,1)',
@@ -16,10 +17,10 @@ export const CLASS_STARTING_CONSUMABLES: Record<
   tCharacterClass,
   tConsumable[]
 > = {
-  executioner: [GODSBEARD(), GODSBEARD(), CELESTIAL_LOTUS()],
-  ranger: [GODSBEARD(), GODSBEARD(), CELESTIAL_LOTUS()],
+  executioner: [GODSBEARD(), GODSBEARD()],
+  ranger: [GODSBEARD(), GODSBEARD(), POISON_KNIFE()],
   student: [GODSBEARD(), GODSBEARD(), CELESTIAL_LOTUS()],
-  patrician: [GODSBEARD(), GODSBEARD(), CELESTIAL_LOTUS()],
+  patrician: [GODSBEARD(), GODSBEARD()],
   drifter: [GODSBEARD()],
   enemy: [],
 }

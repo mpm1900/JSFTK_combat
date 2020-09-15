@@ -1,18 +1,18 @@
 import { tConsumable } from '../type'
 import { v4 } from 'uuid'
-import { REMOVE_CURSES } from '../../Skill/skills/consumables'
+import { POISON_KNIFE as skill } from '../../Skill/skills/consumables'
 
 const cid = v4()
-export const CELESTIAL_LOTUS = (): tConsumable => {
+export const POISON_KNIFE = (): tConsumable => {
   const id = v4()
   return {
     id,
     cid,
-    name: 'Celestial Lotus',
+    name: 'Poison Knife',
     itemType: 'consumable',
     rarity: 'common',
     skill: {
-      ...REMOVE_CURSES,
+      ...skill,
       consumableId: id,
     },
     goldValue: 20,

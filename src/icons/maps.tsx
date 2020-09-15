@@ -31,6 +31,7 @@ import Fist from './svg/skoll/fist.svg'
 
 import Godsbeard from './svg/delapouite/herbs-bundle.svg'
 import Lotus from './svg/lorc/lotus-flower.svg'
+import PoisonKnife from './svg/lorc/bone-knife.svg'
 import { tBaseStats } from '../game/Stats/type'
 import { GODSBEARD } from '../game/Consumable/objects/godsbeard'
 import { tArmorResourceType, tArmorType } from '../game/Armor/type'
@@ -43,6 +44,7 @@ import Bard from './svg/delapouite/female-vampire.svg'
 import Scholar from './svg/delapouite/wizard-face.svg'
 import Hobo from './svg/delapouite/perspective-dice-six.svg'
 import { CELESTIAL_LOTUS } from '../game/Consumable/objects/celestial_lotus'
+import { POISON_KNIFE } from '../game/Consumable/objects/poison_knife'
 
 export { SKILL_ICONS } from './skills'
 export { STATUS_ICONS } from './status'
@@ -99,10 +101,12 @@ export const RESOURCE_ICONS: Record<tArmorResourceType | 'weapon', string> = {
 export const CONSUMABLE_ITEM_ICONS: Record<string, string> = {
   [GODSBEARD().cid]: Godsbeard,
   [CELESTIAL_LOTUS().cid]: Lotus,
+  [POISON_KNIFE().cid]: PoisonKnife,
 }
 export const CONSUMABLE_ITEM_COLORS: Record<string, string> = {
   [GODSBEARD().cid]: '#84a397',
-  [CELESTIAL_LOTUS().cid]: '#9c809c',
+  [CELESTIAL_LOTUS().cid]: '#7a80a1',
+  [POISON_KNIFE().cid]: '#9c6c9e',
 }
 
 export const CHARACTER_CLASS_ICONS: Record<tCharacterClass, string> = {

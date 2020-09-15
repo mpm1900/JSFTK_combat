@@ -28,6 +28,7 @@ import SpreadShot from './svg/lorc/double-shot.svg'
 
 import Heal from './svg/sbed/health-normal.svg'
 import Bless from './svg/lorc/embrassed-energy.svg'
+import PoisonKnife from './svg/lorc/bone-knife.svg'
 import Lunge from './svg/lorc/wave-strike.svg'
 import Restore from './svg/lorc/life-support.svg'
 import EvadeUp from './svg/lorc/dodging.svg'
@@ -84,6 +85,7 @@ export const SKILL_ICONS: Record<string, string> = {
 
   Heal: Heal,
   'Remove Curses': Bless,
+  'Poison Knife': PoisonKnife,
   Restore: Restore,
   Rush: Rush,
   Vanish: EvadeUp,
