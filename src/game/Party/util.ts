@@ -69,8 +69,10 @@ export const updateCharacter = (
 }
 
 export const makeParty = (level: number, floor: number): tParty => {
-  level = level > 8 ? 8 : level
   const floorConfig = FLOOR_CONFIGS_BY_INDEX()[floor]
+  const length = Object.keys(floorConfig.enemies).length
+  level = level > length ? length : level
+
   return {
     isParty: true,
     id: v4(),

@@ -12,7 +12,7 @@ export const FOREST_WITCH = (): tCharacter => {
     Witch,
     1,
     9,
-    makeEnemyWeapon('intelligence', 8, 'ranged', 'magic', [
+    makeEnemyWeapon('intelligence', 9, 'ranged', 'magic', [
       createSkill('Curse', 2, -10, {
         perfectStatus: [
           getRandom<tStatusType>([

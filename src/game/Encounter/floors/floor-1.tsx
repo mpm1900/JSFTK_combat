@@ -37,14 +37,14 @@ export const FloorConfig1 = (): tFloorConfig => ({
   ],
   enemies: {
     0: [
-      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 1),
-      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 1),
-      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 2),
+      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, BEE], 1),
       makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 1),
       makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 2),
+      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 1),
       makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 2),
+      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, BEE], 2),
       makeRandomFloorEncounter(
-        [FOREST_WOLF, FOREST_WOLF, FOREST_BEAST, FOREST_WITCH],
+        [FOREST_WOLF, FOREST_WOLF, FOREST_BEAST, FOREST_WITCH, BEE],
         3,
       ),
     ],

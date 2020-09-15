@@ -35,6 +35,7 @@ export interface PartyContextT {
   unequipItem: (characterId: string, item: tWeapon | tArmor) => void
   purchaseItem: (item: tArmor | tWeapon | tConsumable, cost: number) => void
   sellItem: (itemId: string) => void
+  refreshParty: () => void
 }
 const defaultContextValue: PartyContextT = {
   rawParty: makeParty(0, 0),
@@ -50,6 +51,7 @@ const defaultContextValue: PartyContextT = {
   unequipItem: (characterId, item) => {},
   purchaseItem: (item, cost) => {},
   sellItem: (itemId) => {},
+  refreshParty: () => {},
 }
 export const PartyContext = React.createContext<PartyContextT>(
   defaultContextValue,
@@ -182,6 +184,16 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
       })
     }
   }
+  const refreshParty = () => {
+    updateParty({
+      ...rawParty,
+      characters: rawParty.characters.map((c) => ({
+        ...c,
+        healthOffset: 0,
+        status: [],
+      })),
+    })
+  }
 
   return (
     <PartyContext.Provider
@@ -199,6 +211,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
         unequipItem,
         purchaseItem,
         sellItem,
+        refreshParty,
       }}
     >
       {children}

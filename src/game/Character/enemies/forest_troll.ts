@@ -13,6 +13,11 @@ export const FOREST_TROLL = (): tCharacter => {
     24,
     makeEnemyWeapon('strength', 12, 'melee', 'physical', [
       createSkill('Smash', 4, 0),
+      createSkill('Quake', 5, -15, {
+        damageModifier: 0.5,
+        targetType: 'group',
+        perfectStatus: ['stunned'],
+      }),
     ]),
     {
       strength: 76,

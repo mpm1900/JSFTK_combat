@@ -1,11 +1,10 @@
 import Raven from '../../../icons/svg/lorc/raven.svg'
 import { tCharacter } from '../type'
-import { PECK } from '../../Skill/enemy/peck'
 import { getRandom } from '../../../util'
 import { getRandomItem } from '../../Item/util'
-import { CAW } from '../../Skill/enemy/caw'
 import { makeEnemy, makeEnemyReward, makeEnemyWeapon } from './_builder'
 import { ZERO_STATS } from '../../Stats/constants'
+import { createSkill } from '../../Skill/skills'
 
 export const FOREST_RAVEN = (): tCharacter => {
   return makeEnemy(
@@ -13,13 +12,16 @@ export const FOREST_RAVEN = (): tCharacter => {
     Raven,
     1,
     10,
-    makeEnemyWeapon('dexterity', 6, 'melee', 'physical', [PECK, CAW]),
+    makeEnemyWeapon('dexterity', 6, 'melee', 'physical', [
+      createSkill('Peck', 2, 0),
+      createSkill('Caw', 2, -5, { perfectStatus: ['resistance-down'] }),
+    ]),
     {
       dexterity: 56,
       agility: getRandom([74, 75, 76, 77, 78]),
       evasion: 10,
     },
-    [],
+    ['flying'],
     [
       makeEnemyReward(0, 5),
       makeEnemyReward(3, 7),

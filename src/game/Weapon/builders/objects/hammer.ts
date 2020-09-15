@@ -1,5 +1,4 @@
 import { createBreakableWeapon, createWeapon } from '..'
-import { STAB } from '../../../Skill/enemy/stab'
 import {
   CRUSH,
   EARTHQUAKE,
@@ -17,7 +16,7 @@ export const RUSTED_HAMMER = () =>
 export const TOMB_HAMMER = () =>
   createWeapon(type, 'tomb', [SMASH, EARTHQUAKE], {})
 export const BURRIED_HAMMER = () =>
-  createWeapon(type, 'buried', [SMASH, STAB], {})
+  createWeapon(type, 'buried', [SMASH, CRUSH], {})
 export const WITHERING_HAMMER = () =>
   createBreakableWeapon(type, 'withering', [WITHERING_SMASH], {})
 export const GLASS_HAMMER = () =>

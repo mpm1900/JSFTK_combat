@@ -2,78 +2,65 @@ import Lich from '../../../icons/svg/delapouite/overlord-helm.svg'
 import { tCharacter } from '../type'
 import { v4 } from 'uuid'
 import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
-import { LICH_DRAIN } from '../../Skill/enemy/lich_drain'
-import { LICH_SCREECH } from '../../Skill/enemy/lich_screech'
-import { LICH_MASS_SCREECH } from '../../Skill/enemy/lich_mass_screech'
-import { LICH_SMITE } from '../../Skill/enemy/lich_smite'
-import { makeEnemyReward } from '../enemies/_builder'
+import {
+  makeEnemy,
+  makeEnemyReward,
+  makeEnemyWeapon,
+} from '../enemies/_builder'
 import { getRandomItem } from '../../Item/util'
+import { createSkill } from '../../Skill/skills'
 
 export const LICH = (): tCharacter => {
   return {
-    id: v4(),
-    name: 'Lich',
-    isCharacter: true,
-    icon: Lich,
-    partyId: '',
-    level: 5,
-    experience: 0,
-    class: 'enemy',
-    healthOffset: 0,
-    inspirationOffset: 0,
-    tags: ['undead'],
-    stats: {
-      ...BASE_C_STATS,
-      strength: 84,
-      vigor: 64,
-      intelligence: 70,
-      dexterity: 48,
-      charisma: 30,
-      agility: 80,
-      luck: 50,
-      armor: 7,
-      resistance: 8,
-      evasion: 16,
-    },
-    armor: [],
-    consumables: [],
-    status: [],
-    immunities: ['bleeding', 'stunned'],
-    weapon: {
-      id: v4(),
-      name: 'Lich Sword',
-      itemType: 'weapon',
-      rarity: 'common',
-      type: 'sword',
-      stat: 'strength',
-      twoHand: false,
-      breakable: false,
-      goldValue: 0,
-      damage: {
-        value: 34,
-        range: 'melee',
-        type: 'physical',
+    ...makeEnemy(
+      'Lich',
+      Lich,
+      5,
+      67,
+      makeEnemyWeapon('strength', 34, 'melee', 'magic', [
+        createSkill('Drain', 4, 0, {
+          damageModifier: 0.5,
+          targetType: 'group',
+          perfectStatus: ['speed-down'],
+        }),
+        createSkill('Screech', 4, -5, {
+          damageModifier: 0,
+          damage: false,
+          targetType: 'group',
+          perfectStatus: ['stunned'],
+        }),
+        createSkill('Smite', 4, 0, {
+          perfectStatus: ['armor-down'],
+        }),
+      ]),
+      {
+        strength: 85,
+        intelligence: 75,
+        agility: 80,
+        luck: 50,
+        armor: 7,
+        resistance: 8,
+        evasion: 16,
       },
-      stats: ZERO_STATS,
-      skills: [LICH_DRAIN, LICH_SCREECH, LICH_MASS_SCREECH, LICH_SMITE],
-      immunities: [],
-    },
-    possibleRewards: [
-      makeEnemyReward(200, 120, [
-        getRandomItem(3),
-        getRandomItem(3),
-        getRandomItem(3),
-      ]),
-      makeEnemyReward(200, 120, [
-        getRandomItem(3),
-        getRandomItem(3),
-        getRandomItem(3),
-      ]),
-      makeEnemyReward(200, 120, [
-        getRandomItem(3),
-        getRandomItem(3),
-        getRandomItem(3),
-      ]),
-    ],
+      ['undead'],
+      [
+        makeEnemyReward(200, 120, [
+          getRandomItem(3),
+          getRandomItem(3),
+          getRandomItem(3),
+        ]),
+        makeEnemyReward(200, 120, [
+          getRandomItem(3),
+          getRandomItem(3),
+          getRandomItem(3),
+        ]),
+        makeEnemyReward(200, 120, [
+          getRandomItem(3),
+          getRandomItem(3),
+          getRandomItem(3),
+        ]),
+      ],
+      ['stunned', 'bleeding'],
+    ),
   }
 }

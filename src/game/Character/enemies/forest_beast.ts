@@ -13,6 +13,7 @@ export const FOREST_BEAST = (): tCharacter => {
     1,
     12,
     makeEnemyWeapon('strength', 10, 'melee', 'physical', [
+      createSkill('Strike', 2, 0),
       createSkill('Impale', 4, -5, { perfectStatus: ['bleeding'] }),
     ]),
     {

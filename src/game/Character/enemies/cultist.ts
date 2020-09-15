@@ -1,11 +1,9 @@
 import { getRandom } from '../../../util'
 import Cultist from '../../../icons/svg/lorc/cultist.svg'
 import { tCharacter } from '../type'
-import { TORCH } from '../../Skill/enemy/torch'
 import { getRandomItem } from '../../Item/util'
-import { ARCANE } from '../../Skill/skills/catalyst'
-import { BLAST } from '../../Skill/enemy/arcane'
 import { makeEnemy, makeEnemyReward, makeEnemyWeapon } from './_builder'
+import { createSkill } from '../../Skill/skills'
 
 export const CULTIST = (): tCharacter => {
   return makeEnemy(
@@ -14,9 +12,8 @@ export const CULTIST = (): tCharacter => {
     2,
     17,
     makeEnemyWeapon('intelligence', 14, 'melee', 'magic', [
-      TORCH,
-      ARCANE,
-      BLAST,
+      createSkill('Enflame', 4, -10, { perfectStatus: ['burning'] }),
+      createSkill('Blast', 3, 0),
     ]),
     {
       intelligence: 75,

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useHistory } from 'react-router'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 import { useModalContext } from '../../contexts/ModalContext'
+import { usePartyContext } from '../../contexts/PartyContext'
 import { Button } from '../../elements/button'
 import { FlexContainer } from '../../elements/flex'
 import { tRewardEncounter } from '../../game/Encounter/type'
@@ -14,6 +15,7 @@ export interface RewardPropsT {
 export const Reward = (props: RewardPropsT) => {
   const { currentEncounter } = props
   const { floor, floors, nextFloor } = useGameStateContext()
+  const { refreshParty } = usePartyContext()
   const history = useHistory()
   const { open } = useModalContext()
   const onClick = () => {
@@ -28,6 +30,11 @@ export const Reward = (props: RewardPropsT) => {
       nextFloor()
     }
   }
+
+  useEffect(() => {
+    refreshParty()
+  }, [])
+
   return (
     <FlexContainer $direction='column' style={{ justifyContent: 'center' }}>
       <h3 style={{ fontFamily: Theme.titleFont, fontWeight: 'normal' }}>
