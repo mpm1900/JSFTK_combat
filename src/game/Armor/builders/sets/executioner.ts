@@ -1,7 +1,7 @@
-import { createFootwear, createHat, createHeavyArmor } from '..'
+import { createFootwear, createHeavyArmor, createHelmet } from '..'
 
 export const EXECUTIONER_HELMET = () =>
-  createHat('Executioner Helmet', 'common', 5, {
+  createHelmet('Executioner Helmet', 'common', 5, {
     armor: 1,
     resistance: 1,
     vigor: 1,

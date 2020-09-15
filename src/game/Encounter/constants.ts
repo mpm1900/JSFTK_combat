@@ -63,7 +63,7 @@ const justXp = (xp: number) => ({
 })
 const justRandomItem = (floor: number = 0): tEncounterReward => ({
   ...ZERO_REWARD,
-  items: [getRandom(FLOOR_CONFIGS_BY_INDEX[floor].items)],
+  items: [getRandom(FLOOR_CONFIGS_BY_INDEX()[floor].items)],
 })
 
 export const POSSIBLE_SHINE_REWARDS = (): tEncounterReward[][] => [

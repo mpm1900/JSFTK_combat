@@ -15,6 +15,7 @@ import Burning from './svg/carl-olsen/flame.svg'
 import Bleeding from './svg/lorc/bleeding-wound.svg'
 import Snowflake from './svg/lorc/snowflake-2.svg'
 import ArmorDown from './svg/lorc/broken-shield.svg'
+import Cursed from './svg/lorc/pentagram-rose.svg'
 
 import Shot from './svg/lorc/high-shot.svg'
 import Headshot from './svg/delapouite/shield-impact.svg'
@@ -105,6 +106,13 @@ export const STATUS_ICONS: Partial<Record<tStatusType, string>> = {
   bleeding: Bleeding,
   frozen: Snowflake,
   'armor-down': ArmorDown,
+  'cursed-agility': Cursed,
+  'cursed-charisma': Cursed,
+  'cursed-dexterity': Cursed,
+  'cursed-intelligence': Cursed,
+  'cursed-luck': Cursed,
+  'cursed-strength': Cursed,
+  'cursed-vigor': Cursed,
 }
 
 export const SKILL_ICONS: Record<string, string> = {

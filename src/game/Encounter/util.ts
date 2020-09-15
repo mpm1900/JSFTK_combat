@@ -54,7 +54,7 @@ export const makeRandomEncounter = (
   floor: number,
 ) => {
   let encounterType = makeEncounterType(depth, max)
-  const floorConfig = FLOOR_CONFIGS_BY_INDEX[floor]
+  const floorConfig = FLOOR_CONFIGS_BY_INDEX()[floor]
   let encounter: tEncounter = {
     id: v4(),
     choiceId: '',
@@ -82,7 +82,7 @@ export const makeRandomEncounter = (
     }
   }
   if (encounter.type === 'shop') {
-    const items = [GODSBEARD(), ...floorConfig.items]
+    const items = [GODSBEARD(), GODSBEARD(), GODSBEARD(), ...floorConfig.items]
     encounter = {
       ...encounter,
       items,

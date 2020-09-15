@@ -53,7 +53,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   'cursed-dexterity': {
     name: 'Cursed',
-    description: '-15 to Strength',
+    description: '-15 to Dexterity',
     canStack: false,
     isTemporary: false,
     duration: -1,
@@ -65,7 +65,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   'cursed-intelligence': {
     name: 'Cursed',
-    description: '-15 to Strength',
+    description: '-15 to Intelligence',
     canStack: false,
     isTemporary: false,
     duration: -1,
@@ -77,7 +77,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   'cursed-charisma': {
     name: 'Cursed',
-    description: '-15 to Strength',
+    description: '-15 to Charisma',
     canStack: false,
     isTemporary: false,
     duration: -1,
@@ -89,7 +89,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   'cursed-agility': {
     name: 'Cursed',
-    description: '-15 to Strength',
+    description: '-15 to Agility',
     canStack: false,
     isTemporary: false,
     duration: -1,
@@ -101,7 +101,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   'cursed-luck': {
     name: 'Cursed',
-    description: '-15 to Strength',
+    description: '-15 to Luck',
     canStack: false,
     isTemporary: false,
     duration: -1,

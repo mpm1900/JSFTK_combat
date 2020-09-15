@@ -36,7 +36,7 @@ export const BEE = (): tCharacter => {
       type: 'enemy',
       stat: 'dexterity',
       damage: {
-        value: 12,
+        value: 14,
         range: 'melee',
         type: 'physical',
       },

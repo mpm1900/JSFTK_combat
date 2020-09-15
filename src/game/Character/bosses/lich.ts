@@ -6,6 +6,8 @@ import { LICH_DRAIN } from '../../Skill/enemy/lich_drain'
 import { LICH_SCREECH } from '../../Skill/enemy/lich_screech'
 import { LICH_MASS_SCREECH } from '../../Skill/enemy/lich_mass_screech'
 import { LICH_SMITE } from '../../Skill/enemy/lich_smite'
+import { makeEnemyReward } from '../enemies/_builder'
+import { getRandomItem } from '../../Item/util'
 
 export const LICH = (): tCharacter => {
   return {
@@ -56,6 +58,22 @@ export const LICH = (): tCharacter => {
       skills: [LICH_DRAIN, LICH_SCREECH, LICH_MASS_SCREECH, LICH_SMITE],
       immunities: [],
     },
-    possibleRewards: [],
+    possibleRewards: [
+      makeEnemyReward(200, 120, [
+        getRandomItem(3),
+        getRandomItem(3),
+        getRandomItem(3),
+      ]),
+      makeEnemyReward(200, 120, [
+        getRandomItem(3),
+        getRandomItem(3),
+        getRandomItem(3),
+      ]),
+      makeEnemyReward(200, 120, [
+        getRandomItem(3),
+        getRandomItem(3),
+        getRandomItem(3),
+      ]),
+    ],
   }
 }

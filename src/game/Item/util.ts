@@ -21,7 +21,7 @@ export const getRandomItem = (level: number): tWeapon | tArmor => {
     let items = Array(level + 1)
       .fill(null)
       .reduce((result, _, index) => {
-        return [...result, ...ARMOR_BY_LEVEL[index]]
+        return [...result, ...(ARMOR_BY_LEVEL[index] || [])]
       }, [] as (() => tArmor)[]) as (() => tArmor)[]
     return getRandom(items)()
   }

@@ -1,34 +1,35 @@
 import Raven from '../../../icons/svg/lorc/raven.svg'
 import { tCharacter } from '../type'
-import { ZERO_STATS, BASE_C_STATS } from '../../Stats/constants'
 import { PECK } from '../../Skill/enemy/peck'
 import { getRandom } from '../../../util'
-import { ZERO_REWARD } from '../../Encounter/constants'
-import { BASE_CHARACTER } from '../constants'
-import { BASE_WEAPON } from '../../Weapon/constants'
 import { getRandomItem } from '../../Item/util'
 import { CAW } from '../../Skill/enemy/caw'
+import { makeEnemy, makeEnemyReward, makeEnemyWeapon } from './_builder'
+import { ZERO_STATS } from '../../Stats/constants'
 
 export const FOREST_RAVEN = (): tCharacter => {
-  return {
-    ...BASE_CHARACTER(),
-    name: 'Forest Raven',
-    icon: Raven,
-    level: 1,
-    stats: {
-      ...BASE_C_STATS,
-      vigor: -80,
-      strength: 40,
-      intelligence: 40,
-      dexterity: 52,
-      charisma: 30,
+  return makeEnemy(
+    'Forest Raven',
+    Raven,
+    1,
+    10,
+    makeEnemyWeapon('dexterity', 6, 'melee', 'physical', [PECK, CAW]),
+    {
+      dexterity: 56,
       agility: getRandom([74, 75, 76, 77, 78]),
-      luck: 50,
-      armor: 0,
-      resistance: 0,
       evasion: 10,
     },
-    status: [
+    [],
+    [
+      makeEnemyReward(0, 5),
+      makeEnemyReward(3, 7),
+      makeEnemyReward(3, 7),
+      makeEnemyReward(3, 7),
+      makeEnemyReward(0, 7, [getRandomItem(0)]),
+      makeEnemyReward(0, 7, [getRandomItem(1)]),
+    ],
+    [],
+    [
       {
         duration: -1,
         type: 'evasive',
@@ -37,51 +38,5 @@ export const FOREST_RAVEN = (): tCharacter => {
         immunities: [],
       },
     ],
-    weapon: {
-      ...BASE_WEAPON(),
-      name: 'Crow Beak',
-      type: 'enemy',
-      stat: 'dexterity',
-      damage: {
-        value: 6,
-        range: 'melee',
-        type: 'physical',
-      },
-      skills: [PECK, CAW],
-    },
-    possibleRewards: [
-      {
-        ...ZERO_REWARD,
-        gold: 0,
-        xp: 5,
-      },
-      {
-        ...ZERO_REWARD,
-        gold: 3,
-        xp: 7,
-      },
-      {
-        ...ZERO_REWARD,
-        gold: 3,
-        xp: 7,
-      },
-      {
-        ...ZERO_REWARD,
-        gold: 3,
-        xp: 7,
-      },
-      {
-        ...ZERO_REWARD,
-        gold: 0,
-        xp: 7,
-        items: [getRandomItem(0)],
-      },
-      {
-        ...ZERO_REWARD,
-        gold: 0,
-        xp: 7,
-        items: [getRandomItem(1)],
-      },
-    ],
-  }
+  )
 }

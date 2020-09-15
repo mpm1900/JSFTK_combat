@@ -69,8 +69,8 @@ export const updateCharacter = (
 }
 
 export const makeParty = (level: number, floor: number): tParty => {
-  level = level > 4 ? 4 : level
-  const floorConfig = FLOOR_CONFIGS_BY_INDEX[floor]
+  level = level > 8 ? 8 : level
+  const floorConfig = FLOOR_CONFIGS_BY_INDEX()[floor]
   return {
     isParty: true,
     id: v4(),
@@ -81,7 +81,7 @@ export const makeParty = (level: number, floor: number): tParty => {
 }
 
 export const makeBossParty = (floor: number): tParty => {
-  const config = FLOOR_CONFIGS_BY_INDEX[floor]
+  const config = FLOOR_CONFIGS_BY_INDEX()[floor]
   return {
     isParty: true,
     id: v4(),

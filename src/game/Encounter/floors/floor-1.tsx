@@ -1,16 +1,19 @@
 import { tFloorConfig } from '../type'
 import {
-  TIMBERWOLF,
+  FOREST_WOLF,
   FOREST_BEAST,
   FOREST_RAVEN,
   BEE,
   CULTIST,
-  BANDIT,
+  FOREST_TROLL,
   CULTIST_BRUTE,
+  FOREST_WITCH,
 } from '../../Character/enemies'
 import { LICH } from '../../Character/bosses'
 import { WEAPONS } from '../../Weapon/builders/objects'
 import { ARMOR_BY_LEVEL } from '../../Armor/builders/sets'
+import { makeRandomFloorEncounter } from './util'
+import { TOMB_SPIRIT } from '../../Character/enemies/tomb_spirit'
 
 const FLOOR_1_WEAPONS = () => [
   ...WEAPONS[1],
@@ -26,7 +29,7 @@ const FLOOR_1_ARMOR = () => [
   ...ARMOR_BY_LEVEL[2],
 ]
 
-export const FloorConfig1: tFloorConfig = {
+export const FloorConfig1 = (): tFloorConfig => ({
   bosses: [LICH()],
   items: [
     ...FLOOR_1_WEAPONS().map((w) => w()),
@@ -34,63 +37,141 @@ export const FloorConfig1: tFloorConfig = {
   ],
   enemies: {
     0: [
-      [TIMBERWOLF(), TIMBERWOLF(), TIMBERWOLF()],
-      [TIMBERWOLF(), FOREST_BEAST()],
-      [FOREST_BEAST(), FOREST_BEAST()],
-      [FOREST_RAVEN(), TIMBERWOLF()],
-      [FOREST_RAVEN()],
-      [BEE()],
-      [BEE(), FOREST_BEAST()],
-      [BEE(), TIMBERWOLF()],
-      [CULTIST()],
+      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 1),
+      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 1),
+      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 2),
+      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 1),
+      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 2),
+      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 2),
+      makeRandomFloorEncounter(
+        [FOREST_WOLF, FOREST_WOLF, FOREST_BEAST, FOREST_WITCH],
+        3,
+      ),
     ],
     1: [
-      [FOREST_RAVEN(), TIMBERWOLF(), FOREST_BEAST()],
-      [FOREST_BEAST(), FOREST_BEAST(), FOREST_BEAST()],
-      [BEE(), BEE(), BEE()],
-      [FOREST_RAVEN(), BEE(), FOREST_BEAST()],
-      [CULTIST()],
+      makeRandomFloorEncounter(
+        [
+          FOREST_WOLF,
+          FOREST_BEAST,
+          FOREST_WITCH,
+          BEE,
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+        ],
+        3,
+      ),
     ],
     2: [
-      [BEE(), BEE(), BEE()],
-      [FOREST_RAVEN(), BEE(), BEE()],
-      [FOREST_RAVEN(), FOREST_RAVEN(), FOREST_RAVEN()],
-      [BANDIT(), TIMBERWOLF()],
-      [BANDIT(), TIMBERWOLF(), TIMBERWOLF()],
+      makeRandomFloorEncounter(
+        [
+          FOREST_BEAST,
+          FOREST_WITCH,
+          BEE,
+          BEE,
+          BEE,
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+        ],
+        3,
+      ),
       [CULTIST()],
+      [CULTIST_BRUTE()],
+      [FOREST_TROLL()],
     ],
     3: [
-      [CULTIST(), CULTIST()],
-      [CULTIST(), BANDIT()],
-      [BANDIT(), BANDIT()],
-      [CULTIST_BRUTE()],
-      [BANDIT(), BEE(), BEE()],
-      [CULTIST(), BEE(), BEE()],
-      [CULTIST(), BANDIT(), BEE()],
-      [BANDIT(), FOREST_RAVEN(), FOREST_RAVEN()],
-      [CULTIST(), CULTIST(), FOREST_RAVEN()],
-      [FOREST_RAVEN(), CULTIST(), FOREST_RAVEN()],
-      [BANDIT(), FOREST_RAVEN(), BEE()],
-      [CULTIST_BRUTE(), FOREST_RAVEN()],
+      makeRandomFloorEncounter(
+        [
+          FOREST_WITCH,
+          BEE,
+          BEE,
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+          FOREST_TROLL,
+        ],
+        3,
+      ),
+      makeRandomFloorEncounter(
+        [
+          FOREST_WITCH,
+          BEE,
+          BEE,
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+          FOREST_TROLL,
+        ],
+        3,
+      ),
+      makeRandomFloorEncounter(
+        [
+          FOREST_WITCH,
+          BEE,
+          BEE,
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+          FOREST_TROLL,
+        ],
+        3,
+      ),
+      makeRandomFloorEncounter(
+        [FOREST_RAVEN, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        2,
+      ),
     ],
     4: [
-      [CULTIST(), BANDIT(), FOREST_RAVEN()],
-      [CULTIST(), CULTIST(), BEE()],
-      [CULTIST(), FOREST_RAVEN(), CULTIST()],
-      [CULTIST(), CULTIST(), CULTIST()],
-      [BANDIT(), BANDIT(), FOREST_RAVEN()],
-      [BANDIT(), BANDIT(), BEE()],
-      [BANDIT(), BANDIT(), BANDIT()],
-      [CULTIST_BRUTE(), CULTIST_BRUTE()],
-      [CULTIST_BRUTE(), FOREST_RAVEN(), FOREST_RAVEN()],
+      makeRandomFloorEncounter(
+        [FOREST_RAVEN, FOREST_RAVEN, FOREST_WITCH, FOREST_WITCH, FOREST_TROLL],
+        3,
+      ),
+      makeRandomFloorEncounter(
+        [FOREST_RAVEN, FOREST_RAVEN, FOREST_WITCH, FOREST_WITCH, FOREST_TROLL],
+        3,
+      ),
+      makeRandomFloorEncounter(
+        [FOREST_RAVEN, FOREST_RAVEN, FOREST_WITCH, FOREST_WITCH, FOREST_TROLL],
+        3,
+      ),
+      makeRandomFloorEncounter(
+        [
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+          FOREST_WITCH,
+          FOREST_WITCH,
+          FOREST_TROLL,
+          CULTIST,
+          CULTIST_BRUTE,
+        ],
+        3,
+      ),
     ],
     5: [
-      [BANDIT(), BANDIT(), BANDIT()],
-      [BANDIT(), FOREST_RAVEN(), CULTIST_BRUTE()],
-      [CULTIST_BRUTE(), FOREST_RAVEN(), FOREST_RAVEN()],
-      [CULTIST_BRUTE(), CULTIST_BRUTE(), BANDIT()],
-      [CULTIST(), CULTIST(), CULTIST()],
-      [CULTIST_BRUTE(), CULTIST_BRUTE(), CULTIST_BRUTE()],
+      makeRandomFloorEncounter(
+        [FOREST_RAVEN, FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        3,
+      ),
+      makeRandomFloorEncounter(
+        [FOREST_RAVEN, FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        3,
+      ),
+      makeRandomFloorEncounter(
+        [FOREST_RAVEN, FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        3,
+      ),
+      makeRandomFloorEncounter(
+        [FOREST_RAVEN, FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        3,
+      ),
+      [TOMB_SPIRIT()],
     ],
+    6: [
+      makeRandomFloorEncounter(
+        [FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        3,
+      ),
+    ],
+    7: [[TOMB_SPIRIT(), TOMB_SPIRIT()]],
   },
-}
+})
