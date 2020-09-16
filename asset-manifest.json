@@ -1,25 +1,24 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.98411169.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.98411169.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.c78407e4.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.c78407e4.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
     "static/css/2.d34346ea.chunk.css": "/JSFTK_combat/static/css/2.d34346ea.chunk.css",
-    "static/js/2.b8f27ff4.chunk.js": "/JSFTK_combat/static/js/2.b8f27ff4.chunk.js",
-    "static/js/2.b8f27ff4.chunk.js.map": "/JSFTK_combat/static/js/2.b8f27ff4.chunk.js.map",
+    "static/js/2.2cb7f438.chunk.js": "/JSFTK_combat/static/js/2.2cb7f438.chunk.js",
+    "static/js/2.2cb7f438.chunk.js.map": "/JSFTK_combat/static/js/2.2cb7f438.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.390221a242bd91b1e922da2bb4e3779e.js": "/JSFTK_combat/precache-manifest.390221a242bd91b1e922da2bb4e3779e.js",
+    "precache-manifest.e4b958fc54adb66d4edaea4672dc3259.js": "/JSFTK_combat/precache-manifest.e4b958fc54adb66d4edaea4672dc3259.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/2.d34346ea.chunk.css.map": "/JSFTK_combat/static/css/2.d34346ea.chunk.css.map",
     "static/css/main.ace9f9a4.chunk.css.map": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css.map",
-    "static/js/2.b8f27ff4.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.b8f27ff4.chunk.js.LICENSE.txt",
+    "static/js/2.2cb7f438.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.2cb7f438.chunk.js.LICENSE.txt",
     "static/media/1.png": "/JSFTK_combat/static/media/1.a7dcd7d0.png",
     "static/media/3.png": "/JSFTK_combat/static/media/3.5b81afea.png",
     "static/media/7.png": "/JSFTK_combat/static/media/7.d2e528ea.png",
     "static/media/8.png": "/JSFTK_combat/static/media/8.d80166bd.png",
     "static/media/all-for-one.svg": "/JSFTK_combat/static/media/all-for-one.33b25b62.svg",
-    "static/media/arrow-wings.svg": "/JSFTK_combat/static/media/arrow-wings.bb52c66a.svg",
     "static/media/axe-swing.svg": "/JSFTK_combat/static/media/axe-swing.6958cc19.svg",
     "static/media/backward-time.svg": "/JSFTK_combat/static/media/backward-time.d0246d45.svg",
     "static/media/battered-axe.svg": "/JSFTK_combat/static/media/battered-axe.819d2726.svg",
@@ -32,6 +31,7 @@
     "static/media/bowie-knife.svg": "/JSFTK_combat/static/media/bowie-knife.e7821736.svg",
     "static/media/brain.svg": "/JSFTK_combat/static/media/brain.ce65603a.svg",
     "static/media/broadsword.svg": "/JSFTK_combat/static/media/broadsword.47ecfebc.svg",
+    "static/media/broken-bone.svg": "/JSFTK_combat/static/media/broken-bone.d1c4182c.svg",
     "static/media/broken-shield.svg": "/JSFTK_combat/static/media/broken-shield.c26ddd72.svg",
     "static/media/bullet-impacts.svg": "/JSFTK_combat/static/media/bullet-impacts.00562b6b.svg",
     "static/media/chest-armor.svg": "/JSFTK_combat/static/media/chest-armor.f1f52a3c.svg",
@@ -60,7 +60,6 @@
     "static/media/gavel.svg": "/JSFTK_combat/static/media/gavel.e0256fff.svg",
     "static/media/gunshot.svg": "/JSFTK_combat/static/media/gunshot.cf3eceba.svg",
     "static/media/hammer-drop.svg": "/JSFTK_combat/static/media/hammer-drop.120a92c4.svg",
-    "static/media/hand.svg": "/JSFTK_combat/static/media/hand.7bd9b12d.svg",
     "static/media/health-normal.svg": "/JSFTK_combat/static/media/health-normal.0da85e24.svg",
     "static/media/heart-beats.svg": "/JSFTK_combat/static/media/heart-beats.6b1fff9c.svg",
     "static/media/heavy-arrow.svg": "/JSFTK_combat/static/media/heavy-arrow.56b29a8a.svg",
@@ -121,8 +120,8 @@
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
     "static/css/2.d34346ea.chunk.css",
-    "static/js/2.b8f27ff4.chunk.js",
+    "static/js/2.2cb7f438.chunk.js",
     "static/css/main.ace9f9a4.chunk.css",
-    "static/js/main.98411169.chunk.js"
+    "static/js/main.c78407e4.chunk.js"
   ]
 }
