@@ -11,11 +11,17 @@ export const makeRoute = (path: string, Component: React.FC) => (
 )
 
 export const RouteController = () => {
-  const { encounters, currentEncounter, level } = useGameStateContext()
+  const {
+    encounters,
+    currentEncounter,
+    level,
+    floor,
+    floors,
+  } = useGameStateContext()
   const history = useHistory()
   const { open } = useModalContext()
   useEffect(() => {
-    if (level > encounters.length - 1) {
+    if (level > encounters.length - 1 || floor > floors.length - 1) {
       open(
         <div style={{ textAlign: 'center', fontFamily: Theme.titleFont }}>
           <h1>You've Defeated the Lich! You did it!</h1>

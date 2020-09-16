@@ -47,7 +47,7 @@ export const Start = () => {
               fontSize: 12,
             }}
           >
-            alpha-0.0.4.20
+            alpha-0.0.4.22
           </Monospace>
         }
       >

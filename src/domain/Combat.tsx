@@ -47,7 +47,7 @@ export const Combat = () => {
         >
           <FlexContainer
             $direction='column'
-            style={{ marginBottom: 24, minHeight: 90 }}
+            style={{ marginBottom: 24, minHeight: 112 }}
           >
             <CombatParty party={enemyParty} />
           </FlexContainer>

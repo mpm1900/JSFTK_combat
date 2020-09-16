@@ -44,7 +44,7 @@ export const RoundResultRenderer = (props: RoundResultRendererPropsT) => {
 
   if (!isModal && activeRound && isRunning) {
     return (
-      <FlexContainer style={{ height: 269 }}>
+      <FlexContainer style={{ height: 290 }}>
         <RoundResult
           close={() => {
             setIsOpen(false)

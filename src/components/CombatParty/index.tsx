@@ -22,6 +22,7 @@ export const CombatParty = (props: CombatPartyPropsT) => {
         style={{
           justifyContent: 'space-around',
           padding: '0 120px',
+          height: 112,
           cursor: selectedSkill?.targetType === 'group' ? 'pointer' : 'default',
         }}
       >
@@ -33,41 +34,43 @@ export const CombatParty = (props: CombatPartyPropsT) => {
               isBoss={currentEncounter?.type === 'boss'}
               isHovering={hoverQueueCharacterId === c.id}
             />
-            {selectedSkill &&
-              selectedSkill.targetType === 'single' &&
-              c.health > 0 &&
-              activeCharacter.partyId === PLAYER_PARTY_ID && (
-                <FlexContainer
-                  style={{
-                    justifyContent: 'center',
-                    marginTop: -11,
-                    height: 48,
-                  }}
-                >
-                  <div
+
+            <div style={{ height: 48 }}>
+              {selectedSkill &&
+                selectedSkill.targetType === 'single' &&
+                c.health > 0 &&
+                activeCharacter.partyId === PLAYER_PARTY_ID && (
+                  <FlexContainer
                     style={{
-                      boxShadow: '0px 2px 5px black',
-                      marginTop: -2,
-                      height: 36,
+                      justifyContent: 'center',
+                      marginTop: -11,
                     }}
                   >
-                    <RedButton
-                      onClick={() => {
-                        next(c)
-                        setShowSkillTooltips(false)
+                    <div
+                      style={{
+                        boxShadow: '0px 2px 5px black',
+                        marginTop: -2,
+                        height: 36,
                       }}
-                      $direction='down'
                     >
-                      Attack
-                    </RedButton>
-                  </div>
-                </FlexContainer>
-              )}
+                      <RedButton
+                        onClick={() => {
+                          next(c)
+                          setShowSkillTooltips(false)
+                        }}
+                        $direction='down'
+                      >
+                        Attack
+                      </RedButton>
+                    </div>
+                  </FlexContainer>
+                )}
+            </div>
           </div>
         ))}
       </FlexContainer>
       {selectedSkill && selectedSkill.targetType === 'group' && (
-        <FlexContainer style={{ justifyContent: 'center' }}>
+        <FlexContainer style={{ justifyContent: 'center', marginTop: -48 }}>
           <div style={{ boxShadow: '0px 2px 5px black' }}>
             <RedButton
               onClick={() => {

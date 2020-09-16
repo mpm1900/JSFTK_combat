@@ -22,7 +22,6 @@ export const SkillChecks = (props: SkillChecksPropsT) => {
     <FlexContainer
       style={{
         justifyContent: 'center',
-        minHeight: 46,
         padding: '0px 0 24px 0',
       }}
     >

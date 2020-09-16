@@ -153,6 +153,9 @@ export const makeFloor = (depth: number, encounterCount: number): tFloor => {
   if (depth === 1) {
     name = 'Tomb of the Formless One (in-progress)'
   }
+  if (depth === 2) {
+    name = 'Realm of the Ancients (comming soon)'
+  }
   return {
     id: v4(),
     name,
