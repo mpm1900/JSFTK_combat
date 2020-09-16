@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5d3592ec49dc6955f216ee50be74c84b",
+    "revision": "1d4dbad13851a5ea89fd6d5a78d52f7c",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "8dbac410531121e3e7f4",
+    "revision": "6d34b14b0cb238801295",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "9164bf136832bff6bd57",
+    "revision": "e14c9d285915dbcf5998",
     "url": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css"
   },
   {
-    "revision": "8dbac410531121e3e7f4",
-    "url": "/JSFTK_combat/static/js/2.8e574feb.chunk.js"
+    "revision": "6d34b14b0cb238801295",
+    "url": "/JSFTK_combat/static/js/2.d5757d60.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.8e574feb.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.d5757d60.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9164bf136832bff6bd57",
-    "url": "/JSFTK_combat/static/js/main.06763372.chunk.js"
+    "revision": "e14c9d285915dbcf5998",
+    "url": "/JSFTK_combat/static/js/main.b1734069.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -236,6 +236,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/heart-beats.6b1fff9c.svg"
   },
   {
+    "revision": "fad66171613bf64b4e7f6df95d6aafc6",
+    "url": "/JSFTK_combat/static/media/heart-necklace.fad66171.svg"
+  },
+  {
     "revision": "56b29a8a1e0a443f4e40a494020934ec",
     "url": "/JSFTK_combat/static/media/heavy-arrow.56b29a8a.svg"
   },
@@ -338,6 +342,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "25251236ca46407c1df616bc4ade607e",
     "url": "/JSFTK_combat/static/media/revolver.25251236.svg"
+  },
+  {
+    "revision": "5187be7254dacbd8c45841104a9593bf",
+    "url": "/JSFTK_combat/static/media/ring.5187be72.svg"
   },
   {
     "revision": "f8953ccae27f0abf463a5a414644eee6",

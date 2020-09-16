@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.06763372.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.06763372.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.b1734069.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.b1734069.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
     "static/css/2.d34346ea.chunk.css": "/JSFTK_combat/static/css/2.d34346ea.chunk.css",
-    "static/js/2.8e574feb.chunk.js": "/JSFTK_combat/static/js/2.8e574feb.chunk.js",
-    "static/js/2.8e574feb.chunk.js.map": "/JSFTK_combat/static/js/2.8e574feb.chunk.js.map",
+    "static/js/2.d5757d60.chunk.js": "/JSFTK_combat/static/js/2.d5757d60.chunk.js",
+    "static/js/2.d5757d60.chunk.js.map": "/JSFTK_combat/static/js/2.d5757d60.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.2699aa72e73b10102918d27148728dea.js": "/JSFTK_combat/precache-manifest.2699aa72e73b10102918d27148728dea.js",
+    "precache-manifest.6a5eb9204a4e611c4aada2e93a1414be.js": "/JSFTK_combat/precache-manifest.6a5eb9204a4e611c4aada2e93a1414be.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/2.d34346ea.chunk.css.map": "/JSFTK_combat/static/css/2.d34346ea.chunk.css.map",
     "static/css/main.ace9f9a4.chunk.css.map": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css.map",
-    "static/js/2.8e574feb.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.8e574feb.chunk.js.LICENSE.txt",
+    "static/js/2.d5757d60.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.d5757d60.chunk.js.LICENSE.txt",
     "static/media/1.png": "/JSFTK_combat/static/media/1.a7dcd7d0.png",
     "static/media/3.png": "/JSFTK_combat/static/media/3.5b81afea.png",
     "static/media/7.png": "/JSFTK_combat/static/media/7.d2e528ea.png",
@@ -65,6 +65,7 @@
     "static/media/hammer-drop.svg": "/JSFTK_combat/static/media/hammer-drop.120a92c4.svg",
     "static/media/health-normal.svg": "/JSFTK_combat/static/media/health-normal.0da85e24.svg",
     "static/media/heart-beats.svg": "/JSFTK_combat/static/media/heart-beats.6b1fff9c.svg",
+    "static/media/heart-necklace.svg": "/JSFTK_combat/static/media/heart-necklace.fad66171.svg",
     "static/media/heavy-arrow.svg": "/JSFTK_combat/static/media/heavy-arrow.56b29a8a.svg",
     "static/media/heavy-timer.svg": "/JSFTK_combat/static/media/heavy-timer.1072a406.svg",
     "static/media/herbs-bundle.svg": "/JSFTK_combat/static/media/herbs-bundle.e02bcec1.svg",
@@ -91,6 +92,7 @@
     "static/media/raven.svg": "/JSFTK_combat/static/media/raven.581ee1b6.svg",
     "static/media/resonance.svg": "/JSFTK_combat/static/media/resonance.4c1d217b.svg",
     "static/media/revolver.svg": "/JSFTK_combat/static/media/revolver.25251236.svg",
+    "static/media/ring.svg": "/JSFTK_combat/static/media/ring.5187be72.svg",
     "static/media/ringing-bell.svg": "/JSFTK_combat/static/media/ringing-bell.f8953cca.svg",
     "static/media/robe.svg": "/JSFTK_combat/static/media/robe.5b61ecba.svg",
     "static/media/robin-hood-hat.svg": "/JSFTK_combat/static/media/robin-hood-hat.6bab1449.svg",
@@ -122,8 +124,8 @@
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
     "static/css/2.d34346ea.chunk.css",
-    "static/js/2.8e574feb.chunk.js",
+    "static/js/2.d5757d60.chunk.js",
     "static/css/main.ace9f9a4.chunk.css",
-    "static/js/main.06763372.chunk.js"
+    "static/js/main.b1734069.chunk.js"
   ]
 }
