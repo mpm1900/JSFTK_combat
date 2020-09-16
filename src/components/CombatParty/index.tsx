@@ -15,7 +15,7 @@ export const CombatParty = (props: CombatPartyPropsT) => {
   const { party } = props
   const { activeCharacter, selectedSkill, next } = useCombatContext()
   const { currentEncounter } = useGameStateContext()
-  const { setShowSkillTooltips } = useUIContext()
+  const { setShowSkillTooltips, hoverQueueCharacterId } = useUIContext()
   return (
     <FlexContainer $direction='column'>
       <FlexContainer
@@ -31,6 +31,7 @@ export const CombatParty = (props: CombatPartyPropsT) => {
               activeCharacter={activeCharacter}
               character={c}
               isBoss={currentEncounter?.type === 'boss'}
+              isHovering={hoverQueueCharacterId === c.id}
             />
             {selectedSkill &&
               selectedSkill.targetType === 'single' &&

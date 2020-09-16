@@ -65,9 +65,9 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
     push,
   } = props
   const { playerCanEquipItem } = useUIContext()
-  const { activeRound, activeCharacter } = useCombatContext()
+  const { activeRound } = useCombatContext()
   const targetIds = activeRound?.targetResults.map((r) => r.target.id)
-  const active = activeCharacter?.id === character.id
+  const active = selected
   const targeted = targetIds?.includes(character.id)
   const { styles, exec } = useElementShake()
   usePlayerCharacterNotifications(character, push, exec)

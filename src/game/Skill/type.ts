@@ -14,6 +14,7 @@ export interface tSkill {
   splashDamageModifier: number
   weaponRangeOverride?: tDamageRange
   weaponStatOverride?: keyof tBaseStats
+  weaponDamageOverride?: number
   statusDurationOverride?: number
   targetType: tSkillTargetType
   rolls: number

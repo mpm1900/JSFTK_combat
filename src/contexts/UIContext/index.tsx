@@ -6,6 +6,7 @@ export interface UIContextT {
   playerCanEquipItem: boolean
   openCharacterInventoryId: string | undefined
   showSkillTooltips: boolean
+  hoverQueueCharacterId: string | undefined
   onCharacterConsumableClick: (
     c: tProcessedCharacter,
     index: number,
@@ -17,17 +18,20 @@ export interface UIContextT {
     fn: (c: tProcessedCharacter, index: number, item: tConsumable) => void,
   ) => void
   setShowSkillTooltips: (v: boolean) => void
+  setHoverQueueCharacterId: (id: string | undefined) => void
 }
 
 const defaultValue: UIContextT = {
   playerCanEquipItem: false,
   openCharacterInventoryId: undefined,
   showSkillTooltips: false,
+  hoverQueueCharacterId: undefined,
   onCharacterConsumableClick: (c, i, item) => {},
   setPlayerCanEquipItem: (v) => {},
   setOpenCharacterInventoryId: (id) => {},
   setOnCharacterConsumableClick: (fn) => {},
   setShowSkillTooltips: (v) => {},
+  setHoverQueueCharacterId: (id) => {},
 }
 
 export const UIContext = React.createContext<UIContextT>(defaultValue)
@@ -41,6 +45,9 @@ export const UIContextProvider = (props: UIContextProviderPropsT) => {
   const [playerCanEquipItem, setPlayerCanEquipItem] = useState(false)
   const [showSkillTooltips, setShowSkillTooltips] = useState(true)
   const [openCharacterInventoryId, setOpenCharacterInventoryId] = useState<
+    string | undefined
+  >()
+  const [hoverQueueCharacterId, setHoverQueueCharacterId] = useState<
     string | undefined
   >()
   const [onCharacterConsumableClick, _setOnCharacterConsumableClick] = useState<
@@ -58,11 +65,13 @@ export const UIContextProvider = (props: UIContextProviderPropsT) => {
         playerCanEquipItem,
         openCharacterInventoryId,
         showSkillTooltips,
+        hoverQueueCharacterId,
         onCharacterConsumableClick,
         setPlayerCanEquipItem,
         setOpenCharacterInventoryId,
         setOnCharacterConsumableClick,
         setShowSkillTooltips,
+        setHoverQueueCharacterId,
       }}
     >
       {children}

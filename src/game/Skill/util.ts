@@ -37,11 +37,12 @@ export const getSourceSkillResult = (
   const passedCount = rollResults.filter((r) => r).length
   const perfect = passedCount === skill.rolls
   const criticalHitSuccess = resolveCheck(source, 'criticalChance')
-  const rollDamageModifier = passedCount / skill.rolls
+  const rollDamageModifier = skill.rolls > 0 ? passedCount / skill.rolls : 1
   const rawDamage = {
     ...source.weapon.damage,
     value: Math.round(
-      (source.weapon.damage.value + source.stats.attackDamageOffset) *
+      ((skill.weaponDamageOverride || source.weapon.damage.value) +
+        source.stats.attackDamageOffset) *
         source.stats.attackDamageModifier *
         skill.damageModifier *
         rollDamageModifier *
@@ -55,7 +56,8 @@ export const getSourceSkillResult = (
     rollResults,
     passedCount,
     perfect,
-    accuracySuccess: skill.damage ? passedCount > 0 : perfect,
+    accuracySuccess:
+      skill.damage && skill.rolls > 0 ? passedCount > 0 : perfect,
     criticalHitSuccess: perfect && criticalHitSuccess,
     weaponDidBreak:
       rollResults.every((r) => r === false) && source.weapon.breakable,
@@ -179,7 +181,8 @@ export const getSkillDamage = (
   return {
     ...source.weapon.damage,
     value:
-      (source.weapon.damage.value + source.stats.attackDamageOffset) *
+      ((skill.weaponDamageOverride || source.weapon.damage.value) +
+        source.stats.attackDamageOffset) *
       (skill.damageModifier + source.stats.attackDamageModifier / 100),
   }
 }

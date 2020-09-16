@@ -4,5 +4,5 @@ import { FloorConfig2 } from './floor-2'
 
 export const FLOOR_CONFIGS_BY_INDEX = (): Record<number, tFloorConfig> => ({
   0: FloorConfig1(),
-  1: FloorConfig2,
+  1: FloorConfig2(),
 })

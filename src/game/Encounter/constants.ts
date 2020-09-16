@@ -7,6 +7,8 @@ import Forest2 from '../../assets/img/forests/8.png'
 import Forest3 from '../../assets/img/forests/1.png'
 import Dungeon1 from '../../assets/img/dungeon/3.png'
 import Dungeon2 from '../../assets/img/dungeon/1.png'
+import Dungeon3 from '../../assets/img/dungeon/4.png'
+import Dungeon4 from '../../assets/img/dungeon/2.png'
 
 export const ZERO_REWARD: tEncounterReward = {
   gold: 0,
@@ -198,6 +200,46 @@ export const getEncounterBg = (
         // 2
         bg: Dungeon2,
         overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 3
+        bg: Dungeon2,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 4
+        bg: Dungeon3,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 5
+        bg: Dungeon3,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 6
+        bg: Dungeon3,
+        overlay: 'rgba(20,0,50,0.6)',
+      },
+      {
+        // 7
+        bg: Dungeon3,
+        overlay: 'rgba(20,0,50,0.7)',
+      },
+      {
+        // 8
+        bg: Dungeon3,
+        overlay: 'rgba(20,0,50,0.7)',
+      },
+      {
+        // 9
+        bg: Dungeon4,
+        overlay: 'rgba(20,0,50,0.2)',
+      },
+      {
+        // 10
+        bg: Dungeon4,
+        overlay: 'rgba(20,0,50,0.3)',
       },
     ],
   ][floor][level]

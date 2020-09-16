@@ -32,8 +32,13 @@ const Wrapper = styled('div', (props: any) => {
   }
 })
 export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
-  const { character, activeCharacter, isBoss = false, onClick } = props
-  const health = noneg(character.health)
+  const {
+    character,
+    activeCharacter,
+    isBoss = false,
+    isHovering,
+    onClick,
+  } = props
   const active = activeCharacter?.id === character?.id
   return (
     <div
@@ -55,7 +60,8 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             src={character.icon || ''}
             shadow
             fill={
-              activeCharacter && character.id === activeCharacter.id
+              (activeCharacter && character.id === activeCharacter.id) ||
+              isHovering
                 ? 'lightsalmon'
                 : 'white'
             }
@@ -78,7 +84,11 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
                 background: 'rgba(0,0,0,0.4)',
                 textShadow: '1px 1px 2px black',
                 fontFamily: Theme.titleFont,
-                color: isBoss ? 'red' : 'rgba(255,255,255,0.8)',
+                color: isBoss
+                  ? 'red'
+                  : isHovering
+                  ? 'lightsalmon'
+                  : 'rgba(255,255,255,0.8)',
               }}
             >
               {character.name}

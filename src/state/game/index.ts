@@ -88,7 +88,7 @@ export const core: StateCoreT<GameStateT> = {
     return {
       ...state,
       level: 0,
-      floor: 1,
+      floor: 0,
       floors: [makeFloor(0, 11), makeFloor(1, 11)],
     }
   },
@@ -160,7 +160,7 @@ export const core: StateCoreT<GameStateT> = {
 
 export const INITIAL_STATE: GameStateT = {
   level: 0,
-  floor: 1,
+  floor: 0,
   floors: [makeFloor(0, 11), makeFloor(1, 11)],
 }
 

@@ -11,6 +11,7 @@ import { tProcessedCharacter } from '../../game/Character/type'
 import { getMax, getFirst, getSortedIds } from '../../game/Queue/util'
 import { Theme } from '../../theme'
 import { CharacterIcon } from '../CharacterIcon'
+import { useUIContext } from '../../contexts/UIContext'
 
 const size = 40
 export interface CombatQueuePropsT {
@@ -21,7 +22,8 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
   const { queue, characters } = props
   const { isRunning } = useCombatContext()
   const history = useHistory()
-  const { level, nextLevel } = useGameStateContext()
+  const { level } = useGameStateContext()
+  const { setHoverQueueCharacterId } = useUIContext()
   const first = characters.find(
     (c) => c.id === getFirst(queue),
   ) as tProcessedCharacter
@@ -115,6 +117,8 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                         transition: 'all 0.3s',
                         zIndex: i,
                       }}
+                      onMouseEnter={() => setHoverQueueCharacterId(c.id)}
+                      onMouseLeave={() => setHoverQueueCharacterId(undefined)}
                     >
                       <CharacterIcon
                         character={c}

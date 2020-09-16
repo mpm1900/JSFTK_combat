@@ -36,6 +36,7 @@ import Lotus from './svg/lorc/lotus-flower.svg'
 import PoisonKnife from './svg/lorc/bone-knife.svg'
 import BeastDrug from './svg/delapouite/medicine-pills.svg'
 import CurePotion from './svg/lorc/drink-me.svg'
+import Firebomb from './svg/lorc/molotov.svg'
 import { tBaseStats } from '../game/Stats/type'
 import { GODSBEARD } from '../game/Consumable/objects/godsbeard'
 import { tArmorResourceType, tArmorType } from '../game/Armor/type'
@@ -52,6 +53,7 @@ import { CELESTIAL_LOTUS } from '../game/Consumable/objects/celestial_lotus'
 import { POISON_KNIFE } from '../game/Consumable/objects/poison_knife'
 import { BEAST_DRUG } from '../game/Consumable/objects/beast_drug'
 import { CURE_POTION } from '../game/Consumable/objects/curing_potion'
+import { FIREBOMB } from '../game/Consumable/objects/firebomb'
 
 export { SKILL_ICONS } from './skills'
 export { STATUS_ICONS } from './status'
@@ -113,6 +115,7 @@ export const CONSUMABLE_ITEM_ICONS: Record<string, string> = {
   [POISON_KNIFE().cid]: PoisonKnife,
   [BEAST_DRUG().cid]: BeastDrug,
   [CURE_POTION().cid]: CurePotion,
+  [FIREBOMB().cid]: Firebomb,
 }
 export const CONSUMABLE_ITEM_COLORS: Record<string, string> = {
   [GODSBEARD().cid]: '#84a397',
@@ -120,6 +123,7 @@ export const CONSUMABLE_ITEM_COLORS: Record<string, string> = {
   [POISON_KNIFE().cid]: '#9c6c9e',
   [BEAST_DRUG().cid]: '#b07171',
   [CURE_POTION().cid]: '#8a8248',
+  [FIREBOMB().cid]: '#ab8272',
 }
 
 export const CHARACTER_CLASS_ICONS: Record<tCharacterClass, string> = {
