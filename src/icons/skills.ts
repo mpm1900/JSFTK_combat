@@ -10,6 +10,14 @@ import TimeJump from './svg/delapouite/extra-time.svg'
 import Smash from './svg/lorc/flat-hammer.svg'
 import Shockwave from './svg/lorc/hammer-drop.svg'
 import Thrust from './svg/lorc/scythe.svg'
+import Chop from './svg/lorc/battered-axe.svg'
+import Strike from './svg/lorc/plain-dagger.svg'
+import Stab from './svg/lorc/knife-thrust.svg'
+import Cleave from './svg/lorc/pointy-sword.svg'
+import AxeSpin from './svg/lorc/axe-swing.svg'
+import Slice from './svg/lorc/saber-slash.svg'
+import Lunge from './svg/lorc/wave-strike.svg'
+import Slash from './svg/lorc/sparkling-sabre.svg'
 
 import Taunt from './svg/lorc/bordered-shield.svg'
 
@@ -29,16 +37,12 @@ import SpreadShot from './svg/lorc/double-shot.svg'
 import Heal from './svg/sbed/health-normal.svg'
 import Bless from './svg/lorc/embrassed-energy.svg'
 import PoisonKnife from './svg/lorc/bone-knife.svg'
-import Lunge from './svg/lorc/wave-strike.svg'
+
 import Restore from './svg/lorc/life-support.svg'
 import EvadeUp from './svg/lorc/dodging.svg'
-import Chop from './svg/lorc/battered-axe.svg'
-import Strike from './svg/lorc/plain-dagger.svg'
-import Stab from './svg/lorc/knife-thrust.svg'
-import Cleave from './svg/lorc/pointy-sword.svg'
-import AxeSpin from './svg/lorc/axe-swing.svg'
-import Slice from './svg/lorc/saber-slash.svg'
-import ArmorUp from './svg/delapouite/vibrating-shield.svg'
+
+import ArmorUp from './svg/delapouite/armor-upgrade.svg'
+import ArmorDown from './svg/delapouite/armor-downgrade.svg'
 import Punch from './svg/lorc/punch.svg'
 
 import Stun from './svg/lorc/ubisoft-sun.svg'
@@ -71,7 +75,7 @@ export const SKILL_ICONS: Record<string, string> = {
   Ripple: Shockwave,
   'Axe Spin': AxeSpin,
   Cleave: Cleave,
-  Slash: Cleave,
+  Slash: Slash,
   Lunge: Lunge,
   Stab: Stab,
   Slice: Slice,
@@ -97,5 +101,6 @@ export const SKILL_ICONS: Record<string, string> = {
   'Evade Up': EvadeUp,
   'Armor Up': ArmorUp,
   'Attack Up': AttackUp,
+  'Armor Down': ArmorDown,
   'Beast Drug': AttackUp,
 }

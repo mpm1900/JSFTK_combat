@@ -24,7 +24,7 @@ export const CombatLog = () => {
       style={{
         minWidth: 300,
         overflow: 'auto',
-        background: 'rgba(0,0,0,0.7)',
+        background: Theme.darkBgColor,
         fontSize: 12,
         color: 'rgba(255,255,255,0.8)',
       }}

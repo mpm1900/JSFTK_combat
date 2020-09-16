@@ -14,6 +14,8 @@ export const FOREST_WITCH = (): tCharacter => {
     9,
     makeEnemyWeapon('intelligence', 9, 'ranged', 'magic', [
       createSkill('Curse', 2, -10, {
+        damage: false,
+        damageModifier: 0,
         perfectStatus: [
           getRandom<tStatusType>([
             'cursed-agility',

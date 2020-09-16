@@ -33,4 +33,6 @@ export const CHARACTER_RESOURCES: tArmorResourceType[] = [
   'body',
   'head',
   'feet',
+  'pendant',
+  'ring',
 ]

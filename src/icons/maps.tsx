@@ -9,13 +9,15 @@ import Clover from './svg/lorc/clover.svg'
 import MagicArmor from './svg/lorc/robe.svg'
 import ClothArmor from './svg/lorc/scale-mail.svg'
 import Armor from './svg/delapouite/chest-armor.svg'
-import Shield from './svg/delapouite/viking-shield.svg'
+import Shield from './svg/delapouite/cross-shield.svg'
 import MagicShield from './svg/lorc/lightning-shield.svg'
 import Footwear from './svg/lorc/leather-boot.svg'
 import Hat from './svg/delapouite/robin-hood-hat.svg'
 import MagicHat from './svg/lorc/pointy-hat.svg'
 import Helmet from './svg/lorc/visored-helm.svg'
 import Weapon from './svg/lorc/broadsword.svg'
+import Ring from './svg/delapouite/ring.svg'
+import Pendant from './svg/delapouite/heart-necklace.svg'
 
 import Axe from './svg/lorc/battle-axe.svg'
 import Blunt from './svg/lorc/gavel.svg'
@@ -76,8 +78,8 @@ export const ARMOR_TYPE_ICONS: Record<tArmorType, string> = {
   hat: Hat,
   'magic-hat': MagicHat,
   helmet: Helmet,
-  charm: '',
-  ring: '',
+  pendant: Pendant,
+  ring: Ring,
 }
 
 export const WEAPON_TYPE_ICONS: Record<tWeaponType, string> = {
@@ -101,6 +103,8 @@ export const RESOURCE_ICONS: Record<tArmorResourceType | 'weapon', string> = {
   body: Armor,
   head: Helmet,
   feet: Footwear,
+  pendant: Pendant,
+  ring: Ring,
 }
 
 export const CONSUMABLE_ITEM_ICONS: Record<string, string> = {

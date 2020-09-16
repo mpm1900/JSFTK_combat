@@ -6,7 +6,8 @@ import Poisoned from './svg/lorc/biohazard.svg'
 import Burning from './svg/carl-olsen/flame.svg'
 import Bleeding from './svg/lorc/bleeding-wound.svg'
 import Frozen from './svg/lorc/snowflake-2.svg'
-import ArmorDown from './svg/lorc/broken-shield.svg'
+import ArmorDown from './svg/delapouite/armor-downgrade.svg'
+import ArmorUp from './svg/delapouite/armor-upgrade.svg'
 import ResistanceDown from './svg/lorc/broken-shield.svg'
 import Cursed from './svg/lorc/pentagram-rose.svg'
 import Protected from './svg/lorc/shieldcomb.svg'
@@ -22,10 +23,14 @@ export const STATUS_ICONS: Partial<Record<tStatusType, string>> = {
   burning: Burning,
   bleeding: Bleeding,
   frozen: Frozen,
+
+  'attack-up': AttackUp,
+  'armor-up': ArmorUp,
+
   'speed-down': SpeedDown,
   'armor-down': ArmorDown,
-  'attack-up': AttackUp,
   'resistance-down': ResistanceDown,
+
   'cursed-agility': Cursed,
   'cursed-charisma': Cursed,
   'cursed-dexterity': Cursed,

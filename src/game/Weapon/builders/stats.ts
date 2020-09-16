@@ -4,7 +4,9 @@ export const DEFAULT_WEAPON_TYPE_STATS: tWeaponStatsConfig = {
   axe: {},
   hammer: {},
   sword: {},
-  greatsword: {},
+  greatsword: {
+    agility: -2,
+  },
   bow: {
     damageModifiers: {
       flying: 0.1,
@@ -12,8 +14,14 @@ export const DEFAULT_WEAPON_TYPE_STATS: tWeaponStatsConfig = {
       beast: 0,
     },
   },
-  dagger: {},
-  scythe: {},
+  dagger: {
+    agility: 2,
+    criticalChance: 10,
+  },
+  scythe: {
+    evasion: 2,
+    resistance: 1,
+  },
   catalyst: {},
   chime: {
     damageModifiers: {

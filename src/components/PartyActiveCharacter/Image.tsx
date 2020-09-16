@@ -13,7 +13,7 @@ export const Image = (props: ImagePropsT) => {
     <FlexContainer $full style={{ justifyContent: 'flex-end' }}>
       <div>
         <FlexContainer style={{ marginRight: 20, marginBottom: 10 }}>
-          <CharacterIcon character={character} size={100} />
+          <CharacterIcon character={character} size={142} />
         </FlexContainer>
       </div>
     </FlexContainer>

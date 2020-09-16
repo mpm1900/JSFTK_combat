@@ -14,8 +14,14 @@ export type tArmorType =
   | 'magic-armor'
   | 'footwear'
   | 'ring'
-  | 'charm'
-export type tArmorResourceType = 'offhand' | 'head' | 'body' | 'feet'
+  | 'pendant'
+export type tArmorResourceType =
+  | 'offhand'
+  | 'head'
+  | 'body'
+  | 'feet'
+  | 'ring'
+  | 'pendant'
 export interface tArmor extends tItem {
   type: tArmorType
   resource: tArmorResourceType

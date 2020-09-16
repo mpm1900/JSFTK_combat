@@ -123,6 +123,7 @@ export const PartyCharacterConsumable = (
             src={CONSUMABLE_ITEM_ICONS[consumable.cid]}
             fill={CONSUMABLE_ITEM_COLORS[consumable.cid]}
             size={24}
+            shadow
           />
           <div
             style={{
