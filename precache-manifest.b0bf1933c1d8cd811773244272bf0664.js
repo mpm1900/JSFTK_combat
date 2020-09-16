@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9f199dbbe47bc77caefb8b4ade6db338",
+    "revision": "f17bb56fb11515b976a6259176c71a20",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "e712f6ab50855b5d6cba",
+    "revision": "d13fd3d93757ef80d276",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "73630f3970f163703c19",
+    "revision": "1a5ed024806d12ce9c4a",
     "url": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css"
   },
   {
-    "revision": "e712f6ab50855b5d6cba",
-    "url": "/JSFTK_combat/static/js/2.82078bad.chunk.js"
+    "revision": "d13fd3d93757ef80d276",
+    "url": "/JSFTK_combat/static/js/2.79978bd9.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.82078bad.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.79978bd9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "73630f3970f163703c19",
-    "url": "/JSFTK_combat/static/js/main.de6baa45.chunk.js"
+    "revision": "1a5ed024806d12ce9c4a",
+    "url": "/JSFTK_combat/static/js/main.86376a14.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -310,6 +310,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ef75e68156a274464de71bdb56a2c67f",
     "url": "/JSFTK_combat/static/media/medicine-pills.ef75e681.svg"
+  },
+  {
+    "revision": "7ba33ac3032479b984836fcb696d4cec",
+    "url": "/JSFTK_combat/static/media/molotov.7ba33ac3.svg"
   },
   {
     "revision": "03e5b513c34b96c9497d86703e4e3404",
