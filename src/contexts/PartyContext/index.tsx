@@ -157,6 +157,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
     }
   }
   const purchaseItem = (item: tArmor | tWeapon | tConsumable, cost: number) => {
+    console.log('purchase item', item)
     if (party.gold > cost && currentChoice && currentEncounter) {
       if (item.itemType === 'armor' || item.itemType === 'weapon') {
         actions.upsertItem(item as tArmor | tWeapon)

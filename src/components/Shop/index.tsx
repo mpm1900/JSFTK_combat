@@ -5,14 +5,12 @@ import { useGameStateContext } from '../../contexts/GameStateContext'
 import { BoxContainer } from '../../elements/box'
 import { Button } from '../../elements/button'
 import { tShopEncounter } from '../../game/Encounter/type'
-import { WeaponPreview } from '../WeaponPreview'
-import { ArmorPreview } from '../ArmorPreview'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
 import { usePartyContext } from '../../contexts/PartyContext'
 import { tConsumable } from '../../game/Consumable/type'
-import { ConsumablePreview } from '../ConsumablePreview'
 import { Theme } from '../../theme'
+import { ItemCard } from '../ItemCard'
 
 const CardList = withStyle(FlexContainer, (props: any) => {
   return {
@@ -40,7 +38,7 @@ const tabs: ShopTabT[] = [
           {encounter.items
             .filter((i) => i.itemType === 'consumable')
             .map((a) => (
-              <ConsumablePreview
+              <ItemCard
                 item={a as tConsumable}
                 showBuyButton={true}
                 cost={encounter.costs[a.id]}
@@ -53,8 +51,8 @@ const tabs: ShopTabT[] = [
           {encounter.items
             .filter((i) => i.itemType === 'weapon')
             .map((w) => (
-              <WeaponPreview
-                weapon={w as tWeapon}
+              <ItemCard
+                item={w}
                 showBuyButton={true}
                 cost={encounter.costs[w.id]}
                 onBuyClick={() => purchaseItem(w, encounter.costs[w.id])}
@@ -66,8 +64,8 @@ const tabs: ShopTabT[] = [
           {encounter.items
             .filter((i) => i.itemType === 'armor')
             .map((a) => (
-              <ArmorPreview
-                armor={a as tArmor}
+              <ItemCard
+                item={a}
                 showBuyButton={true}
                 cost={encounter.costs[a.id]}
                 onBuyClick={() => purchaseItem(a, encounter.costs[a.id])}
@@ -85,8 +83,8 @@ const tabs: ShopTabT[] = [
         {encounter.items
           .filter((i) => i.itemType === 'weapon')
           .map((w) => (
-            <WeaponPreview
-              weapon={w as tWeapon}
+            <ItemCard
+              item={w}
               showBuyButton={true}
               cost={encounter.costs[w.id]}
               onBuyClick={() => purchaseItem(w, encounter.costs[w.id])}
@@ -103,8 +101,8 @@ const tabs: ShopTabT[] = [
         {encounter.items
           .filter((i) => i.itemType === 'armor')
           .map((a) => (
-            <ArmorPreview
-              armor={a as tArmor}
+            <ItemCard
+              item={a}
               showBuyButton={true}
               cost={encounter.costs[a.id]}
               onBuyClick={() => purchaseItem(a, encounter.costs[a.id])}
@@ -121,8 +119,8 @@ const tabs: ShopTabT[] = [
         {encounter.items
           .filter((i) => i.itemType === 'consumable')
           .map((a) => (
-            <ConsumablePreview
-              item={a as tConsumable}
+            <ItemCard
+              item={a}
               showBuyButton={true}
               cost={encounter.costs[a.id]}
               onBuyClick={() => purchaseItem(a, encounter.costs[a.id])}
@@ -160,7 +158,11 @@ export const Shop = (props: ShopPropsT) => {
         </FullContainer>
         <FlexContainer>
           {tabs.map((tab) => (
-            <Button style={active(tab)} onClick={() => setActiveTab(tab)}>
+            <Button
+              key={tab.label}
+              style={active(tab)}
+              onClick={() => setActiveTab(tab)}
+            >
               {tab.label}
             </Button>
           ))}

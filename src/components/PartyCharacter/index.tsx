@@ -72,7 +72,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
   const { styles, exec } = useElementShake()
   usePlayerCharacterNotifications(character, push, exec)
   return (
-    <animated.div style={styles} onClick={() => exec()}>
+    <animated.div style={styles}>
       <Wrapper
         $active={active}
         style={{

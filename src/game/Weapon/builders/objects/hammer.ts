@@ -40,7 +40,8 @@ export const SHARP_HAMMER = () =>
   createWeapon(type, 'sharp', [SMASH, STUN, CRUSH], {})
 export const HARDENED_HAMMER = () =>
   createWeapon(type, 'hardened', [SMASH, CRUSH, EARTHQUAKE, RIPPLE], {})
-export const ENGRAVED_HAMMER = () => createWeapon(type, 'engraved', [], {})
+export const ENGRAVED_HAMMER = () =>
+  createWeapon(type, 'engraved', [SMASH, CRUSH, EARTHQUAKE, RIPPLE], {})
 export const ETHEREAL_HAMMER = () =>
   createBreakableWeapon(type, 'ethereal', [GLASS_SMASH], {})
 

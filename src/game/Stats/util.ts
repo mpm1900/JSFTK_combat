@@ -41,6 +41,7 @@ export const combineStats = (...stats: tStats[]) => {
       damageModifiers: {
         flying: result.damageModifiers.flying + stats.damageModifiers.flying,
         undead: result.damageModifiers.undead + stats.damageModifiers.undead,
+        beast: result.damageModifiers.beast + stats.damageModifiers.beast,
       },
 
       queueConsolidationModifier:
@@ -89,6 +90,7 @@ export const multiplyStats = (stats: tStats, modifier: number): tStats => ({
   damageModifiers: {
     flying: stats.damageModifiers.flying * modifier,
     undead: stats.damageModifiers.undead * modifier,
+    beast: stats.damageModifiers.beast * modifier,
   },
 
   queueConsolidationModifier: stats.queueConsolidationModifier * modifier,

@@ -32,6 +32,7 @@ export const ZERO_STATS: tStats = {
   damageModifiers: {
     flying: 0,
     undead: 0,
+    beast: 0,
   },
 
   queueConsolidationModifier: 0,

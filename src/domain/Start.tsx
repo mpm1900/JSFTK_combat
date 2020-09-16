@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { FullContainer, FlexContainer } from '../elements/flex'
 import { BoxContainer } from '../elements/box'
 import { usePartyContext } from '../contexts/PartyContext'
-import { Gauge } from '../components/Gauge'
 import { RedButton } from '../elements/button'
 import { useHistory } from 'react-router'
 import { INITIAL_STATE } from '../state/party'
@@ -48,7 +47,7 @@ export const Start = () => {
               fontSize: 12,
             }}
           >
-            alpha-0.0.4.14
+            alpha-0.0.4.16
           </Monospace>
         }
       >
@@ -66,7 +65,10 @@ export const Start = () => {
       <FlexContainer $full>
         <FullContainer />
         <BoxContainer
-          style={{ maxWidth: 340, marginRight: 8 }}
+          style={{
+            maxWidth: 340,
+            marginRight: 8,
+          }}
           substyle={{
             padding: 16,
             background: Theme.darkBgColor,
@@ -162,7 +164,7 @@ export interface StartCharacterCardPropsT {
 export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
   const { character, onChange } = props
   return (
-    <FlexContainer $direction='column'>
+    <FlexContainer $direction='column' style={{ width: 200 }}>
       <input
         style={{
           background: Theme.mediumBgColor,
@@ -208,7 +210,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
           <FlexContainer key={key} style={{ height: 20 }}>
             <div
               style={{
-                width: 60,
+                width: 80,
                 fontSize: 12,
                 textTransform: 'capitalize',
                 marginRight: 4,

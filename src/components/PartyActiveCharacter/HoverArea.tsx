@@ -1,10 +1,9 @@
 import React from 'react'
 import { FlexContainer } from '../../elements/flex'
-import { ArmorPreview } from '../ArmorPreview'
-import { WeaponPreview } from '../WeaponPreview'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
+import { ItemCard } from '../ItemCard'
 
 export interface HoverAreaPropsT {
   character: tProcessedCharacter
@@ -21,30 +20,15 @@ export const HoverArea = (props: HoverAreaPropsT) => {
     <div>
       {activeItem.itemType === 'armor' && (
         <FlexContainer>
-          {foundArmor && (
-            <ArmorPreview armor={foundArmor} showEquipButton={false} />
-          )}
-          {foundArmor?.id !== activeItem.id && (
-            <ArmorPreview
-              armor={activeItem as tArmor}
-              showEquipButton={false}
-            />
-          )}
+          {foundArmor && <ItemCard item={foundArmor} />}
+          {foundArmor?.id !== activeItem.id && <ItemCard item={activeItem} />}
         </FlexContainer>
       )}
       {activeItem.itemType === 'weapon' && (
         <FlexContainer>
-          <WeaponPreview
-            weapon={character.weapon}
-            showEquipButton={false}
-            character={character}
-          />
+          <ItemCard item={character.weapon} />
           {character.weapon.id !== activeItem.id && (
-            <WeaponPreview
-              character={character}
-              weapon={activeItem as tWeapon}
-              showEquipButton={false}
-            />
+            <ItemCard item={activeItem} />
           )}
         </FlexContainer>
       )}

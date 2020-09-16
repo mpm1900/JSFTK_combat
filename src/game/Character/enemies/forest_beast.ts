@@ -23,7 +23,7 @@ export const FOREST_BEAST = (): tCharacter => {
       armor: 3,
       evasion: 10,
     },
-    [],
+    ['beast'],
     [
       makeEnemyReward(6, 5),
       makeEnemyReward(6, 6),

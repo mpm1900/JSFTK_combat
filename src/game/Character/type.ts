@@ -6,7 +6,7 @@ import { tArmor } from '../Armor/type'
 import { tConsumable } from '../Consumable/type'
 import { tEncounterReward } from '../Encounter/type'
 
-export type tCharacterTag = 'flying' | 'undead'
+export type tCharacterTag = 'flying' | 'undead' | 'beast'
 export type tCharacterClass =
   | 'executioner'
   | 'ranger'

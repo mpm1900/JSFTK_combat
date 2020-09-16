@@ -6,7 +6,6 @@ import { useModalContext } from '../../contexts/ModalContext'
 import Gold from '../../icons/svg/delapouite/coins.svg'
 import XP from '../../icons/svg/lorc/laurel-crown.svg'
 import { Icon } from '../Icon'
-import { ItemPreivew } from '../ItemPreview'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 import { consolidateRewards } from '../../game/Other/util'
 import { commitRewards } from '../../game/Party/util'
@@ -15,6 +14,7 @@ import { tArmor } from '../../game/Armor/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { HoverToolTip } from '../Tooltip'
+import { ItemCard } from '../ItemCard'
 
 const getItem = (
   character: tProcessedCharacter,
@@ -91,7 +91,7 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
             <FlexContainer style={{ marginBottom: 16 }}>
               <FullContainer />
               <FlexContainer $direction='column'>
-                <ItemPreivew item={first} />
+                <ItemCard item={first} />
                 <span
                   style={{
                     marginTop: 8,
@@ -111,11 +111,12 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
               >
                 {party.characters.map((character) => (
                   <HoverToolTip
+                    key={character.id}
                     direction='down'
                     content={
                       <>
                         {getItem(character, first as tWeapon | tArmor) && (
-                          <ItemPreivew
+                          <ItemCard
                             item={
                               getItem(character, first as tWeapon | tArmor) as
                                 | tWeapon

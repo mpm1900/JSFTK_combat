@@ -58,9 +58,8 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
     return encounters[level - 1]
   }, [encounters, level])
   const currentEncounter = useMemo(() => {
-    const choice = encounters[level]
-    if (choice && choice.chosen !== undefined) {
-      return choice.choices[choice.chosen]
+    if (currentChoice && currentChoice.chosen !== undefined) {
+      return currentChoice.choices[currentChoice.chosen]
     }
   }, [encounters, level])
 

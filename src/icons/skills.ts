@@ -71,6 +71,7 @@ export const SKILL_ICONS: Record<string, string> = {
   Ripple: Shockwave,
   'Axe Spin': AxeSpin,
   Cleave: Cleave,
+  Slash: Cleave,
   Lunge: Lunge,
   Stab: Stab,
   Slice: Slice,

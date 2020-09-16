@@ -43,7 +43,8 @@ export const ELEMENTAL_CATALYST = () =>
   createWeapon(type, 'elemental', [ARCANE, ENFLAME, ENGULF], {})
 export const CURSED_CATALYST = () => createWeapon(type, 'cursed', [ARCANE], {})
 
-export const SHARP_CATALYST = () => createWeapon(type, 'sharp', [], {})
+export const SHARP_CATALYST = () =>
+  createWeapon(type, 'sharp', [ARCANE, NOVA, PROTECT, TIME_JUMP], {})
 export const HARDENED_CATALYST = () =>
   createWeapon(type, 'hardened', [ARCANE, NOVA, PROTECT, TIME_JUMP], {})
 export const ENGRAVED_CATALYST = () =>

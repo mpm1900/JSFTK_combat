@@ -9,14 +9,16 @@ import {
   HEALTH_FOCUS_BONUS_KEYS,
 } from '../../game/Stats/constants'
 import { tCharacterTag } from '../../game/Character/type'
+import { Theme } from '../../theme'
 
 export interface StatsPreviewPropsT {
   stats: tStats
 }
 
 const defense_key_colors: any = {
-  armor: 'lightblue',
-  resistance: 'plum',
+  armor: Theme.physicalColor,
+  resistance: Theme.magicColor,
+  evasion: Theme.evasionColor,
 }
 
 export const StatsPreview = (props: StatsPreviewPropsT) => {
@@ -63,7 +65,7 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
               key={key}
               style={{
                 textTransform: 'capitalize',
-                color: 'lightgreen',
+                color: Theme.evasionColor,
               }}
             >
               +{stats[key]}

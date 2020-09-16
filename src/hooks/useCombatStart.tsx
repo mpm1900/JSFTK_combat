@@ -14,7 +14,9 @@ export const useCombatStart = (delay: number = 1000) => {
     clear()
     open(
       <div style={{ textAlign: 'center' }}>
-        <h1 style={{ fontFamily: Theme.titleFont }}>Combat Start!</h1>
+        <h1 style={{ fontFamily: Theme.titleFont, userSelect: 'none' }}>
+          Combat Start!
+        </h1>
         <FlexContainer
           style={{
             justifyContent: 'space-around',
@@ -45,6 +47,8 @@ export const useCombatStart = (delay: number = 1000) => {
           ))}
         </FlexContainer>
       </div>,
+      {},
+      true,
     )
     setTimeout(() => {
       close()

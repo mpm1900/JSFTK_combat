@@ -52,7 +52,8 @@ export const ETHEREAL_GREATSWORD = () =>
 
 export const EXQUISITE_GREATSWORD = () =>
   createWeapon(type, 'exquisite', [SLICE, SLASH, LUNGE], {})
-export const DIVINE_GREATSWORD = () => createWeapon(type, 'divine', [], {})
+export const DIVINE_GREATSWORD = () =>
+  createWeapon(type, 'divine', [SLICE, SLASH, LUNGE], {})
 export const ARCANE_GREATSWORD = () =>
   createWeapon(type, 'arcane', [STRIKE], {})
 export const CELESTIAL_GREATSWORD = () =>

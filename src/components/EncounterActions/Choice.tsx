@@ -39,6 +39,7 @@ export const Choice = (props: ChoicePropsT) => {
         <FlexContainer style={{ justifyContent: 'center' }}>
           {encounters[level].choices.map((e, i) => (
             <Button
+              key={e.id}
               onClick={() => chooseCurrent(i)}
               style={{ whiteSpace: 'nowrap', padding: '8px 12px' }}
             >

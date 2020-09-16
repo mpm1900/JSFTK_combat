@@ -4,7 +4,7 @@ export const Theme = {
   mediumBgColor: 'rgb(34,34,39)',
   otherGrey: 'rgb(51,51,58)',
   otherGrey2: 'rgb(72,72,80)',
-  badgeBgColor: 'rgb(17,17,20)',
+  badgeBgColor: 'rgba(0,7,18,0.9)',
   badgeBorderColor: 'rgba(140,150,160,1)',
   lightBgColor: 'rgba(255,255,255,0.4)',
   textColor: 'rgba(255,255,255,0.8)',

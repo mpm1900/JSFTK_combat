@@ -154,11 +154,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
             style={{
               fontWeight: 'bold',
               color: isPlayer(round.source.partyId)
-                ? Color(CHARACTER_CLASS_COLORS[round.source.class])
-                    .lighten(1)
-                    //.saturate(1)
-                    .hex()
-                    .toString()
+                ? 'white'
                 : Theme.enemyPartyColor,
             }}
           >
@@ -175,7 +171,7 @@ export const RoundResult = (props: RoundResultPropsT) => {
                 style={{
                   fontWeight: 'bold',
                   color: isPlayer(targetResult?.target.partyId || '')
-                    ? color
+                    ? 'white'
                     : Theme.enemyPartyColor,
                 }}
               >

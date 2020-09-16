@@ -127,9 +127,10 @@ export const core: StateCoreT<GameStateT> = {
         ...floor,
         encounters: floor.encounters.map((choice) => {
           if (choice.id === action.payload.choiceId) {
-            const chosen = choice.chosen
-              ? choice.choices[choice.chosen]
-              : undefined
+            const chosen =
+              choice.chosen !== undefined
+                ? choice.choices[choice.chosen]
+                : undefined
             if (
               chosen &&
               chosen.id === action.payload.encounterId &&
@@ -137,14 +138,15 @@ export const core: StateCoreT<GameStateT> = {
             ) {
               return {
                 ...choice,
-                choices: choice.choices.map(
-                  (c) =>
-                    ({
-                      ...c,
-                      items: (c as tShopEncounter).items.filter(
-                        (i) => i.id !== action.payload.itemId,
-                      ),
-                    } as tShopEncounter),
+                choices: choice.choices.map((c) =>
+                  c.id === chosen.id
+                    ? ({
+                        ...c,
+                        items: (c as tShopEncounter).items.filter(
+                          (i) => i.id !== action.payload.itemId,
+                        ),
+                      } as tShopEncounter)
+                    : c,
                 ),
               }
             }

@@ -3,7 +3,7 @@ import {
   FOREST_WOLF,
   FOREST_BEAST,
   FOREST_RAVEN,
-  BEE,
+  FOREST_SNAKE,
   CULTIST,
   FOREST_TROLL,
   CULTIST_BRUTE,
@@ -37,14 +37,14 @@ export const FloorConfig1 = (): tFloorConfig => ({
   ],
   enemies: {
     0: [
-      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, BEE], 1),
+      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_SNAKE], 1),
       makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 1),
       makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 2),
       makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 1),
       makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_WITCH], 2),
-      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, BEE], 2),
+      makeRandomFloorEncounter([FOREST_WOLF, FOREST_BEAST, FOREST_SNAKE], 2),
       makeRandomFloorEncounter(
-        [FOREST_WOLF, FOREST_WOLF, FOREST_BEAST, FOREST_WITCH, BEE],
+        [FOREST_WOLF, FOREST_WOLF, FOREST_BEAST, FOREST_WITCH, FOREST_SNAKE],
         3,
       ),
     ],
@@ -54,7 +54,7 @@ export const FloorConfig1 = (): tFloorConfig => ({
           FOREST_WOLF,
           FOREST_BEAST,
           FOREST_WITCH,
-          BEE,
+          FOREST_SNAKE,
           FOREST_RAVEN,
           FOREST_RAVEN,
         ],
@@ -66,9 +66,9 @@ export const FloorConfig1 = (): tFloorConfig => ({
         [
           FOREST_BEAST,
           FOREST_WITCH,
-          BEE,
-          BEE,
-          BEE,
+          FOREST_SNAKE,
+          FOREST_SNAKE,
+          FOREST_SNAKE,
           FOREST_RAVEN,
           FOREST_RAVEN,
           FOREST_RAVEN,
@@ -83,8 +83,8 @@ export const FloorConfig1 = (): tFloorConfig => ({
       makeRandomFloorEncounter(
         [
           FOREST_WITCH,
-          BEE,
-          BEE,
+          FOREST_SNAKE,
+          FOREST_SNAKE,
           FOREST_RAVEN,
           FOREST_RAVEN,
           FOREST_RAVEN,
@@ -95,8 +95,8 @@ export const FloorConfig1 = (): tFloorConfig => ({
       makeRandomFloorEncounter(
         [
           FOREST_WITCH,
-          BEE,
-          BEE,
+          FOREST_SNAKE,
+          FOREST_SNAKE,
           FOREST_RAVEN,
           FOREST_RAVEN,
           FOREST_RAVEN,
@@ -107,8 +107,8 @@ export const FloorConfig1 = (): tFloorConfig => ({
       makeRandomFloorEncounter(
         [
           FOREST_WITCH,
-          BEE,
-          BEE,
+          FOREST_SNAKE,
+          FOREST_SNAKE,
           FOREST_RAVEN,
           FOREST_RAVEN,
           FOREST_RAVEN,
