@@ -218,7 +218,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
             </div>
             <FullContainer>
               <Gauge2
-                max={45}
+                max={40}
                 value={character.stats[key] - 40}
                 color='rgba(255,255,255,0.6)'
                 height={15}

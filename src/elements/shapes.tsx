@@ -31,8 +31,7 @@ export const Hexagon = (props: HexagonPropsT) => {
       <div
         style={{
           width: `${boxW}px`,
-          height: `${boxH + 0}px`,
-          //marginTop: '-1px',
+          height: `${boxH}px`,
           //marginBottom: '-1px',
           background: color,
         }}

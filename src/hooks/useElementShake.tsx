@@ -1,25 +1,25 @@
-import { AnimatedValue, useSpring } from 'react-spring'
+import { useSpring } from 'react-spring'
 
 const springConfig = {
-  mass: 3,
-  tension: 1500,
-  friction: 30,
+  mass: 1,
+  tension: 1000,
+  friction: 15,
 }
-const from = {
-  transform: 'translate3d(0px, 0px, 0px)',
-}
-const to = {
-  transform: 'translate3d(80px, 0px, 0px)',
-}
+const from = () => ({
+  transform: `rotate(0deg)`,
+})
+const to = () => ({
+  transform: `rotate(3deg)`,
+})
 
 export const useElementShake = () => {
   const [shakeStyles, dispatch] = useSpring(() => ({
     to: async (next: Function) => {
-      next(to)
+      await next(to())
     },
 
     config: springConfig,
-    from,
+    from: from(),
     immediate: true,
     reset: true,
     reverse: true,
@@ -27,9 +27,9 @@ export const useElementShake = () => {
 
   const exec = () => {
     dispatch({
-      ...to,
+      ...to(),
       config: springConfig,
-      from,
+      from: from(),
       immediate: false,
       reset: true,
       reverse: true,
