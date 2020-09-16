@@ -164,6 +164,7 @@ export const getRawDamage = (
       damageModifier += source.stats.damageModifiers[tag]
     }
   })
+  console.log('getRawDamage', damageModifier)
   return {
     ...rawDamage,
     value: rawDamage.value * damageModifier,
@@ -344,6 +345,8 @@ export const getRewardsFromCharacter = (
   checkedCharacter: tProcessedCharacter,
 ): tEncounterReward[] => {
   let index: number | undefined = undefined
+  if (character.possibleRewards.length === 1)
+    return [character.possibleRewards[0]]
   character.possibleRewards.forEach((rewards, i) => {
     const luckReslt = resolveCheck(checkedCharacter, 'luck')
     if (luckReslt) {

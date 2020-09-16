@@ -7,7 +7,9 @@ import {
 } from '../enemies/_builder'
 import { getRandomItem } from '../../Item/util'
 import { createSkill } from '../../Skill/skills'
+import { v4 } from 'uuid'
 
+const id = v4()
 export const LICH = (): tCharacter => {
   return {
     ...makeEnemy(
@@ -43,22 +45,13 @@ export const LICH = (): tCharacter => {
       ['undead'],
       [
         makeEnemyReward(200, 120, [
-          getRandomItem(3),
-          getRandomItem(3),
-          getRandomItem(3),
-        ]),
-        makeEnemyReward(200, 120, [
-          getRandomItem(3),
-          getRandomItem(3),
-          getRandomItem(3),
-        ]),
-        makeEnemyReward(200, 120, [
-          getRandomItem(3),
-          getRandomItem(3),
-          getRandomItem(3),
+          getRandomItem(3, 3),
+          getRandomItem(3, 3),
+          getRandomItem(3, 3),
         ]),
       ],
       ['stunned', 'bleeding', 'poisoned'],
     ),
+    id,
   }
 }

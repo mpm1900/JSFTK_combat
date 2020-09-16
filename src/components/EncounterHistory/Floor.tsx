@@ -21,7 +21,6 @@ export const Floor = (props: FloorPropsT) => {
   const isBossEncounter = (i: number) => i === floor.encounters.length - 2
   const isRewardEncounter = (i: number) => i === floor.encounters.length - 1
   const isPrevious = (i: number) => i === encounterIndex - 1
-  console.log(floor, floorIndex, encounterIndex)
   return (
     <FlexContainer
       $direction='column'

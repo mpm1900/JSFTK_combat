@@ -1,6 +1,71 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useGameStateContext } from '../../contexts/GameStateContext'
+import { usePartyContext } from '../../contexts/PartyContext'
+import { RedButton } from '../../elements/button'
 import { FlexContainer } from '../../elements/flex'
+import { tArmor } from '../../game/Armor/type'
+import { tBossEncounter } from '../../game/Encounter/type'
+import { BOSS_ITEMS } from '../../game/Weapon/constants'
+import { tWeapon } from '../../game/Weapon/type'
+import { Theme } from '../../theme'
+import { ItemCard } from '../ItemCard'
 
 export const BossRewards = () => {
-  return <FlexContainer></FlexContainer>
+  const { previousChoice } = useGameStateContext()
+  const { nextFloor } = useGameStateContext()
+  const { updateParty, rawParty } = usePartyContext()
+  const previousEncounter = previousChoice?.choices[previousChoice?.chosen || 0]
+  const [chosenReward, setChosenReward] = useState<
+    tArmor | tWeapon | undefined
+  >()
+  if (!previousEncounter) return null
+  const boss = (previousEncounter as tBossEncounter).party.characters[0]
+
+  return (
+    <FlexContainer
+      $direction='column'
+      style={{
+        padding: 16,
+        background: Theme.darkBgColor,
+        marginRight: 16,
+        marginTop: 16,
+      }}
+    >
+      <h1
+        style={{
+          marginTop: 8,
+          fontFamily: Theme.titleFont,
+          textAlign: 'center',
+          color: 'white',
+        }}
+      >
+        Choose your reward
+      </h1>
+      <FlexContainer style={{ justifyContent: 'center' }}>
+        {(BOSS_ITEMS[boss.id] || []).map((item) => (
+          <ItemCard
+            item={item}
+            showBuyButton={!chosenReward || chosenReward.id !== item.id}
+            buyText={'Choose This Item'}
+            onBuyClick={() => setChosenReward(item)}
+          />
+        ))}
+      </FlexContainer>
+      {chosenReward && (
+        <FlexContainer style={{ justifyContent: 'center', marginTop: 24 }}>
+          <RedButton
+            onClick={() => {
+              updateParty({
+                ...rawParty,
+                items: [...rawParty.items, chosenReward],
+              })
+              nextFloor()
+            }}
+          >
+            Next Floor
+          </RedButton>
+        </FlexContainer>
+      )}
+    </FlexContainer>
+  )
 }

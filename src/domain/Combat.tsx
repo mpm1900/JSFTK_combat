@@ -47,7 +47,7 @@ export const Combat = () => {
         >
           <FlexContainer
             $direction='column'
-            style={{ marginBottom: 40, minHeight: 90 }}
+            style={{ marginBottom: 24, minHeight: 90 }}
           >
             <CombatParty party={enemyParty} />
           </FlexContainer>
@@ -56,17 +56,15 @@ export const Combat = () => {
               <>
                 <FullContainer />
                 <FlexContainer $direction='column'>
-                  <div style={{ marginTop: 40 }}>
+                  <FullContainer />
+                  <div style={{ marginTop: 24 }}>
                     {!isRenderingResult && <CombatActions />}
                     <RoundResultRenderer isModal={false} />
                   </div>
                   <FullContainer />
                 </FlexContainer>
                 <FlexContainer $full style={{ justifyContent: 'flex-end' }}>
-                  <FlexContainer
-                    $direction='column'
-                    // style={{ justifyContent: 'center' }}
-                  >
+                  <FlexContainer $direction='column'>
                     <CombatLog />
                   </FlexContainer>
                 </FlexContainer>

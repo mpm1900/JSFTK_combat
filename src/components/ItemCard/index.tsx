@@ -27,6 +27,7 @@ export interface ItemCardPropsT {
   item: tArmor | tWeapon | tConsumable
   showBuyButton?: boolean
   cost?: number
+  buyText?: string
   onBuyClick?: () => void
 }
 
@@ -53,7 +54,7 @@ const ItemSubtitle = styled('div', {
 })
 
 export const ItemCard = (props: ItemCardPropsT) => {
-  const { item, cost, showBuyButton, onBuyClick } = props
+  const { item, cost, showBuyButton, buyText, onBuyClick } = props
   const isArmor = item.itemType === 'armor'
   const isWeapon = item.itemType === 'weapon'
   const isConsumable = item.itemType === 'consumable'
@@ -254,7 +255,7 @@ export const ItemCard = (props: ItemCardPropsT) => {
                   onClick={onBuyClick}
                   style={{ padding: '8px 16px', width: '100%' }}
                 >
-                  Buy ({cost || 0})
+                  {buyText || `Buy (${cost || 0})`}
                 </Button>
               </FlexContainer>
             )}

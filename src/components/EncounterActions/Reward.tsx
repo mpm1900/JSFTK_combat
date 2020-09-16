@@ -45,9 +45,7 @@ export const Reward = (props: RewardPropsT) => {
         was guarding. A tomb, sealed for centuries, a relic of civilizations
         past.
       </span>
-      <FlexContainer style={{ justifyContent: 'center' }}>
-        <Button onClick={onClick}>Enter the Tomb</Button>
-      </FlexContainer>
+      <FlexContainer style={{ justifyContent: 'center' }}></FlexContainer>
     </FlexContainer>
   )
 }
