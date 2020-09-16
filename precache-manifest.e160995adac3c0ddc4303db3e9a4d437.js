@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7d62690823c3f958bc35c75ecde40af9",
+    "revision": "be52eeb14d0bce14a2d0310c896cf512",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "0eb20445ccc76b803353",
+    "revision": "8dbac410531121e3e7f4",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "bd80534055c684eefde6",
+    "revision": "53608bb7b52a0bf5c13a",
     "url": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css"
   },
   {
-    "revision": "0eb20445ccc76b803353",
-    "url": "/JSFTK_combat/static/js/2.b7195c36.chunk.js"
+    "revision": "8dbac410531121e3e7f4",
+    "url": "/JSFTK_combat/static/js/2.8e574feb.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.b7195c36.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.8e574feb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bd80534055c684eefde6",
-    "url": "/JSFTK_combat/static/js/main.bca335ca.chunk.js"
+    "revision": "53608bb7b52a0bf5c13a",
+    "url": "/JSFTK_combat/static/js/main.44c67892.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -50,6 +50,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "33b25b62dcc46940524fb0d272649e05",
     "url": "/JSFTK_combat/static/media/all-for-one.33b25b62.svg"
+  },
+  {
+    "revision": "71dd2b836a2d7f2cf4aa617184daac60",
+    "url": "/JSFTK_combat/static/media/armor-downgrade.71dd2b83.svg"
+  },
+  {
+    "revision": "c51f91985268f89f96568c2c05e84685",
+    "url": "/JSFTK_combat/static/media/armor-upgrade.c51f9198.svg"
   },
   {
     "revision": "6958cc19bb33ca9fdbbe706399e263f0",
@@ -130,6 +138,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "dfa5ecf64ee14516cf0a7570e8f7a051",
     "url": "/JSFTK_combat/static/media/croc-sword.dfa5ecf6.svg"
+  },
+  {
+    "revision": "6feb257ef03dc34ca02d0baa67cc18d9",
+    "url": "/JSFTK_combat/static/media/cross-shield.6feb257e.svg"
   },
   {
     "revision": "b7d2c27aa5e3c339407d1442370fe343",
@@ -372,6 +384,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/snowflake-2.a0b68bb3.svg"
   },
   {
+    "revision": "3a0fdc2b51a25a456649abbe11a25bd6",
+    "url": "/JSFTK_combat/static/media/sparkling-sabre.3a0fdc2b.svg"
+  },
+  {
     "revision": "a7c36843ab309dbf56a0be48219132c7",
     "url": "/JSFTK_combat/static/media/spectre.a7c36843.svg"
   },
@@ -402,14 +418,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "30335592156f2f6ee12e1d65a8cd5a82",
     "url": "/JSFTK_combat/static/media/ubisoft-sun.30335592.svg"
-  },
-  {
-    "revision": "14198b166b6226fb4040ace17324fd7b",
-    "url": "/JSFTK_combat/static/media/vibrating-shield.14198b16.svg"
-  },
-  {
-    "revision": "a61f823052f5533afe1a07c856728ab0",
-    "url": "/JSFTK_combat/static/media/viking-shield.a61f8230.svg"
   },
   {
     "revision": "1f2ced7f3e4f768c0c73542c5b8a9619",
