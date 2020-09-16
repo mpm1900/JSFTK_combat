@@ -22,12 +22,25 @@ export interface MenuOptionT {
   ) => JSX.Element
 }
 export const ACTIVE_CHARACTER_MENU_KEYS: MenuOptionT[] = [
-  /*{
-    key: 'items',
-    icon: Items,
-    count: (c) => c.consumables.length,
-    render: (character) => <div>items</div>,
-  }, */
+  {
+    key: 'all',
+    icon: '',
+    count: (c, p) => p.items.length,
+    render: (character, canEquip, setActiveItem) => (
+      <FlexContainer $direction='column'>
+        <WeaponList
+          character={character}
+          canEquip={canEquip}
+          setActiveItem={setActiveItem}
+        />
+        <ArmorList
+          character={character}
+          canEquip={canEquip}
+          setActiveItem={setActiveItem}
+        />
+      </FlexContainer>
+    ),
+  },
   {
     key: 'weapons',
     icon: Weapons,

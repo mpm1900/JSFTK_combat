@@ -11,7 +11,7 @@ import { PISTOLS } from './pistol'
 import { SCYTHES } from './scythe'
 import { SWORDS } from './sword'
 
-export const WEAPONS: tWeaponsByLevel = {
+export const WEAPONS_BY_LEVEL: tWeaponsByLevel = {
   0: [
     ...AXES[0],
     ...HAMMERS[0],
@@ -86,6 +86,9 @@ export const WEAPONS: tWeaponsByLevel = {
   ],
 }
 
-export const ALL_WEAPONS = Object.keys(WEAPONS).reduce((allWeapons, level) => {
-  return [...allWeapons, ...WEAPONS[parseInt(level, 10)]]
-}, [] as (() => tWeapon)[])
+export const ALL_WEAPONS = Object.keys(WEAPONS_BY_LEVEL).reduce(
+  (allWeapons, level) => {
+    return [...allWeapons, ...WEAPONS_BY_LEVEL[parseInt(level, 10)]]
+  },
+  [] as (() => tWeapon)[],
+)

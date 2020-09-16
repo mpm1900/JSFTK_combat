@@ -1,7 +1,7 @@
 import { getRandom } from '../../util'
 import { ARMOR_BY_LEVEL } from '../Armor/builders/sets'
 import { tArmor } from '../Armor/type'
-import { WEAPONS } from '../Weapon/builders/objects'
+import { WEAPONS_BY_LEVEL } from '../Weapon/builders/objects'
 import { tWeapon } from '../Weapon/type'
 import { tItemType } from './type'
 
@@ -13,7 +13,7 @@ export const getRandomItem = (level: number): tWeapon | tArmor => {
       .fill(null)
       .reduce((result, _, index) => {
         if (index === 0) return result
-        return [...result, ...WEAPONS[index]]
+        return [...result, ...WEAPONS_BY_LEVEL[index]]
       }, [] as (() => tWeapon)[]) as (() => tWeapon)[]
 
     return getRandom(items)()

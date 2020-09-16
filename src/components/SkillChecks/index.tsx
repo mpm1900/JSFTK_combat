@@ -45,13 +45,22 @@ export const SkillChecks = (props: SkillChecksPropsT) => {
 export interface SkillCheckT {
   check: CheckKVT
   size?: number
+  iconSize?: number
   padding?: number
   perfect?: boolean
   crit?: boolean
   skill?: tSkill
 }
 export const SkillCheck = (props: SkillCheckT) => {
-  const { check, size = 36, padding = 12, perfect = false, skill, crit } = props
+  const {
+    check,
+    size = 36,
+    iconSize,
+    padding = 12,
+    perfect = false,
+    skill,
+    crit,
+  } = props
   const colors = getPerfectStatusColors(skill?.perfectStatus || [], crit)
   return (
     <div
@@ -71,7 +80,7 @@ export const SkillCheck = (props: SkillCheckT) => {
         <Icon
           src={STAT_ICONS[check.label as keyof tBaseStats]}
           fill={perfect ? colors.fill : getColor(check.result)}
-          size={size - 4}
+          size={iconSize || size - 4}
         />
         {check.result === false && (
           <Icon

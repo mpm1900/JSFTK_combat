@@ -142,6 +142,7 @@ export const ItemCard = (props: ItemCardPropsT) => {
                       key={i}
                       check={{ label: weapon.stat, result: true }}
                       size={18}
+                      iconSize={18}
                       padding={4}
                       skill={skill}
                     />
@@ -180,7 +181,7 @@ export const ItemCard = (props: ItemCardPropsT) => {
                       <span
                         style={{
                           textTransform: 'capitalize',
-                          color: 'rgba(255,255,255,0.4)',
+                          color: 'rgba(255,255,255,0.3)',
                         }}
                       >
                         {weapon.damage.type} Damage

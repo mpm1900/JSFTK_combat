@@ -44,7 +44,7 @@ export const condenseListToStack = (items: ItemT[]): ItemStackT<ItemT>[] => {
 
 export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
   const { character, party, canEquip, onRequestClose } = props
-  const [activeMenuKey, setActiveMenuKey] = useState('armor')
+  const [activeMenuKey, setActiveMenuKey] = useState('all')
   const [activeItem, setActiveItem] = useState<tArmor | tWeapon | undefined>()
   const activeOption = ACTIVE_CHARACTER_MENU_KEYS.find(
     (o) => o.key === activeMenuKey,
@@ -73,7 +73,7 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
       </HexBadge>
       <FlexContainer
         style={{
-          maxHeight: 440,
+          maxHeight: 502,
           padding: 10,
           position: 'absolute',
           left: '-6px',

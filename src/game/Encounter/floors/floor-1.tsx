@@ -10,17 +10,15 @@ import {
   FOREST_WITCH,
 } from '../../Character/enemies'
 import { LICH } from '../../Character/bosses'
-import { WEAPONS } from '../../Weapon/builders/objects'
+import { WEAPONS_BY_LEVEL } from '../../Weapon/builders/objects'
 import { ARMOR_BY_LEVEL } from '../../Armor/builders/sets'
 import { makeRandomFloorEncounter } from './util'
 import { TOMB_SPIRIT } from '../../Character/enemies/tomb_spirit'
 
 const FLOOR_1_WEAPONS = () => [
-  ...WEAPONS[1],
-  ...WEAPONS[2],
-  ...WEAPONS[3],
-  ...WEAPONS[4],
-  ...WEAPONS[5],
+  ...WEAPONS_BY_LEVEL[1],
+  ...WEAPONS_BY_LEVEL[2],
+  ...WEAPONS_BY_LEVEL[3],
 ]
 
 const FLOOR_1_ARMOR = () => [

@@ -46,7 +46,7 @@ export const Actions = (props: ActionsPropsT) => {
           arrow
           content={
             <animated.div
-              style={{ minWidth: 887, minHeight: 435, ...inventoryStyle }}
+              style={{ minWidth: 887, minHeight: 476, ...inventoryStyle }}
             >
               {inventoryOpen && (
                 <PartyActiveCharacter
