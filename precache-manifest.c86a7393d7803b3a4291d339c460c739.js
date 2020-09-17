@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3c589e4d7f5a11ced8f99662abe0a04a",
+    "revision": "ecccd0645973ad8faca69bd93e85da15",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "a8268df702055a58cb0b",
+    "revision": "147af9a12a7ed4a49978",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "4e4cd6d1e38b7b436596",
+    "revision": "8c99eaf90e4bdb264386",
     "url": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css"
   },
   {
-    "revision": "a8268df702055a58cb0b",
-    "url": "/JSFTK_combat/static/js/2.78360457.chunk.js"
+    "revision": "147af9a12a7ed4a49978",
+    "url": "/JSFTK_combat/static/js/2.da1f49a2.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.78360457.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.da1f49a2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "4e4cd6d1e38b7b436596",
-    "url": "/JSFTK_combat/static/js/main.fb0a4b56.chunk.js"
+    "revision": "8c99eaf90e4bdb264386",
+    "url": "/JSFTK_combat/static/js/main.9b61a5cf.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -240,6 +240,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/hand.9a950e42.svg"
   },
   {
+    "revision": "c9854d9c37175ce938d6ef1edc4a0f18",
+    "url": "/JSFTK_combat/static/media/harry-potter-skull.c9854d9c.svg"
+  },
+  {
     "revision": "0da85e24c7e433ad69533be0afcc61d1",
     "url": "/JSFTK_combat/static/media/health-normal.0da85e24.svg"
   },
@@ -450,6 +454,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "30335592156f2f6ee12e1d65a8cd5a82",
     "url": "/JSFTK_combat/static/media/ubisoft-sun.30335592.svg"
+  },
+  {
+    "revision": "8437b1a2975cb8fadb4800751589bb99",
+    "url": "/JSFTK_combat/static/media/unfriendly-fire.8437b1a2.svg"
   },
   {
     "revision": "1f2ced7f3e4f768c0c73542c5b8a9619",
