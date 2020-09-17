@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "43cb08c745cf01e9b70d585f7f808129",
+    "revision": "14df88288fc11663156a92a0a4e1de90",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "293eaf5bc71b20250458",
+    "revision": "00aeaecdad20d7cfdace",
     "url": "/JSFTK_combat/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "97c2177039e6325a40ba",
+    "revision": "fc3b760b97d45c498bc8",
     "url": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css"
   },
   {
-    "revision": "293eaf5bc71b20250458",
-    "url": "/JSFTK_combat/static/js/2.54394b80.chunk.js"
+    "revision": "00aeaecdad20d7cfdace",
+    "url": "/JSFTK_combat/static/js/2.e858e373.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.54394b80.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.e858e373.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "97c2177039e6325a40ba",
-    "url": "/JSFTK_combat/static/js/main.f276cb45.chunk.js"
+    "revision": "fc3b760b97d45c498bc8",
+    "url": "/JSFTK_combat/static/js/main.21376df0.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -200,16 +200,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/extra-time.4d418333.svg"
   },
   {
-    "revision": "4c5ae6807d5c2e06657c4625fc0b875d",
-    "url": "/JSFTK_combat/static/media/eye-target.4c5ae680.svg"
-  },
-  {
     "revision": "27d5f882091017d5eb3b99fe12c722af",
     "url": "/JSFTK_combat/static/media/female-vampire.27d5f882.svg"
   },
   {
     "revision": "42e1365743e99e9635dbba2b9e9df7d6",
     "url": "/JSFTK_combat/static/media/fire-zone.42e13657.svg"
+  },
+  {
+    "revision": "6efb9f12c6e190e0b87c3ef890a5ee98",
+    "url": "/JSFTK_combat/static/media/firewall.6efb9f12.svg"
   },
   {
     "revision": "d1b25a44a4075fbe3506e817eb7c9fc1",
@@ -234,6 +234,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "120a92c4a39eb00df25785bfd28ce44a",
     "url": "/JSFTK_combat/static/media/hammer-drop.120a92c4.svg"
+  },
+  {
+    "revision": "9a950e426bfc8625620d1ba61b6a3cbe",
+    "url": "/JSFTK_combat/static/media/hand.9a950e42.svg"
   },
   {
     "revision": "0da85e24c7e433ad69533be0afcc61d1",
@@ -262,10 +266,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "eed9def8f4443cdadacbaea5b13d757a",
     "url": "/JSFTK_combat/static/media/high-shot.eed9def8.svg"
-  },
-  {
-    "revision": "1188c0beb2a8bc34681d4f12564d6bae",
-    "url": "/JSFTK_combat/static/media/juggler.1188c0be.svg"
   },
   {
     "revision": "3292e5962fb3de232d95ff9a7ba10a45",
@@ -302,6 +302,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "4b207eda2771249f8de821c266e42d05",
     "url": "/JSFTK_combat/static/media/lotus-flower.4b207eda.svg"
+  },
+  {
+    "revision": "34d680efc645d750e32c85aed9efb868",
+    "url": "/JSFTK_combat/static/media/lucifer-cannon.34d680ef.svg"
+  },
+  {
+    "revision": "b0409ce14e64e73a3fcf99ce00374518",
+    "url": "/JSFTK_combat/static/media/lyre.b0409ce1.svg"
   },
   {
     "revision": "854dc4192d6fa9ad8943cb8eb7103f6f",
