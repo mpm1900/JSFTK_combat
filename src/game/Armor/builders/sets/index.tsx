@@ -1,4 +1,5 @@
 import { tArmor } from '../../type'
+import { RINGS_BY_LEVEL } from '../constants'
 import {
   ADVENTURER_BOOTS,
   ADVENTURER_CLOAK,
@@ -51,6 +52,7 @@ export const ARMOR_BY_LEVEL: Record<number, (() => tArmor)[]> = {
     TOMB_HELMET,
     TOMB_ARMOR,
     TOMB_BOOTS,
+    ...RINGS_BY_LEVEL[0],
   ],
   1: [
     ADVENTURER_HOOD,

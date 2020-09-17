@@ -195,3 +195,41 @@ export const createWard = (
     skills,
     immunities,
   )
+
+export const createRing = (
+  name: string,
+  rarity: tItemRarity,
+  goldValue: number,
+  stats: Partial<tStats> = {},
+  skills: tSkill[] = [],
+  immunities: tStatusType[] = [],
+) =>
+  createArmor(
+    name,
+    rarity,
+    'ring',
+    'ring',
+    goldValue,
+    stats,
+    skills,
+    immunities,
+  )
+
+export const createPendant = (
+  name: string,
+  rarity: tItemRarity,
+  goldValue: number,
+  stats: Partial<tStats> = {},
+  skills: tSkill[] = [],
+  immunities: tStatusType[] = [],
+) =>
+  createArmor(
+    name,
+    rarity,
+    'pendant',
+    'pendant',
+    goldValue,
+    stats,
+    skills,
+    immunities,
+  )

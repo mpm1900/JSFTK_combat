@@ -18,6 +18,11 @@ import { tConsumable } from '../Consumable/type'
 import { tBaseStats } from '../Stats/type'
 import { POSSIBLE_SHINE_REWARDS, ZERO_REWARD } from './constants'
 import { FLOOR_CONFIGS_BY_INDEX } from './floors'
+import { CELESTIAL_LOTUS } from '../Consumable/objects/celestial_lotus'
+import { CURE_POTION } from '../Consumable/objects/curing_potion'
+import { FIREBOMB } from '../Consumable/objects/firebomb'
+import { POISON_KNIFE } from '../Consumable/objects/poison_knife'
+import { BEAST_DRUG } from '../Consumable/objects/beast_drug'
 
 export const makeEncounterType = (
   depth: number,
@@ -84,7 +89,16 @@ export const makeRandomEncounter = (
     }
   }
   if (encounter.type === 'shop') {
-    const items = [GODSBEARD(), GODSBEARD(), GODSBEARD(), ...floorConfig.items]
+    const items = [
+      GODSBEARD(),
+      GODSBEARD(),
+      CELESTIAL_LOTUS(),
+      CURE_POTION(),
+      FIREBOMB(),
+      POISON_KNIFE(),
+      BEAST_DRUG(),
+      ...floorConfig.items,
+    ]
     encounter = {
       ...encounter,
       items,

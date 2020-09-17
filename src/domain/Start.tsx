@@ -18,10 +18,12 @@ import { Theme } from '../theme'
 import { AppHeader } from '../components/AppHeader'
 import { HeadingSm } from '../elements/typography'
 import { Gauge2 } from '../components/Gauge/v2'
+import { TEST_WEAPON } from '../game/Weapon/builders/unique/test_weapon'
 
 export const Start = () => {
   const {
     party,
+    rawParty,
     updateParty,
     upsertCharacter,
     findRawCharacter,
@@ -46,8 +48,17 @@ export const Start = () => {
               color: 'rgba(255,255,255,0.5)',
               fontSize: 12,
             }}
+            onClick={() => {
+              updateParty({
+                ...rawParty,
+                characters: rawParty.characters.map((c) => ({
+                  ...c,
+                  weapon: TEST_WEAPON(),
+                })),
+              })
+            }}
           >
-            alpha-0.0.4.22
+            alpha-0.0.4.23
           </Monospace>
         }
       >
