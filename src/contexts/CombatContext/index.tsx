@@ -44,14 +44,12 @@ export interface CombatContextT {
   queue: tQueue
   selectedSkill: tSkill | undefined
   selectedTargets: tProcessedCharacter[]
-  selectedConsumableIndex: number | undefined
   roundResults: tSkillResult[]
   activeRound: tSkillResult | undefined
   isRunning: boolean
   isRenderingResult: boolean
   onSkillSelect: (skill: tSkill, consumableIndex?: number) => void
   onTargetsSelect: (target: tProcessedCharacter | tProcessedParty) => void
-  onConsumableSelect: (consumableIndex: number | undefined) => void
   reset: () => void
   start: () => void
   next: (nextTarget?: tProcessedCharacter | tProcessedParty) => void
@@ -66,14 +64,12 @@ const defaultValue: CombatContextT = {
   queue: {},
   selectedSkill: undefined,
   selectedTargets: [],
-  selectedConsumableIndex: undefined,
   roundResults: [],
   activeRound: undefined,
   isRunning: false,
   isRenderingResult: false,
   onSkillSelect: (skill: tSkill) => {},
   onTargetsSelect: (target: tProcessedCharacter | tProcessedParty) => {},
-  onConsumableSelect: (consumableIndex) => {},
   reset: () => {},
   start: () => {},
   next: () => {},
@@ -87,10 +83,9 @@ export interface CombatContextProviderPropsT {
   children: JSX.Element
   enemyParty: tParty
   setEnemyParty: (party: tParty) => void
-  onRequestNewParty: () => void
 }
 export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
-  const { children, setEnemyParty, onRequestNewParty } = props
+  const { children, setEnemyParty } = props
   const { party, rawParty, updateParty, equipItem } = usePartyContext()
   const { open } = useModalContext()
   const history = useHistory()
@@ -117,9 +112,6 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     tSkillTarget | undefined
   >()
   const [selectedSkill, setSelectedSkill] = useState<tSkill | undefined>()
-  const [selectedConsumableIndex, setSelectedConsumableIndex] = useState<
-    number | undefined
-  >()
   const activeCharacter = useMemo(
     () =>
       characters.find(
@@ -137,12 +129,10 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   }
 
   const reset = () => {
-    onRequestNewParty()
     setIsRunning(false)
     setActiveRound(undefined)
     setSelectedSkill(undefined)
     setSelectedTarget(undefined)
-    setSelectedConsumableIndex(undefined)
     setIsRenderingResult(false)
     setRoundResults([])
     setQueue({})
@@ -175,16 +165,12 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
       setActiveRound(results)
       setSelectedSkill(undefined)
       setSelectedTarget(undefined)
-      setSelectedConsumableIndex(undefined)
       setIsRenderingResult(true)
     }
   }
 
   const onSkillSelect = (skill: tSkill, consumableIndex?: number) => {
     setSelectedSkill(skill)
-    if (consumableIndex !== undefined) {
-      setSelectedConsumableIndex(consumableIndex)
-    }
     if (skill.targetType !== selectedSkill?.targetType) {
       setSelectedTarget(undefined)
     }
@@ -274,13 +260,11 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
         selectedTargets: selectedTarget
           ? resolveSkillTarget(selectedTarget)
           : [],
-        selectedConsumableIndex,
         roundResults,
         isRunning,
         isRenderingResult,
         onSkillSelect,
         onTargetsSelect,
-        onConsumableSelect: setSelectedConsumableIndex,
         start,
         next,
         commit,

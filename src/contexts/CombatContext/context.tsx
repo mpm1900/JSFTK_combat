@@ -25,7 +25,6 @@ export const LinkedCombatContext = (
     <CombatContextProvider
       enemyParty={combatParty}
       setEnemyParty={setCombatParty}
-      onRequestNewParty={() => {}}
     >
       {children}
     </CombatContextProvider>

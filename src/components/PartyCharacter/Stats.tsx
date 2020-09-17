@@ -55,8 +55,8 @@ export const Stats = (props: StatsProps) => {
     >
       <CharacterStat statKey='vigor' character={character} />
       <CharacterStat statKey='strength' character={character} />
-      <CharacterStat statKey='intelligence' character={character} />
       <CharacterStat statKey='dexterity' character={character} />
+      <CharacterStat statKey='intelligence' character={character} />
       <CharacterStat statKey='charisma' character={character} />
       <CharacterStat statKey='agility' character={character} />
       <CharacterStat statKey='luck' character={character} />

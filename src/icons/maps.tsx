@@ -2,7 +2,9 @@ import Vigor from './svg/delapouite/heart-beats.svg'
 import Strength from './svg/delapouite/biceps.svg'
 import Brain from './svg/lorc/brain.svg'
 import Awareness from './svg/delapouite/eye-target.svg'
+import Hand from './svg/sbed/hand.svg'
 import Juggler from './svg/lorc/juggler.svg'
+import Masks from './svg/lorc/lyre.svg'
 import Agility from './svg/lorc/sprint.svg'
 import Clover from './svg/lorc/clover.svg'
 
@@ -62,8 +64,8 @@ export const STAT_ICONS: Record<keyof tBaseStats, string> = {
   vigor: Vigor,
   strength: Strength,
   intelligence: Brain,
-  dexterity: Awareness,
-  charisma: Juggler,
+  dexterity: Hand,
+  charisma: Masks,
   agility: Agility,
   luck: Clover,
   evasion: '',

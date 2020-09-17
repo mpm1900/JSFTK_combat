@@ -24,15 +24,18 @@ import { noneg } from '../../util'
 export const getSourceSkillResult = (
   source: tProcessedCharacter,
   skill: tSkill,
+  inspirationUsed: number = 0,
 ): tSourceSkillResult => {
   const rollResults = Array(skill.rolls)
     .fill(null)
     .map((_, i) =>
-      resolveCheck(
-        source,
-        skill.weaponStatOverride || source.weapon.stat,
-        skill.offset,
-      ),
+      i < inspirationUsed
+        ? true
+        : resolveCheck(
+            source,
+            skill.weaponStatOverride || source.weapon.stat,
+            skill.offset,
+          ),
     )
   const passedCount = rollResults.filter((r) => r).length
   const perfect = passedCount === skill.rolls
@@ -55,6 +58,7 @@ export const getSourceSkillResult = (
   return {
     source,
     skill,
+    inspirationUsed: inspirationUsed || 0,
     rollResults,
     passedCount,
     perfect,

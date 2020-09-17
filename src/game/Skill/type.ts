@@ -38,6 +38,7 @@ export interface tSourceSkillResult {
   skill: tSkill
   source: tProcessedCharacter
 
+  inspirationUsed: number
   rollResults: boolean[]
   perfect: boolean
   passedCount: number

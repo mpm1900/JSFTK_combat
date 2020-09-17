@@ -3,30 +3,27 @@ import { FlexContainer } from '../../elements/flex'
 import { PartyCharacter } from '../PartyCharacter'
 import { useCombatContext } from '../../contexts/CombatContext'
 import { RedButton } from '../../elements/button'
-import { tProcessedParty } from '../../game/Party/type'
 import { tProcessedCharacter } from '../../game/Character/type'
-import { tConsumable } from '../../game/Consumable/type'
 import { LocalToastRp } from '../../contexts/LocalToastContext'
 import { useGameStateContext } from '../../contexts/GameStateContext'
+import { usePartyContext } from '../../contexts/PartyContext'
+import { useUIContext } from '../../contexts/UIContext'
 
 export interface PlayerPartyPropsT {
-  party: tProcessedParty
   onCharacterClick?: (character: tProcessedCharacter) => void
-  onConsumableClick?: (
-    character: tProcessedCharacter,
-    consumableIndex: number,
-    consumable: tConsumable,
-  ) => void
 }
 export const PlayerParty = (props: PlayerPartyPropsT) => {
-  const { party, onCharacterClick, onConsumableClick } = props
+  const { onCharacterClick } = props
   const {
     activeCharacter,
     selectedSkill,
+    isRunning,
     next,
     onSkillSelect,
   } = useCombatContext()
   const { currentEncounter } = useGameStateContext()
+  const { party } = usePartyContext()
+  const { onCharacterConsumableClick } = useUIContext()
 
   const showConfirmButton = (c: tProcessedCharacter) =>
     selectedSkill &&
@@ -36,7 +33,7 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
       selectedSkill.targetType === 'ally')
 
   return (
-    <FlexContainer $direction='column'>
+    <FlexContainer $direction='column' style={{ marginBottom: 30 }}>
       <FlexContainer
         style={{
           justifyContent: 'space-around',
@@ -66,6 +63,7 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
                 <PartyCharacter
                   push={push}
                   selected={
+                    isRunning &&
                     currentEncounter &&
                     currentEncounter.type !== 'shop' &&
                     activeCharacter &&
@@ -77,8 +75,8 @@ export const PlayerParty = (props: PlayerPartyPropsT) => {
                   onConsumableClick={(consumable, index) => {
                     try {
                       if (!c || !consumable || index === undefined) return
-                      if (onConsumableClick) {
-                        onConsumableClick(c, index, consumable)
+                      if (onCharacterConsumableClick) {
+                        onCharacterConsumableClick(c, index, consumable)
                       }
                       if (c && c.id === activeCharacter.id) {
                         onSkillSelect(consumable.skill, index)
