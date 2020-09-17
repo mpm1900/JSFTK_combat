@@ -15,6 +15,7 @@ import { tWeapon } from '../../game/Weapon/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { HoverToolTip } from '../Tooltip'
 import { ItemCard } from '../ItemCard'
+import { Theme } from '../../theme'
 
 const getItem = (
   character: tProcessedCharacter,
@@ -73,7 +74,9 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
       $direction='column'
       style={{ textAlign: 'center', minHeight: 420 }}
     >
-      <h1>You Win!</h1>
+      <h1 style={{ fontFamily: Theme.titleFont, textAlign: 'center' }}>
+        You Win!
+      </h1>
       <FlexContainer $direction='column' style={{ color: 'white' }}>
         <FlexContainer style={{ marginBottom: 16 }}>
           <FlexContainer>

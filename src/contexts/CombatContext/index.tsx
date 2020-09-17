@@ -35,6 +35,7 @@ import { commitSkillResults } from '../../game/Skill/committer'
 import { getAIAction } from '../../game/AI/util'
 import { tArmor } from '../../game/Armor/type'
 import { tWeapon } from '../../game/Weapon/type'
+import { Theme } from '../../theme'
 
 export interface CombatContextT {
   party: tProcessedParty
@@ -241,7 +242,13 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
     }
     if (party.characters.every((c) => c.health <= 0)) {
       setIsRunning(false)
-      alert('you lose')
+      open(
+        <div>
+          <h1 style={{ fontFamily: Theme.titleFont, textAlign: 'center' }}>
+            You Lose
+          </h1>
+        </div>,
+      )
       history.push('/JSFTK_combat/')
       return
     }

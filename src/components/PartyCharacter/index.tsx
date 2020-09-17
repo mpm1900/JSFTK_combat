@@ -22,6 +22,7 @@ import { ZERO_STATS } from '../../game/Stats/constants'
 import { HoverHexBadge, HexBadge } from '../../elements/shapes'
 import { animated } from 'react-spring'
 import { useElementShake } from '../../hooks/useElementShake'
+import { NumberChange } from '../NumberChange'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -210,7 +211,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           }}
           content={<BoxContainer dark>Armor</BoxContainer>}
         >
-          <span>{character.stats.armor}</span>
+          <NumberChange value={character.stats.armor} />
         </HoverHexBadge>
         <HoverHexBadge
           position={{
@@ -226,7 +227,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           }}
           content={<BoxContainer dark>Magic Resistance</BoxContainer>}
         >
-          <span>{character.stats.resistance}</span>
+          <NumberChange value={character.stats.resistance} />
         </HoverHexBadge>
         <HoverHexBadge
           position={{
@@ -242,7 +243,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           }}
           content={<BoxContainer dark>Evasion</BoxContainer>}
         >
-          <span>{character.stats.evasion}</span>
+          <NumberChange value={character.stats.evasion} />
         </HoverHexBadge>
         <HoverHexBadge
           direction='up'
@@ -262,11 +263,13 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             paddingTop: 1,
           }}
         >
-          <span>
-            {(character.weapon.damage.value +
-              character.stats.attackDamageOffset) *
-              character.stats.attackDamageModifier}
-          </span>
+          <NumberChange
+            value={
+              (character.weapon.damage.value +
+                character.stats.attackDamageOffset) *
+              character.stats.attackDamageModifier
+            }
+          />
         </HoverHexBadge>
       </Wrapper>
     </animated.div>

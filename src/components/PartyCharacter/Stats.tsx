@@ -8,6 +8,7 @@ import { tBaseStats } from '../../game/Stats/type'
 import { Theme } from '../../theme'
 import { HoverToolTip } from '../Tooltip'
 import { BoxContainer } from '../../elements/box'
+import { NumberChange } from '../NumberChange'
 
 interface CharacterStatPropsT {
   statKey: keyof tBaseStats
@@ -36,7 +37,7 @@ const CharacterStat = (props: CharacterStatPropsT) => {
           size={14}
           style={{ marginRight: 3, marginTop: 0 }}
         />
-        {character.stats[statKey]}
+        <NumberChange value={character.stats[statKey]} />
       </ResourceE>
     </HoverToolTip>
   )

@@ -3,6 +3,7 @@ import { usePartyContext } from '../../contexts/PartyContext'
 import { FlexContainer } from '../../elements/flex'
 import Gold from '../../icons/svg/delapouite/coins.svg'
 import { Icon } from '../Icon'
+import { NumberChange } from '../NumberChange'
 
 export const PartyResources = () => {
   const { party } = usePartyContext()
@@ -12,7 +13,7 @@ export const PartyResources = () => {
       style={{ alignItems: 'center', paddingRight: 20, color: '#ded9a6' }}
     >
       <Icon src={Gold} size={18} style={{ marginRight: 8 }} fill='#ded9a6' />
-      {party.gold}
+      <NumberChange value={party.gold} />
     </FlexContainer>
   )
 }

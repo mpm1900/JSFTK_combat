@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { tProcessedCharacter } from '../../game/Character/type'
-import { Spring } from 'react-spring/renderprops'
+import { animated, Spring } from 'react-spring/renderprops'
 import { noneg } from '../../util'
 import { usePlayerCharacterNotifications } from '../../hooks/usePlayerCharacterNotifications'
 import { Theme } from '../../theme'
+import { NumberChange } from '../NumberChange'
 
 export interface HealthPropsT {
   character: tProcessedCharacter
   push: (content: JSX.Element, type?: string) => void
+  shake?: () => void
 }
 export const Health = (props: HealthPropsT) => {
-  const { character, push } = props
+  const { character, push, shake } = props
   const health = noneg(character.health)
-  const [previousHealth, setPreviousHealth] = useState(character.health)
-  usePlayerCharacterNotifications(character, push, () => {})
-
-  useEffect(() => {
-    setPreviousHealth(health)
-  }, [health])
+  usePlayerCharacterNotifications(character, push, shake || (() => {}))
 
   return (
-    <span
+    <animated.div
       style={{
         fontSize: 64,
         height: 64,
@@ -31,13 +28,7 @@ export const Health = (props: HealthPropsT) => {
         userSelect: 'none',
       }}
     >
-      <Spring
-        from={{ hp: previousHealth || 0 }}
-        to={{ hp: health }}
-        config={{ friction: 70, mass: 5, tension: 300, clamp: true }}
-      >
-        {(hpp) => <span>{Math.floor(hpp.hp)}</span>}
-      </Spring>
-    </span>
+      <NumberChange value={health} />
+    </animated.div>
   )
 }

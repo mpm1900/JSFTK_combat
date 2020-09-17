@@ -13,6 +13,7 @@ export const ENFLAME = createSkill('Enflame', 4, 0, {
   perfectStatus: ['burning'],
 })
 export const ENGULF = createSkill('Engulf', 4, -10, {
+  damageModifier: 0.7,
   perfectStatus: ['burning'],
   targetType: 'group',
 })

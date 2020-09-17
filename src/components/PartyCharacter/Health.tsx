@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Spring } from 'react-spring/renderprops'
+import React from 'react'
 import { noneg } from '../../util'
-import { usePrevious } from '../../hooks/usePrevious'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { Theme } from '../../theme'
+import { NumberChange } from '../NumberChange'
 
 export interface HealthPropsT {
   character: tProcessedCharacter
@@ -14,11 +11,6 @@ export interface HealthPropsT {
 export const Health = (props: HealthPropsT) => {
   const { character } = props
   const health = noneg(character.health)
-  const [storedHealth, setStoredHealth] = useState(0)
-
-  useEffect(() => {
-    setStoredHealth(health)
-  }, [health])
 
   return (
     <div style={{ position: 'relative', zIndex: 3 }}>
@@ -38,15 +30,8 @@ export const Health = (props: HealthPropsT) => {
           justifyContent: 'center',
         }}
       >
-        <Spring
-          from={{ hp: storedHealth || 0 }}
-          to={{ hp: health }}
-          config={{ friction: 70, mass: 5, tension: 300, clamp: true }}
-        >
-          {(hpp) => <span style={{}}>{Math.floor(hpp.hp)}</span>}
-        </Spring>
+        <NumberChange value={health} />
       </span>
-      <ToastContainer />
     </div>
   )
 }

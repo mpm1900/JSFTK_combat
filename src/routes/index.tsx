@@ -21,7 +21,7 @@ export const RouteController = () => {
   const history = useHistory()
   const { open } = useModalContext()
   useEffect(() => {
-    if (level > encounters.length - 1 || floor > floors.length - 1) {
+    if (level > encounters.length - 1 || floor > floors.length - 2) {
       open(
         <div style={{ textAlign: 'center', fontFamily: Theme.titleFont }}>
           <h1>You've Defeated the Lich! You did it!</h1>

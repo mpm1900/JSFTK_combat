@@ -10,6 +10,7 @@ import { tProcessedCharacter } from '../../game/Character/type'
 import { CHARACTER_XP_MAX } from '../../game/Character/constants'
 import { Gauge2 } from './v2'
 import { Theme } from '../../theme'
+import { NumberChange } from '../NumberChange'
 
 export interface GaugePropsT {
   name?: string
@@ -109,7 +110,8 @@ export const HealthGauge = (props: HealthGaugePropsT) => {
     >
       {showNumbers && (
         <span>
-          {health}/{character.maxHealth}
+          <NumberChange value={health} />/
+          <NumberChange value={character.maxHealth} />
         </span>
       )}
     </Gauge2>

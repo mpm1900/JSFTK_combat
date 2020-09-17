@@ -1,5 +1,8 @@
 import { LICH } from '../../Character/bosses'
+import { CONSECRATED_BEAST } from '../../Character/bosses/consecrated_beast'
+import { BANSHEE, FLAME_WISP } from '../../Character/enemies'
 import { CULTIST_SCHOLAR } from '../../Character/enemies/cultist_scholar'
+import { TOMB_GUARDIAN } from '../../Character/enemies/tomb_guardian'
 import { TOMB_SPIDER } from '../../Character/enemies/tomb_spider'
 import { TOMB_SPIRIT } from '../../Character/enemies/tomb_spirit'
 import { WEAPONS_BY_LEVEL } from '../../Weapon/builders/objects'
@@ -13,7 +16,7 @@ const FLOOR_2_WEAPONS = () => [
 ]
 
 export const FloorConfig2 = (): tFloorConfig => ({
-  bosses: [LICH()],
+  bosses: [CONSECRATED_BEAST()],
   items: [...FLOOR_2_WEAPONS().map((w) => w())],
   enemies: {
     0: [
@@ -23,6 +26,30 @@ export const FloorConfig2 = (): tFloorConfig => ({
     1: [
       makeRandomFloorEncounter([TOMB_SPIDER, TOMB_SPIRIT, CULTIST_SCHOLAR], 2),
       makeRandomFloorEncounter([TOMB_SPIDER, TOMB_SPIRIT, CULTIST_SCHOLAR], 3),
+    ],
+    2: [
+      makeRandomFloorEncounter(
+        [TOMB_SPIDER, TOMB_SPIRIT, CULTIST_SCHOLAR, FLAME_WISP, FLAME_WISP],
+        3,
+      ),
+    ],
+    3: [
+      makeRandomFloorEncounter(
+        [TOMB_SPIDER, TOMB_SPIRIT, CULTIST_SCHOLAR, FLAME_WISP, TOMB_GUARDIAN],
+        3,
+      ),
+    ],
+    4: [
+      makeRandomFloorEncounter(
+        [TOMB_SPIRIT, CULTIST_SCHOLAR, FLAME_WISP, TOMB_GUARDIAN],
+        3,
+      ),
+    ],
+    5: [
+      makeRandomFloorEncounter(
+        [CULTIST_SCHOLAR, FLAME_WISP, TOMB_GUARDIAN, BANSHEE],
+        3,
+      ),
     ],
   },
 })
