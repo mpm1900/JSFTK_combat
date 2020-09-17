@@ -10,11 +10,15 @@ import { tProcessedParty } from '../../game/Party/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
 import { Theme } from '../../theme'
+import { Stats } from './Stats'
 
 export interface MenuOptionT {
   key: string
   icon: string
-  count: (character: tProcessedCharacter, party: tProcessedParty) => number
+  count: (
+    character: tProcessedCharacter,
+    party: tProcessedParty,
+  ) => number | undefined
   render: (
     character: tProcessedCharacter,
     canEquip: boolean,
@@ -65,6 +69,12 @@ export const ACTIVE_CHARACTER_MENU_KEYS: MenuOptionT[] = [
       />
     ),
   },
+  {
+    key: 'stats',
+    icon: '',
+    count: (c, p) => undefined,
+    render: (character) => <Stats character={character} />,
+  },
 ]
 
 export interface MenuSelectPropsT {
@@ -96,7 +106,10 @@ export const MenuSelect = (props: MenuSelectPropsT) => {
           }}
         >
           <FullContainer
-            style={{ marginRight: 8, textTransform: 'capitalize' }}
+            style={{
+              marginRight: option.count(character, party) === undefined ? 0 : 8,
+              textTransform: 'capitalize',
+            }}
           >
             {option.key}
           </FullContainer>

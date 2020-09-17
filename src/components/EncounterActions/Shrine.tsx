@@ -14,7 +14,13 @@ export const Shrine = (props: ShrinePropsT) => {
   const { nextLevel } = useGameStateContext()
   return (
     <FlexContainer $direction='column' style={{ justifyContent: 'center' }}>
-      <h3 style={{ fontFamily: Theme.titleFont, fontWeight: 'normal' }}>
+      <h3
+        style={{
+          fontFamily: Theme.titleFont,
+          fontWeight: 'normal',
+          textAlign: 'center',
+        }}
+      >
         You've discoved a secret shrine.
       </h3>
       <FlexContainer style={{ justifyContent: 'center' }}>

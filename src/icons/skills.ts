@@ -6,6 +6,8 @@ import Arcane from './svg/lorc/fire-zone.svg'
 import Blast from './svg/lorc/magic-swirl.svg'
 import Nova from './svg/lorc/heavy-timer.svg'
 import TimeJump from './svg/delapouite/extra-time.svg'
+import Enflame from './svg/sbed/lucifer-cannon.svg'
+import Engulf from './svg/delapouite/firewall.svg'
 
 import Smash from './svg/lorc/flat-hammer.svg'
 import Shockwave from './svg/lorc/hammer-drop.svg'
@@ -63,6 +65,8 @@ export const SKILL_ICONS: Record<string, string> = {
   Nova: Nova,
   Blast: Blast,
   'Time Jump': TimeJump,
+  Enflame: Enflame,
+  Engulf: Engulf,
 
   Ring: Ring,
   Reverberate: Reverberate,
@@ -79,7 +83,7 @@ export const SKILL_ICONS: Record<string, string> = {
   Slash: Slash,
   Lunge: Lunge,
   Stab: Stab,
-  Slice: Slice,
+  Slice: Stab,
   Swipe: Slice,
 
   Fire: Fire,

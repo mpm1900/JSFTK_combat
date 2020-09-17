@@ -12,7 +12,7 @@ export const FOREST_SNAKE = (): tCharacter => {
     Bee,
     1,
     6,
-    makeEnemyWeapon('dexterity', 12, 'melee', 'physical', [
+    makeEnemyWeapon('dexterity', 14, 'melee', 'physical', [
       createSkill('Bite', 3, 0),
       createSkill('Venomous Bite', 3, -10, { perfectStatus: ['poisoned'] }),
     ]),

@@ -127,7 +127,7 @@ export const getEncounterBg = (
   level: number,
   floor: number,
 ): { bg: string; overlay: string } => {
-  return [
+  return ([
     [
       {
         // 0
@@ -242,5 +242,12 @@ export const getEncounterBg = (
         overlay: 'rgba(20,0,50,0.3)',
       },
     ],
-  ][floor][level]
+    [
+      {
+        // 0
+        bg: Forest1,
+        overlay: 'transparent',
+      },
+    ],
+  ][floor] || [])[level]
 }

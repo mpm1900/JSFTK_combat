@@ -190,13 +190,13 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
   },
   'attack-up': {
     name: 'Attack Up',
-    description: '+5 Attack Damage',
+    description: '+15 Attack Damage',
     canStack: false,
     isTemporary: true,
     duration: -1,
     stats: {
       ...ZERO_STATS,
-      attackDamageOffset: 5,
+      attackDamageOffset: 15,
     },
     immunities: [],
   },
@@ -256,7 +256,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
     duration: -1,
     stats: {
       ...ZERO_STATS,
-      attackDamageOffset: -5,
+      attackDamageOffset: -15,
     },
     immunities: [],
   },
@@ -280,7 +280,7 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
     duration: -1,
     stats: {
       ...ZERO_STATS,
-      resistance: -5,
+      resistance: -15,
     },
     immunities: [],
   },

@@ -11,7 +11,7 @@ export const FOREST_TROLL = (): tCharacter => {
     Troll,
     2,
     24,
-    makeEnemyWeapon('strength', 12, 'melee', 'physical', [
+    makeEnemyWeapon('strength', 16, 'melee', 'physical', [
       createSkill('Smash', 4, 0),
       createSkill('Quake', 5, -15, {
         damageModifier: 0.5,

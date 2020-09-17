@@ -11,7 +11,7 @@ export const CULTIST_BRUTE = (): tCharacter => {
     Cultist,
     4,
     26,
-    makeEnemyWeapon('strength', 12, 'melee', 'physical', [
+    makeEnemyWeapon('strength', 15, 'melee', 'physical', [
       createSkill('Slice', 3, 0),
       createSkill('Slash', 4, -5, { perfectStatus: ['bleeding'] }),
     ]),

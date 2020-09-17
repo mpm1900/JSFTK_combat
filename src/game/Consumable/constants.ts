@@ -13,7 +13,7 @@ export const CONSUMABLE_DESCRIPTIONS: Record<
   [GODSBEARD().cid]: (c) => `Heal for ${c.stats.consumableHealthGainOffset} HP`,
   [CELESTIAL_LOTUS().cid]: () => 'Remove all Curses',
   [POISON_KNIFE().cid]: () => `Inflict Poison`,
-  [BEAST_DRUG().cid]: () => `+5 Attack Damage`,
+  [BEAST_DRUG().cid]: () => `+15 Attack Damage`,
   [CURE_POTION().cid]: () => `Cure Buring, Bleeding, Frozen and Poison`,
   [FIREBOMB().cid]: () => `Deal 15 Damage and inflict Burning`,
 }

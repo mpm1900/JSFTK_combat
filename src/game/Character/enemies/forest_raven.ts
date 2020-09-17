@@ -14,7 +14,9 @@ export const FOREST_RAVEN = (): tCharacter => {
     10,
     makeEnemyWeapon('dexterity', 6, 'melee', 'physical', [
       createSkill('Peck', 2, 0),
-      createSkill('Caw', 2, -5, { perfectStatus: ['resistance-down'] }),
+      createSkill('Caw', 2, -5, {
+        perfectStatus: ['resistance-down', 'armor-down'],
+      }),
     ]),
     {
       dexterity: 56,

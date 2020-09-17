@@ -11,9 +11,9 @@ export const CULTIST = (): tCharacter => {
     Cultist,
     2,
     17,
-    makeEnemyWeapon('intelligence', 14, 'melee', 'magic', [
+    makeEnemyWeapon('intelligence', 12, 'melee', 'magic', [
       createSkill('Enflame', 4, -10, { perfectStatus: ['burning'] }),
-      createSkill('Blast', 3, 0),
+      createSkill('Arcane', 3, 0, { perfectPierce: true }),
     ]),
     {
       intelligence: 75,

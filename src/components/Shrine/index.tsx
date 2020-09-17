@@ -53,7 +53,13 @@ export const Shrine = (props: ShrinePropsT) => {
     >
       <FlexContainer>
         <FlexContainer $direction='column'>
-          <h1 style={{ margin: '0 0 24px 0', textTransform: 'capitalize' }}>
+          <h1
+            style={{
+              margin: '0 0 24px 0',
+              textTransform: 'capitalize',
+              fontFamily: Theme.titleFont,
+            }}
+          >
             {encounter.stat} Shrine
           </h1>
           <div style={{ maxWidth: 300, marginBottom: 48 }}>
