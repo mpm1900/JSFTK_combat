@@ -22,7 +22,7 @@ export const Shrine = (props: ShrinePropsT) => {
   const onClick = (c: tProcessedCharacter) => {
     const stream = Kefir.sequentially(
       200,
-      Array(encounter.rolls)
+      Array(encounter.rolls - 1)
         .fill(0)
         .map((_, i) => ({
           index: i,
@@ -36,9 +36,9 @@ export const Shrine = (props: ShrinePropsT) => {
   }
 
   useEffect(() => {
-    if (results.length === encounter.rolls) {
+    if (results.length === encounter.rolls - 1) {
       const rewards =
-        encounter.results[results.filter((r) => r === true).length - 1]
+        encounter.results[results.filter((r) => r === true).length]
       if (!rewards) {
         return
       }
@@ -71,7 +71,7 @@ export const Shrine = (props: ShrinePropsT) => {
             <FlexContainer $direction='column'>
               <SkillChecks
                 stat={encounter.stat}
-                rolls={encounter.rolls}
+                rolls={encounter.rolls - 1}
                 results={results}
               />
               <FlexContainer style={{ justifyContent: 'center' }}>
@@ -99,13 +99,13 @@ export const Shrine = (props: ShrinePropsT) => {
                 alignItems: 'center',
                 marginBottom: 4,
                 background:
-                  results.length === encounter.rolls &&
-                  index + 1 === results.filter((r) => r === true).length
+                  results.length === encounter.rolls - 1 &&
+                  index === results.filter((r) => r === true).length
                     ? 'rgba(144, 238, 144, 0.3)'
                     : 'linear-gradient(90deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%)',
               }}
             >
-              <span style={{ fontSize: 24 }}>{index + 1}</span>
+              <span style={{ fontSize: 24 }}>{index}</span>
               <span
                 style={{
                   display: 'inline-block',
