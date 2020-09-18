@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { tProcessedCharacter } from '../../game/Character/type'
-import { animated, Spring } from 'react-spring/renderprops'
+import { animated } from 'react-spring/renderprops'
 import { noneg } from '../../util'
 import { usePlayerCharacterNotifications } from '../../hooks/usePlayerCharacterNotifications'
 import { Theme } from '../../theme'

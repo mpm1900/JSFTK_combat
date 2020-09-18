@@ -16,6 +16,7 @@ import {
   ARISTOCRAT_HAT,
   ARISTOCRAT_SHOES,
 } from './aristocrat'
+import { ASSASSIN_BOOTS, ASSASSIN_CLOAK, ASSASSIN_HOOD } from './assassin'
 import { BONE_ARMOR, BONE_BOOTS, BONE_HELMET } from './bone'
 import {
   EXECUTIONER_ARMOR,
@@ -23,15 +24,31 @@ import {
   EXECUTIONER_HELMET,
 } from './executioner'
 import {
+  FALLEN_RAIDER_ARMOR,
+  FALLEN_RAIDER_BOOTS,
+  FALLEN_RAIDER_HELMENT,
+} from './fallen_raider'
+import {
   GRAVEGUARD_ARMOR,
   GRAVEGUARD_BOOTS,
   GRAVEGUARD_HELMET,
 } from './graveguard'
 import { HUNTER_BOOTS, HUNTER_CLOAK, HUNTER_HOOD } from './hunter'
 import { IRON_ARMOR, IRON_BOOTS, IRON_HELMET } from './iron'
+import {
+  NECROMANCER_COWL,
+  NECROMANCER_ROBES,
+  NECROMANCER_WRAPS,
+} from './necromancer'
 import { NOVICE_HAT, NOVICE_ROBES, NOVICE_SHOES } from './novice'
+import {
+  OLD_KNIGHT_ARMOR,
+  OLD_KNIGHT_BOOTS,
+  OLD_KNIGHT_HELMET,
+} from './old_knight'
 import { PATRICIAN_ATTIRE, PATRICIAN_HAT, PATRICIAN_SHOES } from './patrician'
 import { RANGER_BOOTS, RANGER_CLOAK, RANGER_HOOD } from './ranger'
+import { ROGUE_BOOTS, ROGUE_CLOAK, ROGUE_HOOD } from './rogue'
 import { STUDENT_BOOTS, STUDENT_CAP, STUDENT_ROBES } from './student'
 import { TOMB_ARMOR, TOMB_BOOTS, TOMB_HELMET } from './tomb'
 
@@ -84,5 +101,24 @@ export const ARMOR_BY_LEVEL: Record<number, (() => tArmor)[]> = {
     NOVICE_HAT,
     NOVICE_ROBES,
     NOVICE_SHOES,
+  ],
+  3: [
+    ROGUE_HOOD,
+    ROGUE_CLOAK,
+    ROGUE_BOOTS,
+    NECROMANCER_COWL,
+    NECROMANCER_ROBES,
+    NECROMANCER_WRAPS,
+    FALLEN_RAIDER_HELMENT,
+    FALLEN_RAIDER_ARMOR,
+    FALLEN_RAIDER_BOOTS,
+  ],
+  4: [
+    ASSASSIN_HOOD,
+    ASSASSIN_CLOAK,
+    ASSASSIN_BOOTS,
+    OLD_KNIGHT_HELMET,
+    OLD_KNIGHT_ARMOR,
+    OLD_KNIGHT_BOOTS,
   ],
 }

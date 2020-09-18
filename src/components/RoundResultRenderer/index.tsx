@@ -118,13 +118,6 @@ export const RoundResult = (props: RoundResultPropsT) => {
   const showTarget =
     round && targetResult && targetResult.target.id !== round.source.id
   if (!round) return null
-  const color = Color(
-    CHARACTER_CLASS_COLORS[targetResult?.target?.class || 'enemy'],
-  )
-    .lighten(0.5)
-    //.saturate(2)
-    .hex()
-    .toString()
   return (
     <FlexContainer $direction='column' style={{ textAlign: 'center' }}>
       <FlexContainer style={{ justifyContent: 'center' }}>
@@ -142,11 +135,9 @@ export const RoundResult = (props: RoundResultPropsT) => {
         <div
           style={{
             marginTop: 24,
-            //background: Theme.darkBgColor,
             fontSize: 32,
             padding: '16px 32px',
             color: 'rgba(255,255,255,0.8)',
-            //fontWeight: 'bolder',
             textShadow: '1px 1px 1px black',
           }}
         >

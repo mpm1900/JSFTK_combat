@@ -10,7 +10,6 @@ export interface ShrinePropsT {
 }
 
 export const Shrine = (props: ShrinePropsT) => {
-  const { currentEncounter } = props
   const { nextLevel } = useGameStateContext()
   return (
     <FlexContainer $direction='column' style={{ justifyContent: 'center' }}>

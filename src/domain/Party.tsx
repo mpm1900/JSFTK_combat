@@ -11,7 +11,6 @@ import { getSkillResult } from '../game/Skill/util'
 import { commitSkillResults } from '../game/Skill/committer'
 import { NonCombatEncounter } from '../components/NonCombatEncounter'
 import { EncounterActions } from '../components/EncounterActions'
-import { Theme } from '../theme'
 import { HeadingSm } from '../elements/typography'
 
 export const Party = () => {

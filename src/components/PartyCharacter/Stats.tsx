@@ -83,6 +83,7 @@ const getStatColor = (
 ): string => {
   const a = character.stats[key]
   const b = character.rawStats[key]
+  if (a >= 95) return 'gold'
   if (a > b) return Theme.evasionColor
   if (b > a) return 'lightcoral'
   return 'rgba(255,255,255,0.6)'

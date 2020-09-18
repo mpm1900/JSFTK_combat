@@ -1,4 +1,4 @@
-import { LICH } from '../../Character/bosses'
+import { ARMOR_BY_LEVEL } from '../../Armor/builders/sets'
 import { CONSECRATED_BEAST } from '../../Character/bosses/consecrated_beast'
 import { BANSHEE, FLAME_WISP } from '../../Character/enemies'
 import { CULTIST_SCHOLAR } from '../../Character/enemies/cultist_scholar'
@@ -15,9 +15,14 @@ const FLOOR_2_WEAPONS = () => [
   ...WEAPONS_BY_LEVEL[5],
 ]
 
+const FLOOR_2_ARMOR = () => [...ARMOR_BY_LEVEL[3], ...ARMOR_BY_LEVEL[4]]
+
 export const FloorConfig2 = (): tFloorConfig => ({
   bosses: [CONSECRATED_BEAST()],
-  items: [...FLOOR_2_WEAPONS().map((w) => w())],
+  items: [
+    ...FLOOR_2_WEAPONS().map((w) => w()),
+    ...FLOOR_2_ARMOR().map((w) => w()),
+  ],
   enemies: {
     0: [
       makeRandomFloorEncounter([TOMB_SPIRIT, TOMB_SPIDER], 2),

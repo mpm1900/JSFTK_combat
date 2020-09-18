@@ -1,6 +1,6 @@
 import { tCharacter, tProcessedCharacter, tCharacterClass } from './type'
 import { tStats, tBaseStats } from '../Stats/type'
-import { combineStats } from '../Stats/util'
+import { capStats, combineStats } from '../Stats/util'
 import { tSkill } from '../Skill/type'
 import { CLASS_STATS } from '../Stats/constants'
 import { tStatusType } from '../Status/type'
@@ -69,11 +69,13 @@ export const processCharacter = (
   character: tCharacter,
 ): tProcessedCharacter => {
   checkForProcessedCharacter(character)
-  const stats: tStats = combineStats(
-    character.stats,
-    (character.weapon || FISTS()).stats,
-    ...character.armor.map((a) => a.stats),
-    ...character.status.map((s) => s.stats),
+  const stats: tStats = capStats(
+    combineStats(
+      character.stats,
+      (character.weapon || FISTS()).stats,
+      ...character.armor.map((a) => a.stats),
+      ...character.status.map((s) => s.stats),
+    ),
   )
   const skills = getSkills(character)
   const statusImmunities = character.status.reduce(

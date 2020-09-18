@@ -13,7 +13,7 @@ import { useModalContext } from '../../contexts/ModalContext'
 import { EquipItemModal } from '../EquipItemModal'
 import Inventory from '../../icons/svg/lorc/knapsack.svg'
 import { HEAL, REMOVE_CURSES } from '../../game/Skill/skills/consumables'
-import { hasAnyStatus, hasStatus } from '../../game/Character/util'
+import { hasAnyStatus } from '../../game/Character/util'
 import { CURE_POTION } from '../../game/Consumable/objects/curing_potion'
 
 export const CombatActions = () => {

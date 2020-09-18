@@ -101,3 +101,30 @@ export const multiplyStats = (stats: tStats, modifier: number): tStats => ({
   consumableHealthGainOffset: stats.consumableHealthGainOffset * modifier,
   minHealthOffset: stats.minHealthOffset * modifier,
 })
+
+const isCapKey = (key: keyof tStats) => {
+  const keys: (keyof tStats)[] = [
+    'vigor',
+    'strength',
+    'dexterity',
+    'intelligence',
+    'charisma',
+    'agility',
+    'luck',
+    'evasion',
+    'criticalChance',
+  ]
+  return keys.includes(key)
+}
+
+export const capStats = (stats: tStats): tStats => {
+  return (Object.keys(stats) as (keyof tStats)[]).reduce((result, key) => {
+    if (isCapKey(key) && stats[key]) {
+      return {
+        ...result,
+        [key]: (stats[key] as number) > 95 ? 95 : stats[key],
+      }
+    }
+    return result
+  }, stats)
+}

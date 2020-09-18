@@ -15,7 +15,7 @@ export interface SkillPreviewPropsT {
   targets?: tProcessedCharacter[]
 }
 export const SkillPreview = (props: SkillPreviewPropsT) => {
-  const { skill, source, targets } = props
+  const { skill, source } = props
   const perfectChance = getChecksProbability(
     source,
     Array(skill.rolls)

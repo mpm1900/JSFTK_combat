@@ -1,7 +1,6 @@
 import React from 'react'
 import { FlexContainer } from '../../elements/flex'
 import { HealthGauge } from '../Gauge'
-import { styled } from 'styletron-react'
 import { BoxContainer } from '../../elements/box'
 import { TagPreview } from '../TagPreview'
 import { Icon } from '../Icon'
@@ -23,14 +22,6 @@ export interface EnemyCharacterPropsT {
   isBoss?: boolean
   onClick?: () => void
 }
-const Wrapper = styled('div', (props: any) => {
-  const { $selected, $active } = props
-  return {
-    margin: 10,
-    boxShadow: $active ? '0px 0px 20px white' : 'none',
-    transition: 'all 0.1s',
-  }
-})
 export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
   const {
     character,
