@@ -1,7 +1,7 @@
 import { createFootwear, createMagicArmor, createMagicHat } from '..'
 
 export const APPRENTICE_CAP = () =>
-  createMagicHat('Apprentice Cap', 'common', 10, {
+  createMagicHat('Apprentice Cap', 'common', 25, {
     resistance: 4,
     maxInspirationOffset: 1,
     intelligence: 2,
@@ -11,7 +11,7 @@ export const APPRENTICE_ROBE = () =>
   createMagicArmor(
     'Apprentice Robe',
     'uncommon',
-    40,
+    90,
     {
       armor: 2,
       resistance: 6,
@@ -32,7 +32,7 @@ export const APPRENTICE_ROBE = () =>
   )
 
 export const APPRENTICE_SHOES = () =>
-  createFootwear('Apprentice Shoes', 'common', 10, {
+  createFootwear('Apprentice Shoes', 'common', 25, {
     armor: 1,
     resistance: 3,
     strength: -2,

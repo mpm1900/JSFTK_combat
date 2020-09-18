@@ -62,11 +62,14 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
         onClick={onRequestClose}
         style={{
           position: 'absolute',
-          top: -16,
+          top: -14,
           right: -9,
           cursor: 'pointer',
           userSelect: 'none',
           textShadow: '1px 1px 3px black',
+        }}
+        childStyle={{
+          paddingTop: 1,
         }}
       >
         X
@@ -86,14 +89,17 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
           <HoverArea character={character} activeItem={activeItem} />
         )}
       </FlexContainer>
-      <BoxContainer substyle={{ background: Theme.darkBgColor, padding: 0 }}>
+      <FlexContainer
+        $direction='column'
+        style={{ background: Theme.darkBgColor, border: '2px solid black' }}
+      >
         <FlexContainer $direction='column'>
           <Name name={character.name} />
           <StatBar character={character} />
           <BoxContainer
             substyle={{
               background: Theme.darkBgColor,
-              padding: '16px 0 2px 0',
+              padding: '16px 0 0px 0',
             }}
           >
             <FlexContainer>
@@ -119,7 +125,7 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
               activeOption.render(character, canEquip, setActiveItem)}
           </BoxContainer>
         </FlexContainer>
-      </BoxContainer>
+      </FlexContainer>
     </FlexContainer>
   )
 }

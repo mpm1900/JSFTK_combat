@@ -5,7 +5,7 @@ import { useModalContext } from '../contexts/ModalContext'
 import { Theme } from '../theme'
 
 export const makeRoute = (path: string, Component: React.FC) => (
-  <Route path={`/JSFTK_combat${path}`}>
+  <Route path={`${path}`}>
     <Component />
   </Route>
 )
@@ -17,25 +17,29 @@ export const RouteController = () => {
     level,
     floor,
     floors,
+    started,
   } = useGameStateContext()
   const history = useHistory()
   const { open } = useModalContext()
   useEffect(() => {
+    if (!started) {
+      history.push('/')
+    }
     if (level > encounters.length - 1 || floor > floors.length - 2) {
       open(
         <div style={{ textAlign: 'center', fontFamily: Theme.titleFont }}>
           <h1>You've Defeated the Lich! You did it!</h1>
         </div>,
       )
-      history.push('/JSFTK_combat')
+      history.push('/')
     } else if (
       currentEncounter &&
       (currentEncounter.type === 'combat' || currentEncounter.type === 'boss')
     ) {
-      history.push('/JSFTK_combat/combat')
+      history.push('/combat')
     } else if (!currentEncounter && level > 0) {
-      history.push('/JSFTK_combat/party')
+      history.push('/party')
     }
-  }, [currentEncounter, level])
+  }, [currentEncounter, level, started])
   return null
 }

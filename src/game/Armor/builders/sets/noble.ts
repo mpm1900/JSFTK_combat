@@ -1,7 +1,7 @@
 import { createFootwear, createHat, createLightArmor } from '..'
 
 export const NOBLE_HAT = () =>
-  createHat('Noble Hat', 'uncommon', 50, {
+  createHat('Noble Hat', 'uncommon', 150, {
     armor: 3,
     resistance: 5,
     maxInspirationOffset: 1,
@@ -10,7 +10,7 @@ export const NOBLE_HAT = () =>
   })
 
 export const NOBLE_OUTFIT = () =>
-  createLightArmor('Noble Outfit', 'rare', 100, {
+  createLightArmor('Noble Outfit', 'rare', 250, {
     armor: 8,
     resistance: 8,
     dexterity: -5,
@@ -19,7 +19,7 @@ export const NOBLE_OUTFIT = () =>
   })
 
 export const NOBLE_SHOES = () =>
-  createFootwear('Noble Shoes', 'uncommon', 50, {
+  createFootwear('Noble Shoes', 'uncommon', 100, {
     armor: 3,
     resistance: 4,
     dexterity: -4,

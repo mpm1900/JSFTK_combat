@@ -1,7 +1,7 @@
 import { createFootwear, createHat, createLightArmor } from '..'
 
 export const ASSASSIN_HOOD = () =>
-  createHat('Assassin Hood', 'uncommon', 80, {
+  createHat('Assassin Hood', 'uncommon', 120, {
     resistance: 5,
     evasion: 5,
     dexterity: 3,
@@ -17,7 +17,7 @@ export const ASSASSIN_CLOAK = () =>
   })
 
 export const ASSASSIN_BOOTS = () =>
-  createFootwear('Rogue Boots', 'uncommon', 90, {
+  createFootwear('Rogue Boots', 'uncommon', 120, {
     armor: 5,
     evasion: 5,
     dexterity: 5,

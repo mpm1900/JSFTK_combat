@@ -20,7 +20,7 @@ export const Reward = (props: RewardPropsT) => {
   const { open } = useModalContext()
   const onClick = () => {
     if (floor === floors.length - 1) {
-      history.push('/JSFTK_combat')
+      history.push('/')
       open(
         <div style={{ textAlign: 'center', fontFamily: Theme.titleFont }}>
           <h1>You've Defeated the Lich! You did it!</h1>

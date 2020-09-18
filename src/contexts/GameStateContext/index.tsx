@@ -1,8 +1,9 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { useGameState, useGameStateActions } from '../../state/game'
 import { tEncounterChoice, tEncounter, tFloor } from '../../game/Encounter/type'
 
 export interface GameStateContextT {
+  started: boolean
   encounters: tEncounterChoice[]
   floors: tFloor[]
   level: number
@@ -18,6 +19,7 @@ export interface GameStateContextT {
 }
 
 export const defaultValue: GameStateContextT = {
+  started: false,
   encounters: [],
   floors: [],
   level: 0,
@@ -42,6 +44,7 @@ export interface GameStateProviderPropsT {
 export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
   const { children } = props
   const { floors, floor, level } = useGameState()
+  const [started, setStarted] = useState(false)
   const currentFloor = floors[floor]
   const encounters = currentFloor.encounters
   const {
@@ -63,9 +66,14 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
     }
   }, [encounters, level])
 
+  useEffect(() => {
+    setStarted(true)
+  }, [])
+
   return (
     <GameStateContext.Provider
       value={{
+        started,
         encounters,
         floors,
         level,

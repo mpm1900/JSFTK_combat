@@ -48,10 +48,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
   return (
     <AppHeader
       left={
-        <Button
-          onClick={() => history.push('/JSFTK_combat')}
-          style={{ borderBottom: 0 }}
-        >
+        <Button onClick={() => history.push('/')} style={{ borderBottom: 0 }}>
           Restart ({level})
         </Button>
       }

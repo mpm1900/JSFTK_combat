@@ -1,12 +1,7 @@
-import {
-  createFootwear,
-  createHat,
-  createLightArmor,
-  createMagicArmor,
-} from '..'
+import { createFootwear, createHat, createMagicArmor } from '..'
 
 export const NECROMANCER_COWL = () =>
-  createHat('Necromancer Cowl', 'uncommon', 50, {
+  createHat('Necromancer Cowl', 'uncommon', 100, {
     resistance: 8,
     intelligence: 4,
     maxInspirationOffset: 1,
@@ -16,7 +11,7 @@ export const NECROMANCER_ROBES = () =>
   createMagicArmor(
     'Necromancer Robes',
     'rare',
-    100,
+    180,
     {
       armor: 4,
       resistance: 12,
@@ -37,7 +32,7 @@ export const NECROMANCER_ROBES = () =>
   )
 
 export const NECROMANCER_WRAPS = () =>
-  createFootwear('Necromancer Wraps', 'uncommon', 60, {
+  createFootwear('Necromancer Wraps', 'uncommon', 90, {
     armor: 3,
     evasion: 5,
     strength: -4,

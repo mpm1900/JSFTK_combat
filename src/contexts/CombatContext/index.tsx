@@ -249,7 +249,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
           </h1>
         </div>,
       )
-      history.push('/JSFTK_combat/')
+      history.push('/')
       return
     }
   }, [party, enemyParty])

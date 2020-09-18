@@ -4,7 +4,7 @@ export const IRON_HELMET = () =>
   createHelmet(
     'Iron Helmet',
     'common',
-    15,
+    40,
     {
       armor: 4,
       strength: 2,
@@ -15,7 +15,7 @@ export const IRON_HELMET = () =>
   )
 
 export const IRON_ARMOR = () =>
-  createHeavyArmor('Iron Armor', 'uncommon', 50, {
+  createHeavyArmor('Iron Armor', 'uncommon', 90, {
     armor: 7,
     resistance: 1,
     strength: 3,
@@ -23,7 +23,7 @@ export const IRON_ARMOR = () =>
   })
 
 export const IRON_BOOTS = () =>
-  createFootwear('Iron Boots', 'common', 15, {
+  createFootwear('Iron Boots', 'common', 40, {
     armor: 2,
     resistance: 2,
     healthRegeneration: 1,

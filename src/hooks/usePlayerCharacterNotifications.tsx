@@ -17,12 +17,16 @@ export const usePlayerCharacterNotifications = (
   useEffect(() => {
     const healthDiff = previousHealth - health
     if (healthDiff > 0) {
-      push(<span style={{ fontFamily: Theme.titleFont }}>- {healthDiff}</span>)
+      push(
+        <span style={{ fontFamily: Theme.titleFont, fontSize: 36 }}>
+          - {healthDiff}
+        </span>,
+      )
       shake()
     }
     if (healthDiff < 0) {
       push(
-        <span style={{ fontFamily: Theme.titleFont }}>
+        <span style={{ fontFamily: Theme.titleFont, fontSize: 36 }}>
           + {Math.abs(healthDiff)}
         </span>,
         'good',
@@ -48,7 +52,7 @@ export const usePlayerCharacterNotifications = (
         lastRound.sourceResult.source.id === character.id
       ) {
         push(
-          <span style={{ fontFamily: Theme.titleFont, fontSize: 36 }}>
+          <span style={{ fontFamily: Theme.titleFont, fontSize: 48 }}>
             Weapon Break!
           </span>,
         )
@@ -57,7 +61,7 @@ export const usePlayerCharacterNotifications = (
         (r) => r.target.id === character.id,
       )
       if (chResult) {
-        if (chResult.dodgeSuccess) {
+        if (chResult.dodgeSuccess && chResult.accuracySuccess) {
           push(
             <span style={{ fontFamily: Theme.titleFont }}>Dodged!</span>,
             'base',

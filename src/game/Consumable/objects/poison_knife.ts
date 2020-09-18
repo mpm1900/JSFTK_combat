@@ -15,6 +15,6 @@ export const POISON_KNIFE = (): tConsumable => {
       ...skill,
       consumableId: id,
     },
-    goldValue: 20,
+    goldValue: 50,
   }
 }

@@ -94,10 +94,10 @@ export const MenuSelect = (props: MenuSelectPropsT) => {
           key={option.key}
           style={{
             padding: '4px 8px',
-            //width: 56,
             fontSize: 12,
             display: 'flex',
             justifyContent: 'center',
+            borderBottom: 0,
             background:
               option.key === activeKey ? Theme.lightBgColor : undefined,
           }}

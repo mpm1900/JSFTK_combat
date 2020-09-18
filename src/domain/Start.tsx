@@ -58,7 +58,7 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.4.28
+            alpha-0.0.5.6
           </Monospace>
         }
       >
@@ -147,7 +147,7 @@ export const Start = () => {
             <RedButton
               style={{ margin: '16px 0 12px 0' }}
               onClick={() => {
-                history.push('/JSFTK_combat/party')
+                history.push('/party')
               }}
             >
               Begin Adventure

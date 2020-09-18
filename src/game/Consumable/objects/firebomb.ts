@@ -18,6 +18,6 @@ export const FIREBOMB = (): tConsumable => {
       }),
       consumableId: id,
     },
-    goldValue: 20,
+    goldValue: 100,
   }
 }

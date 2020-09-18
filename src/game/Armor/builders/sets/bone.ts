@@ -1,7 +1,7 @@
 import { createFootwear, createHeavyArmor, createHelmet } from '..'
 
 export const BONE_HELMET = () =>
-  createHelmet('Bone Helmet', 'common', 15, {
+  createHelmet('Bone Helmet', 'common', 35, {
     armor: 2,
     resistance: 2,
     healthRegeneration: 1,
@@ -12,7 +12,7 @@ export const BONE_ARMOR = () =>
   createHeavyArmor(
     'Bone Armor',
     'uncommon',
-    50,
+    80,
     {
       armor: 5,
       resistance: 5,
@@ -25,7 +25,7 @@ export const BONE_ARMOR = () =>
   )
 
 export const BONE_BOOTS = () =>
-  createFootwear('Bone Boots', 'common', 15, {
+  createFootwear('Bone Boots', 'common', 35, {
     armor: 2,
     resistance: 2,
     healthRegeneration: 1,

@@ -78,6 +78,7 @@ export const SKILL_ICONS: Record<string, string> = {
   Thrust: Thrust,
   Earthquake: Shockwave,
   Ripple: Shockwave,
+  Crush: Shockwave,
   'Axe Spin': AxeSpin,
   Cleave: Cleave,
   Slash: Slash,

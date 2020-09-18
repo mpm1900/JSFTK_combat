@@ -1,14 +1,14 @@
 import { createFootwear, createHat, createLightArmor } from '..'
 
 export const HUNTER_HOOD = () =>
-  createHat('Hunter Hood', 'common', 15, {
+  createHat('Hunter Hood', 'common', 35, {
     resistance: 3,
     evasion: 4,
     dexterity: 3,
   })
 
 export const HUNTER_CLOAK = () =>
-  createLightArmor('Hunter Cloak', 'uncommon', 50, {
+  createLightArmor('Hunter Cloak', 'uncommon', 80, {
     armor: 5,
     resistance: 5,
     evasion: 7,
@@ -18,7 +18,7 @@ export const HUNTER_CLOAK = () =>
   })
 
 export const HUNTER_BOOTS = () =>
-  createFootwear('Hunter Boots', 'common', 15, {
+  createFootwear('Hunter Boots', 'common', 35, {
     armor: 3,
     evasion: 4,
     dexterity: 3,

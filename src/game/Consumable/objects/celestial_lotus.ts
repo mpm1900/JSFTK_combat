@@ -15,6 +15,6 @@ export const CELESTIAL_LOTUS = (): tConsumable => {
       ...REMOVE_CURSES,
       consumableId: id,
     },
-    goldValue: 20,
+    goldValue: 30,
   }
 }

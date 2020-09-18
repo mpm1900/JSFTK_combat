@@ -1,7 +1,7 @@
 import { createFootwear, createHat, createLightArmor } from '..'
 
 export const ANTIQUATED_HAT = () =>
-  createHat('Antiquated Hat', 'common', 15, {
+  createHat('Antiquated Hat', 'common', 35, {
     armor: 2,
     resistance: 3,
     maxInspirationOffset: 1,
@@ -10,7 +10,7 @@ export const ANTIQUATED_HAT = () =>
   })
 
 export const ANTIQUATED_ATTIRE = () =>
-  createLightArmor('Antiquated Attire', 'uncommon', 50, {
+  createLightArmor('Antiquated Attire', 'uncommon', 80, {
     armor: 6,
     resistance: 6,
     dexterity: -4,
@@ -19,7 +19,7 @@ export const ANTIQUATED_ATTIRE = () =>
   })
 
 export const ANTIQUATED_SHOES = () =>
-  createFootwear('Antiquated Shoes', 'common', 15, {
+  createFootwear('Antiquated Shoes', 'common', 35, {
     armor: 2,
     resistance: 3,
     dexterity: -4,

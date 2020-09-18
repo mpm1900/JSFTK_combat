@@ -4,7 +4,7 @@ export const REAPER_HOOD = () =>
   createHat(
     'Reaper Hood',
     'uncommon',
-    70,
+    150,
     {
       armor: 1,
       resistance: 1,
@@ -17,7 +17,7 @@ export const REAPER_HOOD = () =>
   )
 
 export const REAPER_ROBES = () =>
-  createLightArmor('Reaper Robes', 'rare', 150, {
+  createLightArmor('Reaper Robes', 'rare', 300, {
     armor: 4,
     resistance: 4,
     evasion: 4,
@@ -25,7 +25,7 @@ export const REAPER_ROBES = () =>
   })
 
 export const REAPER_BOOTS = () =>
-  createFootwear('Reaper Boots', 'uncommon', 70, {
+  createFootwear('Reaper Boots', 'uncommon', 200, {
     armor: 2,
     resistance: 2,
     evasion: 4,

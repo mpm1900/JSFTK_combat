@@ -7,7 +7,7 @@ import './index.css'
 import { Provider as StyletronProvider, DebugEngine } from 'styletron-react'
 import { Client as Styletron } from 'styletron-engine-atomic'
 import { Provider as ReduxProvider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { HashRouter as Router } from 'react-router-dom'
 import { makeStore } from './state'
 import { PartyContextProvider } from './contexts/PartyContext'
 import { GameStateContextProvider } from './contexts/GameStateContext'
@@ -22,7 +22,7 @@ ReactDOM.render(
       <StyletronProvider value={engine} debug={debug} debugAfterHydration>
         <GameStateContextProvider>
           <PartyContextProvider>
-            <Router>
+            <Router basename='/JSFTK_combat/'>
               <App />
             </Router>
           </PartyContextProvider>

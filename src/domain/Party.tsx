@@ -50,7 +50,7 @@ export const Party = () => {
         left={
           <>
             <Button
-              onClick={() => history.push('/JSFTK_combat')}
+              onClick={() => history.push('/')}
               style={{ borderBottom: 0 }}
             >
               Restart
