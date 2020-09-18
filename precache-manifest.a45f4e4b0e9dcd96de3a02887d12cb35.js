@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bf217b6340decaa2303f08c05b4d5f49",
+    "revision": "a74e432a5371206da08cd45599cd6b23",
     "url": "/JSFTK_combat/index.html"
   },
   {
