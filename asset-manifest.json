@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.8d660abf.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.8d660abf.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.31d7e17d.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.31d7e17d.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
-    "static/js/2.3d4c1901.chunk.js": "/JSFTK_combat/static/js/2.3d4c1901.chunk.js",
-    "static/js/2.3d4c1901.chunk.js.map": "/JSFTK_combat/static/js/2.3d4c1901.chunk.js.map",
+    "static/js/2.0543376f.chunk.js": "/JSFTK_combat/static/js/2.0543376f.chunk.js",
+    "static/js/2.0543376f.chunk.js.map": "/JSFTK_combat/static/js/2.0543376f.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.2d68fedce036e78808515a826c5b344d.js": "/JSFTK_combat/precache-manifest.2d68fedce036e78808515a826c5b344d.js",
+    "precache-manifest.0af16c23252468005346f1f02c18fbf6.js": "/JSFTK_combat/precache-manifest.0af16c23252468005346f1f02c18fbf6.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/main.ace9f9a4.chunk.css.map": "/JSFTK_combat/static/css/main.ace9f9a4.chunk.css.map",
-    "static/js/2.3d4c1901.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.3d4c1901.chunk.js.LICENSE.txt",
+    "static/js/2.0543376f.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.0543376f.chunk.js.LICENSE.txt",
     "static/media/1.png": "/JSFTK_combat/static/media/1.a7dcd7d0.png",
     "static/media/2.png": "/JSFTK_combat/static/media/2.22bba3d5.png",
     "static/media/3.png": "/JSFTK_combat/static/media/3.5b81afea.png",
@@ -46,6 +46,7 @@
     "static/media/crosshair.svg": "/JSFTK_combat/static/media/crosshair.d2c9a9ed.svg",
     "static/media/crowned-skull.svg": "/JSFTK_combat/static/media/crowned-skull.458d8f78.svg",
     "static/media/cultist.svg": "/JSFTK_combat/static/media/cultist.998af3b1.svg",
+    "static/media/daemon-skull.svg": "/JSFTK_combat/static/media/daemon-skull.ec5b5916.svg",
     "static/media/diablo-skull.svg": "/JSFTK_combat/static/media/diablo-skull.18710d12.svg",
     "static/media/divided-spiral.svg": "/JSFTK_combat/static/media/divided-spiral.a8e90e0d.svg",
     "static/media/dodging.svg": "/JSFTK_combat/static/media/dodging.3c689d6d.svg",
@@ -131,8 +132,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
-    "static/js/2.3d4c1901.chunk.js",
+    "static/js/2.0543376f.chunk.js",
     "static/css/main.ace9f9a4.chunk.css",
-    "static/js/main.8d660abf.chunk.js"
+    "static/js/main.31d7e17d.chunk.js"
   ]
 }
