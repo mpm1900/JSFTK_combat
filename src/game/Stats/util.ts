@@ -1,6 +1,7 @@
 import { tStats } from './type'
 import { ZERO_STATS } from './constants'
 import { undefAdd } from '../../util/undefAdd'
+import { noneg } from '../../util'
 
 export const combineStats = (...stats: tStats[]) => {
   return stats.reduce(
@@ -125,6 +126,10 @@ export const capStats = (stats: tStats): tStats => {
         [key]: (stats[key] as number) > 95 ? 95 : stats[key],
       }
     }
-    return result
+    return {
+      ...result,
+      armor: noneg(result.armor),
+      resistance: noneg(result.resistance),
+    }
   }, stats)
 }

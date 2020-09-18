@@ -9,6 +9,7 @@ import Dungeon1 from '../../assets/img/dungeon/3.png'
 import Dungeon2 from '../../assets/img/dungeon/1.png'
 import Dungeon3 from '../../assets/img/dungeon/4.png'
 import Dungeon4 from '../../assets/img/dungeon/2.png'
+import { ENCOUNTER_TEXTS } from './text'
 
 export const ZERO_REWARD: tEncounterReward = {
   gold: 0,

@@ -1,6 +1,6 @@
 import { ARMOR_BY_LEVEL } from '../../Armor/builders/sets'
 import { CONSECRATED_BEAST } from '../../Character/bosses/consecrated_beast'
-import { BANSHEE, FLAME_WISP } from '../../Character/enemies'
+import { BANSHEE, CONSECRATED_GUARD, FLAME_WISP } from '../../Character/enemies'
 import { CULTIST_SCHOLAR } from '../../Character/enemies/cultist_scholar'
 import { TOMB_GUARDIAN } from '../../Character/enemies/tomb_guardian'
 import { TOMB_SPIDER } from '../../Character/enemies/tomb_spider'
@@ -56,5 +56,20 @@ export const FloorConfig2 = (): tFloorConfig => ({
         3,
       ),
     ],
+    // add more enemies here
+    6: [
+      makeRandomFloorEncounter(
+        [CULTIST_SCHOLAR, FLAME_WISP, TOMB_GUARDIAN, BANSHEE],
+        3,
+      ),
+    ],
+    7: [
+      makeRandomFloorEncounter(
+        [CULTIST_SCHOLAR, FLAME_WISP, TOMB_GUARDIAN, BANSHEE],
+        3,
+      ),
+    ],
+    8: [[CONSECRATED_GUARD(), CONSECRATED_GUARD()]],
+    9: [[CONSECRATED_GUARD(), CONSECRATED_GUARD()]],
   },
 })

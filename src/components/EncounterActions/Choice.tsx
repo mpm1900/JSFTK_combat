@@ -5,6 +5,7 @@ import { getChoiceText } from '../../game/Encounter/constants'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 import { Button } from '../../elements/button'
 import { HeadingSm, Text } from '../../elements/typography'
+import { ENCOUNTER_TEXTS } from '../../game/Encounter/text'
 
 export interface ChoicePropsT {
   currentChoice: tEncounterChoice
@@ -14,6 +15,7 @@ export const Choice = (props: ChoicePropsT) => {
   const { currentChoice } = props
   const {
     level,
+    floor,
     previousChoice,
     encounters,
     chooseCurrent,
@@ -25,7 +27,7 @@ export const Choice = (props: ChoicePropsT) => {
           textAlign: 'center',
         }}
       >
-        Your Journey {level === 0 ? 'Begins' : 'Continues'}.
+        Your Journey {level === 0 && floor === 0 ? 'Begins' : 'Continues'}.
       </HeadingSm>
       <Text
         style={{
@@ -33,7 +35,8 @@ export const Choice = (props: ChoicePropsT) => {
           padding: 8,
         }}
       >
-        {getChoiceText(currentChoice, previousChoice)}
+        {(ENCOUNTER_TEXTS[floor][level] || (() => false))() ||
+          getChoiceText(currentChoice, previousChoice)}
       </Text>
       {encounters.length - 1 !== level && (
         <FlexContainer style={{ justifyContent: 'center' }}>

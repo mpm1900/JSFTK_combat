@@ -129,7 +129,7 @@ export const INITIAL_STATE: tParty = {
   isParty: true,
   id: PLAYER_PARTY_ID,
   items: [],
-  gold: 100,
+  gold: 200,
   characters: [
     addMultipleStatus(
       {

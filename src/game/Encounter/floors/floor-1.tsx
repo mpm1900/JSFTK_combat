@@ -170,6 +170,12 @@ export const FloorConfig1 = (): tFloorConfig => ({
         3,
       ),
     ],
-    7: [[TOMB_SPIRIT(), TOMB_SPIRIT()]],
+    7: [
+      makeRandomFloorEncounter(
+        [FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        3,
+      ),
+    ],
+    8: [[TOMB_SPIRIT(), TOMB_SPIRIT()]],
   },
 })

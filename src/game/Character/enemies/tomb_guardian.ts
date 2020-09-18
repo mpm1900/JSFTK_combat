@@ -10,7 +10,7 @@ export const TOMB_GUARDIAN = (): tCharacter => {
     'Tomb Guardian',
     Skull,
     5,
-    32,
+    36,
     makeEnemyWeapon('strength', 26, 'melee', 'physical', [
       createSkill('Smash', 4, 0),
       createSkill('Stun', 3, -5, {
@@ -28,7 +28,7 @@ export const TOMB_GUARDIAN = (): tCharacter => {
       strength: 78,
       agility: getRandom([59, 60, 61, 62, 63, 64]),
       armor: 10,
-      resistance: 2,
+      resistance: 3,
       evasion: 10,
     },
     ['undead'],

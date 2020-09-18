@@ -9,8 +9,9 @@ import { IRON_CHIME, PATRICIANS_CHIME } from './builders/objects/chime'
 import { FARMER_SCYTHE, IRON_SCYTHE } from './builders/objects/scythe'
 import { TEST_WEAPON } from './builders/unique/test_weapon'
 import { tArmor } from '../Armor/type'
-import { LICH } from '../Character/bosses'
+import { CONSECRATED_BEAST, LICH } from '../Character/bosses'
 import { LICH_SWORD } from './builders/unique/boss_lich'
+import { HEART_OF_THE_BEAST } from '../Armor/builders/uniques/heart_of_the_beast'
 
 export const CLASS_WEAPONS: Record<tCharacterClass, tWeapon | undefined> = {
   /*
@@ -53,4 +54,5 @@ export const BASE_WEAPON = (): tWeapon => {
 
 export const BOSS_ITEMS: Record<string, (tWeapon | tArmor)[]> = {
   [LICH().id]: [LICH_SWORD],
+  [CONSECRATED_BEAST().id]: [HEART_OF_THE_BEAST()],
 }

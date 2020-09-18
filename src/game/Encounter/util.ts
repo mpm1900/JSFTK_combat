@@ -73,7 +73,7 @@ export const makeRandomEncounter = (
   if (encounter.type === 'combat') {
     encounter = {
       ...encounter,
-      party: makeParty(noneg(depth - 1), floor),
+      party: makeParty(noneg(depth), floor),
     } as tCombatEncounter
   }
   if (encounter.type === 'boss') {

@@ -142,7 +142,11 @@ export const Item = (props: ItemProps) => {
                 : RESOURCE_ICONS[resource] || ''
             }
             size={16}
-            fill={disabled ? 'rgba(255,255,255,0.3)' : 'white'}
+            fill={
+              disabled
+                ? 'rgba(255,255,255,0.3)'
+                : ITEM_RARITY_COLORS[item?.rarity || 'common']
+            }
             style={{ marginRight: 6 }}
           />
           {item?.name}

@@ -18,7 +18,7 @@ export const CULTIST_BRUTE = (): tCharacter => {
     {
       strength: 72,
       agility: getRandom([75, 76, 77, 78, 79, 80, 81, 82]),
-      armor: 6,
+      armor: 4,
       resistance: 2,
       evasion: 13,
     },

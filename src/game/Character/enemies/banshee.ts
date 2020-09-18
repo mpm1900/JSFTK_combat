@@ -10,7 +10,7 @@ export const BANSHEE = () =>
     Banshee,
     6,
     32,
-    makeEnemyWeapon('intelligence', 28, 'ranged', 'magic', [
+    makeEnemyWeapon('intelligence', 32, 'ranged', 'magic', [
       createSkill('Nova', 3, -5, {
         damageModifier: 0.5,
       }),

@@ -19,6 +19,7 @@ import { AppHeader } from '../components/AppHeader'
 import { HeadingSm } from '../elements/typography'
 import { Gauge2 } from '../components/Gauge/v2'
 import { TEST_WEAPON } from '../game/Weapon/builders/unique/test_weapon'
+import { noneg } from '../util'
 
 export const Start = () => {
   const {
@@ -58,7 +59,7 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.5.6
+            alpha-0.0.5.9
           </Monospace>
         }
       >
@@ -229,7 +230,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
             <FullContainer>
               <Gauge2
                 max={40}
-                value={character.stats[key] - 40}
+                value={noneg(character.stats[key] - 40)}
                 color='rgba(255,255,255,0.6)'
                 height={15}
               />

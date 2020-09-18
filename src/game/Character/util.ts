@@ -391,7 +391,7 @@ export const levelUp = (character: tCharacter): tCharacter => {
   return {
     ...character,
     level: character.level + 1,
-    healthOffset: Math.floor(character.healthOffset / 2),
+    healthOffset: noneg(Math.floor(character.healthOffset / 2) - 15),
     experience,
     status: character.status.filter((s) => s.type !== 'poisoned'),
   }
