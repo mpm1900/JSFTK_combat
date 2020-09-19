@@ -166,7 +166,6 @@ export const getRawDamage = (
       damageModifier += source.stats.damageModifiers[tag]
     }
   })
-  console.log('getRawDamage', damageModifier)
   return {
     ...rawDamage,
     value: rawDamage.value * damageModifier,

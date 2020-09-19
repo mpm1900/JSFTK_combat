@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { BoxContainer } from '../../elements/box'
 import { FlexContainer } from '../../elements/flex'
 import { HexBadge } from '../../elements/shapes'
@@ -16,7 +16,9 @@ export interface FloorPropsT {
 }
 export const Floor = (props: FloorPropsT) => {
   const { floor, floorIndex, currentFloorIndex, encounterIndex } = props
-  const encounters = getChosenEncounters(floor)
+  const encounters = useMemo(() => {
+    return getChosenEncounters(floor)
+  }, [])
   const isCurrent = (i: number) =>
     encounterIndex === i && floorIndex === currentFloorIndex
   const isBossEncounter = (i: number) => i === floor.encounters.length - 2

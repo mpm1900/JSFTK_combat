@@ -22,7 +22,6 @@ export const AppBg = (props: AppBgPropsT) => {
   const filter = `grayscale(${
     ((party.characters.length - deadDiff) / party.characters.length) * 100
   }%)`
-  console.log(filter)
   */
 
   return (

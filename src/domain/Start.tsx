@@ -59,7 +59,7 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.5.11
+            alpha-0.0.5.12
           </Monospace>
         }
       >

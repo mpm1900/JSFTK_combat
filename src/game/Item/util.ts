@@ -21,7 +21,6 @@ export const getRandomItem = (
       }, [] as (() => tWeapon)[]) as (() => tWeapon)[]
 
     const random = getRandom(items)
-    //console.log('items', typeof random, random)
     return random()
   } else {
     let items = Array(level + 1)

@@ -43,7 +43,6 @@ export const getSourceSkillResult = (
   const rollDamageModifier = skill.rolls > 0 ? passedCount / skill.rolls : 1
   const damageModifier =
     source.stats.attackDamageModifier * skill.damageModifier
-  console.log('damageModifier', damageModifier)
   const rawDamage = {
     ...source.weapon.damage,
     value: Math.round(
