@@ -46,6 +46,13 @@ export const PartyCharacterConsumables = (
     ) {
       return onClick && onClick(consumable, index || 0)
     }
+
+    if (
+      consumable.skill.name === 'Cure Potion' &&
+      hasAnyStatus(character, ['poisoned', 'bleeding', 'burning', 'frozen'])
+    ) {
+      return onClick && onClick(consumable, index || 0)
+    }
   }
   const filler = Array(10 - stack.length).fill(null)
 

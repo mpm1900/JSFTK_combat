@@ -32,7 +32,7 @@ export const Actions = (props: ActionsPropsT) => {
     <FlexContainer
       $full
       $direction='column'
-      style={{ justifyContent: 'center' }}
+      style={{ justifyContent: 'center', boxShadow: 'inset 0px 0px 3px black' }}
     >
       <FlexContainer
         $full

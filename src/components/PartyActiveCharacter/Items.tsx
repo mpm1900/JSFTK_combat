@@ -108,10 +108,7 @@ export const Item = (props: ItemProps) => {
                 style={{ padding: '4px 8px' }}
                 onClick={() => {
                   if (item) {
-                    if (resource === 'weapon') {
-                    } else {
-                      unequipItem(character.id, item)
-                    }
+                    unequipItem(character.id, item)
                   }
                 }}
               >

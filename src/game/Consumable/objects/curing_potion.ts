@@ -2,7 +2,7 @@ import { tConsumable } from '../type'
 import { v4 } from 'uuid'
 import { createSkill } from '../../Skill/skills'
 
-const CURE = createSkill('Cure Potion', 0, 0, {
+export const CURE = createSkill('Cure Potion', 0, 0, {
   damageModifier: 0,
   damage: false,
   targetType: 'self',

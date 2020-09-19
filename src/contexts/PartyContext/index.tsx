@@ -154,6 +154,15 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
       })
     }
     if (item.itemType === 'weapon') {
+      updateParty({
+        ...rawParty,
+        items: character.weapon
+          ? [...rawParty.items, character.weapon]
+          : rawParty.items,
+        characters: rawParty.characters.map((c) =>
+          c.id === characterId ? { ...c, weapon: undefined } : c,
+        ),
+      })
     }
   }
   const purchaseItem = (item: tArmor | tWeapon | tConsumable, cost: number) => {

@@ -32,7 +32,6 @@ export const Hexagon = (props: HexagonPropsT) => {
         style={{
           width: `${boxW}px`,
           height: `${boxH}px`,
-          //marginBottom: '-1px',
           background: color,
         }}
       />
@@ -64,17 +63,19 @@ export const Hexagon = (props: HexagonPropsT) => {
 export interface HexBadgePropsT extends HexagonPropsT {
   rotate?: boolean
   stroke?: number
+  borderColor?: string
   onClick?: () => void
 }
 export const HexBadge = (props: HexBadgePropsT) => {
   const {
     color,
+    borderColor,
     size,
     style,
     children,
     childStyle,
     onClick,
-    stroke = 1.2,
+    stroke = 1,
     rotate = false,
   } = props
   const angle = rotate ? 30 : 0
@@ -87,7 +88,10 @@ export const HexBadge = (props: HexBadgePropsT) => {
       onClick={onClick}
     >
       <Hexagon size={size} color={Theme.darkBgColorSolid}>
-        <Hexagon size={size - stroke * 2} color={Theme.lightBgColor}>
+        <Hexagon
+          size={size - stroke * 2}
+          color={borderColor || Theme.lightBgColor}
+        >
           <Hexagon size={size - stroke * 2 - 2} color={Theme.darkBgColorSolid}>
             <Hexagon
               size={size - stroke * 4 - 2}
@@ -119,6 +123,7 @@ export interface HoverBadgePropsT {
   size?: number
   rotate?: boolean
   stroke?: number
+  borderColor?: string
   position?: {
     top?: number
     bottom?: number
@@ -137,6 +142,7 @@ export const HoverHexBadge = (props: HoverBadgePropsT) => {
     rotate,
     stroke,
     position,
+    borderColor,
   } = props
   return (
     <div
@@ -158,6 +164,7 @@ export const HoverHexBadge = (props: HoverBadgePropsT) => {
           style={style}
           rotate={rotate}
           stroke={stroke}
+          borderColor={borderColor}
           childStyle={{ ...childStyle, textShadow: '1px 1px 3px black' }}
           size={size || 20}
           color={Theme.badgeBgColor}

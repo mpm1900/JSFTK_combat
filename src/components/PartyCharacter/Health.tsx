@@ -13,25 +13,30 @@ export const Health = (props: HealthPropsT) => {
   const health = noneg(character.health)
 
   return (
-    <div style={{ position: 'relative', zIndex: 3 }}>
-      <span
+    <div
+      style={{
+        position: 'relative',
+        zIndex: 3,
+      }}
+    >
+      <div
         style={{
-          padding: '4px 0',
-          paddingLeft: 44,
+          marginLeft: 44,
           fontSize: 56,
-          height: 56,
+          height: 64,
           minWidth: 86,
-          lineHeight: '64px',
+          lineHeight: '72px',
           color: Theme.healthRedColor,
           fontFamily: 'New Rocker',
           display: 'flex',
           textAlign: 'center',
           textShadow: '1px 1px 3px black',
           justifyContent: 'center',
+          boxShadow: 'inset 0px 0px 3px black',
         }}
       >
         <NumberChange value={health} />
-      </span>
+      </div>
     </div>
   )
 }

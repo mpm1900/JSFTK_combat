@@ -1,6 +1,7 @@
 import React from 'react'
 import { BoxContainer } from '../../elements/box'
 import { FlexContainer } from '../../elements/flex'
+import { HexBadge } from '../../elements/shapes'
 import { HeadingSm } from '../../elements/typography'
 import { tFloor } from '../../game/Encounter/type'
 import { Theme } from '../../theme'
@@ -43,15 +44,18 @@ export const Floor = (props: FloorPropsT) => {
       >
         {encounters.map((e, i) => (
           <FlexContainer key={i} $full={!isRewardEncounter(i)}>
-            <BoxContainer
-              substyle={{
-                padding: 4,
-                borderColor: isCurrent(i)
+            <HexBadge
+              size={52}
+              color={Theme.otherGrey}
+              childStyle={{ paddingTop: 0 }}
+              stroke={2}
+              borderColor={
+                isCurrent(i)
                   ? 'white'
                   : e === undefined
                   ? Theme.lightBgColor
-                  : Theme.evasionColor,
-              }}
+                  : Theme.evasionColor
+              }
             >
               <Icon
                 src={getEncounterIcon(
@@ -62,6 +66,9 @@ export const Floor = (props: FloorPropsT) => {
                     : e?.type,
                 )}
                 size={32}
+                style={{
+                  marginTop: '-2px',
+                }}
                 fill={
                   isCurrent(i)
                     ? 'white'
@@ -70,7 +77,7 @@ export const Floor = (props: FloorPropsT) => {
                     : Theme.evasionColor
                 }
               />
-            </BoxContainer>
+            </HexBadge>
             {!isRewardEncounter(i) && (
               <FlexContainer
                 $direction='column'

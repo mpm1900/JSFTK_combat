@@ -65,7 +65,6 @@ export const HoverBadge = (props: HoverBadgePropsT) => {
       <HoverToolTip
         distance={2}
         direction={direction || 'right'}
-        // styles={{ position: 'absolute' }}
         content={content || <div />}
       >
         <Badge

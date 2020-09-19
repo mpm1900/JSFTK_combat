@@ -150,9 +150,10 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                   />
                 </FlexContainer>
                 <HoverHexBadge
-                  position={{ bottom: 15, left: 88 }}
-                  size={42}
+                  position={{ bottom: 14, left: 90 }}
+                  size={45}
                   rotate
+                  stroke={2}
                   childStyle={{ paddingTop: 1 }}
                   content={<BoxContainer dark>Character Level</BoxContainer>}
                 >
@@ -180,7 +181,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         >
           <>
             {character.status.map((status) => (
-              <TagPreview direction='up' status={status} />
+              <TagPreview key={status.type} direction='up' status={status} />
             ))}
             {character.immunities.map((status, i) => (
               <TagPreview
@@ -199,10 +200,11 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         </FlexContainer>
         <HoverHexBadge
           position={{
-            bottom: 64,
-            left: -1,
+            bottom: 61,
+            left: -3,
           }}
           rotate
+          stroke={2}
           size={32}
           childStyle={{
             color: Theme.physicalColor,
@@ -215,10 +217,11 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         </HoverHexBadge>
         <HoverHexBadge
           position={{
-            bottom: 33,
-            left: -1,
+            bottom: 31,
+            left: -3,
           }}
           rotate
+          stroke={2}
           size={32}
           childStyle={{
             color: Theme.magicColor,
@@ -231,10 +234,11 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         </HoverHexBadge>
         <HoverHexBadge
           position={{
-            bottom: 18,
-            left: 25,
+            bottom: 16,
+            left: 24,
           }}
           rotate
+          stroke={2}
           size={32}
           childStyle={{
             color: Theme.evasionColor,
@@ -250,13 +254,16 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           rotate={true}
           content={<BoxContainer dark>Weapon Damage</BoxContainer>}
           position={{
-            bottom: -4,
+            bottom: -7,
             left: 52,
           }}
-          size={42}
+          stroke={2}
+          size={45}
           childStyle={{
             color:
-              character.weapon.damage.type === 'physical'
+              character.weapon.damage.value <= 4
+                ? 'red'
+                : character.weapon.damage.type === 'physical'
                 ? Theme.physicalColor
                 : Theme.magicColor,
             fontSize: 24,
