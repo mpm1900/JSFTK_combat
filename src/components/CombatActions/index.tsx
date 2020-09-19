@@ -65,7 +65,7 @@ export const CombatActions = () => {
   return (
     <FlexContainer $direction='column' style={{ minWidth: 340 }}>
       {selectedSkill && <SkillChecks stat={stat} skill={selectedSkill} />}
-      <FlexContainer style={{ justifyContent: 'center', minHeight: 42 }}>
+      <FlexContainer $center style={{ minHeight: 42 }}>
         {skills.map((skill) => (
           <React.Fragment key={skill.id}>
             {SKILL_ICONS[skill.name] ? (

@@ -39,7 +39,7 @@ export const Choice = (props: ChoicePropsT) => {
           getChoiceText(currentChoice, previousChoice)}
       </Text>
       {encounters.length - 1 !== level && (
-        <FlexContainer style={{ justifyContent: 'center' }}>
+        <FlexContainer $center>
           {encounters[level].choices.map((e, i) => (
             <Button
               key={e.id}
@@ -52,7 +52,7 @@ export const Choice = (props: ChoicePropsT) => {
         </FlexContainer>
       )}
       {encounters.length - 1 === level && (
-        <FlexContainer style={{ justifyContent: 'center' }}>
+        <FlexContainer $center>
           <Button onClick={() => chooseCurrent(0)}>Proceed</Button>
         </FlexContainer>
       )}

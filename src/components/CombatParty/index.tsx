@@ -41,8 +41,8 @@ export const CombatParty = (props: CombatPartyPropsT) => {
                 c.health > 0 &&
                 activeCharacter.partyId === PLAYER_PARTY_ID && (
                   <FlexContainer
+                    $center
                     style={{
-                      justifyContent: 'center',
                       marginTop: -11,
                     }}
                   >
@@ -70,7 +70,7 @@ export const CombatParty = (props: CombatPartyPropsT) => {
         ))}
       </FlexContainer>
       {selectedSkill && selectedSkill.targetType === 'group' && (
-        <FlexContainer style={{ justifyContent: 'center', marginTop: -48 }}>
+        <FlexContainer $center style={{ marginTop: -48 }}>
           <div style={{ boxShadow: '0px 2px 5px black' }}>
             <RedButton
               onClick={() => {

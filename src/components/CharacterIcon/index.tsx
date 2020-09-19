@@ -19,13 +19,13 @@ export const CharacterIcon = (props: CharacterIconPropsT) => {
 
   return (
     <FlexContainer
+      $center
       style={{
         background: CHARACTER_CLASS_COLORS[character.class],
         border: '2px solid rgba(255,255,255,0.8)',
         height: height || size - 10,
         width: width || size - 7,
         alignItems: 'center',
-        justifyContent: 'center',
         overflow: 'hidden',
         ...(style || {}),
       }}

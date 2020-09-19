@@ -28,7 +28,7 @@ export const makeEncounterType = (
   depth: number,
   max: number,
 ): tEncounterType => {
-  // return 'shop'
+  // return 'shrine'
   if (depth === max - 2) {
     return 'boss'
   }

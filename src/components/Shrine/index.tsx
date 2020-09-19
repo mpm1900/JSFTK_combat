@@ -12,11 +12,14 @@ import { resolveCheck } from '../../game/Roll/util'
 import { ZERO_REWARD } from '../../game/Encounter/constants'
 import { commitRewards } from '../../game/Party/util'
 import { Theme } from '../../theme'
+import { useModalContext } from '../../contexts/ModalContext'
+import { CombatVictoryModalPure } from '../CombatVictoryModal/pure'
 
 export interface ShrinePropsT {}
 export const Shrine = (props: ShrinePropsT) => {
   const { currentEncounter } = useGameStateContext()
-  const { party, rawParty, updateParty } = usePartyContext()
+  const { open, close } = useModalContext()
+  const { party, rawParty, updateParty, equipItem } = usePartyContext()
   const encounter = currentEncounter as tShrineEncounter
   const [results, setResults] = useState<boolean[]>([])
   const onClick = (c: tProcessedCharacter) => {
@@ -41,6 +44,17 @@ export const Shrine = (props: ShrinePropsT) => {
         encounter.results[results.filter((r) => r === true).length]
       if (!rewards) {
         return
+      }
+      if (rewards.items.length > 0) {
+        open(
+          <CombatVictoryModalPure
+            title='You got an item!'
+            showOther={false}
+            rewards={rewards}
+            onNextClick={close}
+            onEquipClick={equipItem}
+          />,
+        )
       }
       updateParty(commitRewards(rawParty, rewards))
     }

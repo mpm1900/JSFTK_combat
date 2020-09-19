@@ -14,8 +14,8 @@ export const AppHeader = (props: AppHeaderPropsT) => {
   return (
     <FlexContainer $direction='column'>
       <FlexContainer
+        $center
         style={{
-          justifyContent: 'center',
           background: Theme.darkBgColorSolid,
           height: 52,
           borderBottom: '2px solid rgba(255,255,255,0.3)',

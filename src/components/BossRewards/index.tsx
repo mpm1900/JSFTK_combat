@@ -41,7 +41,7 @@ export const BossRewards = () => {
       >
         Choose your reward
       </h1>
-      <FlexContainer style={{ justifyContent: 'center' }}>
+      <FlexContainer $center>
         {(BOSS_ITEMS[boss.id] || []).map((item) => (
           <ItemCard
             item={item}
@@ -52,7 +52,7 @@ export const BossRewards = () => {
         ))}
       </FlexContainer>
       {chosenReward && (
-        <FlexContainer style={{ justifyContent: 'center', marginTop: 24 }}>
+        <FlexContainer $center style={{ marginTop: 24 }}>
           <RedButton
             onClick={() => {
               updateParty({
