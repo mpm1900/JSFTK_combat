@@ -10,7 +10,7 @@ export const TOMB_SPIDER = () =>
     Spider,
     4,
     22,
-    makeEnemyWeapon('dexterity', 18, 'ranged', 'magic', [
+    makeEnemyWeapon('dexterity', 26, 'ranged', 'magic', [
       createSkill('Bite', 3, 0),
       createSkill('Venomous Bite', 3, -10, { perfectStatus: ['poisoned'] }),
       createSkill('Blood Bite', 3, -5, { perfectStatus: ['bleeding'] }),

@@ -11,7 +11,7 @@ export const TOMB_SPIRIT = () =>
     Spirit,
     4,
     26,
-    makeEnemyWeapon('intelligence', 16, 'ranged', 'magic', [
+    makeEnemyWeapon('intelligence', 18, 'ranged', 'magic', [
       createSkill('Curse', 2, -10, {
         perfectStatus: [
           getRandom<tStatusType>([

@@ -11,7 +11,7 @@ export const CONSECRATED_GUARD = (): tCharacter => {
     Skull,
     6,
     48,
-    makeEnemyWeapon('strength', 26, 'melee', 'physical', [
+    makeEnemyWeapon('strength', 34, 'melee', 'physical', [
       createSkill('Beast Claw', 4, 0, { perfectStatus: ['attack-down'] }),
       createSkill('Beast Bite', 3, -10, { perfectPierce: true }),
     ]),

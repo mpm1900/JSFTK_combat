@@ -30,8 +30,12 @@ export const makeEncounterType = (
   depth: number,
   max: number,
   canBeShop: boolean,
+  isShop: boolean = false,
 ): tEncounterType => {
   // return 'shrine'
+  if (isShop) {
+    return 'shop'
+  }
   if (depth === max - 1) {
     return 'boss'
   }
@@ -57,8 +61,10 @@ export const makeEncounterType = (
       'combat',
       'combat',
       'combat',
+      'combat',
+      'combat',
+      'combat',
       'shop',
-      'shrine',
       'shrine',
     ].filter((t) => (canBeShop ? true : t !== 'shop')) as tEncounterType[],
   )
@@ -69,8 +75,9 @@ export const makeRandomEncounter = (
   max: number,
   floor: number,
   canBeShop: boolean,
+  isShop: boolean = false,
 ) => {
-  let encounterType = makeEncounterType(depth, max, canBeShop)
+  let encounterType = makeEncounterType(depth, max, canBeShop, isShop)
   const floorConfig = FLOOR_CONFIGS_BY_INDEX()[floor]
   let encounter: tEncounter = {
     id: v4(),

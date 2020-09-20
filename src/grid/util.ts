@@ -1,3 +1,4 @@
+import { DiceRoll } from 'rpg-dice-roller'
 import { v4 } from 'uuid'
 import { makeRandomEncounter } from '../game/Encounter/util'
 import { noneg } from '../util'
@@ -50,7 +51,8 @@ export const makeEncounterArray = (
   const maxQ = size
   const minR = 0
   const maxR = size
-  let canBeShop = true
+  let index = 0
+  const shopIndex = new DiceRoll(`1d55`).total
   let result: EncounterArrayT = {}
   for (let q = minQ; q <= maxQ; q++) {
     result[q] = {}
@@ -62,10 +64,16 @@ export const makeEncounterArray = (
       const d = getDepth(makeHex(q, r, s), size)
       const startHex = MIN_HEX(size)
       if (!(q === startHex.q && r === startHex.r && s === startHex.s)) {
-        const e = makeRandomEncounter(d, size, floor, canBeShop)
-        if (e.type === 'shop') canBeShop = false
+        const e = makeRandomEncounter(
+          d,
+          size,
+          floor,
+          false,
+          index === shopIndex,
+        )
         result[q][r][s] = e
       }
+      index++
     }
   }
   return result

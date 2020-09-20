@@ -14,6 +14,7 @@ import { WEAPONS_BY_LEVEL } from '../../Weapon/builders/objects'
 import { ARMOR_BY_LEVEL } from '../../Armor/builders/sets'
 import { makeRandomFloorEncounter } from './util'
 import { TOMB_SPIRIT } from '../../Character/enemies/tomb_spirit'
+import { FOREST_BOAR } from '../../Character/enemies/forest_boar'
 
 const FLOOR_1_WEAPONS = () => [
   ...WEAPONS_BY_LEVEL[1],
@@ -111,29 +112,52 @@ export const FloorConfig1 = (): tFloorConfig => ({
           FOREST_RAVEN,
           FOREST_RAVEN,
           FOREST_TROLL,
+          FOREST_BOAR,
         ],
         3,
       ),
       makeRandomFloorEncounter(
-        [FOREST_RAVEN, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        [FOREST_RAVEN, FOREST_TROLL, CULTIST, CULTIST_BRUTE, FOREST_BOAR],
         2,
       ),
     ],
     4: [
       makeRandomFloorEncounter(
-        [FOREST_RAVEN, FOREST_RAVEN, FOREST_WITCH, FOREST_WITCH, FOREST_TROLL],
-        3,
-      ),
-      makeRandomFloorEncounter(
-        [FOREST_RAVEN, FOREST_RAVEN, FOREST_WITCH, FOREST_WITCH, FOREST_TROLL],
-        3,
-      ),
-      makeRandomFloorEncounter(
-        [FOREST_RAVEN, FOREST_RAVEN, FOREST_WITCH, FOREST_WITCH, FOREST_TROLL],
+        [
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+          FOREST_WITCH,
+          FOREST_WITCH,
+          FOREST_TROLL,
+          FOREST_BOAR,
+        ],
         3,
       ),
       makeRandomFloorEncounter(
         [
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+          FOREST_WITCH,
+          FOREST_WITCH,
+          FOREST_TROLL,
+          FOREST_BOAR,
+        ],
+        3,
+      ),
+      makeRandomFloorEncounter(
+        [
+          FOREST_RAVEN,
+          FOREST_RAVEN,
+          FOREST_WITCH,
+          FOREST_WITCH,
+          FOREST_TROLL,
+          FOREST_BOAR,
+        ],
+        3,
+      ),
+      makeRandomFloorEncounter(
+        [
+          FOREST_BOAR,
           FOREST_RAVEN,
           FOREST_RAVEN,
           FOREST_WITCH,
@@ -147,32 +171,60 @@ export const FloorConfig1 = (): tFloorConfig => ({
     ],
     5: [
       makeRandomFloorEncounter(
-        [FOREST_RAVEN, FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        [
+          FOREST_RAVEN,
+          FOREST_WITCH,
+          FOREST_TROLL,
+          CULTIST,
+          CULTIST_BRUTE,
+          FOREST_BOAR,
+        ],
         3,
       ),
       makeRandomFloorEncounter(
-        [FOREST_RAVEN, FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        [
+          FOREST_RAVEN,
+          FOREST_WITCH,
+          FOREST_TROLL,
+          CULTIST,
+          CULTIST_BRUTE,
+          FOREST_BOAR,
+        ],
         3,
       ),
       makeRandomFloorEncounter(
-        [FOREST_RAVEN, FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        [
+          FOREST_RAVEN,
+          FOREST_WITCH,
+          FOREST_TROLL,
+          CULTIST,
+          CULTIST_BRUTE,
+          FOREST_BOAR,
+        ],
         3,
       ),
       makeRandomFloorEncounter(
-        [FOREST_RAVEN, FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        [
+          FOREST_RAVEN,
+          FOREST_WITCH,
+          FOREST_TROLL,
+          CULTIST,
+          CULTIST_BRUTE,
+          FOREST_BOAR,
+        ],
         3,
       ),
       [TOMB_SPIRIT()],
     ],
     6: [
       makeRandomFloorEncounter(
-        [FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        [FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE, FOREST_BOAR],
         3,
       ),
     ],
     7: [
       makeRandomFloorEncounter(
-        [FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE],
+        [FOREST_WITCH, FOREST_TROLL, CULTIST, CULTIST_BRUTE, FOREST_BOAR],
         3,
       ),
     ],

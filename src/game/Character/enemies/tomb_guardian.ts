@@ -11,7 +11,7 @@ export const TOMB_GUARDIAN = (): tCharacter => {
     Skull,
     5,
     36,
-    makeEnemyWeapon('strength', 26, 'melee', 'physical', [
+    makeEnemyWeapon('strength', 28, 'melee', 'physical', [
       createSkill('Smash', 4, 0),
       createSkill('Stun', 3, -5, {
         damage: false,

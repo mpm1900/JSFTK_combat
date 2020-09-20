@@ -11,7 +11,7 @@ export const FLAME_WISP = () =>
     FireWhisp,
     4,
     19,
-    makeEnemyWeapon('intelligence', 26, 'ranged', 'magic', [
+    makeEnemyWeapon('intelligence', 30, 'ranged', 'magic', [
       createSkill('Ember', 3, 0),
       createSkill('Engulf', 3, -10, { perfectStatus: ['burning'] }),
       createSkill('Fire Blast', 4, -10, {

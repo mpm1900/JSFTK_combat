@@ -11,7 +11,7 @@ export const FOREST_WOLF = (): tCharacter => {
     Wolf,
     1,
     9,
-    makeEnemyWeapon('dexterity', 12, 'melee', 'physical', [
+    makeEnemyWeapon('dexterity', 9, 'melee', 'physical', [
       createSkill('Bite', 3, 0),
       createSkill('Chomp', 4, 0, { perfectPierce: true }),
     ]),

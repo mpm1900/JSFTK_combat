@@ -15,12 +15,13 @@ import Combat from '../../icons/svg/lorc/crossed-swords.svg'
 import Shrine from '../../icons/svg/lorc/divided-spiral.svg'
 import Boss from '../../icons/svg/lorc/crowned-skull.svg'
 import Start from '../../icons/svg/lorc/campfire.svg'
+import { BoxContainer } from '../../elements/box'
 
 export const Grid = () => {
   const { floor, floors } = useGameStateContext()
   const currentFloor = floors[floor]
   const hexagons = useMemo(() => GridGenerator.triangle(currentFloor.size), [])
-  // const [activeHex, setActiveHex] = useState<HexT | undefined>()
+  const [activeHex, setActiveHex] = useState<HexT | undefined>()
   return (
     <FlexContainer
       $full
@@ -58,8 +59,8 @@ export const Grid = () => {
                   <Hex
                     hex={hex}
                     size={currentFloor.size}
-                    // onMouseEnter={() => setActiveHex(hex)}
-                    // onMouseLeave={() => setActiveHex(undefined)}
+                    onMouseEnter={() => setActiveHex(hex)}
+                    onMouseLeave={() => setActiveHex(undefined)}
                   />
                 ))}
             </Layout>
@@ -67,14 +68,15 @@ export const Grid = () => {
         </div>
       </FlexContainer>
       <div>
-        <FlexContainer
-          $direction='column'
+        <BoxContainer
           style={{
             fontSize: 12,
             maxWidth: 300,
             background: Theme.darkBgColor,
-            padding: 8,
             margin: '16px 16px 16px 36px',
+          }}
+          substyle={{
+            background: Theme.darkBgColor,
           }}
         >
           <h3
@@ -86,47 +88,50 @@ export const Grid = () => {
           >
             Floor Map
           </h3>
-          <Text style={{ marginBottom: 16 }}>
+          <Text>
+            {/*activeHex ? JSON.stringify(activeHex) : 'hover to see location' */}
+          </Text>
+          <Text style={{ marginBottom: 16, display: 'block' }}>
             This is the floor map. Here you can see the cleared encounters
             (green) and the encounters you can travel to (blue). Click a blue
             hex to advance.
           </Text>
-          <FlexContainer style={{ alignItems: 'center', height: 48 }}>
+          <FlexContainer style={{ alignItems: 'center', height: 36 }}>
             <HexBadge
               color='green'
-              size={40}
+              size={28}
               stroke={3}
               style={{ marginRight: 8 }}
             />
             Cleared Encounters
           </FlexContainer>
-          <FlexContainer style={{ alignItems: 'center', height: 48 }}>
+          <FlexContainer style={{ alignItems: 'center', height: 36 }}>
             <HexBadge
               color={Color(Theme.physicalColor).darken(0.5).rgb().toString()}
-              size={40}
+              size={28}
               stroke={3}
               style={{ marginRight: 8 }}
             />
             Adjacent Encounters
           </FlexContainer>
-          <FlexContainer style={{ alignItems: 'center', height: 48 }}>
-            <Icon src={Start} size={36} style={{ marginRight: 12 }} />
+          <FlexContainer style={{ alignItems: 'center', height: 36 }}>
+            <Icon src={Start} size={24} style={{ marginRight: 12 }} />
             Starting Location
           </FlexContainer>
-          <FlexContainer style={{ alignItems: 'center', height: 48 }}>
-            <Icon src={Shop} size={36} style={{ marginRight: 12 }} />
+          <FlexContainer style={{ alignItems: 'center', height: 36 }}>
+            <Icon src={Shop} size={24} style={{ marginRight: 12 }} />
             Shop
           </FlexContainer>
-          <FlexContainer style={{ alignItems: 'center', height: 48 }}>
-            <Icon src={Unknown} size={36} style={{ marginRight: 12 }} />
+          <FlexContainer style={{ alignItems: 'center', height: 36 }}>
+            <Icon src={Unknown} size={24} style={{ marginRight: 12 }} />
             Random Encounter
           </FlexContainer>
-          <FlexContainer style={{ alignItems: 'center', height: 48 }}>
-            <Icon src={Boss} size={36} style={{ marginRight: 12 }} />
+          <FlexContainer style={{ alignItems: 'center', height: 36 }}>
+            <Icon src={Boss} size={24} style={{ marginRight: 12 }} />
             Boss
           </FlexContainer>
           <FullContainer />
-        </FlexContainer>
+        </BoxContainer>
       </div>
     </FlexContainer>
   )
