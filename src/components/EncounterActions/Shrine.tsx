@@ -10,7 +10,7 @@ export interface ShrinePropsT {
 }
 
 export const Shrine = (props: ShrinePropsT) => {
-  const { nextLevel } = useGameStateContext()
+  const { completeCurrent } = useGameStateContext()
   return (
     <FlexContainer $direction='column' style={{ justifyContent: 'center' }}>
       <h3
@@ -23,7 +23,7 @@ export const Shrine = (props: ShrinePropsT) => {
         You've discoved a secret shrine.
       </h3>
       <FlexContainer style={{ justifyContent: 'center' }}>
-        <Button onClick={() => nextLevel()}>Travel Deeper</Button>
+        <Button onClick={() => completeCurrent()}>Leave Shrine</Button>
       </FlexContainer>
     </FlexContainer>
   )

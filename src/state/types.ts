@@ -1,4 +1,4 @@
-import { GameStateT } from './game'
+import { GameStateT } from './game2'
 import { tParty } from '../game/Party/type'
 
 export interface StateT {

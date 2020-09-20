@@ -1,4 +1,4 @@
-import { tEncounterReward, tEncounterChoice, tCombatEncounter } from './type'
+import { tEncounterReward, tCombatEncounter, tEncounter } from './type'
 import { getRandom } from '../../util'
 import { stringArr } from '../../util/stringArr'
 import { FLOOR_CONFIGS_BY_INDEX } from './floors'
@@ -9,7 +9,6 @@ import Dungeon1 from '../../assets/img/dungeon/3.png'
 import Dungeon2 from '../../assets/img/dungeon/1.png'
 import Dungeon3 from '../../assets/img/dungeon/4.png'
 import Dungeon4 from '../../assets/img/dungeon/2.png'
-import { ENCOUNTER_TEXTS } from './text'
 
 export const ZERO_REWARD: tEncounterReward = {
   gold: 0,
@@ -108,14 +107,11 @@ export const POSSIBLE_SHINE_REWARDS = (): tEncounterReward[][] => [
 ]
 
 export const getChoiceText = (
-  currentChoice: tEncounterChoice | undefined,
-  previousChoice: tEncounterChoice | undefined,
+  currentEncounter: tEncounter | undefined,
+  previousEncounter: tEncounter | undefined,
 ): string => {
   let text = ''
-  const previousEncounter = previousChoice
-    ? previousChoice.choices[previousChoice.chosen || 0]
-    : undefined
-  if (previousChoice === undefined) {
+  if (currentEncounter === undefined) {
     text =
       'As your party begins their journey, you travel down an empty road. You arrive at a split path, you must make a choice on which way to proceed.'
   }
@@ -127,27 +123,31 @@ export const getChoiceText = (
         ),
       )}, your party again arrives at a choice:`,
     ])
-  } else if (previousChoice) {
+  } else if (currentEncounter) {
     text =
       'After a brief rest, your party continues their journey to dispel the evil. You feel it around you as your travel deeper. However, there now seem to be two options before you:'
-  }
-  if (currentChoice?.depth === 11) {
-    text =
-      'Your party has traveled far, but it is now time for the final fight.'
   }
   return text
 }
 
-export const getEncounterBg = (
-  level: number,
-  floor: number,
-): { bg: string; overlay: string } => {
+interface BgConfig {
+  bg: string
+  overlay: string
+}
+interface RootBgConfig extends BgConfig {
+  completed?: BgConfig
+}
+export const getEncounterBg = (level: number, floor: number): RootBgConfig => {
   return ([
     [
       {
         // 0
         bg: Forest1,
         overlay: 'transparent',
+        completed: {
+          bg: Forest1,
+          overlay: 'rgba(20,0,50,0.4)',
+        },
       },
       {
         // 1
@@ -188,11 +188,19 @@ export const getEncounterBg = (
         // 8
         bg: Forest2,
         overlay: 'rgba(20,0,50,0.5)',
+        completed: {
+          bg: Forest3,
+          overlay: 'rgba(20,0,50,0.5)',
+        },
       },
       {
         // 9
         bg: Forest3,
         overlay: 'rgba(20,0,50,0.5)',
+        completed: {
+          bg: Dungeon1,
+          overlay: 'transparent',
+        },
       },
       {
         // 10

@@ -60,6 +60,10 @@ export const Start = () => {
             }}
           >
             alpha-0.0.5.12
+            <br />
+            <a href={'#'} onClick={() => history.push('/grid')}>
+              g
+            </a>
           </Monospace>
         }
       >

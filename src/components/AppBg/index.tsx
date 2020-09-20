@@ -3,18 +3,20 @@ import { useGameStateContext } from '../../contexts/GameStateContext'
 import { usePartyContext } from '../../contexts/PartyContext'
 import { FlexContainer } from '../../elements/flex'
 import { getEncounterBg } from '../../game/Encounter/constants'
+import { getDepth } from '../../grid/util'
 
 export interface AppBgPropsT {
   children: JSX.Element | JSX.Element[]
 }
 export const AppBg = (props: AppBgPropsT) => {
   const { children } = props
-  const { floor, level } = useGameStateContext()
-  const { party } = usePartyContext()
+  const { floor, currentHex, floors, currentEncounter } = useGameStateContext()
+  const currentFloor = floors[floor]
 
-  const bg = useMemo(() => {
-    return getEncounterBg(level, floor)
-  }, [floor, level])
+  const baseBg = useMemo(() => {
+    return getEncounterBg(getDepth(currentHex, currentFloor.size), floor)
+  }, [floor, currentHex])
+  const bg = currentEncounter?.completed ? baseBg.completed || baseBg : baseBg
 
   /*
   const deadCount = party.characters.filter((c) => c.health <= 0).length
@@ -40,7 +42,10 @@ export const AppBg = (props: AppBgPropsT) => {
       <FlexContainer
         $full
         $direction='column'
-        style={{ background: bg.overlay, transition: 'all 2s' }}
+        style={{
+          background: bg.overlay,
+          transition: 'all 2s',
+        }}
       >
         {children}
       </FlexContainer>

@@ -12,10 +12,11 @@ import { commitSkillResults } from '../game/Skill/committer'
 import { NonCombatEncounter } from '../components/NonCombatEncounter'
 import { EncounterActions } from '../components/EncounterActions'
 import { HeadingSm } from '../elements/typography'
+import { Grid } from './Grid'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()
-  const { level, floors, floor } = useGameStateContext()
+  const { floors, floor, currentEncounter } = useGameStateContext()
   const currentFloor = floors[floor]
   const history = useHistory()
   const {
@@ -55,6 +56,7 @@ export const Party = () => {
             >
               Restart
             </Button>
+
             <FullContainer />
           </>
         }
@@ -72,14 +74,17 @@ export const Party = () => {
             alignItems: 'center',
           }}
         >
-          <HeadingSm style={{ margin: 0 }}>
-            {currentFloor.name} - Level {level}
-          </HeadingSm>
+          <HeadingSm style={{ margin: 0 }}>{currentFloor.name}</HeadingSm>
         </FlexContainer>
       </AppHeader>
       <FlexContainer $full $direction='column'>
         <FlexContainer $full>
-          <NonCombatEncounter />
+          {(currentEncounter && !currentEncounter.completed) ||
+          (currentEncounter && currentEncounter.type === 'boss') ? (
+            <NonCombatEncounter />
+          ) : (
+            <Grid />
+          )}
           <EncounterActions />
         </FlexContainer>
       </FlexContainer>

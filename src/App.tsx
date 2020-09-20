@@ -11,6 +11,7 @@ import { PlayerParty } from './components/PlayerParty'
 import { FullContainer } from './elements/flex'
 import { LinkedCombatContext } from './contexts/CombatContext/context'
 import { AppBg } from './components/AppBg'
+import { Grid } from './domain/Grid'
 
 export const App = () => {
   return (
@@ -24,6 +25,7 @@ export const App = () => {
                 <Switch>
                   {makeRoute('/party', Party)}
                   {makeRoute('/combat', Combat)}
+                  {makeRoute('/grid', Grid)}
                   {makeRoute('/', Start)}
                 </Switch>
               </FullContainer>

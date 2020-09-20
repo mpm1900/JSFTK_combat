@@ -64,7 +64,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
   const { children } = props
   const actions = usePartyActions()
   const rawParty = useParty()
-  const { currentChoice, currentEncounter, removeItem } = useGameStateContext()
+  const { currentEncounter, removeItem } = useGameStateContext()
   const party = useMemo(() => processParty(rawParty), [rawParty])
   const [activeCharacterId, setActiveCharacterId] = useState<string>(
     party.characters[0].id,
@@ -166,7 +166,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
     }
   }
   const purchaseItem = (item: tArmor | tWeapon | tConsumable, cost: number) => {
-    if (party.gold > cost && currentChoice && currentEncounter) {
+    if (party.gold > cost && currentEncounter) {
       if (item.itemType === 'armor' || item.itemType === 'weapon') {
         actions.upsertItem(item as tArmor | tWeapon)
       }
@@ -180,7 +180,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
         })
       }
       actions.setGold(party.gold - cost)
-      removeItem(currentChoice.id, currentEncounter.id, item.id)
+      removeItem(item.id)
     }
   }
   const sellItem = (itemId: string) => {

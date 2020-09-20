@@ -3,23 +3,25 @@ import { FlexContainer } from '../../elements/flex'
 import { tEncounterChoice } from '../../game/Encounter/type'
 import { getChoiceText } from '../../game/Encounter/constants'
 import { useGameStateContext } from '../../contexts/GameStateContext'
-import { Button } from '../../elements/button'
 import { HeadingSm, Text } from '../../elements/typography'
 import { ENCOUNTER_TEXTS } from '../../game/Encounter/text'
+import { getDepth } from '../../grid/util'
 
-export interface ChoicePropsT {
-  currentChoice: tEncounterChoice
-}
+export interface ChoicePropsT {}
 
 export const Choice = (props: ChoicePropsT) => {
-  const { currentChoice } = props
   const {
-    level,
     floor,
-    previousChoice,
-    encounters,
-    chooseCurrent,
+    floors,
+    currentEncounter,
+    previousEncounter,
+    currentHex,
   } = useGameStateContext()
+  const currentFloor = floors[floor]
+  const depth = currentEncounter
+    ? getDepth(currentHex, currentFloor.size) + 1
+    : 0
+  const text = ENCOUNTER_TEXTS[floor][depth]
   return (
     <FlexContainer $direction='column' style={{ paddingTop: 24 }}>
       <HeadingSm
@@ -27,7 +29,9 @@ export const Choice = (props: ChoicePropsT) => {
           textAlign: 'center',
         }}
       >
-        Your Journey {level === 0 && floor === 0 ? 'Begins' : 'Continues'}.
+        Your Journey{' '}
+        {currentEncounter === undefined && floor === 0 ? 'Begins' : 'Continues'}
+        .
       </HeadingSm>
       <Text
         style={{
@@ -35,42 +39,8 @@ export const Choice = (props: ChoicePropsT) => {
           padding: 8,
         }}
       >
-        {(ENCOUNTER_TEXTS[floor][level] || (() => false))() ||
-          getChoiceText(currentChoice, previousChoice)}
+        {text && text()}
       </Text>
-      {encounters.length - 1 !== level && (
-        <FlexContainer $center>
-          {encounters[level].choices.map((e, i) => (
-            <Button
-              key={e.id}
-              onClick={() => chooseCurrent(i)}
-              style={{ whiteSpace: 'nowrap', padding: '8px 12px' }}
-            >
-              {getNextText(encounters[level].choices.length, i)}
-            </Button>
-          ))}
-        </FlexContainer>
-      )}
-      {encounters.length - 1 === level && (
-        <FlexContainer $center>
-          <Button onClick={() => chooseCurrent(0)}>Proceed</Button>
-        </FlexContainer>
-      )}
     </FlexContainer>
   )
-}
-
-const getNextText = (size: number, index: number): string => {
-  switch (size) {
-    case 1:
-      return 'Proceed'
-    case 2: {
-      return index === 0 ? 'Go Left' : 'Go Right'
-    }
-    case 3: {
-      return index === 0 ? 'Go Left' : index === 1 ? 'Go Straight' : 'Go Right'
-    }
-    default:
-      return 'Proceed'
-  }
 }

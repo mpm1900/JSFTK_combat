@@ -1004,7 +1004,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.3", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.1", "@babel/runtime@^7.5.5":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.3", "@babel/runtime@^7.11.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.1", "@babel/runtime@^7.5.5":
   version "7.11.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.2.tgz#f549c13c754cc40b87644b9fa9f09a6a95fe0736"
   integrity sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==
@@ -1422,6 +1422,13 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
+"@tanem/svg-injector@^8.0.68":
+  version "8.0.69"
+  resolved "https://registry.yarnpkg.com/@tanem/svg-injector/-/svg-injector-8.0.69.tgz#ef41afc98c3c706ef16f7468991f558a82e567c9"
+  integrity sha512-/F4v9aXqvoa0bg+m0m/eRHnYkPxkkAfakLcB/hRIHQ9Fqwuxz1JBDxQ0xcgNkEJI4dN9uCCvAIUIoUoQieAp6g==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+
 "@testing-library/dom@*":
   version "7.23.0"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.23.0.tgz#c54c0fa53705ad867bcefb52fc0c96487fbc10f6"
@@ -1685,6 +1692,13 @@
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
+
+"@types/react-svg@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-svg/-/react-svg-5.0.0.tgz#32c9b5e987cadff2797468bbee0abd265f44b75c"
+  integrity sha512-SKvgyw45ZaZX91uulrA1dgENZ0tC6D3owupmZKOuJFffkHJvp8lvfjbb+5juC3z4qCYoqESgxkkiS6owa+gemg==
+  dependencies:
+    react-svg "*"
 
 "@types/react-toastify@^4.1.0":
   version "4.1.0"
@@ -3051,7 +3065,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.6:
+classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -8930,6 +8944,13 @@ react-error-overlay@^6.0.7:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.7.tgz#1dcfb459ab671d53f660a991513cb2f0a0553108"
   integrity sha512-TAv1KJFh3RhqxNvhzxj6LeT5NWklP6rDr2a0jaTfsZ5wSZWHOGeqQyejUp3xxLfPt2UpyJEcVQB/zyPcmonNFA==
 
+react-hexgrid@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-hexgrid/-/react-hexgrid-1.0.3.tgz#fe0749eaa61d159805c913c8fb78502ce71e247a"
+  integrity sha512-+rXia1Q/tGtEWrRRNGku9dZx+3yVcotr4cs3IF0PddJaaddpxUEMgZDqSway0QGNTT43eVbclR5UScwHBgnx2A==
+  dependencies:
+    classnames "^2.2.5"
+
 react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -9057,6 +9078,15 @@ react-spring@^8.0.27:
   dependencies:
     "@babel/runtime" "^7.3.1"
     prop-types "^15.5.8"
+
+react-svg@*, react-svg@^11.0.40:
+  version "11.0.40"
+  resolved "https://registry.yarnpkg.com/react-svg/-/react-svg-11.0.40.tgz#0cb93a07e20b747b7b1a118ea14ccbb25ef5c093"
+  integrity sha512-uNsWS2o65NmUey7MppPVWTFeyYxfe6b82g5+rJcxjJGAfm3SAiA+oSfuDD+fjpJJLMCoWkBJoyCzNuV3FTVLVg==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+    "@tanem/svg-injector" "^8.0.68"
+    prop-types "^15.7.2"
 
 react-toastify@*, react-toastify@^6.0.8:
   version "6.0.8"

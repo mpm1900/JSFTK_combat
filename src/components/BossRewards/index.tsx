@@ -11,10 +11,9 @@ import { Theme } from '../../theme'
 import { ItemCard } from '../ItemCard'
 
 export const BossRewards = () => {
-  const { previousChoice } = useGameStateContext()
+  const { previousEncounter } = useGameStateContext()
   const { nextFloor } = useGameStateContext()
   const { updateParty, rawParty } = usePartyContext()
-  const previousEncounter = previousChoice?.choices[previousChoice?.chosen || 0]
   const [chosenReward, setChosenReward] = useState<
     tArmor | tWeapon | undefined
   >()

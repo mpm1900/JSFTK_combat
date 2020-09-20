@@ -22,7 +22,6 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
   const { queue, characters } = props
   const { isRunning } = useCombatContext()
   const history = useHistory()
-  const { level } = useGameStateContext()
   const { setHoverQueueCharacterId } = useUIContext()
   const first = characters.find(
     (c) => c.id === getFirst(queue),
@@ -49,7 +48,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
     <AppHeader
       left={
         <Button onClick={() => history.push('/')} style={{ borderBottom: 0 }}>
-          Restart ({level})
+          Restart
         </Button>
       }
       right={

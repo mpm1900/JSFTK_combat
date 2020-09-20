@@ -7,15 +7,13 @@ import { EncounterHistory } from '../EncounterHistory'
 import { BossRewards } from '../BossRewards'
 
 export const NonCombatEncounter = () => {
-  const { currentEncounter, currentChoice } = useGameStateContext()
+  const { currentEncounter } = useGameStateContext()
   return (
     <FlexContainer $direction='column' $full style={{ marginLeft: '60px' }}>
       {currentEncounter && currentEncounter.type === 'shop' && <Shop />}
       {currentEncounter && currentEncounter.type === 'shrine' && <Shrine />}
-      {currentEncounter && currentEncounter.type === 'reward' && (
-        <BossRewards />
-      )}
-      {!currentEncounter && currentChoice && <EncounterHistory />}
+      {currentEncounter && currentEncounter.type === 'boss' && <BossRewards />}
+      {!currentEncounter && <EncounterHistory />}
     </FlexContainer>
   )
 }

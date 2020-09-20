@@ -40,3 +40,20 @@ export const Icon = ({
     <div />
   )
 }
+
+export const RawIcon = (props: IconPropsT) => {
+  const { src, size, style = {}, fill = 'white', shadow, onClick } = props
+  const [loading, setLoading] = useState(true)
+  const [svg, setSvg] = useState('')
+
+  useEffect(() => {
+    if (src) {
+      fetch(src)
+        .then((res) => res.text())
+        .then((text) => setSvg(text))
+        .then(() => setLoading(false))
+    }
+  }, [src])
+
+  return <>{loading ? svg : <svg />}</>
+}

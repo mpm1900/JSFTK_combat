@@ -1,37 +1,37 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react'
-import { useGameState, useGameStateActions } from '../../state/game'
-import { tEncounterChoice, tEncounter, tFloor } from '../../game/Encounter/type'
+import { useGameState, useGameStateActions } from '../../state/game2'
+import { tEncounter, tFloor2 } from '../../game/Encounter/type'
+import { EncounterArrayT, HexT } from '../../grid/types'
+import { makeHex } from '../../grid/util'
 
 export interface GameStateContextT {
   started: boolean
-  encounters: tEncounterChoice[]
-  floors: tFloor[]
-  level: number
+  encounters: EncounterArrayT
+  floors: tFloor2[]
   floor: number
-  currentChoice: tEncounterChoice | undefined
-  previousChoice: tEncounterChoice | undefined
+  currentHex: HexT
   currentEncounter: tEncounter | undefined
-  chooseCurrent: (value: number) => void
-  nextLevel: () => void
+  previousEncounter: tEncounter | undefined
+  chooseNext: (hex: HexT) => void
   nextFloor: () => void
   reset: () => void
-  removeItem: (choiceId: string, encounterId: string, itemId: string) => void
+  removeItem: (itemId: string) => void
+  completeCurrent: () => void
 }
 
 export const defaultValue: GameStateContextT = {
   started: false,
   encounters: [],
   floors: [],
-  level: 0,
   floor: 0,
-  currentChoice: undefined,
+  currentHex: makeHex(0, 0, 0),
   currentEncounter: undefined,
-  previousChoice: undefined,
-  chooseCurrent: (value) => {},
-  nextLevel: () => {},
+  previousEncounter: undefined,
+  chooseNext: (hex) => {},
   nextFloor: () => {},
   reset: () => {},
-  removeItem: (choiceId, encounterId, itemId) => {},
+  removeItem: (itemId) => {},
+  completeCurrent: () => {},
 }
 export const GameStateContext = React.createContext<GameStateContextT>(
   defaultValue,
@@ -43,28 +43,29 @@ export interface GameStateProviderPropsT {
 }
 export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
   const { children } = props
-  const { floors, floor, level } = useGameState()
+  const { floors, floor, hex } = useGameState()
   const [started, setStarted] = useState(false)
   const currentFloor = floors[floor]
   const encounters = currentFloor.encounters
   const {
-    nextLevel,
     nextFloor,
-    chooseCurrent,
+    chooseNext,
     reset,
     removeItem,
+    completeCurrent,
   } = useGameStateActions()
-  const currentChoice = useMemo(() => {
-    return encounters[level]
-  }, [encounters, level])
-  const previousChoice = useMemo(() => {
-    return encounters[level - 1]
-  }, [encounters, level])
   const currentEncounter = useMemo(() => {
-    if (currentChoice && currentChoice.chosen !== undefined) {
-      return currentChoice.choices[currentChoice.chosen]
+    return encounters[hex.q][hex.r][hex.s]
+  }, [hex, JSON.stringify(encounters)])
+  const [previousEncounter, setPreviousEncounter] = useState<
+    tEncounter | undefined
+  >()
+
+  useEffect(() => {
+    if (currentEncounter && currentEncounter.completed) {
+      setPreviousEncounter(currentEncounter)
     }
-  }, [encounters, level])
+  }, [currentEncounter])
 
   useEffect(() => {
     setStarted(true)
@@ -76,16 +77,17 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
         started,
         encounters,
         floors,
-        level,
         floor,
-        currentChoice,
-        previousChoice,
+        currentHex: hex,
         currentEncounter,
+        previousEncounter,
         reset,
-        nextLevel,
+        chooseNext,
         nextFloor,
-        chooseCurrent,
         removeItem,
+        completeCurrent: () => {
+          completeCurrent()
+        },
       }}
     >
       {children}

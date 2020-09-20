@@ -9,7 +9,7 @@ export interface ShopPropsT {
 }
 export const Shop = (props: ShopPropsT) => {
   const { currentEncounter } = props
-  const { nextLevel } = useGameStateContext()
+  const { completeCurrent } = useGameStateContext()
   return (
     <FlexContainer $direction='column' style={{ justifyContent: 'center' }}>
       {currentEncounter.type === 'shop' && (
@@ -35,7 +35,7 @@ export const Shop = (props: ShopPropsT) => {
         </>
       )}
       <FlexContainer style={{ justifyContent: 'center' }}>
-        <Button onClick={() => nextLevel()}>Travel Deeper</Button>
+        <Button onClick={() => completeCurrent()}>Leave Shop</Button>
       </FlexContainer>
     </FlexContainer>
   )

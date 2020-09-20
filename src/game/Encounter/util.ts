@@ -8,6 +8,7 @@ import {
   tShrineEncounter,
   tBossEncounter,
   tFloor,
+  tFloor2,
 } from './type'
 import { getRandom, noneg } from '../../util'
 import { makeParty, makeBossParty } from '../Party/util'
@@ -23,44 +24,46 @@ import { CURE_POTION } from '../Consumable/objects/curing_potion'
 import { FIREBOMB } from '../Consumable/objects/firebomb'
 import { POISON_KNIFE } from '../Consumable/objects/poison_knife'
 import { BEAST_DRUG } from '../Consumable/objects/beast_drug'
+import { makeEncounterArray } from '../../grid/util'
 
 export const makeEncounterType = (
   depth: number,
   max: number,
+  canBeShop: boolean,
 ): tEncounterType => {
   // return 'shrine'
-  if (depth === max - 2) {
-    return 'boss'
-  }
   if (depth === max - 1) {
-    return 'reward'
+    return 'boss'
   }
   if (depth === 0) {
     return 'combat'
   }
-  return getRandom([
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'combat',
-    'shop',
-    'shrine',
-  ])
+  return getRandom(
+    [
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'shop',
+      'shrine',
+    ].filter((t) => (canBeShop ? true : t !== 'shop')) as tEncounterType[],
+  )
 }
 
 export const makeRandomEncounter = (
   depth: number,
   max: number,
   floor: number,
+  canBeShop: boolean,
 ) => {
-  let encounterType = makeEncounterType(depth, max)
+  let encounterType = makeEncounterType(depth, max, canBeShop)
   const floorConfig = FLOOR_CONFIGS_BY_INDEX()[floor]
   let encounter: tEncounter = {
     id: v4(),
@@ -68,6 +71,7 @@ export const makeRandomEncounter = (
     name: `Encounter ${depth}`,
     type: encounterType,
     reward: ZERO_REWARD,
+    completed: false,
   }
 
   if (encounter.type === 'combat') {
@@ -148,7 +152,7 @@ export const makeEncounterList = (
         choices: Array(getRandom([1, 2, 3]))
           .fill(null)
           .map((_) => ({
-            ...makeRandomEncounter(index, depth, floor),
+            ...makeRandomEncounter(index, depth, floor, true),
             choiceId: id,
           })),
       }
@@ -175,5 +179,25 @@ export const makeFloor = (depth: number, encounterCount: number): tFloor => {
     name,
     encounters: makeEncounterList(encounterCount, depth),
     depth,
+  }
+}
+
+export const makeFloor2 = (depth: number, size: number): tFloor2 => {
+  let name = ''
+  if (depth === 0) {
+    name = 'The Forgotten Woods'
+  }
+  if (depth === 1) {
+    name = 'Tomb of the Formless One (in-progress)'
+  }
+  if (depth === 2) {
+    name = 'Realm of the Ancients (comming soon)'
+  }
+  return {
+    id: v4(),
+    name,
+    depth,
+    size: size,
+    encounters: makeEncounterArray(size, depth),
   }
 }

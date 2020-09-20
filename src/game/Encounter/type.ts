@@ -5,6 +5,7 @@ import { tConsumable } from '../Consumable/type'
 import { tBaseStats } from '../Stats/type'
 import { tStatusType } from '../Status/type'
 import { tCharacter } from '../Character/type'
+import { EncounterArrayT } from '../../grid/types'
 
 export type tEncounterType = 'combat' | 'shop' | 'shrine' | 'boss' | 'reward'
 export interface tEncounter {
@@ -13,6 +14,7 @@ export interface tEncounter {
   name: string
   type: tEncounterType
   reward: tEncounterReward
+  completed: boolean
 }
 export interface tCombatEncounter extends tEncounter {
   party: tParty
@@ -57,4 +59,12 @@ export interface tFloorConfig {
   items: (tWeapon | tArmor)[]
   enemies: Record<number, tCharacter[][]>
   bosses: tCharacter[]
+}
+
+export interface tFloor2 {
+  id: string
+  name: string
+  depth: number
+  size: number
+  encounters: EncounterArrayT
 }

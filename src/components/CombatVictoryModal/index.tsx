@@ -38,7 +38,7 @@ export interface CombatVictoryModalPropsT {
 export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
   const { rewards } = props
   const { rawParty, party, updateParty, equipItem } = usePartyContext()
-  const { nextLevel } = useGameStateContext()
+  const { completeCurrent } = useGameStateContext()
   const { close } = useModalContext()
   const consolidatedRewards = useMemo(() => consolidateRewards(rewards), [
     rewards,
@@ -46,7 +46,7 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
 
   const next = () => {
     close()
-    nextLevel()
+    completeCurrent()
   }
   const equip = (characterId: string, item: tArmor | tWeapon) => {
     equipItem(characterId, item)

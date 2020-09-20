@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Route, useHistory } from 'react-router-dom'
+import { Route, useHistory, useLocation } from 'react-router-dom'
 import { useGameStateContext } from '../contexts/GameStateContext'
 import { useModalContext } from '../contexts/ModalContext'
 import { Theme } from '../theme'
@@ -11,21 +11,15 @@ export const makeRoute = (path: string, Component: React.FC) => (
 )
 
 export const RouteController = () => {
-  const {
-    encounters,
-    currentEncounter,
-    level,
-    floor,
-    floors,
-    started,
-  } = useGameStateContext()
+  const { currentEncounter, floor, floors, started } = useGameStateContext()
   const history = useHistory()
   const { open } = useModalContext()
   useEffect(() => {
+    console.log('started', started)
     if (!started) {
       history.push('/')
     }
-    if (level > encounters.length - 1 || floor > floors.length - 2) {
+    if (floor > floors.length - 2) {
       open(
         <div style={{ textAlign: 'center', fontFamily: Theme.titleFont }}>
           <h1>You've Defeated the Lich! You did it!</h1>
@@ -34,12 +28,13 @@ export const RouteController = () => {
       history.push('/')
     } else if (
       currentEncounter &&
+      !currentEncounter.completed &&
       (currentEncounter.type === 'combat' || currentEncounter.type === 'boss')
     ) {
       history.push('/combat')
-    } else if (!currentEncounter && level > 0) {
+    } else if (started && currentEncounter && currentEncounter.completed) {
       history.push('/party')
     }
-  }, [currentEncounter, level, started])
+  }, [currentEncounter, started])
   return null
 }
