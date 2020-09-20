@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ee9fa62fd6e8b10e76575ab5c2d40969",
+    "revision": "4b89b72611b6ce30000fb6cf64d1c321",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "f9750425e35196e114fb",
+    "revision": "31924688835928f6bfdf",
     "url": "/JSFTK_combat/static/css/main.696c34a1.chunk.css"
   },
   {
-    "revision": "d14d9c41fed42635018b",
-    "url": "/JSFTK_combat/static/js/2.1d5dd543.chunk.js"
+    "revision": "ede67ae5c727ac7930c0",
+    "url": "/JSFTK_combat/static/js/2.f1c6503a.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.1d5dd543.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.f1c6503a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f9750425e35196e114fb",
-    "url": "/JSFTK_combat/static/js/main.ea95aad3.chunk.js"
+    "revision": "31924688835928f6bfdf",
+    "url": "/JSFTK_combat/static/js/main.23cdf69c.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -312,6 +312,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/lightning-shield.85367254.svg"
   },
   {
+    "revision": "4fef2a91486f65257bfa42fe4412b1c3",
+    "url": "/JSFTK_combat/static/media/locked-chest.4fef2a91.svg"
+  },
+  {
     "revision": "4b207eda2771249f8de821c266e42d05",
     "url": "/JSFTK_combat/static/media/lotus-flower.4b207eda.svg"
   },
@@ -330,6 +334,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ef75e68156a274464de71bdb56a2c67f",
     "url": "/JSFTK_combat/static/media/medicine-pills.ef75e681.svg"
+  },
+  {
+    "revision": "dc67da5d8630d37a8126c5c6f216bba1",
+    "url": "/JSFTK_combat/static/media/mimic-chest.dc67da5d.svg"
   },
   {
     "revision": "7ba33ac3032479b984836fcb696d4cec",
