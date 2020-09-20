@@ -46,7 +46,7 @@ const tabs: ShopTabT[] = [
               />
             ))}
         </CardList>
-        <h3>Weaopns</h3>
+        <h3>Weapons</h3>
         <CardList>
           {encounter.items
             .filter((i) => i.itemType === 'weapon')

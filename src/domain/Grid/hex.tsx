@@ -15,9 +15,11 @@ import { Theme } from '../../theme'
 export interface HexPropsT {
   hex: HexT
   size: number
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 export const Hex = (props: HexPropsT) => {
-  const { hex, size } = props
+  const { hex, size, onMouseEnter, onMouseLeave } = props
   const { currentHex, chooseNext, encounters } = useGameStateContext()
   const [isHovering, setIsHovering] = useState(false)
   const encounter = encounters[hex.q][hex.r][hex.s]
@@ -49,8 +51,14 @@ export const Hex = (props: HexPropsT) => {
           chooseNext(hex)
         }
       }}
-      onMouseEnter={() => adjacent && setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
+      onMouseEnter={() => {
+        if (adjacent) setIsHovering(true)
+        onMouseEnter && onMouseEnter()
+      }}
+      onMouseLeave={() => {
+        setIsHovering(false)
+        onMouseLeave && onMouseLeave()
+      }}
     >
       <g style={{ cursor: adjacent ? 'pointer' : 'default' }}>
         {depth === size - 1 ? (

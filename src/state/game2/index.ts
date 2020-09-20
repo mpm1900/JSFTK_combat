@@ -12,10 +12,12 @@ export interface GameStateT {
   hex: HexT
   floor: number
   floors: tFloor2[]
+  loading: boolean
 }
 
 export const SIZE = 10
 export const RESET = '@action/game/reset'
+export const SET_LOADING = '@action/game/set-loading'
 export const CHOOSE_NEXT = '@action/game/CHOOSE_NEXT'
 export const COMPLETE_CURRENT = '@action/game/complete-current'
 export const NEXT_FLOOR = '@action/game/next-floor'
@@ -25,6 +27,12 @@ export const actionCreators = {
   reset: (): StateActionT => ({
     type: RESET,
     payload: {},
+  }),
+  setLoading: (loading: boolean): StateActionT => ({
+    type: SET_LOADING,
+    payload: {
+      loading,
+    },
   }),
   chooseNext: (hex: HexT): StateActionT => ({
     type: CHOOSE_NEXT,
@@ -50,7 +58,11 @@ export const actionCreators = {
 
 export const actions = {
   reset: () => (dispatch: Dispatch) => {
-    dispatch(actionCreators.reset())
+    dispatch(actionCreators.setLoading(true))
+    setTimeout(() => {
+      dispatch(actionCreators.reset())
+      dispatch(actionCreators.setLoading(false))
+    }, 200)
   },
   chooseNext: (hex: HexT) => (dispatch: Dispatch) => {
     dispatch(actionCreators.chooseNext(hex))
@@ -80,11 +92,18 @@ const updateCurrentFloor = (
 
 export const core: StateCoreT<GameStateT> = {
   [RESET]: (state, action) => {
+    console.log('reset')
     return {
       ...state,
       hex: MIN_HEX(SIZE),
       floor: 0,
       floors: [makeFloor2(0, SIZE), makeFloor2(1, SIZE), makeFloor2(2, SIZE)],
+    }
+  },
+  [SET_LOADING]: (state, action) => {
+    return {
+      ...state,
+      loading: action.payload.loading,
     }
   },
   [CHOOSE_NEXT]: (state, action) => {
@@ -138,8 +157,9 @@ export const core: StateCoreT<GameStateT> = {
 
 export const INITIAL_STATE: GameStateT = {
   floor: 0,
-  hex: MIN_HEX(SIZE),
-  floors: [makeFloor2(0, SIZE), makeFloor2(1, SIZE), makeFloor2(2, SIZE)],
+  hex: MIN_HEX(0),
+  floors: [makeFloor2(0, 0), makeFloor2(1, 0), makeFloor2(2, 0)],
+  loading: false,
 }
 
 export default makeReducer(core, INITIAL_STATE)

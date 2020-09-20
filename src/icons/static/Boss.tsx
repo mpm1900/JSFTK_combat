@@ -11,7 +11,7 @@ export const Boss = (props: StaticIconProps) => {
         filter: 'drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7)',
       }}
     >
-      <g style={{ transform: 'translate(-253px, -187px)' }}>
+      <g style={{ transform: 'translate(-253px, -220px)' }}>
         <path
           height='24px'
           width='24px'

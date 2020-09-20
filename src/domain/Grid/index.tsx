@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import Color from 'color'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { Theme } from '../../theme'
@@ -20,20 +20,21 @@ export const Grid = () => {
   const { floor, floors } = useGameStateContext()
   const currentFloor = floors[floor]
   const hexagons = useMemo(() => GridGenerator.triangle(currentFloor.size), [])
+  // const [activeHex, setActiveHex] = useState<HexT | undefined>()
   return (
     <FlexContainer
       $full
       style={{
-        background: Theme.darkBgColor,
-        padding: 8,
-        margin: '16px 16px 16px 36px',
         color: 'white',
         fontSize: '3px',
         justifyContent: 'center',
       }}
     >
-      <FlexContainer style={{ alignItems: 'center' }}>
-        <div style={{ width: 650, height: 567 }}>
+      <FlexContainer
+        $full
+        style={{ alignItems: 'center', justifyContent: 'center' }}
+      >
+        <div className='shadow' style={{ width: 594, height: 510 }}>
           <HexGrid>
             <defs>
               <filter id='shadow' width='200%' height='200%'>
@@ -41,7 +42,7 @@ export const Grid = () => {
               </filter>
             </defs>
             <Layout
-              size={{ x: 5, y: 5 }}
+              size={{ x: 4.5, y: 4.5 }}
               origin={{ x: -57, y: -40 }}
               spacing={1.02}
               flat={false}
@@ -54,57 +55,79 @@ export const Grid = () => {
                     hex.s === currentFloor.size * -1,
                 )
                 .map((hex: HexT, i: number) => (
-                  <Hex hex={hex} size={currentFloor.size} />
+                  <Hex
+                    hex={hex}
+                    size={currentFloor.size}
+                    // onMouseEnter={() => setActiveHex(hex)}
+                    // onMouseLeave={() => setActiveHex(undefined)}
+                  />
                 ))}
             </Layout>
           </HexGrid>
         </div>
       </FlexContainer>
-      <FlexContainer $full $direction='column' style={{ fontSize: 16 }}>
-        <h3 style={{ fontFamily: Theme.titleFont, fontWeight: 'normal' }}>
-          Floor Map
-        </h3>
-        <Text style={{ marginBottom: 16 }}>
-          This is the floor map. Here you can see the cleared encounters (green)
-          and the encounters you can travel to (blue). Click a blue hex to
-          advance.
-        </Text>
-        <FlexContainer style={{ alignItems: 'center', height: 48 }}>
-          <HexBadge
-            color='green'
-            size={40}
-            stroke={3}
-            style={{ marginRight: 8 }}
-          />
-          Cleared Encounters
+      <div>
+        <FlexContainer
+          $direction='column'
+          style={{
+            fontSize: 12,
+            maxWidth: 300,
+            background: Theme.darkBgColor,
+            padding: 8,
+            margin: '16px 16px 16px 36px',
+          }}
+        >
+          <h3
+            style={{
+              fontFamily: Theme.titleFont,
+              fontWeight: 'normal',
+              marginTop: 0,
+            }}
+          >
+            Floor Map
+          </h3>
+          <Text style={{ marginBottom: 16 }}>
+            This is the floor map. Here you can see the cleared encounters
+            (green) and the encounters you can travel to (blue). Click a blue
+            hex to advance.
+          </Text>
+          <FlexContainer style={{ alignItems: 'center', height: 48 }}>
+            <HexBadge
+              color='green'
+              size={40}
+              stroke={3}
+              style={{ marginRight: 8 }}
+            />
+            Cleared Encounters
+          </FlexContainer>
+          <FlexContainer style={{ alignItems: 'center', height: 48 }}>
+            <HexBadge
+              color={Color(Theme.physicalColor).darken(0.5).rgb().toString()}
+              size={40}
+              stroke={3}
+              style={{ marginRight: 8 }}
+            />
+            Adjacent Encounters
+          </FlexContainer>
+          <FlexContainer style={{ alignItems: 'center', height: 48 }}>
+            <Icon src={Start} size={36} style={{ marginRight: 12 }} />
+            Starting Location
+          </FlexContainer>
+          <FlexContainer style={{ alignItems: 'center', height: 48 }}>
+            <Icon src={Shop} size={36} style={{ marginRight: 12 }} />
+            Shop
+          </FlexContainer>
+          <FlexContainer style={{ alignItems: 'center', height: 48 }}>
+            <Icon src={Unknown} size={36} style={{ marginRight: 12 }} />
+            Random Encounter
+          </FlexContainer>
+          <FlexContainer style={{ alignItems: 'center', height: 48 }}>
+            <Icon src={Boss} size={36} style={{ marginRight: 12 }} />
+            Boss
+          </FlexContainer>
+          <FullContainer />
         </FlexContainer>
-        <FlexContainer style={{ alignItems: 'center', height: 48 }}>
-          <HexBadge
-            color={Color(Theme.physicalColor).darken(0.5).rgb().toString()}
-            size={40}
-            stroke={3}
-            style={{ marginRight: 8 }}
-          />
-          Adjacent Encounters
-        </FlexContainer>
-        <FlexContainer style={{ alignItems: 'center', height: 48 }}>
-          <Icon src={Start} size={36} style={{ marginRight: 12 }} />
-          Starting Hex
-        </FlexContainer>
-        <FlexContainer style={{ alignItems: 'center', height: 48 }}>
-          <Icon src={Shop} size={36} style={{ marginRight: 12 }} />
-          Shop
-        </FlexContainer>
-        <FlexContainer style={{ alignItems: 'center', height: 48 }}>
-          <Icon src={Unknown} size={36} style={{ marginRight: 12 }} />
-          Random Encounter
-        </FlexContainer>
-        <FlexContainer style={{ alignItems: 'center', height: 48 }}>
-          <Icon src={Boss} size={36} style={{ marginRight: 12 }} />
-          Boss
-        </FlexContainer>
-        <FullContainer />
-      </FlexContainer>
+      </div>
     </FlexContainer>
   )
 }

@@ -3,6 +3,7 @@ import { useGameState, useGameStateActions } from '../../state/game2'
 import { tEncounter, tFloor2 } from '../../game/Encounter/type'
 import { EncounterArrayT, HexT } from '../../grid/types'
 import { makeHex } from '../../grid/util'
+import { useModalContext } from '../ModalContext'
 
 export interface GameStateContextT {
   started: boolean
@@ -12,6 +13,7 @@ export interface GameStateContextT {
   currentHex: HexT
   currentEncounter: tEncounter | undefined
   previousEncounter: tEncounter | undefined
+  loading: boolean
   chooseNext: (hex: HexT) => void
   nextFloor: () => void
   reset: () => void
@@ -27,6 +29,7 @@ export const defaultValue: GameStateContextT = {
   currentHex: makeHex(0, 0, 0),
   currentEncounter: undefined,
   previousEncounter: undefined,
+  loading: false,
   chooseNext: (hex) => {},
   nextFloor: () => {},
   reset: () => {},
@@ -43,7 +46,7 @@ export interface GameStateProviderPropsT {
 }
 export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
   const { children } = props
-  const { floors, floor, hex } = useGameState()
+  const { floors, floor, hex, loading } = useGameState()
   const [started, setStarted] = useState(false)
   const currentFloor = floors[floor]
   const encounters = currentFloor.encounters
@@ -81,6 +84,7 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
         currentHex: hex,
         currentEncounter,
         previousEncounter,
+        loading,
         reset,
         chooseNext,
         nextFloor,

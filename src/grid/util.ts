@@ -54,8 +54,10 @@ export const makeEncounterArray = (
   let result: EncounterArrayT = {}
   for (let q = minQ; q <= maxQ; q++) {
     result[q] = {}
-    for (let r = minR; r <= maxR; r++) {
+    for (let r = maxR; r >= minR; r--) {
+      const ri = maxR - r
       result[q][r] = {}
+      if (q > ri) continue
       const s = q * -1 - r
       const d = getDepth(makeHex(q, r, s), size)
       const startHex = MIN_HEX(size)

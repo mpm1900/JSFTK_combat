@@ -1,14 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { FlexContainer } from '../../elements/flex'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 import { Choice } from './Choice'
 import { Shop } from './Shop'
-import {
-  tRewardEncounter,
-  tShopEncounter,
-  tShrineEncounter,
-} from '../../game/Encounter/type'
-import { Reward } from './Reward'
+import { tShopEncounter, tShrineEncounter } from '../../game/Encounter/type'
 import { Shrine } from './Shrine'
 
 export const EncounterActions = () => {
@@ -27,12 +22,19 @@ export const EncounterActions = () => {
     >
       {currentEncounter ? (
         <>
-          {currentEncounter.completed && <Choice />}
-          {currentEncounter.type === 'shop' && (
-            <Shop currentEncounter={currentEncounter as tShopEncounter} />
-          )}
-          {currentEncounter.type === 'shrine' && (
-            <Shrine currentEncounter={currentEncounter as tShrineEncounter} />
+          {currentEncounter.completed ? (
+            <Choice />
+          ) : (
+            <>
+              {currentEncounter.type === 'shop' && (
+                <Shop currentEncounter={currentEncounter as tShopEncounter} />
+              )}
+              {currentEncounter.type === 'shrine' && (
+                <Shrine
+                  currentEncounter={currentEncounter as tShrineEncounter}
+                />
+              )}
+            </>
           )}
         </>
       ) : (

@@ -20,6 +20,7 @@ import { HeadingSm } from '../elements/typography'
 import { Gauge2 } from '../components/Gauge/v2'
 import { TEST_WEAPON } from '../game/Weapon/builders/unique/test_weapon'
 import { noneg } from '../util'
+import { useModalContext } from '../contexts/ModalContext'
 
 export const Start = () => {
   const {
@@ -30,11 +31,29 @@ export const Start = () => {
     findRawCharacter,
   } = usePartyContext()
   const history = useHistory()
-  const { reset } = useGameStateContext()
+  const { open, close } = useModalContext()
+  const { reset, loading } = useGameStateContext()
   useEffect(() => {
     updateParty(INITIAL_STATE)
     reset()
   }, [])
+
+  useEffect(() => {
+    console.log('LOADING', loading)
+    if (loading) {
+      open(
+        <div>
+          <h1 style={{ fontFamily: Theme.titleFont, textAlign: 'center' }}>
+            Loading...
+          </h1>
+        </div>,
+        {},
+        true,
+      )
+    } else {
+      close()
+    }
+  }, [loading])
   return (
     <FlexContainer
       $full
@@ -59,11 +78,7 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.5.12
-            <br />
-            <a href={'#'} onClick={() => history.push('/grid')}>
-              g
-            </a>
+            alpha-0.0.6.3
           </Monospace>
         }
       >

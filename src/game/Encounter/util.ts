@@ -51,7 +51,14 @@ export const makeEncounterType = (
       'combat',
       'combat',
       'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
       'shop',
+      'shrine',
       'shrine',
     ].filter((t) => (canBeShop ? true : t !== 'shop')) as tEncounterType[],
   )
@@ -183,6 +190,7 @@ export const makeFloor = (depth: number, encounterCount: number): tFloor => {
 }
 
 export const makeFloor2 = (depth: number, size: number): tFloor2 => {
+  console.log('makeFloor', depth)
   let name = ''
   if (depth === 0) {
     name = 'The Forgotten Woods'
