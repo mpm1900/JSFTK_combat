@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.696c34a1.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.af286ad6.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.af286ad6.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.f6877cb5.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.f6877cb5.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
-    "static/js/2.d430a2c2.chunk.js": "/JSFTK_combat/static/js/2.d430a2c2.chunk.js",
-    "static/js/2.d430a2c2.chunk.js.map": "/JSFTK_combat/static/js/2.d430a2c2.chunk.js.map",
+    "static/js/2.1d5dd543.chunk.js": "/JSFTK_combat/static/js/2.1d5dd543.chunk.js",
+    "static/js/2.1d5dd543.chunk.js.map": "/JSFTK_combat/static/js/2.1d5dd543.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.93f7b943f8cb0be5c92f6d9044bd2d4d.js": "/JSFTK_combat/precache-manifest.93f7b943f8cb0be5c92f6d9044bd2d4d.js",
+    "precache-manifest.bc50aaf16f5fcf1d25a7c20edd95c4b3.js": "/JSFTK_combat/precache-manifest.bc50aaf16f5fcf1d25a7c20edd95c4b3.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/main.696c34a1.chunk.css.map": "/JSFTK_combat/static/css/main.696c34a1.chunk.css.map",
-    "static/js/2.d430a2c2.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.d430a2c2.chunk.js.LICENSE.txt",
+    "static/js/2.1d5dd543.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.1d5dd543.chunk.js.LICENSE.txt",
     "static/media/1.png": "/JSFTK_combat/static/media/1.a7dcd7d0.png",
     "static/media/2.png": "/JSFTK_combat/static/media/2.22bba3d5.png",
     "static/media/3.png": "/JSFTK_combat/static/media/3.5b81afea.png",
@@ -44,13 +44,11 @@
     "static/media/cowled.svg": "/JSFTK_combat/static/media/cowled.d0cad9db.svg",
     "static/media/croc-sword.svg": "/JSFTK_combat/static/media/croc-sword.dfa5ecf6.svg",
     "static/media/cross-shield.svg": "/JSFTK_combat/static/media/cross-shield.6feb257e.svg",
-    "static/media/crossed-swords.svg": "/JSFTK_combat/static/media/crossed-swords.b7d2c27a.svg",
     "static/media/crosshair.svg": "/JSFTK_combat/static/media/crosshair.d2c9a9ed.svg",
     "static/media/crowned-skull.svg": "/JSFTK_combat/static/media/crowned-skull.458d8f78.svg",
     "static/media/cultist.svg": "/JSFTK_combat/static/media/cultist.998af3b1.svg",
     "static/media/daemon-skull.svg": "/JSFTK_combat/static/media/daemon-skull.ec5b5916.svg",
     "static/media/diablo-skull.svg": "/JSFTK_combat/static/media/diablo-skull.18710d12.svg",
-    "static/media/divided-spiral.svg": "/JSFTK_combat/static/media/divided-spiral.a8e90e0d.svg",
     "static/media/dodging.svg": "/JSFTK_combat/static/media/dodging.3c689d6d.svg",
     "static/media/double-shot.svg": "/JSFTK_combat/static/media/double-shot.70211522.svg",
     "static/media/drink-me.svg": "/JSFTK_combat/static/media/drink-me.2ee1fbb7.svg",
@@ -134,8 +132,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
-    "static/js/2.d430a2c2.chunk.js",
+    "static/js/2.1d5dd543.chunk.js",
     "static/css/main.696c34a1.chunk.css",
-    "static/js/main.af286ad6.chunk.js"
+    "static/js/main.f6877cb5.chunk.js"
   ]
 }

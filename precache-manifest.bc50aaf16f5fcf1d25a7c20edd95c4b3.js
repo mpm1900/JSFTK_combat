@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5f84336c947ff6252e43668513236559",
+    "revision": "b89a111bbc83e0521ca64b1a3d4b5f0f",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "cc985a454bcda013afdb",
+    "revision": "594b6d22fcd7e05a08f9",
     "url": "/JSFTK_combat/static/css/main.696c34a1.chunk.css"
   },
   {
-    "revision": "6376a8f2031ca097bb8b",
-    "url": "/JSFTK_combat/static/js/2.d430a2c2.chunk.js"
+    "revision": "d14d9c41fed42635018b",
+    "url": "/JSFTK_combat/static/js/2.1d5dd543.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.d430a2c2.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.1d5dd543.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "cc985a454bcda013afdb",
-    "url": "/JSFTK_combat/static/js/main.af286ad6.chunk.js"
+    "revision": "594b6d22fcd7e05a08f9",
+    "url": "/JSFTK_combat/static/js/main.f6877cb5.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -156,10 +156,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/cross-shield.6feb257e.svg"
   },
   {
-    "revision": "b7d2c27aa5e3c339407d1442370fe343",
-    "url": "/JSFTK_combat/static/media/crossed-swords.b7d2c27a.svg"
-  },
-  {
     "revision": "d2c9a9ed90f4fc0145d61f3fe7f8402f",
     "url": "/JSFTK_combat/static/media/crosshair.d2c9a9ed.svg"
   },
@@ -178,10 +174,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "18710d12832d8fa3b58b4cbe294e37fa",
     "url": "/JSFTK_combat/static/media/diablo-skull.18710d12.svg"
-  },
-  {
-    "revision": "a8e90e0d15e9d2a427c9cec22e630d3b",
-    "url": "/JSFTK_combat/static/media/divided-spiral.a8e90e0d.svg"
   },
   {
     "revision": "3c689d6dc1e3d50ce2b5c37e6e3a5d0c",
