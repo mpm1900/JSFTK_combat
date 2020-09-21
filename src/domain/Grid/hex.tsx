@@ -11,6 +11,7 @@ import { Shrine } from '../../icons/static/Shine'
 import { Shop } from '../../icons/static/Shop'
 import { Start } from '../../icons/static/Start'
 import { Theme } from '../../theme'
+import { Chest } from '../../icons/static/Chest'
 
 export interface HexPropsT {
   hex: HexT
@@ -27,7 +28,7 @@ export const Hex = (props: HexPropsT) => {
   const adjacent = isAdjacent(currentHex)(hex)
   const depth = getDepth(hex, size)
   const fill =
-    !encounter || encounter.completed || active || isHovering
+    !encounter || encounter?.completed || active || isHovering
       ? 'white'
       : 'rgba(255,255,255,0.6)'
   return (
@@ -67,6 +68,8 @@ export const Hex = (props: HexPropsT) => {
           <Start fill={fill} />
         ) : encounter?.type === 'shop' ? (
           <Shop fill={fill} />
+        ) : encounter.type === 'reward' ? (
+          <Chest fill={fill} />
         ) : encounter?.completed ? (
           encounter?.type === 'shrine' ? (
             <Shrine fill={fill} />

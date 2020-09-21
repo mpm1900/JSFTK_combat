@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Route, useHistory, useLocation } from 'react-router-dom'
 import { useGameStateContext } from '../contexts/GameStateContext'
 import { useModalContext } from '../contexts/ModalContext'
+import { tRewardEncounter } from '../game/Encounter/type'
 import { Theme } from '../theme'
 
 export const makeRoute = (path: string, Component: React.FC) => (
@@ -29,7 +30,11 @@ export const RouteController = () => {
     } else if (
       currentEncounter &&
       !currentEncounter.completed &&
-      (currentEncounter.type === 'combat' || currentEncounter.type === 'boss')
+      (currentEncounter.type === 'combat' ||
+        currentEncounter.type === 'boss' ||
+        (currentEncounter.type === 'reward' &&
+          (currentEncounter as tRewardEncounter).isMimic &&
+          (currentEncounter as tRewardEncounter).isOpened))
     ) {
       history.push('/combat')
     } else if (started && currentEncounter && currentEncounter.completed) {

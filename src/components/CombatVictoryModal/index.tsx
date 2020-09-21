@@ -50,7 +50,6 @@ export const CombatVictoryModal = (props: CombatVictoryModalPropsT) => {
   }
   const equip = (characterId: string, item: tArmor | tWeapon) => {
     equipItem(characterId, item)
-    next()
   }
 
   useEffect(() => {

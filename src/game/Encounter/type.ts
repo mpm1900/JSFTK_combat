@@ -32,7 +32,10 @@ export interface tShrineEncounter extends tEncounter {
 export interface tBossEncounter extends tCombatEncounter {
   boss: true
 }
-export interface tRewardEncounter extends tEncounter {}
+export interface tRewardEncounter extends tCombatEncounter {
+  isMimic: boolean
+  isOpened: boolean
+}
 
 export interface tEncounterReward {
   gold: number
@@ -41,23 +44,11 @@ export interface tEncounterReward {
   status: tStatusType[]
   immunities: tStatusType[]
 }
-
-export interface tEncounterChoice {
-  id: string
-  depth: number
-  chosen: number | undefined
-  choices: tEncounter[]
-}
-
-export interface tFloor {
-  id: string
-  name: string
-  depth: number
-  encounters: tEncounterChoice[]
-}
 export interface tFloorConfig {
   items: (tWeapon | tArmor)[]
   enemies: Record<number, tCharacter[][]>
+  altEnemies: Record<number, tCharacter[][]>
+  mimic: () => tCharacter
   bosses: tCharacter[]
 }
 

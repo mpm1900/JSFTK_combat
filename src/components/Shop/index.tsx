@@ -25,18 +25,27 @@ interface ShopTabT {
   render: (
     encounter: tShopEncounter,
     purchaseItem: (item: tArmor | tWeapon | tConsumable, cost: number) => void,
+    query: string,
   ) => JSX.Element
 }
 const tabs: ShopTabT[] = [
   {
     key: 'all',
     label: 'All',
-    render: (encounter: tShopEncounter, purchaseItem) => (
+    render: (encounter: tShopEncounter, purchaseItem, query) => (
       <FlexContainer $direction='column'>
         <h3>Consumables</h3>
         <CardList>
           {encounter.items
-            .filter((i) => i.itemType === 'consumable')
+            .filter(
+              (i) =>
+                i.itemType === 'consumable' &&
+                (query
+                  ? JSON.stringify(i)
+                      .toLowerCase()
+                      .includes(query.toLowerCase())
+                  : true),
+            )
             .map((a) => (
               <ItemCard
                 item={a as tConsumable}
@@ -49,7 +58,15 @@ const tabs: ShopTabT[] = [
         <h3>Weapons</h3>
         <CardList>
           {encounter.items
-            .filter((i) => i.itemType === 'weapon')
+            .filter(
+              (i) =>
+                i.itemType === 'weapon' &&
+                (query
+                  ? JSON.stringify(i)
+                      .toLowerCase()
+                      .includes(query.toLowerCase())
+                  : true),
+            )
             .map((w) => (
               <ItemCard
                 item={w}
@@ -62,7 +79,15 @@ const tabs: ShopTabT[] = [
         <h3>Armor</h3>
         <CardList>
           {encounter.items
-            .filter((i) => i.itemType === 'armor')
+            .filter(
+              (i) =>
+                i.itemType === 'armor' &&
+                (query
+                  ? JSON.stringify(i)
+                      .toLowerCase()
+                      .includes(query.toLowerCase())
+                  : true),
+            )
             .map((a) => (
               <ItemCard
                 item={a}
@@ -78,10 +103,16 @@ const tabs: ShopTabT[] = [
   {
     key: 'weapons',
     label: 'Weaons',
-    render: (encounter: tShopEncounter, purchaseItem) => (
+    render: (encounter: tShopEncounter, purchaseItem, query) => (
       <CardList>
         {encounter.items
-          .filter((i) => i.itemType === 'weapon')
+          .filter(
+            (i) =>
+              i.itemType === 'weapon' &&
+              (query
+                ? JSON.stringify(i).toLowerCase().includes(query.toLowerCase())
+                : true),
+          )
           .map((w) => (
             <ItemCard
               item={w}
@@ -96,10 +127,16 @@ const tabs: ShopTabT[] = [
   {
     key: 'armor',
     label: 'Armor',
-    render: (encounter: tShopEncounter, purchaseItem) => (
+    render: (encounter: tShopEncounter, purchaseItem, query) => (
       <CardList>
         {encounter.items
-          .filter((i) => i.itemType === 'armor')
+          .filter(
+            (i) =>
+              i.itemType === 'armor' &&
+              (query
+                ? JSON.stringify(i).toLowerCase().includes(query.toLowerCase())
+                : true),
+          )
           .map((a) => (
             <ItemCard
               item={a}
@@ -136,6 +173,7 @@ export const Shop = (props: ShopPropsT) => {
   const {} = props
   const { currentEncounter } = useGameStateContext()
   const { purchaseItem } = usePartyContext()
+  const [query, setQuery] = useState('')
   const [activeTab, setActiveTab] = useState(
     tabs.find((t) => t.key === 'all') as ShopTabT,
   )
@@ -156,6 +194,18 @@ export const Shop = (props: ShopPropsT) => {
             Black Market
           </h1>
         </FullContainer>
+        <input
+          placeholder='Search Items'
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          style={{
+            background: Theme.mediumBgColor,
+            border: '1px solid rgba(255,255,255,0.4)',
+            padding: 10,
+            color: 'white',
+            marginRight: 16,
+          }}
+        />
         <FlexContainer>
           {tabs.map((tab) => (
             <Button
@@ -178,7 +228,11 @@ export const Shop = (props: ShopPropsT) => {
           overflowY: 'auto',
         }}
       >
-        {activeTab.render(currentEncounter as tShopEncounter, purchaseItem)}
+        {activeTab.render(
+          currentEncounter as tShopEncounter,
+          purchaseItem,
+          query,
+        )}
       </FlexContainer>
     </BoxContainer>
   )

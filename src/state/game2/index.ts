@@ -3,7 +3,11 @@ import { makeReducer } from '../util'
 import { useSelector } from 'react-redux'
 import { useActions } from '../../hooks/useActions'
 import { Dispatch } from 'redux'
-import { tShopEncounter, tFloor2 } from '../../game/Encounter/type'
+import {
+  tShopEncounter,
+  tFloor2,
+  tRewardEncounter,
+} from '../../game/Encounter/type'
 import { makeFloor2 } from '../../game/Encounter/util'
 import { HexT } from '../../grid/types'
 import { makeHex, MIN_HEX } from '../../grid/util'
@@ -15,11 +19,12 @@ export interface GameStateT {
   loading: boolean
 }
 
-export const SIZE = 10
+export const FLOOR_SIZE = 10
 export const RESET = '@action/game/reset'
 export const SET_LOADING = '@action/game/set-loading'
 export const CHOOSE_NEXT = '@action/game/CHOOSE_NEXT'
 export const COMPLETE_CURRENT = '@action/game/complete-current'
+export const OPEN_CURRENT = '@action/game/open-current'
 export const NEXT_FLOOR = '@action/game/next-floor'
 export const REMOVE_ITEM = '@action/game/remove-item'
 
@@ -54,6 +59,10 @@ export const actionCreators = {
     type: COMPLETE_CURRENT,
     payload: {},
   }),
+  openCurrent: (): StateActionT => ({
+    type: OPEN_CURRENT,
+    payload: {},
+  }),
 }
 
 export const actions = {
@@ -76,6 +85,9 @@ export const actions = {
   completeCurrent: () => (dispatch: Dispatch) => {
     dispatch(actionCreators.completeCurrent())
   },
+  openCurrent: () => (dispatch: Dispatch) => {
+    dispatch(actionCreators.openCurrent())
+  },
 }
 
 const updateCurrentFloor = (
@@ -95,9 +107,13 @@ export const core: StateCoreT<GameStateT> = {
     console.log('reset')
     return {
       ...state,
-      hex: MIN_HEX(SIZE),
+      hex: MIN_HEX(FLOOR_SIZE),
       floor: 0,
-      floors: [makeFloor2(0, SIZE), makeFloor2(1, SIZE), makeFloor2(2, SIZE)],
+      floors: [
+        makeFloor2(0, FLOOR_SIZE),
+        makeFloor2(1, FLOOR_SIZE),
+        makeFloor2(2, FLOOR_SIZE),
+      ],
     }
   },
   [SET_LOADING]: (state, action) => {
@@ -116,7 +132,7 @@ export const core: StateCoreT<GameStateT> = {
     return {
       ...state,
       floor: state.floor + 1,
-      hex: MIN_HEX(SIZE),
+      hex: MIN_HEX(FLOOR_SIZE),
     }
   },
   [REMOVE_ITEM]: (state, action) => {
@@ -153,6 +169,24 @@ export const core: StateCoreT<GameStateT> = {
       }
     })
   },
+  [OPEN_CURRENT]: (state, action) => {
+    console.log('open current')
+    return updateCurrentFloor(state, (floor) => {
+      const encounters = floor.encounters
+      let encounter = encounters[state.hex.q][state.hex.r][state.hex.s]
+      if (encounter) {
+        encounter = {
+          ...encounter,
+          isOpened: true,
+        } as tRewardEncounter
+        encounters[state.hex.q][state.hex.r][state.hex.s] = encounter
+      }
+      return {
+        ...floor,
+        encounters,
+      }
+    })
+  },
 }
 
 export const INITIAL_STATE: GameStateT = {
@@ -172,4 +206,5 @@ export const useGameStateActions = () =>
     nextFloor: () => void
     removeItem: (itemId: string) => void
     completeCurrent: () => void
+    openCurrent: () => void
   }

@@ -1,7 +1,5 @@
 import React from 'react'
 import { FlexContainer } from '../../elements/flex'
-import { tEncounterChoice } from '../../game/Encounter/type'
-import { getChoiceText } from '../../game/Encounter/constants'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 import { HeadingSm, Text } from '../../elements/typography'
 import { ENCOUNTER_TEXTS } from '../../game/Encounter/text'

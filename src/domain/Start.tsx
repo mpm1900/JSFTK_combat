@@ -78,15 +78,15 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.6.3
+            alpha-0.0.6.6
           </Monospace>
         }
       >
         <span
           style={{ color: 'white', lineHeight: '52px', whiteSpace: 'nowrap' }}
         >
-          I am looking for help with: item, and enemy, and general design! If
-          you would like to help, shoot me a message or head over to my github
+          I am looking for help with: item, and enemy, and world design! If you
+          would like to help, shoot me a message or head over to my github
         </span>
       </AppHeader>
       <FullContainer />

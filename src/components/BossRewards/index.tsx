@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 import { usePartyContext } from '../../contexts/PartyContext'
 import { RedButton } from '../../elements/button'
@@ -11,14 +11,25 @@ import { Theme } from '../../theme'
 import { ItemCard } from '../ItemCard'
 
 export const BossRewards = () => {
-  const { previousEncounter } = useGameStateContext()
+  const { currentEncounter } = useGameStateContext()
   const { nextFloor } = useGameStateContext()
   const { updateParty, rawParty } = usePartyContext()
   const [chosenReward, setChosenReward] = useState<
     tArmor | tWeapon | undefined
   >()
-  if (!previousEncounter) return null
-  const boss = (previousEncounter as tBossEncounter).party.characters[0]
+
+  useEffect(() => {
+    updateParty({
+      ...rawParty,
+      characters: rawParty.characters.map((c) => ({
+        ...c,
+        healthOffset: 0,
+      })),
+    })
+  }, [])
+
+  if (!currentEncounter) return null
+  const boss = (currentEncounter as tBossEncounter).party.characters[0]
 
   return (
     <FlexContainer

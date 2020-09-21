@@ -62,14 +62,16 @@ export const makeEncounterArray = (
       if (q > ri) continue
       const s = q * -1 - r
       const d = getDepth(makeHex(q, r, s), size)
+      const isSide = q === 0 || q - 1 === d
       const startHex = MIN_HEX(size)
       if (!(q === startHex.q && r === startHex.r && s === startHex.s)) {
         const e = makeRandomEncounter(
           d,
+          q,
           size,
           floor,
-          false,
           index === shopIndex,
+          !isSide,
         )
         result[q][r][s] = e
       }

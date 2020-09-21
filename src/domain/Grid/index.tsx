@@ -11,11 +11,10 @@ import { HexBadge } from '../../elements/shapes'
 import { Icon } from '../../components/Icon'
 import Unknown from '../../icons/svg/delapouite/perspective-dice-six.svg'
 import Shop from '../../icons/svg/delapouite/coins.svg'
-import Combat from '../../icons/svg/lorc/crossed-swords.svg'
-import Shrine from '../../icons/svg/lorc/divided-spiral.svg'
 import Boss from '../../icons/svg/lorc/crowned-skull.svg'
 import Start from '../../icons/svg/lorc/campfire.svg'
 import { BoxContainer } from '../../elements/box'
+import { getDepth } from '../../grid/util'
 
 export const Grid = () => {
   const { floor, floors } = useGameStateContext()
@@ -89,7 +88,9 @@ export const Grid = () => {
             Floor Map
           </h3>
           <Text>
-            {/*activeHex ? JSON.stringify(activeHex) : 'hover to see location' */}
+            {activeHex
+              ? `${activeHex.q}, ${getDepth(activeHex, currentFloor.size)}`
+              : 'hover to see location'}
           </Text>
           <Text style={{ marginBottom: 16, display: 'block' }}>
             This is the floor map. Here you can see the cleared encounters

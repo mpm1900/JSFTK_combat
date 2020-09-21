@@ -3,12 +3,11 @@ import {
   tEncounter,
   tEncounterType,
   tCombatEncounter,
-  tEncounterChoice,
   tShopEncounter,
   tShrineEncounter,
   tBossEncounter,
-  tFloor,
   tFloor2,
+  tRewardEncounter,
 } from './type'
 import { getRandom, noneg } from '../../util'
 import { makeParty, makeBossParty } from '../Party/util'
@@ -25,14 +24,17 @@ import { FIREBOMB } from '../Consumable/objects/firebomb'
 import { POISON_KNIFE } from '../Consumable/objects/poison_knife'
 import { BEAST_DRUG } from '../Consumable/objects/beast_drug'
 import { makeEncounterArray } from '../../grid/util'
+import { makeRandom } from '../../util/makeRandom'
+import { makeEnemyReward } from '../Character/enemies/_builder'
+import { getRandomItem } from '../Item/util'
 
 export const makeEncounterType = (
   depth: number,
   max: number,
-  canBeShop: boolean,
   isShop: boolean = false,
+  canBeReward: boolean = true,
 ): tEncounterType => {
-  // return 'shrine'
+  return 'shop'
   if (isShop) {
     return 'shop'
   }
@@ -42,8 +44,8 @@ export const makeEncounterType = (
   if (depth === 0) {
     return 'combat'
   }
-  return getRandom(
-    [
+  if (canBeReward) {
+    return getRandom([
       'combat',
       'combat',
       'combat',
@@ -63,21 +65,44 @@ export const makeEncounterType = (
       'combat',
       'combat',
       'combat',
-      'combat',
-      'shop',
+      'reward',
       'shrine',
-    ].filter((t) => (canBeShop ? true : t !== 'shop')) as tEncounterType[],
-  )
+    ])
+  } else {
+    return getRandom([
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+      'combat',
+    ])
+  }
 }
 
 export const makeRandomEncounter = (
   depth: number,
+  altIndex: number,
   max: number,
   floor: number,
-  canBeShop: boolean,
-  isShop: boolean = false,
+  isShop: boolean,
+  canBeReward: boolean,
 ) => {
-  let encounterType = makeEncounterType(depth, max, canBeShop, isShop)
+  let encounterType = makeEncounterType(depth, max, isShop, canBeReward)
   const floorConfig = FLOOR_CONFIGS_BY_INDEX()[floor]
   let encounter: tEncounter = {
     id: v4(),
@@ -104,11 +129,20 @@ export const makeRandomEncounter = (
   if (encounter.type === 'reward') {
     encounter = {
       ...encounter,
-    }
+      isMimic: makeRandom(10) > 6,
+      reward: makeEnemyReward(100, makeRandom(25), [
+        getRandomItem(2, 2),
+        getRandomItem(2, 2),
+      ]),
+      isOpened: false,
+      party: {
+        ...makeParty(depth, floor),
+        characters: [floorConfig.mimic()],
+      },
+    } as tRewardEncounter
   }
   if (encounter.type === 'shop') {
     const items = [
-      GODSBEARD(),
       GODSBEARD(),
       CELESTIAL_LOTUS(),
       CURE_POTION(),
@@ -151,49 +185,8 @@ export const makeRandomEncounter = (
   return encounter
 }
 
-export const makeEncounterList = (
-  depth: number,
-  floor: number,
-): tEncounterChoice[] => {
-  return Array(depth)
-    .fill(undefined)
-    .map((_, index) => {
-      const id = v4()
-      return {
-        id,
-        depth: index,
-        chosen: undefined,
-        choices: Array(getRandom([1, 2, 3]))
-          .fill(null)
-          .map((_) => ({
-            ...makeRandomEncounter(index, depth, floor, true),
-            choiceId: id,
-          })),
-      }
-    })
-}
-
 export const getItemCost = (item: tArmor | tWeapon | tConsumable): number => {
   return item.goldValue * 3
-}
-
-export const makeFloor = (depth: number, encounterCount: number): tFloor => {
-  let name = ''
-  if (depth === 0) {
-    name = 'The Forgotten Woods'
-  }
-  if (depth === 1) {
-    name = 'Tomb of the Formless One (in-progress)'
-  }
-  if (depth === 2) {
-    name = 'Realm of the Ancients (comming soon)'
-  }
-  return {
-    id: v4(),
-    name,
-    encounters: makeEncounterList(encounterCount, depth),
-    depth,
-  }
 }
 
 export const makeFloor2 = (depth: number, size: number): tFloor2 => {
