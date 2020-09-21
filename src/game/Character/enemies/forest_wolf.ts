@@ -22,9 +22,9 @@ export const FOREST_WOLF = (): tCharacter => {
     },
     ['beast'],
     [
-      makeEnemyReward(4, 3),
-      makeEnemyReward(4, 3),
-      makeEnemyReward(5, 6, [getRandomItem(0)]),
+      makeEnemyReward(3, 3),
+      makeEnemyReward(3, 3),
+      makeEnemyReward(3, 6, [getRandomItem(0)]),
     ],
   )
 }

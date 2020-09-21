@@ -77,7 +77,7 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.6.7
+            alpha-0.0.6.10
           </Monospace>
         }
       >
@@ -85,7 +85,7 @@ export const Start = () => {
           style={{ color: 'white', lineHeight: '52px', whiteSpace: 'nowrap' }}
         >
           I am looking for help with: item, and enemy, and world design! If you
-          would like to help, shoot me a message or head over to my github
+          would like to help, shoot me a message
         </span>
       </AppHeader>
       <FullContainer />

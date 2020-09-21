@@ -7,7 +7,6 @@ import Mimic from '../../../icons/svg/delapouite/mimic-chest.svg'
 import { createSkill } from '../../Skill/skills'
 import { getRandom } from '../../../util'
 import { getRandomItem } from '../../Item/util'
-import { GODSBEARD } from '../../Consumable/objects/godsbeard'
 
 export const MIMIC_FLOOR_1 = () =>
   makeEnemy(
@@ -26,12 +25,6 @@ export const MIMIC_FLOOR_1 = () =>
       resistance: 4,
     },
     [],
-    [
-      makeEnemyReward(150, 60, [
-        getRandomItem(3, 2),
-        getRandomItem(3, 2),
-        GODSBEARD(),
-      ]),
-    ],
+    [makeEnemyReward(150, 30, [getRandomItem(3, 2), getRandomItem(3, 2)])],
     ['bleeding', 'poisoned'],
   )

@@ -4,6 +4,7 @@ import { CENTER_HEX, getDepth, isValueEqual, MIN_HEX } from '../../grid/util'
 import { getRandom, noneg } from '../../util'
 import { makeRandom } from '../../util/makeRandom'
 import { makeEnemyReward } from '../Character/enemies/_builder'
+import { getRewardsFromCharacter } from '../Character/util'
 import { BEAST_DRUG } from '../Consumable/objects/beast_drug'
 import { CELESTIAL_LOTUS } from '../Consumable/objects/celestial_lotus'
 import { CURE_POTION } from '../Consumable/objects/curing_potion'
@@ -11,6 +12,7 @@ import { FIREBOMB } from '../Consumable/objects/firebomb'
 import { GODSBEARD } from '../Consumable/objects/godsbeard'
 import { POISON_KNIFE } from '../Consumable/objects/poison_knife'
 import { getRandomItem } from '../Item/util'
+import { consolidateRewards } from '../Other/util'
 import { makeBossParty, makeParty } from '../Party/util'
 import { tBaseStats } from '../Stats/type'
 import { POSSIBLE_SHINE_REWARDS } from './constants'
@@ -112,10 +114,7 @@ export const buildRewardEncounter = (
     ...encounter,
     isMimic: makeRandom(10) > 6,
     // chunk this out by floor
-    reward: makeEnemyReward(100, makeRandom(25), [
-      getRandomItem(2, 2),
-      getRandomItem(2, 2),
-    ]),
+    reward: consolidateRewards(getRewardsFromCharacter(config.mimic())),
     isOpened: false,
     isElite: true,
     party: {

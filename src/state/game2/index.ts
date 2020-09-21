@@ -10,7 +10,7 @@ import {
 } from '../../game/Encounter/type'
 import { makeFloor2 } from '../../game/Encounter/util'
 import { HexT } from '../../grid/types'
-import { makeHex, MIN_HEX } from '../../grid/util'
+import { getAdjacent, makeHex, MIN_HEX } from '../../grid/util'
 import { FLOOR_SIZE } from '../../game/Encounter/floors'
 
 export interface GameStateT {
@@ -122,9 +122,27 @@ export const core: StateCoreT<GameStateT> = {
     }
   },
   [CHOOSE_NEXT]: (state, action) => {
+    const hex: HexT = action.payload.hex
+    const adjacentHexes = getAdjacent(hex)
     return {
       ...state,
-      hex: action.payload.hex,
+      ...updateCurrentFloor(state, (floor) => {
+        let es = { ...floor.encounters }
+        adjacentHexes.forEach((hex) => {
+          const e = ((es[hex.q] || [])[hex.r] || [])[hex.s]
+          if (e) {
+            es[hex.q][hex.r][hex.s] = {
+              ...e,
+              seen: true,
+            }
+          }
+        })
+        return {
+          ...floor,
+          encounters: es,
+        }
+      }),
+      hex,
     }
   },
   [NEXT_FLOOR]: (state, action) => {

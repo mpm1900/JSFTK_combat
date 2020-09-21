@@ -82,7 +82,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       >
         <HexBadge
           size={110}
-          stroke={2}
+          stroke={3}
           color={CHARACTER_CLASS_COLORS[character.class] || Theme.darkBgColor}
           style={{
             padding: 8,

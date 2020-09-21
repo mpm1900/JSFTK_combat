@@ -16,6 +16,7 @@ export const makeEncounter = (type: tEncounterType) => ({
   type,
   reward: ZERO_REWARD,
   completed: false,
+  seen: false,
 })
 
 export const makeFloor2 = (depth: number, size: number): tFloor2 => {

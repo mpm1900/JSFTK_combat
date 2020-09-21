@@ -14,6 +14,7 @@ export interface tEncounter {
   type: tEncounterType
   reward: tEncounterReward
   completed: boolean
+  seen: boolean
 }
 export interface tCombatEncounter extends tEncounter {
   party: tParty

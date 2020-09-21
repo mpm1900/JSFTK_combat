@@ -18,6 +18,7 @@ import { CHARACTER_XP_MAX } from './constants'
 import { tEncounterReward } from '../Encounter/type'
 import { FISTS } from '../Weapon/fists'
 import { CLASS_STARTING_CONSUMABLES } from '../Item/constants'
+import { makeRandom } from '../../util/makeRandom'
 
 export const isCharacter = (obj: any): boolean =>
   obj !== undefined && obj.isCharacter !== undefined
@@ -342,15 +343,17 @@ export const unequipWeapon = (
 }
 
 export const getRewardsFromCharacter = (
-  character: tProcessedCharacter,
-  checkedCharacter: tProcessedCharacter,
+  character: tCharacter,
+  checkedCharacter?: tProcessedCharacter,
 ): tEncounterReward[] => {
   let index: number = 0
   let failed = false
   if (character.possibleRewards.length === 1)
     return [character.possibleRewards[0]]
   character.possibleRewards.forEach((rewards, i) => {
-    const luckReslt = resolveCheck(checkedCharacter, 'luck', 5)
+    const luckReslt = checkedCharacter
+      ? resolveCheck(checkedCharacter, 'luck')
+      : makeRandom(100) > 50
     if (luckReslt && !failed) {
       index = i
     } else {
@@ -387,10 +390,14 @@ export const addExperience = (
 export const levelUp = (character: tCharacter): tCharacter => {
   checkForProcessedCharacter(character)
   const experience = character.experience - CHARACTER_XP_MAX[character.level]
+  const pc = processCharacter(character)
   return {
     ...character,
     level: character.level + 1,
-    healthOffset: noneg(Math.floor(character.healthOffset / 2) - 15),
+    healthOffset: noneg(
+      Math.floor(character.healthOffset / 1.5) -
+        pc.stats.consumableHealthGainOffset,
+    ),
     experience,
     status: character.status.filter((s) => s.type !== 'poisoned'),
   }

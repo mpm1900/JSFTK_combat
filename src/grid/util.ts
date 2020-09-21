@@ -67,28 +67,23 @@ export const makeEncounterArray = (
   return result
 }
 
+export const HEX_DIRECTIONS: HexT[] = [
+  makeHex(1, 0),
+  makeHex(1, -1),
+  makeHex(0, -1),
+  makeHex(-1, 0),
+  makeHex(-1, 1),
+  makeHex(0, 1),
+]
 export const isAdjacent = (current: HexT | undefined) => (
   hex: HexT,
 ): boolean => {
-  const range = 1
   if (!current) return false
-  if (hex.q === current.q && hex.r === current.r - range) {
-    return true
-  }
-  if (hex.q === current.q && hex.r === current.r + range) {
-    return true
-  }
-  if (hex.q === current.q - range && hex.r === current.r) {
-    return true
-  }
-  if (hex.q === current.q - range && hex.r === current.r + range) {
-    return true
-  }
-  if (hex.q === current.q + range && hex.r === current.r) {
-    return true
-  }
-  if (hex.q === current.q + range && hex.r === current.r - range) {
-    return true
-  }
-  return false
+  return HEX_DIRECTIONS.some((dir) => {
+    const h = addHex(hex, dir)
+    return isValueEqual(h, current)
+  })
 }
+
+export const getAdjacent = (hex: HexT): HexT[] =>
+  HEX_DIRECTIONS.map((dir) => addHex(hex, dir))

@@ -29,10 +29,8 @@ export const Hex = (props: HexPropsT) => {
   const active = currentHex ? isValueEqual(hex, currentHex) : false
   const adjacent = isAdjacent(currentHex)(hex)
   const depth = getDepth(hex, size)
-  const fill =
-    !encounter || encounter?.completed || active || isHovering
-      ? 'white'
-      : 'rgba(255,255,255,0.6)'
+  const iconColor = getHexIconColor(encounter, active, adjacent, isHovering)
+  const fill = getHexFill(encounter, active, adjacent)
   return (
     <Hexagon
       q={hex.q}
@@ -41,12 +39,7 @@ export const Hex = (props: HexPropsT) => {
       cellStyle={{
         fontSize: '7px',
         stroke: 'black',
-        fill:
-          encounter?.completed || encounter === undefined || active
-            ? 'green'
-            : adjacent
-            ? Color(Theme.physicalColor).darken(0.5).rgb().toString()
-            : Theme.otherGrey,
+        fill,
         cursor: adjacent ? 'pointer' : 'default',
       }}
       onClick={(c: any, h: any) => {
@@ -64,10 +57,49 @@ export const Hex = (props: HexPropsT) => {
       }}
     >
       <g style={{ cursor: adjacent ? 'pointer' : 'default' }}>
-        {getHexIcon(encounter, depth, size, active, adjacent, fill)}
+        {getHexIcon(encounter, depth, size, active, adjacent, iconColor)}
       </g>
     </Hexagon>
   )
+}
+
+export const getHexFill = (
+  encounter: tEncounter | undefined,
+  active: boolean,
+  adjacent: boolean,
+) => {
+  if (active) {
+    return '#b0891c'
+  }
+  if (!encounter || encounter.completed) {
+    return 'green'
+  }
+
+  if (adjacent) {
+    return Color(Theme.physicalColor).darken(0.5).rgb().toString()
+  }
+  return Theme.otherGrey
+}
+
+export const getHexIconColor = (
+  encounter: tEncounter | undefined,
+  active: boolean,
+  adjacent: boolean,
+  isHovering: boolean,
+): string => {
+  if (!encounter || encounter.completed) {
+    return 'white'
+  }
+  if (encounter.type === 'boss') {
+    return Theme.healthRedColor
+  }
+  if (active || isHovering) {
+    return 'white'
+  }
+  if (adjacent || encounter.seen) {
+    return 'rgba(255,255,255,0.6)'
+  }
+  return 'rgba(255,255,255,0.2)'
 }
 
 export const getHexIcon = (
@@ -80,7 +112,7 @@ export const getHexIcon = (
 ): JSX.Element | null => {
   if (!encounter) return <Start fill={fill} />
   if (depth === size - 1) return <Boss fill={fill} />
-  if (adjacent || active || encounter.completed) {
+  if (adjacent || active || encounter.completed || encounter.seen) {
     if (encounter.type === 'shop') {
       return <Shop fill={fill} />
     }

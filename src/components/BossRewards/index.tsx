@@ -19,13 +19,15 @@ export const BossRewards = () => {
   >()
 
   useEffect(() => {
-    updateParty({
-      ...rawParty,
-      characters: rawParty.characters.map((c) => ({
-        ...c,
-        healthOffset: 0,
-      })),
-    })
+    if (currentEncounter && currentEncounter.completed) {
+      updateParty({
+        ...rawParty,
+        characters: rawParty.characters.map((c) => ({
+          ...c,
+          healthOffset: 0,
+        })),
+      })
+    }
   }, [])
 
   if (!currentEncounter) return null
