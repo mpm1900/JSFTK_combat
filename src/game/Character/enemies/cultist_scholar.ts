@@ -26,9 +26,6 @@ export const CULTIST_SCHOLAR = (): tCharacter => {
     [
       makeEnemyReward(70, 40),
       makeEnemyReward(70, 40),
-      makeEnemyReward(70, 40),
-      makeEnemyReward(70, 40),
-      makeEnemyReward(70, 50),
       makeEnemyReward(90, 50, [getRandomItem(4, 3)]),
     ],
   )

@@ -345,21 +345,28 @@ export const getRewardsFromCharacter = (
   character: tProcessedCharacter,
   checkedCharacter: tProcessedCharacter,
 ): tEncounterReward[] => {
-  let index: number | undefined = undefined
+  let index: number = 0
+  let failed = false
   if (character.possibleRewards.length === 1)
     return [character.possibleRewards[0]]
   character.possibleRewards.forEach((rewards, i) => {
-    const luckReslt = resolveCheck(checkedCharacter, 'luck')
-    if (luckReslt) {
+    const luckReslt = resolveCheck(checkedCharacter, 'luck', 5)
+    if (luckReslt && !failed) {
       index = i
+    } else {
+      failed = true
     }
   })
-  if (index !== undefined) {
-    return character.possibleRewards[index]
-      ? [character.possibleRewards[index]]
-      : []
-  }
-  return []
+  console.log(
+    'reward:',
+    character.name,
+    character.possibleRewards.length,
+    ' - ',
+    index,
+  )
+  return character.possibleRewards[index]
+    ? [character.possibleRewards[index]]
+    : []
 }
 
 export const addExperience = (

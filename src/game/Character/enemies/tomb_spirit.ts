@@ -36,7 +36,6 @@ export const TOMB_SPIRIT = () =>
     [
       makeEnemyReward(50, 20),
       makeEnemyReward(50, 20),
-      makeEnemyReward(80, 20),
       makeEnemyReward(80, 40, [getRandomItem(2, 2)]),
       makeEnemyReward(100, 50, [getRandomItem(3, 3)]),
     ],

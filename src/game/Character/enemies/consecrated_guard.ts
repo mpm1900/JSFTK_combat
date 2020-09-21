@@ -25,8 +25,6 @@ export const CONSECRATED_GUARD = (): tCharacter => {
     ['undead'],
     [
       makeEnemyReward(100, 40),
-      makeEnemyReward(100, 40),
-      makeEnemyReward(180, 40),
       makeEnemyReward(180, 40, [getRandomItem(3, 3)]),
       makeEnemyReward(200, 50, [getRandomItem(4, 3)]),
     ],

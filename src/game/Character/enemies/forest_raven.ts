@@ -25,11 +25,8 @@ export const FOREST_RAVEN = (): tCharacter => {
     },
     ['flying'],
     [
-      makeEnemyReward(0, 5),
-      makeEnemyReward(3, 7),
-      makeEnemyReward(3, 7),
-      makeEnemyReward(3, 7),
-      makeEnemyReward(4, 7, [getRandomItem(0)]),
+      makeEnemyReward(3, 5),
+      makeEnemyReward(4, 5, [getRandomItem(0)]),
       makeEnemyReward(4, 7, [getRandomItem(1)]),
     ],
     [],

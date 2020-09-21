@@ -26,7 +26,6 @@ export const TOMB_SPIDER = () =>
     [
       makeEnemyReward(50, 40),
       makeEnemyReward(50, 40),
-      makeEnemyReward(80, 40),
       makeEnemyReward(80, 40, [getRandomItem(3, 3)]),
       makeEnemyReward(100, 50, [getRandomItem(4, 3)]),
     ],
