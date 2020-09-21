@@ -5,6 +5,7 @@ import { useModalContext } from '../../contexts/ModalContext'
 import { usePartyContext } from '../../contexts/PartyContext'
 import { Button } from '../../elements/button'
 import { FlexContainer } from '../../elements/flex'
+import { Text } from '../../elements/typography'
 import { tRewardEncounter } from '../../game/Encounter/type'
 import { Theme } from '../../theme'
 
@@ -40,11 +41,11 @@ export const Reward = (props: RewardPropsT) => {
       <h3 style={{ fontFamily: Theme.titleFont, fontWeight: 'normal' }}>
         You've cleansed an evil.
       </h3>
-      <span style={{ marginBottom: 40, padding: 8 }}>
+      <Text style={{ marginBottom: 40, padding: 8 }}>
         You've defeated the Lich Lord of the Forest, but you discoved what he
         was guarding. A tomb, sealed for centuries, a relic of civilizations
         past.
-      </span>
+      </Text>
       <FlexContainer style={{ justifyContent: 'center' }}></FlexContainer>
     </FlexContainer>
   )

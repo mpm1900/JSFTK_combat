@@ -2,6 +2,7 @@ import React from 'react'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 import { Button } from '../../elements/button'
 import { FlexContainer } from '../../elements/flex'
+import { Text } from '../../elements/typography'
 import { tShopEncounter } from '../../game/Encounter/type'
 
 export interface ShopPropsT {
@@ -23,15 +24,15 @@ export const Shop = (props: ShopPropsT) => {
           >
             You found a shop!
           </h3>
-          <span
+          <Text
             style={{
-              color: 'rgba(255,255,255,0.7)',
+              padding: 8,
               marginBottom: 24,
             }}
           >
             Amidst your journey, you discover a merchant, a traveling salemen
             with all manor of wares to assist in your adventure.
-          </span>
+          </Text>
         </>
       )}
       <FlexContainer style={{ justifyContent: 'center' }}>

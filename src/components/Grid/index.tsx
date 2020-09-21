@@ -13,6 +13,10 @@ import Unknown from '../../icons/svg/delapouite/perspective-dice-six.svg'
 import Shop from '../../icons/svg/delapouite/coins.svg'
 import Boss from '../../icons/svg/lorc/crowned-skull.svg'
 import Start from '../../icons/svg/lorc/campfire.svg'
+import Combat from '../../icons/svg/lorc/crossed-swords.svg'
+import Elite from '../../icons/svg/lorc/death-zone.svg'
+import Chest from '../../icons/svg/lorc/locked-chest.svg'
+import Shrine from '../../icons/svg/lorc/divided-spiral.svg'
 import { BoxContainer } from '../../elements/box'
 import { Button } from '../../elements/button'
 import { useSpring, animated } from 'react-spring'
@@ -26,8 +30,8 @@ export const Grid = () => {
   const [isExpanded, setIsExpanded] = useState(false)
   const [activeHex, setActiveHex] = useState<HexT | undefined>()
   const style = useSpring({
-    minHeight: isExpanded ? 338 : 0,
-    maxHeight: isExpanded ? 338 : 0,
+    minHeight: isExpanded ? 440 : 0,
+    maxHeight: isExpanded ? 440 : 0,
   })
   return (
     <FlexContainer
@@ -134,7 +138,7 @@ export const Grid = () => {
                 blue hex to advance.
               </Text>
               <BoxContainer substyle={{ background: Theme.darkBgColor }}>
-                <FlexContainer style={{ alignItems: 'center', height: 36 }}>
+                <FlexContainer style={{ alignItems: 'center', height: 32 }}>
                   <HexBadge
                     color='green'
                     size={28}
@@ -143,7 +147,7 @@ export const Grid = () => {
                   />
                   Cleared Encounters
                 </FlexContainer>
-                <FlexContainer style={{ alignItems: 'center', height: 36 }}>
+                <FlexContainer style={{ alignItems: 'center', height: 32 }}>
                   <HexBadge
                     color={Color(Theme.physicalColor)
                       .darken(0.5)
@@ -155,11 +159,11 @@ export const Grid = () => {
                   />
                   Adjacent Encounters
                 </FlexContainer>
-                <FlexContainer style={{ alignItems: 'center', height: 36 }}>
+                <FlexContainer style={{ alignItems: 'center', height: 32 }}>
                   <Icon src={Start} size={24} style={{ marginRight: 12 }} />
                   Starting Location
                 </FlexContainer>
-                <FlexContainer style={{ alignItems: 'center', height: 36 }}>
+                <FlexContainer style={{ alignItems: 'center', height: 32 }}>
                   <Icon
                     src={Shop}
                     size={24}
@@ -168,7 +172,25 @@ export const Grid = () => {
                   />
                   Shop
                 </FlexContainer>
-                <FlexContainer style={{ alignItems: 'center', height: 36 }}>
+                <FlexContainer style={{ alignItems: 'center', height: 32 }}>
+                  <Icon
+                    src={Shrine}
+                    size={24}
+                    style={{ marginRight: 12 }}
+                    shadow
+                  />
+                  Shrine
+                </FlexContainer>
+                <FlexContainer style={{ alignItems: 'center', height: 32 }}>
+                  <Icon
+                    src={Chest}
+                    size={24}
+                    style={{ marginRight: 12 }}
+                    shadow
+                  />
+                  Chest
+                </FlexContainer>
+                <FlexContainer style={{ alignItems: 'center', height: 32 }}>
                   <Icon
                     src={Unknown}
                     size={24}
@@ -177,7 +199,26 @@ export const Grid = () => {
                   />
                   Random Encounter
                 </FlexContainer>
-                <FlexContainer style={{ alignItems: 'center', height: 36 }}>
+
+                <FlexContainer style={{ alignItems: 'center', height: 32 }}>
+                  <Icon
+                    src={Combat}
+                    size={24}
+                    style={{ marginRight: 12 }}
+                    shadow
+                  />
+                  Combat
+                </FlexContainer>
+                <FlexContainer style={{ alignItems: 'center', height: 32 }}>
+                  <Icon
+                    src={Elite}
+                    size={24}
+                    style={{ marginRight: 12 }}
+                    shadow
+                  />
+                  Elite Combat
+                </FlexContainer>
+                <FlexContainer style={{ alignItems: 'center', height: 32 }}>
                   <Icon
                     src={Boss}
                     size={24}
