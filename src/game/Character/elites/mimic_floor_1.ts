@@ -1,4 +1,8 @@
-import { makeEnemy, makeEnemyReward, makeEnemyWeapon } from './_builder'
+import {
+  makeEnemy,
+  makeEnemyReward,
+  makeEnemyWeapon,
+} from '../enemies/_builder'
 import Mimic from '../../../icons/svg/delapouite/mimic-chest.svg'
 import { createSkill } from '../../Skill/skills'
 import { getRandom } from '../../../util'

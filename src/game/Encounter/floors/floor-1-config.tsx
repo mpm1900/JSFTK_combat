@@ -1,3 +1,4 @@
+import { FOREST_GOLEM } from '../../Character/elites/forest_golem'
 import {
   CULTIST,
   CULTIST_BRUTE,
@@ -9,6 +10,7 @@ import {
   FOREST_WITCH,
   FOREST_WOLF,
 } from '../../Character/enemies'
+import { TOMB_SPIDER } from '../../Character/enemies/tomb_spider'
 import { TOMB_SPIRIT } from '../../Character/enemies/tomb_spirit'
 import { tFloorEncounterSizes, tFloorEnemyConfig } from './util'
 
@@ -55,6 +57,15 @@ export const Floor1EnemyConfigs: tFloorEnemyConfig[] = [
   },
 ]
 
+export const Floor1AltEnemyConfigs: tFloorEnemyConfig[] = []
+
+export const Floor1EliteEnemyConfigs: tFloorEnemyConfig[] = [
+  {
+    enemy: FOREST_GOLEM,
+    depths: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  },
+]
+
 export const Floor1EncounterSizes: tFloorEncounterSizes = {
   0: 1,
   1: 2,
@@ -66,4 +77,17 @@ export const Floor1EncounterSizes: tFloorEncounterSizes = {
   7: 3,
   8: 2,
   9: 2,
+}
+
+export const Floor1EliteEncounterSizes: tFloorEncounterSizes = {
+  0: 1,
+  1: 2,
+  2: 2,
+  3: 2,
+  4: 2,
+  5: 2,
+  6: 2,
+  7: 3,
+  8: 3,
+  9: 3,
 }

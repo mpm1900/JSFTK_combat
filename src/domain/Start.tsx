@@ -39,7 +39,6 @@ export const Start = () => {
   }, [])
 
   useEffect(() => {
-    console.log('LOADING', loading)
     if (loading) {
       open(
         <div>
@@ -78,7 +77,7 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.6.6
+            alpha-0.0.6.7
           </Monospace>
         }
       >

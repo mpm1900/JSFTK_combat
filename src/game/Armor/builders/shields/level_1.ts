@@ -3,7 +3,7 @@ import { TAUNT } from '../../../Skill/skills/armor'
 
 export const WOODEN_PLANK_SHIELD = () =>
   createShield(
-    'Wooden Plan Shield',
+    'Wooden Plank Shield',
     'common',
     25,
     {

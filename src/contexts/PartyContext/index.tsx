@@ -38,8 +38,8 @@ export interface PartyContextT {
   refreshParty: () => void
 }
 const defaultContextValue: PartyContextT = {
-  rawParty: makeParty(0, 0),
-  party: processParty(makeParty(0, 0)),
+  rawParty: makeParty(0, 0, false, 0),
+  party: processParty(makeParty(0, 0, false, 0)),
   activeCharacter: processCharacter(makeCharacter('executioner')),
   updateParty: (party) => {},
   upsertCharacter: (character) => {},

@@ -16,7 +16,6 @@ export const RouteController = () => {
   const history = useHistory()
   const { open } = useModalContext()
   useEffect(() => {
-    console.log('started', started)
     if (!started) {
       history.push('/')
     }

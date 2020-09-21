@@ -6,7 +6,7 @@ import { TOMB_GUARDIAN } from '../../Character/enemies/tomb_guardian'
 import { TOMB_SPIDER } from '../../Character/enemies/tomb_spider'
 import { TOMB_SPIRIT } from '../../Character/enemies/tomb_spirit'
 import { WEAPONS_BY_LEVEL } from '../../Weapon/builders/objects'
-import { MIMIC_FLOOR_1 } from '../../Character/enemies/mimic_floor_1'
+import { MIMIC_FLOOR_1 } from '../../Character/elites/mimic_floor_1'
 import { tFloorConfig } from '../type'
 import { makeRandomFloorEncounter } from './util'
 
@@ -20,12 +20,14 @@ const FLOOR_2_ARMOR = () => [...ARMOR_BY_LEVEL[3], ...ARMOR_BY_LEVEL[4]]
 
 export const FloorConfig2 = (): tFloorConfig => ({
   bosses: [CONSECRATED_BEAST()],
+  altBosses: [CONSECRATED_BEAST()],
   items: [
     ...FLOOR_2_WEAPONS().map((w) => w()),
     ...FLOOR_2_ARMOR().map((w) => w()),
   ],
   mimic: MIMIC_FLOOR_1,
   altEnemies: {},
+  eliteEnemies: {},
   enemies: {
     0: [
       makeRandomFloorEncounter([TOMB_SPIRIT, TOMB_SPIDER], 2),

@@ -357,13 +357,6 @@ export const getRewardsFromCharacter = (
       failed = true
     }
   })
-  console.log(
-    'reward:',
-    character.name,
-    character.possibleRewards.length,
-    ' - ',
-    index,
-  )
   return character.possibleRewards[index]
     ? [character.possibleRewards[index]]
     : []

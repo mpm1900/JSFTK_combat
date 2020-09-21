@@ -1,24 +1,23 @@
-import { DiceRoll } from 'rpg-dice-roller'
 import { v4 } from 'uuid'
-import { makeRandomEncounter } from '../game/Encounter/util'
+import { buildRandomEncounter } from '../game/Encounter/builders'
 import { noneg } from '../util'
+import { makeRandom } from '../util/makeRandom'
 import { EncounterArrayT, HexT } from './types'
 
-export const ZERO_HEX = (): HexT => ({
-  id: v4(),
-  q: 0,
-  r: 0,
-  s: 0,
-})
-
-export const makeHex = (q: number, r: number, s: number): HexT => ({
+export const makeHex = (q: number, r: number): HexT => ({
   id: v4(),
   q,
   r,
-  s,
+  s: q * -1 - r,
 })
 
-export const MIN_HEX = (size: number): HexT => makeHex(0, size, size * -1)
+export const ZERO_HEX = (): HexT => makeHex(0, 0)
+export const MIN_HEX = (size: number): HexT => makeHex(0, size)
+export const CENTER_HEX = (size: number): HexT => {
+  const q = Math.ceil(size / 2) - 2
+  const r = Math.ceil(size / 2) - 1
+  return makeHex(q, r)
+}
 
 export const isEqual = (a: HexT, b: HexT) => a.id === b.id
 export const isValueEqual = (a: HexT, b: HexT) =>
@@ -39,7 +38,6 @@ export const multHex = (a: HexT, m: number) => ({
 })
 
 export const getDepth = (hex: HexT, size: number): number => {
-  // if (isValueEqual(hex, MIN_HEX(size))) return -1
   return noneg(size - hex.r - 1)
 }
 
@@ -47,34 +45,22 @@ export const makeEncounterArray = (
   size: number,
   floor: number,
 ): EncounterArrayT => {
+  let index = 0
   const minQ = 0
   const maxQ = size
   const minR = 0
   const maxR = size
-  let index = 0
-  const shopIndex = new DiceRoll(`1d55`).total
+  const shopIndex = makeRandom(55, 1)
   let result: EncounterArrayT = {}
   for (let q = minQ; q <= maxQ; q++) {
     result[q] = {}
     for (let r = maxR; r >= minR; r--) {
+      const hex = makeHex(q, r)
       const ri = maxR - r
       result[q][r] = {}
       if (q > ri) continue
-      const s = q * -1 - r
-      const d = getDepth(makeHex(q, r, s), size)
-      const isSide = q === 0 || q - 1 === d
-      const startHex = MIN_HEX(size)
-      if (!(q === startHex.q && r === startHex.r && s === startHex.s)) {
-        const e = makeRandomEncounter(
-          d,
-          q,
-          size,
-          floor,
-          index === shopIndex,
-          !isSide,
-        )
-        result[q][r][s] = e
-      }
+      const e = buildRandomEncounter(floor, hex, index === shopIndex)
+      result[q][r][hex.s] = e
       index++
     }
   }

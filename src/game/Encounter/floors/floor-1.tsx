@@ -1,10 +1,16 @@
 import { tFloorConfig } from '../type'
-import { LICH } from '../../Character/bosses'
+import { LICH, LICH2 } from '../../Character/bosses'
 import { WEAPONS_BY_LEVEL } from '../../Weapon/builders/objects'
 import { ARMOR_BY_LEVEL } from '../../Armor/builders/sets'
 import { buildFloorEnemeis } from './util'
-import { Floor1EncounterSizes, Floor1EnemyConfigs } from './floor-1-config'
-import { MIMIC_FLOOR_1 } from '../../Character/enemies/mimic_floor_1'
+import {
+  Floor1AltEnemyConfigs,
+  Floor1EliteEncounterSizes,
+  Floor1EliteEnemyConfigs,
+  Floor1EncounterSizes,
+  Floor1EnemyConfigs,
+} from './floor-1-config'
+import { MIMIC_FLOOR_1 } from '../../Character/elites/mimic_floor_1'
 
 const FLOOR_1_WEAPONS = () => [
   ...WEAPONS_BY_LEVEL[1],
@@ -20,11 +26,23 @@ const FLOOR_1_ARMOR = () => [
 
 export const FloorConfig1 = (size: number): tFloorConfig => ({
   bosses: [LICH()],
+  altBosses: [LICH2()],
   items: [
     ...FLOOR_1_WEAPONS().map((w) => w()),
     ...FLOOR_1_ARMOR().map((a) => a()),
   ],
   mimic: MIMIC_FLOOR_1,
-  altEnemies: {},
+
+  eliteEnemies: buildFloorEnemeis(
+    Floor1EliteEnemyConfigs,
+    Floor1EliteEncounterSizes,
+    size,
+  ),
   enemies: buildFloorEnemeis(Floor1EnemyConfigs, Floor1EncounterSizes, size),
+  altEnemies: buildFloorEnemeis(
+    // Floor1AltEnemyConfigs,
+    Floor1EnemyConfigs,
+    Floor1EncounterSizes,
+    size,
+  ),
 })

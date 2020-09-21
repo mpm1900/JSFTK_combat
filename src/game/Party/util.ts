@@ -13,7 +13,8 @@ import { tEncounterReward } from '../Encounter/type'
 import { tArmor } from '../Armor/type'
 import { tWeapon } from '../Weapon/type'
 import { tConsumable } from '../Consumable/type'
-import { FLOOR_CONFIGS_BY_INDEX } from '../Encounter/floors'
+import { FLOOR_CONFIGS_BY_INDEX, FLOOR_SIZE } from '../Encounter/floors'
+import { makeRandom } from '../../util/makeRandom'
 
 export const isParty = (obj: any): boolean =>
   obj !== undefined && obj.isParty !== undefined
@@ -68,28 +69,39 @@ export const updateCharacter = (
   }
 }
 
-export const makeParty = (level: number, floor: number): tParty => {
-  const floorConfig = FLOOR_CONFIGS_BY_INDEX()[floor]
-  const length = Object.keys(floorConfig.enemies).length
-  level = level > length - 1 ? length - 1 : level
+export const makeParty = (
+  depth: number,
+  floor: number,
+  isElite: boolean,
+  sideIndex: number,
+): tParty => {
+  const config = FLOOR_CONFIGS_BY_INDEX()[floor]
+  const roll = makeRandom(FLOOR_SIZE, 1)
+  const enemies = isElite
+    ? config.eliteEnemies
+    : roll >= sideIndex
+    ? config.enemies
+    : config.altEnemies
 
   return {
     isParty: true,
     id: v4(),
     gold: 0,
     items: [],
-    characters: getRandom(floorConfig.enemies[level] || []),
+    characters: getRandom(enemies[depth] || []),
   }
 }
 
-export const makeBossParty = (floor: number): tParty => {
+export const makeBossParty = (floor: number, sideIndex: number): tParty => {
   const config = FLOOR_CONFIGS_BY_INDEX()[floor]
+  const roll = makeRandom(FLOOR_SIZE, 1)
+  const bosses = roll >= sideIndex ? config.bosses : config.altBosses
   return {
     isParty: true,
     id: v4(),
     gold: 0,
     items: [],
-    characters: [getRandom(config.bosses)],
+    characters: [getRandom(bosses)],
   }
 }
 

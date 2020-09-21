@@ -10,7 +10,6 @@ import { EncounterArrayT } from '../../grid/types'
 export type tEncounterType = 'combat' | 'shop' | 'shrine' | 'boss' | 'reward'
 export interface tEncounter {
   id: string
-  choiceId: string
   name: string
   type: tEncounterType
   reward: tEncounterReward
@@ -18,6 +17,7 @@ export interface tEncounter {
 }
 export interface tCombatEncounter extends tEncounter {
   party: tParty
+  isElite: boolean
 }
 export interface tShopEncounter extends tEncounter {
   items: (tWeapon | tArmor | tConsumable)[]
@@ -36,7 +36,6 @@ export interface tRewardEncounter extends tCombatEncounter {
   isMimic: boolean
   isOpened: boolean
 }
-
 export interface tEncounterReward {
   gold: number
   xp: number
@@ -48,10 +47,11 @@ export interface tFloorConfig {
   items: (tWeapon | tArmor)[]
   enemies: Record<number, tCharacter[][]>
   altEnemies: Record<number, tCharacter[][]>
+  eliteEnemies: Record<number, tCharacter[][]>
   mimic: () => tCharacter
   bosses: tCharacter[]
+  altBosses: tCharacter[]
 }
-
 export interface tFloor2 {
   id: string
   name: string

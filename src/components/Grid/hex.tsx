@@ -12,6 +12,8 @@ import { Shop } from '../../icons/static/Shop'
 import { Start } from '../../icons/static/Start'
 import { Theme } from '../../theme'
 import { Chest } from '../../icons/static/Chest'
+import { tCombatEncounter, tEncounter } from '../../game/Encounter/type'
+import { Elite } from '../../icons/static/Elite'
 
 export interface HexPropsT {
   hex: HexT
@@ -62,24 +64,38 @@ export const Hex = (props: HexPropsT) => {
       }}
     >
       <g style={{ cursor: adjacent ? 'pointer' : 'default' }}>
-        {depth === size - 1 ? (
-          <Boss fill={fill} />
-        ) : encounter === undefined ? (
-          <Start fill={fill} />
-        ) : encounter?.type === 'shop' ? (
-          <Shop fill={fill} />
-        ) : encounter.type === 'reward' ? (
-          <Chest fill={fill} />
-        ) : encounter?.completed ? (
-          encounter?.type === 'shrine' ? (
-            <Shrine fill={fill} />
-          ) : (
-            <Combat fill={fill} />
-          )
-        ) : (
-          <Random fill={fill} />
-        )}
+        {getHexIcon(encounter, depth, size, active, adjacent, fill)}
       </g>
     </Hexagon>
   )
+}
+
+export const getHexIcon = (
+  encounter: tEncounter | undefined,
+  depth: number,
+  size: number,
+  active: boolean,
+  adjacent: boolean,
+  fill: string,
+): JSX.Element | null => {
+  if (!encounter) return <Start fill={fill} />
+  if (depth === size - 1) return <Boss fill={fill} />
+  if (adjacent || active || encounter.completed) {
+    if (encounter.type === 'shop') {
+      return <Shop fill={fill} />
+    }
+    if (encounter.type === 'reward') {
+      return <Chest fill={fill} />
+    }
+    if (encounter.type === 'shrine') {
+      return <Shrine fill={fill} />
+    }
+    if (encounter.type === 'combat') {
+      if ((encounter as tCombatEncounter).isElite) {
+        return <Elite fill={fill} />
+      }
+      return <Combat fill={fill} />
+    }
+  }
+  return <Random fill={fill} />
 }

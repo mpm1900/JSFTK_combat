@@ -58,8 +58,8 @@ export interface CombatContextT {
   equipItemCombat: (characterId: string, item?: tArmor | tWeapon) => void
 }
 const defaultValue: CombatContextT = {
-  party: processParty(makeParty(0, 0)),
-  enemyParty: processParty(makeParty(0, 0)),
+  party: processParty(makeParty(0, 0, false, 0)),
+  enemyParty: processParty(makeParty(0, 0, false, 0)),
   activeCharacter: processCharacter(makeCharacter('executioner')),
   characters: [],
   queue: {},

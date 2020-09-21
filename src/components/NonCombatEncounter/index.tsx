@@ -8,7 +8,6 @@ import { Chest } from '../Chest'
 
 export const NonCombatEncounter = () => {
   const { currentEncounter } = useGameStateContext()
-  console.log(currentEncounter)
   return (
     <FlexContainer $direction='column' $full style={{ marginLeft: '60px' }}>
       {currentEncounter && currentEncounter.type === 'shop' && <Shop />}

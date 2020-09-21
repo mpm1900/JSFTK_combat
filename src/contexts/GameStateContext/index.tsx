@@ -27,7 +27,7 @@ export const defaultValue: GameStateContextT = {
   encounters: [],
   floors: [],
   floor: 0,
-  currentHex: makeHex(0, 0, 0),
+  currentHex: makeHex(0, 0),
   currentEncounter: undefined,
   previousEncounter: undefined,
   loading: false,
@@ -92,13 +92,8 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
         chooseNext,
         nextFloor,
         removeItem,
-        completeCurrent: () => {
-          completeCurrent()
-        },
-        openCurrent: () => {
-          console.log('open')
-          openCurrent()
-        },
+        completeCurrent,
+        openCurrent,
       }}
     >
       {children}

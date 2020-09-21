@@ -54,6 +54,7 @@ export const BossRewards = () => {
       <FlexContainer $center>
         {(BOSS_ITEMS[boss.id] || []).map((item) => (
           <ItemCard
+            key={item.id}
             item={item}
             showBuyButton={!chosenReward || chosenReward.id !== item.id}
             buyText={'Choose This Item'}

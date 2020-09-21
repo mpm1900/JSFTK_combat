@@ -12,7 +12,7 @@ import { commitSkillResults } from '../game/Skill/committer'
 import { NonCombatEncounter } from '../components/NonCombatEncounter'
 import { EncounterActions } from '../components/EncounterActions'
 import { HeadingSm } from '../elements/typography'
-import { Grid } from './Grid'
+import { Grid } from '../components/Grid'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()

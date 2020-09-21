@@ -11,6 +11,7 @@ import {
 import { makeFloor2 } from '../../game/Encounter/util'
 import { HexT } from '../../grid/types'
 import { makeHex, MIN_HEX } from '../../grid/util'
+import { FLOOR_SIZE } from '../../game/Encounter/floors'
 
 export interface GameStateT {
   hex: HexT
@@ -19,7 +20,6 @@ export interface GameStateT {
   loading: boolean
 }
 
-export const FLOOR_SIZE = 10
 export const RESET = '@action/game/reset'
 export const SET_LOADING = '@action/game/set-loading'
 export const CHOOSE_NEXT = '@action/game/CHOOSE_NEXT'
@@ -104,7 +104,6 @@ const updateCurrentFloor = (
 
 export const core: StateCoreT<GameStateT> = {
   [RESET]: (state, action) => {
-    console.log('reset')
     return {
       ...state,
       hex: MIN_HEX(FLOOR_SIZE),
@@ -170,7 +169,6 @@ export const core: StateCoreT<GameStateT> = {
     })
   },
   [OPEN_CURRENT]: (state, action) => {
-    console.log('open current')
     return updateCurrentFloor(state, (floor) => {
       const encounters = floor.encounters
       let encounter = encounters[state.hex.q][state.hex.r][state.hex.s]
@@ -191,8 +189,12 @@ export const core: StateCoreT<GameStateT> = {
 
 export const INITIAL_STATE: GameStateT = {
   floor: 0,
-  hex: MIN_HEX(0),
-  floors: [makeFloor2(0, 0), makeFloor2(1, 0), makeFloor2(2, 0)],
+  hex: MIN_HEX(FLOOR_SIZE),
+  floors: [
+    makeFloor2(0, FLOOR_SIZE),
+    makeFloor2(1, FLOOR_SIZE),
+    makeFloor2(2, FLOOR_SIZE),
+  ],
   loading: false,
 }
 
