@@ -22,6 +22,7 @@ export const Chest = () => {
   useEffect(() => {
     if (
       (currentEncounter as tRewardEncounter).isOpened &&
+      !(currentEncounter as tRewardEncounter).isMimic &&
       currentEncounter?.reward
     ) {
       updateParty(commitRewards(rawParty, currentEncounter?.reward))

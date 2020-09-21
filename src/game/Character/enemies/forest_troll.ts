@@ -31,7 +31,7 @@ export const FOREST_TROLL = (): tCharacter => {
       makeEnemyReward(5, 15),
       makeEnemyReward(5, 15),
       makeEnemyReward(8, 15),
-      makeEnemyReward(20, 15),
+      makeEnemyReward(10, 15),
       makeEnemyReward(20, 15, [getRandomItem(1)]),
     ],
   )

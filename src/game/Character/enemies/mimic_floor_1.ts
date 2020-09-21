@@ -22,7 +22,7 @@ export const MIMIC_FLOOR_1 = () =>
     },
     [],
     [
-      makeEnemyReward(80, 150, [
+      makeEnemyReward(150, 60, [
         getRandomItem(3, 2),
         getRandomItem(3, 2),
         getRandomItem(3, 2),

@@ -24,12 +24,12 @@ export const CULTIST_BRUTE = (): tCharacter => {
     },
     [],
     [
-      makeEnemyReward(10, 12),
+      makeEnemyReward(10, 10),
+      makeEnemyReward(15, 11),
+      makeEnemyReward(15, 12),
       makeEnemyReward(15, 13),
-      makeEnemyReward(15, 13),
-      makeEnemyReward(15, 13),
-      makeEnemyReward(20, 20),
-      makeEnemyReward(25, 20, [getRandomItem(2)]),
+      makeEnemyReward(20, 14),
+      makeEnemyReward(20, 15, [getRandomItem(2)]),
     ],
   )
 }

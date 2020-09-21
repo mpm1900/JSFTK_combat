@@ -34,7 +34,7 @@ export const makeEncounterType = (
   isShop: boolean = false,
   canBeReward: boolean = true,
 ): tEncounterType => {
-  return 'shop'
+  // return 'shop'
   if (isShop) {
     return 'shop'
   }
