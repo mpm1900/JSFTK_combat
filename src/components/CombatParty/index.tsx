@@ -7,6 +7,9 @@ import { tProcessedParty } from '../../game/Party/type'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 import { useUIContext } from '../../contexts/UIContext'
 import { useGameStateContext } from '../../contexts/GameStateContext'
+import { HoverToolTip } from '../Tooltip'
+import { BoxContainer } from '../../elements/box'
+import { DamagePreview } from '../DamagePreview'
 
 export interface CombatPartyPropsT {
   party: tProcessedParty
@@ -53,15 +56,26 @@ export const CombatParty = (props: CombatPartyPropsT) => {
                         height: 36,
                       }}
                     >
-                      <RedButton
-                        onClick={() => {
-                          next(c)
-                          setShowSkillTooltips(false)
-                        }}
-                        $direction='down'
+                      <HoverToolTip
+                        direction='down'
+                        content={
+                          <DamagePreview
+                            skill={selectedSkill}
+                            source={activeCharacter}
+                            target={c}
+                          />
+                        }
                       >
-                        Attack
-                      </RedButton>
+                        <RedButton
+                          onClick={() => {
+                            next(c)
+                            setShowSkillTooltips(false)
+                          }}
+                          $direction='down'
+                        >
+                          Attack
+                        </RedButton>
+                      </HoverToolTip>
                     </div>
                   </FlexContainer>
                 )}

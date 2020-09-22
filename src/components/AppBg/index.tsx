@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import { useGameStateContext } from '../../contexts/GameStateContext'
-import { usePartyContext } from '../../contexts/PartyContext'
 import { FlexContainer } from '../../elements/flex'
 import { getEncounterBg } from '../../game/Encounter/constants'
 import { getDepth } from '../../grid/util'

@@ -89,7 +89,7 @@ export const CombatVictoryModalPure = (props: CombatVictoryModalPropsT) => {
             <FlexContainer style={{ marginBottom: 16 }}>
               <FullContainer />
               <FlexContainer $direction='column'>
-                <ItemCard item={first} />
+                <ItemCard item={first} character={party.characters[0]} />
                 <span
                   style={{
                     marginTop: 8,
@@ -115,6 +115,7 @@ export const CombatVictoryModalPure = (props: CombatVictoryModalPropsT) => {
                       <>
                         {getItem(character, first as tWeapon | tArmor) && (
                           <ItemCard
+                            character={party.characters[0]}
                             item={
                               getItem(character, first as tWeapon | tArmor) as
                                 | tWeapon

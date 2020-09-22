@@ -18,4 +18,6 @@ export const PERFECT_DISPLAY_INFO: Partial<Record<tPerfectKey, string>> = {
   rushed: 'Rush Character',
   reset: 'Reset Character',
   cure: 'Cure Character',
+  blessed: 'Remove Curses',
+  'evade-up': 'Evade Up',
 }

@@ -4,6 +4,7 @@ export const SMASH = createSkill('Smash', 3, 0)
 export const WITHERING_SMASH = createSkill('Smash', 2, 0)
 export const GLASS_SMASH = createSkill('Smash', 1, 0)
 export const RIPPLE = createSkill('Ripple', 4, -10, {
+  splashDamageModifier: 0.6,
   perfectSplash: true,
 })
 export const EARTHQUAKE = createSkill('Earthquake', 4, -10, {

@@ -13,7 +13,7 @@ import { ItemCard } from '../ItemCard'
 export const BossRewards = () => {
   const { currentEncounter } = useGameStateContext()
   const { nextFloor } = useGameStateContext()
-  const { updateParty, rawParty } = usePartyContext()
+  const { updateParty, rawParty, party } = usePartyContext()
   const [chosenReward, setChosenReward] = useState<
     tArmor | tWeapon | undefined
   >()
@@ -58,6 +58,7 @@ export const BossRewards = () => {
           <ItemCard
             key={item.id}
             item={item}
+            character={party.characters[0]}
             showBuyButton={!chosenReward || chosenReward.id !== item.id}
             buyText={'Choose This Item'}
             onBuyClick={() => setChosenReward(item)}

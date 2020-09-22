@@ -16,6 +16,10 @@ import Ranged from '../../icons/svg/lorc/high-shot.svg'
 import Melee from '../../icons/svg/lorc/battered-axe.svg'
 import Breakable from '../../icons/svg/lorc/broken-bone.svg'
 import { Button } from '../../elements/button'
+import { HoverToolTip } from '../Tooltip'
+import { SkillPreview } from '../SkillPreview'
+import { makeCharacter, processCharacter } from '../../game/Character/util'
+import { tProcessedCharacter } from '../../game/Character/type'
 
 export const getDamageColor = (weapon: tWeapon) => {
   if (weapon.damage.type === 'physical') return 'lightblue'
@@ -25,6 +29,7 @@ export const getDamageColor = (weapon: tWeapon) => {
 
 export interface ItemCardPropsT {
   item: tArmor | tWeapon | tConsumable
+  character: tProcessedCharacter
   showBuyButton?: boolean
   cost?: number
   buyText?: string
@@ -54,7 +59,8 @@ const ItemSubtitle = styled('div', {
 })
 
 export const ItemCard = (props: ItemCardPropsT) => {
-  const { item, cost, showBuyButton, buyText, onBuyClick } = props
+  const { item, character, cost, showBuyButton, buyText, onBuyClick } = props
+  console.log(item.name, character)
   const isArmor = item.itemType === 'armor'
   const isWeapon = item.itemType === 'weapon'
   const isConsumable = item.itemType === 'consumable'
@@ -190,20 +196,29 @@ export const ItemCard = (props: ItemCardPropsT) => {
                     </FlexContainer>
                   )}
                   {skills && (
-                    <span
+                    <FlexContainer
                       style={{
                         color: 'plum',
                         fontSize: 16,
                         marginBottom: 4,
+                        whiteSpace: 'nowrap',
+                        flexWrap: 'wrap',
                       }}
                     >
                       {skills.map((skill, i) => (
-                        <span key={i}>
-                          {i > 0 ? ', ' : ''}
-                          {skill.name}
-                        </span>
+                        <HoverToolTip
+                          key={i}
+                          content={
+                            <SkillPreview skill={skill} source={character} />
+                          }
+                        >
+                          <div style={{ marginRight: 4, cursor: 'pointer' }}>
+                            {skill.name}
+                            {i < skills.length - 1 ? ', ' : ''}
+                          </div>
+                        </HoverToolTip>
                       ))}
-                    </span>
+                    </FlexContainer>
                   )}
                   <div style={{ color: 'rgba(255,255,255,0.6)' }}>
                     {weapon.stats && <StatsPreview stats={weapon.stats} />}

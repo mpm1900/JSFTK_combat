@@ -20,15 +20,17 @@ export const HoverArea = (props: HoverAreaPropsT) => {
     <div>
       {activeItem.itemType === 'armor' && (
         <FlexContainer>
-          {foundArmor && <ItemCard item={foundArmor} />}
-          {foundArmor?.id !== activeItem.id && <ItemCard item={activeItem} />}
+          {foundArmor && <ItemCard item={foundArmor} character={character} />}
+          {foundArmor?.id !== activeItem.id && (
+            <ItemCard item={activeItem} character={character} />
+          )}
         </FlexContainer>
       )}
       {activeItem.itemType === 'weapon' && (
         <FlexContainer>
-          <ItemCard item={character.weapon} />
+          <ItemCard item={character.weapon} character={character} />
           {character.weapon.id !== activeItem.id && (
-            <ItemCard item={activeItem} />
+            <ItemCard item={activeItem} character={character} />
           )}
         </FlexContainer>
       )}

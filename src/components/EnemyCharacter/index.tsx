@@ -33,7 +33,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
   const active = activeCharacter?.id === character?.id
   const { styles, exec } = useElementShake()
   return (
-    <animated.div style={styles}>
+    <animated.div style={{ ...styles, position: 'relative', zIndex: 2 }}>
       <animated.div
         onClick={() => (onClick && character.health > 0 ? onClick() : null)}
         style={{
@@ -48,7 +48,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
         }}
       >
         <FlexContainer style={{ alignItems: 'center' }}>
-          <FlexContainer>
+          <FlexContainer style={{ zIndex: 4, position: 'relative' }}>
             <Icon
               src={character.icon || ''}
               shadow
@@ -87,7 +87,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
                 {character.name}
               </span>
             </FlexContainer>
-            <div style={{ boxShadow: '0px 4px 15px rgba(0,0,0,1)' }}>
+            <div style={{ boxShadow: '0px 4px 15px rgba(0,0,0,1)', zIndex: 3 }}>
               <HealthGauge
                 character={character}
                 height={20}

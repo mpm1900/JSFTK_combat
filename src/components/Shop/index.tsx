@@ -11,7 +11,13 @@ import { usePartyContext } from '../../contexts/PartyContext'
 import { tConsumable } from '../../game/Consumable/type'
 import { Theme } from '../../theme'
 import { ItemCard } from '../ItemCard'
-
+import {
+  equipWeapon,
+  makeCharacter,
+  processCharacter,
+} from '../../game/Character/util'
+const c = makeCharacter('drifter')
+const p = processCharacter
 const CardList = withStyle(FlexContainer, (props: any) => {
   return {
     flexWrap: 'wrap',
@@ -48,6 +54,7 @@ const tabs: ShopTabT[] = [
             )
             .map((a) => (
               <ItemCard
+                character={p(c)}
                 item={a as tConsumable}
                 showBuyButton={true}
                 cost={encounter.costs[a.id]}
@@ -70,6 +77,7 @@ const tabs: ShopTabT[] = [
             .map((w) => (
               <ItemCard
                 item={w}
+                character={p(equipWeapon(c, w as tWeapon).character)}
                 showBuyButton={true}
                 cost={encounter.costs[w.id]}
                 onBuyClick={() => purchaseItem(w, encounter.costs[w.id])}
@@ -91,6 +99,7 @@ const tabs: ShopTabT[] = [
             .map((a) => (
               <ItemCard
                 item={a}
+                character={p(c)}
                 showBuyButton={true}
                 cost={encounter.costs[a.id]}
                 onBuyClick={() => purchaseItem(a, encounter.costs[a.id])}
@@ -116,6 +125,7 @@ const tabs: ShopTabT[] = [
           .map((w) => (
             <ItemCard
               item={w}
+              character={p(equipWeapon(c, w as tWeapon).character)}
               showBuyButton={true}
               cost={encounter.costs[w.id]}
               onBuyClick={() => purchaseItem(w, encounter.costs[w.id])}
@@ -140,6 +150,7 @@ const tabs: ShopTabT[] = [
           .map((a) => (
             <ItemCard
               item={a}
+              character={p(c)}
               showBuyButton={true}
               cost={encounter.costs[a.id]}
               onBuyClick={() => purchaseItem(a, encounter.costs[a.id])}
@@ -158,6 +169,7 @@ const tabs: ShopTabT[] = [
           .map((a) => (
             <ItemCard
               item={a}
+              character={p(c)}
               showBuyButton={true}
               cost={encounter.costs[a.id]}
               onBuyClick={() => purchaseItem(a, encounter.costs[a.id])}

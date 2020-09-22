@@ -37,6 +37,7 @@ export const buildRandomEncounterType = (
   const isCenter = isValueEqual(hex, CENTER_HEX(FLOOR_SIZE))
   const isEnd = depth === FLOOR_SIZE - 1
   const roll = makeRandom(100, 1)
+  // return 'shop'
   if (isEnd) return 'boss'
   if (isCenter) return 'reward'
   if (isShop) return 'shop'
