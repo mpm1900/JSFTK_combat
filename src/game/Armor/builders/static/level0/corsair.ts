@@ -1,6 +1,13 @@
 import { createFootwear, createHat, createLightArmor } from '../..'
 import { tArmor } from '../../../type'
-import { AristocratAttire, AristocratHat, AristocratShoes } from '../level1'
+import {
+  AristocratAttire,
+  AristocratHat,
+  AristocratShoes,
+  ChainMailArmor,
+  ChainMailBoots,
+  ChainMailHelmet,
+} from '../level1'
 
 export const CorsairHat: tArmor = {
   ...createHat('Corsair Hat', 'common', 0, {
@@ -8,7 +15,7 @@ export const CorsairHat: tArmor = {
     charisma: 1,
   }),
   level: 0,
-  upgrades: [AristocratHat.id],
+  upgrades: [AristocratHat.id, ChainMailHelmet.id],
 }
 
 export const CorsairAttire: tArmor = {
@@ -18,7 +25,7 @@ export const CorsairAttire: tArmor = {
     charisma: 1,
   }),
   level: 0,
-  upgrades: [AristocratAttire.id],
+  upgrades: [AristocratAttire.id, ChainMailArmor.id],
 }
 
 export const CorsairShoes: tArmor = {
@@ -27,5 +34,5 @@ export const CorsairShoes: tArmor = {
     vigor: 1,
   }),
   level: 0,
-  upgrades: [AristocratShoes.id],
+  upgrades: [AristocratShoes.id, ChainMailBoots.id],
 }

@@ -3,7 +3,6 @@ import { HexT } from '../../grid/types'
 import { CENTER_HEX, getDepth, isValueEqual, MIN_HEX } from '../../grid/util'
 import { getRandom, noneg } from '../../util'
 import { makeRandom } from '../../util/makeRandom'
-import { makeEnemyReward } from '../Character/enemies/_builder'
 import { getRewardsFromCharacter } from '../Character/util'
 import { BEAST_DRUG } from '../Consumable/objects/beast_drug'
 import { CELESTIAL_LOTUS } from '../Consumable/objects/celestial_lotus'
@@ -11,12 +10,11 @@ import { CURE_POTION } from '../Consumable/objects/curing_potion'
 import { FIREBOMB } from '../Consumable/objects/firebomb'
 import { GODSBEARD } from '../Consumable/objects/godsbeard'
 import { POISON_KNIFE } from '../Consumable/objects/poison_knife'
-import { getRandomItem } from '../Item/util'
 import { consolidateRewards } from '../Other/util'
 import { makeBossParty, makeParty } from '../Party/util'
 import { tBaseStats } from '../Stats/type'
 import { POSSIBLE_SHINE_REWARDS } from './constants'
-import { FLOOR_CONFIGS_BY_INDEX, FLOOR_SIZE } from './floors'
+import { FLOOR_CONFIGS_BY_ID, FLOOR_SIZE } from './floors'
 import {
   tBossEncounter,
   tCombatEncounter,
@@ -31,7 +29,6 @@ import { getItemCost, makeEncounter } from './util'
 export const buildRandomEncounterType = (
   hex: HexT,
   depth: number,
-  floor: number,
   isShop: boolean,
 ): tEncounterType => {
   const isStart = isValueEqual(hex, MIN_HEX(FLOOR_SIZE))
@@ -44,32 +41,32 @@ export const buildRandomEncounterType = (
   if (isCenter) return 'reward'
   if (isShop) return 'shop'
   if (isSide) return 'combat'
-  if (roll >= 95) return 'reward'
-  if (roll >= 78) return 'shrine'
+  if (roll >= 96) return 'reward'
+  if (roll >= 84) return 'shrine'
   return 'combat'
 }
 
 export const buildRandomEncounter = (
-  floor: number,
+  floorId: string,
   hex: HexT,
   isShop: boolean,
 ): tEncounter | undefined => {
   const isStart = isValueEqual(hex, MIN_HEX(FLOOR_SIZE))
   const depth = getDepth(hex, FLOOR_SIZE)
-  const type = buildRandomEncounterType(hex, depth, floor, isShop)
+  const type = buildRandomEncounterType(hex, depth, isShop)
 
   let encounter = makeEncounter(type)
   if (type === 'combat') {
-    encounter = buildCombatEncounter(encounter, depth, floor, hex)
+    encounter = buildCombatEncounter(encounter, depth, floorId, hex)
   }
   if (type === 'boss') {
-    encounter = buildBossEncounter(encounter, floor, hex)
+    encounter = buildBossEncounter(encounter, floorId, hex)
   }
   if (type === 'reward') {
-    encounter = buildRewardEncounter(encounter, floor)
+    encounter = buildRewardEncounter(encounter, floorId)
   }
   if (encounter.type === 'shop') {
-    encounter = buildShopEncounter(encounter, floor)
+    encounter = buildShopEncounter(encounter, floorId)
   }
   if (encounter.type === 'shrine') {
     encounter = buildShrineEncounter(encounter)
@@ -81,36 +78,36 @@ export const buildRandomEncounter = (
 export const buildCombatEncounter = (
   encounter: tEncounter,
   depth: number,
-  floor: number,
+  floorId: string,
   hex: HexT,
 ): tCombatEncounter => {
   const isSide = hex.q === 0 || hex.q - 1 === depth
-  const isElite = makeRandom(100) > 90 && !isSide
+  const isElite = makeRandom(100) > 92 && !isSide
   return {
     ...encounter,
     isElite,
-    party: makeParty(noneg(depth), floor, isElite, hex.q),
+    party: makeParty(noneg(depth), floorId, isElite, hex.q),
   }
 }
 
 export const buildBossEncounter = (
   encounter: tEncounter,
-  floor: number,
+  floorId: string,
   hex: HexT,
 ): tBossEncounter => {
   return {
     ...encounter,
     boss: true,
     isElite: false,
-    party: makeBossParty(floor, hex.q),
+    party: makeBossParty(floorId, hex.q),
   }
 }
 
 export const buildRewardEncounter = (
   encounter: tEncounter,
-  floor: number,
+  floorId: string,
 ): tRewardEncounter => {
-  const config = FLOOR_CONFIGS_BY_INDEX()[floor]
+  const config = FLOOR_CONFIGS_BY_ID()[floorId]
   return {
     ...encounter,
     isMimic: makeRandom(10) > 6,
@@ -119,7 +116,7 @@ export const buildRewardEncounter = (
     isOpened: false,
     isElite: true,
     party: {
-      ...makeParty(0, floor, false, 0),
+      ...makeParty(0, floorId, false, 0),
       characters: [config.mimic()],
     },
   }
@@ -127,9 +124,9 @@ export const buildRewardEncounter = (
 
 export const buildShopEncounter = (
   encounter: tEncounter,
-  floor: number,
+  floorId: string,
 ): tShopEncounter => {
-  const config = FLOOR_CONFIGS_BY_INDEX()[floor]
+  const config = FLOOR_CONFIGS_BY_ID()[floorId]
   const items = [
     GODSBEARD(),
     CELESTIAL_LOTUS(),

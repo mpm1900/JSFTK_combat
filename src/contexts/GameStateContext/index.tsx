@@ -2,20 +2,20 @@ import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { useGameState, useGameStateActions } from '../../state/game2'
 import { tEncounter, tFloor2 } from '../../game/Encounter/type'
 import { EncounterArrayT, HexT } from '../../grid/types'
-import { makeHex } from '../../grid/util'
-import { useModalContext } from '../ModalContext'
+import { FLOOR_1_ID } from '../../game/Encounter/floors/level1/floor-1'
 
 export interface GameStateContextT {
   started: boolean
   encounters: EncounterArrayT
   floors: tFloor2[]
-  floor: number
+  floorId: string
   currentHex: HexT | undefined
+  currentFloor: tFloor2
   currentEncounter: tEncounter | undefined
   previousEncounter: tEncounter | undefined
   loading: boolean
   chooseNext: (hex: HexT) => void
-  nextFloor: () => void
+  nextFloor: (floorId: string) => void
   reset: () => void
   removeItem: (itemId: string) => void
   completeCurrent: () => void
@@ -26,13 +26,14 @@ export const defaultValue: GameStateContextT = {
   started: false,
   encounters: [],
   floors: [],
-  floor: 0,
+  floorId: FLOOR_1_ID,
   currentHex: undefined,
+  currentFloor: {} as tFloor2,
   currentEncounter: undefined,
   previousEncounter: undefined,
   loading: false,
   chooseNext: (hex) => {},
-  nextFloor: () => {},
+  nextFloor: (floorId) => {},
   reset: () => {},
   removeItem: (itemId) => {},
   completeCurrent: () => {},
@@ -48,9 +49,12 @@ export interface GameStateProviderPropsT {
 }
 export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
   const { children } = props
-  const { floors, floor, hex, loading } = useGameState()
+  const { floors, floorId, hex, loading } = useGameState()
   const [started, setStarted] = useState(false)
-  const currentFloor = floors[floor]
+  const currentFloor = useMemo(
+    () => floors.find((f) => f.id === floorId) as tFloor2,
+    [floors, floorId],
+  )
   const encounters = currentFloor.encounters
   const {
     nextFloor,
@@ -84,8 +88,9 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
         started,
         encounters,
         floors,
-        floor,
+        floorId,
         currentHex: hex,
+        currentFloor,
         currentEncounter,
         previousEncounter,
         loading,

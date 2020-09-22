@@ -36,6 +36,7 @@ import { getAIAction } from '../../game/AI/util'
 import { tArmor } from '../../game/Armor/type'
 import { tWeapon } from '../../game/Weapon/type'
 import { Theme } from '../../theme'
+import { FLOOR_1_ID } from '../../game/Encounter/floors/level1/floor-1'
 
 export interface CombatContextT {
   party: tProcessedParty
@@ -58,8 +59,8 @@ export interface CombatContextT {
   equipItemCombat: (characterId: string, item?: tArmor | tWeapon) => void
 }
 const defaultValue: CombatContextT = {
-  party: processParty(makeParty(0, 0, false, 0)),
-  enemyParty: processParty(makeParty(0, 0, false, 0)),
+  party: processParty(makeParty(0, FLOOR_1_ID, false, 0)),
+  enemyParty: processParty(makeParty(0, FLOOR_1_ID, false, 0)),
   activeCharacter: processCharacter(makeCharacter('executioner')),
   characters: [],
   queue: {},

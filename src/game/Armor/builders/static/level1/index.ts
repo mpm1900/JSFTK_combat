@@ -2,6 +2,7 @@ import { tArmor } from '../../../type'
 import { AdventureBoots, AdventureCloak, AdventureHood } from './adventure'
 import { ApprenticeHat, ApprenticeRobes, ApprenticeShoes } from './apprentice'
 import { AristocratAttire, AristocratHat, AristocratShoes } from './aristocrat'
+import { ChainMailArmor, ChainMailBoots, ChainMailHelmet } from './chain_mail'
 import {
   GraveguardArmor,
   GraveguardBoots,
@@ -11,6 +12,7 @@ import {
 export * from './adventure'
 export * from './apprentice'
 export * from './aristocrat'
+export * from './chain_mail'
 export * from './graveguard'
 
 export const ARMOR_LEVEL_1: tArmor[] = [
@@ -23,6 +25,9 @@ export const ARMOR_LEVEL_1: tArmor[] = [
   AristocratHat,
   AristocratAttire,
   AristocratShoes,
+  ChainMailHelmet,
+  ChainMailArmor,
+  ChainMailBoots,
   GraveguardHelmet,
   GraveguardArmor,
   GraveguardBoots,

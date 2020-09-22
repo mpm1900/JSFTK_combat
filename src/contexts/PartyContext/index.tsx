@@ -20,6 +20,7 @@ import { tArmor } from '../../game/Armor/type'
 import { useGameStateContext } from '../GameStateContext'
 import { tConsumable } from '../../game/Consumable/type'
 import { FISTS } from '../../game/Weapon/fists'
+import { FLOOR_1_ID } from '../../game/Encounter/floors/level1/floor-1'
 
 export interface PartyContextT {
   party: tProcessedParty
@@ -39,8 +40,8 @@ export interface PartyContextT {
   refreshParty: () => void
 }
 const defaultContextValue: PartyContextT = {
-  rawParty: makeParty(0, 0, false, 0),
-  party: processParty(makeParty(0, 0, false, 0)),
+  rawParty: makeParty(0, FLOOR_1_ID, false, 0),
+  party: processParty(makeParty(0, FLOOR_1_ID, false, 0)),
   activeCharacter: processCharacter(makeCharacter('executioner')),
   updateParty: (party) => {},
   upsertCharacter: (character) => {},

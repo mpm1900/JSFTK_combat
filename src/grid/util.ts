@@ -43,7 +43,7 @@ export const getDepth = (hex: HexT, size: number): number => {
 
 export const makeEncounterArray = (
   size: number,
-  floor: number,
+  floorId: string,
 ): EncounterArrayT => {
   let index = 0
   const minQ = 0
@@ -59,7 +59,7 @@ export const makeEncounterArray = (
       const ri = maxR - r
       result[q][r] = {}
       if (q > ri) continue
-      const e = buildRandomEncounter(floor, hex, index === shopIndex)
+      const e = buildRandomEncounter(floorId, hex, index === shopIndex)
       result[q][r][hex.s] = e
       index++
     }

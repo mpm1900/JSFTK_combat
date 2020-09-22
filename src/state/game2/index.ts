@@ -10,12 +10,15 @@ import {
 } from '../../game/Encounter/type'
 import { makeFloor2 } from '../../game/Encounter/util'
 import { HexT } from '../../grid/types'
-import { getAdjacent, makeHex, MIN_HEX } from '../../grid/util'
+import { getAdjacent, MIN_HEX } from '../../grid/util'
 import { FLOOR_SIZE } from '../../game/Encounter/floors'
+import { FLOOR_1_ID } from '../../game/Encounter/floors/level1/floor-1'
+import { FLOOR_2A_ID } from '../../game/Encounter/floors/level2/floor-2a'
+import { FLOOR_3A_ID } from '../../game/Encounter/floors/floor-3'
 
 export interface GameStateT {
   hex: HexT | undefined
-  floor: number
+  floorId: string
   floors: tFloor2[]
   loading: boolean
 }
@@ -45,9 +48,11 @@ export const actionCreators = {
       hex,
     },
   }),
-  nextFloor: (): StateActionT => ({
+  nextFloor: (floorId: string): StateActionT => ({
     type: NEXT_FLOOR,
-    payload: {},
+    payload: {
+      floorId,
+    },
   }),
   removeItem: (itemId: string): StateActionT => ({
     type: REMOVE_ITEM,
@@ -76,8 +81,8 @@ export const actions = {
   chooseNext: (hex: HexT) => (dispatch: Dispatch) => {
     dispatch(actionCreators.chooseNext(hex))
   },
-  nextFloor: () => (dispatch: Dispatch) => {
-    dispatch(actionCreators.nextFloor())
+  nextFloor: (floorId: string) => (dispatch: Dispatch) => {
+    dispatch(actionCreators.nextFloor(floorId))
   },
   removeItem: (itemId: string) => (dispatch: Dispatch) => {
     dispatch(actionCreators.removeItem(itemId))
@@ -97,7 +102,7 @@ const updateCurrentFloor = (
   return {
     ...state,
     floors: state.floors.map((floor) =>
-      floor.depth === state.floor ? updater(floor) : floor,
+      floor.id === state.floorId ? updater(floor) : floor,
     ),
   }
 }
@@ -109,9 +114,9 @@ export const core: StateCoreT<GameStateT> = {
       hex: undefined,
       floor: 0,
       floors: [
-        makeFloor2(0, FLOOR_SIZE),
-        makeFloor2(1, FLOOR_SIZE),
-        makeFloor2(2, FLOOR_SIZE),
+        makeFloor2(FLOOR_1_ID, 0, FLOOR_SIZE),
+        makeFloor2(FLOOR_2A_ID, 1, FLOOR_SIZE),
+        makeFloor2(FLOOR_3A_ID, 2, FLOOR_SIZE),
       ],
     }
   },
@@ -148,7 +153,7 @@ export const core: StateCoreT<GameStateT> = {
   [NEXT_FLOOR]: (state, action) => {
     return {
       ...state,
-      floor: state.floor + 1,
+      floorId: action.payload.floorId,
       hex: MIN_HEX(FLOOR_SIZE),
     }
   },
@@ -209,12 +214,12 @@ export const core: StateCoreT<GameStateT> = {
 }
 
 export const INITIAL_STATE: GameStateT = {
-  floor: 0,
+  floorId: FLOOR_1_ID,
   hex: MIN_HEX(FLOOR_SIZE),
   floors: [
-    makeFloor2(0, FLOOR_SIZE),
-    makeFloor2(1, FLOOR_SIZE),
-    makeFloor2(2, FLOOR_SIZE),
+    makeFloor2(FLOOR_1_ID, 0, FLOOR_SIZE),
+    makeFloor2(FLOOR_2A_ID, 1, FLOOR_SIZE),
+    makeFloor2(FLOOR_3A_ID, 2, FLOOR_SIZE),
   ],
   loading: false,
 }
@@ -226,7 +231,7 @@ export const useGameStateActions = () =>
   useActions(actions) as {
     reset: () => void
     chooseNext: (hex: HexT) => void
-    nextFloor: () => void
+    nextFloor: (floorId: string) => void
     removeItem: (itemId: string) => void
     completeCurrent: () => void
     openCurrent: () => void

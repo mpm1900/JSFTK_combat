@@ -19,7 +19,11 @@ export const makeEncounter = (type: tEncounterType) => ({
   seen: false,
 })
 
-export const makeFloor2 = (depth: number, size: number): tFloor2 => {
+export const makeFloor2 = (
+  id: string,
+  depth: number,
+  size: number,
+): tFloor2 => {
   let name = ''
   if (depth === 0) {
     name = 'The Forgotten Woods'
@@ -31,10 +35,10 @@ export const makeFloor2 = (depth: number, size: number): tFloor2 => {
     name = 'Realm of the Ancients (comming soon)'
   }
   return {
-    id: v4(),
+    id,
     name,
     depth,
     size: size,
-    encounters: makeEncounterArray(size, depth),
+    encounters: makeEncounterArray(size, id),
   }
 }

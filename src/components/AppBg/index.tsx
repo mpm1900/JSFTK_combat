@@ -9,15 +9,14 @@ export interface AppBgPropsT {
 }
 export const AppBg = (props: AppBgPropsT) => {
   const { children } = props
-  const { floor, currentHex, floors, currentEncounter } = useGameStateContext()
-  const currentFloor = floors[floor]
+  const { currentFloor, currentHex, currentEncounter } = useGameStateContext()
 
   const baseBg = useMemo(() => {
     return getEncounterBg(
       getDepth(currentHex || MIN_HEX(currentFloor.size), currentFloor.size),
-      floor,
+      currentFloor.depth,
     )
-  }, [floor, currentHex])
+  }, [currentFloor, currentHex])
   const bg = currentEncounter?.completed ? baseBg.completed || baseBg : baseBg
 
   /*

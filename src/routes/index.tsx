@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Route, useHistory, useLocation } from 'react-router-dom'
 import { useGameStateContext } from '../contexts/GameStateContext'
 import { useModalContext } from '../contexts/ModalContext'
+import { FLOOR_3A_ID } from '../game/Encounter/floors/floor-3'
 import { tRewardEncounter } from '../game/Encounter/type'
 import { Theme } from '../theme'
 
@@ -12,14 +13,14 @@ export const makeRoute = (path: string, Component: React.FC) => (
 )
 
 export const RouteController = () => {
-  const { currentEncounter, floor, floors, started } = useGameStateContext()
+  const { currentEncounter, floorId, floors, started } = useGameStateContext()
   const history = useHistory()
   const { open } = useModalContext()
   useEffect(() => {
     if (!started) {
       history.push('/')
     }
-    if (floor > floors.length - 2) {
+    if (floorId === FLOOR_3A_ID) {
       open(
         <div style={{ textAlign: 'center', fontFamily: Theme.titleFont }}>
           <h1>You've Defeated the Lich! You did it!</h1>

@@ -9,7 +9,7 @@ import { getRandomItem } from '../../Item/util'
 import { createSkill } from '../../Skill/skills'
 import { v4 } from 'uuid'
 
-const id = v4()
+export const LICH_ID = v4()
 export const LICH = (): tCharacter => {
   return {
     ...makeEnemy(
@@ -52,7 +52,7 @@ export const LICH = (): tCharacter => {
       ],
       ['stunned', 'bleeding', 'poisoned'],
     ),
-    id,
+    id: LICH_ID,
   }
 }
 export const LICH2 = (): tCharacter => {
@@ -97,6 +97,6 @@ export const LICH2 = (): tCharacter => {
       ],
       ['stunned', 'bleeding', 'poisoned'],
     ),
-    id,
+    id: LICH_ID,
   }
 }

@@ -5,6 +5,7 @@ import { WEAPONS_BY_LEVEL } from '../../Weapon/builders/objects'
 import { tFloorConfig } from '../type'
 import { MIMIC_FLOOR_1 } from '../../Character/elites/mimic_floor_1'
 import { makeRandomFloorEncounter } from './util'
+import { v4 } from 'uuid'
 
 const FLOOR_3_WEAPONS = () => [
   ...WEAPONS_BY_LEVEL[3],
@@ -12,7 +13,9 @@ const FLOOR_3_WEAPONS = () => [
   ...WEAPONS_BY_LEVEL[5],
 ]
 
+export const FLOOR_3A_ID = v4()
 export const FloorConfig3 = (): tFloorConfig => ({
+  floorId: FLOOR_3A_ID,
   bosses: [],
   altBosses: [],
   items: [...FLOOR_3_WEAPONS().map((w) => w())],

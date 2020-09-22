@@ -25,6 +25,6 @@ export const MIMIC_FLOOR_1 = () =>
       resistance: 4,
     },
     [],
-    [makeEnemyReward(150, 30, [getRandomItem(3, 2), getRandomItem(3, 2)])],
+    [makeEnemyReward(100, 20, [getRandomItem(3, 2)])],
     ['bleeding', 'poisoned'],
   )

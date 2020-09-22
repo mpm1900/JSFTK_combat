@@ -13,7 +13,7 @@ import { tEncounterReward } from '../Encounter/type'
 import { tArmor } from '../Armor/type'
 import { tWeapon } from '../Weapon/type'
 import { tConsumable } from '../Consumable/type'
-import { FLOOR_CONFIGS_BY_INDEX, FLOOR_SIZE } from '../Encounter/floors'
+import { FLOOR_CONFIGS_BY_ID, FLOOR_SIZE } from '../Encounter/floors'
 import { makeRandom } from '../../util/makeRandom'
 
 export const isParty = (obj: any): boolean =>
@@ -71,12 +71,12 @@ export const updateCharacter = (
 
 export const makeParty = (
   depth: number,
-  floor: number,
+  floorId: string,
   isElite: boolean,
   sideIndex: number,
 ): tParty => {
-  const config = FLOOR_CONFIGS_BY_INDEX()[floor]
-  const roll = makeRandom(FLOOR_SIZE, 1)
+  const config = FLOOR_CONFIGS_BY_ID()[floorId]
+  const roll = makeRandom(FLOOR_SIZE - 1, 1)
   const enemies = isElite
     ? config.eliteEnemies
     : roll >= sideIndex
@@ -92,8 +92,8 @@ export const makeParty = (
   }
 }
 
-export const makeBossParty = (floor: number, sideIndex: number): tParty => {
-  const config = FLOOR_CONFIGS_BY_INDEX()[floor]
+export const makeBossParty = (floorId: string, sideIndex: number): tParty => {
+  const config = FLOOR_CONFIGS_BY_ID()[floorId]
   const roll = makeRandom(FLOOR_SIZE, 1)
   const bosses = roll >= sideIndex ? config.bosses : config.altBosses
   return {

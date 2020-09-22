@@ -1,7 +1,7 @@
 import { tEncounterReward, tCombatEncounter, tEncounter } from './type'
 import { getRandom } from '../../util'
 import { stringArr } from '../../util/stringArr'
-import { FLOOR_CONFIGS_BY_INDEX } from './floors'
+import { FLOOR_CONFIGS_BY_ID } from './floors'
 import Forest1 from '../../assets/img/forests/7.png'
 import Forest2 from '../../assets/img/forests/8.png'
 import Forest3 from '../../assets/img/forests/1.png'
@@ -9,6 +9,7 @@ import Dungeon1 from '../../assets/img/dungeon/3.png'
 import Dungeon2 from '../../assets/img/dungeon/1.png'
 import Dungeon3 from '../../assets/img/dungeon/4.png'
 import Dungeon4 from '../../assets/img/dungeon/2.png'
+import { FLOOR_1_ID } from './floors/level1/floor-1'
 
 export const ZERO_REWARD: tEncounterReward = {
   gold: 0,
@@ -64,9 +65,9 @@ const justXp = (xp: number) => ({
   ...ZERO_REWARD,
   xp,
 })
-const justRandomItem = (floor: number = 0): tEncounterReward => ({
+const justRandomItem = (floorId: string = FLOOR_1_ID): tEncounterReward => ({
   ...ZERO_REWARD,
-  items: [getRandom(FLOOR_CONFIGS_BY_INDEX()[floor].items)],
+  items: [getRandom(FLOOR_CONFIGS_BY_ID()[floorId].items)],
 })
 
 export const POSSIBLE_SHINE_REWARDS = (): tEncounterReward[][] => [

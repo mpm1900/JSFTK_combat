@@ -1,7 +1,6 @@
 import Bee from '../../../icons/svg/lorc/snake.svg'
 import { tCharacter } from '../type'
 import { getRandom } from '../../../util'
-import { GODSBEARD } from '../../Consumable/objects/godsbeard'
 import { getRandomItem } from '../../Item/util'
 import { makeEnemy, makeEnemyReward, makeEnemyWeapon } from './_builder'
 import { createSkill } from '../../Skill/skills'

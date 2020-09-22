@@ -1,6 +1,13 @@
 import { createFootwear, createHeavyArmor, createHelmet } from '../..'
 import { tArmor } from '../../../type'
-import { GraveguardArmor, GraveguardBoots, GraveguardHelmet } from '../level1'
+import {
+  ChainMailArmor,
+  ChainMailBoots,
+  ChainMailHelmet,
+  GraveguardArmor,
+  GraveguardBoots,
+  GraveguardHelmet,
+} from '../level1'
 
 export const ExecutionerHelmet: tArmor = {
   ...createHelmet('Executioner Helmet', 'common', 0, {
@@ -8,7 +15,7 @@ export const ExecutionerHelmet: tArmor = {
     strength: 1,
   }),
   level: 0,
-  upgrades: [GraveguardHelmet.id],
+  upgrades: [GraveguardHelmet.id, ChainMailHelmet.id],
 }
 
 export const ExecutionerArmor: tArmor = {
@@ -18,7 +25,7 @@ export const ExecutionerArmor: tArmor = {
     intelligence: -2,
   }),
   level: 0,
-  upgrades: [GraveguardArmor.id],
+  upgrades: [GraveguardArmor.id, ChainMailArmor.id],
 }
 
 export const ExecutionerBoots: tArmor = {
@@ -27,5 +34,5 @@ export const ExecutionerBoots: tArmor = {
     vigor: 1,
   }),
   level: 0,
-  upgrades: [GraveguardBoots.id],
+  upgrades: [GraveguardBoots.id, ChainMailBoots.id],
 }

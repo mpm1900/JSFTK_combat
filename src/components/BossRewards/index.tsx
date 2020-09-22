@@ -4,6 +4,7 @@ import { usePartyContext } from '../../contexts/PartyContext'
 import { RedButton } from '../../elements/button'
 import { FlexContainer } from '../../elements/flex'
 import { tArmor } from '../../game/Armor/type'
+import { BOSS_FLOOR_MAP } from '../../game/Encounter/floors'
 import { tBossEncounter } from '../../game/Encounter/type'
 import { BOSS_ITEMS } from '../../game/Weapon/constants'
 import { tWeapon } from '../../game/Weapon/type'
@@ -32,6 +33,9 @@ export const BossRewards = () => {
 
   if (!currentEncounter) return null
   const boss = (currentEncounter as tBossEncounter).party.characters[0]
+  const nextFloorId = BOSS_FLOOR_MAP()[
+    (currentEncounter as tBossEncounter).party.characters[0].id
+  ]
 
   return (
     <FlexContainer
@@ -73,7 +77,7 @@ export const BossRewards = () => {
                 ...rawParty,
                 items: [...rawParty.items, chosenReward],
               })
-              nextFloor()
+              nextFloor(nextFloorId)
             }}
           >
             Next Floor

@@ -4,23 +4,22 @@ import { useGameStateContext } from '../../contexts/GameStateContext'
 import { HeadingSm, Text } from '../../elements/typography'
 import { ENCOUNTER_TEXTS } from '../../game/Encounter/text'
 import { getDepth } from '../../grid/util'
+import { FLOOR_1_ID } from '../../game/Encounter/floors/level1/floor-1'
 
 export interface ChoicePropsT {}
 
 export const Choice = (props: ChoicePropsT) => {
   const {
-    floor,
-    floors,
+    floorId,
     currentEncounter,
-    previousEncounter,
+    currentFloor,
     currentHex,
   } = useGameStateContext()
-  const currentFloor = floors[floor]
   const depth =
     currentEncounter && currentHex
       ? getDepth(currentHex, currentFloor.size) + 1
       : 0
-  const text = ENCOUNTER_TEXTS[floor][depth]
+  const text = ENCOUNTER_TEXTS[floorId][depth]
   return (
     <FlexContainer $direction='column' style={{ paddingTop: 24 }}>
       <HeadingSm
@@ -29,7 +28,9 @@ export const Choice = (props: ChoicePropsT) => {
         }}
       >
         Your Journey{' '}
-        {currentEncounter === undefined && floor === 0 ? 'Begins' : 'Continues'}
+        {currentEncounter === undefined && floorId === FLOOR_1_ID
+          ? 'Begins'
+          : 'Continues'}
         .
       </HeadingSm>
       <Text

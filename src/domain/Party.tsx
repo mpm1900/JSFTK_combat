@@ -16,8 +16,7 @@ import { Grid } from '../components/Grid'
 
 export const Party = () => {
   const { party, rawParty, updateParty } = usePartyContext()
-  const { floors, floor, currentEncounter } = useGameStateContext()
-  const currentFloor = floors[floor]
+  const { currentFloor, currentEncounter } = useGameStateContext()
   const history = useHistory()
   const {
     setPlayerCanEquipItem,

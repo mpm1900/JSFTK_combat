@@ -27,16 +27,10 @@ export const FOREST_GOLEM = () =>
       strength: 70,
       agility: getRandom([65, 66, 67, 68, 69, 70]),
       evasion: 7,
-      armor: 0,
+      armor: 2,
       resistance: 0,
     },
     [],
-    [
-      makeEnemyReward(150, 60, [
-        getRandomItem(3, 2),
-        getRandomItem(3, 2),
-        GODSBEARD(),
-      ]),
-    ],
+    [makeEnemyReward(100, 30, [getRandomItem(3, 2), GODSBEARD()])],
     ['bleeding', 'poisoned'],
   )

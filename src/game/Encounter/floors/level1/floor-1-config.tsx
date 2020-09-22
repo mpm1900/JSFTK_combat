@@ -1,4 +1,4 @@
-import { FOREST_GOLEM } from '../../Character/elites/forest_golem'
+import { FOREST_GOLEM } from '../../../Character/elites/forest_golem'
 import {
   CULTIST,
   CULTIST_BRUTE,
@@ -9,9 +9,12 @@ import {
   FOREST_TROLL,
   FOREST_WITCH,
   FOREST_WOLF,
-} from '../../Character/enemies'
-import { TOMB_SPIRIT } from '../../Character/enemies/tomb_spirit'
-import { tFloorEncounterSizes, tFloorEnemyConfig } from './util'
+} from '../../../Character/enemies'
+import { INFECTED_BITER } from '../../../Character/enemies/infected_biter'
+import { INFECTED_EYESTALK } from '../../../Character/enemies/infected_eyestalk'
+import { INFECTED_LEACH } from '../../../Character/enemies/infected_leech'
+import { TOMB_SPIRIT } from '../../../Character/enemies/tomb_spirit'
+import { tFloorEncounterSizes, tFloorEnemyConfig } from '../util'
 
 export const Floor1EnemyConfigs: tFloorEnemyConfig[] = [
   {
@@ -56,7 +59,48 @@ export const Floor1EnemyConfigs: tFloorEnemyConfig[] = [
   },
 ]
 
-export const Floor1AltEnemyConfigs: tFloorEnemyConfig[] = []
+export const Floor1AltEnemyConfigs: tFloorEnemyConfig[] = [
+  {
+    enemy: FOREST_WOLF,
+    depths: [0, 1, 2],
+  },
+  {
+    enemy: FOREST_BEAST,
+    depths: [0, 1, 2, 3],
+  },
+  {
+    enemy: INFECTED_BITER,
+    depths: [0, 1, 2, 3, 4, 5, 6],
+  },
+  {
+    enemy: FOREST_WITCH,
+    depths: [1, 2, 3, 4, 5, 6, 7],
+  },
+  {
+    enemy: INFECTED_LEACH,
+    depths: [2, 3, 4, 5, 6, 7],
+  },
+  {
+    enemy: FOREST_TROLL,
+    depths: [3, 4, 5, 6, 7],
+  },
+  {
+    enemy: FOREST_BOAR,
+    depths: [4, 5, 6, 7],
+  },
+  {
+    enemy: CULTIST,
+    depths: [3, 4, 5, 6, 7],
+  },
+  {
+    enemy: CULTIST_BRUTE,
+    depths: [4, 5, 6, 7],
+  },
+  {
+    enemy: INFECTED_EYESTALK,
+    depths: [8, 9],
+  },
+]
 
 export const Floor1EliteEnemyConfigs: tFloorEnemyConfig[] = [
   {

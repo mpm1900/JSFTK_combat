@@ -24,8 +24,7 @@ import { getDepth } from '../../grid/util'
 import { FLOOR_SIZE } from '../../game/Encounter/floors'
 
 export const Grid = () => {
-  const { floor, floors } = useGameStateContext()
-  const currentFloor = floors[floor]
+  const { currentFloor } = useGameStateContext()
   const hexagons = useMemo(() => GridGenerator.triangle(currentFloor.size), [])
   const [isExpanded, setIsExpanded] = useState(false)
   const [activeHex, setActiveHex] = useState<HexT | undefined>()

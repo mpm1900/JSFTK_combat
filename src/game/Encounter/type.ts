@@ -51,6 +51,7 @@ export interface tEncounterReward {
   immunities: tStatusType[]
 }
 export interface tFloorConfig {
+  floorId: string
   items: (tWeapon | tArmor)[]
   enemies: Record<number, tCharacter[][]>
   altEnemies: Record<number, tCharacter[][]>

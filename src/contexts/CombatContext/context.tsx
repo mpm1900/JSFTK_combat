@@ -12,9 +12,9 @@ export const LinkedCombatContext = (
   props: LinkedCombatContextProviderPropsT,
 ) => {
   const { children } = props
-  const { currentEncounter, floor } = useGameStateContext()
+  const { currentEncounter, floorId } = useGameStateContext()
   const [combatParty, setCombatParty] = useState<tParty>(
-    makeParty(0, floor, false, 0),
+    makeParty(0, floorId, false, 0),
   )
   useEffect(() => {
     if (currentEncounter && (currentEncounter as tCombatEncounter).party)
