@@ -24,6 +24,10 @@ export const Button = styled('button', (props: ButtonPropsT) => {
     ':focus': {
       outline: 'none',
     },
+    ':disabled': {
+      background: Theme.otherGrey2,
+      cursor: 'not-allowed',
+    },
     padding: '10px 30px',
     userSelect: 'none',
   }

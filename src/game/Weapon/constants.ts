@@ -12,6 +12,8 @@ import { tArmor } from '../Armor/type'
 import { CONSECRATED_BEAST, LICH } from '../Character/bosses'
 import { LICH_SWORD } from './builders/unique/boss_lich'
 import { HEART_OF_THE_BEAST } from '../Armor/builders/uniques/heart_of_the_beast'
+import { MERCENARY_HAMMER } from './builders/objects/hammer'
+import { CORSAIR_PISTOL } from './builders/objects/pistol'
 
 export const CLASS_WEAPONS: Record<tCharacterClass, tWeapon | undefined> = {
   /*
@@ -22,10 +24,12 @@ export const CLASS_WEAPONS: Record<tCharacterClass, tWeapon | undefined> = {
   patrician: IRON_CHIME(),
   */
   executioner: EXECUTIONER_AXE(),
+  mercenary: MERCENARY_HAMMER(),
   ranger: RANGERS_BOW(),
   reaper: FARMER_SCYTHE(),
   student: STUDENTS_CATALYST(),
   patrician: PATRICIANS_CHIME(),
+  corsair: CORSAIR_PISTOL(),
   drifter: undefined,
   enemy: undefined,
 }

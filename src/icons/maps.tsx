@@ -49,6 +49,8 @@ import Bard from './svg/delapouite/female-vampire.svg'
 import Scholar from './svg/delapouite/wizard-face.svg'
 import Hobo from './svg/delapouite/perspective-dice-six.svg'
 import Reaper from './svg/delapouite/kenku-head.svg'
+import Mercenary from './svg/kier-heyl/dwarf-helmet.svg'
+import Corsair from './svg/delapouite/pirate-captain.svg'
 import { CELESTIAL_LOTUS } from '../game/Consumable/objects/celestial_lotus'
 import { POISON_KNIFE } from '../game/Consumable/objects/poison_knife'
 import { BEAST_DRUG } from '../game/Consumable/objects/beast_drug'
@@ -129,7 +131,9 @@ export const CONSUMABLE_ITEM_COLORS: Record<string, string> = {
 export const CHARACTER_CLASS_ICONS: Record<tCharacterClass, string> = {
   enemy: '',
   executioner: Executioner,
+  mercenary: Mercenary,
   patrician: Bard,
+  corsair: Corsair,
   ranger: Hunter,
   reaper: Reaper,
   student: Scholar,

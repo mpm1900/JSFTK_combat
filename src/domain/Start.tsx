@@ -78,7 +78,7 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.6.12
+            alpha-0.0.7.3
           </Monospace>
         }
       >
@@ -227,9 +227,11 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
         }}
       >
         <option value='executioner'>Executioner</option>
+        <option value='mercenary'>Mercenary</option>
         <option value='ranger'>Ranger</option>
         <option value='student'>Student</option>
         <option value='patrician'>Patrician</option>
+        <option value='corsair'>Corsair</option>
         <option value='reaper'>Reaper</option>
         <option value='drifter'>Drifter</option>
       </select>

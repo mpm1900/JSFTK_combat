@@ -8,6 +8,8 @@ import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 import { CHARACTER_CLASS_ICONS } from '../../icons/maps'
 import { Theme } from '../../theme'
 import { Icon } from '../Icon'
+import { ItemCard } from '../ItemCard'
+import { HoverToolTip } from '../Tooltip'
 
 export interface CharacterSelectorPropsT {
   character: tProcessedCharacter
@@ -24,6 +26,7 @@ export const CharacterSelector = (props: CharacterSelectorPropsT) => {
       style={{
         cursor: 'pointer',
         alignItems: 'center',
+        userSelect: 'none',
       }}
       onClick={onClick}
     >
@@ -32,10 +35,8 @@ export const CharacterSelector = (props: CharacterSelectorPropsT) => {
         stroke={3}
         color={CHARACTER_CLASS_COLORS[character.class]}
         style={{
-          padding: 8,
           alignItems: 'center',
           justifyContent: 'center',
-          transition: 'all 0.3s',
           zIndex: 3,
         }}
         childStyle={{
@@ -59,7 +60,8 @@ export const CharacterSelector = (props: CharacterSelectorPropsT) => {
         }}
         substyle={{
           background: active ? Theme.otherGrey2 : Theme.mediumBgColor,
-          paddingLeft: 28,
+          transition: 'all 0.3s',
+          paddingLeft: 32,
           paddingTop: 0,
           paddingBottom: 0,
           display: 'flex',
@@ -69,15 +71,34 @@ export const CharacterSelector = (props: CharacterSelectorPropsT) => {
           fontSize: 14,
         }}
       >
-        <div style={{ color: ITEM_RARITY_COLORS[head?.rarity || 'common'] }}>
-          {head?.name}
-        </div>
-        <div style={{ color: ITEM_RARITY_COLORS[body?.rarity || 'common'] }}>
-          {body?.name}
-        </div>
-        <div style={{ color: ITEM_RARITY_COLORS[feet?.rarity || 'common'] }}>
-          {feet?.name}
-        </div>
+        {head && (
+          <HoverToolTip
+            content={<ItemCard item={head} character={character} />}
+          >
+            <div style={{ color: ITEM_RARITY_COLORS[head.rarity] }}>
+              {head.name} ({head.level})
+            </div>
+          </HoverToolTip>
+        )}
+
+        {body && (
+          <HoverToolTip
+            content={<ItemCard item={body} character={character} />}
+          >
+            <div style={{ color: ITEM_RARITY_COLORS[body.rarity] }}>
+              {body?.name} ({body?.level})
+            </div>
+          </HoverToolTip>
+        )}
+        {feet && (
+          <HoverToolTip
+            content={<ItemCard item={feet} character={character} />}
+          >
+            <div style={{ color: ITEM_RARITY_COLORS[feet.rarity] }}>
+              {feet.name} ({feet.level})
+            </div>
+          </HoverToolTip>
+        )}
       </BoxContainer>
     </FlexContainer>
   )

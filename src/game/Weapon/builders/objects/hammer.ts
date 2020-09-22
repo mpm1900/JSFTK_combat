@@ -8,9 +8,14 @@ import {
   WITHERING_SMASH,
   STUN,
 } from '../../../Skill/skills/blunt'
+import { tWeapon } from '../../type'
 import { tWeaponsByLevel } from '../type'
 
 const type = 'hammer'
+export const MERCENARY_HAMMER = (): tWeapon => ({
+  ...createWeapon(type, 'starting', [SMASH, RIPPLE], {}),
+  name: `Mercenary Hammer`,
+})
 export const RUSTED_HAMMER = () =>
   createWeapon(type, 'rusted', [SMASH, RIPPLE], {})
 export const TOMB_HAMMER = () =>

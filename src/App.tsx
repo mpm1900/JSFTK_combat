@@ -20,7 +20,7 @@ export const App = () => {
           <CombatLogContextProvider>
             <AppBg>
               <RouteController />
-              <FullContainer>
+              <FullContainer style={{ height: 'calc(100vh - 207px)' }}>
                 <Switch>
                   {makeRoute('/party', Party)}
                   {makeRoute('/combat', Combat)}

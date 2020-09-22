@@ -8,14 +8,16 @@ import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 import { RESOURCE_ICONS } from '../../icons/maps'
 import { Icon } from '../Icon'
 import { ItemCard } from '../ItemCard'
+import { HoverToolTip } from '../Tooltip'
 
 export interface UpgradeOptionsT {
   character: tProcessedCharacter
   resource: tArmorResourceType
+  gold: number
   upgradeItem: (cid: string, a: tArmor) => void
 }
 export const UpgradeOptions = (props: UpgradeOptionsT) => {
-  const { character, resource, upgradeItem } = props
+  const { character, resource, gold, upgradeItem } = props
   const item = character.armor.find((a) => a.resource === resource)
   const upgradeOptions = getUpgradeOptions(item)
   if (!item) return null
@@ -28,7 +30,16 @@ export const UpgradeOptions = (props: UpgradeOptionsT) => {
             item={a}
             character={character}
             showBuyButton
-            buyText={`Upgrade (${a.goldValue})`}
+            buyButtonDisabled={gold < a.goldValue}
+            buyText={
+              <HoverToolTip
+                direction='down'
+                distance={20}
+                content={<ItemCard character={character} item={item} />}
+              >
+                <div>{`Upgrade (${a.goldValue})`}</div>
+              </HoverToolTip>
+            }
             onBuyClick={() => upgradeItem(character.id, a)}
           />
         ))

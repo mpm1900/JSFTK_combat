@@ -9,10 +9,12 @@ import { tEncounterReward } from '../Encounter/type'
 export type tCharacterTag = 'flying' | 'undead' | 'beast'
 export type tCharacterClass =
   | 'executioner'
+  | 'mercenary'
   | 'ranger'
   | 'reaper'
   | 'student'
   | 'patrician'
+  | 'corsair'
   | 'drifter'
   | 'enemy'
 export interface tCharacter {

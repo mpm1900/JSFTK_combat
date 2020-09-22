@@ -23,7 +23,9 @@ export const CHARACTER_XP_MAX: Record<number, number> = {
 export const CHARACTER_CLASS_COLORS: Record<tCharacterClass, string> = {
   enemy: Theme.enemyPartyColor,
   executioner: '#313d47',
+  mercenary: '#363147',
   patrician: '#381c1c',
+  corsair: '#4a4732',
   student: '#382838',
   ranger: '#202e20',
   reaper: 'rgb(22, 25, 33)',

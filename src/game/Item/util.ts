@@ -10,7 +10,7 @@ export const getRandomItem = (
   level: number,
   min: number = 0,
 ): tWeapon | tArmor => {
-  const itemType: tItemType = makeRandom(100) > 20 ? 'weapon' : 'armor'
+  const itemType: tItemType = makeRandom(100) > 15 ? 'weapon' : 'armor'
   if (itemType === 'weapon') {
     level = level === 0 ? 1 : level
     let items = Array(level + 1)

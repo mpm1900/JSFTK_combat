@@ -18,8 +18,8 @@ export const ApprenticeRobes: tArmor = {
     'uncommon',
     150,
     {
-      armor: 2,
-      resistance: 6,
+      armor: 1,
+      resistance: 5,
       maxInspirationOffset: 1,
       strength: -3,
       intelligence: 3,

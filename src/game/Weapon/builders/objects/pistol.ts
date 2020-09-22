@@ -3,9 +3,9 @@ import { FAN_FIRE, FIRE, SNIPE } from '../../../Skill/skills/pistol'
 import { tWeaponsByLevel } from '../type'
 
 const type = 'pistol'
-export const PATRICIANS_PISTOL = () => ({
-  ...createWeapon(type, 'starting', [], {}),
-  name: `Patrician Pistol`,
+export const CORSAIR_PISTOL = () => ({
+  ...createWeapon(type, 'starting', [FIRE, SNIPE], {}),
+  name: `Corsair Pistol`,
 })
 export const RUSTED_PISTOL = () =>
   createWeapon(type, 'rusted', [FIRE, SNIPE, FAN_FIRE], {})
@@ -53,7 +53,7 @@ export const CELESTIAL_PISTOL = () =>
   createBreakableWeapon(type, 'celestial', [FIRE], {})
 
 export const PISTOLS: tWeaponsByLevel = {
-  0: [PATRICIANS_PISTOL],
+  0: [CORSAIR_PISTOL],
   1: [
     RUSTED_PISTOL,
     TOMB_PISTOL,

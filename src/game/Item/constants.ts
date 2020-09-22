@@ -22,10 +22,12 @@ export const CLASS_STARTING_CONSUMABLES: Record<
   tConsumable[]
 > = {
   executioner: [GODSBEARD(), BEAST_DRUG()],
+  mercenary: [GODSBEARD(), CURE_POTION()],
   ranger: [GODSBEARD(), POISON_KNIFE()],
   reaper: [GODSBEARD(), FIREBOMB()],
   student: [GODSBEARD(), CELESTIAL_LOTUS()],
   patrician: [GODSBEARD(), CURE_POTION()],
+  corsair: [GODSBEARD(), GODSBEARD()],
   drifter: [GODSBEARD(), GODSBEARD()],
   enemy: [],
 }

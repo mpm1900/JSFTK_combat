@@ -31,8 +31,9 @@ export interface ItemCardPropsT {
   item: tArmor | tWeapon | tConsumable
   character: tProcessedCharacter
   showBuyButton?: boolean
+  buyButtonDisabled?: boolean
   cost?: number
-  buyText?: string
+  buyText?: string | JSX.Element
   onBuyClick?: () => void
 }
 
@@ -59,8 +60,15 @@ const ItemSubtitle = styled('div', {
 })
 
 export const ItemCard = (props: ItemCardPropsT) => {
-  const { item, character, cost, showBuyButton, buyText, onBuyClick } = props
-  console.log(item.name, character)
+  const {
+    item,
+    character,
+    cost,
+    showBuyButton,
+    buyButtonDisabled = false,
+    buyText,
+    onBuyClick,
+  } = props
   const isArmor = item.itemType === 'armor'
   const isWeapon = item.itemType === 'weapon'
   const isConsumable = item.itemType === 'consumable'
@@ -268,6 +276,7 @@ export const ItemCard = (props: ItemCardPropsT) => {
               <FlexContainer style={{ justifyContent: 'center', marginTop: 4 }}>
                 <Button
                   onClick={onBuyClick}
+                  disabled={buyButtonDisabled}
                   style={{ padding: '8px 16px', width: '100%' }}
                 >
                   {buyText || `Buy (${cost || 0})`}

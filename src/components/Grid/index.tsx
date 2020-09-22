@@ -12,7 +12,7 @@ import { Icon } from '../Icon'
 import Unknown from '../../icons/svg/delapouite/perspective-dice-six.svg'
 import Shop from '../../icons/svg/delapouite/coins.svg'
 import Boss from '../../icons/svg/lorc/crowned-skull.svg'
-import Start from '../../icons/svg/lorc/campfire.svg'
+import Start from '../../icons/svg/lorc/anvil-impact.svg'
 import Combat from '../../icons/svg/lorc/crossed-swords.svg'
 import Elite from '../../icons/svg/lorc/death-zone.svg'
 import Chest from '../../icons/svg/lorc/locked-chest.svg'
@@ -161,7 +161,7 @@ export const Grid = () => {
                 </FlexContainer>
                 <FlexContainer style={{ alignItems: 'center', height: 32 }}>
                   <Icon src={Start} size={24} style={{ marginRight: 12 }} />
-                  Starting Location
+                  Armor Workshop
                 </FlexContainer>
                 <FlexContainer style={{ alignItems: 'center', height: 32 }}>
                   <Icon
