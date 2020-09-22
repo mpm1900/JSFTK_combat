@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "537a5d8083c0f7c11ffd6d4ae18bc9f9",
+    "revision": "8d667e5cb1eae9f442bb02586db51470",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "29ed94241995c179b45f",
+    "revision": "e4d0f6844d1302598f11",
     "url": "/JSFTK_combat/static/css/main.696c34a1.chunk.css"
   },
   {
-    "revision": "06d770a97c05c241965e",
-    "url": "/JSFTK_combat/static/js/2.4ad8e849.chunk.js"
+    "revision": "aa66387f84d1cf8ced16",
+    "url": "/JSFTK_combat/static/js/2.e9a80c24.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.4ad8e849.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.e9a80c24.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "29ed94241995c179b45f",
-    "url": "/JSFTK_combat/static/js/main.da92e0f9.chunk.js"
+    "revision": "e4d0f6844d1302598f11",
+    "url": "/JSFTK_combat/static/js/main.26a04c02.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -132,6 +132,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/JSFTK_combat/static/media/bullet-impacts.00562b6b.svg"
   },
   {
+    "revision": "0447186599af4f4b285e9b394429220a",
+    "url": "/JSFTK_combat/static/media/carnivorous-plant.04471865.svg"
+  },
+  {
     "revision": "f1f52a3c22bdc7a554ea337d72bc906d",
     "url": "/JSFTK_combat/static/media/chest-armor.f1f52a3c.svg"
   },
@@ -218,6 +222,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "4d41833369b8c31b0bcb4fcf446b57e0",
     "url": "/JSFTK_combat/static/media/extra-time.4d418333.svg"
+  },
+  {
+    "revision": "d2c2b188774b199978eb166a6c4f437f",
+    "url": "/JSFTK_combat/static/media/eyestalk.d2c2b188.svg"
   },
   {
     "revision": "27d5f882091017d5eb3b99fe12c722af",
@@ -322,6 +330,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "89b854745fdc6aa5832dc2cd2c439680",
     "url": "/JSFTK_combat/static/media/leather-boot.89b85474.svg"
+  },
+  {
+    "revision": "dd3f7bfe27373d7d8e8ca8f5f73b8c06",
+    "url": "/JSFTK_combat/static/media/leeching-worm.dd3f7bfe.svg"
   },
   {
     "revision": "c0c7c0400f1c681b506fcfbaf2336935",
