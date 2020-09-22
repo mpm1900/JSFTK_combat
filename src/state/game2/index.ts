@@ -14,7 +14,7 @@ import { getAdjacent, makeHex, MIN_HEX } from '../../grid/util'
 import { FLOOR_SIZE } from '../../game/Encounter/floors'
 
 export interface GameStateT {
-  hex: HexT
+  hex: HexT | undefined
   floor: number
   floors: tFloor2[]
   loading: boolean
@@ -106,7 +106,7 @@ export const core: StateCoreT<GameStateT> = {
   [RESET]: (state, action) => {
     return {
       ...state,
-      hex: MIN_HEX(FLOOR_SIZE),
+      hex: undefined,
       floor: 0,
       floors: [
         makeFloor2(0, FLOOR_SIZE),
@@ -155,6 +155,7 @@ export const core: StateCoreT<GameStateT> = {
   [REMOVE_ITEM]: (state, action) => {
     return updateCurrentFloor(state, (floor) => {
       const encounters = floor.encounters
+      if (!state.hex) return floor
       encounters[state.hex.q][state.hex.r][state.hex.s] = {
         ...encounters[state.hex.q][state.hex.r][state.hex.s],
         items: (encounters[state.hex.q][state.hex.r][
@@ -172,6 +173,7 @@ export const core: StateCoreT<GameStateT> = {
   [COMPLETE_CURRENT]: (state, action) => {
     return updateCurrentFloor(state, (floor) => {
       const encounters = floor.encounters
+      if (!state.hex) return floor
       let encounter = encounters[state.hex.q][state.hex.r][state.hex.s]
       if (encounter) {
         encounter = {
@@ -189,6 +191,7 @@ export const core: StateCoreT<GameStateT> = {
   [OPEN_CURRENT]: (state, action) => {
     return updateCurrentFloor(state, (floor) => {
       const encounters = floor.encounters
+      if (!state.hex) return floor
       let encounter = encounters[state.hex.q][state.hex.r][state.hex.s]
       if (encounter) {
         encounter = {

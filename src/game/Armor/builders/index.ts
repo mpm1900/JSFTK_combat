@@ -31,6 +31,8 @@ export const createArmor = (
     },
     skills,
     immunities,
+    level: 0,
+    upgrades: [],
   }
 }
 

@@ -5,6 +5,7 @@ import { Choice } from './Choice'
 import { Shop } from './Shop'
 import { tShopEncounter, tShrineEncounter } from '../../game/Encounter/type'
 import { Shrine } from './Shrine'
+import { Smith } from './Smith'
 
 export const EncounterActions = () => {
   const { currentEncounter } = useGameStateContext()
@@ -33,6 +34,9 @@ export const EncounterActions = () => {
                 <Shrine
                   currentEncounter={currentEncounter as tShrineEncounter}
                 />
+              )}
+              {currentEncounter.type === 'smith' && (
+                <Smith currentEncounter={currentEncounter} />
               )}
             </>
           )}

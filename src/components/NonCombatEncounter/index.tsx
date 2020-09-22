@@ -5,6 +5,7 @@ import { Shop } from '../Shop'
 import { Shrine } from '../Shrine'
 import { BossRewards } from '../BossRewards'
 import { Chest } from '../Chest'
+import { Smith } from '../Smith'
 
 export const NonCombatEncounter = () => {
   const { currentEncounter } = useGameStateContext()
@@ -16,6 +17,7 @@ export const NonCombatEncounter = () => {
         currentEncounter.type === 'boss' &&
         currentEncounter.completed && <BossRewards />}
       {currentEncounter && currentEncounter.type === 'reward' && <Chest />}
+      {currentEncounter && currentEncounter.type === 'smith' && <Smith />}
     </FlexContainer>
   )
 }

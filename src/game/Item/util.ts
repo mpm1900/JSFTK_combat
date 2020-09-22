@@ -1,4 +1,5 @@
 import { getRandom } from '../../util'
+import { makeRandom } from '../../util/makeRandom'
 import { ARMOR_BY_LEVEL } from '../Armor/builders/sets'
 import { tArmor } from '../Armor/type'
 import { WEAPONS_BY_LEVEL } from '../Weapon/builders/objects'
@@ -9,7 +10,7 @@ export const getRandomItem = (
   level: number,
   min: number = 0,
 ): tWeapon | tArmor => {
-  const itemType: tItemType = getRandom(['weapon', 'armor'])
+  const itemType: tItemType = makeRandom(100) > 20 ? 'weapon' : 'armor'
   if (itemType === 'weapon') {
     level = level === 0 ? 1 : level
     let items = Array(level + 1)

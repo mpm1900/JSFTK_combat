@@ -1,4 +1,4 @@
-export type tItemRarity = 'common' | 'uncommon' | 'rare' | 'mythic'
+export type tItemRarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'mythic'
 export type tItemType = 'weapon' | 'armor' | 'consumable'
 export interface tItem {
   id: string

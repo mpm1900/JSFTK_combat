@@ -4,141 +4,16 @@ import {
   RINGS_BY_LEVEL,
   SHIELDS_BY_LEVEL,
 } from '../constants'
-import {
-  ADVENTURER_BOOTS,
-  ADVENTURER_CLOAK,
-  ADVENTURER_HOOD,
-} from './adventure'
-import {
-  ANTIQUATED_ATTIRE,
-  ANTIQUATED_HAT,
-  ANTIQUATED_SHOES,
-} from './antiquated'
-import { APPRENTICE_CAP, APPRENTICE_ROBE, APPRENTICE_SHOES } from './apprentice'
-import {
-  ARISTOCRAT_ATTIRE,
-  ARISTOCRAT_HAT,
-  ARISTOCRAT_SHOES,
-} from './aristocrat'
-import { ASSASSIN_BOOTS, ASSASSIN_CLOAK, ASSASSIN_HOOD } from './assassin'
-import { BISHOP_MITRE, BISHOP_ROBES, BISHOP_SHOES } from './bishop'
-import { BONE_ARMOR, BONE_BOOTS, BONE_HELMET } from './bone'
-import {
-  EXECUTIONER_ARMOR,
-  EXECUTIONER_BOOTS,
-  EXECUTIONER_HELMET,
-} from './executioner'
-import {
-  FALLEN_RAIDER_ARMOR,
-  FALLEN_RAIDER_BOOTS,
-  FALLEN_RAIDER_HELMENT,
-} from './fallen_raider'
-import {
-  GRAVEGUARD_ARMOR,
-  GRAVEGUARD_BOOTS,
-  GRAVEGUARD_HELMET,
-} from './graveguard'
-import { HUNTER_BOOTS, HUNTER_CLOAK, HUNTER_HOOD } from './hunter'
-import { IRON_ARMOR, IRON_BOOTS, IRON_HELMET } from './iron'
-import {
-  NECROMANCER_COWL,
-  NECROMANCER_ROBES,
-  NECROMANCER_WRAPS,
-} from './necromancer'
-import { NOBLE_HAT, NOBLE_OUTFIT, NOBLE_SHOES } from './noble'
-import { NOVICE_HAT, NOVICE_ROBES, NOVICE_SHOES } from './novice'
-import {
-  OLD_KNIGHT_ARMOR,
-  OLD_KNIGHT_BOOTS,
-  OLD_KNIGHT_HELMET,
-} from './old_knight'
-import { PATRICIAN_ATTIRE, PATRICIAN_HAT, PATRICIAN_SHOES } from './patrician'
-import { RANGER_BOOTS, RANGER_CLOAK, RANGER_HOOD } from './ranger'
-import { REAPER_BOOTS, REAPER_HOOD, REAPER_ROBES } from './reaper'
-import { ROGUE_BOOTS, ROGUE_CLOAK, ROGUE_HOOD } from './rogue'
-import { STUDENT_BOOTS, STUDENT_CAP, STUDENT_ROBES } from './student'
-import { TOMB_ARMOR, TOMB_BOOTS, TOMB_HELMET } from './tomb'
 
 export const ARMOR_BY_LEVEL: Record<number, (() => tArmor)[]> = {
-  0: [
-    RANGER_HOOD,
-    RANGER_CLOAK,
-    RANGER_BOOTS,
-    PATRICIAN_HAT,
-    PATRICIAN_ATTIRE,
-    PATRICIAN_SHOES,
-    EXECUTIONER_HELMET,
-    EXECUTIONER_ARMOR,
-    EXECUTIONER_BOOTS,
-    STUDENT_CAP,
-    STUDENT_ROBES,
-    STUDENT_BOOTS,
-    TOMB_HELMET,
-    TOMB_ARMOR,
-    TOMB_BOOTS,
-    ...RINGS_BY_LEVEL[0],
-    ...PENDANTS_BY_LEVEL[0],
-    ...SHIELDS_BY_LEVEL[0],
-  ],
-  1: [
-    ADVENTURER_HOOD,
-    ADVENTURER_CLOAK,
-    ADVENTURER_BOOTS,
-    ARISTOCRAT_HAT,
-    ARISTOCRAT_ATTIRE,
-    ARISTOCRAT_SHOES,
-    GRAVEGUARD_HELMET,
-    GRAVEGUARD_ARMOR,
-    GRAVEGUARD_BOOTS,
-    APPRENTICE_CAP,
-    APPRENTICE_ROBE,
-    APPRENTICE_SHOES,
-    ...SHIELDS_BY_LEVEL[1],
-  ],
-  2: [
-    HUNTER_HOOD,
-    HUNTER_CLOAK,
-    HUNTER_BOOTS,
-    ANTIQUATED_HAT,
-    ANTIQUATED_ATTIRE,
-    ANTIQUATED_SHOES,
-    IRON_HELMET,
-    IRON_ARMOR,
-    IRON_BOOTS,
-    BONE_HELMET,
-    BONE_ARMOR,
-    BONE_BOOTS,
-    NOVICE_HAT,
-    NOVICE_ROBES,
-    NOVICE_SHOES,
-    ...SHIELDS_BY_LEVEL[2],
-  ],
-  3: [
-    ROGUE_HOOD,
-    ROGUE_CLOAK,
-    ROGUE_BOOTS,
-    NECROMANCER_COWL,
-    NECROMANCER_ROBES,
-    NECROMANCER_WRAPS,
-    FALLEN_RAIDER_HELMENT,
-    FALLEN_RAIDER_ARMOR,
-    FALLEN_RAIDER_BOOTS,
-    NOBLE_HAT,
-    NOBLE_OUTFIT,
-    NOBLE_SHOES,
-  ],
-  4: [
-    ASSASSIN_HOOD,
-    ASSASSIN_CLOAK,
-    ASSASSIN_BOOTS,
-    OLD_KNIGHT_HELMET,
-    OLD_KNIGHT_ARMOR,
-    OLD_KNIGHT_BOOTS,
-    REAPER_HOOD,
-    REAPER_ROBES,
-    REAPER_BOOTS,
-    BISHOP_MITRE,
-    BISHOP_ROBES,
-    BISHOP_SHOES,
-  ],
+  0: [...RINGS_BY_LEVEL[0], ...PENDANTS_BY_LEVEL[0], ...SHIELDS_BY_LEVEL[0]],
+  1: [...SHIELDS_BY_LEVEL[1]],
+  2: [...SHIELDS_BY_LEVEL[2]],
+  3: [],
+  4: [],
 }
+
+export const ALL_ARMOR = () =>
+  Object.keys(ARMOR_BY_LEVEL).reduce((result, key) => {
+    return [...result, ...ARMOR_BY_LEVEL[parseInt(key)]]
+  }, [] as (() => tArmor)[])

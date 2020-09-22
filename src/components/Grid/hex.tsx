@@ -3,7 +3,7 @@ import Color from 'color'
 import { Hexagon } from 'react-hexgrid'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 import { HexT } from '../../grid/types'
-import { getDepth, isAdjacent, isValueEqual } from '../../grid/util'
+import { getDepth, isAdjacent, isValueEqual, MIN_HEX } from '../../grid/util'
 import { Boss } from '../../icons/static/Boss'
 import { Combat } from '../../icons/static/Combat'
 import { Random } from '../../icons/static/Random'
@@ -14,6 +14,8 @@ import { Theme } from '../../theme'
 import { Chest } from '../../icons/static/Chest'
 import { tCombatEncounter, tEncounter } from '../../game/Encounter/type'
 import { Elite } from '../../icons/static/Elite'
+import { FLOOR_SIZE } from '../../game/Encounter/floors'
+import { Smith } from '../../icons/static/Smith'
 
 export interface HexPropsT {
   hex: HexT
@@ -27,7 +29,9 @@ export const Hex = (props: HexPropsT) => {
   const [isHovering, setIsHovering] = useState(false)
   const encounter = encounters[hex.q][hex.r][hex.s]
   const active = currentHex ? isValueEqual(hex, currentHex) : false
-  const adjacent = isAdjacent(currentHex)(hex)
+  const adjacent = currentHex
+    ? isAdjacent(currentHex)(hex)
+    : isValueEqual(MIN_HEX(FLOOR_SIZE), hex)
   const depth = getDepth(hex, size)
   const iconColor = getHexIconColor(encounter, active, adjacent, isHovering)
   const fill = getHexFill(encounter, active, adjacent)
@@ -121,6 +125,9 @@ export const getHexIcon = (
     }
     if (encounter.type === 'shrine') {
       return <Shrine fill={fill} />
+    }
+    if (encounter.type === 'smith') {
+      return <Smith fill={fill} />
     }
     if (encounter.type === 'combat') {
       if ((encounter as tCombatEncounter).isElite) {

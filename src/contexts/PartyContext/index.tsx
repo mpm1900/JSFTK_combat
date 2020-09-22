@@ -34,6 +34,7 @@ export interface PartyContextT {
   equipItem: (characterId: string, item: tWeapon | tArmor) => void
   unequipItem: (characterId: string, item: tWeapon | tArmor) => void
   purchaseItem: (item: tArmor | tWeapon | tConsumable, cost: number) => void
+  upgradeItem: (characterId: string, armor: tArmor) => void
   sellItem: (itemId: string) => void
   refreshParty: () => void
 }
@@ -50,6 +51,7 @@ const defaultContextValue: PartyContextT = {
   equipItem: (characterId, item) => {},
   unequipItem: (characterId, item) => {},
   purchaseItem: (item, cost) => {},
+  upgradeItem: (characterId, armor) => {},
   sellItem: (itemId) => {},
   refreshParty: () => {},
 }
@@ -203,6 +205,25 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
       })),
     })
   }
+  const upgradeItem = (characterId: string, armor: tArmor) => {
+    const cost = armor.goldValue
+    if (party.gold < cost) return
+    updateParty({
+      ...rawParty,
+      gold: rawParty.gold - cost,
+      characters: rawParty.characters.map((c) =>
+        c.id === characterId
+          ? {
+              ...c,
+              armor: [
+                ...c.armor.filter((a) => a.resource !== armor.resource),
+                armor,
+              ],
+            }
+          : c,
+      ),
+    })
+  }
 
   return (
     <PartyContext.Provider
@@ -221,6 +242,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
         purchaseItem,
         sellItem,
         refreshParty,
+        upgradeItem,
       }}
     >
       {children}

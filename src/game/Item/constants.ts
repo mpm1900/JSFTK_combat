@@ -11,8 +11,9 @@ import { FIREBOMB } from '../Consumable/objects/firebomb'
 
 export const ITEM_RARITY_COLORS: Record<tItemRarity, string> = {
   common: 'rgba(255, 255, 255,1)',
-  uncommon: 'rgba(128,181,255,1)',
-  rare: 'rgba(213, 128, 255,1)',
+  uncommon: '#5cb574',
+  rare: 'rgba(128,181,255,1)',
+  epic: 'rgba(213, 128, 255,1)',
   mythic: 'rgb(255,160,122,1)',
 }
 

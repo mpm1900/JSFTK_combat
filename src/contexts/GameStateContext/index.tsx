@@ -10,7 +10,7 @@ export interface GameStateContextT {
   encounters: EncounterArrayT
   floors: tFloor2[]
   floor: number
-  currentHex: HexT
+  currentHex: HexT | undefined
   currentEncounter: tEncounter | undefined
   previousEncounter: tEncounter | undefined
   loading: boolean
@@ -27,7 +27,7 @@ export const defaultValue: GameStateContextT = {
   encounters: [],
   floors: [],
   floor: 0,
-  currentHex: makeHex(0, 0),
+  currentHex: undefined,
   currentEncounter: undefined,
   previousEncounter: undefined,
   loading: false,
@@ -61,6 +61,7 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
     openCurrent,
   } = useGameStateActions()
   const currentEncounter = useMemo(() => {
+    if (!hex) return undefined
     return encounters[hex.q][hex.r][hex.s]
   }, [hex, JSON.stringify(encounters)])
   const [previousEncounter, setPreviousEncounter] = useState<

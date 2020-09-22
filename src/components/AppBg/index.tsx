@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 import { FlexContainer } from '../../elements/flex'
 import { getEncounterBg } from '../../game/Encounter/constants'
-import { getDepth } from '../../grid/util'
+import { getDepth, MIN_HEX } from '../../grid/util'
 
 export interface AppBgPropsT {
   children: JSX.Element | JSX.Element[]
@@ -13,7 +13,10 @@ export const AppBg = (props: AppBgPropsT) => {
   const currentFloor = floors[floor]
 
   const baseBg = useMemo(() => {
-    return getEncounterBg(getDepth(currentHex, currentFloor.size), floor)
+    return getEncounterBg(
+      getDepth(currentHex || MIN_HEX(currentFloor.size), currentFloor.size),
+      floor,
+    )
   }, [floor, currentHex])
   const bg = currentEncounter?.completed ? baseBg.completed || baseBg : baseBg
 

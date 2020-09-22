@@ -70,6 +70,7 @@ export const Start = () => {
             onClick={() => {
               updateParty({
                 ...rawParty,
+                gold: 20000,
                 characters: rawParty.characters.map((c) => ({
                   ...c,
                   weapon: TEST_WEAPON(),
@@ -77,7 +78,7 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.6.11
+            alpha-0.0.6.12
           </Monospace>
         }
       >

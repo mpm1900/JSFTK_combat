@@ -7,7 +7,13 @@ import { tStatusType } from '../Status/type'
 import { tCharacter } from '../Character/type'
 import { EncounterArrayT } from '../../grid/types'
 
-export type tEncounterType = 'combat' | 'shop' | 'shrine' | 'boss' | 'reward'
+export type tEncounterType =
+  | 'combat'
+  | 'shop'
+  | 'shrine'
+  | 'boss'
+  | 'reward'
+  | 'smith'
 export interface tEncounter {
   id: string
   name: string

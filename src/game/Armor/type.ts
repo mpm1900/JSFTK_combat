@@ -29,4 +29,6 @@ export interface tArmor extends tItem {
   stat: keyof tBaseStats
   skills: tSkill[]
   immunities: tStatusType[]
+  level: number
+  upgrades: string[]
 }

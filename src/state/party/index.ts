@@ -10,12 +10,6 @@ import { makeCharacter, addMultipleStatus } from '../../game/Character/util'
 import { PLAYER_PARTY_ID } from '../../game/Party/constants'
 import { tArmor } from '../../game/Armor/type'
 import { tWeapon } from '../../game/Weapon/type'
-import {
-  ALL_WEAPONS,
-  WEAPONS_BY_LEVEL,
-} from '../../game/Weapon/builders/objects'
-import { getRandomItem } from '../../game/Item/util'
-import { ARMOR_BY_LEVEL } from '../../game/Armor/builders/sets'
 
 export const UPDATE_PARTY = '@actions/parties/set-party'
 export const UPSERT_CHARACTER = '@actions/parties/upsert-character'

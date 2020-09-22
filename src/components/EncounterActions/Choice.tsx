@@ -16,9 +16,10 @@ export const Choice = (props: ChoicePropsT) => {
     currentHex,
   } = useGameStateContext()
   const currentFloor = floors[floor]
-  const depth = currentEncounter
-    ? getDepth(currentHex, currentFloor.size) + 1
-    : 0
+  const depth =
+    currentEncounter && currentHex
+      ? getDepth(currentHex, currentFloor.size) + 1
+      : 0
   const text = ENCOUNTER_TEXTS[floor][depth]
   return (
     <FlexContainer $direction='column' style={{ paddingTop: 24 }}>
