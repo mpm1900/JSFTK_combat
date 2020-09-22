@@ -1,7 +1,7 @@
 import { createFootwear, createHeavyArmor, createHelmet } from '..'
 
 export const TOMB_HELMET = () =>
-  createHelmet('Tomb Helment', 'common', 30, {
+  createHelmet('Tomb Helmet', 'common', 30, {
     armor: 3,
     resistance: 3,
   })

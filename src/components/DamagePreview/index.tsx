@@ -4,6 +4,7 @@ import { tProcessedCharacter } from '../../game/Character/type'
 import { getDamageResistance } from '../../game/Character/util'
 import { tSkill } from '../../game/Skill/type'
 import { Theme } from '../../theme'
+import { noneg } from '../../util'
 
 export interface DamagePreviewPropsT {
   skill: tSkill
@@ -20,11 +21,13 @@ export const DamagePreview = (props: DamagePreviewPropsT) => {
       source.stats.attackDamageOffset) *
       damageModifier,
   )
-  const min = Math.round(
-    raw / skill.rolls - getDamageResistance(target, source.weapon.damage),
+  const min = noneg(
+    Math.round(
+      raw / skill.rolls - getDamageResistance(target, source.weapon.damage),
+    ),
   )
-  const max = Math.round(
-    raw - getDamageResistance(target, source.weapon.damage),
+  const max = noneg(
+    Math.round(raw - getDamageResistance(target, source.weapon.damage)),
   )
 
   return (
