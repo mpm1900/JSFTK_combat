@@ -10,7 +10,6 @@ import {
   FOREST_WITCH,
   FOREST_WOLF,
 } from '../../Character/enemies'
-import { TOMB_SPIDER } from '../../Character/enemies/tomb_spider'
 import { TOMB_SPIRIT } from '../../Character/enemies/tomb_spirit'
 import { tFloorEncounterSizes, tFloorEnemyConfig } from './util'
 

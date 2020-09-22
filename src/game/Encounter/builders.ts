@@ -31,13 +31,15 @@ import { getItemCost, makeEncounter } from './util'
 export const buildRandomEncounterType = (
   hex: HexT,
   depth: number,
+  floor: number,
   isShop: boolean,
 ): tEncounterType => {
+  const isStart = isValueEqual(hex, MIN_HEX(FLOOR_SIZE))
   const isSide = hex.q === 0 || hex.q - 1 === depth
   const isCenter = isValueEqual(hex, CENTER_HEX(FLOOR_SIZE))
   const isEnd = depth === FLOOR_SIZE - 1
   const roll = makeRandom(100, 1)
-  // return 'shop'
+  if (isStart) return 'shop'
   if (isEnd) return 'boss'
   if (isCenter) return 'reward'
   if (isShop) return 'shop'
@@ -53,10 +55,9 @@ export const buildRandomEncounter = (
   isShop: boolean,
 ): tEncounter | undefined => {
   const isStart = isValueEqual(hex, MIN_HEX(FLOOR_SIZE))
-  if (isStart) return undefined
-
+  if (isStart && floor === 0) return
   const depth = getDepth(hex, FLOOR_SIZE)
-  const type = buildRandomEncounterType(hex, depth, isShop)
+  const type = buildRandomEncounterType(hex, depth, floor, isShop)
 
   let encounter = makeEncounter(type)
   if (type === 'combat') {

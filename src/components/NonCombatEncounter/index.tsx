@@ -12,7 +12,9 @@ export const NonCombatEncounter = () => {
     <FlexContainer $direction='column' $full style={{ marginLeft: '60px' }}>
       {currentEncounter && currentEncounter.type === 'shop' && <Shop />}
       {currentEncounter && currentEncounter.type === 'shrine' && <Shrine />}
-      {currentEncounter && currentEncounter.type === 'boss' && <BossRewards />}
+      {currentEncounter &&
+        currentEncounter.type === 'boss' &&
+        currentEncounter.completed && <BossRewards />}
       {currentEncounter && currentEncounter.type === 'reward' && <Chest />}
     </FlexContainer>
   )

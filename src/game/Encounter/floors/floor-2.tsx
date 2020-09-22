@@ -1,14 +1,10 @@
 import { ARMOR_BY_LEVEL } from '../../Armor/builders/sets'
 import { CONSECRATED_BEAST } from '../../Character/bosses/consecrated_beast'
-import { BANSHEE, CONSECRATED_GUARD, FLAME_WISP } from '../../Character/enemies'
-import { CULTIST_SCHOLAR } from '../../Character/enemies/cultist_scholar'
-import { TOMB_GUARDIAN } from '../../Character/enemies/tomb_guardian'
-import { TOMB_SPIDER } from '../../Character/enemies/tomb_spider'
-import { TOMB_SPIRIT } from '../../Character/enemies/tomb_spirit'
 import { WEAPONS_BY_LEVEL } from '../../Weapon/builders/objects'
 import { MIMIC_FLOOR_1 } from '../../Character/elites/mimic_floor_1'
 import { tFloorConfig } from '../type'
-import { makeRandomFloorEncounter } from './util'
+import { buildFloorEnemeis } from './util'
+import { Floor2EnemyConfigs, Floor2EncounterSizes } from './floor-2-config'
 
 const FLOOR_2_WEAPONS = () => [
   ...WEAPONS_BY_LEVEL[3],
@@ -18,7 +14,7 @@ const FLOOR_2_WEAPONS = () => [
 
 const FLOOR_2_ARMOR = () => [...ARMOR_BY_LEVEL[3], ...ARMOR_BY_LEVEL[4]]
 
-export const FloorConfig2 = (): tFloorConfig => ({
+export const FloorConfig2 = (size: number): tFloorConfig => ({
   bosses: [CONSECRATED_BEAST()],
   altBosses: [CONSECRATED_BEAST()],
   items: [
@@ -26,55 +22,7 @@ export const FloorConfig2 = (): tFloorConfig => ({
     ...FLOOR_2_ARMOR().map((w) => w()),
   ],
   mimic: MIMIC_FLOOR_1,
-  altEnemies: {},
+  altEnemies: buildFloorEnemeis(Floor2EnemyConfigs, Floor2EncounterSizes, size),
   eliteEnemies: {},
-  enemies: {
-    0: [
-      makeRandomFloorEncounter([TOMB_SPIRIT, TOMB_SPIDER], 2),
-      makeRandomFloorEncounter([TOMB_SPIRIT, TOMB_SPIDER], 3),
-    ],
-    1: [
-      makeRandomFloorEncounter([TOMB_SPIDER, TOMB_SPIRIT, CULTIST_SCHOLAR], 2),
-      makeRandomFloorEncounter([TOMB_SPIDER, TOMB_SPIRIT, CULTIST_SCHOLAR], 3),
-    ],
-    2: [
-      makeRandomFloorEncounter(
-        [TOMB_SPIDER, TOMB_SPIRIT, CULTIST_SCHOLAR, FLAME_WISP, FLAME_WISP],
-        3,
-      ),
-    ],
-    3: [
-      makeRandomFloorEncounter(
-        [TOMB_SPIDER, TOMB_SPIRIT, CULTIST_SCHOLAR, FLAME_WISP, TOMB_GUARDIAN],
-        3,
-      ),
-    ],
-    4: [
-      makeRandomFloorEncounter(
-        [TOMB_SPIRIT, CULTIST_SCHOLAR, FLAME_WISP, TOMB_GUARDIAN],
-        3,
-      ),
-    ],
-    5: [
-      makeRandomFloorEncounter(
-        [CULTIST_SCHOLAR, FLAME_WISP, TOMB_GUARDIAN, BANSHEE],
-        3,
-      ),
-    ],
-    // add more enemies here
-    6: [
-      makeRandomFloorEncounter(
-        [CULTIST_SCHOLAR, FLAME_WISP, TOMB_GUARDIAN, BANSHEE],
-        3,
-      ),
-    ],
-    7: [
-      makeRandomFloorEncounter(
-        [CULTIST_SCHOLAR, FLAME_WISP, TOMB_GUARDIAN, BANSHEE],
-        3,
-      ),
-    ],
-    8: [[CONSECRATED_GUARD(), CONSECRATED_GUARD()]],
-    9: [[CONSECRATED_GUARD(), CONSECRATED_GUARD()]],
-  },
+  enemies: buildFloorEnemeis(Floor2EnemyConfigs, Floor2EncounterSizes, size),
 })
