@@ -38,7 +38,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     greatsword: 13,
     bow: 12,
     dagger: 7,
-    scythe: 10,
+    scythe: 9,
     catalyst: 9,
     chime: 9,
     pistol: 7,

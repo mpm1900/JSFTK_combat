@@ -71,7 +71,7 @@ export const CLASS_STATS: Record<tCharacterClass, tStats> = {
     ...BASE_C_STATS,
     strength: 74,
     vigor: 77,
-    intelligence: 40,
+    intelligence: 41,
     dexterity: 52,
     charisma: 72,
     agility: 56,
@@ -108,7 +108,7 @@ export const CLASS_STATS: Record<tCharacterClass, tStats> = {
   },
   student: {
     ...BASE_C_STATS,
-    strength: 42,
+    strength: 45,
     vigor: 60,
     intelligence: 74,
     dexterity: 66,

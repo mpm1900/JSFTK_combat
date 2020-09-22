@@ -78,7 +78,7 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.7.3
+            alpha-0.0.7.4
           </Monospace>
         }
       >
@@ -229,10 +229,10 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
         <option value='executioner'>Executioner</option>
         <option value='mercenary'>Mercenary</option>
         <option value='ranger'>Ranger</option>
+        <option value='reaper'>Reaper</option>
         <option value='student'>Student</option>
         <option value='patrician'>Patrician</option>
         <option value='corsair'>Corsair</option>
-        <option value='reaper'>Reaper</option>
         <option value='drifter'>Drifter</option>
       </select>
       <FlexContainer $direction='column' style={{ padding: 8 }}>

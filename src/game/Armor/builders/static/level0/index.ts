@@ -9,6 +9,7 @@ import {
 import { MercenaryArmor, MercenaryBoots, MercenaryHelmet } from './mercenary'
 import { PatricianAttire, PatricianHat, PatricianShoes } from './patrician'
 import { RangerBoots, RangerCloak, RangerHood } from './ranger'
+import { ReaperBoots, ReaperCloak, ReaperHood } from './reaper'
 import { StudentHat, StudentRobes, StudentShoes } from './student'
 
 export * from './corsair'
@@ -17,6 +18,7 @@ export * from './executioner'
 export * from './mercenary'
 export * from './patrician'
 export * from './ranger'
+export * from './reaper'
 export * from './student'
 
 export const ARMOR_LEVEL_0: tArmor[] = [
@@ -38,6 +40,9 @@ export const ARMOR_LEVEL_0: tArmor[] = [
   RangerHood,
   RangerCloak,
   RangerBoots,
+  ReaperHood,
+  ReaperCloak,
+  ReaperBoots,
   StudentHat,
   StudentRobes,
   StudentShoes,
