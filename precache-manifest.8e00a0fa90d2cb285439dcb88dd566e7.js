@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8d667e5cb1eae9f442bb02586db51470",
+    "revision": "a6aae0e280bfde174443f52ae047719f",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "e4d0f6844d1302598f11",
+    "revision": "2468d79b337c892b2af0",
     "url": "/JSFTK_combat/static/css/main.696c34a1.chunk.css"
   },
   {
-    "revision": "aa66387f84d1cf8ced16",
-    "url": "/JSFTK_combat/static/js/2.e9a80c24.chunk.js"
+    "revision": "efbfa285309c10a12989",
+    "url": "/JSFTK_combat/static/js/2.37656797.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.e9a80c24.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.37656797.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e4d0f6844d1302598f11",
-    "url": "/JSFTK_combat/static/js/main.26a04c02.chunk.js"
+    "revision": "2468d79b337c892b2af0",
+    "url": "/JSFTK_combat/static/js/main.0103972d.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -110,6 +110,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "e782173657660876745de84155043fdf",
     "url": "/JSFTK_combat/static/media/bowie-knife.e7821736.svg"
+  },
+  {
+    "revision": "cfefca88d3df5eeeeb64f6494cf331b6",
+    "url": "/JSFTK_combat/static/media/brain-tentacle.cfefca88.svg"
   },
   {
     "revision": "ce65603aad418a38f66ca50c558c6d54",
