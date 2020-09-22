@@ -9,7 +9,7 @@ import { getRandomItem } from '../../Item/util'
 import { createSkill } from '../../Skill/skills'
 import { v4 } from 'uuid'
 
-const id = v4()
+export const CONSECRATED_BEAST_ID = v4()
 export const CONSECRATED_BEAST = (): tCharacter => {
   return {
     ...makeEnemy(
@@ -51,6 +51,6 @@ export const CONSECRATED_BEAST = (): tCharacter => {
       ],
       ['stunned', 'poisoned'],
     ),
-    id,
+    id: CONSECRATED_BEAST_ID,
   }
 }

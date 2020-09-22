@@ -1,5 +1,5 @@
 import { tFloorConfig } from '../../type'
-import { LICH, LICH2 } from '../../../Character/bosses'
+import { LICH, FOREST_MIND } from '../../../Character/bosses'
 import { WEAPONS_BY_LEVEL } from '../../../Weapon/builders/objects'
 import { ARMOR_BY_LEVEL } from '../../../Armor/builders/sets'
 import { buildFloorEnemeis } from '../util'
@@ -29,7 +29,7 @@ export const FLOOR_1_ID = v4()
 export const FloorConfig1 = (size: number): tFloorConfig => ({
   floorId: FLOOR_1_ID,
   bosses: [LICH()],
-  altBosses: [LICH2()],
+  altBosses: [FOREST_MIND()],
   items: [
     ...FLOOR_1_WEAPONS().map((w) => w()),
     ...FLOOR_1_ARMOR().map((a) => a()),

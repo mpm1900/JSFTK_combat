@@ -67,6 +67,7 @@ export const Grid = () => {
                 )
                 .map((hex: HexT, i: number) => (
                   <Hex
+                    key={i}
                     hex={hex}
                     size={currentFloor.size}
                     onMouseEnter={() => setActiveHex(hex)}
