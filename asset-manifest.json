@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.696c34a1.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.ca6b75f2.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.ca6b75f2.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.44b99a51.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.44b99a51.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
-    "static/js/2.648bc136.chunk.js": "/JSFTK_combat/static/js/2.648bc136.chunk.js",
-    "static/js/2.648bc136.chunk.js.map": "/JSFTK_combat/static/js/2.648bc136.chunk.js.map",
+    "static/js/2.2e096cd3.chunk.js": "/JSFTK_combat/static/js/2.2e096cd3.chunk.js",
+    "static/js/2.2e096cd3.chunk.js.map": "/JSFTK_combat/static/js/2.2e096cd3.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.38dbc1cd1679f4df4f4d0962ba66cdb3.js": "/JSFTK_combat/precache-manifest.38dbc1cd1679f4df4f4d0962ba66cdb3.js",
+    "precache-manifest.be0390c3bfb24505d427b929a9602d2a.js": "/JSFTK_combat/precache-manifest.be0390c3bfb24505d427b929a9602d2a.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/main.696c34a1.chunk.css.map": "/JSFTK_combat/static/css/main.696c34a1.chunk.css.map",
-    "static/js/2.648bc136.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.648bc136.chunk.js.LICENSE.txt",
+    "static/js/2.2e096cd3.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.2e096cd3.chunk.js.LICENSE.txt",
     "static/media/1.png": "/JSFTK_combat/static/media/1.a7dcd7d0.png",
     "static/media/2.png": "/JSFTK_combat/static/media/2.22bba3d5.png",
     "static/media/3.png": "/JSFTK_combat/static/media/3.5b81afea.png",
@@ -112,6 +112,7 @@
     "static/media/plain-dagger.svg": "/JSFTK_combat/static/media/plain-dagger.0509dd2c.svg",
     "static/media/pointy-hat.svg": "/JSFTK_combat/static/media/pointy-hat.d042ac98.svg",
     "static/media/pointy-sword.svg": "/JSFTK_combat/static/media/pointy-sword.bd82b38d.svg",
+    "static/media/power-lightning.svg": "/JSFTK_combat/static/media/power-lightning.9ebddabb.svg",
     "static/media/punch.svg": "/JSFTK_combat/static/media/punch.2811bb9c.svg",
     "static/media/raven.svg": "/JSFTK_combat/static/media/raven.581ee1b6.svg",
     "static/media/resonance.svg": "/JSFTK_combat/static/media/resonance.4c1d217b.svg",
@@ -150,8 +151,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
-    "static/js/2.648bc136.chunk.js",
+    "static/js/2.2e096cd3.chunk.js",
     "static/css/main.696c34a1.chunk.css",
-    "static/js/main.ca6b75f2.chunk.js"
+    "static/js/main.44b99a51.chunk.js"
   ]
 }
