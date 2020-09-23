@@ -47,7 +47,8 @@ export const Hex = (props: HexPropsT) => {
         cursor: adjacent ? 'pointer' : 'default',
       }}
       onClick={(c: any, h: any) => {
-        if (adjacent) {
+        if (adjacent && encounter && !encounter.blocking) {
+          console.log(encounter)
           chooseNext(hex)
         }
       }}
@@ -72,6 +73,9 @@ export const getHexFill = (
   active: boolean,
   adjacent: boolean,
 ) => {
+  if (encounter && encounter.blocking) {
+    return 'black'
+  }
   if (active) {
     return '#b0891c'
   }
@@ -115,6 +119,7 @@ export const getHexIcon = (
   fill: string,
 ): JSX.Element | null => {
   if (!encounter) return <Start fill={fill} />
+  if (encounter.blocking) return null
   if (depth === size - 1) return <Boss fill={fill} />
   if (adjacent || active || encounter.completed || encounter.seen) {
     if (encounter.type === 'shop') {

@@ -10,6 +10,7 @@ import {
 } from '../../game/Stats/constants'
 import { tCharacterTag } from '../../game/Character/type'
 import { Theme } from '../../theme'
+import { Monospace } from '../../elements/monospace'
 
 export interface StatsPreviewPropsT {
   stats: tStats
@@ -20,6 +21,8 @@ const defense_key_colors: any = {
   resistance: Theme.magicColor,
   evasion: Theme.evasionColor,
 }
+
+export const getSign = (n: number | undefined) => (n && n > 0 ? '+' : '-')
 
 export const StatsPreview = (props: StatsPreviewPropsT) => {
   const { stats } = props
@@ -35,7 +38,12 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
                 color: defense_key_colors[key],
               }}
             >
-              +{stats[key]}
+              {typeof stats[key] === 'number' && (
+                <Monospace>
+                  {getSign(stats[key] as number)}
+                  {Math.abs(stats[key] as number)}
+                </Monospace>
+              )}
               {STAT_KEY_LABELS[key]}
             </span>
           ),
@@ -44,7 +52,10 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
         (key) =>
           (stats[key] as number) > 0 && (
             <span key={key} style={{ textTransform: 'capitalize' }}>
-              +{stats[key]}
+              <Monospace>
+                {getSign(stats[key] as number)}
+                {Math.abs(stats[key] as number)}
+              </Monospace>
               {STAT_KEY_LABELS[key]}
             </span>
           ),
@@ -53,7 +64,10 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
         (key) =>
           (stats[key] as number) > 0 && (
             <span key={key} style={{ textTransform: 'capitalize' }}>
-              +{stats[key]}
+              <Monospace>
+                {getSign(stats[key] as number)}
+                {Math.abs(stats[key] as number)}
+              </Monospace>
               {STAT_KEY_LABELS[key]}
             </span>
           ),
@@ -68,7 +82,10 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
                 color: Theme.evasionColor,
               }}
             >
-              +{stats[key]}
+              <Monospace>
+                {getSign(stats[key] as number)}
+                {Math.abs(stats[key] as number)}
+              </Monospace>
               {STAT_KEY_LABELS[key]}
             </span>
           ),
@@ -83,7 +100,10 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
                 color: 'lightcoral',
               }}
             >
-              {stats[key]}
+              <Monospace>
+                {getSign(stats[key] as number)}
+                {Math.abs(stats[key] as number)}
+              </Monospace>
               {STAT_KEY_LABELS[key]}
             </span>
           ),

@@ -274,7 +274,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             value={
               (character.weapon.damage.value +
                 character.stats.attackDamageOffset) *
-              character.stats.attackDamageModifier
+              ((character.stats.attackDamageModifier + 100) / 100)
             }
           />
         </HoverHexBadge>

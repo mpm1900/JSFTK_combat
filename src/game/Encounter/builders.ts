@@ -54,10 +54,16 @@ export const buildRandomEncounter = (
   const isStart = isValueEqual(hex, MIN_HEX(FLOOR_SIZE))
   const depth = getDepth(hex, FLOOR_SIZE)
   const type = buildRandomEncounterType(hex, depth, isShop)
-
+  const isSide = hex.q === 0 || hex.q - 1 === depth
   let encounter = makeEncounter(type)
   if (type === 'combat') {
-    encounter = buildCombatEncounter(encounter, depth, floorId, hex)
+    encounter = {
+      ...buildCombatEncounter(encounter, depth, floorId, hex),
+      blocking:
+        (!isSide || depth !== FLOOR_SIZE - 2) &&
+        depth !== 0 &&
+        makeRandom(100) > 90,
+    }
   }
   if (type === 'boss') {
     encounter = buildBossEncounter(encounter, floorId, hex)

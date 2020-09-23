@@ -21,6 +21,7 @@ export interface tEncounter {
   reward: tEncounterReward
   completed: boolean
   seen: boolean
+  blocking: boolean
 }
 export interface tCombatEncounter extends tEncounter {
   party: tParty

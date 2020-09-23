@@ -1,5 +1,6 @@
 import { createFootwear, createHat, createLightArmor } from '../..'
 import { tArmor } from '../../../type'
+import { AristocratAttire, AristocratHat, AristocratShoes } from '../level1'
 import {
   AdventureBoots,
   AdventureCloak,
@@ -13,7 +14,7 @@ export const ReaperHood: tArmor = {
     dexterity: 1,
   }),
   level: 0,
-  upgrades: [AdventureHood.id],
+  upgrades: [AdventureHood.id, AristocratHat.id],
 }
 
 export const ReaperCloak: tArmor = {
@@ -25,7 +26,7 @@ export const ReaperCloak: tArmor = {
     criticalChance: 1,
   }),
   level: 0,
-  upgrades: [AdventureCloak.id],
+  upgrades: [AdventureCloak.id, AristocratAttire.id],
 }
 
 export const ReaperBoots: tArmor = {
@@ -35,5 +36,5 @@ export const ReaperBoots: tArmor = {
     agility: 1,
   }),
   level: 0,
-  upgrades: [AdventureBoots.id],
+  upgrades: [AdventureBoots.id, AristocratShoes.id],
 }

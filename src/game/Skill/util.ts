@@ -42,7 +42,7 @@ export const getSourceSkillResult = (
   const criticalHitSuccess = resolveCheck(source, 'criticalChance')
   const rollDamageModifier = skill.rolls > 0 ? passedCount / skill.rolls : 1
   const damageModifier =
-    source.stats.attackDamageModifier * skill.damageModifier
+    ((100 + source.stats.attackDamageModifier) / 100) * skill.damageModifier
   const rawDamage = {
     ...source.weapon.damage,
     value: Math.round(

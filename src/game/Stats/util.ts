@@ -39,6 +39,8 @@ export const combineStats = (...stats: tStats[]) => {
       attackDamageModifier:
         result.attackDamageModifier + stats.attackDamageModifier,
       criticalChance: result.criticalChance + stats.criticalChance,
+      criticalDamageModifier:
+        result.criticalDamageModifier + stats.criticalDamageModifier,
       damageModifiers: {
         flying: result.damageModifiers.flying + stats.damageModifiers.flying,
         undead: result.damageModifiers.undead + stats.damageModifiers.undead,
@@ -88,6 +90,7 @@ export const multiplyStats = (stats: tStats, modifier: number): tStats => ({
   attackDamageOffset: stats.attackDamageOffset * modifier,
   attackDamageModifier: stats.attackDamageModifier * modifier,
   criticalChance: stats.criticalChance * modifier,
+  criticalDamageModifier: stats.criticalDamageModifier * modifier,
   damageModifiers: {
     flying: stats.damageModifiers.flying * modifier,
     undead: stats.damageModifiers.undead * modifier,
