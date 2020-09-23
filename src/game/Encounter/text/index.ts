@@ -1,6 +1,7 @@
 import { FLOOR_3A_ID } from '../floors/floor-3'
 import { FLOOR_1_ID } from '../floors/level1/floor-1'
 import { FLOOR_2A_ID } from '../floors/level2/floor-2a'
+import { FLOOR_2B_ID } from '../floors/level2/floor-2b'
 import { tEncounter } from '../type'
 
 export const ENCOUNTER_TEXTS: Record<
@@ -14,5 +15,6 @@ export const ENCOUNTER_TEXTS: Record<
       `You notice a that the forest has been covered in a thick darkness. You feel a force pulling you deeper into the forest.`,
   },
   [FLOOR_2A_ID]: {},
+  [FLOOR_2B_ID]: {},
   [FLOOR_3A_ID]: {},
 }

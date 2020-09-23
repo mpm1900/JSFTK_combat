@@ -14,7 +14,7 @@ export const AppBg = (props: AppBgPropsT) => {
   const baseBg = useMemo(() => {
     return getEncounterBg(
       getDepth(currentHex || MIN_HEX(currentFloor.size), currentFloor.size),
-      currentFloor.depth,
+      currentFloor.id,
     )
   }, [currentFloor, currentHex])
   const bg = currentEncounter?.completed ? baseBg.completed || baseBg : baseBg

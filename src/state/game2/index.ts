@@ -15,6 +15,7 @@ import { FLOOR_SIZE } from '../../game/Encounter/floors'
 import { FLOOR_1_ID } from '../../game/Encounter/floors/level1/floor-1'
 import { FLOOR_2A_ID } from '../../game/Encounter/floors/level2/floor-2a'
 import { FLOOR_3A_ID } from '../../game/Encounter/floors/floor-3'
+import { FLOOR_2B_ID } from '../../game/Encounter/floors/level2/floor-2b'
 
 export interface GameStateT {
   hex: HexT | undefined
@@ -112,10 +113,11 @@ export const core: StateCoreT<GameStateT> = {
     return {
       ...state,
       hex: undefined,
-      floor: 0,
+      floorId: FLOOR_1_ID,
       floors: [
         makeFloor2(FLOOR_1_ID, 0, FLOOR_SIZE),
         makeFloor2(FLOOR_2A_ID, 1, FLOOR_SIZE),
+        makeFloor2(FLOOR_2B_ID, 1, FLOOR_SIZE),
         makeFloor2(FLOOR_3A_ID, 2, FLOOR_SIZE),
       ],
     }
@@ -219,6 +221,7 @@ export const INITIAL_STATE: GameStateT = {
   floors: [
     makeFloor2(FLOOR_1_ID, 0, FLOOR_SIZE),
     makeFloor2(FLOOR_2A_ID, 1, FLOOR_SIZE),
+    makeFloor2(FLOOR_2B_ID, 1, FLOOR_SIZE),
     makeFloor2(FLOOR_3A_ID, 2, FLOOR_SIZE),
   ],
   loading: false,

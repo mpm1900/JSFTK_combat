@@ -5,6 +5,7 @@ import { tWeapon } from '../Weapon/type'
 import { tConsumable } from '../Consumable/type'
 import { makeEncounterArray } from '../../grid/util'
 import { ZERO_REWARD } from './constants'
+import { FLOOR_NAMES } from './floors'
 
 export const getItemCost = (item: tArmor | tWeapon | tConsumable): number => {
   return item.goldValue * 3
@@ -24,16 +25,7 @@ export const makeFloor2 = (
   depth: number,
   size: number,
 ): tFloor2 => {
-  let name = ''
-  if (depth === 0) {
-    name = 'The Forgotten Woods'
-  }
-  if (depth === 1) {
-    name = 'Tomb of the Formless One (in-progress)'
-  }
-  if (depth === 2) {
-    name = 'Realm of the Ancients (comming soon)'
-  }
+  let name = FLOOR_NAMES[id]
   return {
     id,
     name,

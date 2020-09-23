@@ -76,12 +76,12 @@ export const makeParty = (
   sideIndex: number,
 ): tParty => {
   const config = FLOOR_CONFIGS_BY_ID()[floorId]
-  const roll = makeRandom(FLOOR_SIZE - 1, 1)
+  const roll = makeRandom(FLOOR_SIZE, 1) - 1
   const enemies = isElite
     ? config.eliteEnemies
-    : roll >= sideIndex
-    ? config.enemies
-    : config.altEnemies
+    : sideIndex > roll
+    ? config.altEnemies
+    : config.enemies
 
   return {
     isParty: true,

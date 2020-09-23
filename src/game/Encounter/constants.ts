@@ -5,11 +5,16 @@ import { FLOOR_CONFIGS_BY_ID } from './floors'
 import Forest1 from '../../assets/img/forests/7.png'
 import Forest2 from '../../assets/img/forests/8.png'
 import Forest3 from '../../assets/img/forests/1.png'
+import Forest4 from '../../assets/img/forests/3.png'
+import Forest5 from '../../assets/img/forests/5.png'
 import Dungeon1 from '../../assets/img/dungeon/3.png'
 import Dungeon2 from '../../assets/img/dungeon/1.png'
 import Dungeon3 from '../../assets/img/dungeon/4.png'
 import Dungeon4 from '../../assets/img/dungeon/2.png'
 import { FLOOR_1_ID } from './floors/level1/floor-1'
+import { FLOOR_2A_ID } from './floors/level2/floor-2a'
+import { FLOOR_3A_ID } from './floors/floor-3'
+import { FLOOR_2B_ID } from './floors/level2/floor-2b'
 
 export const ZERO_REWARD: tEncounterReward = {
   gold: 0,
@@ -138,9 +143,12 @@ interface BgConfig {
 interface RootBgConfig extends BgConfig {
   completed?: BgConfig
 }
-export const getEncounterBg = (level: number, floor: number): RootBgConfig => {
-  return ([
-    [
+export const getEncounterBg = (
+  level: number,
+  floorId: string,
+): RootBgConfig => {
+  return ({
+    [FLOOR_1_ID]: [
       {
         // 0
         bg: Forest1,
@@ -209,7 +217,76 @@ export const getEncounterBg = (level: number, floor: number): RootBgConfig => {
         overlay: 'transparent',
       },
     ],
-    [
+    [FLOOR_2B_ID]: [
+      {
+        // 0
+        bg: Forest3,
+        overlay: 'transparent',
+        completed: {
+          bg: Forest4,
+          overlay: 'rgba(20,0,50,0.4)',
+        },
+      },
+      {
+        // 1
+        bg: Forest4,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 2
+        bg: Forest4,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 3
+        bg: Forest4,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 4
+        bg: Forest4,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 5
+        bg: Forest4,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 6
+        bg: Forest4,
+        overlay: 'rgba(20,0,50,0.4)',
+      },
+      {
+        // 7
+        bg: Forest4,
+        overlay: 'rgba(20,0,50,0.5)',
+      },
+      {
+        // 8
+        bg: Forest4,
+        overlay: 'rgba(20,0,50,0.5)',
+        completed: {
+          bg: Forest5,
+          overlay: 'rgba(20,0,50,0.5)',
+        },
+      },
+      {
+        // 9
+        bg: Forest5,
+        overlay: 'rgba(20,0,50,0.5)',
+        completed: {
+          bg: Forest5,
+          overlay: 'transparent',
+        },
+      },
+      {
+        // 10
+        bg: Forest5,
+        overlay: 'transparent',
+      },
+    ],
+    [FLOOR_2A_ID]: [
       {
         // 0
         bg: Dungeon2,
@@ -266,12 +343,12 @@ export const getEncounterBg = (level: number, floor: number): RootBgConfig => {
         overlay: 'rgba(20,0,50,0.3)',
       },
     ],
-    [
+    [FLOOR_3A_ID]: [
       {
         // 0
         bg: Forest1,
         overlay: 'transparent',
       },
     ],
-  ][floor] || [])[level]
+  }[floorId] || [])[level]
 }
