@@ -1,9 +1,11 @@
 import { LICH } from '../../../Character/bosses'
+import { FOREST_FAIRY } from '../../../Character/enemies/forest_fairy'
 import { FOREST_REAPER } from '../../../Character/enemies/forest_reaper'
 import { FOREST_SLIME } from '../../../Character/enemies/forest_slime'
 import { INFECTED_EYESTALK } from '../../../Character/enemies/infected_eyestalk'
 import { INFECTED_GOLEM } from '../../../Character/enemies/infected_golem'
 import { INFECTED_MASS } from '../../../Character/enemies/infected_mass'
+import { LIGHTNING_IMP } from '../../../Character/enemies/lightning_imp'
 import { tFloorEncounterSizes, tFloorEnemyConfig } from '../util'
 
 export const Floor2BEnemyConfigs = (): tFloorEnemyConfig[] => [
@@ -24,6 +26,14 @@ export const Floor2BEnemyConfigs = (): tFloorEnemyConfig[] => [
     depths: [4, 5, 6, 7],
   },
   {
+    enemy: FOREST_FAIRY,
+    depths: [0, 1, 2, 3, 4, 5, 6],
+  },
+  {
+    enemy: LIGHTNING_IMP,
+    depths: [2, 3, 4, 5, 6, 7],
+  },
+  {
     enemy: FOREST_REAPER,
     depths: [8, 9],
   },
@@ -32,7 +42,31 @@ export const Floor2BEnemyConfigs = (): tFloorEnemyConfig[] => [
 export const Floor2BAltEnemyConfigs = (): tFloorEnemyConfig[] => [
   {
     enemy: INFECTED_EYESTALK,
-    depths: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    depths: [0, 1, 2, 3, 4, 5],
+  },
+  {
+    enemy: FOREST_SLIME,
+    depths: [0, 1, 2, 3, 4, 5, 6],
+  },
+  {
+    enemy: INFECTED_MASS,
+    depths: [2, 3, 4, 5, 6, 7],
+  },
+  {
+    enemy: INFECTED_GOLEM,
+    depths: [4, 5, 6, 7],
+  },
+  {
+    enemy: FOREST_FAIRY,
+    depths: [0, 1, 2, 3, 4, 5, 6],
+  },
+  {
+    enemy: LIGHTNING_IMP,
+    depths: [2, 3, 4, 5, 6, 7],
+  },
+  {
+    enemy: FOREST_REAPER,
+    depths: [8, 9],
   },
 ]
 

@@ -8,12 +8,14 @@ import {
   GraveguardBoots,
   GraveguardHelmet,
 } from './graveguard'
+import { HarrowedBoots, HarrowedCloak, HarrowedHood } from './harrowed'
 
 export * from './adventure'
 export * from './apprentice'
 export * from './aristocrat'
 export * from './chain_mail'
 export * from './graveguard'
+export * from './harrowed'
 
 export const ARMOR_LEVEL_1: tArmor[] = [
   AdventureHood,
@@ -31,4 +33,7 @@ export const ARMOR_LEVEL_1: tArmor[] = [
   GraveguardHelmet,
   GraveguardArmor,
   GraveguardBoots,
+  HarrowedHood,
+  HarrowedCloak,
+  HarrowedBoots,
 ]

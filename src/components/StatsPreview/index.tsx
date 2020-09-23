@@ -48,6 +48,24 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
             </span>
           ),
       )}
+      {STAT_BONUS_KEYS.map(
+        (key) =>
+          stats[key] > 0 && (
+            <span
+              key={key}
+              style={{
+                textTransform: 'capitalize',
+                color: Theme.evasionColor,
+              }}
+            >
+              <Monospace>
+                {getSign(stats[key] as number)}
+                {Math.abs(stats[key] as number)}
+              </Monospace>
+              {STAT_KEY_LABELS[key]}
+            </span>
+          ),
+      )}
       {DAMAGE_BONUS_KEYS.map(
         (key) =>
           (stats[key] as number) > 0 && (
@@ -64,24 +82,6 @@ export const StatsPreview = (props: StatsPreviewPropsT) => {
         (key) =>
           (stats[key] as number) > 0 && (
             <span key={key} style={{ textTransform: 'capitalize' }}>
-              <Monospace>
-                {getSign(stats[key] as number)}
-                {Math.abs(stats[key] as number)}
-              </Monospace>
-              {STAT_KEY_LABELS[key]}
-            </span>
-          ),
-      )}
-      {STAT_BONUS_KEYS.map(
-        (key) =>
-          stats[key] > 0 && (
-            <span
-              key={key}
-              style={{
-                textTransform: 'capitalize',
-                color: Theme.evasionColor,
-              }}
-            >
               <Monospace>
                 {getSign(stats[key] as number)}
                 {Math.abs(stats[key] as number)}

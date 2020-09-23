@@ -168,6 +168,7 @@ export const DAMAGE_BONUS_KEYS: (keyof tStats)[] = [
   'attackDamageOffset',
   'attackDamageModifier',
   'criticalChance',
+  'criticalDamageModifier',
 ]
 export const DEFENSE_BONUS_KEYS: (keyof tStats)[] = [
   'armor',
