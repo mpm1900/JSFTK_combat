@@ -1,7 +1,6 @@
 import { ARMOR_BY_LEVEL } from '../../../Armor/builders/sets'
-import { CONSECRATED_BEAST } from '../../../Character/bosses/consecrated_beast'
 import { WEAPONS_BY_LEVEL } from '../../../Weapon/builders/objects'
-import { MIMIC_FLOOR_1 } from '../../../Character/elites/mimic_floor_1'
+import { MIMIC_FLOOR_2 } from '../../../Character/elites/mimic_floor_2'
 import { tFloorConfig } from '../../type'
 import { buildFloorEnemeis } from '../util'
 import {
@@ -12,6 +11,7 @@ import {
   Floor2BAltEnemyConfigs,
 } from './floor-2b-config'
 import { v4 } from 'uuid'
+import { BEHOLD } from '../../../Character/bosses/behold'
 
 const FLOOR_2_WEAPONS = () => [
   ...WEAPONS_BY_LEVEL[3],
@@ -24,22 +24,26 @@ const FLOOR_2_ARMOR = () => [...ARMOR_BY_LEVEL[3], ...ARMOR_BY_LEVEL[4]]
 export const FLOOR_2B_ID = v4()
 export const FloorConfig2B = (size: number): tFloorConfig => ({
   floorId: FLOOR_2B_ID,
-  bosses: [CONSECRATED_BEAST()],
-  altBosses: [CONSECRATED_BEAST()],
+  bosses: [BEHOLD()],
+  altBosses: [BEHOLD()],
   items: [
     ...FLOOR_2_WEAPONS().map((w) => w()),
     ...FLOOR_2_ARMOR().map((w) => w()),
   ],
-  mimic: MIMIC_FLOOR_1,
+  mimic: MIMIC_FLOOR_2,
   altEnemies: buildFloorEnemeis(
-    Floor2BAltEnemyConfigs,
+    Floor2BAltEnemyConfigs(),
     Floor2BEncounterSizes,
     size,
   ),
   eliteEnemies: buildFloorEnemeis(
-    Floor2BEliteEnemyConfigs,
+    Floor2BEliteEnemyConfigs(),
     Floor2BEliteEncounterSizes,
     size,
   ),
-  enemies: buildFloorEnemeis(Floor2BEnemyConfigs, Floor2BEncounterSizes, size),
+  enemies: buildFloorEnemeis(
+    Floor2BEnemyConfigs(),
+    Floor2BEncounterSizes,
+    size,
+  ),
 })

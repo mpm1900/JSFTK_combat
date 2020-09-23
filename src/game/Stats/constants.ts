@@ -29,6 +29,7 @@ export const ZERO_STATS: tStats = {
   attackDamageOffset: 0,
   attackDamageModifier: 0,
   criticalChance: 0,
+  criticalDamageModifier: 0,
   damageModifiers: {
     flying: 0,
     undead: 0,
@@ -46,6 +47,7 @@ export const ZERO_STATS: tStats = {
 
 export const BASE_C_STATS: tStats = {
   ...ZERO_STATS,
+  criticalDamageModifier: 1.2,
   damageTakenModifier: 1,
   attackDamageModifier: 1,
   criticalChance: 5,
@@ -198,6 +200,7 @@ export const STAT_KEY_LABELS: Record<keyof tStats, string> = {
   luck: ' Luck',
   evasion: ' Evasion',
   criticalChance: '% Crit Chance',
+  criticalDamageModifier: '% Crit Damage',
 
   armor: ' Armor',
   resistance: ' Resistance',

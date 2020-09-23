@@ -23,9 +23,8 @@ export const FREEZE = createSkill('Freeze', 4, 0, {
 export const SHOCK = createSkill('Shock', 4, 0, {
   perfectStatus: ['shocked'],
 })
-export const STUN = createSkill('Stun', 2, 0, {
+export const STUN = createSkill('Stun', 2, -10, {
   damageModifier: 0.5,
-  damage: false,
   perfectStatus: ['stunned'],
 })
 export const PROTECT = createSkill('Protect', 2, 0, {

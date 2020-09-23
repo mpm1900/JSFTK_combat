@@ -50,7 +50,9 @@ export const getSourceSkillResult = (
         source.stats.attackDamageOffset) *
         damageModifier *
         rollDamageModifier *
-        (perfect && criticalHitSuccess ? 1.2 : 1),
+        (perfect && criticalHitSuccess
+          ? source.stats.criticalDamageModifier
+          : 1),
     ),
     range: skill.weaponRangeOverride || source.weapon.damage.range,
   }

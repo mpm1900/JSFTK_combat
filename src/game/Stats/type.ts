@@ -35,6 +35,7 @@ export interface tStats extends tBaseStats {
   // DAMAGE
   attackDamageOffset: number
   attackDamageModifier: number
+  criticalDamageModifier: number
   damageModifiers: Record<tCharacterTag, number>
 
   // QUEUE

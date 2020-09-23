@@ -1,3 +1,4 @@
+import { config } from 'process'
 import { getRandom } from '../../../util'
 import { tCharacter } from '../../Character/type'
 

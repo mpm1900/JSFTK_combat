@@ -1,3 +1,4 @@
+import { LICH } from '../../../Character/bosses'
 import { FOREST_GOLEM } from '../../../Character/elites/forest_golem'
 import {
   BANSHEE,
@@ -10,7 +11,7 @@ import { TOMB_SPIDER } from '../../../Character/enemies/tomb_spider'
 import { TOMB_SPIRIT } from '../../../Character/enemies/tomb_spirit'
 import { tFloorEncounterSizes, tFloorEnemyConfig } from '../util'
 
-export const Floor2AEnemyConfigs: tFloorEnemyConfig[] = [
+export const Floor2AEnemyConfigs = (): tFloorEnemyConfig[] => [
   {
     enemy: TOMB_SPIRIT,
     depths: [0, 1, 2, 3, 4],
@@ -41,11 +42,11 @@ export const Floor2AEnemyConfigs: tFloorEnemyConfig[] = [
   },
 ]
 
-export const Floor2AAltEnemyConfigs: tFloorEnemyConfig[] = []
+export const Floor2AAltEnemyConfigs = (): tFloorEnemyConfig[] => []
 
-export const Floor2AEliteEnemyConfigs: tFloorEnemyConfig[] = [
+export const Floor2AEliteEnemyConfigs = (): tFloorEnemyConfig[] => [
   {
-    enemy: FOREST_GOLEM,
+    enemy: LICH,
     depths: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
   },
 ]

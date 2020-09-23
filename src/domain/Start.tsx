@@ -16,7 +16,7 @@ import { makeCharacter } from '../game/Character/util'
 import { STAT_BONUS_KEYS } from '../game/Stats/constants'
 import { Theme } from '../theme'
 import { AppHeader } from '../components/AppHeader'
-import { HeadingSm } from '../elements/typography'
+import { HeadingSm, Text } from '../elements/typography'
 import { Gauge2 } from '../components/Gauge/v2'
 import { TEST_WEAPON } from '../game/Weapon/builders/unique/test_weapon'
 import { noneg } from '../util'
@@ -41,11 +41,14 @@ export const Start = () => {
   useEffect(() => {
     if (loading) {
       open(
-        <div>
+        <FlexContainer $direction='column'>
           <h1 style={{ fontFamily: Theme.titleFont, textAlign: 'center' }}>
             Loading...
           </h1>
-        </div>,
+          <Text style={{ textAlign: 'center' }}>
+            This might take a few seconds.
+          </Text>
+        </FlexContainer>,
         {},
         true,
       )
@@ -78,7 +81,7 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.7.7
+            alpha-0.0.7.9
           </Monospace>
         }
       >

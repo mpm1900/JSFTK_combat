@@ -1,7 +1,7 @@
 import { ARMOR_BY_LEVEL } from '../../../Armor/builders/sets'
 import { CONSECRATED_BEAST } from '../../../Character/bosses/consecrated_beast'
 import { WEAPONS_BY_LEVEL } from '../../../Weapon/builders/objects'
-import { MIMIC_FLOOR_1 } from '../../../Character/elites/mimic_floor_1'
+import { MIMIC_FLOOR_2 } from '../../../Character/elites/mimic_floor_2'
 import { tFloorConfig } from '../../type'
 import { buildFloorEnemeis } from '../util'
 import {
@@ -29,16 +29,20 @@ export const FloorConfig2A = (size: number): tFloorConfig => ({
     ...FLOOR_2_WEAPONS().map((w) => w()),
     ...FLOOR_2_ARMOR().map((w) => w()),
   ],
-  mimic: MIMIC_FLOOR_1,
+  mimic: MIMIC_FLOOR_2,
   altEnemies: buildFloorEnemeis(
-    Floor2AEnemyConfigs,
+    Floor2AEnemyConfigs(),
     Floor2AEncounterSizes,
     size,
   ),
   eliteEnemies: buildFloorEnemeis(
-    Floor2AEliteEnemyConfigs,
+    Floor2AEliteEnemyConfigs(),
     Floor2AEliteEncounterSizes,
     size,
   ),
-  enemies: buildFloorEnemeis(Floor2AEnemyConfigs, Floor2AEncounterSizes, size),
+  enemies: buildFloorEnemeis(
+    Floor2AEnemyConfigs(),
+    Floor2AEncounterSizes,
+    size,
+  ),
 })

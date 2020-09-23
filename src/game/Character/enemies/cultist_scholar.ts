@@ -9,7 +9,7 @@ export const CULTIST_SCHOLAR = (): tCharacter => {
   return makeEnemy(
     'Cultist Scholar',
     Cultist,
-    2,
+    5,
     29,
     makeEnemyWeapon('intelligence', 28, 'melee', 'magic', [
       createSkill('Enflame', 4, -10, { perfectStatus: ['burning'] }),
