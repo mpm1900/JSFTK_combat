@@ -4,7 +4,7 @@ import { ARMOR_BY_LEVEL } from '../Armor/builders/sets'
 import { tArmor } from '../Armor/type'
 import { WEAPONS_BY_LEVEL } from '../Weapon/builders/objects'
 import { tWeapon } from '../Weapon/type'
-import { tItemType } from './type'
+import { tItem, tItemRarity, tItemType } from './type'
 
 export const getRandomItem = (
   level: number,
@@ -34,4 +34,26 @@ export const getRandomItem = (
     if (!random) return getRandomItem(level, min)
     return random()
   }
+}
+
+const ITEM_RARITY_MAP: Record<tItemRarity, number> = {
+  common: 0,
+  uncommon: 1,
+  rare: 2,
+  epic: 3,
+  mythic: 4,
+}
+const REV_ITEM_RARITY_MAP: Record<number, tItemRarity> = {
+  0: 'common',
+  1: 'uncommon',
+  2: 'rare',
+  3: 'epic',
+  4: 'mythic',
+}
+export const getHighestRarity = (items: tItem[]): tItemRarity => {
+  return items.reduce((result, item) => {
+    const value = ITEM_RARITY_MAP[item.rarity]
+    const check = ITEM_RARITY_MAP[result]
+    return value > check ? item.rarity : result
+  }, 'common' as tItemRarity)
 }

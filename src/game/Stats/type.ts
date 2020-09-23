@@ -50,6 +50,7 @@ export interface tStats extends tBaseStats {
   goldModifier: number
   maxInspirationOffset: number
   consumableHealthGainOffset: number
+  visionRange: number
 
   // STATUS SPECIFIC
   minHealthOffset: number // to prevent dealth

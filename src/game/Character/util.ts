@@ -402,3 +402,20 @@ export const levelUp = (character: tCharacter): tCharacter => {
     status: character.status.filter((s) => s.type !== 'poisoned'),
   }
 }
+
+export const getHighestStat = (
+  stat: keyof tStats,
+  characters: tProcessedCharacter[],
+): tProcessedCharacter => {
+  return characters.reduce(
+    (result: tProcessedCharacter, c: tProcessedCharacter) => {
+      if (
+        (((c.stats[stat] as any) || -1) > (result.stats[stat] || -1)) as any
+      ) {
+        return c
+      }
+      return result
+    },
+    characters[0] as tProcessedCharacter,
+  )
+}

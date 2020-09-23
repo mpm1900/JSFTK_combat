@@ -75,15 +75,33 @@ export const HEX_DIRECTIONS: HexT[] = [
   makeHex(-1, 1),
   makeHex(0, 1),
 ]
-export const isAdjacent = (current: HexT | undefined) => (
+export const isAdjacent = (current: HexT | undefined, depth: number = 1) => (
   hex: HexT,
 ): boolean => {
   if (!current) return false
-  return HEX_DIRECTIONS.some((dir) => {
+  const value = HEX_DIRECTIONS.some((dir) => {
     const h = addHex(hex, dir)
     return isValueEqual(h, current)
   })
+  if (depth == 1) {
+    return value
+  } else {
+    return (
+      value ||
+      getAdjacent(current, 1).reduce((result: boolean, aHex) => {
+        return result || isAdjacent(hex, depth - 1)(aHex)
+      }, false)
+    )
+  }
 }
 
-export const getAdjacent = (hex: HexT): HexT[] =>
-  HEX_DIRECTIONS.map((dir) => addHex(hex, dir))
+export const getAdjacent = (hex: HexT, depth: number): HexT[] => {
+  let root = HEX_DIRECTIONS.map((dir) => addHex(hex, dir))
+  if (depth === 1) {
+    return root
+  }
+  return HEX_DIRECTIONS.reduce((result: HexT[], dir: HexT) => {
+    const h = addHex(hex, dir)
+    return [...result, ...getAdjacent(h, depth - 1)]
+  }, root)
+}

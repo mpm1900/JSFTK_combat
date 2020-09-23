@@ -27,6 +27,8 @@ export const Health = (props: HealthPropsT) => {
           minWidth: 86,
           lineHeight: '72px',
           color: Theme.healthRedColor,
+          background:
+            'linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 20%)',
           fontFamily: 'New Rocker',
           display: 'flex',
           textAlign: 'center',

@@ -19,6 +19,7 @@ export const RogueCloak: tArmor = {
     evasion: 10,
     dexterity: 5,
     charisma: 5,
+    visionRange: 1,
   }),
   level: 3,
   upgrades: [AssassinCloak.id],

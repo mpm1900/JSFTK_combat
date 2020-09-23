@@ -14,7 +14,7 @@ export interface GameStateContextT {
   currentEncounter: tEncounter | undefined
   previousEncounter: tEncounter | undefined
   loading: boolean
-  chooseNext: (hex: HexT) => void
+  chooseNext: (hex: HexT, visionRange: number) => void
   nextFloor: (floorId: string) => void
   reset: () => void
   removeItem: (itemId: string) => void
@@ -32,7 +32,7 @@ export const defaultValue: GameStateContextT = {
   currentEncounter: undefined,
   previousEncounter: undefined,
   loading: false,
-  chooseNext: (hex) => {},
+  chooseNext: (hex, visionRange) => {},
   nextFloor: (floorId) => {},
   reset: () => {},
   removeItem: (itemId) => {},

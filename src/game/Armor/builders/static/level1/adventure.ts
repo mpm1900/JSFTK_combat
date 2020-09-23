@@ -19,6 +19,7 @@ export const AdventureCloak: tArmor = {
     evasion: 6,
     dexterity: 3,
     charisma: -4,
+    visionRange: 1,
   }),
   level: 1,
   upgrades: [HunterCloak.id],

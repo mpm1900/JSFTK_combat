@@ -18,6 +18,7 @@ export const AssassinCloak: tArmor = {
     evasion: 10,
     dexterity: 7,
     charisma: -5,
+    visionRange: 2,
   }),
   level: 4,
   upgrades: [],

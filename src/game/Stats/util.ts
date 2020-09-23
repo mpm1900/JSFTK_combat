@@ -57,6 +57,7 @@ export const combineStats = (...stats: tStats[]) => {
       consumableHealthGainOffset:
         result.consumableHealthGainOffset + stats.consumableHealthGainOffset,
       minHealthOffset: result.minHealthOffset + stats.minHealthOffset,
+      visionRange: result.visionRange + stats.visionRange,
     }),
     ZERO_STATS,
   )
@@ -104,6 +105,7 @@ export const multiplyStats = (stats: tStats, modifier: number): tStats => ({
   maxInspirationOffset: stats.maxInspirationOffset * modifier,
   consumableHealthGainOffset: stats.consumableHealthGainOffset * modifier,
   minHealthOffset: stats.minHealthOffset * modifier,
+  visionRange: stats.visionRange * modifier,
 })
 
 const isCapKey = (key: keyof tStats) => {

@@ -23,6 +23,8 @@ import { HoverHexBadge, HexBadge } from '../../elements/shapes'
 import { animated } from 'react-spring'
 import { useElementShake } from '../../hooks/useElementShake'
 import { NumberChange } from '../NumberChange'
+import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
+import { getHighestRarity } from '../../game/Item/util'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -80,6 +82,31 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           opacity: character.health <= 0 ? 0.5 : 1,
         }}
       >
+        <BoxContainer
+          style={{
+            position: 'absolute',
+            zIndex: 4,
+            top: 8,
+            left: 13,
+            boxShadow: '0px 1px 3px black',
+          }}
+          substyle={{
+            display: 'flex',
+            padding: 0,
+            alignItems: 'center',
+            justifyContent: 'center',
+            textTransform: 'uppercase',
+            background: Theme.darkBgColorSolid,
+            fontFamily: Theme.titleFont,
+            width: 96,
+            height: 16,
+            fontSize: 10,
+            borderColor: Theme.otherGrey2,
+            color: ITEM_RARITY_COLORS[getHighestRarity(character.armor)],
+          }}
+        >
+          <span style={{ opacity: 0.63 }}>{character.class}</span>
+        </BoxContainer>
         <HexBadge
           size={110}
           stroke={3}
@@ -101,7 +128,6 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             src={CHARACTER_CLASS_ICONS[character.class]}
             size={72}
             shadow
-            style={{ marginRight: -4 }}
             fill={selected ? 'white' : 'rgba(255,255,255,0.5)'}
           />
         </HexBadge>

@@ -22,12 +22,17 @@ import { Button } from '../../elements/button'
 import { useSpring, animated } from 'react-spring'
 import { getDepth } from '../../grid/util'
 import { FLOOR_SIZE } from '../../game/Encounter/floors'
+import { usePartyContext } from '../../contexts/PartyContext'
+import { getHighestStat } from '../../game/Character/util'
 
 export const Grid = () => {
   const { currentFloor } = useGameStateContext()
+  const { party } = usePartyContext()
   const hexagons = useMemo(() => GridGenerator.triangle(currentFloor.size), [])
   const [isExpanded, setIsExpanded] = useState(false)
   const [activeHex, setActiveHex] = useState<HexT | undefined>()
+  const range = getHighestStat('visionRange', party.characters).stats
+    .visionRange
   const style = useSpring({
     minHeight: isExpanded ? 440 : 0,
     maxHeight: isExpanded ? 440 : 0,
@@ -70,6 +75,7 @@ export const Grid = () => {
                     key={i}
                     hex={hex}
                     size={currentFloor.size}
+                    visionRange={range}
                     onMouseEnter={() => setActiveHex(hex)}
                     onMouseLeave={() => setActiveHex(undefined)}
                   />

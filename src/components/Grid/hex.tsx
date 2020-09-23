@@ -20,17 +20,18 @@ import { Smith } from '../../icons/static/Smith'
 export interface HexPropsT {
   hex: HexT
   size: number
+  visionRange: number
   onMouseEnter?: () => void
   onMouseLeave?: () => void
 }
 export const Hex = (props: HexPropsT) => {
-  const { hex, size, onMouseEnter, onMouseLeave } = props
+  const { hex, size, visionRange, onMouseEnter, onMouseLeave } = props
   const { currentHex, chooseNext, encounters } = useGameStateContext()
   const [isHovering, setIsHovering] = useState(false)
   const encounter = encounters[hex.q][hex.r][hex.s]
   const active = currentHex ? isValueEqual(hex, currentHex) : false
   const adjacent = currentHex
-    ? isAdjacent(currentHex)(hex)
+    ? isAdjacent(currentHex, 1)(hex)
     : isValueEqual(MIN_HEX(FLOOR_SIZE), hex)
   const depth = getDepth(hex, size)
   const iconColor = getHexIconColor(encounter, active, adjacent, isHovering)
@@ -49,7 +50,7 @@ export const Hex = (props: HexPropsT) => {
       onClick={(c: any, h: any) => {
         if (adjacent && encounter && !encounter.blocking) {
           console.log(encounter)
-          chooseNext(hex)
+          chooseNext(hex, visionRange)
         }
       }}
       onMouseEnter={() => {

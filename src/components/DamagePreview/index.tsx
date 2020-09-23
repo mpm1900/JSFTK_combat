@@ -31,7 +31,9 @@ export const DamagePreview = (props: DamagePreviewPropsT) => {
   )
 
   return (
-    <BoxContainer substyle={{ background: Theme.darkBgColor }}>
+    <BoxContainer
+      substyle={{ background: Theme.darkBgColor, textAlign: 'center' }}
+    >
       <strong>
         Damage: ({min}-{max})
       </strong>

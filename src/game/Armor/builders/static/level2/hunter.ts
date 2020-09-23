@@ -20,6 +20,7 @@ export const HunterCloak: tArmor = {
     dexterity: 4,
     charisma: -4,
     agility: 2,
+    visionRange: 1,
   }),
   level: 2,
   upgrades: [RogueCloak.id],

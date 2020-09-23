@@ -43,10 +43,11 @@ export const actionCreators = {
       loading,
     },
   }),
-  chooseNext: (hex: HexT): StateActionT => ({
+  chooseNext: (hex: HexT, visionRange: number): StateActionT => ({
     type: CHOOSE_NEXT,
     payload: {
       hex,
+      visionRange,
     },
   }),
   nextFloor: (floorId: string): StateActionT => ({
@@ -79,8 +80,8 @@ export const actions = {
       dispatch(actionCreators.setLoading(false))
     }, 200)
   },
-  chooseNext: (hex: HexT) => (dispatch: Dispatch) => {
-    dispatch(actionCreators.chooseNext(hex))
+  chooseNext: (hex: HexT, visionRange: number) => (dispatch: Dispatch) => {
+    dispatch(actionCreators.chooseNext(hex, visionRange))
   },
   nextFloor: (floorId: string) => (dispatch: Dispatch) => {
     dispatch(actionCreators.nextFloor(floorId))
@@ -130,7 +131,7 @@ export const core: StateCoreT<GameStateT> = {
   },
   [CHOOSE_NEXT]: (state, action) => {
     const hex: HexT = action.payload.hex
-    const adjacentHexes = getAdjacent(hex)
+    const adjacentHexes = getAdjacent(hex, action.payload.visionRange)
     return {
       ...state,
       ...updateCurrentFloor(state, (floor) => {
@@ -233,7 +234,7 @@ export const useGameState = (): GameStateT =>
 export const useGameStateActions = () =>
   useActions(actions) as {
     reset: () => void
-    chooseNext: (hex: HexT) => void
+    chooseNext: (hex: HexT, visionRange: number) => void
     nextFloor: (floorId: string) => void
     removeItem: (itemId: string) => void
     completeCurrent: () => void

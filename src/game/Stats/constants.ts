@@ -43,6 +43,7 @@ export const ZERO_STATS: tStats = {
   maxInspirationOffset: 0,
   consumableHealthGainOffset: 0,
   minHealthOffset: 0,
+  visionRange: 0,
 }
 
 export const BASE_C_STATS: tStats = {
@@ -53,6 +54,7 @@ export const BASE_C_STATS: tStats = {
   criticalChance: 5,
   queueConsolidationModifier: 1,
   consumableHealthGainOffset: 15,
+  visionRange: 1,
 }
 
 export const CLASS_STATS: Record<tCharacterClass, tStats> = {
@@ -169,6 +171,7 @@ export const DAMAGE_BONUS_KEYS: (keyof tStats)[] = [
   'attackDamageModifier',
   'criticalChance',
   'criticalDamageModifier',
+  'visionRange',
 ]
 export const DEFENSE_BONUS_KEYS: (keyof tStats)[] = [
   'armor',
@@ -224,4 +227,5 @@ export const STAT_KEY_LABELS: Record<keyof tStats, string> = {
   maxInspirationOffset: ' Max Inspiration',
   minHealthOffset: ' Minumum Health',
   consumableHealthGainOffset: ' HP from Consumables',
+  visionRange: ' Vison Range',
 }
