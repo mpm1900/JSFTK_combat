@@ -22,6 +22,8 @@ export const CombatActions = () => {
     activeCharacter,
     selectedSkill,
     selectedTargets,
+    inspirationUsed,
+    setInspirationUsed,
     onSkillSelect,
     equipItemCombat,
   } = useCombatContext()
@@ -64,7 +66,17 @@ export const CombatActions = () => {
   })
   return (
     <FlexContainer $direction='column' style={{ minWidth: 340 }}>
-      {selectedSkill && <SkillChecks stat={stat} skill={selectedSkill} />}
+      {selectedSkill && (
+        <SkillChecks
+          stat={stat}
+          skill={selectedSkill}
+          results={Array(inspirationUsed).fill(true)}
+          onClick={() => {
+            if (inspirationUsed < activeCharacter.inspiration)
+              setInspirationUsed(inspirationUsed + 1)
+          }}
+        />
+      )}
       <FlexContainer $center style={{ minHeight: 42 }}>
         {skills.map((skill) => (
           <React.Fragment key={skill.id}>
@@ -134,6 +146,7 @@ export const CombatActions = () => {
           skill={selectedSkill}
           source={activeCharacter}
           targets={selectedTargets}
+          inspirationUsed={inspirationUsed}
         />
       )}
     </FlexContainer>

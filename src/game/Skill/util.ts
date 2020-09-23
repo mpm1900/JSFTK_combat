@@ -119,8 +119,9 @@ export const getSkillResult = (
   source: tProcessedCharacter,
   targets: tProcessedCharacter[],
   skill: tSkill,
+  inspirationUsed?: number,
 ): tSkillResult => {
-  const sourceResult = getSourceSkillResult(source, skill)
+  const sourceResult = getSourceSkillResult(source, skill, inspirationUsed)
   return {
     sourceResult,
     targetResults: targets.map((target) =>

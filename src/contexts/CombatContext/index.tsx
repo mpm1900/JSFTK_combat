@@ -50,6 +50,8 @@ export interface CombatContextT {
   activeRound: tSkillResult | undefined
   isRunning: boolean
   isRenderingResult: boolean
+  inspirationUsed: number
+  setInspirationUsed: (i: number) => void
   onSkillSelect: (skill: tSkill, consumableIndex?: number) => void
   onTargetsSelect: (target: tProcessedCharacter | tProcessedParty) => void
   reset: () => void
@@ -70,6 +72,8 @@ const defaultValue: CombatContextT = {
   activeRound: undefined,
   isRunning: false,
   isRenderingResult: false,
+  inspirationUsed: 0,
+  setInspirationUsed: (i) => {},
   onSkillSelect: (skill: tSkill) => {},
   onTargetsSelect: (target: tProcessedCharacter | tProcessedParty) => {},
   reset: () => {},
@@ -113,7 +117,12 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   const [selectedTarget, setSelectedTarget] = useState<
     tSkillTarget | undefined
   >()
-  const [selectedSkill, setSelectedSkill] = useState<tSkill | undefined>()
+  const [selectedSkill, _setSelectedSkill] = useState<tSkill | undefined>()
+  const setSelectedSkill = (skill: tSkill | undefined) => {
+    setInspirationUsed(0)
+    _setSelectedSkill(skill)
+  }
+  const [inspirationUsed, setInspirationUsed] = useState(0)
   const activeCharacter = useMemo(
     () =>
       characters.find(
@@ -163,6 +172,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
         activeCharacter,
         resolveSkillTarget(roundTarget).filter((c) => c.health > 0),
         selectedSkill,
+        inspirationUsed,
       )
       setActiveRound(results)
       setSelectedSkill(undefined)
@@ -185,6 +195,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
 
   const completeRound = () => {
     setRoundId(v4())
+    setInspirationUsed(0)
     setActiveRound(undefined)
     setIsRenderingResult(false)
   }
@@ -271,6 +282,8 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
         roundResults,
         isRunning,
         isRenderingResult,
+        inspirationUsed,
+        setInspirationUsed,
         onSkillSelect,
         onTargetsSelect,
         start,

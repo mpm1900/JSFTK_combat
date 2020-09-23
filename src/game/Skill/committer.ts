@@ -114,6 +114,8 @@ export const commitSkillResults = (
           consumables: c.consumables.filter(
             (i) => i.id !== targetResult.skill.consumableId,
           ),
+          inspirationOffset:
+            c.inspirationOffset - result.sourceResult.inspirationUsed,
         }
       })
     }

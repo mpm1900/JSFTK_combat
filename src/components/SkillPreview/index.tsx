@@ -8,14 +8,24 @@ import { getChecksProbability } from '../../game/Roll/util'
 import { Theme } from '../../theme'
 import { Icon } from '../Icon'
 import { SKILL_ICONS } from '../../icons/maps'
+import { Button } from '../../elements/button'
 
 export interface SkillPreviewPropsT {
   skill: tSkill
   source: tProcessedCharacter
   targets?: tProcessedCharacter[]
+  inspirationUsed?: number
+  showInspirationActions?: boolean
+  onInspirationClick?: () => void
 }
 export const SkillPreview = (props: SkillPreviewPropsT) => {
-  const { skill, source } = props
+  const {
+    skill,
+    source,
+    inspirationUsed = 0,
+    showInspirationActions,
+    onInspirationClick,
+  } = props
   const perfectChance = getChecksProbability(
     source,
     Array(skill.rolls)
@@ -58,11 +68,36 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
             color: 'rgba(255,255,255,0.4)',
             marginTop: 8,
             marginBottom: 20,
+            textAlign: 'center',
           }}
         >
           Perfect ({Math.floor(perfectChance * 100)}%){' '}
-          {perfectKeys.length > 0 && '='} {perfectKeys}
+          {perfectKeys.length > 0 && '='} {perfectKeys}{' '}
+          {inspirationUsed > 0 ? (
+            <>
+              <br />
+              <span
+                style={{
+                  fontSize: 12,
+                  color: '#f0e4c2',
+                  fontWeight: 'bold',
+                  marginTop: 8,
+                  display: 'inline-block',
+                }}
+              >{`(${inspirationUsed} inspiration used.)`}</span>
+            </>
+          ) : (
+            ''
+          )}
         </span>
+        {showInspirationActions && (
+          <FlexContainer>
+            <Button onClick={onInspirationClick}>
+              Use Inspiration{' '}
+              {inspirationUsed > 0 ? `(${inspirationUsed} used)` : ''}
+            </Button>
+          </FlexContainer>
+        )}
         <FlexContainer $full style={{ width: '100%', marginBottom: 8 }}>
           {damage.value > 0 && skill.damage && (
             <FlexContainer

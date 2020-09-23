@@ -118,6 +118,7 @@ export interface HoverBadgePropsT {
   children: JSX.Element | string | number
   content: JSX.Element
   direction?: 'up' | 'down' | 'left' | 'right'
+  color?: string
   style?: CSSProperties
   childStyle?: CSSProperties
   size?: number
@@ -136,6 +137,7 @@ export const HoverHexBadge = (props: HoverBadgePropsT) => {
     children,
     content,
     direction,
+    color,
     style,
     childStyle,
     size,
@@ -165,9 +167,9 @@ export const HoverHexBadge = (props: HoverBadgePropsT) => {
           rotate={rotate}
           stroke={stroke}
           borderColor={borderColor}
-          childStyle={{ ...childStyle, textShadow: '1px 1px 3px black' }}
+          childStyle={{ textShadow: '1px 1px 3px black', ...childStyle }}
           size={size || 20}
-          color={Theme.badgeBgColor}
+          color={color || Theme.badgeBgColor}
         >
           {children}
         </HexBadge>

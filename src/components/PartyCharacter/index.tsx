@@ -25,6 +25,7 @@ import { useElementShake } from '../../hooks/useElementShake'
 import { NumberChange } from '../NumberChange'
 import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 import { getHighestRarity } from '../../game/Item/util'
+import { Text } from '../../elements/typography'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -257,6 +258,30 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           content={<BoxContainer dark>Magic Resistance</BoxContainer>}
         >
           <NumberChange value={character.stats.resistance} />
+        </HoverHexBadge>
+        <HoverHexBadge
+          position={{
+            top: -10,
+            right: -15,
+          }}
+          stroke={2}
+          size={36}
+          childStyle={{
+            color: '#f0e4c2',
+            fontSize: 24,
+            paddingTop: 0,
+          }}
+          content={
+            <BoxContainer dark style={{ maxWidth: 180 }}>
+              Inspiration <br />
+              <Text style={{ fontSize: 12 }}>
+                Click on a skill check during combat to use inspiration. Using
+                inspiration garuntees the success of one skill check.
+              </Text>
+            </BoxContainer>
+          }
+        >
+          <NumberChange value={character.inspiration} />
         </HoverHexBadge>
         <HoverHexBadge
           position={{

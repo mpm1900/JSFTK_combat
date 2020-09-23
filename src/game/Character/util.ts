@@ -100,7 +100,9 @@ export const processCharacter = (
     ) + stats.maxHealthOffset
   const health = maxHealth - character.healthOffset
   const maxInspiration = 3 + stats.maxInspirationOffset
-  const inspiration = maxInspiration + character.inspirationOffset
+  const inspirationTotal = maxInspiration + character.inspirationOffset
+  const inspiration =
+    inspirationTotal > maxInspiration ? maxInspiration : inspirationTotal
 
   return {
     processed: true,
@@ -391,6 +393,7 @@ export const levelUp = (character: tCharacter): tCharacter => {
   checkForProcessedCharacter(character)
   const experience = character.experience - CHARACTER_XP_MAX[character.level]
   const pc = processCharacter(character)
+  const io = character.inspirationOffset + 3
   return {
     ...character,
     level: character.level + 1,
@@ -399,6 +402,7 @@ export const levelUp = (character: tCharacter): tCharacter => {
         pc.stats.consumableHealthGainOffset,
     ),
     experience,
+    inspirationOffset: io,
     status: character.status.filter((s) => s.type !== 'poisoned'),
   }
 }

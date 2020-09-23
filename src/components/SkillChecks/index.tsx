@@ -15,9 +15,10 @@ export interface SkillChecksPropsT {
   skill?: tSkill
   rolls?: number
   results?: boolean[]
+  onClick?: () => void
 }
 export const SkillChecks = (props: SkillChecksPropsT) => {
-  const { stat, skill, rolls, results = [] } = props
+  const { stat, skill, rolls, results = [], onClick } = props
   return (
     <FlexContainer
       style={{
@@ -30,6 +31,7 @@ export const SkillChecks = (props: SkillChecksPropsT) => {
         .map((_, i) => (
           <SkillCheck
             key={i}
+            onClick={onClick}
             skill={skill}
             perfect={
               results.every((r) => r === true) && results.length === rolls
@@ -49,6 +51,7 @@ export interface SkillCheckT {
   perfect?: boolean
   crit?: boolean
   skill?: tSkill
+  onClick?: () => void
 }
 export const SkillCheck = (props: SkillCheckT) => {
   const {
@@ -59,6 +62,7 @@ export const SkillCheck = (props: SkillCheckT) => {
     perfect = false,
     skill,
     crit,
+    onClick,
   } = props
   const colors = getPerfectStatusColors(skill?.perfectStatus || [], crit)
   return (
@@ -69,6 +73,7 @@ export const SkillCheck = (props: SkillCheckT) => {
       }}
     >
       <Badge
+        onClick={onClick}
         $absolute={false}
         $size={size}
         $style={{
