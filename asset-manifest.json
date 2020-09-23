@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.696c34a1.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.44b99a51.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.44b99a51.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.590167be.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.590167be.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
-    "static/js/2.2e096cd3.chunk.js": "/JSFTK_combat/static/js/2.2e096cd3.chunk.js",
-    "static/js/2.2e096cd3.chunk.js.map": "/JSFTK_combat/static/js/2.2e096cd3.chunk.js.map",
+    "static/js/2.dff920ee.chunk.js": "/JSFTK_combat/static/js/2.dff920ee.chunk.js",
+    "static/js/2.dff920ee.chunk.js.map": "/JSFTK_combat/static/js/2.dff920ee.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.be0390c3bfb24505d427b929a9602d2a.js": "/JSFTK_combat/precache-manifest.be0390c3bfb24505d427b929a9602d2a.js",
+    "precache-manifest.59ea01720d4b09997bcef0bdf2a24074.js": "/JSFTK_combat/precache-manifest.59ea01720d4b09997bcef0bdf2a24074.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/main.696c34a1.chunk.css.map": "/JSFTK_combat/static/css/main.696c34a1.chunk.css.map",
-    "static/js/2.2e096cd3.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.2e096cd3.chunk.js.LICENSE.txt",
+    "static/js/2.dff920ee.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.dff920ee.chunk.js.LICENSE.txt",
     "static/media/1.png": "/JSFTK_combat/static/media/1.a7dcd7d0.png",
     "static/media/2.png": "/JSFTK_combat/static/media/2.22bba3d5.png",
     "static/media/3.png": "/JSFTK_combat/static/media/3.5b81afea.png",
@@ -65,6 +65,7 @@
     "static/media/executioner-hood.svg": "/JSFTK_combat/static/media/executioner-hood.6e796b5c.svg",
     "static/media/extra-time.svg": "/JSFTK_combat/static/media/extra-time.4d418333.svg",
     "static/media/eyestalk.svg": "/JSFTK_combat/static/media/eyestalk.d2c2b188.svg",
+    "static/media/fairy.svg": "/JSFTK_combat/static/media/fairy.598d8aab.svg",
     "static/media/female-vampire.svg": "/JSFTK_combat/static/media/female-vampire.27d5f882.svg",
     "static/media/fire-zone.svg": "/JSFTK_combat/static/media/fire-zone.42e13657.svg",
     "static/media/firewall.svg": "/JSFTK_combat/static/media/firewall.6efb9f12.svg",
@@ -87,6 +88,7 @@
     "static/media/heavy-timer.svg": "/JSFTK_combat/static/media/heavy-timer.1072a406.svg",
     "static/media/herbs-bundle.svg": "/JSFTK_combat/static/media/herbs-bundle.e02bcec1.svg",
     "static/media/high-shot.svg": "/JSFTK_combat/static/media/high-shot.eed9def8.svg",
+    "static/media/imp.svg": "/JSFTK_combat/static/media/imp.f6f20bad.svg",
     "static/media/infested-mass.svg": "/JSFTK_combat/static/media/infested-mass.e591bde1.svg",
     "static/media/kenku-head.svg": "/JSFTK_combat/static/media/kenku-head.3292e596.svg",
     "static/media/knapsack.svg": "/JSFTK_combat/static/media/knapsack.62049a62.svg",
@@ -151,8 +153,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
-    "static/js/2.2e096cd3.chunk.js",
+    "static/js/2.dff920ee.chunk.js",
     "static/css/main.696c34a1.chunk.css",
-    "static/js/main.44b99a51.chunk.js"
+    "static/js/main.590167be.chunk.js"
   ]
 }
