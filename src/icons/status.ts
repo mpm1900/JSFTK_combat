@@ -12,6 +12,7 @@ import ResistanceDown from './svg/lorc/broken-shield.svg'
 import Cursed from './svg/lorc/pentagram-rose.svg'
 import Protected from './svg/lorc/shieldcomb.svg'
 import AttackUp from './svg/lorc/all-for-one.svg'
+import Shocked from './svg/lorc/power-lightning.svg'
 import { tStatusType } from '../game/Status/type'
 
 export const STATUS_ICONS: Partial<Record<tStatusType, string>> = {
@@ -23,6 +24,7 @@ export const STATUS_ICONS: Partial<Record<tStatusType, string>> = {
   burning: Burning,
   bleeding: Bleeding,
   frozen: Frozen,
+  shocked: Shocked,
 
   'attack-up': AttackUp,
   'armor-up': ArmorUp,

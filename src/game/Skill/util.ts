@@ -29,7 +29,9 @@ export const getSourceSkillResult = (
   const rollResults = Array(skill.rolls)
     .fill(null)
     .map((_, i) =>
-      i < inspirationUsed
+      hasStatus(source, 'shocked') && i === 0
+        ? false
+        : i < inspirationUsed
         ? true
         : resolveCheck(
             source,
