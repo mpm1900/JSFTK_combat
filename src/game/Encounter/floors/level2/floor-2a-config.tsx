@@ -1,5 +1,6 @@
 import { LICH } from '../../../Character/bosses'
 import { FOREST_GOLEM } from '../../../Character/elites/forest_golem'
+import { TOMB_GARGOYLE } from '../../../Character/elites/tomb_gargoyle'
 import {
   BANSHEE,
   CONSECRATED_GUARD,
@@ -46,7 +47,7 @@ export const Floor2AAltEnemyConfigs = (): tFloorEnemyConfig[] => []
 
 export const Floor2AEliteEnemyConfigs = (): tFloorEnemyConfig[] => [
   {
-    enemy: LICH,
+    enemy: TOMB_GARGOYLE,
     depths: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
   },
 ]

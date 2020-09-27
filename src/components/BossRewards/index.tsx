@@ -26,6 +26,8 @@ export const BossRewards = () => {
         characters: rawParty.characters.map((c) => ({
           ...c,
           healthOffset: 0,
+          inspirationOffset: 0,
+          status: [],
         })),
       })
     }

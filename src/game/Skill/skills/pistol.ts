@@ -1,8 +1,6 @@
 import { createSkill } from '.'
 
-export const FIRE = createSkill('Fire', 1, 0, {
-  perfectSplash: true,
-})
+export const FIRE = createSkill('Fire', 1, 0)
 export const SNIPE = createSkill('Snipe', 2, 0, {
   perfectPierce: true,
 })

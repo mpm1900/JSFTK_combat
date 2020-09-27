@@ -41,7 +41,7 @@ const Wrapper = styled(animated.div, (props: any) => {
     margin: 10,
     display: 'flex',
     position: 'relative',
-    transform: $active ? 'scale(1.05)' : 'scale(1)',
+    transform: $active ? 'scale(1.07)' : 'scale(1)',
     transition: 'all 0.4s',
     userSelect: 'none',
   }
@@ -69,7 +69,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
     push,
   } = props
   const { playerCanEquipItem } = useUIContext()
-  const { activeRound } = useCombatContext()
+  const { activeRound, inspirationUsed } = useCombatContext()
   const targetIds = activeRound?.targetResults.map((r) => r.target.id)
   const active = selected
   const targeted = targetIds?.includes(character.id)
@@ -281,7 +281,9 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             </BoxContainer>
           }
         >
-          <NumberChange value={character.inspiration} />
+          <NumberChange
+            value={character.inspiration - (selected ? inspirationUsed : 0)}
+          />
         </HoverHexBadge>
         <HoverHexBadge
           position={{

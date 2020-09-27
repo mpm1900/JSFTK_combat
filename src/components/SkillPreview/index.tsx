@@ -28,7 +28,7 @@ export const SkillPreview = (props: SkillPreviewPropsT) => {
   } = props
   const perfectChance = getChecksProbability(
     source,
-    Array(skill.rolls)
+    Array(skill.rolls - inspirationUsed)
       .fill(null)
       .map((_, i) => ({ key: source.weapon.stat, offset: skill.offset })),
   )

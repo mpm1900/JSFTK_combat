@@ -21,7 +21,11 @@ export const Name = (props: NamePropsT) => {
       <FullContainer />
       <BoxContainer
         style={{ zIndex: 2 }}
-        substyle={{ background: Theme.darkBgColor }}
+        substyle={{
+          background: Theme.darkBgColor,
+          fontFamily: Theme.titleFont,
+          fontSize: 18,
+        }}
       >
         {name}
       </BoxContainer>

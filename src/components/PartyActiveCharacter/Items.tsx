@@ -60,7 +60,12 @@ export const Items = (props: ItemPropsT) => {
             character={character}
             resource={res}
             onHover={setActiveItem}
-            canUnequip={playerCanEquipItem}
+            canUnequip={
+              playerCanEquipItem &&
+              res !== 'body' &&
+              res !== 'feet' &&
+              res != 'head'
+            }
           />
         )
       })}

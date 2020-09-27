@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import { LICH } from '../../../Character/bosses'
+import { TOMB_GARGOYLE } from '../../../Character/elites/tomb_gargoyle'
 import { FOREST_FAIRY } from '../../../Character/enemies/forest_fairy'
 import { FOREST_REAPER } from '../../../Character/enemies/forest_reaper'
 import { FOREST_SLIME } from '../../../Character/enemies/forest_slime'
@@ -73,7 +74,7 @@ export const Floor2BAltEnemyConfigs = (): tFloorEnemyConfig[] => [
 
 export const Floor2BEliteEnemyConfigs = (): tFloorEnemyConfig[] => [
   {
-    enemy: LICH,
+    enemy: TOMB_GARGOYLE,
     depths: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
   },
 ]
