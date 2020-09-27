@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.696c34a1.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.f808239c.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.f808239c.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.1b895b79.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.1b895b79.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
-    "static/js/2.ebd65078.chunk.js": "/JSFTK_combat/static/js/2.ebd65078.chunk.js",
-    "static/js/2.ebd65078.chunk.js.map": "/JSFTK_combat/static/js/2.ebd65078.chunk.js.map",
+    "static/js/2.a2076ad8.chunk.js": "/JSFTK_combat/static/js/2.a2076ad8.chunk.js",
+    "static/js/2.a2076ad8.chunk.js.map": "/JSFTK_combat/static/js/2.a2076ad8.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.1dd33717ff632dbd49ec22d517fc5a9a.js": "/JSFTK_combat/precache-manifest.1dd33717ff632dbd49ec22d517fc5a9a.js",
+    "precache-manifest.fc3c3cec7123634a9ba551a7f84f5586.js": "/JSFTK_combat/precache-manifest.fc3c3cec7123634a9ba551a7f84f5586.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/main.696c34a1.chunk.css.map": "/JSFTK_combat/static/css/main.696c34a1.chunk.css.map",
-    "static/js/2.ebd65078.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.ebd65078.chunk.js.LICENSE.txt",
+    "static/js/2.a2076ad8.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.a2076ad8.chunk.js.LICENSE.txt",
     "static/media/1.png": "/JSFTK_combat/static/media/1.a7dcd7d0.png",
     "static/media/2.png": "/JSFTK_combat/static/media/2.22bba3d5.png",
     "static/media/3.png": "/JSFTK_combat/static/media/3.5b81afea.png",
@@ -124,6 +124,7 @@
     "static/media/ringing-bell.svg": "/JSFTK_combat/static/media/ringing-bell.f8953cca.svg",
     "static/media/robe.svg": "/JSFTK_combat/static/media/robe.5b61ecba.svg",
     "static/media/robin-hood-hat.svg": "/JSFTK_combat/static/media/robin-hood-hat.6bab1449.svg",
+    "static/media/rolling-dices.svg": "/JSFTK_combat/static/media/rolling-dices.140136ab.svg",
     "static/media/saber-slash.svg": "/JSFTK_combat/static/media/saber-slash.54b5f3f7.svg",
     "static/media/scale-mail.svg": "/JSFTK_combat/static/media/scale-mail.cb5ff7d5.svg",
     "static/media/scythe.svg": "/JSFTK_combat/static/media/scythe.f0a97d33.svg",
@@ -154,8 +155,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
-    "static/js/2.ebd65078.chunk.js",
+    "static/js/2.a2076ad8.chunk.js",
     "static/css/main.696c34a1.chunk.css",
-    "static/js/main.f808239c.chunk.js"
+    "static/js/main.1b895b79.chunk.js"
   ]
 }

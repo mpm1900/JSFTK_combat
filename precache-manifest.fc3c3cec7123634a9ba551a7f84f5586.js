@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8d92ec1540b684fe37e29c3eacb33654",
+    "revision": "1b225c6e7d9128a04e23d70a4568aeb4",
     "url": "/JSFTK_combat/index.html"
   },
   {
-    "revision": "8085c71e4db43688602c",
+    "revision": "c60335bc7b0a0bde87be",
     "url": "/JSFTK_combat/static/css/main.696c34a1.chunk.css"
   },
   {
-    "revision": "acc0034b189367647d59",
-    "url": "/JSFTK_combat/static/js/2.ebd65078.chunk.js"
+    "revision": "8cda048fee4f62cbe738",
+    "url": "/JSFTK_combat/static/js/2.a2076ad8.chunk.js"
   },
   {
     "revision": "6053f2e2b75ff25dad60cbea573e05d2",
-    "url": "/JSFTK_combat/static/js/2.ebd65078.chunk.js.LICENSE.txt"
+    "url": "/JSFTK_combat/static/js/2.a2076ad8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8085c71e4db43688602c",
-    "url": "/JSFTK_combat/static/js/main.f808239c.chunk.js"
+    "revision": "c60335bc7b0a0bde87be",
+    "url": "/JSFTK_combat/static/js/main.1b895b79.chunk.js"
   },
   {
     "revision": "3ed05753fbdc3d12c207",
@@ -478,6 +478,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "6bab1449e969ee9c372dbf6a80f3b8c7",
     "url": "/JSFTK_combat/static/media/robin-hood-hat.6bab1449.svg"
+  },
+  {
+    "revision": "140136ab821fc133d90ca02f2b435c1f",
+    "url": "/JSFTK_combat/static/media/rolling-dices.140136ab.svg"
   },
   {
     "revision": "54b5f3f752f71e6f0a424ccc81639283",
