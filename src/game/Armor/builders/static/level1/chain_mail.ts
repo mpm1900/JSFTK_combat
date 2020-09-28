@@ -10,14 +10,13 @@ import {
 } from '../level2'
 
 export const ChainMailHelmet: tArmor = {
-  ...createHelmet('Chain Mail Helmet', 'uncommon', 100, {
+  ...createHelmet('Chain Mail Helmet', 'uncommon', 150, {
     armor: 2,
     resistance: 2,
-    vigor: 1,
-    healthRegeneration: 1,
   }),
   level: 1,
   upgrades: [IronHelmet.id, BoneHelmet.id],
+  immunities: ['stunned'],
 }
 
 export const ChainMailArmor: tArmor = {

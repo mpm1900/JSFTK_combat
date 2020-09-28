@@ -26,6 +26,8 @@ export const STATUS_ICONS: Partial<Record<tStatusType, string>> = {
   frozen: Frozen,
   shocked: Shocked,
 
+  'stunned-immunity': Stunned,
+
   'attack-up': AttackUp,
   'armor-up': ArmorUp,
 

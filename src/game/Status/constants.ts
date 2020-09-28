@@ -404,4 +404,16 @@ export const STATUS_CONFIG: Record<tStatusType, tStatusConfig> = {
       'cursed-vigor',
     ],
   },
+  'stunned-immunity': {
+    name: 'Stun Immunity',
+    description: 'Temporary Stun Immunity, -5 to agility.',
+    canStack: false,
+    isTemporary: true,
+    duration: 4,
+    stats: {
+      ...ZERO_STATS,
+      agility: -5,
+    },
+    immunities: ['stunned'],
+  },
 }

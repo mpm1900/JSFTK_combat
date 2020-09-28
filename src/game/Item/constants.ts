@@ -8,6 +8,7 @@ import { POISON_KNIFE } from '../Consumable/objects/poison_knife'
 import { BEAST_DRUG } from '../Consumable/objects/beast_drug'
 import { CURE_POTION } from '../Consumable/objects/curing_potion'
 import { FIREBOMB } from '../Consumable/objects/firebomb'
+import { STEADFAST_POTION } from '../Consumable/objects/steadfast_potion'
 
 export const ITEM_RARITY_COLORS: Record<tItemRarity, string> = {
   common: 'rgba(255, 255, 255,1)',
@@ -22,7 +23,7 @@ export const CLASS_STARTING_CONSUMABLES: Record<
   tConsumable[]
 > = {
   executioner: [GODSBEARD(), BEAST_DRUG()],
-  mercenary: [GODSBEARD(), CURE_POTION()],
+  mercenary: [GODSBEARD(), STEADFAST_POTION()],
   ranger: [GODSBEARD(), POISON_KNIFE()],
   reaper: [GODSBEARD(), FIREBOMB()],
   student: [GODSBEARD(), CELESTIAL_LOTUS()],

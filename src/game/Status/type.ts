@@ -16,6 +16,8 @@ export type tStatusType =
   | 'cursed-charisma'
   | 'cursed-luck'
   | 'cursed-agility'
+  // immunities
+  | 'stunned-immunity'
   // buffs
   | 'armor-up'
   | 'attack-up'

@@ -23,8 +23,8 @@ export const LICH = (): tCharacter => {
           targetType: 'group',
           perfectStatus: ['speed-down'],
         }),
-        createSkill('Screech', 4, -5, {
-          damageModifier: 0,
+        createSkill('Screech', 4, -10, {
+          damageModifier: 0.1,
           damage: false,
           targetType: 'group',
           perfectStatus: ['stunned'],

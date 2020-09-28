@@ -23,7 +23,7 @@ export const FOREST_MIND = (): tCharacter => {
           targetType: 'group',
           perfectStatus: ['speed-down', 'resistance-down'],
         }),
-        createSkill('Entangle', 4, -5, {
+        createSkill('Entangle', 4, -10, {
           damageModifier: 0.2,
           targetType: 'group',
           perfectStatus: ['stunned'],
