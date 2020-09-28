@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/JSFTK_combat/static/css/main.696c34a1.chunk.css",
-    "main.js": "/JSFTK_combat/static/js/main.1b895b79.chunk.js",
-    "main.js.map": "/JSFTK_combat/static/js/main.1b895b79.chunk.js.map",
+    "main.js": "/JSFTK_combat/static/js/main.6fa07a71.chunk.js",
+    "main.js.map": "/JSFTK_combat/static/js/main.6fa07a71.chunk.js.map",
     "runtime-main.js": "/JSFTK_combat/static/js/runtime-main.0208154f.js",
     "runtime-main.js.map": "/JSFTK_combat/static/js/runtime-main.0208154f.js.map",
-    "static/js/2.a2076ad8.chunk.js": "/JSFTK_combat/static/js/2.a2076ad8.chunk.js",
-    "static/js/2.a2076ad8.chunk.js.map": "/JSFTK_combat/static/js/2.a2076ad8.chunk.js.map",
+    "static/js/2.4b5cf80d.chunk.js": "/JSFTK_combat/static/js/2.4b5cf80d.chunk.js",
+    "static/js/2.4b5cf80d.chunk.js.map": "/JSFTK_combat/static/js/2.4b5cf80d.chunk.js.map",
     "index.html": "/JSFTK_combat/index.html",
-    "precache-manifest.fc3c3cec7123634a9ba551a7f84f5586.js": "/JSFTK_combat/precache-manifest.fc3c3cec7123634a9ba551a7f84f5586.js",
+    "precache-manifest.1c7e0a0944b5919d45938776e2c9104b.js": "/JSFTK_combat/precache-manifest.1c7e0a0944b5919d45938776e2c9104b.js",
     "service-worker.js": "/JSFTK_combat/service-worker.js",
     "static/css/main.696c34a1.chunk.css.map": "/JSFTK_combat/static/css/main.696c34a1.chunk.css.map",
-    "static/js/2.a2076ad8.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.a2076ad8.chunk.js.LICENSE.txt",
+    "static/js/2.4b5cf80d.chunk.js.LICENSE.txt": "/JSFTK_combat/static/js/2.4b5cf80d.chunk.js.LICENSE.txt",
     "static/media/1.png": "/JSFTK_combat/static/media/1.a7dcd7d0.png",
     "static/media/2.png": "/JSFTK_combat/static/media/2.22bba3d5.png",
     "static/media/3.png": "/JSFTK_combat/static/media/3.5b81afea.png",
@@ -24,6 +24,7 @@
     "static/media/armor-downgrade.svg": "/JSFTK_combat/static/media/armor-downgrade.71dd2b83.svg",
     "static/media/armor-upgrade.svg": "/JSFTK_combat/static/media/armor-upgrade.c51f9198.svg",
     "static/media/axe-swing.svg": "/JSFTK_combat/static/media/axe-swing.6958cc19.svg",
+    "static/media/back-forth.svg": "/JSFTK_combat/static/media/back-forth.356fe0e8.svg",
     "static/media/backward-time.svg": "/JSFTK_combat/static/media/backward-time.d0246d45.svg",
     "static/media/battered-axe.svg": "/JSFTK_combat/static/media/battered-axe.819d2726.svg",
     "static/media/battle-axe.svg": "/JSFTK_combat/static/media/battle-axe.47a5ba50.svg",
@@ -155,8 +156,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0208154f.js",
-    "static/js/2.a2076ad8.chunk.js",
+    "static/js/2.4b5cf80d.chunk.js",
     "static/css/main.696c34a1.chunk.css",
-    "static/js/main.1b895b79.chunk.js"
+    "static/js/main.6fa07a71.chunk.js"
   ]
 }
