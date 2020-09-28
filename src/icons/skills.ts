@@ -110,4 +110,5 @@ export const SKILL_ICONS: Record<string, string> = {
   'Attack Up': AttackUp,
   'Armor Down': ArmorDown,
   'Beast Drug': AttackUp,
+  'Steadfast Potion': CurePotion,
 }

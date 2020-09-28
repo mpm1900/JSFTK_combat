@@ -20,4 +20,5 @@ export const PERFECT_DISPLAY_INFO: Partial<Record<tPerfectKey, string>> = {
   cure: 'Cure Character',
   blessed: 'Remove Curses',
   'evade-up': 'Evade Up',
+  'stunned-immunity': 'Stun Immunity',
 }
