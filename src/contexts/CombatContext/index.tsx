@@ -238,18 +238,20 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
   useEffect(() => {
     if (!isRunning) return
     if (enemyParty.characters.every((c) => c.health <= 0)) {
-      setIsRunning(false)
-      const rewards = getRolledRewards(
-        enemyParty,
-        party.characters.reduce((p, c) =>
-          p.stats.luck > c.stats.luck ? p : c,
-        ),
-      )
-      updateParty({
-        ...rawParty,
-        characters: rawParty.characters.map((c) => removeTemporaryStatus(c)),
-      })
-      open(<CombatVictoryModal rewards={rewards} />, {}, true)
+      setTimeout(() => {
+        setIsRunning(false)
+        const rewards = getRolledRewards(
+          enemyParty,
+          party.characters.reduce((p, c) =>
+            p.stats.luck > c.stats.luck ? p : c,
+          ),
+        )
+        updateParty({
+          ...rawParty,
+          characters: rawParty.characters.map((c) => removeTemporaryStatus(c)),
+        })
+        open(<CombatVictoryModal rewards={rewards} />, {}, true)
+      }, 500)
       return
     }
     if (party.characters.every((c) => c.health <= 0)) {

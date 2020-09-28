@@ -81,7 +81,7 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.8.5
+            alpha-0.0.8.8
           </Monospace>
         }
       >

@@ -42,7 +42,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
     .map((id) => characters.find((c) => c.id === id))
     .filter((c) => c !== undefined)
   const max = getMax(queue)
-  const min = 25
+  const min = 0
   const widthCoef = max > min ? 100 / max : 100 / min
   return (
     <AppHeader
@@ -62,21 +62,27 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
           <FlexContainer
             style={{
               width: 800,
-              flexDirection: 'row-reverse',
+              flexDirection: 'row',
               boxShadow: '0px 0px 3px black',
-              borderLeft: '1px solid rgba(255,255,255,0.3)',
-              background: Theme.mediumBgColor,
+              borderRight: '1px solid rgba(255,255,255,0.3)',
+              backgroundColor: Theme.mediumBgColor,
+              backgroundImage: `linear-gradient( 135deg, ${Theme.mediumBgColor} 250px, transparent 250px),
+        linear-gradient(45deg, ${Theme.mediumBgColor} 250px, transparent 250px),
+        linear-gradient( 135deg, #303036  400px, transparent 400px),
+        linear-gradient(45deg, #303036 400px, transparent 400px),
+        linear-gradient( 135deg, ${Theme.mediumBgColor} 500px, transparent 500px),
+        linear-gradient(45deg, ${Theme.mediumBgColor} 500px, transparent 500px)`,
             }}
           >
             <FlexContainer
-              style={{ position: 'relative', marginLeft: size, zIndex: 7 }}
+              style={{ position: 'relative', marginRight: size, zIndex: 7 }}
             >
               <CharacterIcon
                 character={first}
                 size={64}
                 width={64}
                 height={64}
-                style={{ borderTop: 'none' }}
+                style={{ borderTop: 'none', boxShadow: '0px 0px 10px black', }}
               />
               <FlexContainer
                 $direction='column'
@@ -88,7 +94,7 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                   width: 120,
                   top: 16,
                   paddingLeft: 4,
-                  right: '-124px',
+                  left: '-124px',
                 }}
               >
                 {first && <span>{first.name}'s Turn</span>}
@@ -107,10 +113,11 @@ export const CombatQueue = (props: CombatQueuePropsT) => {
                         width: size - 7,
                         position: 'absolute',
                         bottom: '2px',
-                        right: `calc(${queue[c.id] * widthCoef}% - ${
-                          size - 6
+                        left: `calc(${queue[c.id] * widthCoef}% - ${
+                          size + 6
                         }px)`,
                         transition: 'all 0.3s',
+                        boxShadow: '0px -1px 5px black',
                         zIndex: i,
                       }}
                       onMouseEnter={() => setHoverQueueCharacterId(c.id)}

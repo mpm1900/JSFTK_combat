@@ -37,9 +37,14 @@ export const Stats = (props: StatsPropsT) => {
         <Stat
           character={character}
           stat={'criticalChance'}
-          label='Critical Chance'
+          label='% Critical Chance'
         />
 
+        <Stat
+          character={character}
+          stat={'consumableHealthGainOffset'}
+          label={'Consumable Healing'}
+        />
         <Stat
           character={character}
           stat={'healthRegeneration'}
@@ -49,6 +54,21 @@ export const Stats = (props: StatsPropsT) => {
           character={character}
           stat={'goldModifier'}
           label={'% More Gold'}
+        />
+        <Stat
+          character={character}
+          stat={'maxHealthOffset'}
+          label={'+ Max Health'}
+        />
+        <Stat
+          character={character}
+          stat={'maxInspirationOffset'}
+          label={'+ Max Inspiration'}
+        />
+        <Stat
+          character={character}
+          stat={'visionRange'}
+          label={'Vison Range'}
         />
       </FlexContainer>
       <FlexContainer $full $direction='column'>

@@ -27,8 +27,8 @@ export const FOREST_BOAR = (): tCharacter => {
     [],
     [
       makeEnemyReward(10, 10, [getRandomItem(0)]),
-      makeEnemyReward(10, 15, [getRandomItem(1)]),
-      makeEnemyReward(10, 15, [getRandomItem(2, 2)]),
+      makeEnemyReward(15, 15, [getRandomItem(1)]),
+      makeEnemyReward(20, 15, [getRandomItem(2, 2)]),
     ],
   )
 }

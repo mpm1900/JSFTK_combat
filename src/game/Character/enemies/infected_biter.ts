@@ -27,9 +27,9 @@ export const INFECTED_BITER = (): tCharacter => {
     },
     [],
     [
-      makeEnemyReward(8, 8),
-      makeEnemyReward(8, 9, [getRandomItem(1)]),
-      makeEnemyReward(8, 10, [getRandomItem(1)]),
+      makeEnemyReward(10, 8),
+      makeEnemyReward(15, 9, [getRandomItem(1)]),
+      makeEnemyReward(20, 10, [getRandomItem(1)]),
     ],
   )
 }

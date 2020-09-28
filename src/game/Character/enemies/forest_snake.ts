@@ -23,8 +23,8 @@ export const FOREST_SNAKE = (): tCharacter => {
     [],
     [
       makeEnemyReward(5, 4),
-      makeEnemyReward(5, 8, [getRandomItem(0)]),
-      makeEnemyReward(5, 10, [getRandomItem(1)]),
+      makeEnemyReward(6, 8, [getRandomItem(0)]),
+      makeEnemyReward(7, 10, [getRandomItem(1)]),
     ],
   )
 }

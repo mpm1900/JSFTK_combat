@@ -26,6 +26,7 @@ import { NumberChange } from '../NumberChange'
 import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 import { getHighestRarity } from '../../game/Item/util'
 import { Text } from '../../elements/typography'
+import { ItemCard } from '../ItemCard'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -80,7 +81,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       <Wrapper
         $active={active}
         style={{
-          opacity: character.health <= 0 ? 0.5 : 1,
+          opacity: character.health <= 0 ? 0.75 : 1,
         }}
       >
         <BoxContainer
@@ -90,6 +91,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             top: 8,
             left: 13,
             boxShadow: '0px 1px 3px black',
+            borderWidth: '2px',
           }}
           substyle={{
             display: 'flex',
@@ -261,13 +263,13 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         </HoverHexBadge>
         <HoverHexBadge
           position={{
-            top: -10,
+            top: -6,
             right: -15,
           }}
           stroke={2}
           size={36}
           childStyle={{
-            color: '#f0e4c2',
+            color: 'rgba(255,255,255,0.75)',
             fontSize: 24,
             paddingTop: 0,
           }}
@@ -305,7 +307,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
         <HoverHexBadge
           direction='up'
           rotate={true}
-          content={<BoxContainer dark>Weapon Damage</BoxContainer>}
+          content={<ItemCard item={character.weapon} character={character} />}
           position={{
             bottom: -7,
             left: 52,

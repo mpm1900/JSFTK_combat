@@ -38,8 +38,8 @@ export const FOREST_WITCH = (): tCharacter => {
     [],
     [
       makeEnemyReward(5, 10),
-      makeEnemyReward(5, 10),
-      makeEnemyReward(7, 15, [getRandomItem(1)]),
+      makeEnemyReward(7, 10),
+      makeEnemyReward(10, 15, [getRandomItem(1)]),
     ],
   )
 }

@@ -29,7 +29,7 @@ export const PartyCharacterConsumables = (
 ) => {
   const { character, consumables, onClick } = props
   const { party, transferConsumable } = usePartyContext()
-  const { floorId, currentEncounter } = useGameStateContext()
+  const { currentEncounter } = useGameStateContext()
   const stack = useMemo(() => considateConsumableListToStack(consumables), [
     consumables,
   ])
@@ -48,6 +48,7 @@ export const PartyCharacterConsumables = (
   const onCharacterClick = (targetId: string) => {
     if (activeConsumable) {
       transferConsumable(character.id, targetId, activeConsumable.id)
+      setActiveConsumable(undefined)
     }
   }
   const onStackClick = (consumable: tConsumable) => {
