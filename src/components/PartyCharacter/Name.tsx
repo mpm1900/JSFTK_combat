@@ -60,6 +60,7 @@ export const Name = (props: NamePropsT) => {
                 color: 'red',
                 display: 'inline-block',
                 paddingTop: 4,
+                paddingRight: 15,
                 textTransform: 'uppercase',
                 textShadow: '1px 1px 3px black',
               }}

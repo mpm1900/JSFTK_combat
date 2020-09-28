@@ -21,6 +21,7 @@ import { useGameStateContext } from '../GameStateContext'
 import { tConsumable } from '../../game/Consumable/type'
 import { FISTS } from '../../game/Weapon/fists'
 import { FLOOR_1_ID } from '../../game/Encounter/floors/level1/floor-1'
+import { id } from 'tree-json-generator'
 
 export interface PartyContextT {
   party: tProcessedParty
@@ -38,6 +39,11 @@ export interface PartyContextT {
   upgradeItem: (characterId: string, armor: tArmor) => void
   sellItem: (itemId: string) => void
   refreshParty: () => void
+  transferConsumable: (
+    sourceId: string,
+    targetId: string,
+    consumableId: string,
+  ) => void
 }
 const defaultContextValue: PartyContextT = {
   rawParty: makeParty(0, FLOOR_1_ID, false, 0),
@@ -55,6 +61,7 @@ const defaultContextValue: PartyContextT = {
   upgradeItem: (characterId, armor) => {},
   sellItem: (itemId) => {},
   refreshParty: () => {},
+  transferConsumable: (sourceId, targetId, consumableId) => {},
 }
 export const PartyContext = React.createContext<PartyContextT>(
   defaultContextValue,
@@ -225,6 +232,34 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
       ),
     })
   }
+  const transferConsumable = (
+    sourceId: string,
+    targetId: string,
+    consumableId: string,
+  ) => {
+    const source = rawParty.characters.find((c) => c.id === sourceId)
+    const consumable = source?.consumables.find((i) => i.id === consumableId)
+    if (consumable) {
+      updateParty({
+        ...rawParty,
+        characters: rawParty.characters.map((c) => {
+          if (c.id === sourceId) {
+            return {
+              ...c,
+              consumables: c.consumables.filter((c) => c.id !== consumableId),
+            }
+          }
+          if (c.id === targetId) {
+            return {
+              ...c,
+              consumables: [...c.consumables, consumable],
+            }
+          }
+          return c
+        }),
+      })
+    }
+  }
 
   return (
     <PartyContext.Provider
@@ -244,6 +279,7 @@ export const PartyContextProvider = (props: PartyContextProviderPropsT) => {
         sellItem,
         refreshParty,
         upgradeItem,
+        transferConsumable,
       }}
     >
       {children}

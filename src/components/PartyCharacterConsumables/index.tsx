@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react'
+import React, { RefObject, useMemo, useRef, useState } from 'react'
 import { FlexContainer } from '../../elements/flex'
 import { Icon } from '../Icon'
 import { CONSUMABLE_ITEM_ICONS, CONSUMABLE_ITEM_COLORS } from '../../icons/maps'
-import { HoverToolTip } from '../Tooltip'
+import { HoverToolTip, Tooltip } from '../Tooltip'
 import { BoxContainer } from '../../elements/box'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { tConsumable } from '../../game/Consumable/type'
@@ -11,6 +11,12 @@ import { Theme } from '../../theme'
 import { REMOVE_CURSES } from '../../game/Skill/skills/consumables'
 import { hasAnyStatus } from '../../game/Character/util'
 import { CONSUMABLE_DESCRIPTIONS } from '../../game/Consumable/constants'
+import { usePartyContext } from '../../contexts/PartyContext'
+import { Button } from '../../elements/button'
+import Arrow from '../../icons/svg/lorc/back-forth.svg'
+import { useOnClickOutside } from '../../hooks/useOnClickOutside'
+import { useGameStateContext } from '../../contexts/GameStateContext'
+import { FLOOR_1_ID } from '../../game/Encounter/floors/level1/floor-1'
 
 const HEIGHT = 64
 export interface PartyCharacterConsumablesPropsT {
@@ -22,9 +28,28 @@ export const PartyCharacterConsumables = (
   props: PartyCharacterConsumablesPropsT,
 ) => {
   const { character, consumables, onClick } = props
+  const { party, transferConsumable } = usePartyContext()
+  const { floorId, currentEncounter } = useGameStateContext()
   const stack = useMemo(() => considateConsumableListToStack(consumables), [
     consumables,
   ])
+  const [activeConsumable, setActiveConsumable] = useState<
+    tConsumable | undefined
+  >()
+  const ref: any = useRef<HTMLDivElement>()
+  useOnClickOutside(ref, () => {
+    if (activeConsumable) setActiveConsumable(undefined)
+  })
+  const handleClick = (consumable: tConsumable) => {
+    if (currentEncounter) {
+      setActiveConsumable(consumable)
+    }
+  }
+  const onCharacterClick = (targetId: string) => {
+    if (activeConsumable) {
+      transferConsumable(character.id, targetId, activeConsumable.id)
+    }
+  }
   const onStackClick = (consumable: tConsumable) => {
     let index = undefined
     consumables.forEach((c, i) => {
@@ -53,6 +78,7 @@ export const PartyCharacterConsumables = (
     ) {
       return onClick && onClick(consumable, index || 0)
     }
+    setActiveConsumable(undefined)
   }
   const filler = Array(10 - stack.length).fill(null)
 
@@ -62,13 +88,58 @@ export const PartyCharacterConsumables = (
       style={{ flexWrap: 'wrap', height: HEIGHT }}
     >
       {stack.map((s) => (
-        <PartyCharacterConsumable
-          key={s.consumable.id}
-          character={character}
-          consumable={s.consumable}
-          count={s.count}
-          onClick={onStackClick}
-        />
+        <Tooltip
+          isOpen={
+            activeConsumable !== undefined &&
+            activeConsumable.id === s.consumable.id
+          }
+          content={
+            <div ref={ref}>
+              <BoxContainer
+                substyle={{
+                  padding: 4,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  background: Theme.darkBgColor,
+                }}
+              >
+                <Button
+                  style={{ padding: '4px 8px' }}
+                  onClick={() => {
+                    if (activeConsumable) onStackClick(activeConsumable)
+                  }}
+                >
+                  Use
+                </Button>
+                <FlexContainer>
+                  <Icon
+                    src={Arrow}
+                    size={22}
+                    style={{ marginLeft: 16, marginRight: 4 }}
+                  />
+                  {party.characters
+                    .filter((c) => c.id !== character.id)
+                    .map((c) => (
+                      <Button
+                        style={{ padding: '4px 8px' }}
+                        onClick={() => onCharacterClick(c.id)}
+                      >
+                        {c.name}
+                      </Button>
+                    ))}
+                </FlexContainer>
+              </BoxContainer>
+            </div>
+          }
+        >
+          <PartyCharacterConsumable
+            key={s.consumable.id}
+            character={character}
+            consumable={s.consumable}
+            count={s.count}
+            onClick={handleClick}
+          />
+        </Tooltip>
       ))}
       {filler.map((f, i) => (
         <ConsumableBox key={i} />
