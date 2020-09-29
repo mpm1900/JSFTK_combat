@@ -9,6 +9,8 @@ import { tSkill } from '../../game/Skill/type'
 import { tBaseStats } from '../../game/Stats/type'
 import { tStatusType } from '../../game/Status/type'
 import { Theme } from '../../theme'
+import { HoverToolTip } from '../Tooltip'
+import { BoxContainer } from '../../elements/box'
 
 export interface SkillChecksPropsT {
   stat: keyof tBaseStats
@@ -66,37 +68,62 @@ export const SkillCheck = (props: SkillCheckT) => {
   } = props
   const colors = getPerfectStatusColors(skill?.perfectStatus || [], crit)
   return (
-    <div
-      style={{
-        padding: `0px ${padding}px`,
-        opacity: check.result === undefined ? 0.75 : 1,
-      }}
+    <HoverToolTip
+      content={
+        <BoxContainer
+          dark
+          substyle={{
+            justifyContent: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <div>{check.label} Skill Check</div>
+          {check.result === true && (
+            <div style={{ color: 'lightgreen', textAlign: 'center' }}>
+              PASSED
+            </div>
+          )}
+          {check.result === false && (
+            <div style={{ color: Theme.healthRedColor, textAlign: 'center' }}>
+              FAILED
+            </div>
+          )}
+        </BoxContainer>
+      }
     >
-      <Badge
-        onClick={onClick}
-        $absolute={false}
-        $size={size}
-        $style={{
-          borderColor: perfect ? colors.border : undefined,
-          background: perfect ? colors.background : Theme.darkBgColorSolid,
+      <div
+        style={{
+          padding: `0px ${padding}px`,
+          opacity: check.result === undefined ? 0.75 : 1,
         }}
       >
-        <Icon
-          src={STAT_ICONS[check.label as keyof tBaseStats]}
-          fill={perfect ? colors.fill : getColor(check.result)}
-          size={iconSize || size - 4}
-        />
-        {check.result === false && (
+        <Badge
+          onClick={onClick}
+          $absolute={false}
+          $size={size}
+          $style={{
+            borderColor: perfect ? colors.border : undefined,
+            background: perfect ? colors.background : Theme.darkBgColorSolid,
+          }}
+        >
           <Icon
-            src={X}
-            shadow
-            fill={'lightcoral'}
-            size={size - 4}
-            style={{ position: 'absolute', top: 0 }}
+            src={STAT_ICONS[check.label as keyof tBaseStats]}
+            fill={perfect ? colors.fill : getColor(check.result)}
+            size={iconSize || size - 4}
           />
-        )}
-      </Badge>
-    </div>
+          {check.result === false && (
+            <Icon
+              src={X}
+              shadow
+              fill={'lightcoral'}
+              size={size - 4}
+              style={{ position: 'absolute', top: 0 }}
+            />
+          )}
+        </Badge>
+      </div>
+    </HoverToolTip>
   )
 }
 

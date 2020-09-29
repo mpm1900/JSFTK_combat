@@ -80,7 +80,7 @@ export const PartyActiveCharacter = (props: PartyActiveCharacterPropsT) => {
           padding: 10,
           position: 'absolute',
           left: '-6px',
-          width: 486,
+          width: 490,
           justifyContent: 'flex-end',
           zIndex: 1,
         }}

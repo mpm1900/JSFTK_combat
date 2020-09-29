@@ -96,7 +96,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
             </div>
             <HoverHexBadge
               direction='down'
-              content={<BoxContainer>Enemy Level</BoxContainer>}
+              content={<BoxContainer dark>Enemy Level</BoxContainer>}
               position={{
                 left: -6,
                 bottom: -12,
@@ -145,7 +145,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
               {character.stats.armor > 0 && (
                 <HoverHexBadge
                   direction='down'
-                  content={<BoxContainer>Armor</BoxContainer>}
+                  content={<BoxContainer dark>Armor</BoxContainer>}
                   size={28}
                   childStyle={{
                     color: Theme.physicalColor,
@@ -158,7 +158,7 @@ export const EnemyCharacter = (props: EnemyCharacterPropsT) => {
               {character.stats.resistance > 0 && (
                 <HoverHexBadge
                   direction='down'
-                  content={<BoxContainer>Magic Resistance</BoxContainer>}
+                  content={<BoxContainer dark>Magic Resistance</BoxContainer>}
                   size={28}
                   childStyle={{
                     color: Theme.magicColor,

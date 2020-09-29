@@ -27,6 +27,7 @@ import { ITEM_RARITY_COLORS } from '../../game/Item/constants'
 import { getHighestRarity } from '../../game/Item/util'
 import { Text } from '../../elements/typography'
 import { ItemCard } from '../ItemCard'
+import { HoverToolTip } from '../Tooltip'
 
 export interface PartyCharacterProps {
   character: tProcessedCharacter
@@ -173,10 +174,15 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                     character={character}
                     style={{ borderRight: 'none' }}
                   />
-                  <XPGauge
-                    character={character}
-                    style={{ borderRight: 'none' }}
-                  />
+                  <HoverToolTip
+                    direction='right'
+                    content={<BoxContainer dark>XP</BoxContainer>}
+                  >
+                    <XPGauge
+                      character={character}
+                      style={{ borderRight: 'none' }}
+                    />
+                  </HoverToolTip>
                 </FlexContainer>
                 <HoverHexBadge
                   position={{ bottom: 14, left: 90 }}

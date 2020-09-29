@@ -251,7 +251,7 @@ export const CombatContextProvider = (props: CombatContextProviderPropsT) => {
           characters: rawParty.characters.map((c) => removeTemporaryStatus(c)),
         })
         open(<CombatVictoryModal rewards={rewards} />, {}, true)
-      }, 500)
+      }, 300)
       return
     }
     if (party.characters.every((c) => c.health <= 0)) {

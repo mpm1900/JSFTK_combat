@@ -6,6 +6,8 @@ import { Icon } from '../Icon'
 import { tStats } from '../../game/Stats/type'
 import { tProcessedCharacter } from '../../game/Character/type'
 import { STAT_BONUS_KEYS } from '../../game/Stats/constants'
+import { HoverToolTip } from '../Tooltip'
+import { Theme } from '../../theme'
 
 const getStatColor = (
   character: tProcessedCharacter,
@@ -13,10 +15,10 @@ const getStatColor = (
 ): string => {
   const a = character.stats[key]
   const b = character.rawStats[key]
-  if (a === undefined || b === undefined) return 'rgba(255,255,255,0.6)'
+  if (a === undefined || b === undefined) return 'rgba(255,255,255,0.8)'
   if (a > b) return 'lightgreen'
   if (b > a) return 'lightcoral'
-  return 'rgba(255,255,255,0.6)'
+  return 'rgba(255,255,255,0.8)'
 }
 
 export interface StatBarPropsT {
@@ -26,20 +28,23 @@ export const StatBar = (props: StatBarPropsT) => {
   const { character } = props
 
   return (
-    <BoxContainer>
-      <FlexContainer
-        style={{
-          justifyContent: 'space-between',
-          width: 360,
-          paddingTop: 10,
-          paddingBottom: 6,
-        }}
-      >
-        {STAT_BONUS_KEYS.map((key) => (
+    <FlexContainer
+      style={{
+        justifyContent: 'space-between',
+        width: 360,
+        padding: 16,
+        paddingTop: 24,
+        margin: 1,
+        border: `1px solid ${Theme.lightBgColor}`,
+      }}
+    >
+      {STAT_BONUS_KEYS.map((key) => (
+        <HoverToolTip content={<BoxContainer dark>{key}</BoxContainer>}>
           <FlexContainer
             key={key}
             style={{
               alignItems: 'center',
+              userSelect: 'none',
             }}
           >
             <Icon
@@ -52,8 +57,8 @@ export const StatBar = (props: StatBarPropsT) => {
               {character.stats[key]}
             </span>
           </FlexContainer>
-        ))}
-      </FlexContainer>
-    </BoxContainer>
+        </HoverToolTip>
+      ))}
+    </FlexContainer>
   )
 }
