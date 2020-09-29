@@ -16,9 +16,9 @@ import { CLASS_ARMOR } from '../Armor/constants'
 import { considateConsumableListToStack } from '../Consumable/util'
 import { CHARACTER_XP_MAX } from './constants'
 import { tEncounterReward } from '../Encounter/type'
-import { FISTS } from '../Weapon/fists'
 import { CLASS_STARTING_CONSUMABLES } from '../Item/constants'
 import { makeRandom } from '../../util/makeRandom'
+import { FISTS } from '../Weapon/builders/objects/fist'
 
 export const isCharacter = (obj: any): boolean =>
   obj !== undefined && obj.isCharacter !== undefined

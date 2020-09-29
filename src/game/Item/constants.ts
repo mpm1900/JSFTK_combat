@@ -29,6 +29,7 @@ export const CLASS_STARTING_CONSUMABLES: Record<
   student: [GODSBEARD(), CELESTIAL_LOTUS()],
   patrician: [GODSBEARD(), CURE_POTION()],
   corsair: [GODSBEARD(), GODSBEARD()],
+  monk: [GODSBEARD(), GODSBEARD()],
   drifter: [GODSBEARD(), GODSBEARD()],
   enemy: [],
 }

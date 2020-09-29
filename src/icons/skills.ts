@@ -49,6 +49,7 @@ import ArmorDown from './svg/delapouite/armor-downgrade.svg'
 import Punch from './svg/lorc/punch.svg'
 
 import Stun from './svg/lorc/ubisoft-sun.svg'
+import Cure from './svg/lorc/hospital-cross.svg'
 
 import AttackUp from './svg/lorc/all-for-one.svg'
 import CurePotion from './svg/lorc/drink-me.svg'
@@ -102,6 +103,7 @@ export const SKILL_ICONS: Record<string, string> = {
   'Poison Knife': PoisonKnife,
   Firebomb: Firebomb,
   'Cure Potion': CurePotion,
+  Cure: Cure,
   Restore: Restore,
   Rush: Rush,
   Vanish: EvadeUp,

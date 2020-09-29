@@ -42,7 +42,7 @@ export const FOREST_MIND = (): tCharacter => {
       },
       ['flying'],
       [
-        makeEnemyReward(200, 120, [
+        makeEnemyReward(500, 120, [
           getRandomItem(3, 3),
           getRandomItem(3, 3),
           getRandomItem(3, 3),

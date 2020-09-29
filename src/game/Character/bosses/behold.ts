@@ -42,7 +42,7 @@ export const BEHOLD = (): tCharacter => {
       },
       ['undead'],
       [
-        makeEnemyReward(200, 120, [
+        makeEnemyReward(950, 320, [
           getRandomItem(5, 5),
           getRandomItem(5, 5),
           getRandomItem(5, 5),

@@ -26,7 +26,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 7,
     chime: 7,
     pistol: 6,
-    fist: 0,
+    fist: 8,
     enemy: 0,
   },
   // LEVEL 1 ccc ur
@@ -42,7 +42,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 9,
     chime: 9,
     pistol: 7,
-    fist: 0,
+    fist: 10,
     enemy: 0,
   },
   tomb: {
@@ -56,7 +56,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 12,
     chime: 12,
     pistol: 8,
-    fist: 0,
+    fist: 12,
     enemy: 0,
   },
   buried: {
@@ -70,7 +70,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 13,
     chime: 13,
     pistol: 9,
-    fist: 0,
+    fist: 13,
     enemy: 0,
   },
 
@@ -85,7 +85,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 16,
     chime: 16,
     pistol: 10,
-    fist: 0,
+    fist: 16,
     enemy: 0,
   },
   glass: {
@@ -99,7 +99,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 21,
     chime: 21,
     pistol: 16,
-    fist: 0,
+    fist: 21,
     enemy: 0,
   },
 
@@ -115,7 +115,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 16,
     chime: 16,
     pistol: 12,
-    fist: 0,
+    fist: 16,
     enemy: 0,
   },
   steel: {
@@ -129,7 +129,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 17,
     chime: 17,
     pistol: 13,
-    fist: 0,
+    fist: 17,
     enemy: 0,
   },
   stainless: {
@@ -143,7 +143,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 18,
     chime: 18,
     pistol: 14,
-    fist: 0,
+    fist: 18,
     enemy: 0,
   },
 
@@ -159,7 +159,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 21,
     chime: 21,
     pistol: 17,
-    fist: 0,
+    fist: 21,
     enemy: 0,
   },
   crystal: {
@@ -173,7 +173,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 23,
     chime: 23,
     pistol: 20,
-    fist: 0,
+    fist: 23,
     enemy: 0,
   },
 
@@ -188,7 +188,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 21,
     chime: 21,
     pistol: 17,
-    fist: 0,
+    fist: 21,
     enemy: 0,
   },
   cursed: {
@@ -202,7 +202,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 22,
     chime: 22,
     pistol: 18,
-    fist: 0,
+    fist: 22,
     enemy: 0,
   },
 
@@ -218,7 +218,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 26,
     chime: 26,
     pistol: 21,
-    fist: 0,
+    fist: 26,
     enemy: 0,
   },
   hardened: {
@@ -232,7 +232,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 28,
     chime: 28,
     pistol: 23,
-    fist: 0,
+    fist: 28,
     enemy: 0,
   },
   engraved: {
@@ -246,7 +246,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 29,
     chime: 29,
     pistol: 24,
-    fist: 0,
+    fist: 29,
     enemy: 0,
   },
 
@@ -261,7 +261,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 32,
     chime: 32,
     pistol: 27,
-    fist: 0,
+    fist: 32,
     enemy: 0,
   },
 
@@ -277,7 +277,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 31,
     chime: 31,
     pistol: 26,
-    fist: 0,
+    fist: 31,
     enemy: 0,
   },
   divine: {
@@ -291,7 +291,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 33,
     chime: 33,
     pistol: 28,
-    fist: 0,
+    fist: 33,
     enemy: 0,
   },
   arcane: {
@@ -305,7 +305,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 34,
     chime: 34,
     pistol: 29,
-    fist: 0,
+    fist: 34,
     enemy: 0,
   },
   celestial: {
@@ -319,7 +319,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 36,
     chime: 36,
     pistol: 31,
-    fist: 0,
+    fist: 36,
     enemy: 0,
   },
 
@@ -335,7 +335,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 38,
     chime: 38,
     pistol: 33,
-    fist: 0,
+    fist: 38,
     enemy: 0,
   },
   unique: {
@@ -349,7 +349,7 @@ export const WEAPON_DAMAGE_CONFIG: tWeaponClassDamageConfig = {
     catalyst: 38,
     chime: 38,
     pistol: 33,
-    fist: 0,
+    fist: 38,
     enemy: 0,
   },
 }

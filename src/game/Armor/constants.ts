@@ -26,6 +26,7 @@ import {
   StudentRobes,
   StudentShoes,
 } from './builders/static'
+import { MonkHood, MonkRobes, MonkShoes } from './builders/static/level0/monk'
 import { tArmor } from './type'
 
 export const CLASS_ARMOR: Record<tCharacterClass, tArmor[]> = {
@@ -36,6 +37,7 @@ export const CLASS_ARMOR: Record<tCharacterClass, tArmor[]> = {
   student: [StudentHat, StudentRobes, StudentShoes],
   patrician: [PatricianHat, PatricianAttire, PatricianShoes],
   corsair: [BROKEN_SHIELD(), CorsairHat, CorsairAttire, CorsairShoes],
+  monk: [MonkHood, MonkRobes, MonkShoes],
   drifter: [DrifterHat, DrifterShirt, DrifterShoes],
   enemy: [],
 }

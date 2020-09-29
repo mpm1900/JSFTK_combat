@@ -43,7 +43,7 @@ export const CONSECRATED_BEAST = (): tCharacter => {
       },
       ['undead'],
       [
-        makeEnemyReward(200, 120, [
+        makeEnemyReward(800, 120, [
           getRandomItem(5, 5),
           getRandomItem(5, 5),
           getRandomItem(5, 5),

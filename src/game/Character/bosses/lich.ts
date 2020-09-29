@@ -44,7 +44,7 @@ export const LICH = (): tCharacter => {
       },
       ['undead'],
       [
-        makeEnemyReward(200, 120, [
+        makeEnemyReward(400, 120, [
           getRandomItem(3, 3),
           getRandomItem(3, 3),
           getRandomItem(3, 3),

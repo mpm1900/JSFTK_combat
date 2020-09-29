@@ -51,6 +51,7 @@ import Hobo from './svg/delapouite/rolling-dices.svg'
 import Reaper from './svg/delapouite/kenku-head.svg'
 import Mercenary from './svg/kier-heyl/dwarf-helmet.svg'
 import Corsair from './svg/delapouite/pirate-captain.svg'
+import Monk from './svg/delapouite/monk-face.svg'
 import { CELESTIAL_LOTUS } from '../game/Consumable/objects/celestial_lotus'
 import { POISON_KNIFE } from '../game/Consumable/objects/poison_knife'
 import { BEAST_DRUG } from '../game/Consumable/objects/beast_drug'
@@ -140,5 +141,6 @@ export const CHARACTER_CLASS_ICONS: Record<tCharacterClass, string> = {
   ranger: Hunter,
   reaper: Reaper,
   student: Scholar,
+  monk: Monk,
   drifter: Hobo,
 }

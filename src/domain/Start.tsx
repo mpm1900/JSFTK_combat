@@ -81,7 +81,7 @@ export const Start = () => {
               })
             }}
           >
-            alpha-0.0.8.9
+            alpha-0.0.8.12
           </Monospace>
         }
       >
@@ -130,7 +130,7 @@ export const Start = () => {
             status effects.
           </p>
           <p>
-            More power attacks may require more checks or use negative-offset
+            More powerful attacks may require more checks or use negative-offset
             stat values
           </p>
         </BoxContainer>
@@ -236,6 +236,7 @@ export const StartCharacterCard = (props: StartCharacterCardPropsT) => {
         <option value='student'>Student</option>
         <option value='patrician'>Patrician</option>
         <option value='corsair'>Corsair</option>
+        <option value='monk'>Monk</option>
         <option value='drifter'>Drifter</option>
       </select>
       <FlexContainer $direction='column' style={{ padding: 8 }}>

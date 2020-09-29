@@ -15,6 +15,7 @@ export type tCharacterClass =
   | 'student'
   | 'patrician'
   | 'corsair'
+  | 'monk'
   | 'drifter'
   | 'enemy'
 export interface tCharacter {

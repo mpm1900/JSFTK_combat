@@ -21,6 +21,7 @@ import { HEART_OF_THE_BEAST } from '../Armor/builders/uniques/heart_of_the_beast
 import { MERCENARY_HAMMER } from './builders/objects/hammer'
 import { CORSAIR_PISTOL } from './builders/objects/pistol'
 import { MINDSTEM_CATALYST } from './builders/unique/boss_mind'
+import { MONK_FISTS } from './builders/objects/fist'
 
 export const CLASS_WEAPONS: Record<tCharacterClass, tWeapon | undefined> = {
   executioner: EXECUTIONER_AXE(),
@@ -30,6 +31,7 @@ export const CLASS_WEAPONS: Record<tCharacterClass, tWeapon | undefined> = {
   student: STUDENTS_CATALYST(),
   patrician: PATRICIANS_CHIME(),
   corsair: CORSAIR_PISTOL(),
+  monk: MONK_FISTS(),
   drifter: undefined,
   enemy: undefined,
 }

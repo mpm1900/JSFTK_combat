@@ -149,6 +149,17 @@ export const CLASS_STATS: Record<tCharacterClass, tStats> = {
     resistance: 0,
     evasion: 8,
   },
+  monk: {
+    ...BASE_C_STATS,
+    strength: 72,
+    vigor: 62,
+    intelligence: 72,
+    dexterity: 60,
+    charisma: 48,
+    agility: 60,
+    luck: 50,
+    evasion: 9,
+  },
   drifter: {
     ...BASE_C_STATS,
     strength: 70,

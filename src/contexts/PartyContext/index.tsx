@@ -19,9 +19,8 @@ import { tWeapon } from '../../game/Weapon/type'
 import { tArmor } from '../../game/Armor/type'
 import { useGameStateContext } from '../GameStateContext'
 import { tConsumable } from '../../game/Consumable/type'
-import { FISTS } from '../../game/Weapon/fists'
 import { FLOOR_1_ID } from '../../game/Encounter/floors/level1/floor-1'
-import { id } from 'tree-json-generator'
+import { FISTS } from '../../game/Weapon/builders/objects/fist'
 
 export interface PartyContextT {
   party: tProcessedParty

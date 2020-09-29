@@ -166,7 +166,9 @@ export const RoundResult = (props: RoundResultPropsT) => {
                     : Theme.enemyPartyColor,
                 }}
               >
-                {targetResult?.target.name}
+                {(activeRound?.targetResults.length || 0) > 1
+                  ? `${activeRound?.targetResults.length} characters`
+                  : targetResult?.target.name}
               </strong>
             </span>
           )}

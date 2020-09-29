@@ -29,6 +29,7 @@ export const CHARACTER_CLASS_COLORS: Record<tCharacterClass, string> = {
   student: '#382838',
   ranger: '#202e20',
   reaper: 'rgb(22, 25, 33)',
+  monk: '#664729',
   drifter: '#111',
 }
 

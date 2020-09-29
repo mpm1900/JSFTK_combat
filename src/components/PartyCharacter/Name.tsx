@@ -1,7 +1,6 @@
 import React from 'react'
 import { FlexContainer, FullContainer } from '../../elements/flex'
 import { tProcessedCharacter } from '../../game/Character/type'
-import { FISTS } from '../../game/Weapon/fists'
 import { Theme } from '../../theme'
 export interface NamePropsT {
   character: tProcessedCharacter
