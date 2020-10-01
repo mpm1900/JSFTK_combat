@@ -42,7 +42,7 @@ export const buildRandomEncounterType = (
   if (isShop) return 'shop'
   if (isSide) return 'combat'
   if (roll >= 96) return 'reward'
-  if (roll >= 84) return 'shrine'
+  if (roll >= 80) return 'shrine'
   return 'combat'
 }
 
@@ -51,7 +51,7 @@ export const buildRandomEncounter = (
   hex: HexT,
   isShop: boolean,
 ): tEncounter | undefined => {
-  const isStart = isValueEqual(hex, MIN_HEX(FLOOR_SIZE))
+  // const isStart = isValueEqual(hex, MIN_HEX(FLOOR_SIZE))
   const depth = getDepth(hex, FLOOR_SIZE)
   const type = buildRandomEncounterType(hex, depth, isShop)
   const isSide = hex.q === 0 || hex.q - 1 === depth
@@ -172,5 +172,7 @@ export const buildShrineEncounter = (
     offset: 0,
     rolls: rewards.length,
     results: rewards,
+    done: false,
+    optional: makeRandom(100) > 50,
   }
 }

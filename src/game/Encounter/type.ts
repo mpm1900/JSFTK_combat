@@ -36,6 +36,8 @@ export interface tShrineEncounter extends tEncounter {
   offset: number
   rolls: number
   results: tEncounterReward[]
+  done: boolean
+  optional: boolean
 }
 export interface tBossEncounter extends tCombatEncounter {
   boss: true

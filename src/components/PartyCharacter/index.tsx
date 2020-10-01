@@ -43,7 +43,7 @@ const Wrapper = styled(animated.div, (props: any) => {
     margin: 10,
     display: 'flex',
     position: 'relative',
-    transform: $active ? 'scale(1.07)' : 'scale(1)',
+    transform: $active ? 'scale(1.09)' : 'scale(1)',
     transition: 'all 0.4s',
     userSelect: 'none',
   }
@@ -55,7 +55,7 @@ const Halo = styled('div', (props: any) => {
   const leftR = $light ? -10 : 0
   return {
     boxShadow: $active
-      ? `${left}px 0px 20px ${$light ? 'rgba(255,255,255,0.4)' : 'white'}`
+      ? `${left}px 0px 20px ${$light ? 'rgba(255,255,255,0.6)' : 'white'}`
       : $targeted
       ? `${leftR}px 0px 20px #ff6224  `
       : 'none',
@@ -89,7 +89,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           style={{
             position: 'absolute',
             zIndex: 4,
-            top: 8,
+            top: 4,
             left: 13,
             boxShadow: '0px 1px 3px black',
             borderWidth: '2px',

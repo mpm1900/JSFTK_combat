@@ -7,6 +7,7 @@ import {
   tShopEncounter,
   tFloor2,
   tRewardEncounter,
+  tShrineEncounter,
 } from '../../game/Encounter/type'
 import { makeFloor2 } from '../../game/Encounter/util'
 import { HexT } from '../../grid/types'
@@ -29,6 +30,7 @@ export const SET_LOADING = '@action/game/set-loading'
 export const CHOOSE_NEXT = '@action/game/CHOOSE_NEXT'
 export const COMPLETE_CURRENT = '@action/game/complete-current'
 export const OPEN_CURRENT = '@action/game/open-current'
+export const DONE_CURRENT = '@action/game/done-current'
 export const NEXT_FLOOR = '@action/game/next-floor'
 export const REMOVE_ITEM = '@action/game/remove-item'
 
@@ -70,6 +72,10 @@ export const actionCreators = {
     type: OPEN_CURRENT,
     payload: {},
   }),
+  doneCurrent: (): StateActionT => ({
+    type: DONE_CURRENT,
+    payload: {},
+  }),
 }
 
 export const actions = {
@@ -94,6 +100,9 @@ export const actions = {
   },
   openCurrent: () => (dispatch: Dispatch) => {
     dispatch(actionCreators.openCurrent())
+  },
+  doneCurrent: () => (dispatch: Dispatch) => {
+    dispatch(actionCreators.doneCurrent())
   },
 }
 
@@ -214,6 +223,24 @@ export const core: StateCoreT<GameStateT> = {
       }
     })
   },
+  [DONE_CURRENT]: (state, action) => {
+    return updateCurrentFloor(state, (floor) => {
+      const encounters = floor.encounters
+      if (!state.hex) return floor
+      let encounter = encounters[state.hex.q][state.hex.r][state.hex.s]
+      if (encounter) {
+        encounter = {
+          ...encounter,
+          done: true,
+        } as tShrineEncounter
+        encounters[state.hex.q][state.hex.r][state.hex.s] = encounter
+      }
+      return {
+        ...floor,
+        encounters,
+      }
+    })
+  },
 }
 
 export const INITIAL_STATE: GameStateT = {
@@ -239,4 +266,5 @@ export const useGameStateActions = () =>
     removeItem: (itemId: string) => void
     completeCurrent: () => void
     openCurrent: () => void
+    doneCurrent: () => void
   }

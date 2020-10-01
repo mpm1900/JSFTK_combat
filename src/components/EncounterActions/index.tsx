@@ -30,11 +30,7 @@ export const EncounterActions = () => {
               {currentEncounter.type === 'shop' && (
                 <Shop currentEncounter={currentEncounter as tShopEncounter} />
               )}
-              {currentEncounter.type === 'shrine' && (
-                <Shrine
-                  currentEncounter={currentEncounter as tShrineEncounter}
-                />
-              )}
+              {currentEncounter.type === 'shrine' && <Shrine />}
               {currentEncounter.type === 'smith' && (
                 <Smith currentEncounter={currentEncounter} />
               )}

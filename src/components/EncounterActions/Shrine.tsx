@@ -2,15 +2,18 @@ import React from 'react'
 import { useGameStateContext } from '../../contexts/GameStateContext'
 import { Button } from '../../elements/button'
 import { FlexContainer } from '../../elements/flex'
+import { Text } from '../../elements/typography'
 import { tShrineEncounter } from '../../game/Encounter/type'
 import { Theme } from '../../theme'
 
-export interface ShrinePropsT {
-  currentEncounter: tShrineEncounter
-}
+export interface ShrinePropsT {}
 
 export const Shrine = (props: ShrinePropsT) => {
-  const { completeCurrent } = useGameStateContext()
+  const { completeCurrent, currentEncounter } = useGameStateContext()
+  const ce = currentEncounter
+    ? (currentEncounter as tShrineEncounter)
+    : undefined
+  const showButton = ce?.optional ? true : ce?.done
   return (
     <FlexContainer $direction='column' style={{ justifyContent: 'center' }}>
       <h3
@@ -23,7 +26,11 @@ export const Shrine = (props: ShrinePropsT) => {
         You've discoved a secret shrine.
       </h3>
       <FlexContainer style={{ justifyContent: 'center' }}>
-        <Button onClick={() => completeCurrent()}>Leave Shrine</Button>
+        {showButton ? (
+          <Button onClick={() => completeCurrent()}>Leave Shrine</Button>
+        ) : (
+          <Text>This shrine is not optional.</Text>
+        )}
       </FlexContainer>
     </FlexContainer>
   )

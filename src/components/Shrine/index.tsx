@@ -17,7 +17,7 @@ import { CombatVictoryModalPure } from '../CombatVictoryModal/pure'
 
 export interface ShrinePropsT {}
 export const Shrine = (props: ShrinePropsT) => {
-  const { currentEncounter } = useGameStateContext()
+  const { currentEncounter, doneCurrent } = useGameStateContext()
   const { open, close } = useModalContext()
   const { party, rawParty, updateParty, equipItem } = usePartyContext()
   const encounter = currentEncounter as tShrineEncounter
@@ -35,7 +35,9 @@ export const Shrine = (props: ShrinePropsT) => {
     stream.onValue((value) => {
       setResults((r) => [...r, value.result])
     })
-    stream.onEnd(() => {})
+    stream.onEnd(() => {
+      doneCurrent()
+    })
   }
 
   useEffect(() => {
@@ -77,9 +79,8 @@ export const Shrine = (props: ShrinePropsT) => {
             {encounter.stat} Shrine
           </h1>
           <div style={{ maxWidth: 300, marginBottom: 48 }}>
-            Shines are optional encounters that test one character in your
-            party's stats. Be careful, as if you fail, you may get a negative
-            outcome!
+            Shines are random encounters that test one character in your party's
+            stats. Be careful, as if you fail, you may get a negative outcome!
           </div>
           <FlexContainer>
             <FlexContainer $direction='column'>

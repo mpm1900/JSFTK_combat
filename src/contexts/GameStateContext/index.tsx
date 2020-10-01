@@ -20,6 +20,7 @@ export interface GameStateContextT {
   removeItem: (itemId: string) => void
   completeCurrent: () => void
   openCurrent: () => void
+  doneCurrent: () => void
 }
 
 export const defaultValue: GameStateContextT = {
@@ -38,6 +39,7 @@ export const defaultValue: GameStateContextT = {
   removeItem: (itemId) => {},
   completeCurrent: () => {},
   openCurrent: () => {},
+  doneCurrent: () => {},
 }
 export const GameStateContext = React.createContext<GameStateContextT>(
   defaultValue,
@@ -63,6 +65,7 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
     removeItem,
     completeCurrent,
     openCurrent,
+    doneCurrent,
   } = useGameStateActions()
   const currentEncounter = useMemo(() => {
     if (!hex) return undefined
@@ -100,6 +103,7 @@ export const GameStateContextProvider = (props: GameStateProviderPropsT) => {
         removeItem,
         completeCurrent,
         openCurrent,
+        doneCurrent,
       }}
     >
       {children}

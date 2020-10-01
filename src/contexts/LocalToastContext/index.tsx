@@ -180,14 +180,14 @@ const color = (type: string | undefined) => {
       }
     case 'base':
       return {
-        color: 'rgba(255,255,255,0.8)',
+        color: 'rgba(255,255,255,1)',
         textShadow: '0px 3px 1px rgba(0,0,0,0.5)',
       }
     default:
       return {
         // color: 'rgba(219, 114, 114, 0.8)',
         // color: 'red',
-        color: 'rgba(255,158,158,0.8)',
+        color: 'rgba(255,60,60,0.9)',
         textShadow: '0px 3px 1px rgba(0,0,0,1)',
       }
   }
